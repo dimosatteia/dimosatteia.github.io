@@ -62,7 +62,7 @@ header and links to the other parts at the bottom.
 
 If you spot a mistake, have a better way to do something, or want to
 suggest a topic, ping me on
-[LinkedIn](https://www.linkedin.com/in/YOUR-HANDLE/) or open an issue on
+[LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) or open an issue on
 the [GitHub repo](https://github.com/YOUR-HANDLE/ms-security-blog).
 
 Thanks for reading. The next post drops soon.

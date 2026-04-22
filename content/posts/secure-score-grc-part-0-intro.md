@@ -127,6 +127,6 @@ You don't need to be a developer. You don't need a third-party GRC platform. You
 
 **Part 1 lands next week:** *Anatomy of a Microsoft Secure Score recommendation — every field on the screen, what it really means, and how to extract value in under an hour.*
 
-Follow me on [LinkedIn](#) for new-post notifications, or subscribe via RSS at the top of the page.
+Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
 
 ---
