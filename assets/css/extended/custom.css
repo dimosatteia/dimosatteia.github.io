@@ -1,0 +1,124 @@
+/* ---------------------------------------------------------------------------
+   Custom theme overrides for PaperMod
+   Brand accent: soft lavender/purple matching the "Expertise Area" card
+   --------------------------------------------------------------------------- */
+
+:root {
+  --brand-primary: #8b5cf6;     /* purple-500 */
+  --brand-primary-soft: #ede9fe; /* purple-100 */
+  --brand-accent: #a78bfa;      /* purple-400 */
+}
+
+.dark {
+  --brand-primary: #a78bfa;
+  --brand-primary-soft: #2e1065;
+  --brand-accent: #c4b5fd;
+}
+
+/* Links */
+.post-content a,
+.first-entry .entry-content a,
+.entry-content a {
+  color: var(--brand-primary);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--brand-accent);
+}
+
+.post-content a:hover,
+.entry-content a:hover {
+  border-bottom-style: solid;
+}
+
+/* Tag pills */
+.post-tags a,
+ul.post-tags li a {
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-accent);
+}
+
+.post-tags a:hover {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+/* Headings — subtle accent on H2 */
+.post-content h2 {
+  border-bottom: 2px solid var(--brand-primary-soft);
+  padding-bottom: 0.3rem;
+}
+
+/* Series badge — when post is part of a series */
+.post-meta .series,
+.entry-content .series {
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+/* Code blocks — match dark mode aesthetic */
+.post-content pre {
+  border-left: 3px solid var(--brand-primary);
+  border-radius: 0.4rem;
+}
+
+/* Blockquotes — pull-quote style */
+.post-content blockquote {
+  border-left: 4px solid var(--brand-primary);
+  background: var(--brand-primary-soft);
+  padding: 0.8rem 1rem;
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+
+.dark .post-content blockquote {
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* Tables — make them readable */
+.post-content table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.post-content table th {
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  font-weight: 600;
+  text-align: left;
+}
+
+.post-content table th,
+.post-content table td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+}
+
+/* Home banner — make the intro pop */
+.home-info .entry-header h1 {
+  font-weight: 700;
+}
+
+/* Top menu — active item underline */
+.menu .active {
+  border-bottom: 2px solid var(--brand-primary);
+}
+
+/* Read more / pagination buttons */
+.post-summary .read-more,
+.entry-footer a {
+  color: var(--brand-primary);
+}
+
+/* Cover badge for posts in a series */
+.entry-header .meta .series-badge {
+  display: inline-block;
+  background: var(--brand-primary);
+  color: #fff;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.8em;
+  margin-right: 0.5rem;
+}

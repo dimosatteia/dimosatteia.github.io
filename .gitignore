@@ -1,0 +1,25 @@
+# Hugo build output
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Hugo cache
+/.cache/
+/hugo_cache/
+
+# Node (in case you add JS later)
+node_modules/
+npm-debug.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local env
+.env
+.env.local
