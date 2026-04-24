@@ -2,6 +2,7 @@
 title: "How We Built a Gold-Winning GRC Programme on Microsoft Secure Score — Series Introduction"
 date: 2026-04-22T10:00:00+03:00
 draft: false
+author: "Dimosthenis"
 description: "How Microsoft 365 Secure Score became the engine of an ISO 27001:2022 and NIS2 compliance programme that won the Gold Award at the Cyber Security Awards 2026. A practical, screenshot-driven series for CISOs and M365 admins who want fast, defensible results without buying another GRC platform."
 summary: "Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate."
 tags: ["secure-score", "microsoft-365", "microsoft-defender", "grc", "nis2", "iso-27001", "purview", "compliance", "ciso", "cyber-security-awards"]
@@ -16,7 +17,7 @@ cover:
   caption: "Series introduction — built on Microsoft 365"
 ---
 
-## The problem every mid-market CISO recognises
+## The problem every mid-market Professional recognises
 
 If you run security in a mid-market organisation that is in scope for **NIS2** or pursuing **ISO 27001:2022**, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget — let's be honest — is never what it should be.
 
@@ -111,20 +112,58 @@ Within the first year of running the programme:
 
 ## What you will get from this series
 
-Over the next seven posts you will learn, with real screenshots from a Microsoft 365 production tenant, how to:
+The goal of the series is simple: help you understand Microsoft Secure Score well enough to turn it into a real governance and compliance instrument for your organisation, the same way we did for ours.
 
-1. **Read a Microsoft Secure Score recommendation properly** — what every field means and how to extract value in under an hour.
-2. **Map Microsoft Secure Score to ISO 27001:2022 Annex A** — full table, with rationale.
-3. **Map Microsoft Secure Score to NIS2 Article 21** — full table, aligned to Greek Law 5160/2024.
-4. **Pull the data with Microsoft Graph API into Power BI** — exact queries and report templates.
-5. **Build a one-page board report** that turns the score into a risk narrative the board acts on.
-6. **Identify which Microsoft recommendations to deprioritise** — and document the decision defensibly.
-7. **Replicate the full implementation** that won the Gold Award, step by step.
+To get there without skipping steps, the recommended reading path is:
+
+**Foundation first — the Microsoft Defender family**
+
+If the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, or Microsoft Defender for Cloud Apps don't mean much to you yet, start with the companion series that covers the whole Microsoft Defender ecosystem end to end:
+
+1. **Microsoft Defender Demystified — Part 1: How Many Defenders Are There, Really?** — the whole family map in one post.
+<!-- /posts/defender-demystified-part-1-what-is-microsoft-defender/ -->
+
+2. **Microsoft Defender Demystified — Part 2: The Four Core XDR Workloads, Up Close** — what each workload protects.
+<!-- /posts/defender-demystified-part-2-four-workloads/ -->
+
+3. **Microsoft Defender Demystified — Part 3: Microsoft Defender for Cloud** — the Azure and multicloud story.
+<!-- /posts/defender-demystified-part-3-defender-for-cloud/ -->
+
+4. **Microsoft Defender Demystified — Part 4: Which Defender Do You Actually Need?** — licensing across Microsoft 365 and Enterprise Mobility + Security.
+<!-- /posts/defender-demystified-part-4-licensing-decoder/ -->
+
+5. **Microsoft Defender Demystified — Part 5: A Walk Through the Microsoft Defender Portal** — where everything lives.
+<!-- /posts/defender-demystified-part-5-portal-tour/ -->
+
+6. **Enterprise Mobility + Security Explained** — the security bundle many organisations already own and don't fully use.
+<!-- /posts/enterprise-mobility-security-explained/ -->
+
+Want to go deeper into any single workload? The **[Microsoft Defender Up Close](/series/microsoft-defender-up-close/)** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
+
+**Then — the Secure Score series itself**
+
+Once the Microsoft Defender landscape feels familiar, come back here. You'll now have the context to follow what Microsoft Secure Score is actually measuring.
+
+1. **[Opening Your First Recommendation]** — every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
+<!-- (/posts/secure-score-grc-part-1-anatomy/) -->
+2. **[Where Microsoft Secure Score Sits in the Microsoft Defender World]** — how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
+<!-- (/posts/secure-score-grc-part-2-ecosystem/) -->
+
+More parts will follow in the coming weeks — each one focused on a single, concrete step that moves Microsoft Secure Score from a number you look at to an instrument you use. The [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) always has the latest.
 
 You don't need to be a developer. You don't need a third-party GRC platform. You need a Microsoft 365 tenant, a few focused hours per week, and the willingness to look at Microsoft Secure Score with fresh eyes.
 
-## Coming next
+If you already know the Microsoft Defender landscape well, feel free to skip the foundation section and dive straight into the Secure Score posts.
 
-**Part 1 lands next week:** *Anatomy of a Microsoft Secure Score recommendation — every field on the screen, what it really means, and how to extract value in under an hour.*
+## Ready to start?
+
+Head to **[Part 1 — Opening Your First Recommendation]** when you're ready. See you there.
+<!-- (/posts/secure-score-grc-part-1-anatomy/) -->
+More parts coming in the following weeks — check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+---
+
+<!-- ## Coming next -->
+<!-- **Part 1 lands next week:** *Anatomy of a Microsoft Secure Score recommendation — every field on the screen, what it really means, and how to extract value in under an hour.* -->
+<!-- If you want to be notified when it goes live, follow me on [LinkedIn](#) or subscribe via RSS at the top of the page. -->
