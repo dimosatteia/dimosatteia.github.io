@@ -106,7 +106,7 @@ Within the first year of running the programme:
 
 - **Audit preparation time** for ISO 27001 surveillance dropped from weeks to days.
 - **Board cyber-risk reporting** moved from qualitative narratives to live, defensible numbers backed by Microsoft telemetry.
-- **Microsoft Secure Score** itself improved by **30%** — and every remaining gap is a documented, board-approved risk decision.
+- **Microsoft Secure Score** itself improved by **30%** and every remaining gap is a documented, board-approved risk decision.
 - **Total external GRC tooling cost: €0.** Everything was delivered on the existing Microsoft 365 E5 investment.
 - And, the Gold Award.
 
