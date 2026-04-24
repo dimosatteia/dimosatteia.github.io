@@ -138,7 +138,8 @@ If the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365,
 6. **Enterprise Mobility + Security Explained** — the security bundle many organisations already own and don't fully use.
 <!-- /posts/enterprise-mobility-security-explained/ -->
 
-Want to go deeper into any single workload? The **[Microsoft Defender Up Close](/series/microsoft-defender-up-close/)** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
+Want to go deeper into any single workload? The **[Microsoft Defender Up Close]** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
+<!-- (/series/microsoft-defender-up-close/) -->
 
 **Then — the Secure Score series itself**
 
