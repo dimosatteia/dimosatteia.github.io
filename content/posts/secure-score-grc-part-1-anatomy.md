@@ -12,7 +12,7 @@ ShowToc: true
 TocOpen: false
 weight: 2
 cover:
-  image: ""
+  image: "/images/MSS.png"
   alt: "Opening your first Microsoft Secure Score recommendation"
   caption: "Secure Score Series — Part 1"
 ---
@@ -37,6 +37,7 @@ First the navigation, because the location moved recently and older blog posts m
 2. In the left navigation, expand **Exposure management**
 3. Click **Microsoft Secure Score**
 
+[![Image 1 — The Microsoft Secure Score overview page.](/images/SS_GRC_P1_Anatomy_image_1.png)](/images/SS_GRC_P1_Anatomy_image_1.png)
 > 📷 **Image 1 — The Microsoft Secure Score overview page.**
 > *Open Microsoft Defender portal → Exposure management → Microsoft Secure Score. Capture the entire overview page — the score circle on the left, the historical trend graph, the "Actions to review" list on the right. This is the landing page we're starting from. Redact your tenant name if needed.*
 
@@ -53,6 +54,7 @@ Don't worry about the overall number yet. We're going to click into a single rec
 
 Click the **Recommended actions** tab at the top of the page. You'll get a list of every Microsoft Secure Score recommendation — usually somewhere between 100 and 250 of them, depending on what products you're licensed for.
 
+[![Image 2 — The Recommended actions list.](/images/SS_GRC_P1_Anatomy_image_2.png)](/images/SS_GRC_P1_Anatomy_image_2.png)
 > 📷 **Image 2 — The Recommended actions list.**
 > *Capture from: Microsoft Secure Score → Recommended actions tab. Show the full list view with columns visible (Rank, Recommended action, Score impact, Status, Category). Scroll to show 10–15 rows. Redact anything that might be sensitive.*
 
@@ -67,6 +69,7 @@ Click on any one of them. A details pane opens on the right side of the screen. 
 
 ## Every field on the recommendation details pane, explained
 
+[![Image 3 — A single recommendation details pane, fully expanded.](/images/SS_GRC_P1_Anatomy_image_3.png)](/images/SS_GRC_P1_Anatomy_image_3.png)
 > 📷 **Image 3 — A single recommendation details pane, fully expanded.**
 > *With the details pane open for the recommendation you picked, scroll through it and capture the complete detail view — title, description, implementation status, user impact, action type, score points, and the "Implementation" and "Details" tabs. Take multiple screenshots if one doesn't fit the whole thing.*
 
@@ -142,6 +145,7 @@ Small labels Microsoft applies to the recommendation — things like *GDPR*, *NI
 
 Below the summary, there's usually a tab with **step-by-step implementation instructions**. For most recommendations, Microsoft has written a short, numbered guide that tells you exactly where to click to configure the control.
 
+[![Image 4 — The Implementation tab contents.](/images/SS_GRC_P1_Anatomy_image_4.png)](/images/SS_GRC_P1_Anatomy_image_4.png)
 > 📷 **Image 4 — The Implementation tab contents.**
 > *Click the Implementation tab on an open recommendation and capture the step-by-step instructions Microsoft provides. This content is a genuine hidden gem and most new professionals miss that it's there.*
 
@@ -163,6 +167,7 @@ The title alone is often ambiguous. Two recommendations might have similar-sound
 
 Instead of scrolling through 200 recommendations, filter by one category (Identity, for example) and prioritise within that group. Most security improvements cluster by category — fixing three or four Identity recommendations together is more efficient than hopping between areas.
 
+[![Image 5 — The category filter applied to the Recommended actions list.](/images/SS_GRC_P1_Anatomy_image_5.png)](/images/SS_GRC_P1_Anatomy_image_5.png)
 > 📷 **Image 5 — The category filter applied to the Recommended actions list.**
 > *From the Recommended actions list, click the Category filter and select one (e.g., Identity). Capture the resulting filtered list. This shows readers how focused the list becomes — and how much easier prioritisation gets.*
 

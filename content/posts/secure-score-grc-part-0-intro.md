@@ -27,7 +27,7 @@ Most teams answer this by buying a dedicated GRC platform or by hiring more anal
 
 We were already licensed for **Microsoft 365 E5**. We already used **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)** every day. And right there, in the Microsoft Defender portal, was something most teams treat as a vanity dashboard: **[Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)**.
 
-![The Microsoft Secure Score dashboard](/images/Overall.png)
+[![The Microsoft Secure Score dashboard](/images/Overall.png)](/images/Overall.png)
 > 📷 **Image 1 — The Microsoft Secure Score dashboard.**
 
 Looking at it with fresh eyes, we realised Microsoft had already done most of the heavy GRC lifting:
@@ -40,13 +40,13 @@ The gap we had to bridge was small: connect Microsoft's data to our compliance f
 
 ## The Gold Award
 
-![The Cyber Security Award Logo](/images/CyberGRCGoldAward.png)
+[![The Cyber Security Award Logo](/images/CyberGRCGoldAward.png)](/images/CyberGRCGoldAward.png)
 > 📷 **Image 2 — The Gold Award Logo.**
 
-![The Cyber Security Award Plate](/images/CyberGRCGoldAwardPlate.png)
+[![The Cyber Security Award Plate](/images/CyberGRCGoldAwardPlate.png)](/images/CyberGRCGoldAwardPlate.png)
 > 📷 **Image 3 — The Gold Award Plate.**
 
-![The Cyber Security Award Ceremony](/images/CSAward2026_1.png)
+[![The Cyber Security Award Ceremony](/images/CSAward2026_1.png)](/images/CSAward2026_1.png)
 > 📷 **Image 4 — The Gold Award Ceremony with colleagues.**
 
 The programme we built on this foundation received the **Gold Award in Governance, Risk & Compliance at the [Cyber Security Awards 2026 — Honoring Cyber Excellence](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)**, under the title *"From theory to measurable compliance: Microsoft Secure Score as a Cyber GRC tool"*.
@@ -59,13 +59,13 @@ The full implementation will be unpacked, with screenshots and worked examples, 
 
 ### Building block 1 — Microsoft Secure Score as the single source of truth
 
-![Microsoft Secure Score Recommendation](/images/PrMFA0.png)
+[![Microsoft Secure Score Recommendation](/images/PrMFA0.png)](/images/PrMFA0.png)
 > 📷 **Image 5 — A Secure Score recommendation about "Ensure 'Phishing-resistant MFA strength' is required for Administrators", expanded.**
 
-![Microsoft Secure Score General Action](/images/PrMFA1.png)
+[![Microsoft Secure Score General Action](/images/PrMFA1.png)](/images/PrMFA1.png)
 > 📷 **Image 6 — A general recommendation regarding this specific Secure Score action.**
 
-![Microsoft Secure Score Implementation](/images/PrMFA2.png)
+[![Microsoft Secure Score Implementation](/images/PrMFA2.png)](/images/PrMFA2.png)
 > 📷 **Image 7 — A Secure Score implementation for the specific action.**
 
 We stopped treating Secure Score as a number to raise. We started treating each recommendation as a **continuously tested control**. Microsoft tells us, in real time, which controls are configured, which are not, and — crucially — provides the implementation guidance and user-impact analysis right inside each recommendation. That guidance, written by Microsoft engineering, is gold for any GRC team that previously had to draft remediation plans from scratch.
@@ -91,7 +91,7 @@ Roughly **60–70%** of the technical controls in ISO 27001:2022 Annex A and NIS
 
 Using the **Microsoft Graph Security API**, we pull Secure Score telemetry into a Power BI workspace daily. The output is a live evidence dashboard that auditors can be given read-only access to, with full timestamped history. No more screenshot-scrambles before the next surveillance audit.
 
-![Microsoft PowerBi for live audit evidence](/images/PBI_Def.png)
+[![Microsoft PowerBi for live audit evidence](/images/PBI_Def.png)](/images/PBI_Def.png)
 > 📷 **Image 9 — Microsoft PowerBi for live audit evidence.**
 
 This is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing. **Part 4** of this series will give you the exact Graph queries, the Power BI data model, and the report templates we use.
@@ -161,7 +161,7 @@ If you already know the Microsoft Defender landscape well, feel free to skip the
 On Monday 27/04/2026 head to **[Part 1 — Opening Your First Recommendation]** when you're ready. See you there.
 <!-- (/posts/secure-score-grc-part-1-anatomy/) -->
 
-On Monday 4/05/2026 head to **[Part 2 — Where It Sits in the Microsoft Defender World]** when you're ready. See you there.
+On Monday 04/05/2026 head to **[Part 2 — Where It Sits in the Microsoft Defender World]** when you're ready. See you there.
 <!-- (/posts/secure-score-grc-part-2-ecosystem/) -->
 
 More parts coming in the following weeks — check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.

@@ -12,7 +12,7 @@ ShowToc: true
 TocOpen: false
 weight: 3
 cover:
-  image: ""
+  image: "/images/MSS.png"
   alt: "Microsoft Secure Score inside the Microsoft Defender family"
   caption: "Secure Score Series — Part 2"
 ---
@@ -49,6 +49,7 @@ Remember from Part 1, the navigation path is:
 
 The important word is **Exposure management**. Microsoft Secure Score moved into that section a while back, and it lives alongside other posture-related features.
 
+[![Image 1 — The Exposure management section in the left navigation.](/images/SS_GRC_P2_Ecosystem_image_1.png)](/images/SS_GRC_P2_Ecosystem_image_1.png)
 > 📷 **Image 1 — The Exposure management section in the left navigation.**
 > *Capture from: security.microsoft.com left navigation, with Exposure management expanded. Show the menu items underneath it — Overview, Attack surface, Exposure insights, Microsoft Secure Score. This shows the "neighbourhood" Microsoft Secure Score lives in.*
 
@@ -65,6 +66,7 @@ Microsoft Secure Score is one of several posture instruments that live here. For
 
 This is the part that usually surprises new professionals. Your Microsoft Secure Score is calculated from configuration data in **many different Microsoft products**. Here's the main list:
 
+[![Image 2 — The Recommended actions list with the Category column visible.](/images/SS_GRC_P2_Ecosystem_image_2.png)](/images/SS_GRC_P2_Ecosystem_image_2.png)
 > 📷 **Image 2 — The Recommended actions list with the Category column visible.**
 > *Capture from: Microsoft Secure Score → Recommended actions. Make sure the Category column is visible. Show 10–15 rows so the variety of categories (Identity, Data, Device, Apps) is clear. This screenshot proves the "multiple sources" point visually.*
 
@@ -131,10 +133,11 @@ Some foundational email configuration recommendations come directly from **Micro
 
 Here's a concrete exercise that makes all this click. Open your Microsoft Secure Score, pick any recommendation that's currently **To address**, and we'll trace it back to its source together.
 
-Example: let's say the recommendation is *"Ensure multifactor authentication is enabled for all users"*.
+Example: let's say the recommendation is *"Ensure internal phishing protection for Forms is enabled"*.
 
+[![Image 3 — A recommendation's Implementation tab showing which Microsoft product configures it.](/images/SS_GRC_P2_Ecosystem_image_3.png)](/images/SS_GRC_P2_Ecosystem_image_3.png)
 > 📷 **Image 3 — A recommendation's Implementation tab showing which Microsoft product configures it.**
-> *Open the recommendation "Ensure multifactor authentication is enabled for all users" (or similar) → Implementation tab. Capture the instructions. Notice how they direct you into Microsoft Entra admin center — that's the source product.*
+> *Open the recommendation "Ensure internal phishing protection for Forms is enabled" (or similar) → Implementation tab. Capture the instructions. Notice how they direct you into Microsoft Entra admin center — that's the source product.*
 
 The Implementation tab tells you to go to **Microsoft Entra admin center → Protection → Conditional Access** and configure an MFA policy. Notice what just happened:
 
@@ -153,6 +156,7 @@ This is a common beginner moment of confusion. You've read an article or watched
 
 The reason is almost always **licensing**. Microsoft Secure Score only shows you recommendations for products you're **licensed for**. If your tenant doesn't have Microsoft Defender for Office 365 Plan 2, you won't see the recommendations that are specific to Plan 2 (like the Attack Simulation Training ones). If you don't have Microsoft Defender for Cloud Apps, you won't see any Cloud App recommendations at all.
 
+[![Image 4 — The Microsoft 365 admin center licenses page.](/images/SS_GRC_P2_Ecosystem_image_4.png)](/images/SS_GRC_P2_Ecosystem_image_4.png)
 > 📷 **Image 4 — The Microsoft 365 admin center licenses page.**
 > *Capture from: admin.microsoft.com → Billing → Licenses. This shows what products your tenant is actually licensed for — which directly determines what Microsoft Secure Score recommendations you'll see. Redact counts if sensitive.*
 
@@ -176,6 +180,7 @@ If you implement a change and your score hasn't moved by the next day, don't pan
 
 One last part of the page worth knowing about: **History**.
 
+[![Image 5 — The Microsoft Secure Score History tab.](/images/SS_GRC_P2_Ecosystem_image_5.png)](/images/SS_GRC_P2_Ecosystem_image_5.png)
 > 📷 **Image 5 — The Microsoft Secure Score History tab.**
 > *Capture from: Microsoft Secure Score → History tab. Show the timeline of score changes with individual events visible (when recommendations were implemented, when the score dropped, when new recommendations appeared). Redact anything sensitive.*
 

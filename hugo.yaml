@@ -120,11 +120,18 @@ params:
   homeInfoParams:
     Title: "Hi 👋, I'm Dimosthenis"
     Content: >
-      **Senior Cloud Architect** focused on **Microsoft 365** and **Microsoft Security Copilot**.
+      ![Dimosthenis](/images/Dimos_Banner.png)
 
-      I write deep-dive technical content for security architects, IT pros, and admins
-      who actually run these platforms in production — hardening guides, configuration
-      walkthroughs, real-world detections, and lessons learned the hard way.
+      **Senior Cloud Architect** focused on **Microsoft 365** and **Microsoft Security Copilot**, with extensive hands‑on experience designing, securing, and operating enterprise‑scale environments.
+      
+
+      In parallel, I serve as **CIO/CISO** in a large food manufacturing organization in Greece, where I apply **Microsoft Security** technologies in real‑world, high‑impact production scenarios.
+      
+      
+      I write deep‑dive technical content for security architects, IT professionals, and administrators who actively run these platforms in production—covering hardening guides, configuration walkthroughs, real‑world detections, and lessons learned the hard way.
+      
+      This dual role allows me to translate complex security challenges into practical guidance, community content, and actionable best practices for the Microsoft professional community.
+
 
       Pick a topic from the menu above, or start with the latest posts below.
 
@@ -134,10 +141,6 @@ params:
       url: "https://www.linkedin.com/in/dimosthenisatteia/"
     - name: github
       url: "https://github.com/dimosatteia"
-    - name: x
-      url: "https://x.com/YOUR-HANDLE"
-    - name: rss
-      url: "/index.xml"
 
   # Edit on GitHub (great for community contributions)
   editPost:
