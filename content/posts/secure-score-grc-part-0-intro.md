@@ -12,7 +12,7 @@ ShowToc: true
 TocOpen: false
 weight: 1
 cover:
-  image: "" # TODO: cover image — see image instructions at the bottom of this file
+  image: "/images/CyberGRCGoldAward.png" # TODO: cover image — see image instructions at the bottom of this file
   alt: "Microsoft Secure Score dashboard powering a Gold-winning GRC programme"
   caption: "Series introduction — built on Microsoft 365"
 ---

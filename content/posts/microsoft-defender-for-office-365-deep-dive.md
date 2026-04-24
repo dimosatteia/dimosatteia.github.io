@@ -2,6 +2,7 @@
 title: "Microsoft Defender for Office 365, Up Close Part 1b — From Preset Policies to Advanced Configuration"
 date: 2026-04-23T10:00:00+03:00
 draft: true
+author: "Dimosthenis"
 description: "A hands-on walk through Microsoft Defender for Office 365 — Plan 1 vs Plan 2 differences, the preset security policies that give you 80% of the value in 10 minutes, and the custom policy configuration that matters for the remaining 20%."
 summary: "Microsoft Defender for Office 365 explained in practical terms. Plan 1 vs Plan 2, how preset security policies take the friction out of day-one deployment, and the specific settings for Safe Links, Safe Attachments, and anti-phishing that matter most."
 tags: ["microsoft-defender-for-office-365", "mdo", "email-security", "microsoft-defender", "safe-links", "safe-attachments", "anti-phishing"]

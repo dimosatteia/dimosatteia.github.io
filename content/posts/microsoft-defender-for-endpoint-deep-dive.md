@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out"
-date: 2026-04-23T10:00:00+03:00
+date: 2026-04-22T10:00:00+03:00
 draft: true
 author: "Dimosthenis"
 description: "A practical, friendly deep dive into Microsoft Defender for Endpoint — Plan 1 vs Plan 2, what each tier actually gives you, how to onboard devices, and the configuration settings that matter most in the first week."
