@@ -158,8 +158,12 @@ If you already know the Microsoft Defender landscape well, feel free to skip the
 
 ## Ready to start?
 
-Head to **[Part 1 — Opening Your First Recommendation]** when you're ready. See you there.
+On Monday 27/04/2026 head to **[Part 1 — Opening Your First Recommendation]** when you're ready. See you there.
 <!-- (/posts/secure-score-grc-part-1-anatomy/) -->
+
+On Monday 4/05/2026 head to **[Part 2 — Where It Sits in the Microsoft Defender World]** when you're ready. See you there.
+<!-- (/posts/secure-score-grc-part-2-ecosystem/) -->
+
 More parts coming in the following weeks — check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
