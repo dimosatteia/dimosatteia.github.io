@@ -153,7 +153,7 @@ Once the Microsoft Defender landscape feels familiar, come back here. You'll now
 **What you will get from this series**
 
 **Secure Score** is the destination of this series — the daily dashboard that will show you where your organization stands, regardless of its size, and help you decide what to tackle first and what can wait, across applications, data, devices, and user identity.
-But for it to be genuinely useful — and not just another number you stare at without knowing what it means — you first need to understand how it is built (Part 1: Anatomy) and the ecosystem it lives in (Part 2: Ecosystem). Once these two parts are clear, the Defender Secure Score stops being a "magic number" and becomes a decision-making tool.
+But for it to be genuinely useful — and not just another number you stare at without knowing what it means — you first need to understand how it is built **(Part 1: Anatomy)** and the ecosystem it lives in **(Part 2: Ecosystem)**. Once these two parts are clear, the Defender Secure Score stops being a "magic number" and becomes a decision-making tool.
 So read Part 1 and Part 2 in order. After that, everything we cover in the Defender chapters will carry a concrete meaning within your own environment.
 
 You don't need to be a developer. You don't need a third-party GRC platform. You need a Microsoft 365 tenant, a few focused hours per week, and the willingness to look at Microsoft Secure Score with fresh eyes.
