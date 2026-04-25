@@ -76,7 +76,7 @@ Here is where the Microsoft platform already does an enormous amount of the work
 
 **[Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)** ships with pre-built assessments for **ISO/IEC 27001:2022**, **NIS 2 Directive**, **GDPR**, **NIST CSF**, and over 300 other regulations. Microsoft has done the foundational mapping for you: each framework control is linked to one or more **Improvement Actions** — concrete configuration changes you can make across Microsoft 365, Entra ID, Microsoft Purview, and Azure to satisfy that control.
 
-![Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17](/images/A.5.17_AuthenticationInformation.png)
+[![Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17](/images/A.5.17_AuthenticationInformation.png)](/images/A.5.17_AuthenticationInformation.png)
 > 📷 **Image 8 — Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17.**
 
 What Compliance Manager does *not* give you out of the box is a live link between an Improvement Action and the corresponding **Microsoft Secure Score** recommendation that proves the control is currently configured correctly across your tenant. The Improvement Action tells you *what to do*; Secure Score tells you, in real time, *whether it is done*.
