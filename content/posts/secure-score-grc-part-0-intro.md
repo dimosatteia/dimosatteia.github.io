@@ -55,7 +55,7 @@ The principle the panel recognised is the same one that runs through this entire
 
 ## How we did it — four building blocks on top of Microsoft 365
 
-The full implementation will be unpacked, with screenshots and worked examples, across the next seven posts. Here is the shape, so you can decide whether to follow along.
+The full implementation is unpacked, with screenshots and worked examples, across the rest of this series. Here is the shape, so you can decide whether to follow along.
 
 ### Building block 1 — Microsoft Secure Score as the single source of truth
 
