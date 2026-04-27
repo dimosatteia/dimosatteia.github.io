@@ -85,8 +85,6 @@ This is exactly the gap we closed. We built a thin mapping layer that, for each 
 
 Roughly **60–70%** of the technical controls in ISO 27001:2022 Annex A and NIS2 Article 21 can be evidenced this way directly from Microsoft Secure Score telemetry. The remaining 30–40% are covered either by other Microsoft Purview tooling (Data Loss Prevention, Information Protection, Insider Risk Management) or by documented organisational procedures. The mapping self-maintains: when Microsoft adds or revises an Improvement Action or a Secure Score recommendation, we triage the change once and the live evidence pipeline picks it up automatically.
 
-**Parts 2 and 3** of this series walk through the full ISO 27001:2022 and NIS2 mapping tables, with the exact Compliance Manager → Secure Score linkages we use.
-
 ### Building block 3 — Microsoft Graph API + Power BI for live audit evidence
 
 Using the **Microsoft Graph Security API**, we pull Secure Score telemetry into a Power BI workspace daily. The output is a live evidence dashboard that auditors can be given read-only access to, with full timestamped history. No more screenshot-scrambles before the next surveillance audit.
