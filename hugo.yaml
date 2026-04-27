@@ -5,9 +5,10 @@
 
 baseURL: "https://dimosatteia.github.io/"   # <-- change after creating the GitHub repo
 languageCode: "en-us"
-title: "Microsoft Security Insights"
+title: "Microsoft 365 Security Insights"
 theme: "PaperMod"
 defaultContentLanguage: "en"
+description: "Practical, hands-on content on Microsoft 365 and Microsoft Security Copilot from a Senior Cloud Architect."
 
 # Pagination & build
 pagination:
@@ -63,13 +64,13 @@ markup:
     changefreq: "weekly"
     priority: 0.5
     filename: "sitemap.xml"
-    
+
 # -----------------------------------------------------------------------------
 # PaperMod theme parameters
 # -----------------------------------------------------------------------------
 params:
   env: production
-  title: "Microsoft Security Insights"
+  title: "Microsoft 365 Security Insights"
   description: "Practical, hands-on content on Microsoft 365 and Microsoft Security Copilot from a Senior Cloud Architect."
   keywords:
     - Microsoft 365
