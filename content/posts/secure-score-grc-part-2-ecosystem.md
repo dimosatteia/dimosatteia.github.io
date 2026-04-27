@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 2: Where It Sits in the Microsoft Defender World"
-date: 2026-04-22T10:00:00+03:00
+date: 2026-05-04T08:00:00+03:00
 draft: true
 author: "Dimosthenis"
 description: "Microsoft Secure Score doesn't live in isolation — it sits inside a much bigger Microsoft Defender ecosystem, quietly pulling signals from products like Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. A beginner-friendly explanation of how the pieces connect and where your score actually comes from."
