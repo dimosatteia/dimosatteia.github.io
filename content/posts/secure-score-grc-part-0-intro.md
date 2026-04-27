@@ -92,7 +92,7 @@ Using the **Microsoft Graph Security API**, we pull Secure Score telemetry into 
 [![Microsoft PowerBi for live audit evidence](/images/PBI_Def.png)](/images/PBI_Def.png)
 > 📷 **Image 9 — Microsoft PowerBi for live audit evidence.**
 
-This is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing. **Part 4** of this series will give you the exact Graph queries, the Power BI data model, and the report templates we use.
+This is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing.
 
 ### Building block 4 — Microsoft Purview Compliance Manager for the board view
 
