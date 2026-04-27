@@ -87,6 +87,7 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto       # auto | dark | light
   disableThemeToggle: false
+  ShowLastMod: true
   
   # UI behaviour
   ShowReadingTime: true
