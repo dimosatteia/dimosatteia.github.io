@@ -75,7 +75,7 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto       # auto | dark | light
   disableThemeToggle: false
-
+  
   sitemap:
   changefreq: "weekly"
   priority: 0.5
