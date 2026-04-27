@@ -9,6 +9,7 @@ title: "Microsoft 365 Security Insights"
 theme: "PaperMod"
 defaultContentLanguage: "en"
 description: "Practical, hands-on content on Microsoft 365 and Microsoft Security Copilot from a Senior Cloud Architect."
+enableGitInfo: true
 
 # Pagination & build
 pagination:
