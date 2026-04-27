@@ -57,6 +57,14 @@ markup:
     ordered: false
 
 # -----------------------------------------------------------------------------
+# PaperMod site parameters
+# -----------------------------------------------------------------------------
+  sitemap:
+    changefreq: "weekly"
+    priority: 0.5
+    filename: "sitemap.xml"
+    
+# -----------------------------------------------------------------------------
 # PaperMod theme parameters
 # -----------------------------------------------------------------------------
 params:
@@ -78,11 +86,6 @@ params:
   defaultTheme: auto       # auto | dark | light
   disableThemeToggle: false
   
-  sitemap:
-  changefreq: "weekly"
-  priority: 0.5
-  filename: "sitemap.xml"
-
   # UI behaviour
   ShowReadingTime: true
   ShowShareButtons: true
