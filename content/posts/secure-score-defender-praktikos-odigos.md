@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Secure Score & Microsoft Defender: Πρακτικός Οδηγός για τον Junior Μηχανικό Ασφάλειας"
 date: 2026-04-27T10:00:00+03:00
-draft: true
+draft: false
 author: "Dimosthenis"
 description: "Πρακτικός οδηγός για τον junior μηχανικό ασφάλειας και τον Υ.Α.Σ.Π.Ε. που αναλαμβάνει για πρώτη φορά Microsoft 365 tenant στο πλαίσιο του Νόμου 5160/2024 (NIS2). Τι είναι το Microsoft Secure Score, πώς δουλεύει στην πράξη, ποιοι Defender workloads το τροφοδοτούν, και από πού να ξεκινήσει κανείς για γρήγορη και μετρήσιμη μείωση κινδύνου."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
