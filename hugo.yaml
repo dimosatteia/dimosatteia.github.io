@@ -7,6 +7,7 @@ baseURL: "https://dimosatteia.github.io/"   # <-- change after creating the GitH
 languageCode: "en-us"
 title: "Microsoft Security Insights"
 theme: "PaperMod"
+defaultContentLanguage: "en"
 
 # Pagination & build
 pagination:
@@ -74,6 +75,11 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto       # auto | dark | light
   disableThemeToggle: false
+
+  sitemap:
+  changefreq: "weekly"
+  priority: 0.5
+  filename: "sitemap.xml"
 
   # UI behaviour
   ShowReadingTime: true
