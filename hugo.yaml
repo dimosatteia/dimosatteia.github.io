@@ -71,7 +71,8 @@ params:
     - Microsoft Entra
     - Security Architecture
     - Cloud Security
-  author: "Dimosthenis"   # <-- change to your public name/handle
+  author: "Dimosthenis Atteia"   # <-- change to your public name/handle
+  url: "https://dimosatteia.github.io/about/"
   DateFormat: "January 2, 2006"
   defaultTheme: auto       # auto | dark | light
   disableThemeToggle: false
