@@ -193,11 +193,18 @@ That's genuinely useful first-day work. You don't need to implement anything yet
 
 ## What's next
 
-In **Part 2** we zoom out from the single recommendation and look at how Microsoft Secure Score fits into the wider Microsoft Defender portal. You'll see how it connects to the incidents and alerts you might be working on as a SOC analyst, and how it relates to the Microsoft Defender family of products generally.
+In **Part 2** we zoom out from the single recommendation and look at
+where Microsoft Secure Score actually lives inside the Microsoft
+Defender portal — and, more importantly, *which Microsoft products
+feed it*. You'll see why your score is really a scoreboard reading
+configuration data from Microsoft Entra ID, Microsoft Defender for
+Endpoint, Microsoft Defender for Office 365, Microsoft Defender for
+Cloud Apps, and Microsoft Purview — and you'll learn how to trace
+a single score point back to the product that generated it.
 
 > 🔗 **Want to see where Microsoft Secure Score fits in the bigger Microsoft Defender picture?** Part 2 connects the dots to the broader Microsoft Defender family. You can also start from the ground-up tour: **[Microsoft Defender Demystified — Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)**.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 
 ## Microsoft Learn resources
 
