@@ -49,7 +49,7 @@ cover:
 
 [![Image 1 — Το Microsoft Secure Score overview page στο Microsoft Defender portal.](/images/secure-score-defender-praktikos-odigos/01-overview.png)](/images/secure-score-defender-praktikos-odigos/01-overview.png)
 > 📷 **Image 1 — Το Microsoft Secure Score overview page.**
-> *Microsoft Defender portal → Exposure management → Microsoft Secure Score. Redact το tenant name αν χρειάζεται.*
+> *Microsoft Defender portal → Exposure management → Microsoft Secure Score.*
 
 ## Πώς δουλεύει μηχανικά
 
@@ -62,7 +62,7 @@ cover:
 
 [![Image 2 — Το Status dropdown με τις 6 διαθέσιμες επιλογές.](/images/secure-score-defender-praktikos-odigos/03-overview.png)](/images/secure-score-defender-praktikos-odigos/03-overview.png)
 > 📷 **Image 2 — Status dropdown σε recommendation.**
-> *Οι 6 επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.*
+> *Οι επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.*
 
 Οι ενημερώσεις των πόντων γίνονται περίπου κάθε 24 ώρες — δεν περιμένουμε, λοιπόν, να δούμε την αλλαγή που κάναμε άμεσα μετά από ένα toggle.
 
@@ -102,7 +102,7 @@ cover:
 
 [![Image 3 — Recommended actions ταξινομημένα κατά Score impact.](/images/secure-score-defender-praktikos-odigos/02-overview.png)](/images/secure-score-defender-praktikos-odigos/02-overview.png)
 > 📷 **Image 3 — Recommended actions ταξινομημένα κατά Score impact.**
-> *Microsoft Secure Score → Recommended actions tab. Πρόσεξε τις στήλες Score impact και User impact — και τα δύο μετράνε για την προτεραιοποίηση.*
+> *Microsoft Secure Score → Recommended actions tab.*
 
 1. **Ταξινομούμε** τα recommended actions με βάση το **Score impact** σε φθίνουσα σειρά.
 2. **Φιλτράρουμε** για κατηγορία **Identity** πρώτα — εδώ είναι το low-hanging fruit με τη μεγαλύτερη μείωση κινδύνου.
