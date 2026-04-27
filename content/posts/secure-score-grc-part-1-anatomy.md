@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 1: Opening Your First Recommendation"
-date: 2026-04-22T10:00:00+03:00
+date: 2026-04-27T07:00:00+03:00
 draft: false
 author: "Dimosthenis"
 description: "Every field on a Microsoft Secure Score recommendation, explained the way a friend would explain it. Written for junior admins, Tier 1 SOC analysts, and new cloud security engineers who are opening Microsoft Secure Score for the first time and want to actually understand what they're looking at."
