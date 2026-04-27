@@ -72,7 +72,12 @@ params:
     - Security Architecture
     - Cloud Security
   author: "Dimosthenis Atteia"   # <-- change to your public name/handle
-  url: "https://dimosatteia.github.io/about/"
+  socialIcons:
+     - name: linkedin
+       url: "https://www.linkedin.com/in/dimosthenisatteia/"
+     - name: github
+       url: "https://github.com/dimosatteia"
+  "jobTitle": "CIO/CISO"
   DateFormat: "January 2, 2006"
   defaultTheme: auto       # auto | dark | light
   disableThemeToggle: false
