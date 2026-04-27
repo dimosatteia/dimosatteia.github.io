@@ -164,7 +164,7 @@ If you already know the Microsoft Defender landscape well, feel free to skip the
 
 ## Ready to start?
 
-On Monday 27/04/2026 head to **[Part 1 — Opening Your First Recommendation]** when you're ready. See you there.
+[**Part 1 — Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available — you can read it whenever you're ready. Enjoy!
 <!-- (/posts/secure-score-grc-part-1-anatomy/) -->
 
 On Monday 04/05/2026 head to **[Part 2 — Where It Sits in the Microsoft Defender World]** when you're ready. See you there.
