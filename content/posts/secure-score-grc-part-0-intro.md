@@ -31,28 +31,28 @@ cover:
   caption: "Series introduction — built on Microsoft 365"
 ---
 
-## The problem every mid-market Professional recognises
+## The Mid-Market GRC Problem: NIS2 and ISO 27001 Without a Big Budget
 
 If you run security in a mid-market organisation that is in scope for **NIS2** or pursuing **ISO 27001**, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget, let's be honest, is never what it should be.
 
 Most teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route — and that route is called **Microsoft Secure Score**. This series is the practical playbook for using Microsoft Secure Score as a GRC engine for ISO 27001 and NIS2 compliance, built entirely on tools you already have inside **Microsoft 365**. The approach is reproducible by almost any organisation running an E3 or E5 tenant — and it's how we delivered a Gold-Award-winning GRC programme without buying a third-party platform.
 
-## What we found already sitting inside Microsoft 365
+> ⚡**TL;DR for the impatient:** Microsoft Secure Score, paired with **Microsoft Purview Compliance Manager**, can evidence **60-70% of ISO 27001:2022 Annex A and NIS2 Article 21** technical controls automatically, using only the licensing you already pay for. The remaining **30-40%** is covered by Purview tooling and documented procedures. **Total third-party GRC spend: 0€.**
+
+## The Microsoft Secure Score GRC Engine Hidden Inside Microsoft 365
 
 We were already licensed for **Microsoft 365 E5**. We already used **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)** every day. And right there, in the Microsoft Defender portal, was something most teams treat as a vanity dashboard: **[Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)**.
 
-[![The Microsoft Secure Score dashboard](/images/Overall.png)](/images/Overall.png)
+[![The Microsoft Secure Score dashboard showing the overall score and recommendations](/images/Overall.png)](/images/Overall.png)
 > 📷 **Image 1 — The Microsoft Secure Score dashboard.**
 
 Looking at it with fresh eyes, we realised Microsoft had already done most of the heavy GRC lifting:
 
 - A **continuously refreshed assessment** of our tenant configuration against a control catalogue Microsoft maintains and updates as the threat landscape shifts.
 - A **machine-readable dataset**, exposed via the **[Microsoft Graph Security API](https://learn.microsoft.com/en-us/graph/api/resources/security-api-overview)**, that any modern reporting tool can consume.
-- **Native integration** with **[Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)**, **Microsoft Sentinel**, and **Power BI** platforms we already owned.
+- **Native integration** with **[Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)**, **Microsoft Sentinel**, and **Power BI**, platforms we already owned.
 
 The gap we had to bridge was small: connect Microsoft's data to our compliance frameworks, build the right reports, and put governance around the risk decisions. Additional third-party spend: essentially nothing.
-
-> **TL;DR for the impatient:** Microsoft Secure Score, paired with Microsoft Purview Compliance Manager, can evidence 60-70% of ISO 27001:2022 Annex A and NIS2 Article 21 technical controls automatically — using only the licensing you already pay for. The remaining 30-40% is covered by Purview tooling and documented procedures. Total third-party GRC spend: 0€.
 
 ## The Gold Award (based on the Microsoft Secure Score)
 
