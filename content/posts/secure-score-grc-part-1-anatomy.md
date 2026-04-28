@@ -2,10 +2,22 @@
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 1: Opening Your First Recommendation"
 date: 2026-04-27T07:00:00+03:00
 draft: false
+keywords:
+  - Microsoft Secure Score
+  - How Microsoft Secure Score works
+  - Microsoft Secure Score explained
+  - What is Microsoft Secure Score
+  - Microsoft Secure Score calculation
+  - Microsoft Secure Score categories
+  - Microsoft Secure Score recommendations
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Security Recommendations
 author: "Dimosthenis"
 description: "Every field on a Microsoft Secure Score recommendation, explained the way a friend would explain it. Written for junior admins, Tier 1 SOC analysts, and new cloud security engineers who are opening Microsoft Secure Score for the first time and want to actually understand what they're looking at."
 summary: "Part 1 of the Secure Score series. A beginner-friendly walk through a single Microsoft Secure Score recommendation — every field on the screen, what each one means, and the small observations that help new professionals start extracting value in under an hour."
-tags: ["secure-score", "microsoft-365", "microsoft-defender", "junior-admin", "beginner", "grc", "fundamentals"]
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
