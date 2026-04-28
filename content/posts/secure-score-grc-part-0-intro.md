@@ -2,6 +2,12 @@
 title: "How We Built a Gold-Winning GRC Programme on Microsoft Secure Score — Series Introduction"
 date: 2026-04-22T10:00:00+03:00
 draft: false
+keywords: 
+  - Microsoft Secure Score 
+  - ISO 27001
+  - NIS2 compliance 
+  - Microsoft 365 GRC
+  - Microsoft Purview Compliance Manager 
 author: "Dimosthenis"
 description: "How Microsoft 365 Secure Score became the engine of an ISO 27001:2022 and NIS2 compliance programme that won the Gold Award at the Cyber Security Awards 2026. A practical, screenshot-driven series for CISOs and M365 admins who want fast, defensible results without buying another GRC platform."
 summary: "Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate."
@@ -19,9 +25,9 @@ cover:
 
 ## The problem every mid-market Professional recognises
 
-If you run security in a mid-market organisation that is in scope for **NIS2** or pursuing **ISO 27001:2022**, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget — let's be honest — is never what it should be.
+If you run security in a mid-market organisation that is in scope for **NIS2** or pursuing **ISO 27001**, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget — let's be honest — is never what it should be.
 
-Most teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route, and I want to share it because it is reproducible by almost any organisation that already runs **Microsoft 365**.
+Most teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route, and that route is called **Microsoft Secure Score** and I want to share it because it is reproducible by almost any organisation that already runs **Microsoft 365**.
 
 ## What we found already sitting inside Microsoft 365
 
