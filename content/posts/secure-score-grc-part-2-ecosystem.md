@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 2: Where It Sits in the Microsoft Defender World"
 date: 2026-05-04T08:00:00+03:00
-draft: true
+draft: false
 keywords:
   - Microsoft Secure Score
   - Microsoft Defender Secure Score

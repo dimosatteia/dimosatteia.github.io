@@ -29,15 +29,17 @@ cover:
   caption: "Secure Score Series — Part 1"
 ---
 
-## Before we start
+## Before we start - What is Microsoft Secure Score
 
-If you've just started a role as a **Microsoft 365 Junior Administrator**, a **Tier 1 SOC Analyst**, or an **entry-level Cloud Security Engineer**, chances are someone has already said the words "check our Secure Score" at you. Maybe your manager. Maybe an auditor. Maybe a colleague asking if you can "just pull the number for the quarterly review".
+If you've just started a role as a **Microsoft 365 Junior Administrator**, a **Tier 1 SOC Analyst**, or an **entry-level Cloud Security Engineer**, chances are someone has already said the words "check our Microsoft Secure Score" at you. Maybe your manager. Maybe an auditor. Maybe a colleague asking if you can "just pull the number for the quarterly review".
 
-And chances are you opened the Microsoft Defender portal, found the Secure Score page, looked at a bunch of cards and lists and numbers, and thought — *okay, but what am I actually looking at?*
+And chances are you opened the Microsoft Defender portal, found the Microsoft Secure Score page, looked at a bunch of cards and lists and numbers, and thought, *okay, but what am I actually looking at & how Microsoft Secure Score works?*
 
-You're not alone. Nobody looks at Microsoft Secure Score for the first time and immediately understands all of it. It's one of those Microsoft surfaces that's genuinely simple once you know what each piece means, but absolutely baffling the first time. This post is the friendly walk-through I wish someone had given me on day one.
+First of all Microsoft Secure Score is a measurement tool within the Microsoft Defender Portal that evaluates an organization’s security posture across identity, devices, apps, and data.
 
-We'll open a single recommendation together, go through every field on the screen, and by the end you'll know what you're looking at and what's worth your attention. No philosophy, no GRC framework discussion yet — just the screen in front of you.
+You're not alone. Nobody looks at Microsoft Secure Score for the first time and immediately understands all of it (like Microsoft Secure Score recommendations or Microsoft Secure Score calculation). It's one of those Microsoft surfaces that's genuinely simple once you know what each piece means, but absolutely baffling the first time. This post is the friendly walk-through I wish someone had given me on day one.
+
+We'll open a single recommendation together, go through every field on the screen, and by the end you'll know what you're looking at and what's worth your attention. No philosophy, no GRC framework discussion yet, just the screen in front of you.
 
 > 📌 **A quick note on where this fits.** This post is Part 1 of a series that builds up to something bigger — using Microsoft Secure Score as the engine of a compliance programme. If you're curious about the bigger picture, the **[Series Introduction (Part 0)](/posts/secure-score-grc-part-0-intro/)** covers it. But you don't need to read that first. Start here.
 
