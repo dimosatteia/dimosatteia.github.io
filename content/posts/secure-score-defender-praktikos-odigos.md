@@ -60,7 +60,7 @@ cover:
 - Υπάρχει **partial credit**. Αν προστατεύουμε 50 από τους 100 χρήστες μας με MFA, παίρνουμε τους μισούς πόντους. Δεν είναι all-or-nothing — οπότε ξεκινάμε από κάπου, όσο μικρό κι αν φαίνεται.
 - Κάθε recommendation έχει **status** που μπορούμε να ορίσουμε: *To address*, *Planned*, *Risk accepted*, *Resolved through third party*, *Resolved through alternate mitigation*, *Completed*. Είναι πολύτιμο όταν χρησιμοποιούμε ένα control που η Microsoft δεν «βλέπει» άμεσα — π.χ. ένα third-party MFA solution. Δηλώνουμε χειροκίνητα την ισοδύναμη αντιμετώπιση και κερδίζουμε τους πόντους χωρίς να αλλοιώνεται η εικόνα της θέσης μας.
 
-[![Image 2 — Το Status dropdown με τις 6 διαθέσιμες επιλογές.](/images/secure-score-defender-praktikos-odigos/03-overview.png)](/images/secure-score-defender-praktikos-odigos/03-overview.png)
+[![Image 2 — Το Status dropdown με τις διαθέσιμες επιλογές.](/images/secure-score-defender-praktikos-odigos/03-overview.png)](/images/secure-score-defender-praktikos-odigos/03-overview.png)
 > 📷 **Image 2 — Status dropdown σε recommendation.**
 > *Οι επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.*
 
