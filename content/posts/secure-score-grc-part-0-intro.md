@@ -3,15 +3,23 @@ title: "How We Built a Gold-Winning GRC Programme on Microsoft Secure Score — 
 date: 2026-04-22T10:00:00+03:00
 draft: false
 keywords: 
-  - Microsoft Secure Score 
-  - ISO 27001
-  - NIS2 compliance 
+  - Microsoft Secure Score ISO 27001
+  - Microsoft Secure Score NIS2
   - Microsoft 365 GRC
-  - Microsoft Purview Compliance Manager 
+  - Microsoft Secure Score compliance
+  - Microsoft Compliance Manager Secure Score
+  - Microsoft Secure Score GRC
+  - ISO 27001 Microsoft 365
+tags:
+  - Microsoft Secure Score
+  - Microsoft 365
+  - ISO 27001
+  - NIS2
+  - GRC
+  - Microsoft Purview Compliance Manager
 author: "Dimosthenis"
 description: "How Microsoft 365 Secure Score became the engine of an ISO 27001:2022 and NIS2 compliance programme that won the Gold Award at the Cyber Security Awards 2026. A practical, screenshot-driven series for CISOs and M365 admins who want fast, defensible results without buying another GRC platform."
 summary: "Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate."
-tags: ["secure-score", "microsoft-365", "microsoft-defender", "grc", "nis2", "iso-27001", "purview", "compliance", "ciso", "cyber-security-awards"]
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
@@ -27,7 +35,7 @@ cover:
 
 If you run security in a mid-market organisation that is in scope for **NIS2** or pursuing **ISO 27001**, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget, let's be honest, is never what it should be.
 
-Most teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route, and that route is called **Microsoft Secure Score** and I want to share it because it is reproducible by almost any organisation that already runs **Microsoft 365**.
+Most teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route — and that route is called **Microsoft Secure Score**. This series is the practical playbook for using Microsoft Secure Score as a GRC engine for ISO 27001 and NIS2 compliance, built entirely on tools you already have inside **Microsoft 365**. The approach is reproducible by almost any organisation running an E3 or E5 tenant — and it's how we delivered a Gold-Award-winning GRC programme without buying a third-party platform.
 
 ## What we found already sitting inside Microsoft 365
 
@@ -43,6 +51,8 @@ Looking at it with fresh eyes, we realised Microsoft had already done most of th
 - **Native integration** with **[Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)**, **Microsoft Sentinel**, and **Power BI** platforms we already owned.
 
 The gap we had to bridge was small: connect Microsoft's data to our compliance frameworks, build the right reports, and put governance around the risk decisions. Additional third-party spend: essentially nothing.
+
+> **TL;DR for the impatient:** Microsoft Secure Score, paired with Microsoft Purview Compliance Manager, can evidence 60-70% of ISO 27001:2022 Annex A and NIS2 Article 21 technical controls automatically — using only the licensing you already pay for. The remaining 30-40% is covered by Purview tooling and documented procedures. Total third-party GRC spend: 0€.
 
 ## The Gold Award (based on the Microsoft Secure Score)
 
@@ -168,12 +178,11 @@ If you already know the Microsoft Defender landscape well, feel free to skip the
 ## Ready to start?
 
 [**Part 1 — Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available, you can read it whenever you're ready. Enjoy!
-<!-- (/posts/secure-score-grc-part-1-anatomy/) -->
 
 On Monday 04/05/2026 head to **[Part 2 — Where It Sits in the Microsoft Defender World]** when you're ready. See you there.
 <!-- (/posts/secure-score-grc-part-2-ecosystem/) -->
 
-More parts coming in the following weeks — check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
+More parts coming in the following weeks, so check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 ---
