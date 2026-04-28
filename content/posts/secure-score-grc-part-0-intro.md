@@ -142,16 +142,15 @@ If the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365,
 6. **Enterprise Mobility + Security Explained** the security bundle many organisations already own and don't fully use.
 <!-- /posts/enterprise-mobility-security-explained/ -->
 
-Want to go deeper into any single workload? The **[Microsoft Defender Up Close]** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
+Want to go deeper into any single workload? The **Microsoft Defender Up Close** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
 <!-- (/series/microsoft-defender-up-close/) -->
 
-**Then — the Secure Score series itself**
+**Then, the Secure Score series itself**
 
 Once the Microsoft Defender landscape feels familiar, come back here. You'll now have the context to follow what Microsoft Secure Score is actually measuring.
 
-1. **[Opening Your First Recommendation]** — every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
-<!-- (/posts/secure-score-grc-part-1-anatomy/) -->
-2. **[Where Microsoft Secure Score Sits in the Microsoft Defender World]** — how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
+1. [**[Opening Your First Recommendation]**](/posts/secure-score-grc-part-1-anatomy/)  every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
+2. **[Where Microsoft Secure Score Sits in the Microsoft Defender World]** how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
 <!-- (/posts/secure-score-grc-part-2-ecosystem/) -->
 
 **What you will get from this series**
@@ -168,7 +167,7 @@ If you already know the Microsoft Defender landscape well, feel free to skip the
 
 ## Ready to start?
 
-[**Part 1 — Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available — you can read it whenever you're ready. Enjoy!
+[**Part 1 — Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available, you can read it whenever you're ready. Enjoy!
 <!-- (/posts/secure-score-grc-part-1-anatomy/) -->
 
 On Monday 04/05/2026 head to **[Part 2 — Where It Sits in the Microsoft Defender World]** when you're ready. See you there.
