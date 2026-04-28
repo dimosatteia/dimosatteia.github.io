@@ -44,7 +44,7 @@ Looking at it with fresh eyes, we realised Microsoft had already done most of th
 
 The gap we had to bridge was small: connect Microsoft's data to our compliance frameworks, build the right reports, and put governance around the risk decisions. Additional third-party spend: essentially nothing.
 
-## The Gold Award
+## The Gold Award (based on the Microsoft Secure Score)
 
 [![The Cyber Security Award Logo](/images/CyberGRCGoldAward.png)](/images/CyberGRCGoldAward.png)
 > 📷 **Image 2 — The Gold Award Logo.**
