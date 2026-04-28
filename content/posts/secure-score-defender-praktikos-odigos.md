@@ -2,10 +2,22 @@
 title: "Microsoft Secure Score & Microsoft Defender: Πρακτικός Οδηγός για τον Junior Μηχανικό Ασφάλειας"
 date: 2026-04-27T10:00:00+03:00
 draft: false
+keywords:
+  - Microsoft Secure Score
+  - Microsoft Secure Score guide
+  - Microsoft Secure Score recommendations
+  - Microsoft Defender XDR
+  - Microsoft 365 security
+  - Secure Score best practices
+  - Secure Score actions
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Ασφάλεια
 author: "Dimosthenis"
 description: "Πρακτικός οδηγός για τον junior μηχανικό ασφάλειας και τον Υ.Α.Σ.Π.Ε. που αναλαμβάνει για πρώτη φορά Microsoft 365 tenant στο πλαίσιο του Νόμου 5160/2024 (NIS2). Τι είναι το Microsoft Secure Score, πώς δουλεύει στην πράξη, ποιοι Defender workloads το τροφοδοτούν, και από πού να ξεκινήσει κανείς για γρήγορη και μετρήσιμη μείωση κινδύνου."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
-tags: ["secure-score", "microsoft-365", "microsoft-defender", "nis2", "nomos-5160", "yaspe", "junior-engineer", "greek", "compliance", "ciso"]
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
@@ -25,9 +37,9 @@ cover:
 
 ## Δευτέρα πρωί χαμένος στο Defender portal...
 
-Είναι Δευτέρα πρωί και ένας junior μηχανικός ασφάλειας ανοίγει για πρώτη φορά το Microsoft Defender portal. Αντικρίζει εκατοντάδες ρυθμίσεις διασκορπισμένες σε Entra ID, Exchange Online, SharePoint, Intune και Defender for Endpoint. Από πού να ξεκινήσει; Πώς θα ξέρει ότι αυτό που κάνει σήμερα έχει πραγματικό αντίκτυπο στο επίπεδο ασφάλειας του οργανισμού;
+Είναι Δευτέρα πρωί και ένας junior μηχανικός ασφάλειας ανοίγει για πρώτη φορά το **Microsoft Defender** portal. Αντικρίζει εκατοντάδες ρυθμίσεις διασκορπισμένες σε Entra ID, Exchange Online, SharePoint, Intune και Defender for Endpoint. Από πού να ξεκινήσει; Πώς θα ξέρει ότι αυτό που κάνει σήμερα έχει πραγματικό αντίκτυπο στο επίπεδο ασφάλειας του οργανισμού; Πια είναι τα **Secure Score best practices** και πια **Secure Score actions** απαιτούνται?
 
-Η απάντηση συχνά κρύβεται σε ένα εργαλείο που υποτιμάται: το **Microsoft Secure Score**.
+Η απάντηση συχνά κρύβεται σε ένα εργαλείο που υποτιμάται: το **Microsoft Secure Score** με άπειρα **Microsoft Secure Score recommendations**
 
 ## Γιατί τώρα — NIS2 και ο Νόμος 5160/2024
 
