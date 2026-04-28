@@ -51,7 +51,7 @@ That's really it. The rest of this post is just unpacking which products contrib
 
 ## The Microsoft Defender family in one paragraph
 
-If you haven't read **[Microsoft Defender Demystified — Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)** yet, go read it after this post — it's the foundational map of the Microsoft Defender family. But the short version for now: Microsoft groups its security products into a family called **Microsoft Defender**, the umbrella brand being **Microsoft Defender XDR**. Inside that umbrella are several workloads — Microsoft Defender for Endpoint (devices), Microsoft Defender for Office 365 (email and Teams), Microsoft Defender for Identity (Active Directory), Microsoft Defender for Cloud Apps (SaaS apps) — plus a couple of close cousins like Microsoft Defender for Cloud (Azure workloads).
+The short version for now: Microsoft groups its security products into a family called **Microsoft Defender**, the umbrella brand being **Microsoft Defender XDR** ([official Microsoft documentation](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)). Inside that umbrella are several workloads — Microsoft Defender for Endpoint (devices), Microsoft Defender for Office 365 (email and Teams), Microsoft Defender for Identity (Active Directory), Microsoft Defender for Cloud Apps (SaaS apps) — plus a couple of close cousins like Microsoft Defender for Cloud (Azure workloads). A full deep dive into the Microsoft Defender family is on the way in a dedicated companion series, **Microsoft Defender Demystified**, starting in June 2026.
 
 Microsoft Secure Score reads from most of these.
 
