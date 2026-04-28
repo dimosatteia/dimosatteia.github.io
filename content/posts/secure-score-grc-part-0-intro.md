@@ -124,22 +124,22 @@ To get there without skipping steps, the recommended reading path is:
 
 If the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, or Microsoft Defender for Cloud Apps don't mean much to you yet, start with the companion series that covers the whole Microsoft Defender ecosystem end to end:
 
-1. **Microsoft Defender Demystified, Part 1: How Many Defenders Are There, Really?** — the whole family map in one post.
+1. **Microsoft Defender Demystified, Part 1: How Many Defenders Are There, Really?** the whole family map in one post.
 <!-- /posts/defender-demystified-part-1-what-is-microsoft-defender/ -->
 
-2. **Microsoft Defender Demystified, Part 2: The Four Core XDR Workloads, Up Close** — what each workload protects.
+2. **Microsoft Defender Demystified, Part 2: The Four Core XDR Workloads, Up Close** what each workload protects.
 <!-- /posts/defender-demystified-part-2-four-workloads/ -->
 
-3. **Microsoft Defender Demystified, Part 3: Microsoft Defender for Cloud** — the Azure and multicloud story.
+3. **Microsoft Defender Demystified, Part 3: Microsoft Defender for Cloud** the Azure and multicloud story.
 <!-- /posts/defender-demystified-part-3-defender-for-cloud/ -->
 
-4. **Microsoft Defender Demystified, Part 4: Which Defender Do You Actually Need?** — licensing across Microsoft 365 and Enterprise Mobility + Security.
+4. **Microsoft Defender Demystified, Part 4: Which Defender Do You Actually Need?** licensing across Microsoft 365 and Enterprise Mobility + Security.
 <!-- /posts/defender-demystified-part-4-licensing-decoder/ -->
 
-5. **Microsoft Defender Demystified, Part 5: A Walk Through the Microsoft Defender Portal** — where everything lives.
+5. **Microsoft Defender Demystified, Part 5: A Walk Through the Microsoft Defender Portal** where everything lives.
 <!-- /posts/defender-demystified-part-5-portal-tour/ -->
 
-6. **Enterprise Mobility + Security Explained** — the security bundle many organisations already own and don't fully use.
+6. **Enterprise Mobility + Security Explained** the security bundle many organisations already own and don't fully use.
 <!-- /posts/enterprise-mobility-security-explained/ -->
 
 Want to go deeper into any single workload? The **[Microsoft Defender Up Close]** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
