@@ -41,7 +41,7 @@ You're not alone. Nobody looks at Microsoft Secure Score for the first time and 
 
 We'll open a single recommendation together, go through every field on the screen, and by the end you'll know what you're looking at and what's worth your attention. No philosophy, no GRC framework discussion yet, just the screen in front of you.
 
-> 📌 **A quick note on where this fits.** This post is Part 1 of a series that builds up to something bigger — using Microsoft Secure Score as the engine of a compliance programme. If you're curious about the bigger picture, the **[Series Introduction (Part 0)](/posts/secure-score-grc-part-0-intro/)** covers it. But you don't need to read that first. Start here.
+> 📌 This post is Part 1 of a series that builds up to something bigger, using Microsoft Secure Score as the engine of a compliance programme. If you're curious about the bigger picture, the **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score — Series Introduction](/posts/secure-score-grc-part-0-intro/)** covers it. But you don't need to read that first. Start here.
 
 ## Getting to Microsoft Secure Score in 30 seconds
 
