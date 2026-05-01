@@ -26,7 +26,7 @@ tags:
   - ISO 27001
   - Junior Security Engineer
   - Security Posture Management
-author: "Dimosthenis"
+author: "Dimosthenis Atteia"
 description: "Οδηγός Microsoft Secure Score για τον Έλληνα Υ.Α.Σ.Π.Ε. και junior μηχανικό ασφάλειας — από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Frameworks", "Microsoft 365"]
