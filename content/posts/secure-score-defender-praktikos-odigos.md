@@ -3,21 +3,32 @@ title: "Microsoft Secure Score & Microsoft Defender: Πρακτικός Οδηγ
 date: 2026-04-27T10:00:00+03:00
 draft: false
 keywords:
-  - Microsoft Secure Score
-  - Microsoft Secure Score guide
-  - Microsoft Secure Score recommendations
-  - Microsoft Defender XDR
-  - Microsoft Defender portal
-  - Microsoft 365 security
-  - Secure Score best practices
-  - Secure Score actions
+  - Microsoft Secure Score NIS2
+  - Microsoft Secure Score Νόμος 5160/2024
+  - Microsoft Secure Score για Υ.Α.Σ.Π.Ε.
+  - Microsoft Secure Score ελληνικά
+  - Microsoft 365 ασφάλεια NIS2
+  - Microsoft Defender XDR ελληνικά
+  - οδηγός Microsoft Secure Score για junior μηχανικό
+  - Υ.Α.Σ.Π.Ε. εργαλεία Microsoft 365
+  - τεχνικά μέτρα NIS2 Microsoft 365
 tags:
   - Microsoft Secure Score
   - Microsoft Defender XDR
   - Microsoft 365
   - Ασφάλεια
+  - NIS2
+  - Νόμος 5160/2024
+  - Υ.Α.Σ.Π.Ε.
+  - Microsoft Entra ID
+  - Microsoft Defender for Endpoint
+  - Microsoft 365 Security
+  - Cyber GRC
+  - ISO 27001
+  - Junior Security Engineer
+  - Security Posture Management
 author: "Dimosthenis"
-description: "Πρακτικός οδηγός για τον junior μηχανικό ασφάλειας και τον Υ.Α.Σ.Π.Ε. που αναλαμβάνει για πρώτη φορά Microsoft 365 tenant στο πλαίσιο του Νόμου 5160/2024 (NIS2). Τι είναι το Microsoft Secure Score, πώς δουλεύει στην πράξη, ποιοι Defender workloads το τροφοδοτούν, και από πού να ξεκινήσει κανείς για γρήγορη και μετρήσιμη μείωση κινδύνου."
+description: "Οδηγός Microsoft Secure Score για τον Έλληνα Υ.Α.Σ.Π.Ε. και junior μηχανικό ασφάλειας — από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
@@ -52,7 +63,7 @@ cover:
 
 Δεν αντικαθιστά τη συστηματική ανάλυση κινδύνου που απαιτεί ο νόμος, αλλά δίνει στον Υ.Α.Σ.Π.Ε. κάτι εξίσου πολύτιμο: μια **μετρήσιμη βάση** που μπορεί να βελτιωθεί σταδιακά, να τεκμηριωθεί στους ελέγχους και να παρουσιαστεί στη διοίκηση ως concrete πρόοδος — αντί για ασαφείς διαβεβαιώσεις. Σε ένα τοπίο όπου ο πήχης ανέβηκε απότομα και οι πόροι παραμένουν περιορισμένοι, αυτή η γρήγορη μετάβαση από αμηχανία σε δράση μπορεί να κάνει τη διαφορά ανάμεσα σε έναν οργανισμό που απλώς υπάρχει στα μητρώα και σε έναν που πραγματικά αμύνεται.
 
-## Τι είναι, στ' αλήθεια, το Secure Score
+## Τι είναι, στ' αλήθεια, το Microsoft Secure Score
 
 Το Microsoft Secure Score είναι ένα ποσοτικό μέτρο της θέσης ασφάλειας (security posture) του κάθε οργανισμού εντός του Microsoft 365 και ευρύτερα του οικοσυστήματος Defender. Το βρίσκουμε στη διεύθυνση **[security.microsoft.com/securescore](https://security.microsoft.com/securescore)**, ως ενσωματωμένο τμήμα του Microsoft Defender portal.
 
@@ -60,11 +71,11 @@ cover:
 
 Δεν είναι όμως εγγύηση ότι δεν θα παραβιαστούμε — και αυτό είναι κρίσιμο να εμπεδώσει κάθε junior μηχανικός. Το score αντικατοπτρίζει το **πόσο χρησιμοποιούμε τα διαθέσιμα controls**, όχι την πραγματική πιθανότητα παραβίασης.
 
-[![Image 1 — Το Microsoft Secure Score overview page στο Microsoft Defender portal.](/images/secure-score-defender-praktikos-odigos/01-overview.png)](/images/secure-score-defender-praktikos-odigos/01-overview.png)
+[![Microsoft Secure Score overview page στο Microsoft Defender portal για τον Έλληνα Υ.Α.Σ.Π.Ε. και NIS2 συμμόρφωση](/images/secure-score-defender-praktikos-odigos/01-overview.png)](/images/secure-score-defender-praktikos-odigos/01-overview.png)
 > 📷 **Image 1 — Το Microsoft Secure Score overview page.**
 > *Microsoft Defender portal → Exposure management → Microsoft Secure Score.*
 
-## Πώς δουλεύει μηχανικά
+## Πώς δουλεύει μηχανικά το Microsoft Secure Score
 
 Κάθε recommended action έχει αξία σε πόντους, βασισμένη στο πόσο μειώνει τον κίνδυνο. Η ενεργοποίηση MFA για όλους τους χρήστες, για παράδειγμα, αξίζει σημαντικά περισσότερους πόντους από μια μικρή ρύθμιση στο SharePoint — γιατί ακριβώς κλείνει μεγαλύτερη επιφάνεια επίθεσης.
 
@@ -73,7 +84,7 @@ cover:
 - Υπάρχει **partial credit**. Αν προστατεύουμε 50 από τους 100 χρήστες μας με MFA, παίρνουμε τους μισούς πόντους. Δεν είναι all-or-nothing — οπότε ξεκινάμε από κάπου, όσο μικρό κι αν φαίνεται.
 - Κάθε recommendation έχει **status** που μπορούμε να ορίσουμε: *To address*, *Planned*, *Risk accepted*, *Resolved through third party*, *Resolved through alternate mitigation*, *Completed*. Είναι πολύτιμο όταν χρησιμοποιούμε ένα control που η Microsoft δεν «βλέπει» άμεσα — π.χ. ένα third-party MFA solution. Δηλώνουμε χειροκίνητα την ισοδύναμη αντιμετώπιση και κερδίζουμε τους πόντους χωρίς να αλλοιώνεται η εικόνα της θέσης μας.
 
-[![Image 2 — Το Status dropdown με τις διαθέσιμες επιλογές.](/images/secure-score-defender-praktikos-odigos/03-overview.png)](/images/secure-score-defender-praktikos-odigos/03-overview.png)
+[![Microsoft Secure Score Status dropdown με επιλογές Resolved through alternate mitigation για third-party controls](/images/secure-score-defender-praktikos-odigos/03-overview.png)](/images/secure-score-defender-praktikos-odigos/03-overview.png)
 > 📷 **Image 2 — Status dropdown σε recommendation.**
 > *Οι επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.*
 
@@ -109,11 +120,11 @@ cover:
 
 Επίσης, μην το συγχέουμε με το **Cloud Secure Score** του Microsoft Defender for Cloud — αυτό αξιολογεί την υποδομή Azure (VMs, Storage, SQL) με διαφορετικό μοντέλο υπολογισμού. Είναι συμπληρωματικό, όχι ισοδύναμο.
 
-## Από πού να ξεκινήσει ένας junior μηχανικός
+## Από πού να ξεκινήσει ένας junior μηχανικός με το Microsoft Secure Score
 
 Αν αύριο μπούμε για πρώτη φορά στο Defender portal, μια λογική σειρά ενεργειών είναι:
 
-[![Image 3 — Recommended actions ταξινομημένα κατά Score impact.](/images/secure-score-defender-praktikos-odigos/02-overview.png)](/images/secure-score-defender-praktikos-odigos/02-overview.png)
+[![Microsoft Secure Score Recommended actions ταξινομημένα κατά Score impact για NIS2 προτεραιοποίηση κινδύνου](/images/secure-score-defender-praktikos-odigos/02-overview.png)](/images/secure-score-defender-praktikos-odigos/02-overview.png)
 > 📷 **Image 3 — Recommended actions ταξινομημένα κατά Score impact.**
 > *Microsoft Secure Score → Recommended actions tab.*
 
@@ -147,4 +158,4 @@ Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-
 - [Microsoft Defender XDR overview](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
 - [Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)
 - [Microsoft Defender for Cloud — Secure Score](https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls)
-- [Νόμος 5160/2024 (ΦΕΚ Α' 159/26.09.2024)](https://www.et.gr/) <!-- TODO: αντικατέστησε με ακριβές permalink στο ΦΕΚ ή στο gov.gr -->
+- [Νόμος 5160/2024](https://cyber.gov.gr/wp-content/uploads/2024/12/ENOTHTA_5_%CE%9D%CE%9F%CE%9C%CE%9F%CE%98%CE%95%CE%A3%CE%99%CE%91_fek_a_195_2024-5160-2024.pdf) 
