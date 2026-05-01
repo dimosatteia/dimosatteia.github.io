@@ -25,7 +25,7 @@ tags:
   - SOC Analyst
   - ISO 27001
   - NIS2
-author: "Dimosthenis"
+author: "Dimosthenis Atteia"
 description: "How to read a Microsoft Secure Score recommendation: every field on the details pane explained for junior admins and Tier 1 SOC analysts."
 summary: "Part 1 of the Secure Score series. A beginner-friendly walk through a single Microsoft Secure Score recommendation — every field on the screen, what each one means, and the small observations that help new professionals start extracting value in under an hour."
 categories: ["GRC & Frameworks", "Microsoft 365"]

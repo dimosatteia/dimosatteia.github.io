@@ -25,7 +25,7 @@ tags:
   - Security Posture Management
   - NIS2
   - ISO 27001
-author: "Dimosthenis"
+author: "Dimosthenis Atteia"
 description: "Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here's where every score point comes from."
 summary: "Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it."
 categories: ["GRC & Frameworks", "Microsoft 365"]
