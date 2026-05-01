@@ -2,14 +2,16 @@
 title: "How We Built a Gold-Winning GRC Programme on Microsoft Secure Score — Series Introduction"
 date: 2026-04-22T10:00:00+03:00
 draft: false
-keywords: 
-  - Microsoft Secure Score ISO 27001
-  - Microsoft Secure Score NIS2
-  - Microsoft 365 GRC
-  - Microsoft Secure Score compliance
-  - Microsoft Compliance Manager Secure Score
-  - Microsoft Secure Score GRC
-  - ISO 27001 Microsoft 365
+keywords:
+  - Microsoft Secure Score for ISO 27001 and NIS2 compliance
+  - build a GRC programme on Microsoft 365
+  - Microsoft Secure Score Compliance Manager mapping
+  - Microsoft 365 GRC without third-party platform
+  - Microsoft Secure Score audit evidence
+  - ISO 27001 Annex A Microsoft 365 controls
+  - NIS2 Article 21 Microsoft 365
+  - Microsoft Secure Score case study
+  - live audit evidence Microsoft 365
 tags:
   - Microsoft Secure Score
   - Microsoft 365
@@ -17,8 +19,19 @@ tags:
   - NIS2
   - GRC
   - Microsoft Purview Compliance Manager
-author: "Dimosthenis"
-description: "How Microsoft 365 Secure Score became the engine of an ISO 27001:2022 and NIS2 compliance programme that won the Gold Award at the Cyber Security Awards 2026. A practical, screenshot-driven series for CISOs and M365 admins who want fast, defensible results without buying another GRC platform."
+  - Microsoft Defender XDR
+  - Microsoft 365 Security
+  - Cyber GRC
+  - Security Posture Management
+  - ISO 27001:2022
+  - Νόμος 5160/2024
+  - Microsoft Graph API
+  - Power BI
+  - Cyber Security Awards 2026
+  - CISO
+  - GRC Programme
+author: "Dimosthenis Atteia"
+description: "Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools."
 summary: "Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
@@ -27,7 +40,7 @@ TocOpen: false
 weight: 1
 cover:
   image: "/images/CyberGRCGoldAward.png"
-  alt: "Microsoft Secure Score dashboard powering a Gold-winning GRC programme"
+  alt: "Microsoft Secure Score dashboard powering Gold-Award GRC programme for ISO 27001 and NIS2"
   caption: "Series introduction — built on Microsoft 365"
 ---
 
@@ -43,7 +56,7 @@ Most teams answer this by buying a dedicated GRC platform or by hiring more anal
 
 We were already licensed for **Microsoft 365 E5**. We already used **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)** every day. And right there, in the Microsoft Defender portal, was something most teams treat as a vanity dashboard: **[Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)**.
 
-[![The Microsoft Secure Score dashboard showing the overall score and recommendations](/images/Overall.png)](/images/Overall.png)
+[![Microsoft Secure Score dashboard powering an ISO 27001 and NIS2 GRC programme on Microsoft 365](/images/Overall.png)](/images/Overall.png)
 > 📷 **Image 1 — The Microsoft Secure Score dashboard.**
 
 Looking at it with fresh eyes, we realised Microsoft had already done most of the heavy GRC lifting:
@@ -54,15 +67,15 @@ Looking at it with fresh eyes, we realised Microsoft had already done most of th
 
 The gap we had to bridge was small: connect Microsoft's data to our compliance frameworks, build the right reports, and put governance around the risk decisions. Additional third-party spend: essentially nothing.
 
-## The Gold Award (based on the Microsoft Secure Score)
+## The Gold Award at Cyber Security Awards 2026 (Built on Microsoft Secure Score)
 
-[![The Cyber Security Award Logo](/images/CyberGRCGoldAward.png)](/images/CyberGRCGoldAward.png)
+[![Cyber Security Awards 2026 Gold Award for GRC programme built on Microsoft Secure Score](/images/CyberGRCGoldAward.png)](/images/CyberGRCGoldAward.png)
 > 📷 **Image 2 — The Gold Award Logo.**
 
-[![The Cyber Security Award Plate](/images/CyberGRCGoldAwardPlate.png)](/images/CyberGRCGoldAwardPlate.png)
+[![Gold Award plate Cyber Security Awards 2026 Governance Risk and Compliance category](/images/CyberGRCGoldAwardPlate.png)](/images/CyberGRCGoldAwardPlate.png)
 > 📷 **Image 3 — The Gold Award Plate.**
 
-[![The Cyber Security Award Ceremony](/images/CSAward2026_1.png)](/images/CSAward2026_1.png)
+[![Cyber Security Awards 2026 ceremony Gold Award for Microsoft Secure Score GRC programme](/images/CSAward2026_1.png)](/images/CSAward2026_1.png)
 > 📷 **Image 4 — The Gold Award Ceremony with colleagues.**
 
 The programme we built on this foundation received the **Gold Award in Governance, Risk & Compliance at the [Cyber Security Awards 2026 — Honoring Cyber Excellence](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)**, under the title *"From theory to measurable compliance: Microsoft Secure Score as a Cyber GRC tool"*.
@@ -75,13 +88,13 @@ The full implementation is unpacked, with screenshots and worked examples, acros
 
 ### Building block 1: Microsoft Secure Score as the single source of truth
 
-[![Microsoft Secure Score Recommendation](/images/PrMFA0.png)](/images/PrMFA0.png)
+[![Microsoft Secure Score recommendation for phishing-resistant MFA strength for administrators expanded view](/images/PrMFA0.png)](/images/PrMFA0.png)
 > 📷 **Image 5 — A Secure Score recommendation about "Ensure 'Phishing-resistant MFA strength' is required for Administrators", expanded.**
 
-[![Microsoft Secure Score General Action](/images/PrMFA1.png)](/images/PrMFA1.png)
+[![Microsoft Secure Score general action description for MFA control with Microsoft engineering implementation guidance](/images/PrMFA1.png)](/images/PrMFA1.png)
 > 📷 **Image 6 — A general recommendation regarding this specific Secure Score action.**
 
-[![Microsoft Secure Score Implementation](/images/PrMFA2.png)](/images/PrMFA2.png)
+[![Microsoft Secure Score implementation steps for phishing-resistant MFA Conditional Access policy](/images/PrMFA2.png)](/images/PrMFA2.png)
 > 📷 **Image 7 — A Secure Score implementation for the specific action.**
 
 We stopped treating Secure Score as a number to raise. We started treating each recommendation as a **continuously tested control**. Microsoft tells us, in real time, which controls are configured, which are not, and crucially provides the implementation guidance and user-impact analysis right inside each recommendation. That guidance, written by Microsoft engineering, is gold for any GRC team that previously had to draft remediation plans from scratch.
@@ -105,7 +118,7 @@ Roughly **60–70%** of the technical controls in ISO 27001:2022 Annex A and NIS
 
 Using the **Microsoft Graph Security API**, we pull Secure Score telemetry into a Power BI workspace daily. The output is a live evidence dashboard that auditors can be given read-only access to, with full timestamped history. No more screenshot-scrambles before the next surveillance audit.
 
-[![Microsoft PowerBi for live audit evidence](/images/PBI_Def.png)](/images/PBI_Def.png)
+[![Power BI dashboard with live Microsoft Secure Score audit evidence via Microsoft Graph Security API](/images/PBI_Def.png)](/images/PBI_Def.png)
 > 📷 **Image 9 — Microsoft PowerBi for live audit evidence.**
 
 This is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing.
@@ -114,7 +127,7 @@ This is pure Microsoft stack: no scripts running outside the tenant, no data lea
 
 For board reporting we pair Secure Score data with **Microsoft Purview Compliance Manager**, which Microsoft pre-populates with assessments aligned to **ISO 27001, NIS2, GDPR**, and dozens of other frameworks. The combination gives the board both a security-configuration view (Secure Score) and a regulatory-conformance view (Compliance Manager) in a single quarterly slide.
 
-## The business results
+## The business results: from weeks of audit prep to live evidence
 
 Within the first year of running the programme:
 
@@ -186,7 +199,3 @@ More parts coming in the following weeks, so check the [series page](/series/mic
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 ---
-
-<!-- ## Coming next -->
-<!-- **Part 1 lands next week:** *Anatomy of a Microsoft Secure Score recommendation — every field on the screen, what it really means, and how to extract value in under an hour.* -->
-<!-- If you want to be notified when it goes live, follow me on [LinkedIn](#) or subscribe via RSS at the top of the page. -->
