@@ -19,7 +19,6 @@ tags:
   - Ασφάλεια
   - NIS2
   - Νόμος 5160/2024
-  - Υ.Α.Σ.Π.Ε.
   - Microsoft Entra ID
   - Microsoft Defender for Endpoint
   - Microsoft 365 Security
