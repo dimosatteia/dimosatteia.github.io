@@ -3,20 +3,30 @@ title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 1: Opening You
 date: 2026-04-27T07:00:00+03:00
 draft: false
 keywords:
-  - Microsoft Secure Score
-  - How Microsoft Secure Score works
-  - Microsoft Secure Score explained
-  - What is Microsoft Secure Score
-  - Microsoft Secure Score calculation
-  - Microsoft Secure Score categories
-  - Microsoft Secure Score recommendations
+  - how to read a Microsoft Secure Score recommendation
+  - Microsoft Secure Score recommendation fields explained
+  - Microsoft Secure Score implementation status meaning
+  - Microsoft Secure Score To address Planned Risk accepted
+  - Microsoft Secure Score score impact vs percentage
+  - Microsoft Secure Score user impact field
+  - Microsoft Secure Score Implementation tab guide
+  - Microsoft Secure Score for junior administrators
+  - Microsoft Secure Score for SOC analysts
 tags:
   - Microsoft Secure Score
   - Microsoft Defender XDR
   - Microsoft 365
   - Security Recommendations
+  - Microsoft 365 Security
+  - Microsoft Entra ID
+  - Cyber GRC
+  - Security Posture Management
+  - Junior Administrator
+  - SOC Analyst
+  - ISO 27001
+  - NIS2
 author: "Dimosthenis"
-description: "Every field on a Microsoft Secure Score recommendation, explained the way a friend would explain it. Written for junior admins, Tier 1 SOC analysts, and new cloud security engineers who are opening Microsoft Secure Score for the first time and want to actually understand what they're looking at."
+description: "How to read a Microsoft Secure Score recommendation: every field on the details pane explained for junior admins and Tier 1 SOC analysts."
 summary: "Part 1 of the Secure Score series. A beginner-friendly walk through a single Microsoft Secure Score recommendation — every field on the screen, what each one means, and the small observations that help new professionals start extracting value in under an hour."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
@@ -29,7 +39,7 @@ cover:
   caption: "Secure Score Series — Part 1"
 ---
 
-## Before we start - What is Microsoft Secure Score
+## Before we start — What is Microsoft Secure Score, in one paragraph
 
 If you've just started a role as a **Microsoft 365 Junior Administrator**, a **Tier 1 SOC Analyst**, or an **entry-level Cloud Security Engineer**, chances are someone has already said the words "check our Microsoft Secure Score" at you. Maybe your manager. Maybe an auditor. Maybe a colleague asking if you can "just pull the number for the quarterly review".
 
@@ -51,7 +61,7 @@ First the navigation, because the location moved recently and older blog posts m
 2. In the left navigation, expand **Exposure management**
 3. Click **Microsoft Secure Score**
 
-[![Image 1 — The Microsoft Secure Score overview page.](/images/SS_GRC_P1_Anatomy_image_1.png)](/images/SS_GRC_P1_Anatomy_image_1.png)
+[![Microsoft Secure Score overview page in Defender portal showing score circle trend graph and top actions](/images/SS_GRC_P1_Anatomy_image_1.png)](/images/SS_GRC_P1_Anatomy_image_1.png)
 > 📷 **Image 1 — The Microsoft Secure Score overview page.**
 > *Open Microsoft Defender portal → Exposure management → Microsoft Secure Score. Capture the entire overview page — the score circle on the left, the historical trend graph, the "Actions to review" list on the right. This is the landing page we're starting from. Redact your tenant name if needed.*
 
@@ -68,7 +78,7 @@ Don't worry about the overall number yet. We're going to click into a single rec
 
 Click the **Recommended actions** tab at the top of the page. You'll get a list of every Microsoft Secure Score recommendation — usually somewhere between 100 and 250 of them, depending on what products you're licensed for.
 
-[![Image 2 — The Recommended actions list.](/images/SS_GRC_P1_Anatomy_image_2.png)](/images/SS_GRC_P1_Anatomy_image_2.png)
+[![Microsoft Secure Score Recommended actions list with Rank Score impact Status and Category columns](/images/SS_GRC_P1_Anatomy_image_2.png)](/images/SS_GRC_P1_Anatomy_image_2.png)
 > 📷 **Image 2 — The Recommended actions list.**
 > *Capture from: Microsoft Secure Score → Recommended actions tab. Show the full list view with columns visible (Rank, Recommended action, Score impact, Status, Category). Scroll to show 10–15 rows. Redact anything that might be sensitive.*
 
@@ -83,7 +93,7 @@ Click on any one of them. A details pane opens on the right side of the screen. 
 
 ## Every field on the recommendation details pane, explained
 
-[![Image 3 — A single recommendation details pane, fully expanded.](/images/SS_GRC_P1_Anatomy_image_3.png)](/images/SS_GRC_P1_Anatomy_image_3.png)
+[![Microsoft Secure Score recommendation details pane showing all fields title description implementation status and score impact](/images/SS_GRC_P1_Anatomy_image_3.png)](/images/SS_GRC_P1_Anatomy_image_3.png)
 > 📷 **Image 3 — A single recommendation details pane, fully expanded.**
 > *With the details pane open for the recommendation you picked, scroll through it and capture the complete detail view — title, description, implementation status, user impact, action type, score points, and the "Implementation" and "Details" tabs. Take multiple screenshots if one doesn't fit the whole thing.*
 
@@ -159,7 +169,7 @@ Small labels Microsoft applies to the recommendation — things like *GDPR*, *NI
 
 Below the summary, there's usually a tab with **step-by-step implementation instructions**. For most recommendations, Microsoft has written a short, numbered guide that tells you exactly where to click to configure the control.
 
-[![Image 4 — The Implementation tab contents.](/images/SS_GRC_P1_Anatomy_image_4.png)](/images/SS_GRC_P1_Anatomy_image_4.png)
+[![Microsoft Secure Score Implementation tab with step-by-step remediation instructions](/images/SS_GRC_P1_Anatomy_image_4.png)](/images/SS_GRC_P1_Anatomy_image_4.png)
 > 📷 **Image 4 — The Implementation tab contents.**
 > *Click the Implementation tab on an open recommendation and capture the step-by-step instructions Microsoft provides. This content is a genuine hidden gem and most new professionals miss that it's there.*
 
@@ -181,7 +191,7 @@ The title alone is often ambiguous. Two recommendations might have similar-sound
 
 Instead of scrolling through 200 recommendations, filter by one category (Identity, for example) and prioritise within that group. Most security improvements cluster by category — fixing three or four Identity recommendations together is more efficient than hopping between areas.
 
-[![Image 5 — The category filter applied to the Recommended actions list.](/images/SS_GRC_P1_Anatomy_image_5.png)](/images/SS_GRC_P1_Anatomy_image_5.png)
+[![Filtering Microsoft Secure Score Recommended actions by Identity category for focused prioritisation](/images/SS_GRC_P1_Anatomy_image_5.png)](/images/SS_GRC_P1_Anatomy_image_5.png)
 > 📷 **Image 5 — The category filter applied to the Recommended actions list.**
 > *From the Recommended actions list, click the Category filter and select one (e.g., Identity). Capture the resulting filtered list. This shows readers how focused the list becomes — and how much easier prioritisation gets.*
 

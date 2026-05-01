@@ -1,15 +1,17 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 2: Where It Sits in the Microsoft Defender World"
-date: 2026-05-04T08:00:00+03:00
-draft: false
+date: 2026-05-04T07:00:00+03:00
+draft: true
 keywords:
-  - Microsoft Secure Score
-  - Microsoft Defender Secure Score
-  - Microsoft Secure Score Defender XDR
-  - Microsoft Secure Score licensing
-  - Microsoft Secure Score data sources
-  - Microsoft Secure Score products
-  - Where is Microsoft Secure Score
+  - where does Microsoft Secure Score data come from
+  - which Microsoft products contribute to Secure Score
+  - Microsoft Secure Score Exposure Management
+  - Microsoft Secure Score license dependency
+  - why are some Secure Score recommendations missing
+  - Microsoft Secure Score refresh time
+  - Microsoft Secure Score for ISO 27001
+  - Microsoft Secure Score as audit evidence
+  - Microsoft Secure Score NIS2 compliance
 tags:
   - Microsoft Secure Score
   - Microsoft Defender XDR
@@ -17,8 +19,14 @@ tags:
   - Microsoft Defender for Endpoint
   - Microsoft Defender for Office 365
   - Microsoft Defender for Identity
+  - Microsoft 365 Security
+  - Exposure Management
+  - Cyber GRC
+  - Security Posture Management
+  - NIS2
+  - ISO 27001
 author: "Dimosthenis"
-description: "Microsoft Secure Score doesn't live in isolation — it sits inside a much bigger Microsoft Defender ecosystem, quietly pulling signals from products like Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. A beginner-friendly explanation of how the pieces connect and where your score actually comes from."
+description: "Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here's where every score point comes from."
 summary: "Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
@@ -35,7 +43,7 @@ cover:
 
 In **[Part 1](/posts/secure-score-grc-part-1-anatomy/)** we opened a single Microsoft Secure Score recommendation and walked through every field. By now you can look at a recommendation and understand what you're seeing.
 
-But if you've been clicking around for a few days, you've probably hit this moment: you look at your overall score, and you wonder — *where does this number actually come from? Who's measuring what? Is Microsoft running some kind of scan on my tenant? And why are there recommendations about products I didn't even know I had?*
+But if you've been clicking around for a few days, you've probably hit this moment: you look at your overall score, and you wonder, *where does this number actually come from? Who's measuring what? Is Microsoft running some kind of scan on my tenant? And why are there recommendations about products I didn't even know I had?*
 
 These are good questions. The answers are genuinely useful to know, and once they click, the whole Microsoft Defender portal stops feeling like a random collection of features and starts feeling like a system.
 
@@ -51,7 +59,7 @@ That's really it. The rest of this post is just unpacking which products contrib
 
 ## The Microsoft Defender family in one paragraph
 
-The short version for now: Microsoft groups its security products into a family called **Microsoft Defender**, the umbrella brand being **Microsoft Defender XDR**, as described in the ([Microsoft Defender XDR documentation](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)). Inside that umbrella are several workloads — Microsoft Defender for Endpoint (devices), Microsoft Defender for Office 365 (email and Teams), Microsoft Defender for Identity (Active Directory), Microsoft Defender for Cloud Apps (SaaS apps) — plus a couple of close cousins like Microsoft Defender for Cloud (Azure workloads). A full deep dive into the Microsoft Defender family is on the way in a dedicated companion series, **Microsoft Defender Demystified**, starting in June 2026.
+The short version for now: Microsoft groups its security products into a family called **Microsoft Defender**, the umbrella brand being **Microsoft Defender XDR**, as described in the ([Microsoft Defender XDR documentation](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)). Inside that umbrella are several workloads, Microsoft Defender for Endpoint (devices), Microsoft Defender for Office 365 (email and Teams), Microsoft Defender for Identity (Active Directory), Microsoft Defender for Cloud Apps (SaaS apps), plus a couple of close cousins like Microsoft Defender for Cloud (Azure workloads). A full deep dive into the Microsoft Defender family is on the way in a dedicated companion series, **Microsoft Defender Demystified**, starting in June 2026.
 
 Microsoft Secure Score reads from most of these.
 
@@ -63,7 +71,7 @@ Remember from Part 1, the navigation path is:
 
 The important word is **Exposure management**. Microsoft Secure Score moved into that section a while back, and it lives alongside other posture-related features.
 
-[![Image 1 — The Exposure management section in the left navigation.](/images/SS_GRC_P2_Ecosystem_image_1.png)](/images/SS_GRC_P2_Ecosystem_image_1.png)
+[![Microsoft Secure Score location in Defender portal Exposure management navigation](/images/SS_GRC_P2_Ecosystem_image_1.png)](/images/SS_GRC_P2_Ecosystem_image_1.png)
 > 📷 **Image 1 — The Exposure management section in the left navigation.**
 > *Capture from: security.microsoft.com left navigation, with Exposure management expanded. Show the menu items underneath it — Overview, Attack surface, Exposure insights, Microsoft Secure Score. This shows the "neighbourhood" Microsoft Secure Score lives in.*
 
@@ -80,7 +88,7 @@ Microsoft Secure Score is one of several posture instruments that live here. For
 
 This is the part that usually surprises new professionals. Your Microsoft Secure Score is calculated from configuration data in **many different Microsoft products**. Here's the main list:
 
-[![Image 2 — The Recommended actions list with the Category column visible.](/images/SS_GRC_P2_Ecosystem_image_2.png)](/images/SS_GRC_P2_Ecosystem_image_2.png)
+[![Microsoft Secure Score Recommended actions showing Identity Data Device Apps source categories](/images/SS_GRC_P2_Ecosystem_image_2.png)](/images/SS_GRC_P2_Ecosystem_image_2.png)
 > 📷 **Image 2 — The Recommended actions list with the Category column visible.**
 > *Capture from: Microsoft Secure Score → Recommended actions. Make sure the Category column is visible. Show 10–15 rows so the variety of categories (Identity, Data, Device, Apps) is clear. This screenshot proves the "multiple sources" point visually.*
 
@@ -141,7 +149,7 @@ These show up under the **Data** category.
 
 ### Microsoft Exchange Online (mail flow)
 
-Some foundational email configuration recommendations come directly from **Microsoft Exchange Online** — things like mailbox auditing settings, modern authentication, and external forwarding restrictions. They usually appear with **Apps** or **Data** badges.
+Some foundational email configuration recommendations come directly from **Microsoft Exchange Online**, things like mailbox auditing settings, modern authentication, and external forwarding restrictions. They usually appear with **Apps** or **Data** badges.
 
 ## Tracing one score point back to its source
 
@@ -149,7 +157,7 @@ Here's a concrete exercise that makes all this click. Open your Microsoft Secure
 
 Example: let's say the recommendation is *"Ensure internal phishing protection for Forms is enabled"*.
 
-[![Image 3 — A recommendation's Implementation tab showing which Microsoft product configures it.](/images/SS_GRC_P2_Ecosystem_image_3.png)](/images/SS_GRC_P2_Ecosystem_image_3.png)
+[![Tracing a Microsoft Secure Score recommendation back to Microsoft Entra ID source product](/images/SS_GRC_P2_Ecosystem_image_3.png)](/images/SS_GRC_P2_Ecosystem_image_3.png)
 > 📷 **Image 3 — A recommendation's Implementation tab showing which Microsoft product configures it.**
 > *Open the recommendation "Ensure internal phishing protection for Forms is enabled" (or similar) → Implementation tab. Capture the instructions. Notice how they direct you into Microsoft Entra admin center — that's the source product.*
 
@@ -164,13 +172,13 @@ When you implement the MFA policy in Microsoft Entra admin center, Microsoft Ent
 
 **The insight:** Microsoft Secure Score never *did* anything in your tenant. It's just asking Microsoft Entra ID a question and reading the answer. The same pattern applies to every other source product.
 
-## Why some recommendations you can't see yet
+## Why don't I see all Secure Score recommendations?
 
-This is a common beginner moment of confusion. You've read an article or watched a webinar that mentioned a specific Microsoft Secure Score recommendation — and when you look in your own tenant, it isn't there.
+This is a common beginner moment of confusion. You've read an article or watched a webinar that mentioned a specific Microsoft Secure Score recommendation, and when you look in your own tenant, it isn't there.
 
 The reason is almost always **licensing**. Microsoft Secure Score only shows you recommendations for products you're **licensed for**. If your tenant doesn't have Microsoft Defender for Office 365 Plan 2, you won't see the recommendations that are specific to Plan 2 (like the Attack Simulation Training ones). If you don't have Microsoft Defender for Cloud Apps, you won't see any Cloud App recommendations at all.
 
-[![Image 4 — The Microsoft 365 admin center licenses page.](/images/SS_GRC_P2_Ecosystem_image_4.png)](/images/SS_GRC_P2_Ecosystem_image_4.png)
+[![Microsoft 365 admin center licenses page showing which Secure Score recommendations apply to your tenant](/images/SS_GRC_P2_Ecosystem_image_4.png)](/images/SS_GRC_P2_Ecosystem_image_4.png)
 > 📷 **Image 4 — The Microsoft 365 admin center licenses page.**
 > *Capture from: admin.microsoft.com → Billing → Licenses. This shows what products your tenant is actually licensed for — which directly determines what Microsoft Secure Score recommendations you'll see. Redact counts if sensitive.*
 
@@ -178,27 +186,27 @@ This is why two people comparing their scores can get confusing numbers. A compa
 
 For a deeper walk through what each license includes, the **[Microsoft Defender Demystified — Part 4 (licensing decoder)](/posts/defender-demystified-part-4-licensing-decoder/)** covers this in plain language.
 
-## How often does the data refresh?
+## How long does Microsoft Secure Score take to update?
 
 Not instantly. When you make a configuration change in Microsoft Entra ID, Microsoft Defender for Endpoint, or any other source product, there's a lag before Microsoft Secure Score picks it up.
 
 In practice:
 
-- **Most recommendations** — refresh within 24 hours
-- **Some identity and policy recommendations** — can take up to 48 hours to update
-- **Certain Microsoft Defender for Endpoint recommendations** — depend on device check-in frequency, can be longer
+- **Most recommendations:** refresh within 24 hours
+- **Some identity and policy recommendations:** can take up to 48 hours to update
+- **Certain Microsoft Defender for Endpoint recommendations:** depend on device check-in frequency, can be longer
 
-If you implement a change and your score hasn't moved by the next day, don't panic — come back the day after. If it still hasn't moved after 72 hours, that's when you'd start investigating (usually the configuration isn't quite what Microsoft Secure Score is checking for — happens occasionally).
+If you implement a change and your score hasn't moved by the next day, don't panic, come back the day after. If it still hasn't moved after 72 hours, that's when you'd start investigating (usually the configuration isn't quite what Microsoft Secure Score is checking for happens occasionally).
 
 ## The history tab tells a story
 
 One last part of the page worth knowing about: **History**.
 
-[![Image 5 — The Microsoft Secure Score History tab.](/images/SS_GRC_P2_Ecosystem_image_5.png)](/images/SS_GRC_P2_Ecosystem_image_5.png)
+[![Microsoft Secure Score History tab as audit evidence and ISO 27001 compliance trail](/images/SS_GRC_P2_Ecosystem_image_5.png)](/images/SS_GRC_P2_Ecosystem_image_5.png)
 > 📷 **Image 5 — The Microsoft Secure Score History tab.**
 > *Capture from: Microsoft Secure Score → History tab. Show the timeline of score changes with individual events visible (when recommendations were implemented, when the score dropped, when new recommendations appeared). Redact anything sensitive.*
 
-The History tab shows every score event over time — when a recommendation got completed, when a new one was added (which drops the score temporarily), when configuration drifted (which can also drop the score).
+The History tab shows every score event over time, when a recommendation got completed, when a new one was added (which drops the score temporarily), when configuration drifted (which can also drop the score).
 
 This is genuinely useful when:
 
@@ -210,13 +218,13 @@ As you get more comfortable with Microsoft Secure Score, the History tab becomes
 
 ## A quick wrap-up
 
-Everything we covered in one paragraph: Microsoft Secure Score is a scoreboard inside the Microsoft Defender portal's Exposure management section. It reads configuration data from several Microsoft products — Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, Microsoft Purview, Microsoft Exchange Online — and gives you a single number. When you implement a recommendation, you're not changing anything in Microsoft Secure Score itself; you're changing configuration in one of those source products, which then reports back. The score refreshes within 24–48 hours of configuration changes. Licensing determines which recommendations you can see. The History tab tells you everything that's happened.
+Everything we covered in one paragraph: Microsoft Secure Score is a scoreboard inside the Microsoft Defender portal's Exposure management section. It reads configuration data from several Microsoft products, Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, Microsoft Purview, Microsoft Exchange Online, and gives you a single number. When you implement a recommendation, you're not changing anything in Microsoft Secure Score itself; you're changing configuration in one of those source products, which then reports back. The score refreshes within 24–48 hours of configuration changes. Licensing determines which recommendations you can see. The History tab tells you everything that's happened.
 
 That's the whole mental model. Once you have it, everything else in Microsoft Secure Score — and a surprising amount of the broader Microsoft Defender portal — makes intuitive sense.
 
 ## What's next
 
-In **Part 3** we move into actually managing Microsoft Secure Score as part of a compliance programme — how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.
+In **Part 3** we move into actually managing Microsoft Secure Score as part of a compliance programme, how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.
 
 > 🔗 **Haven't read the full Microsoft Defender family map yet? Start here:** **[Microsoft Defender Demystified — Part 1: How Many Defenders Are There, Really?](/posts/defender-demystified-part-1-what-is-microsoft-defender/)**. Understanding the whole family makes everything about Microsoft Secure Score click much faster.
 
