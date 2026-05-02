@@ -2,7 +2,7 @@
 title: "Welcome — what this blog is (and isn't)"
 date: 2026-04-22T10:00:00+03:00
 draft: false
-author: "Dimosthenis"
+author: "Dimosthenis Atteia"
 description: "A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros."
 summary: "An intro to the blog, the topics I'll cover, and the first series planned for 2026."
 categories:
@@ -62,7 +62,7 @@ header and links to the other parts at the bottom.
 
 If you spot a mistake, have a better way to do something, or want to
 suggest a topic, ping me on
-[LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) or open an issue on
-the [GitHub repo](https://github.com/YOUR-HANDLE/ms-security-blog).
+[LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/).
 
 Thanks for reading. The next post drops soon.
+---

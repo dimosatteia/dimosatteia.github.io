@@ -2,17 +2,39 @@
 title: "Microsoft Defender Demystified — Part 2: The Four Core XDR Workloads, Up Close"
 date: 2026-04-23T10:00:00+03:00
 draft: true
-author: "Dimosthenis"
+keywords:
+  - where does Microsoft Secure Score data come from
+  - which Microsoft products contribute to Secure Score
+  - Microsoft Secure Score Exposure Management
+  - Microsoft Secure Score license dependency
+  - why are some Secure Score recommendations missing
+  - Microsoft Secure Score refresh time
+  - Microsoft Secure Score for ISO 27001
+  - Microsoft Secure Score as audit evidence
+  - Microsoft Secure Score NIS2 compliance
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Microsoft Defender for Endpoint
+  - Microsoft Defender for Office 365
+  - Microsoft Defender for Identity
+  - Microsoft 365 Security
+  - Exposure Management
+  - Cyber GRC
+  - Security Posture Management
+  - NIS2
+  - ISO 27001
+author: "Dimosthenis Atteia"
 description: "Microsoft Defender XDR is the conductor, but the actual music comes from four separate Microsoft security products playing in sync. A hands-on, human tour of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps — what each one protects, what threats it stops, and what the magic looks like when all four signal each other in real time."
 summary: "Part 2 of the Microsoft Defender Demystified series. The four core XDR workloads — Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps — explained one by one, with a real multi-stage attack scenario that shows why cross-product correlation is the whole point."
-tags: ["microsoft-defender", "microsoft-defender-xdr", "microsoft-defender-for-endpoint", "microsoft-defender-for-office-365", "microsoft-defender-for-identity", "microsoft-defender-for-cloud-apps", "microsoft-365", "security", "fundamentals"]
 categories: ["Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
 weight: 2
 cover:
-  image: "" # TODO: cover image — see Image 1 instructions (the Defender portal with all four workload sections visible)
+  image: "/images/DefenderDemystified/MSDef.png"
   alt: "The four core workloads of Microsoft Defender XDR"
   caption: "Microsoft Defender Demystified — Part 2"
 ---

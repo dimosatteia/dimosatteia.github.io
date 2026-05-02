@@ -2,17 +2,39 @@
 title: "Microsoft Defender Demystified — Part 4: Which Defender Do You Actually Need?"
 date: 2026-04-23T10:00:00+03:00
 draft: true
-author: "Dimosthenis"
+keywords:
+  - where does Microsoft Secure Score data come from
+  - which Microsoft products contribute to Secure Score
+  - Microsoft Secure Score Exposure Management
+  - Microsoft Secure Score license dependency
+  - why are some Secure Score recommendations missing
+  - Microsoft Secure Score refresh time
+  - Microsoft Secure Score for ISO 27001
+  - Microsoft Secure Score as audit evidence
+  - Microsoft Secure Score NIS2 compliance
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Microsoft Defender for Endpoint
+  - Microsoft Defender for Office 365
+  - Microsoft Defender for Identity
+  - Microsoft 365 Security
+  - Exposure Management
+  - Cyber GRC
+  - Security Posture Management
+  - NIS2
+  - ISO 27001
+author: "Dimosthenis Atteia"
 description: "The most practical post in the Microsoft Defender Demystified series. Which Microsoft 365 plan includes which Defender? When does Business Premium beat E3? When is E5 worth the jump? Three realistic scenarios, verified 2026 prices, a decision flow you can actually use."
 summary: "Part 4 of the Microsoft Defender Demystified series. A licensing decoder across the 2026 Microsoft 365 lineup, including the new Defender Suite add-ons, the July 2026 pricing update, and three real-world scenarios (small business, mid-market, enterprise) for sizing the right purchase."
-tags: ["microsoft-defender", "microsoft-365", "licensing", "microsoft-365-e3", "microsoft-365-e5", "microsoft-365-business-premium", "microsoft-defender-suite", "fundamentals"]
 categories: ["Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
 weight: 4
 cover:
-  image: "" # TODO: cover image — see Image 1 instructions (comparison table of Defender entitlements by plan)
+  image: "/images/DefenderDemystified/MSDef.png"
   alt: "Microsoft Defender licensing across Microsoft 365 plans"
   caption: "Microsoft Defender Demystified — Part 4"
 ---

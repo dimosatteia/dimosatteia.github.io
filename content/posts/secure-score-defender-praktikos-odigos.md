@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Secure Score & Microsoft Defender: Πρακτικός Οδηγός για τον Junior Μηχανικό Ασφάλειας"
+title: "Microsoft Secure Score: Πρακτικός Οδηγός για Junior Μηχανικό"
 date: 2026-04-27T10:00:00+03:00
 draft: false
 keywords:
@@ -27,7 +27,7 @@ tags:
   - Junior Security Engineer
   - Security Posture Management
 author: "Dimosthenis Atteia"
-description: "Οδηγός Microsoft Secure Score για τον Έλληνα Υ.Α.Σ.Π.Ε. και junior μηχανικό ασφάλειας — από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024."
+description: "Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]

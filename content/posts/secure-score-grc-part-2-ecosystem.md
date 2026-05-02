@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 2: Where It Sits in the Microsoft Defender World"
-date: 2026-05-04T07:00:00+03:00
+date: 2026-04-23T10:00:00+03:00
 draft: true
 keywords:
   - where does Microsoft Secure Score data come from
@@ -65,7 +65,7 @@ Microsoft Secure Score reads from most of these.
 
 ## Where Microsoft Secure Score physically lives
 
-Remember from Part 1, the navigation path is:
+Remember from **[Part 1](/posts/secure-score-grc-part-1-anatomy/)**, the navigation path is:
 
 **`security.microsoft.com` → Exposure management → Microsoft Secure Score**
 
@@ -82,7 +82,7 @@ The important word is **Exposure management**. Microsoft Secure Score moved into
 - **Microsoft Secure Score** (how configured-correctly your tenant is)
 - Other posture signals
 
-Microsoft Secure Score is one of several posture instruments that live here. For now you don't need to use the other ones — just notice they exist and they're related.
+Microsoft Secure Score is one of several posture instruments that live here. For now you don't need to use the other ones, just notice they exist and they're related.
 
 ## The products that feed your Microsoft Secure Score
 
@@ -94,7 +94,7 @@ This is the part that usually surprises new professionals. Your Microsoft Secure
 
 ### Microsoft Entra ID (identity)
 
-**[Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)** is Microsoft's cloud identity and access management service. It provides a big chunk of your Microsoft Secure Score recommendations — things like:
+**[Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)** is Microsoft's cloud identity and access management service. It provides a big chunk of your Microsoft Secure Score recommendations, things like:
 
 - Multifactor authentication policies
 - Conditional Access policies
@@ -220,17 +220,17 @@ As you get more comfortable with Microsoft Secure Score, the History tab becomes
 
 Everything we covered in one paragraph: Microsoft Secure Score is a scoreboard inside the Microsoft Defender portal's Exposure management section. It reads configuration data from several Microsoft products, Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, Microsoft Purview, Microsoft Exchange Online, and gives you a single number. When you implement a recommendation, you're not changing anything in Microsoft Secure Score itself; you're changing configuration in one of those source products, which then reports back. The score refreshes within 24–48 hours of configuration changes. Licensing determines which recommendations you can see. The History tab tells you everything that's happened.
 
-That's the whole mental model. Once you have it, everything else in Microsoft Secure Score — and a surprising amount of the broader Microsoft Defender portal — makes intuitive sense.
+That's the whole mental model. Once you have it, everything else in Microsoft Secure Score, and a surprising amount of the broader Microsoft Defender portal, makes intuitive sense.
 
 ## What's next
 
-In **Part 3** we move into actually managing Microsoft Secure Score as part of a compliance programme, how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.
+In **Microsoft Defender Demystified Series** we move into actually managing Microsoft Secure Score as part of a compliance programme, how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.
 
 > 🔗 **Haven't read the full Microsoft Defender family map yet? Start here:** **[Microsoft Defender Demystified — Part 1: How Many Defenders Are There, Really?](/posts/defender-demystified-part-1-what-is-microsoft-defender/)**. Understanding the whole family makes everything about Microsoft Secure Score click much faster.
 
 > 🔗 **Want to see where this whole series is going?** **[Series Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 
 ## Microsoft Learn resources
 
@@ -242,43 +242,3 @@ Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-
 - [Microsoft Purview overview](https://learn.microsoft.com/en-us/purview/purview)
 
 ---
-
-<!--
-=========================================================
-IMAGE NOTES
-=========================================================
-
-Image 1 — Exposure management in the left navigation
-  Source: security.microsoft.com, left nav expanded
-  Capture: only the Exposure management section with its sub-items visible
-  Format: tall narrow screenshot
-  This shows readers the "neighbourhood" Microsoft Secure Score lives in
-
-Image 2 — Recommended actions list with Category column visible
-  Source: Microsoft Secure Score → Recommended actions tab
-  Capture: 10–15 rows with the Category column clearly showing
-    (mix of Identity / Data / Device / Apps)
-  Purpose: proves the "multiple sources" point visually
-
-Image 3 — Recommendation Implementation tab
-  Source: open any recommendation about MFA (e.g., "Ensure MFA is enabled
-    for all users")
-  Capture: the Implementation tab showing step-by-step instructions that
-    direct the reader to Microsoft Entra admin center
-  Purpose: the "tracing a score point to its source" example
-
-Image 4 — Microsoft 365 admin center licenses page
-  Source: admin.microsoft.com → Billing → Licenses
-  Capture: the assigned licenses list
-  Redaction: counts if sensitive
-  Purpose: showing readers how to check what they're actually licensed for
-
-Image 5 — Microsoft Secure Score History tab
-  Source: Microsoft Secure Score → History tab
-  Capture: the timeline view with individual events
-  Redaction: anything sensitive
-  Purpose: showing the "evidence and audit trail" angle
-
-Save all images to /static/images/posts/secure-score-grc-part-2-ecosystem/
-=========================================================
--->

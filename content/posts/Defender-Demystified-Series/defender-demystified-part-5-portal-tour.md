@@ -2,17 +2,39 @@
 title: "Microsoft Defender Demystified — Part 5: A Walk Through the Microsoft Defender Portal"
 date: 2026-04-23T10:00:00+03:00
 draft: true
-author: "Dimosthenis"
+keywords:
+  - where does Microsoft Secure Score data come from
+  - which Microsoft products contribute to Secure Score
+  - Microsoft Secure Score Exposure Management
+  - Microsoft Secure Score license dependency
+  - why are some Secure Score recommendations missing
+  - Microsoft Secure Score refresh time
+  - Microsoft Secure Score for ISO 27001
+  - Microsoft Secure Score as audit evidence
+  - Microsoft Secure Score NIS2 compliance
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Microsoft Defender for Endpoint
+  - Microsoft Defender for Office 365
+  - Microsoft Defender for Identity
+  - Microsoft 365 Security
+  - Exposure Management
+  - Cyber GRC
+  - Security Posture Management
+  - NIS2
+  - ISO 27001
+author: "Dimosthenis Atteia"
 description: "The final post in the Microsoft Defender Demystified series. A friendly, hands-on walk through the Microsoft Defender portal at security.microsoft.com — every major section explained, where Microsoft Secure Score now lives, the unified Microsoft Sentinel experience, and a practical 'first hour' agenda any professional can follow today."
 summary: "Part 5 closes the series. A guided walk through the unified Microsoft Defender portal — every major navigation section explained, where Microsoft Secure Score now lives inside Exposure Management, how to set up the right roles, a simple KQL hunting query to try, and a 60-minute first-time agenda."
-tags: ["microsoft-defender", "microsoft-defender-xdr", "microsoft-defender-portal", "microsoft-sentinel", "microsoft-secure-score", "kql", "advanced-hunting", "rbac", "fundamentals"]
 categories: ["Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
 weight: 5
 cover:
-  image: "" # TODO: cover image — see Image 1 (Defender portal home with expanded navigation)
+  image: "/images/DefenderDemystified/MSDef.png"
   alt: "The Microsoft Defender portal at security.microsoft.com — a guided tour"
   caption: "Microsoft Defender Demystified — Part 5"
 ---

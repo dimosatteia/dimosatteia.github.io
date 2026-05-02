@@ -2,17 +2,39 @@
 title: "Microsoft Defender Demystified — Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
 date: 2026-04-23T10:00:00+03:00
 draft: true
-author: "Dimosthenis"
+keywords:
+  - where does Microsoft Secure Score data come from
+  - which Microsoft products contribute to Secure Score
+  - Microsoft Secure Score Exposure Management
+  - Microsoft Secure Score license dependency
+  - why are some Secure Score recommendations missing
+  - Microsoft Secure Score refresh time
+  - Microsoft Secure Score for ISO 27001
+  - Microsoft Secure Score as audit evidence
+  - Microsoft Secure Score NIS2 compliance
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Microsoft Defender for Endpoint
+  - Microsoft Defender for Office 365
+  - Microsoft Defender for Identity
+  - Microsoft 365 Security
+  - Exposure Management
+  - Cyber GRC
+  - Security Posture Management
+  - NIS2
+  - ISO 27001
+author: "Dimosthenis Atteia"
 description: "Microsoft Defender for Cloud is the one product in the Defender family most people confuse with Defender XDR — and the mistake is costly. Different portal, different licensing, different audience. A friendly, honest walk through what it is, how its two layers fit together, and which plans matter for Azure, AWS, and GCP workloads."
 summary: "Part 3 of the Microsoft Defender Demystified series. Microsoft Defender for Cloud explained in plain language — the CSPM foundation, the paid Defender CSPM tier, the eleven workload protection plans, the multicloud story, and why the unified Microsoft Defender portal is quietly making all this one experience."
-tags: ["microsoft-defender", "microsoft-defender-for-cloud", "azure", "cnapp", "cspm", "cwpp", "multicloud", "aws", "gcp", "security", "fundamentals"]
 categories: ["Microsoft Defender", "Azure Security"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
 weight: 3
 cover:
-  image: "" # TODO: cover image — see Image 1 instructions (Microsoft Defender for Cloud overview in Azure portal)
+  image: "/images/DefenderDemystified/MSDef.png"
   alt: "Microsoft Defender for Cloud — protecting Azure and multicloud workloads"
   caption: "Microsoft Defender Demystified — Part 3"
 ---

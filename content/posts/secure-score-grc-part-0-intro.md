@@ -198,4 +198,5 @@ On Monday 04/05/2026 head to **[Part 2 — Where It Sits in the Microsoft Defend
 More parts coming in the following weeks, so check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
+
 ---
