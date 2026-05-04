@@ -2,18 +2,30 @@
 title: "Welcome — what this blog is (and isn't)"
 date: 2026-04-22T10:00:00+03:00
 draft: false
+keywords:
+  - "Microsoft Security blog"
+  - "Microsoft 365 security"
+  - "Security Copilot tutorial"
+  - "Defender XDR hunting"
+  - "M365 hardening baseline"
+tags:
+  - "Welcome"
+  - "Roadmap"
+  - "Microsoft 365"
+  - "Microsoft Security"
+  - "Security Copilot"
+  - "Defender XDR"
+  - "Cybersecurity"
+  - "GRC"
 author: "Dimosthenis Atteia"
 description: "A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros."
 summary: "An intro to the blog, the topics I'll cover, and the first series planned for 2026."
 categories:
   - "Meta"
-tags:
-  - "Welcome"
-  - "Roadmap"
 cover:
   image: "/images/welcome-cover.png"
-  alt: "Cloud and security insights"
-  caption: ""
+  alt: "Microsoft 365 Security Insights blog — Microsoft 365 security and Defender content for IT Pros"
+  caption: "Welcome to Microsoft 365 Security Insights"
   relative: false
   hidden: true
 ---
@@ -40,13 +52,9 @@ Every post here is built on three rules:
 
 The first series I'm planning for 2026:
 
-- **Microsoft Security Copilot in Production** — going beyond the demos.
-  Pricing, prompts that actually work, plugin development, and the
-  governance you need before letting it touch your tenant.
-- **The 2026 Microsoft 365 Hardening Baseline** — every setting I'd
-  enable on day one of a new tenant, with the reasoning behind each one.
-- **Defender XDR Hunting Patterns** — a growing library of KQL queries
-  for the detections nobody writes blog posts about.
+- **[Microsoft Secure Score as a Cyber GRC Instrument](/posts/secure-score-grc-part-0-intro/)** 
+— A 5-part series on turning Secure Score into a board-level governance tool.
+  *(Part 0, Part 1, Part 2 already published.)*
 
 ## A note on the format
 
