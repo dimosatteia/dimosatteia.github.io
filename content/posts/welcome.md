@@ -31,7 +31,7 @@ cover:
 ---
 
 If you're here, you probably manage, secure, or architect Microsoft 365
-environments — and you've hit the same wall I keep hitting: **the official docs
+environments and you've hit the same wall I keep hitting: **the official docs
 tell you the *what* but rarely the *why* or the *what-if*.**
 
 That's the gap this blog tries to fill.
@@ -53,13 +53,13 @@ Every post here is built on three rules:
 The first series I'm planning for 2026:
 
 - **[Microsoft Secure Score as a Cyber GRC Instrument](/posts/secure-score-grc-part-0-intro/)** 
-— A 5-part series on turning Secure Score into a board-level governance tool.
+— A 4 to 6 parts series on turning Secure Score into a board-level governance tool.
   *(Part 0, Part 1, Part 2 already published.)*
 
 ## A note on the format
 
 Posts will often be long. Some will run 15–20 minutes of reading time.
-That's intentional — short posts on these topics tend to leave the most
+That's intentional short posts on these topics tend to leave the most
 important questions unanswered. There's a table of contents on every
 long post, and a search box in the menu. Use them.
 
