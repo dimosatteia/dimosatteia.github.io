@@ -36,7 +36,7 @@ TocOpen: false
 weight: 1
 cover:
   image: "/images/MSS-NIS2.png"
-  alt: "Microsoft Secure Score για τον Έλληνα Υ.Α.Σ.Π.Ε. στο πλαίσιο NIS2"
+  alt: "Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ (NIS2"
   caption: "Πρακτικός οδηγός — Microsoft Secure Score & Defender"
   relative: false
   hidden: false
