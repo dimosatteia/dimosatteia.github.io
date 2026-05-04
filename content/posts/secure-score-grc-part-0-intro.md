@@ -14,22 +14,15 @@ keywords:
   - live audit evidence Microsoft 365
 tags:
   - Microsoft Secure Score
-  - Microsoft 365
+  - Microsoft 365 Security
+  - Microsoft Purview
+  - Microsoft Defender XDR
   - ISO 27001
   - NIS2
-  - GRC
-  - Microsoft Purview Compliance Manager
-  - Microsoft Defender XDR
-  - Microsoft 365 Security
   - Cyber GRC
-  - Security Posture Management
-  - ISO 27001:2022
-  - Νόμος 5160/2024
-  - Microsoft Graph API
-  - Power BI
-  - Cyber Security Awards 2026
+  - Compliance Manager
   - CISO
-  - GRC Programme
+  - Security Posture Management
 author: "Dimosthenis Atteia"
 description: "Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools."
 summary: "Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate."
@@ -147,22 +140,22 @@ To get there without skipping steps, the recommended reading path is:
 
 If the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, or Microsoft Defender for Cloud Apps don't mean much to you yet, start with the companion series that covers the whole Microsoft Defender ecosystem end to end:
 
-1. **Microsoft Defender Demystified, Part 1: How Many Defenders Are There, Really?** the whole family map in one post.
+1. **Microsoft Defender Demystified, Part 1: How Many Defenders Are There, Really?** *(coming soon)* the whole family map in one post.
 <!-- /posts/defender-demystified-part-1-what-is-microsoft-defender/ -->
 
-2. **Microsoft Defender Demystified, Part 2: The Four Core XDR Workloads, Up Close** what each workload protects.
+2. **Microsoft Defender Demystified, Part 2: The Four Core XDR Workloads, Up Close** *(coming soon)* what each workload protects.
 <!-- /posts/defender-demystified-part-2-four-workloads/ -->
 
-3. **Microsoft Defender Demystified, Part 3: Microsoft Defender for Cloud** the Azure and multicloud story.
+3. **Microsoft Defender Demystified, Part 3: Microsoft Defender for Cloud** *(coming soon)* the Azure and multicloud story.
 <!-- /posts/defender-demystified-part-3-defender-for-cloud/ -->
 
-4. **Microsoft Defender Demystified, Part 4: Which Defender Do You Actually Need?** licensing across Microsoft 365 and Enterprise Mobility + Security.
+4. **Microsoft Defender Demystified, Part 4: Which Defender Do You Actually Need?** *(coming soon)* licensing across Microsoft 365 and Enterprise Mobility + Security.
 <!-- /posts/defender-demystified-part-4-licensing-decoder/ -->
 
-5. **Microsoft Defender Demystified, Part 5: A Walk Through the Microsoft Defender Portal** where everything lives.
+5. **Microsoft Defender Demystified, Part 5: A Walk Through the Microsoft Defender Portal** *(coming soon)* where everything lives.
 <!-- /posts/defender-demystified-part-5-portal-tour/ -->
 
-6. **Enterprise Mobility + Security Explained** the security bundle many organisations already own and don't fully use.
+6. **Enterprise Mobility + Security Explained** *(coming soon)* the security bundle many organisations already own and don't fully use.
 <!-- /posts/enterprise-mobility-security-explained/ -->
 
 Want to go deeper into any single workload? The **Microsoft Defender Up Close** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
@@ -172,11 +165,11 @@ Want to go deeper into any single workload? The **Microsoft Defender Up Close** 
 
 Once the Microsoft Defender landscape feels familiar, come back here. You'll now have the context to follow what Microsoft Secure Score is actually measuring.
 
-1. [**[Opening Your First Recommendation]**](/posts/secure-score-grc-part-1-anatomy/)  every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
-2. **[Where Microsoft Secure Score Sits in the Microsoft Defender World]** how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
-<!-- (/posts/secure-score-grc-part-2-ecosystem/) -->
+1. [**Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
+2. [**Where Microsoft Secure Score Sits in the Microsoft Defender World**](/posts/secure-score-grc-part-2-ecosystem/) how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
 
-**What you will get from this series**
+
+**Why read Parts 1 and 2 first**
 
 **Secure Score** is the destination of this series — the daily dashboard that will show you where 
 your organization stands regarding secure maturity, regardless of the organization's size, geographic location, and presence, and help 
