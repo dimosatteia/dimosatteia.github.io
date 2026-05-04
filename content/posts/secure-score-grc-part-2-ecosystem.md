@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 2: Where It Sits in the Microsoft Defender World"
 date: 2026-05-04T07:00:00+03:00
+lastmod: 2026-05-04T15:12:00+03:00
 draft: false
 keywords:
   - where does Microsoft Secure Score data come from
@@ -37,6 +38,8 @@ cover:
   image: "/images/MSS.png"
   alt: "Microsoft Secure Score inside the Microsoft Defender family"
   caption: "Secure Score Series — Part 2"
+  relative: false
+  hidden: false
 ---
 
 ## A small moment most beginners hit
@@ -73,7 +76,6 @@ The important word is **Exposure management**. Microsoft Secure Score moved into
 
 [![Microsoft Secure Score location in Defender portal Exposure management navigation](/images/SS_GRC_P2_Ecosystem_image_1.png)](/images/SS_GRC_P2_Ecosystem_image_1.png)
 > 📷 **Image 1 — The Exposure management section in the left navigation.**
-> *Capture from: security.microsoft.com left navigation, with Exposure management expanded. Show the menu items underneath it — Overview, Attack surface, Exposure insights, Microsoft Secure Score. This shows the "neighbourhood" Microsoft Secure Score lives in.*
 
 **[Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)** is a newer Microsoft surface that tries to answer *"how exposed are we?"*. It includes:
 
@@ -90,7 +92,6 @@ This is the part that usually surprises new professionals. Your Microsoft Secure
 
 [![Microsoft Secure Score Recommended actions showing Identity Data Device Apps source categories](/images/SS_GRC_P2_Ecosystem_image_2.png)](/images/SS_GRC_P2_Ecosystem_image_2.png)
 > 📷 **Image 2 — The Recommended actions list with the Category column visible.**
-> *Capture from: Microsoft Secure Score → Recommended actions. Make sure the Category column is visible. Show 10–15 rows so the variety of categories (Identity, Data, Device, Apps) is clear. This screenshot proves the "multiple sources" point visually.*
 
 ### Microsoft Entra ID (identity)
 
@@ -159,16 +160,16 @@ Example: let's say the recommendation is *"Ensure internal phishing protection f
 
 [![Tracing a Microsoft Secure Score recommendation back to Microsoft Entra ID source product](/images/SS_GRC_P2_Ecosystem_image_3.png)](/images/SS_GRC_P2_Ecosystem_image_3.png)
 > 📷 **Image 3 — A recommendation's Implementation tab showing which Microsoft product configures it.**
-> *Open the recommendation "Ensure internal phishing protection for Forms is enabled" (or similar) → Implementation tab. Capture the instructions. Notice how they direct you into Microsoft Entra admin center — that's the source product.*
 
-The Implementation tab tells you to go to **Microsoft Entra admin center → Protection → Conditional Access** and configure an MFA policy. Notice what just happened:
+The Implementation tab tells you to go to **Microsoft 365 admin center → Settings → Org Settings → Microsoft Forms** and enable internal phishing 
+protection. Notice what just happened:
 
 - **Scoreboard:** Microsoft Secure Score (in the Defender portal)
-- **Source product:** Microsoft Entra ID (in a different admin centre)
-- **Score answers the question:** *Is MFA enforced for all users?*
-- **Data collected by:** Microsoft Entra ID, continuously, from live tenant configuration
+- **Source product:** Microsoft Forms (configured in Microsoft 365 admin center)
+- **Score answers the question:** *Is internal phishing protection enabled in Forms?*
+- **Data collected by:** Microsoft Forms, continuously, from tenant settings
 
-When you implement the MFA policy in Microsoft Entra admin center, Microsoft Entra ID reports back to Microsoft Secure Score that the configuration has changed. The recommendation's status flips to **Completed** (usually within a few hours), and your score goes up by the recommendation's point value.
+When you implement the policy in Microsoft 365 admin center, Microsoft Entra ID reports back to Microsoft Secure Score that the configuration has changed. The recommendation's status flips to **Completed** (usually within a few hours), and your score goes up by the recommendation's point value.
 
 **The insight:** Microsoft Secure Score never *did* anything in your tenant. It's just asking Microsoft Entra ID a question and reading the answer. The same pattern applies to every other source product.
 
@@ -180,7 +181,6 @@ The reason is almost always **licensing**. Microsoft Secure Score only shows you
 
 [![Microsoft 365 admin center licenses page showing which Secure Score recommendations apply to your tenant](/images/SS_GRC_P2_Ecosystem_image_4.png)](/images/SS_GRC_P2_Ecosystem_image_4.png)
 > 📷 **Image 4 — The Microsoft 365 admin center licenses page.**
-> *Capture from: admin.microsoft.com → Billing → Licenses. This shows what products your tenant is actually licensed for — which directly determines what Microsoft Secure Score recommendations you'll see. Redact counts if sensitive.*
 
 This is why two people comparing their scores can get confusing numbers. A company with Microsoft 365 E5 might have 180 recommendations; a company with Microsoft 365 E3 might have 120. They're not being scored against the same set of questions.
 
@@ -205,7 +205,6 @@ One last part of the page worth knowing about: **History**.
 
 [![Microsoft Secure Score History tab as audit evidence and ISO 27001 compliance trail](/images/SS_GRC_P2_Ecosystem_image_5.png)](/images/SS_GRC_P2_Ecosystem_image_5.png)
 > 📷 **Image 5 — The Microsoft Secure Score History tab.**
-> *Capture from: Microsoft Secure Score → History tab. Show the timeline of score changes with individual events visible (when recommendations were implemented, when the score dropped, when new recommendations appeared). Redact anything sensitive.*
 
 The History tab shows every score event over time, when a recommendation got completed, when a new one was added (which drops the score temporarily), when configuration drifted (which can also drop the score).
 
