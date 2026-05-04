@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 1: Opening Your First Recommendation"
 date: 2026-04-27T07:00:00+03:00
+lastmod: 2026-05-04T15:12:00+03:00
 draft: false
 keywords:
   - how to read a Microsoft Secure Score recommendation
