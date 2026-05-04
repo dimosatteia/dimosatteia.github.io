@@ -15,10 +15,9 @@ keywords:
 tags:
   - Microsoft Secure Score
   - Microsoft Defender XDR
-  - Microsoft 365
-  - Security Recommendations
   - Microsoft 365 Security
   - Microsoft Entra ID
+  - Security Recommendations
   - Cyber GRC
   - Security Posture Management
   - Junior Administrator
@@ -35,17 +34,22 @@ TocOpen: false
 weight: 2
 cover:
   image: "/images/MSS.png"
-  alt: "Opening your first Microsoft Secure Score recommendation"
-  caption: "Secure Score Series — Part 1"
+  alt: "Microsoft Secure Score recommendation details pane in the Microsoft Defender portal — fields explained for junior administrators"
+  caption: "Secure Score Series — Part 1: Anatomy"
+  relative: false
+  hidden: false
 ---
 
 ## Before we start — What is Microsoft Secure Score, in one paragraph
 
+**Microsoft Secure Score is a measurement tool within the Microsoft Defender 
+portal that evaluates an organization's security posture across identity, 
+devices, apps, and data.** It produces a single percentage score and a 
+prioritised list of recommendations to improve it.
+
 If you've just started a role as a **Microsoft 365 Junior Administrator**, a **Tier 1 SOC Analyst**, or an **entry-level Cloud Security Engineer**, chances are someone has already said the words "check our Microsoft Secure Score" at you. Maybe your manager. Maybe an auditor. Maybe a colleague asking if you can "just pull the number for the quarterly review".
 
-And chances are you opened the Microsoft Defender portal, found the Microsoft Secure Score page, looked at a bunch of cards and lists and numbers, and thought, *okay, but what am I actually looking at & how Microsoft Secure Score works?*
-
-First of all Microsoft Secure Score is a measurement tool within the Microsoft Defender Portal that evaluates an organization’s security posture across identity, devices, apps, and data.
+And chances are you opened the Microsoft Defender portal, found the Microsoft Secure Score page, looked at a bunch of cards and lists and numbers, and thought, *okay, but what am I actually looking at, and how Microsoft Secure Score actually works?*
 
 You're not alone. Nobody looks at Microsoft Secure Score for the first time and immediately understands all of it (like Microsoft Secure Score recommendations or Microsoft Secure Score calculation). It's one of those Microsoft surfaces that's genuinely simple once you know what each piece means, but absolutely baffling the first time. This post is the friendly walk-through I wish someone had given me on day one.
 
@@ -63,7 +67,6 @@ First the navigation, because the location moved recently and older blog posts m
 
 [![Microsoft Secure Score overview page in Defender portal showing score circle trend graph and top actions](/images/SS_GRC_P1_Anatomy_image_1.png)](/images/SS_GRC_P1_Anatomy_image_1.png)
 > 📷 **Image 1 — The Microsoft Secure Score overview page.**
-> *Open Microsoft Defender portal → Exposure management → Microsoft Secure Score. Capture the entire overview page — the score circle on the left, the historical trend graph, the "Actions to review" list on the right. This is the landing page we're starting from. Redact your tenant name if needed.*
 
 What you'll see on the overview page, from left to right:
 
@@ -80,7 +83,6 @@ Click the **Recommended actions** tab at the top of the page. You'll get a list 
 
 [![Microsoft Secure Score Recommended actions list with Rank Score impact Status and Category columns](/images/SS_GRC_P1_Anatomy_image_2.png)](/images/SS_GRC_P1_Anatomy_image_2.png)
 > 📷 **Image 2 — The Recommended actions list.**
-> *Capture from: Microsoft Secure Score → Recommended actions tab. Show the full list view with columns visible (Rank, Recommended action, Score impact, Status, Category). Scroll to show 10–15 rows. Redact anything that might be sensitive.*
 
 For this walkthrough, pick a recommendation that sounds familiar. Good starting choices:
 
@@ -95,7 +97,6 @@ Click on any one of them. A details pane opens on the right side of the screen. 
 
 [![Microsoft Secure Score recommendation details pane showing all fields title description implementation status and score impact](/images/SS_GRC_P1_Anatomy_image_3.png)](/images/SS_GRC_P1_Anatomy_image_3.png)
 > 📷 **Image 3 — A single recommendation details pane, fully expanded.**
-> *With the details pane open for the recommendation you picked, scroll through it and capture the complete detail view — title, description, implementation status, user impact, action type, score points, and the "Implementation" and "Details" tabs. Take multiple screenshots if one doesn't fit the whole thing.*
 
 Let's go through everything you see, top to bottom.
 
@@ -103,7 +104,7 @@ Let's go through everything you see, top to bottom.
 
 Exactly what it sounds like — a short description of the control. Example: *"Require multifactor authentication for administrative roles."*
 
-What matters to notice: **Microsoft wrote this title, not your organisation.** These titles are standardised across every Microsoft 365 tenant in the world. When you search for help on a specific recommendation, search for the exact title — you'll find official Microsoft documentation and community posts that refer to it.
+What matters to notice: **Microsoft wrote this title, not your organization.** These titles are standardised across every Microsoft 365 tenant in the world. When you search for help on a specific recommendation, search for the exact title — you'll find official Microsoft documentation and community posts that refer to it.
 
 ### The product badge
 
@@ -127,7 +128,7 @@ A paragraph from Microsoft explaining **why this recommendation exists** — wha
 One of three values:
 
 - **To address** — the control isn't configured (or not fully) in your tenant
-- **Planned** — someone in your organisation marked it as "we're working on this"
+- **Planned** — someone in your organization marked it as "we're working on this"
 - **Risk accepted** — someone decided not to implement it, and documented why
 - **Resolved through third party** — you have a non-Microsoft tool doing this job
 - **Completed** — Microsoft Secure Score confirms the control is configured
@@ -171,7 +172,6 @@ Below the summary, there's usually a tab with **step-by-step implementation inst
 
 [![Microsoft Secure Score Implementation tab with step-by-step remediation instructions](/images/SS_GRC_P1_Anatomy_image_4.png)](/images/SS_GRC_P1_Anatomy_image_4.png)
 > 📷 **Image 4 — The Implementation tab contents.**
-> *Click the Implementation tab on an open recommendation and capture the step-by-step instructions Microsoft provides. This content is a genuine hidden gem and most new professionals miss that it's there.*
 
 **This is the single most useful thing in Microsoft Secure Score for someone new to the platform.** Microsoft has essentially written the remediation documentation for you. Read it. Follow it. In many cases you'll be able to implement the recommendation in 10 minutes without needing any other resource.
 
@@ -193,7 +193,6 @@ Instead of scrolling through 200 recommendations, filter by one category (Identi
 
 [![Filtering Microsoft Secure Score Recommended actions by Identity category for focused prioritisation](/images/SS_GRC_P1_Anatomy_image_5.png)](/images/SS_GRC_P1_Anatomy_image_5.png)
 > 📷 **Image 5 — The category filter applied to the Recommended actions list.**
-> *From the Recommended actions list, click the Category filter and select one (e.g., Identity). Capture the resulting filtered list. This shows readers how focused the list becomes — and how much easier prioritisation gets.*
 
 ### Habit 3 — Sort by score impact, not by status
 
@@ -226,7 +225,8 @@ Endpoint, Microsoft Defender for Office 365, Microsoft Defender for
 Cloud Apps, and Microsoft Purview — and you'll learn how to trace
 a single score point back to the product that generated it.
 
-> 🔗 **Want to see where Microsoft Secure Score fits in the bigger Microsoft Defender picture?** Part 2 connects the dots to the broader Microsoft Defender family. You can also start from the ground-up tour: **[Microsoft Defender Demystified — Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)**.
+> 🔗 For a ground-up tour of the Microsoft Defender ecosystem, the upcoming **Microsoft Defender Demystified** series will start there. *Subscribe via [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) to be notified when it drops.*
+<!--**[Microsoft Defender Demystified — Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)**.-->
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 
