@@ -1,7 +1,7 @@
 ---
-title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 2: Where It Sits in the Microsoft Defender World"
+title: "Microsoft Secure Score — Part 2: Where It Sits in the Microsoft Defender World"
 date: 2026-05-04T07:00:00+03:00
-lastmod: 2026-05-04T15:12:00+03:00
+lastmod: 2026-05-04T15:32:00+03:00
 draft: false
 keywords:
   - where does Microsoft Secure Score data come from
@@ -16,14 +16,14 @@ keywords:
 tags:
   - Microsoft Secure Score
   - Microsoft Defender XDR
-  - Microsoft 365
   - Microsoft Defender for Endpoint
   - Microsoft Defender for Office 365
   - Microsoft Defender for Identity
+  - Microsoft Entra ID
+  - Microsoft Purview
   - Microsoft 365 Security
   - Exposure Management
   - Cyber GRC
-  - Security Posture Management
   - NIS2
   - ISO 27001
 author: "Dimosthenis Atteia"
@@ -36,8 +36,8 @@ TocOpen: false
 weight: 3
 cover:
   image: "/images/MSS.png"
-  alt: "Microsoft Secure Score inside the Microsoft Defender family"
-  caption: "Secure Score Series — Part 2"
+  alt: "Microsoft Secure Score in the Microsoft Defender XDR ecosystem — how Entra ID, Defender for Endpoint, Office 365, and Purview feed the score"
+  caption: "Secure Score Series — Part 2: The Defender Ecosystem"
   relative: false
   hidden: false
 ---
@@ -197,7 +197,7 @@ In practice:
 - **Some identity and policy recommendations:** can take up to 48 hours to update
 - **Certain Microsoft Defender for Endpoint recommendations:** depend on device check-in frequency, can be longer
 
-If you implement a change and your score hasn't moved by the next day, don't panic, come back the day after. If it still hasn't moved after 72 hours, that's when you'd start investigating (usually the configuration isn't quite what Microsoft Secure Score is checking for happens occasionally).
+If you implement a change and your score hasn't moved by the next day, don't panic, come back the day after. If it still hasn't moved after 72 hours, that's when you'd start investigating, usually the configuration isn't quite what Microsoft Secure Score is checking for happens occasionally.
 
 ## The history tab tells a story
 
@@ -226,10 +226,7 @@ That's the whole mental model. Once you have it, everything else in Microsoft Se
 
 In **Microsoft Defender Demystified Series** we move into actually managing Microsoft Secure Score as part of a compliance programme, how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.
 
-> 🔗 **Haven't read the full Microsoft Defender family map yet? Start here:** **[Microsoft Defender Demystified — Part 1: How Many Defenders Are There, Really?](/posts/defender-demystified-part-1-what-is-microsoft-defender/)**. Understanding the whole family makes everything about Microsoft Secure Score click much faster.
-
-> 🔗 **Want to see where this whole series is going?** A broader companion series, **Microsoft Defender Demystified** is coming soon and will walk through the entire Defender family from the ground up. For now, the context you need to understand Microsoft Secure Score is built directly into this guide. No prerequisites, no missing pieces.
-<!--(/posts/secure-score-grc-part-0-intro/)-->
+> 🔗 For a ground-up tour of the Microsoft Defender ecosystem, the upcoming **Microsoft Defender Demystified** series will start there. *Subscribe via [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) to be notified when it drops.*
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 
@@ -241,5 +238,3 @@ Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-
 - [Microsoft Defender XDR overview](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
 - [Microsoft Entra ID overview](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)
 - [Microsoft Purview overview](https://learn.microsoft.com/en-us/purview/purview)
-
----

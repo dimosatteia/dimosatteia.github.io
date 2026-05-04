@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 1: Opening Your First Recommendation"
+title: "Microsoft Secure Score — Part 1: Opening Your First Recommendation"
 date: 2026-04-27T07:00:00+03:00
 lastmod: 2026-05-04T15:12:00+03:00
 draft: false
@@ -237,5 +237,3 @@ Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-
 - [How Microsoft Secure Score is calculated](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions)
 - [Respond to Microsoft Secure Score recommendations](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions#address-an-improvement-action)
 - [Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)
-
----
