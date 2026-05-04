@@ -228,7 +228,8 @@ In **Microsoft Defender Demystified Series** we move into actually managing Micr
 
 > 🔗 **Haven't read the full Microsoft Defender family map yet? Start here:** **[Microsoft Defender Demystified — Part 1: How Many Defenders Are There, Really?](/posts/defender-demystified-part-1-what-is-microsoft-defender/)**. Understanding the whole family makes everything about Microsoft Secure Score click much faster.
 
-> 🔗 **Want to see where this whole series is going?** **[Series Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Want to see where this whole series is going?** A broader companion series — Microsoft Defender Demystified — is coming soon and will walk through the entire Defender family from the ground up. For now, the context you need to understand Microsoft Secure Score is built directly into this guide. No prerequisites, no missing pieces. **[Series Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score]**
+<!--(/posts/secure-score-grc-part-0-intro/)-->
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 
