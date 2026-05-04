@@ -74,6 +74,19 @@ jobs:
         with:
           path: ./public
 
+      - name: Notify IndexNow
+        run: |
+          curl -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d '{
+               "host": "dimosatteia.github.io",
+               "key": "${{ secrets.INDEXNOW_KEY }}",
+               "keyLocation": "https://dimosatteia.github.io/${{ secrets.INDEXNOW_KEY }}.txt",
+               "urlList": [
+                 "https://dimosatteia.github.io/posts/secure-score-grc-part-2-ecosystem/"
+                          ]
+                }'
+
   # ---------------------------------------------------------------------------
   # Deploy job — push the built site to GitHub Pages
   # ---------------------------------------------------------------------------

@@ -1,0 +1,81 @@
+name: Notify IndexNow
+
+on:
+  # Τρέχει μετά από κάθε επιτυχές deploy του site
+  workflow_run:
+    workflows: ["Deploy Hugo site to GitHub Pages"]  # ⚠️ άλλαξέ το αν το deploy workflow σου έχει άλλο όνομα
+    types:
+      - completed
+  
+  # Manual trigger από το UI του GitHub
+  workflow_dispatch:
+
+jobs:
+  notify-indexnow:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Wait for deployment to propagate
+        run: sleep 30
+      
+      - name: Fetch sitemap and extract URLs
+        id: sitemap
+        run: |
+          echo "Fetching sitemap..."
+          curl -s "https://dimosatteia.github.io/sitemap.xml" -o sitemap.xml
+          
+          # Extract URLs from sitemap.xml
+          grep -oP '(?<=<loc>)[^<]+' sitemap.xml > urls.txt
+          
+          URL_COUNT=$(wc -l < urls.txt)
+          echo "Found $URL_COUNT URLs in sitemap"
+          
+          if [ "$URL_COUNT" -eq 0 ]; then
+            echo "::error::No URLs found in sitemap"
+            exit 1
+          fi
+          
+          # Build JSON array of URLs
+          URLS_JSON=$(jq -R . urls.txt | jq -s .)
+          
+          # Build full IndexNow payload
+          jq -n \
+            --arg host "dimosatteia.github.io" \
+            --arg key "${{ secrets.INDEXNOW_KEY }}" \
+            --arg keyLocation "https://dimosatteia.github.io/${{ secrets.INDEXNOW_KEY }}.txt" \
+            --argjson urlList "$URLS_JSON" \
+            '{host: $host, key: $key, keyLocation: $keyLocation, urlList: $urlList}' \
+            > payload.json
+          
+          echo "Payload preview (first URLs):"
+          jq '.urlList[0:3]' payload.json
+      
+      - name: Submit to IndexNow
+        run: |
+          echo "Submitting to IndexNow API..."
+          
+          HTTP_CODE=$(curl -s -o response.txt -w "%{http_code}" \
+            -X POST "https://api.indexnow.org/IndexNow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d @payload.json)
+          
+          echo "HTTP Status: $HTTP_CODE"
+          echo "Response body:"
+          cat response.txt
+          echo ""
+          
+          if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 202 ]; then
+            echo "✅ Successfully submitted URLs to IndexNow"
+          else
+            echo "::error::IndexNow submission failed with HTTP $HTTP_CODE"
+            exit 1
+          fi
+      
+      - name: Summary
+        run: |
+          URL_COUNT=$(wc -l < urls.txt)
+          echo "## IndexNow Submission Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **URLs submitted:** $URL_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- **Endpoint:** https://api.indexnow.org/IndexNow" >> $GITHUB_STEP_SUMMARY
+          echo "- **Host:** dimosatteia.github.io" >> $GITHUB_STEP_SUMMARY
