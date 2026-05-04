@@ -2,16 +2,39 @@
 title: "Microsoft Defender for Cloud Apps, Up Close Part 1d — A Practical Tour of the CASB"
 date: 2026-04-23T10:00:00+03:00
 draft: true
+keywords:
+  - how to read a Microsoft Secure Score recommendation
+  - Microsoft Secure Score recommendation fields explained
+  - Microsoft Secure Score implementation status meaning
+  - Microsoft Secure Score To address Planned Risk accepted
+  - Microsoft Secure Score score impact vs percentage
+  - Microsoft Secure Score user impact field
+  - Microsoft Secure Score Implementation tab guide
+  - Microsoft Secure Score for junior administrators
+  - Microsoft Secure Score for SOC analysts
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Security Recommendations
+  - Microsoft 365 Security
+  - Microsoft Entra ID
+  - Cyber GRC
+  - Security Posture Management
+  - Junior Administrator
+  - SOC Analyst
+  - ISO 27001
+  - NIS2
+author: "Dimosthenis Atteia"
 description: "A hands-on walk through Microsoft Defender for Cloud Apps — how Shadow IT discovery actually works, how to review and govern risky OAuth applications, setting up Conditional Access App Control, and the file policies that extend Microsoft Purview into third-party SaaS."
 summary: "Microsoft Defender for Cloud Apps explained the way a working professional needs it. Shadow IT discovery through cloud app catalog integration, OAuth app governance, Conditional Access App Control session policies, and the file/activity policies that catch anomalous behaviour."
-tags: ["microsoft-defender-for-cloud-apps", "mdca", "casb", "shadow-it", "oauth", "conditional-access", "microsoft-defender"]
 categories: ["Microsoft Defender", "SaaS Security"]
 series: ["Microsoft Defender Up Close"]
 ShowToc: true
 TocOpen: false
 weight: 4
 cover:
-  image: ""
+  image: "/images/MDE/MDCA.png"
   alt: "Microsoft Defender for Cloud Apps — deep dive"
   caption: "Microsoft Defender Up Close"
 ---

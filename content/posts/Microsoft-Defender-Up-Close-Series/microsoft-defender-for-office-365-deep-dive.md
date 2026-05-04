@@ -2,17 +2,39 @@
 title: "Microsoft Defender for Office 365, Up Close Part 1b — From Preset Policies to Advanced Configuration"
 date: 2026-04-23T10:00:00+03:00
 draft: true
-author: "Dimosthenis"
+keywords:
+  - how to read a Microsoft Secure Score recommendation
+  - Microsoft Secure Score recommendation fields explained
+  - Microsoft Secure Score implementation status meaning
+  - Microsoft Secure Score To address Planned Risk accepted
+  - Microsoft Secure Score score impact vs percentage
+  - Microsoft Secure Score user impact field
+  - Microsoft Secure Score Implementation tab guide
+  - Microsoft Secure Score for junior administrators
+  - Microsoft Secure Score for SOC analysts
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Security Recommendations
+  - Microsoft 365 Security
+  - Microsoft Entra ID
+  - Cyber GRC
+  - Security Posture Management
+  - Junior Administrator
+  - SOC Analyst
+  - ISO 27001
+  - NIS2
+author: "Dimosthenis Atteia"
 description: "A hands-on walk through Microsoft Defender for Office 365 — Plan 1 vs Plan 2 differences, the preset security policies that give you 80% of the value in 10 minutes, and the custom policy configuration that matters for the remaining 20%."
 summary: "Microsoft Defender for Office 365 explained in practical terms. Plan 1 vs Plan 2, how preset security policies take the friction out of day-one deployment, and the specific settings for Safe Links, Safe Attachments, and anti-phishing that matter most."
-tags: ["microsoft-defender-for-office-365", "mdo", "email-security", "microsoft-defender", "safe-links", "safe-attachments", "anti-phishing"]
 categories: ["Microsoft Defender", "Email Security"]
 series: ["Microsoft Defender Up Close"]
 ShowToc: true
 TocOpen: false
 weight: 2
 cover:
-  image: ""
+  image: "/images/MDE/MDO.png"
   alt: "Microsoft Defender for Office 365 — deep dive"
   caption: "Microsoft Defender Up Close"
 ---

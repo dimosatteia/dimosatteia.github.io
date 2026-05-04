@@ -2,16 +2,39 @@
 title: "Microsoft Defender for Identity, Up Close Part 1c — How Sensors Catch Post-Compromise Attacks"
 date: 2026-04-23T10:00:00+03:00
 draft: true
+keywords:
+  - how to read a Microsoft Secure Score recommendation
+  - Microsoft Secure Score recommendation fields explained
+  - Microsoft Secure Score implementation status meaning
+  - Microsoft Secure Score To address Planned Risk accepted
+  - Microsoft Secure Score score impact vs percentage
+  - Microsoft Secure Score user impact field
+  - Microsoft Secure Score Implementation tab guide
+  - Microsoft Secure Score for junior administrators
+  - Microsoft Secure Score for SOC analysts
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Security Recommendations
+  - Microsoft 365 Security
+  - Microsoft Entra ID
+  - Cyber GRC
+  - Security Posture Management
+  - Junior Administrator
+  - SOC Analyst
+  - ISO 27001
+  - NIS2
+author: "Dimosthenis Atteia"
 description: "A practical walkthrough of Microsoft Defender for Identity — what the sensors actually do, how to install them on domain controllers and AD FS servers, what alerts to expect in the first week, and how the new Microsoft Entra ID integration changes the picture."
 summary: "Microsoft Defender for Identity explained the way a practitioner needs it. What sensors are and where they live, how to deploy them to on-premises domain controllers and AD FS servers, the Microsoft Entra ID integration for hybrid environments, and the specific alerts worth tuning first."
-tags: ["microsoft-defender-for-identity", "mdi", "active-directory", "microsoft-entra-id", "identity-security", "microsoft-defender"]
 categories: ["Microsoft Defender", "Identity Security"]
 series: ["Microsoft Defender Up Close"]
 ShowToc: true
 TocOpen: false
 weight: 3
 cover:
-  image: ""
+  image: "/images/MDE/MDI.png"
   alt: "Microsoft Defender for Identity — deep dive"
   caption: "Microsoft Defender Up Close"
 ---

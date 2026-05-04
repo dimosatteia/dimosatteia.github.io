@@ -2,17 +2,39 @@
 title: "Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out"
 date: 2026-04-22T10:00:00+03:00
 draft: true
-author: "Dimosthenis"
+keywords:
+  - how to read a Microsoft Secure Score recommendation
+  - Microsoft Secure Score recommendation fields explained
+  - Microsoft Secure Score implementation status meaning
+  - Microsoft Secure Score To address Planned Risk accepted
+  - Microsoft Secure Score score impact vs percentage
+  - Microsoft Secure Score user impact field
+  - Microsoft Secure Score Implementation tab guide
+  - Microsoft Secure Score for junior administrators
+  - Microsoft Secure Score for SOC analysts
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Security Recommendations
+  - Microsoft 365 Security
+  - Microsoft Entra ID
+  - Cyber GRC
+  - Security Posture Management
+  - Junior Administrator
+  - SOC Analyst
+  - ISO 27001
+  - NIS2
+author: "Dimosthenis Atteia"
 description: "A practical, friendly deep dive into Microsoft Defender for Endpoint — Plan 1 vs Plan 2, what each tier actually gives you, how to onboard devices, and the configuration settings that matter most in the first week."
 summary: "Microsoft Defender for Endpoint explained the way a working professional needs it. Plan 1 and Plan 2 side by side, what each one does, how onboarding actually works for Windows, macOS, Linux, iOS, and Android, and the Defender portal configuration settings to check in your first week."
-tags: ["microsoft-defender-for-endpoint", "mde", "endpoint-security", "microsoft-defender", "edr", "intune", "microsoft-365"]
 categories: ["Microsoft Defender", "Endpoint Security"]
 series: ["Microsoft Defender Up Close"]
 ShowToc: true
 TocOpen: false
 weight: 1
 cover:
-  image: ""
+  image: "/images/MDE/MDE.png"
   alt: "Microsoft Defender for Endpoint — deep dive"
   caption: "Microsoft Defender Up Close"
 ---

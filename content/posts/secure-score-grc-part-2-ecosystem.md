@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Secure Score as a Cyber GRC Instrument — Part 2: Where It Sits in the Microsoft Defender World"
-date: 2026-04-23T10:00:00+03:00
-draft: true
+date: 2026-05-04T07:00:00+03:00
+draft: false
 keywords:
   - where does Microsoft Secure Score data come from
   - which Microsoft products contribute to Secure Score

@@ -2,16 +2,39 @@
 title: "Enterprise Mobility + Security Explained — E3 and E5, and When You'd Actually Buy It"
 date: 2026-04-23T10:00:00+03:00
 draft: true
+keywords:
+  - how to read a Microsoft Secure Score recommendation
+  - Microsoft Secure Score recommendation fields explained
+  - Microsoft Secure Score implementation status meaning
+  - Microsoft Secure Score To address Planned Risk accepted
+  - Microsoft Secure Score score impact vs percentage
+  - Microsoft Secure Score user impact field
+  - Microsoft Secure Score Implementation tab guide
+  - Microsoft Secure Score for junior administrators
+  - Microsoft Secure Score for SOC analysts
+tags:
+  - Microsoft Secure Score
+  - Microsoft Defender XDR
+  - Microsoft 365
+  - Security Recommendations
+  - Microsoft 365 Security
+  - Microsoft Entra ID
+  - Cyber GRC
+  - Security Posture Management
+  - Junior Administrator
+  - SOC Analyst
+  - ISO 27001
+  - NIS2
+author: "Dimosthenis Atteia"
 description: "Enterprise Mobility + Security (EMS) is Microsoft's identity, management, and protection bundle that predates Microsoft 365 E3/E5 — and it's still actively sold. A practical walkthrough of EMS E3 ($10.60/user) and EMS E5 ($16.40/user), what's in each, and when it's the right purchase instead of (or alongside) Microsoft 365."
 summary: "Enterprise Mobility + Security explained in plain language. EMS E3 and EMS E5 side by side — identity and access management, endpoint management, information protection, identity-driven security. When the EMS bundle is the right choice versus Microsoft 365 E3 or E5."
-tags: ["enterprise-mobility-security", "ems", "ems-e3", "ems-e5", "microsoft-entra-id", "microsoft-intune", "microsoft-purview", "licensing", "microsoft-365"]
 categories: ["Microsoft Licensing", "Microsoft Security"]
 series: ["Microsoft Defender Up Close"]
 ShowToc: true
 TocOpen: false
 weight: 5
 cover:
-  image: ""
+  image: "/images/MDE/EMS.png"
   alt: "Enterprise Mobility + Security — E3 and E5 explained"
   caption: "Microsoft Defender Up Close"
 ---
