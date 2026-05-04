@@ -184,7 +184,8 @@ The reason is almost always **licensing**. Microsoft Secure Score only shows you
 
 This is why two people comparing their scores can get confusing numbers. A company with Microsoft 365 E5 might have 180 recommendations; a company with Microsoft 365 E3 might have 120. They're not being scored against the same set of questions.
 
-For a deeper walk through what each license includes, the **[Microsoft Defender Demystified — Part 4 (licensing decoder)](/posts/defender-demystified-part-4-licensing-decoder/)** covers this in plain language.
+For a deeper walk through what each license includes, an upcoming post, the **Microsoft Defender Demystified — Part 4 (licensing decoder)** will cover this in plain language.
+<!--(/posts/defender-demystified-part-4-licensing-decoder/)-->
 
 ## How long does Microsoft Secure Score take to update?
 
