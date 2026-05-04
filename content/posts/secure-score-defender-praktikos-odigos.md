@@ -1,6 +1,7 @@
 ---
-title: "Microsoft Secure Score: Πρακτικός Οδηγός για Junior Μηχανικό"
+title: "Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ (NIS2)"
 date: 2026-04-27T10:00:00+03:00
+lastmod: 2026-05-04T16:18:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score NIS2
@@ -15,29 +16,30 @@ keywords:
 tags:
   - Microsoft Secure Score
   - Microsoft Defender XDR
-  - Microsoft 365
-  - Ασφάλεια
-  - NIS2
-  - Νόμος 5160/2024
+  - Microsoft 365 Security
   - Microsoft Entra ID
   - Microsoft Defender for Endpoint
-  - Microsoft 365 Security
+  - NIS2
+  - Νόμος 5160/2024
+  - ΥΑΣΠΕ
   - Cyber GRC
   - ISO 27001
-  - Junior Security Engineer
   - Security Posture Management
+  - Junior Μηχανικός Ασφάλειας
 author: "Dimosthenis Atteia"
 description: "Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Frameworks", "Microsoft 365"]
-series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
+series: ["Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ"]
 ShowToc: true
 TocOpen: false
-weight: 5
+weight: 1
 cover:
   image: "/images/MSS-NIS2.png"
   alt: "Microsoft Secure Score για τον Έλληνα Υ.Α.Σ.Π.Ε. στο πλαίσιο NIS2"
   caption: "Πρακτικός οδηγός — Microsoft Secure Score & Defender"
+  relative: false
+  hidden: false
 ---
 
 > 📌 **TL;DR**
@@ -48,9 +50,9 @@ cover:
 
 ## Δευτέρα πρωί χαμένος στο Microsoft Defender portal...
 
-Είναι Δευτέρα πρωί και ένας junior μηχανικός ασφάλειας ανοίγει για πρώτη φορά το **Microsoft Defender** portal. Αντικρίζει εκατοντάδες ρυθμίσεις διασκορπισμένες σε Entra ID, Exchange Online, SharePoint, Intune και Defender for Endpoint. Από πού να ξεκινήσει; Πώς θα ξέρει ότι αυτό που κάνει σήμερα έχει πραγματικό αντίκτυπο στο επίπεδο ασφάλειας του οργανισμού; Πια είναι τα **Secure Score best practices** και πια **Secure Score actions** απαιτούνται?
+Είναι Δευτέρα πρωί και ένας junior μηχανικός ασφάλειας ανοίγει για πρώτη φορά το **Microsoft Defender** portal. Αντικρίζει εκατοντάδες ρυθμίσεις διασκορπισμένες σε Entra ID, Exchange Online, SharePoint, Intune και Defender for Endpoint. Από πού να ξεκινήσει; Πώς θα ξέρει ότι αυτό που κάνει σήμερα έχει πραγματικό αντίκτυπο στο επίπεδο ασφάλειας του οργανισμού; Ποια είναι τα **Secure Score best practices** και ποια **Secure Score actions** απαιτούνται?
 
-Η απάντηση συχνά κρύβεται σε ένα εργαλείο που υποτιμάται: το **Microsoft Secure Score** με άπειρα **Microsoft Secure Score recommendations**
+Η απάντηση συχνά κρύβεται σε ένα εργαλείο που υποτιμάται: το **Microsoft Secure Score** με άπειρα **Microsoft Secure Score recommendations**.
 
 ## Γιατί τώρα — NIS2 και ο Νόμος 5160/2024
 
@@ -101,17 +103,25 @@ cover:
 
 Όταν αλλάζουμε λοιπόν μια ρύθμιση π.χ. στο Intune ή στο Entra, δεν «δουλεύουμε στο Secure Score» — δουλεύουμε στην πηγή και το score απλώς αντικατοπτρίζει το αποτέλεσμα. Αυτή η σύνδεση είναι που μετατρέπει το score από έναν αριθμό σε **οδηγό προτεραιοτήτων**.
 
-## Οι τέσσερις πυλώνες του Secure Score
+## Οι τέσσερις πυλώνες του Microsoft Secure Score
 
 Για να σχηματίσουμε πραγματική εικόνα, πρέπει να σκεφτούμε το score ως τέσσερα διακριτά και διαφορετικά μέτωπα:
 
-**Ταυτότητα (Identity):** Ο πιο κρίσιμος πυλώνας. Οι περισσότερες σύγχρονες επιθέσεις ξεκινούν από credentials, και οι actions εδώ έχουν τη μεγαλύτερη αξία πόντων — όχι τυχαία. Προτεραιότητες: MFA για όλους, απενεργοποίηση legacy auth (POP3, IMAP, SMTP basic), conditional access policies, just-in-time admin πρόσβαση μέσω PIM.
+### Ταυτότητα (Identity)
 
-**Συσκευές (Devices):** Onboarding όλων των endpoints στο Defender for Endpoint, εφαρμογή security baselines για Windows, encryption (BitLocker), συμμόρφωση μέσω Intune ως προϋπόθεση πρόσβασης σε εταιρικά δεδομένα.
+Ο πιο κρίσιμος πυλώνας. Οι περισσότερες σύγχρονες επιθέσεις ξεκινούν από credentials, και οι actions εδώ έχουν τη μεγαλύτερη αξία πόντων — όχι τυχαία. Προτεραιότητες: MFA για όλους, απενεργοποίηση legacy auth (POP3, IMAP, SMTP basic), conditional access policies, just-in-time admin πρόσβαση μέσω PIM.
 
-**Εφαρμογές (Apps):** Safe Links και Safe Attachments στο Defender for Office 365, anti-phishing policies με impersonation protection, αυστηρός έλεγχος OAuth grants σε cloud εφαρμογές.
+### Συσκευές (Devices)
 
-**Δεδομένα (Data):** Sensitivity labels για ταξινόμηση και κρυπτογράφηση, DLP policies σε Exchange και Teams, ενεργοποίηση audit log search σε επίπεδο tenant.
+Onboarding όλων των endpoints στο Defender for Endpoint, εφαρμογή security baselines για Windows, encryption (BitLocker), συμμόρφωση μέσω Intune ως προϋπόθεση πρόσβασης σε εταιρικά δεδομένα.
+
+### Εφαρμογές (Apps)
+
+Safe Links και Safe Attachments στο Defender for Office 365, anti-phishing policies με impersonation protection, αυστηρός έλεγχος OAuth grants σε cloud εφαρμογές.
+
+### Δεδομένα (Data)
+
+Sensitivity labels για ταξινόμηση και κρυπτογράφηση, DLP policies σε Exchange και Teams, ενεργοποίηση audit log search σε επίπεδο tenant.
 
 ## Τι ΔΕΝ είναι το Secure Score — μια αναγκαία διευκρίνιση
 
@@ -141,12 +151,13 @@ cover:
 
 ## Θες να εμβαθύνεις περισσότερο;
 
-> 🔗 **Αν θες να δεις πώς το Microsoft Secure Score μπορεί να γίνει η ραχοκοκαλιά ενός ολοκληρωμένου GRC προγράμματος ευθυγραμμισμένου με ISO 27001:2022 και NIS2,** ρίξε μια ματιά στην σειρά **[Microsoft Secure Score as a Cyber GRC Instrument](/series/microsoft-secure-score-as-a-cyber-grc-instrument/)**:
+> 🔗 **Αν θες να δεις πώς το Microsoft Secure Score μπορεί να γίνει η ραχοκοκαλιά ενός ολοκληρωμένου GRC προγράμματος ευθυγραμμισμένου με ISO 27001:2022 και NIS2,** ρίξε μια ματιά στη σειρά **[Microsoft Secure Score as a Cyber GRC Instrument](/series/microsoft-secure-score-as-a-cyber-grc-instrument/)**:
 >
 > - **[Series Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**
 > - **[Part 1 — Opening Your First Recommendation](/posts/secure-score-grc-part-1-anatomy/)**
-> - **[On Monday 04/05/2026 head to [Part 2 — Where It Sits in the Microsoft Defender World]** when you're ready. See you there.
-<!-- (/posts/secure-score-grc-part-2-ecosystem/) -->
+> - **[Part 2 — Where It Sits in the Microsoft Defender World](/posts/secure-score-grc-part-2-ecosystem/)**
+
+Διάβασέ τα με τη σειρά όταν είσαι έτοιμος. Καλή ανάγνωση! 📚
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 
