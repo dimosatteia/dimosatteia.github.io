@@ -72,5 +72,7 @@ If you spot a mistake, have a better way to do something, or want to
 suggest a topic, ping me on
 [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/).
 
+Related technical notes and references are maintained here: [Github](https://github.com/dimosatteia/dimosatteia.github.io)
+
 Thanks for reading. The next post drops soon.
 ---
