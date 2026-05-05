@@ -1,3 +1,16 @@
+# Microsoft Secure Score – Practical Notes
+
+This repository contains practical notes, structures, and examples
+based on real-world Microsoft 365 security operations.
+
+The full methodology, governance approach, and implementation details
+are documented on my technical blog:
+
+👉 https://dimosatteia.github.io
+
+This repository complements the articles with short-form references
+and working examples.
+
 # Cloud & Security Insights — Hugo Blog Starter
 
 A production-ready Hugo blog starter focused on **Microsoft 365** and
