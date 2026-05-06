@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Defender for Cloud Apps, Up Close Part 1d — A Practical Tour of the CASB"
 date: 2026-04-23T10:00:00+03:00
+lastmod: 2026-04-23T10:00:00+03:00
 draft: true
 keywords:
   - how to read a Microsoft Secure Score recommendation

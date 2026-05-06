@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out"
 date: 2026-04-22T10:00:00+03:00
+lastmod: 2026-04-22T10:00:00+03:00
 draft: true
 keywords:
   - how to read a Microsoft Secure Score recommendation

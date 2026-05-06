@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Defender for Office 365, Up Close Part 1b — From Preset Policies to Advanced Configuration"
 date: 2026-04-23T10:00:00+03:00
+lastmod: 2026-04-23T10:00:00+03:00
 draft: true
 keywords:
   - how to read a Microsoft Secure Score recommendation

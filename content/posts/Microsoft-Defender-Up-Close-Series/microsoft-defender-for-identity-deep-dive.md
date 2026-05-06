@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Defender for Identity, Up Close Part 1c — How Sensors Catch Post-Compromise Attacks"
 date: 2026-04-23T10:00:00+03:00
+lastmod: 2026-04-23T10:00:00+03:00
 draft: true
 keywords:
   - how to read a Microsoft Secure Score recommendation
