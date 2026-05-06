@@ -128,11 +128,11 @@ A paragraph from Microsoft explaining **why this recommendation exists**, what a
 
 The values for the implementation status are as follows:
 
-- **To address** — the control isn't configured (or not fully) in your tenant
-- **Planned** — someone in your organization marked it as "we're working on this"
-- **Risk accepted** — someone decided not to implement it, and documented why
-- **Resolved through third party** — you have a non-Microsoft tool doing this job
-- **Completed** — Microsoft Secure Score confirms the control is configured
+- **To address**: the control isn't configured (or not fully) in your tenant
+- **Planned**: someone in your organization marked it as "we're working on this"
+- **Risk accepted**: someone decided not to implement it, and documented why
+- **Resolved through third party**: you have a non-Microsoft tool doing this job
+- **Completed**: Microsoft Secure Score confirms the control is configured
 
 This is a field **you update**, not Microsoft. When Microsoft's automated check confirms you've implemented the control, the status flips to **Completed** automatically. But if you plan to implement it later, or decide not to, you set it manually.
 
@@ -207,11 +207,11 @@ Copy the full title of the recommendation and paste it into Google with `site:le
 
 If you're doing this for the first time today, here's a reasonable 60-minute goal:
 
-1. **Minutes 0–10** — Navigate to Microsoft Secure Score, read the overview page, note your overall score.
-2. **Minutes 10–25** — Open five different recommendations from different categories. Read title, description, implementation status, and the Implementation tab for each. Don't change anything.
-3. **Minutes 25–40** — Sort the full list by Score impact. Identify the top three highest-impact items that are currently "To address".
-4. **Minutes 40–55** — For one of those three, read the Implementation tab carefully. Estimate whether you could do it safely today, or whether it needs planning.
-5. **Minutes 55–60** — Write down the three recommendations you identified. Ask your manager or senior colleague whether any of them are safe to implement.
+1. **Minutes 0–10**: Navigate to Microsoft Secure Score, read the overview page, note your overall score.
+2. **Minutes 10–25**: Open five different recommendations from different categories. Read title, description, implementation status, and the Implementation tab for each. Don't change anything.
+3. **Minutes 25–40**: Sort the full list by Score impact. Identify the top three highest-impact items that are currently "To address".
+4. **Minutes 40–55**: For one of those three, read the Implementation tab carefully. Estimate whether you could do it safely today, or whether it needs planning.
+5. **Minutes 55–60**: Write down the three recommendations you identified. Ask your manager or senior colleague whether any of them are safe to implement.
 
 That's genuinely useful first-day work. You don't need to implement anything yet. Just understanding what's on the page, and being able to point at three specific items and say *"these three would move the score up the fastest if we implemented them"*, puts you ahead of where most new professionals are on day one.
 
