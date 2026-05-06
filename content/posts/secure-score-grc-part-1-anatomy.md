@@ -52,15 +52,15 @@ If you've just started a role as a **Microsoft 365 Junior Administrator**, a **T
 
 And chances are you opened the Microsoft Defender portal, found the Microsoft Secure Score page, looked at a bunch of cards and lists and numbers, and thought, *okay, but what am I actually looking at, and how Microsoft Secure Score actually works?*
 
-You're not alone. Nobody looks at Microsoft Secure Score for the first time and immediately understands all of it (like Microsoft Secure Score recommendations or Microsoft Secure Score calculation). It's one of those Microsoft surfaces that's genuinely simple once you know what each piece means, but absolutely baffling the first time. This post is the friendly walk-through I wish someone had given me on day one.
+You’re not the only ones, I was in the same boat, and it wasn’t easy. Nobody looks at Microsoft Secure Score for the first time and immediately understands all of it (like Microsoft Secure Score recommendations or Microsoft Secure Score calculation). It's one of those Microsoft surfaces that's genuinely simple once you know what each piece means, but completely confusing the first time. This post is a friendly guide that I wish someone had given me on my first day.
 
-We'll open a single recommendation together, go through every field on the screen, and by the end you'll know what you're looking at and what's worth your attention. No philosophy, no GRC framework discussion yet, just the screen in front of you.
+Together, we’ll open up a specific configuration, examine every field on the screen, and by the end, you’ll understand and know exactly what you’re seeing and what deserves your attention. No philosophy, no discussion of the GRC framework just yet—just the screen in front of you.
 
 > 📌 This post is Part 1 of a series that builds up to something bigger, using Microsoft Secure Score as the engine of a compliance programme. If you're curious about the bigger picture, the **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score — Series Introduction](/posts/secure-score-grc-part-0-intro/)** covers it. But you don't need to read that first. Start here.
 
 ## Getting to Microsoft Secure Score in 30 seconds
 
-First the navigation, because the location moved recently and older blog posts may send you to the wrong place.
+First, regarding navigation: since the site was recently moved, links in older blog posts may direct you to the wrong address, so please follow the instructions below:
 
 1. Open **`https://security.microsoft.com`** (this is the Microsoft Defender portal)
 2. In the left navigation, expand **Exposure management**
@@ -80,7 +80,7 @@ Don't worry about the overall number yet. We're going to click into a single rec
 
 ## Opening your first recommendation
 
-Click the **Recommended actions** tab at the top of the page. You'll get a list of every Microsoft Secure Score recommendation — usually somewhere between 100 and 250 of them, depending on what products you're licensed for.
+Click the **Recommended actions** tab at the top of the page. You'll get a list of every Microsoft Secure Score recommendation, usually somewhere between 100 and 250 of them, depending on what products you're licensed for.
 
 [![Microsoft Secure Score Recommended actions list with Rank Score impact Status and Category columns](/images/SS_GRC_P1_Anatomy_image_2.png)](/images/SS_GRC_P1_Anatomy_image_2.png)
 > 📷 **Image 2 — The Recommended actions list.**
@@ -103,30 +103,30 @@ Let's go through everything you see, top to bottom.
 
 ### The title
 
-Exactly what it sounds like — a short description of the control. Example: *"Require multifactor authentication for administrative roles."*
+Exactly what it sounds like, a short description of the control. Example: *"Require multifactor authentication for administrative roles."*
 
-What matters to notice: **Microsoft wrote this title, not your organization.** These titles are standardised across every Microsoft 365 tenant in the world. When you search for help on a specific recommendation, search for the exact title — you'll find official Microsoft documentation and community posts that refer to it.
+What matters to notice: **Microsoft wrote this title, not your organization.** These titles are standardised across every Microsoft 365 tenant in the world. When you search for help on a specific recommendation, search for the exact title, you'll find official Microsoft documentation and community posts that refer to it.
 
 ### The product badge
 
-A small badge that tells you which Microsoft product the recommendation comes from. Common ones:
+A small icon indicating which of the four Microsoft products the suggestion comes from. Below are all four examples:
 
 - **Identity** — from Microsoft Entra ID
 - **Data** — from Microsoft 365 Defender for Office or Microsoft Purview
 - **Device** — from Microsoft Defender for Endpoint
 - **Apps** — from Microsoft Defender for Cloud Apps
 
-Why this matters: if you don't have a particular product licensed, you won't see its recommendations. If you see very few Device recommendations, for example, it usually means Microsoft Defender for Endpoint isn't deployed to your devices yet — not that you have no device problems.
+Why this matters: if you don't have a particular product licensed, you won't see its recommendations. If you see very few Device recommendations, for example, it usually means Microsoft Defender for Endpoint isn't deployed to your devices yet, not that you have no device problems.
 
 ### The description
 
-A paragraph from Microsoft explaining **why this recommendation exists** — what attack or risk it addresses, what happens if it's not configured.
+A paragraph from Microsoft explaining **why this recommendation exists**, what attack or risk it addresses, what happens if it's not configured.
 
 **A small but useful tip:** read this paragraph every time, even when the title seems obvious. The description often mentions specific attack techniques or compliance frameworks this control addresses. Understanding *why* a recommendation exists helps you defend it when someone pushes back on implementing it.
 
 ### Implementation status
 
-One of three values:
+The values for the implementation status are as follows:
 
 - **To address** — the control isn't configured (or not fully) in your tenant
 - **Planned** — someone in your organization marked it as "we're working on this"
@@ -144,13 +144,13 @@ This is actually important information that's easy to overlook. A recommendation
 
 ### Implementation cost
 
-Microsoft's rough estimate of how much work implementing this recommendation requires from your team. Again, *Low*, *Moderate*, or *High*. Useful when you're prioritising a long list — start with low-cost, high-score-impact items.
+Microsoft's rough estimate of how much work implementing this recommendation requires from your team. Again, *Low*, *Moderate*, or *High*. Useful when you're prioritising a long list, start with low-cost, high-score-impact items.
 
 ### Score impact
 
 How many points your Secure Score will go up when this recommendation is completed. Usually something like **+5.3 points** or **+12.7 points**.
 
-Notice: this is an absolute number, not a percentage. If your current score is 347 out of 600, and this recommendation is worth 10 points, implementing it takes you to 357 out of 600 — which translates to a small percentage change.
+Notice: this is an absolute number, not a percentage. If your current score is 347 out of 600, and this recommendation is worth 10 points, implementing it takes you to 357 out of 600, which translates to a small percentage change.
 
 ### Category
 
@@ -186,11 +186,11 @@ Some of these aren't obvious, but they save you real time as you get comfortable
 
 ### Habit 1 — Always read the title *and* the description
 
-The title alone is often ambiguous. Two recommendations might have similar-sounding titles but address genuinely different controls. Reading the description — even just the first sentence — is the fastest way to avoid confusion.
+The title alone is often ambiguous. Two recommendations might have similar-sounding titles but address genuinely different controls. Reading the description (even just the first sentence) is the fastest way to avoid confusion.
 
 ### Habit 2 — Filter by category before prioritising
 
-Instead of scrolling through 200 recommendations, filter by one category (Identity, for example) and prioritise within that group. Most security improvements cluster by category — fixing three or four Identity recommendations together is more efficient than hopping between areas.
+Instead of scrolling through 200 recommendations, filter by one category (Identity, for example) and prioritise within that group. Most security improvements cluster by category, fixing three or four Identity recommendations together is more efficient than hopping between areas.
 
 [![Filtering Microsoft Secure Score Recommended actions by Identity category for focused prioritisation](/images/SS_GRC_P1_Anatomy_image_5.png)](/images/SS_GRC_P1_Anatomy_image_5.png)
 > 📷 **Image 5 — The category filter applied to the Recommended actions list.**
