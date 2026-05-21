@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Gold GRC on Microsoft Secure Score | Microsoft 365 Security Insights</title>
+<meta name="keywords" content="Microsoft Secure Score for ISO 27001 and NIS2 compliance, build a GRC programme on Microsoft 365, Microsoft Secure Score Compliance Manager mapping, Microsoft 365 GRC without third-party platform, Microsoft Secure Score audit evidence, ISO 27001 Annex A Microsoft 365 controls, NIS2 Article 21 Microsoft 365, Microsoft Secure Score case study, live audit evidence Microsoft 365">
+<meta name="description" content="Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Gold GRC on Microsoft Secure Score\"",
+  "description": "\"Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-04-22T10:00:00+03:00\"",
+  "dateModified": "\"2026-05-21T13:42:15+03:00\"",
+  "image": "\"http://localhost:1313/images/CyberGRCGoldAward.png\"",
+  "url": "\"http://localhost:1313/posts/secure-score-grc-part-0-intro/\"",
+  "wordCount":  1820 ,
+  "keywords": "\"Microsoft Secure Score, Microsoft 365 Security, Microsoft Purview, Microsoft Defender XDR, ISO 27001, NIS2, Cyber GRC, Compliance Manager, CISO, Security Posture Management\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/secure-score-grc-part-0-intro/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/secure-score-grc-part-0-intro/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Gold GRC on Microsoft Secure Score">
+  <meta property="og:description" content="Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-22T10:00:00+03:00">
+    <meta property="article:modified_time" content="2026-05-21T13:42:15+03:00">
+    <meta property="article:tag" content="Microsoft Secure Score">
+    <meta property="article:tag" content="Microsoft 365 Security">
+    <meta property="article:tag" content="Microsoft Purview">
+    <meta property="article:tag" content="Microsoft Defender XDR">
+    <meta property="article:tag" content="ISO 27001">
+    <meta property="article:tag" content="NIS2">
+    <meta property="og:image" content="http://localhost:1313/images/CyberGRCGoldAward.png">
+      <meta property="og:see_also" content="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/secure-score-grc-part-3-operations/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/CyberGRCGoldAward.png">
+  <meta name="twitter:title" content="Gold GRC on Microsoft Secure Score">
+  <meta name="twitter:description" content="Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Gold GRC on Microsoft Secure Score",
+      "item": "http://localhost:1313/posts/secure-score-grc-part-0-intro/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gold GRC on Microsoft Secure Score",
+  "name": "Gold GRC on Microsoft Secure Score",
+  "description": "Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools.",
+  "keywords": [
+    "Microsoft Secure Score for ISO 27001 and NIS2 compliance", "build a GRC programme on Microsoft 365", "Microsoft Secure Score Compliance Manager mapping", "Microsoft 365 GRC without third-party platform", "Microsoft Secure Score audit evidence", "ISO 27001 Annex A Microsoft 365 controls", "NIS2 Article 21 Microsoft 365", "Microsoft Secure Score case study", "live audit evidence Microsoft 365"
+  ],
+  "articleBody": "The Mid-Market GRC Problem: NIS2 and ISO 27001 Without a Big Budget If you run security in a mid-market organisation that is in scope for NIS2 or pursuing ISO 27001, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget, let’s be honest, is never what it should be.\nMost teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route — and that route is called Microsoft Secure Score. This series is the practical playbook for using Microsoft Secure Score as a GRC engine for ISO 27001 and NIS2 compliance, built entirely on tools you already have inside Microsoft 365. The approach is reproducible by almost any organisation running an E3 or E5 tenant — and it’s how we delivered a Gold-Award-winning GRC programme without buying a third-party platform.\n⚡TL;DR for the impatient: Microsoft Secure Score, paired with Microsoft Purview Compliance Manager, can evidence 60-70% of ISO 27001:2022 Annex A and NIS2 Article 21 technical controls automatically, using only the licensing you already pay for. The remaining 30-40% is covered by Purview tooling and documented procedures. Total third-party GRC spend: 0€.\nThe Microsoft Secure Score GRC Engine Hidden Inside Microsoft 365 We were already licensed for Microsoft 365 E5. We already used Microsoft Defender XDR every day. And right there, in the Microsoft Defender portal, was something most teams treat as a vanity dashboard: Microsoft Secure Score.\n📷 Image 1 — The Microsoft Secure Score dashboard.\nLooking at it with fresh eyes, we realised Microsoft had already done most of the heavy GRC lifting:\nA continuously refreshed assessment of our tenant configuration against a control catalogue Microsoft maintains and updates as the threat landscape shifts. A machine-readable dataset, exposed via the Microsoft Graph Security API, that any modern reporting tool can consume. Native integration with Microsoft Purview Compliance Manager, Microsoft Sentinel, and Power BI, platforms we already owned. The gap we had to bridge was small: connect Microsoft’s data to our compliance frameworks, build the right reports, and put governance around the risk decisions. Additional third-party spend: essentially nothing.\nThe Gold Award at Cyber Security Awards 2026 (Built on Microsoft Secure Score) 📷 Image 2 — The Gold Award Logo.\n📷 Image 3 — The Gold Award Plate.\n📷 Image 4 — The Gold Award Ceremony with colleagues.\nThe programme we built on this foundation received the Gold Award in Governance, Risk \u0026 Compliance at the Cyber Security Awards 2026 — Honoring Cyber Excellence, under the title “From theory to measurable compliance: Microsoft Secure Score as a Cyber GRC tool”.\nThe principle the panel recognised is the same one that runs through this entire series: Microsoft 365 already contains the GRC engine most organisations are paying separately to acquire. They just need to recognise it for what it is and wire it correctly.\nHow we did it? Four building blocks on top of Microsoft 365 The full implementation is unpacked, with screenshots and worked examples, across the rest of this series. Here is the shape, so you can decide whether to follow along.\nBuilding block 1: Microsoft Secure Score as the single source of truth 📷 Image 5 — A Secure Score recommendation about “Ensure ‘Phishing-resistant MFA strength’ is required for Administrators”, expanded.\n📷 Image 6 — A general recommendation regarding this specific Secure Score action.\n📷 Image 7 — A Secure Score implementation for the specific action.\nWe stopped treating Secure Score as a number to raise. We started treating each recommendation as a continuously tested control. Microsoft tells us, in real time, which controls are configured, which are not, and crucially provides the implementation guidance and user-impact analysis right inside each recommendation. That guidance, written by Microsoft engineering, is gold for any GRC team that previously had to draft remediation plans from scratch.\nBuilding block 2: Bridging Microsoft Compliance Manager with Secure Score for live evidence Here is where the Microsoft platform already does an enormous amount of the work, and most teams don’t realise it.\nMicrosoft Purview Compliance Manager ships with pre-built assessments for ISO/IEC 27001:2022, NIS 2 Directive, GDPR, NIST CSF, and over 300 other regulations. Microsoft has done the foundational mapping for you: each framework control is linked to one or more Improvement Actions concrete configuration changes you can make across Microsoft 365, Entra ID, Microsoft Purview, and Azure to satisfy that control.\n📷 Image 8 — Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17.\nWhat Compliance Manager does not give you out of the box is a live link between an Improvement Action and the corresponding Microsoft Secure Score recommendation that proves the control is currently configured correctly across your tenant. The Improvement Action tells you what to do; Secure Score tells you, in real time, whether it is done.\nThis is exactly the gap we closed. We built a thin mapping layer that, for each Compliance Manager Improvement Action covered by ISO 27001:2022 Annex A and NIS2 Article 21, identifies the matching Microsoft Secure Score recommendation and pulls its current state via the Microsoft Graph API. The result: a live evidence view over Microsoft’s own framework mappings, so a control is not “satisfied” because someone ticked a box, it is satisfied because Microsoft Secure Score confirms today, with a timestamp, that the configuration is in place.\nRoughly 60–70% of the technical controls in ISO 27001:2022 Annex A and NIS2 Article 21 can be evidenced this way directly from Microsoft Secure Score telemetry. The remaining 30–40% are covered either by other Microsoft Purview tooling (Data Loss Prevention, Information Protection, Insider Risk Management) or by documented organisational procedures. The mapping self-maintains: when Microsoft adds or revises an Improvement Action or a Secure Score recommendation, we triage the change once and the live evidence pipeline picks it up automatically.\nBuilding block 3: Microsoft Graph API + Power BI for live audit evidence Using the Microsoft Graph Security API, we pull Secure Score telemetry into a Power BI workspace daily. The output is a live evidence dashboard that auditors can be given read-only access to, with full timestamped history. No more screenshot-scrambles before the next surveillance audit.\n📷 Image 9 — Microsoft PowerBi for live audit evidence.\nThis is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing.\nBuilding block 4: Microsoft Purview Compliance Manager for the board view For board reporting we pair Secure Score data with Microsoft Purview Compliance Manager, which Microsoft pre-populates with assessments aligned to ISO 27001, NIS2, GDPR, and dozens of other frameworks. The combination gives the board both a security-configuration view (Secure Score) and a regulatory-conformance view (Compliance Manager) in a single quarterly slide.\nThe business results: from weeks of audit prep to live evidence Within the first year of running the programme:\nAudit preparation time for ISO 27001 surveillance dropped from weeks to days. Board cyber-risk reporting moved from qualitative narratives to live, defensible numbers backed by Microsoft telemetry. Microsoft Secure Score itself improved by 30% and every remaining gap is a documented, board-approved risk decision. Total external GRC tooling cost: €0. Everything was delivered on the existing Microsoft 365 E5 investment. And, the Gold Award. What you will get from this series The goal of the series is simple: help you understand Microsoft Secure Score well enough to turn it into a real governance and compliance instrument for your organisation, the same way we did for ours.\nTo get there without skipping steps, the recommended reading path is:\nFoundation first: The Microsoft Defender family\nIf the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, or Microsoft Defender for Cloud Apps don’t mean much to you yet, start with the companion series that covers the whole Microsoft Defender ecosystem end to end:\nMicrosoft Defender Demystified, Part 1: How Many Defenders Are There, Really? (coming soon) the whole family map in one post. Microsoft Defender Demystified, Part 2: The Four Core XDR Workloads, Up Close (coming soon) what each workload protects. Microsoft Defender Demystified, Part 3: Microsoft Defender for Cloud (coming soon) the Azure and multicloud story. Microsoft Defender Demystified, Part 4: Which Defender Do You Actually Need? (coming soon) licensing across Microsoft 365 and Enterprise Mobility + Security. Microsoft Defender Demystified, Part 5: A Walk Through the Microsoft Defender Portal (coming soon) where everything lives. Enterprise Mobility + Security Explained (coming soon) the security bundle many organisations already own and don’t fully use. Want to go deeper into any single workload? The Microsoft Defender Up Close series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.\nThen, the Secure Score series itself\nOnce the Microsoft Defender landscape feels familiar, come back here. You’ll now have the context to follow what Microsoft Secure Score is actually measuring.\nOpening Your First Recommendation every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time. Where Microsoft Secure Score Sits in the Microsoft Defender World how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source. Why read Parts 1 and 2 first\nSecure Score is the destination of this series — the daily dashboard that will show you where your organization stands regarding secure maturity, regardless of the organization’s size, geographic location, and presence, and help you decide what to tackle first and what can wait, across applications, data, devices, and user identity. But for it to be genuinely useful and not just another number you stare at without knowing what it means, you first need to understand how it is built (Part 1: Anatomy) and the ecosystem it lives in (Part 2: Ecosystem). Once these two parts are clear, the Defender Secure Score stops being a “magic number” and becomes a decision-making tool. So read Parts 1 and 2 in order. After that, everything we cover in the Defender chapters will carry a concrete meaning within your own environment.\nYou don’t need to be a developer. You don’t need a third-party GRC platform. You need a Microsoft 365 tenant, a few focused hours per week, and the willingness to look at Microsoft Secure Score with fresh eyes.\nIf you already know the Microsoft Defender landscape well, feel free to skip the foundation section and dive straight into the Secure Score posts.\nReady to start? Part 1 — Opening Your First Recommendation is already published and available, you can read it whenever you’re ready. Enjoy!\n[Part 2 — Where It Sits in the Microsoft Defender World] is already published and available, you can read it whenever you’re ready. Enjoy!\nMore parts coming in the following weeks, so check the series page for the latest.\nFollow me on LinkedIn for new-post notifications.\n",
+  "wordCount" : "1820",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/CyberGRCGoldAward.png","datePublished": "2026-04-22T10:00:00+03:00",
+  "dateModified": "2026-05-21T13:42:15+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/secure-score-grc-part-0-intro/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Gold GRC on Microsoft Secure Score
+    </h1>
+    <div class="post-description">
+      Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-04-22 10:00:00 +0300 EEST'>April 22, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/ms-security-blog/edit/main/content/posts/secure-score-grc-part-0-intro.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/CyberGRCGoldAward.png" alt="Microsoft Secure Score dashboard powering Gold-Award GRC programme for ISO 27001 and NIS2">
+        <figcaption>Series introduction — built on Microsoft 365</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-mid-market-grc-problem-nis2-and-iso-27001-without-a-big-budget">The Mid-Market GRC Problem: NIS2 and ISO 27001 Without a Big Budget</a></li>
+    <li><a href="#the-microsoft-secure-score-grc-engine-hidden-inside-microsoft-365">The Microsoft Secure Score GRC Engine Hidden Inside Microsoft 365</a></li>
+    <li><a href="#the-gold-award-at-cyber-security-awards-2026-built-on-microsoft-secure-score">The Gold Award at Cyber Security Awards 2026 (Built on Microsoft Secure Score)</a></li>
+    <li><a href="#how-we-did-it-four-building-blocks-on-top-of-microsoft-365">How we did it? Four building blocks on top of Microsoft 365</a>
+      <ul>
+        <li><a href="#building-block-1-microsoft-secure-score-as-the-single-source-of-truth">Building block 1: Microsoft Secure Score as the single source of truth</a></li>
+        <li><a href="#building-block-2-bridging-microsoft-compliance-manager-with-secure-score-for-live-evidence">Building block 2: Bridging Microsoft Compliance Manager with Secure Score for live evidence</a></li>
+        <li><a href="#building-block-3-microsoft-graph-api--power-bi-for-live-audit-evidence">Building block 3: Microsoft Graph API + Power BI for live audit evidence</a></li>
+        <li><a href="#building-block-4-microsoft-purview-compliance-manager-for-the-board-view">Building block 4: Microsoft Purview Compliance Manager for the board view</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-business-results-from-weeks-of-audit-prep-to-live-evidence">The business results: from weeks of audit prep to live evidence</a></li>
+    <li><a href="#what-you-will-get-from-this-series">What you will get from this series</a></li>
+    <li><a href="#ready-to-start">Ready to start?</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="the-mid-market-grc-problem-nis2-and-iso-27001-without-a-big-budget">The Mid-Market GRC Problem: NIS2 and ISO 27001 Without a Big Budget<a hidden class="anchor" aria-hidden="true" href="#the-mid-market-grc-problem-nis2-and-iso-27001-without-a-big-budget">#</a></h2>
+<p>If you run security in a mid-market organisation that is in scope for <strong>NIS2</strong> or pursuing <strong>ISO 27001</strong>, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget, let&rsquo;s be honest, is never what it should be.</p>
+<p>Most teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route — and that route is called <strong>Microsoft Secure Score</strong>. This series is the practical playbook for using Microsoft Secure Score as a GRC engine for ISO 27001 and NIS2 compliance, built entirely on tools you already have inside <strong>Microsoft 365</strong>. The approach is reproducible by almost any organisation running an E3 or E5 tenant — and it&rsquo;s how we delivered a Gold-Award-winning GRC programme without buying a third-party platform.</p>
+<blockquote>
+<p>⚡<strong>TL;DR for the impatient:</strong> Microsoft Secure Score, paired with <strong>Microsoft Purview Compliance Manager</strong>, can evidence <strong>60-70% of ISO 27001:2022 Annex A and NIS2 Article 21</strong> technical controls automatically, using only the licensing you already pay for. The remaining <strong>30-40%</strong> is covered by Purview tooling and documented procedures. <strong>Total third-party GRC spend: 0€.</strong></p>
+</blockquote>
+<h2 id="the-microsoft-secure-score-grc-engine-hidden-inside-microsoft-365">The Microsoft Secure Score GRC Engine Hidden Inside Microsoft 365<a hidden class="anchor" aria-hidden="true" href="#the-microsoft-secure-score-grc-engine-hidden-inside-microsoft-365">#</a></h2>
+<p>We were already licensed for <strong>Microsoft 365 E5</strong>. We already used <strong><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender">Microsoft Defender XDR</a></strong> every day. And right there, in the Microsoft Defender portal, was something most teams treat as a vanity dashboard: <strong><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score">Microsoft Secure Score</a></strong>.</p>
+<p><a href="http://localhost:1313/images/Overall.png"><img alt="Microsoft Secure Score dashboard powering an ISO 27001 and NIS2 GRC programme on Microsoft 365" loading="lazy" src="http://localhost:1313/images/Overall.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 1 — The Microsoft Secure Score dashboard.</strong></p>
+</blockquote>
+<p>Looking at it with fresh eyes, we realised Microsoft had already done most of the heavy GRC lifting:</p>
+<ul>
+<li>A <strong>continuously refreshed assessment</strong> of our tenant configuration against a control catalogue Microsoft maintains and updates as the threat landscape shifts.</li>
+<li>A <strong>machine-readable dataset</strong>, exposed via the <strong><a href="https://learn.microsoft.com/en-us/graph/api/resources/security-api-overview">Microsoft Graph Security API</a></strong>, that any modern reporting tool can consume.</li>
+<li><strong>Native integration</strong> with <strong><a href="https://learn.microsoft.com/en-us/purview/compliance-manager">Microsoft Purview Compliance Manager</a></strong>, <strong>Microsoft Sentinel</strong>, and <strong>Power BI</strong>, platforms we already owned.</li>
+</ul>
+<p>The gap we had to bridge was small: connect Microsoft&rsquo;s data to our compliance frameworks, build the right reports, and put governance around the risk decisions. Additional third-party spend: essentially nothing.</p>
+<h2 id="the-gold-award-at-cyber-security-awards-2026-built-on-microsoft-secure-score">The Gold Award at Cyber Security Awards 2026 (Built on Microsoft Secure Score)<a hidden class="anchor" aria-hidden="true" href="#the-gold-award-at-cyber-security-awards-2026-built-on-microsoft-secure-score">#</a></h2>
+<p><a href="http://localhost:1313/images/CyberGRCGoldAward.png"><img alt="Cyber Security Awards 2026 Gold Award for GRC programme built on Microsoft Secure Score" loading="lazy" src="http://localhost:1313/images/CyberGRCGoldAward.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 2 — The Gold Award Logo.</strong></p>
+</blockquote>
+<p><a href="http://localhost:1313/images/CyberGRCGoldAwardPlate.png"><img alt="Gold Award plate Cyber Security Awards 2026 Governance Risk and Compliance category" loading="lazy" src="http://localhost:1313/images/CyberGRCGoldAwardPlate.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 3 — The Gold Award Plate.</strong></p>
+</blockquote>
+<p><a href="http://localhost:1313/images/CSAward2026_1.png"><img alt="Cyber Security Awards 2026 ceremony Gold Award for Microsoft Secure Score GRC programme" loading="lazy" src="http://localhost:1313/images/CSAward2026_1.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 4 — The Gold Award Ceremony with colleagues.</strong></p>
+</blockquote>
+<p>The programme we built on this foundation received the <strong>Gold Award in Governance, Risk &amp; Compliance at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/">Cyber Security Awards 2026 — Honoring Cyber Excellence</a></strong>, under the title <em>&ldquo;From theory to measurable compliance: Microsoft Secure Score as a Cyber GRC tool&rdquo;</em>.</p>
+<p>The principle the panel recognised is the same one that runs through this entire series: <strong>Microsoft 365 already contains the GRC engine most organisations are paying separately to acquire.</strong> They just need to recognise it for what it is and wire it correctly.</p>
+<h2 id="how-we-did-it-four-building-blocks-on-top-of-microsoft-365">How we did it? Four building blocks on top of Microsoft 365<a hidden class="anchor" aria-hidden="true" href="#how-we-did-it-four-building-blocks-on-top-of-microsoft-365">#</a></h2>
+<p>The full implementation is unpacked, with screenshots and worked examples, across the rest of this series. Here is the shape, so you can decide whether to follow along.</p>
+<h3 id="building-block-1-microsoft-secure-score-as-the-single-source-of-truth">Building block 1: Microsoft Secure Score as the single source of truth<a hidden class="anchor" aria-hidden="true" href="#building-block-1-microsoft-secure-score-as-the-single-source-of-truth">#</a></h3>
+<p><a href="http://localhost:1313/images/PrMFA0.png"><img alt="Microsoft Secure Score recommendation for phishing-resistant MFA strength for administrators expanded view" loading="lazy" src="http://localhost:1313/images/PrMFA0.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 5 — A Secure Score recommendation about &ldquo;Ensure &lsquo;Phishing-resistant MFA strength&rsquo; is required for Administrators&rdquo;, expanded.</strong></p>
+</blockquote>
+<p><a href="http://localhost:1313/images/PrMFA1.png"><img alt="Microsoft Secure Score general action description for MFA control with Microsoft engineering implementation guidance" loading="lazy" src="http://localhost:1313/images/PrMFA1.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 6 — A general recommendation regarding this specific Secure Score action.</strong></p>
+</blockquote>
+<p><a href="http://localhost:1313/images/PrMFA2.png"><img alt="Microsoft Secure Score implementation steps for phishing-resistant MFA Conditional Access policy" loading="lazy" src="http://localhost:1313/images/PrMFA2.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 7 — A Secure Score implementation for the specific action.</strong></p>
+</blockquote>
+<p>We stopped treating Secure Score as a number to raise. We started treating each recommendation as a <strong>continuously tested control</strong>. Microsoft tells us, in real time, which controls are configured, which are not, and crucially provides the implementation guidance and user-impact analysis right inside each recommendation. That guidance, written by Microsoft engineering, is gold for any GRC team that previously had to draft remediation plans from scratch.</p>
+<h3 id="building-block-2-bridging-microsoft-compliance-manager-with-secure-score-for-live-evidence">Building block 2: Bridging Microsoft Compliance Manager with Secure Score for live evidence<a hidden class="anchor" aria-hidden="true" href="#building-block-2-bridging-microsoft-compliance-manager-with-secure-score-for-live-evidence">#</a></h3>
+<p>Here is where the Microsoft platform already does an enormous amount of the work, and most teams don&rsquo;t realise it.</p>
+<p><strong><a href="https://learn.microsoft.com/en-us/purview/compliance-manager">Microsoft Purview Compliance Manager</a></strong> ships with pre-built assessments for <strong>ISO/IEC 27001:2022</strong>, <strong>NIS 2 Directive</strong>, <strong>GDPR</strong>, <strong>NIST CSF</strong>, and over 300 other regulations. Microsoft has done the foundational mapping for you: each framework control is linked to one or more <strong>Improvement Actions</strong> concrete configuration changes you can make across Microsoft 365, Entra ID, Microsoft Purview, and Azure to satisfy that control.</p>
+<p><a href="http://localhost:1313/images/A.5.17_AuthenticationInformation.png"><img alt="Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17" loading="lazy" src="http://localhost:1313/images/A.5.17_AuthenticationInformation.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 8 — Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17.</strong></p>
+</blockquote>
+<p>What Compliance Manager does <em>not</em> give you out of the box is a live link between an Improvement Action and the corresponding <strong>Microsoft Secure Score</strong> recommendation that proves the control is currently configured correctly across your tenant. The Improvement Action tells you <em>what to do</em>; Secure Score tells you, in real time, <em>whether it is done</em>.</p>
+<p>This is exactly the gap we closed. We built a thin mapping layer that, for each Compliance Manager Improvement Action covered by ISO 27001:2022 Annex A and NIS2 Article 21, identifies the matching Microsoft Secure Score recommendation and pulls its current state via the Microsoft Graph API. The result: <strong>a live evidence view over Microsoft&rsquo;s own framework mappings</strong>, so a control is not &ldquo;satisfied&rdquo; because someone ticked a box, it is satisfied because Microsoft Secure Score confirms today, with a timestamp, that the configuration is in place.</p>
+<p>Roughly <strong>60–70%</strong> of the technical controls in ISO 27001:2022 Annex A and NIS2 Article 21 can be evidenced this way directly from Microsoft Secure Score telemetry. The remaining 30–40% are covered either by other Microsoft Purview tooling (Data Loss Prevention, Information Protection, Insider Risk Management) or by documented organisational procedures. The mapping self-maintains: when Microsoft adds or revises an Improvement Action or a Secure Score recommendation, we triage the change once and the live evidence pipeline picks it up automatically.</p>
+<h3 id="building-block-3-microsoft-graph-api--power-bi-for-live-audit-evidence">Building block 3: Microsoft Graph API + Power BI for live audit evidence<a hidden class="anchor" aria-hidden="true" href="#building-block-3-microsoft-graph-api--power-bi-for-live-audit-evidence">#</a></h3>
+<p>Using the <strong>Microsoft Graph Security API</strong>, we pull Secure Score telemetry into a Power BI workspace daily. The output is a live evidence dashboard that auditors can be given read-only access to, with full timestamped history. No more screenshot-scrambles before the next surveillance audit.</p>
+<p><a href="http://localhost:1313/images/PBI_Def.png"><img alt="Power BI dashboard with live Microsoft Secure Score audit evidence via Microsoft Graph Security API" loading="lazy" src="http://localhost:1313/images/PBI_Def.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 9 — Microsoft PowerBi for live audit evidence.</strong></p>
+</blockquote>
+<p>This is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing.</p>
+<h3 id="building-block-4-microsoft-purview-compliance-manager-for-the-board-view">Building block 4: Microsoft Purview Compliance Manager for the board view<a hidden class="anchor" aria-hidden="true" href="#building-block-4-microsoft-purview-compliance-manager-for-the-board-view">#</a></h3>
+<p>For board reporting we pair Secure Score data with <strong>Microsoft Purview Compliance Manager</strong>, which Microsoft pre-populates with assessments aligned to <strong>ISO 27001, NIS2, GDPR</strong>, and dozens of other frameworks. The combination gives the board both a security-configuration view (Secure Score) and a regulatory-conformance view (Compliance Manager) in a single quarterly slide.</p>
+<h2 id="the-business-results-from-weeks-of-audit-prep-to-live-evidence">The business results: from weeks of audit prep to live evidence<a hidden class="anchor" aria-hidden="true" href="#the-business-results-from-weeks-of-audit-prep-to-live-evidence">#</a></h2>
+<p>Within the first year of running the programme:</p>
+<ul>
+<li><strong>Audit preparation time</strong> for ISO 27001 surveillance dropped from weeks to days.</li>
+<li><strong>Board cyber-risk reporting</strong> moved from qualitative narratives to live, defensible numbers backed by Microsoft telemetry.</li>
+<li><strong>Microsoft Secure Score</strong> itself improved by <strong>30%</strong> and every remaining gap is a documented, board-approved risk decision.</li>
+<li><strong>Total external GRC tooling cost: €0.</strong> Everything was delivered on the existing Microsoft 365 E5 investment.</li>
+<li>And, the Gold Award.</li>
+</ul>
+<h2 id="what-you-will-get-from-this-series">What you will get from this series<a hidden class="anchor" aria-hidden="true" href="#what-you-will-get-from-this-series">#</a></h2>
+<p>The goal of the series is simple: help you understand Microsoft Secure Score well enough to turn it into a real governance and compliance instrument for your organisation, the same way we did for ours.</p>
+<p>To get there without skipping steps, the recommended reading path is:</p>
+<p><strong>Foundation first: The Microsoft Defender family</strong></p>
+<p>If the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, or Microsoft Defender for Cloud Apps don&rsquo;t mean much to you yet, start with the companion series that covers the whole Microsoft Defender ecosystem end to end:</p>
+<ol>
+<li><strong>Microsoft Defender Demystified, Part 1: How Many Defenders Are There, Really?</strong> <em>(coming soon)</em> the whole family map in one post.</li>
+</ol>
+<!-- /posts/defender-demystified-part-1-what-is-microsoft-defender/ -->
+<ol start="2">
+<li><strong>Microsoft Defender Demystified, Part 2: The Four Core XDR Workloads, Up Close</strong> <em>(coming soon)</em> what each workload protects.</li>
+</ol>
+<!-- /posts/defender-demystified-part-2-four-workloads/ -->
+<ol start="3">
+<li><strong>Microsoft Defender Demystified, Part 3: Microsoft Defender for Cloud</strong> <em>(coming soon)</em> the Azure and multicloud story.</li>
+</ol>
+<!-- /posts/defender-demystified-part-3-defender-for-cloud/ -->
+<ol start="4">
+<li><strong>Microsoft Defender Demystified, Part 4: Which Defender Do You Actually Need?</strong> <em>(coming soon)</em> licensing across Microsoft 365 and Enterprise Mobility + Security.</li>
+</ol>
+<!-- /posts/defender-demystified-part-4-licensing-decoder/ -->
+<ol start="5">
+<li><strong>Microsoft Defender Demystified, Part 5: A Walk Through the Microsoft Defender Portal</strong> <em>(coming soon)</em> where everything lives.</li>
+</ol>
+<!-- /posts/defender-demystified-part-5-portal-tour/ -->
+<ol start="6">
+<li><strong>Enterprise Mobility + Security Explained</strong> <em>(coming soon)</em> the security bundle many organisations already own and don&rsquo;t fully use.</li>
+</ol>
+<!-- /posts/enterprise-mobility-security-explained/ -->
+<p>Want to go deeper into any single workload? The <strong>Microsoft Defender Up Close</strong> series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.</p>
+<!-- (/series/microsoft-defender-up-close/) -->
+<p><strong>Then, the Secure Score series itself</strong></p>
+<p>Once the Microsoft Defender landscape feels familiar, come back here. You&rsquo;ll now have the context to follow what Microsoft Secure Score is actually measuring.</p>
+<ol>
+<li><a href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/"><strong>Opening Your First Recommendation</strong></a> every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.</li>
+<li><a href="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/"><strong>Where Microsoft Secure Score Sits in the Microsoft Defender World</strong></a> how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.</li>
+</ol>
+<p><strong>Why read Parts 1 and 2 first</strong></p>
+<p><strong>Secure Score</strong> is the destination of this series — the daily dashboard that will show you where
+your organization stands regarding secure maturity, regardless of the organization&rsquo;s size, geographic location, and presence, and help
+you decide what to tackle first and what can wait, across applications, data, devices, and user identity.
+But for it to be genuinely useful and not just another number you stare at without knowing what it means, you first need to understand how it is built <strong>(Part 1: Anatomy)</strong> and the ecosystem it lives in <strong>(Part 2: Ecosystem)</strong>. Once these two parts are clear, the Defender Secure Score stops being a &ldquo;magic number&rdquo; and becomes a decision-making tool.
+So read Parts 1 and 2 in order. After that, everything we cover in the Defender chapters will carry a concrete meaning within your own environment.</p>
+<p>You don&rsquo;t need to be a developer. You don&rsquo;t need a third-party GRC platform. You need a Microsoft 365 tenant, a few focused hours per week, and the willingness to look at Microsoft Secure Score with fresh eyes.</p>
+<p>If you already know the Microsoft Defender landscape well, feel free to skip the foundation section and dive straight into the Secure Score posts.</p>
+<h2 id="ready-to-start">Ready to start?<a hidden class="anchor" aria-hidden="true" href="#ready-to-start">#</a></h2>
+<p><a href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/"><strong>Part 1 — Opening Your First Recommendation</strong></a> is already published and available, you can read it whenever you&rsquo;re ready. Enjoy!</p>
+<p><a href="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/"><strong>[Part 2 — Where It Sits in the Microsoft Defender World]</strong></a> is already published and available, you can read it whenever you&rsquo;re ready. Enjoy!</p>
+<p>More parts coming in the following weeks, so check the <a href="http://localhost:1313/series/microsoft-secure-score-as-a-cyber-grc-instrument/">series page</a> for the latest.</p>
+<p>Follow me on <a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a> for new-post notifications.</p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-secure-score/">Microsoft Secure Score</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-purview/">Microsoft Purview</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-xdr/">Microsoft Defender XDR</a></li>
+      <li><a href="http://localhost:1313/tags/iso-27001/">ISO 27001</a></li>
+      <li><a href="http://localhost:1313/tags/nis2/">NIS2</a></li>
+      <li><a href="http://localhost:1313/tags/cyber-grc/">Cyber GRC</a></li>
+      <li><a href="http://localhost:1313/tags/compliance-manager/">Compliance Manager</a></li>
+      <li><a href="http://localhost:1313/tags/ciso/">CISO</a></li>
+      <li><a href="http://localhost:1313/tags/security-posture-management/">Security Posture Management</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/">
+    <span class="title">« Prev</span>
+    <span>Microsoft Secure Score για τον ΥΑΣΠΕ</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/">
+    <span class="title">Next »</span>
+    <span>Secure Score P1: 1st Recommendation</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Gold GRC on Microsoft Secure Score on x"
+            href="https://x.com/intent/tweet/?text=Gold%20GRC%20on%20Microsoft%20Secure%20Score&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-0-intro%2f&amp;hashtags=MicrosoftSecureScore%2cMicrosoft365Security%2cMicrosoftPurview%2cMicrosoftDefenderXDR%2cISO27001%2cNIS2%2cCyberGRC%2cComplianceManager%2cCISO%2cSecurityPostureManagement">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Gold GRC on Microsoft Secure Score on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-0-intro%2f&amp;title=Gold%20GRC%20on%20Microsoft%20Secure%20Score&amp;summary=Gold%20GRC%20on%20Microsoft%20Secure%20Score&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-0-intro%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Gold GRC on Microsoft Secure Score on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-0-intro%2f&title=Gold%20GRC%20on%20Microsoft%20Secure%20Score">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

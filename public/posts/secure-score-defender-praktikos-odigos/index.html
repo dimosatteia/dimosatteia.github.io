@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Microsoft Secure Score για τον ΥΑΣΠΕ | Microsoft 365 Security Insights</title>
+<meta name="keywords" content="Microsoft Secure Score NIS2, Microsoft Secure Score Νόμος 5160/2024, Microsoft Secure Score για Υ.Α.Σ.Π.Ε., Microsoft Secure Score ελληνικά, Microsoft 365 ασφάλεια NIS2, Microsoft Defender XDR ελληνικά, οδηγός Microsoft Secure Score για junior μηχανικό, Υ.Α.Σ.Π.Ε. εργαλεία Microsoft 365, τεχνικά μέτρα NIS2 Microsoft 365">
+<meta name="description" content="Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Microsoft Secure Score για τον ΥΑΣΠΕ\"",
+  "description": "\"Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-04-27T10:00:00+03:00\"",
+  "dateModified": "\"2026-05-21T13:42:15+03:00\"",
+  "image": "\"http://localhost:1313/images/MSS-NIS2.png\"",
+  "url": "\"http://localhost:1313/posts/secure-score-defender-praktikos-odigos/\"",
+  "wordCount":  1539 ,
+  "keywords": "\"Microsoft Secure Score, Microsoft Defender XDR, Microsoft 365 Security, Microsoft Entra ID, Microsoft Defender for Endpoint, NIS2, Νόμος 5160/2024, ΥΑΣΠΕ, Cyber GRC, ISO 27001, Security Posture Management, Junior Μηχανικός Ασφάλειας\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/secure-score-defender-praktikos-odigos/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Microsoft Secure Score για τον ΥΑΣΠΕ">
+  <meta property="og:description" content="Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-27T10:00:00+03:00">
+    <meta property="article:modified_time" content="2026-05-21T13:42:15+03:00">
+    <meta property="article:tag" content="Microsoft Secure Score">
+    <meta property="article:tag" content="Microsoft Defender XDR">
+    <meta property="article:tag" content="Microsoft 365 Security">
+    <meta property="article:tag" content="Microsoft Entra ID">
+    <meta property="article:tag" content="Microsoft Defender for Endpoint">
+    <meta property="article:tag" content="NIS2">
+    <meta property="og:image" content="http://localhost:1313/images/MSS-NIS2.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/MSS-NIS2.png">
+  <meta name="twitter:title" content="Microsoft Secure Score για τον ΥΑΣΠΕ">
+  <meta name="twitter:description" content="Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Microsoft Secure Score για τον ΥΑΣΠΕ",
+      "item": "http://localhost:1313/posts/secure-score-defender-praktikos-odigos/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Microsoft Secure Score για τον ΥΑΣΠΕ",
+  "name": "Microsoft Secure Score για τον ΥΑΣΠΕ",
+  "description": "Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.",
+  "keywords": [
+    "Microsoft Secure Score NIS2", "Microsoft Secure Score Νόμος 5160/2024", "Microsoft Secure Score για Υ.Α.Σ.Π.Ε.", "Microsoft Secure Score ελληνικά", "Microsoft 365 ασφάλεια NIS2", "Microsoft Defender XDR ελληνικά", "οδηγός Microsoft Secure Score για junior μηχανικό", "Υ.Α.Σ.Π.Ε. εργαλεία Microsoft 365", "τεχνικά μέτρα NIS2 Microsoft 365"
+  ],
+  "articleBody": " 📌 TL;DR\nΤο Microsoft Secure Score είναι ποσοτικός δείκτης security posture. Διαβάζει configuration data από όλο το Microsoft Defender stack (Entra ID, Defender for Endpoint, Office 365, Cloud Apps, Purview) και δίνει ένα ενιαίο νούμερο. Για τον Έλληνα Υ.Α.Σ.Π.Ε. στο πλαίσιο του Νόμου 5160/2024 (NIS2), αποτελεί την ταχύτερη γέφυρα από τη συμμόρφωση «στα χαρτιά» σε μετρήσιμη μείωση τεχνικού κινδύνου. Δεν αντικαθιστά τη συστηματική ανάλυση κινδύνου — αλλά δίνει μια ιεραρχημένη βάση τεχνικών controls που μπορεί να ξεκινήσει σήμερα. Δευτέρα πρωί χαμένος στο Microsoft Defender portal… Είναι Δευτέρα πρωί και ένας junior μηχανικός ασφάλειας ανοίγει για πρώτη φορά το Microsoft Defender portal. Αντικρίζει εκατοντάδες ρυθμίσεις διασκορπισμένες σε Entra ID, Exchange Online, SharePoint, Intune και Defender for Endpoint. Από πού να ξεκινήσει; Πώς θα ξέρει ότι αυτό που κάνει σήμερα έχει πραγματικό αντίκτυπο στο επίπεδο ασφάλειας του οργανισμού; Ποια είναι τα Secure Score best practices και ποια Secure Score actions απαιτούνται?\nΗ απάντηση συχνά κρύβεται σε ένα εργαλείο που υποτιμάται: το Microsoft Secure Score με άπειρα Microsoft Secure Score recommendations.\nΓιατί τώρα — NIS2 και ο Νόμος 5160/2024 Στην Ελλάδα, ο Νόμος 5160/2024 ενσωμάτωσε την οδηγία NIS2 και επέκτεινε δραματικά τον αριθμό των οργανισμών με υποχρεώσεις κυβερνοασφάλειας, συμπεριλαμβανομένων εκατοντάδων μικρομεσαίων επιχειρήσεων που βρίσκονται για πρώτη φορά αντιμέτωπες με απαιτήσεις risk management, incident reporting και τεκμηριωμένων μέτρων ασφαλείας.\nΠαράλληλα, ο νόμος επιβάλλει τον ορισμό Υπευθύνου Ασφάλειας Πληροφοριακών και Επικοινωνιακών Συστημάτων (Υ.Α.Σ.Π.Ε.), ρόλος που σε πολλές μικρομεσαίες ανατίθεται σε στελέχη IT χωρίς αμιγώς εξειδίκευση στην ασφάλεια ή σε εξωτερικούς συνεργάτες με περιορισμένο χρόνο εμβάθυνσης. Το αποτέλεσμα είναι ένα γνώριμο μοτίβο: η συμμόρφωση αντιμετωπίζεται ως «paperwork exercise», ενώ τα τεχνικά μέτρα, αυτά που πραγματικά μειώνουν τον κίνδυνο, μένουν πίσω.\nΕδώ ακριβώς το Microsoft Secure Score μπορεί να λειτουργήσει ως γρήγορη πρώτη γραμμή άμυνας: για έναν Υ.Α.Σ.Π.Ε. που διαχειρίζεται έναν Microsoft 365 tenant με Business Premium ή E3/E5 license, προσφέρει έτοιμη, ιεραρχημένη λίστα τεχνικών controls που ευθυγραμμίζονται φυσικά με τα core requirements της NIS2 — MFA, access control, endpoint protection, email security, data protection, audit logging.\nΔεν αντικαθιστά τη συστηματική ανάλυση κινδύνου που απαιτεί ο νόμος, αλλά δίνει στον Υ.Α.Σ.Π.Ε. κάτι εξίσου πολύτιμο: μια μετρήσιμη βάση που μπορεί να βελτιωθεί σταδιακά, να τεκμηριωθεί στους ελέγχους και να παρουσιαστεί στη διοίκηση ως concrete πρόοδος — αντί για ασαφείς διαβεβαιώσεις. Σε ένα τοπίο όπου ο πήχης ανέβηκε απότομα και οι πόροι παραμένουν περιορισμένοι, αυτή η γρήγορη μετάβαση από αμηχανία σε δράση μπορεί να κάνει τη διαφορά ανάμεσα σε έναν οργανισμό που απλώς υπάρχει στα μητρώα και σε έναν που πραγματικά αμύνεται.\nΤι είναι, στ’ αλήθεια, το Microsoft Secure Score Το Microsoft Secure Score είναι ένα ποσοτικό μέτρο της θέσης ασφάλειας (security posture) του κάθε οργανισμού εντός του Microsoft 365 και ευρύτερα του οικοσυστήματος Defender. Το βρίσκουμε στη διεύθυνση security.microsoft.com/securescore, ως ενσωματωμένο τμήμα του Microsoft Defender portal.\nΣε απλή γλώσσα: αναλύει τις τρέχουσες ρυθμίσεις του tenant μας, τις συγκρίνει με τις βέλτιστες πρακτικές της Microsoft και μας δίνει έναν αριθμό. Όσο υψηλότερο το ποσοστό, τόσο περισσότερα από τα συνιστώμενα actions έχουμε εφαρμόσει.\nΔεν είναι όμως εγγύηση ότι δεν θα παραβιαστούμε…και αυτό είναι κρίσιμο να εμπεδώσει κάθε junior μηχανικός. Το score αντικατοπτρίζει το πόσο χρησιμοποιούμε τα διαθέσιμα controls, όχι την πραγματική πιθανότητα παραβίασης.\n📷 Image 1 — Το Microsoft Secure Score overview page. Microsoft Defender portal → Exposure management → Microsoft Secure Score.\nΠώς δουλεύει μηχανικά το Microsoft Secure Score Κάθε recommended action έχει αξία σε πόντους, βασισμένη στο πόσο μειώνει τον κίνδυνο. Η ενεργοποίηση MFA για όλους τους χρήστες, για παράδειγμα, αξίζει σημαντικά περισσότερους πόντους από μια μικρή ρύθμιση στο SharePoint — γιατί ακριβώς κλείνει μεγαλύτερη επιφάνεια επίθεσης.\nΔύο πράγματα αξίζει να κρατήσουμε:\nΥπάρχει partial credit. Αν προστατεύουμε 50 από τους 100 χρήστες μας με MFA, παίρνουμε τους μισούς πόντους. Δεν είναι all-or-nothing, οπότε ξεκινάμε από κάπου, όσο μικρό κι αν φαίνεται. Κάθε recommendation έχει status που μπορούμε να ορίσουμε: To address, Planned, Risk accepted, Resolved through third party, Resolved through alternate mitigation, Completed. Είναι πολύτιμο όταν χρησιμοποιούμε ένα control που η Microsoft δεν «βλέπει» άμεσα, π.χ. ένα third-party MFA solution. Δηλώνουμε χειροκίνητα την ισοδύναμη αντιμετώπιση και κερδίζουμε τους πόντους χωρίς να αλλοιώνεται η εικόνα της θέσης μας. 📷 Image 2 — Status dropdown σε recommendation. Οι επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.\nΟι ενημερώσεις των πόντων γίνονται περίπου κάθε 24 ώρες — δεν περιμένουμε, λοιπόν, να δούμε την αλλαγή που κάναμε άμεσα μετά από ένα toggle.\nΗ σύνδεση με το Microsoft Defender — γιατί το Secure Score δεν δουλεύει σε vacuum Εδώ το Secure Score αποκτά την πραγματική του αξία. Δεν είναι standalone tool, είναι ο κοινός δείκτης που ενοποιεί σήματα από όλο το Defender stack. Πρέπει να το σκεφτούμε ως το κεντρικό dashboard που μαζεύει ό,τι βλέπει το καθένα από τα παρακάτω εργαλεία:\nMicrosoft Defender for Endpoint — δίνει τα δεδομένα για την κατηγορία Devices (γνωστή και ως Microsoft Secure Score for Devices). Αξιολογεί misconfigurations, vulnerabilities και security baselines στους endpoints. Microsoft Defender for Office 365 — τροφοδοτεί συστάσεις για email \u0026 συνεργασία: Safe Links, Safe Attachments, anti-phishing policies, impersonation protection. Microsoft Entra ID \u0026 Defender for Identity — υπεύθυνα για τον πυλώνα Identity. Εδώ μπαίνουν MFA, conditional access, αποσύνδεση από legacy authentication, privileged identity management. Microsoft Defender for Cloud Apps — καλύπτει ορατότητα και έλεγχο σε cloud εφαρμογές, OAuth permissions, shadow IT. Microsoft Purview / Information Protection — φροντίζει για τον πυλώνα Data: DLP policies, sensitivity labels, audit log retention. Όταν αλλάζουμε λοιπόν μια ρύθμιση π.χ. στο Intune ή στο Entra, δεν «δουλεύουμε στο Secure Score» — δουλεύουμε στην πηγή και το score απλώς αντικατοπτρίζει το αποτέλεσμα. Αυτή η σύνδεση είναι που μετατρέπει το score από έναν αριθμό σε οδηγό προτεραιοτήτων.\nΟι τέσσερις πυλώνες του Microsoft Secure Score Για να σχηματίσουμε πραγματική εικόνα, πρέπει να σκεφτούμε το score ως τέσσερα διακριτά και διαφορετικά μέτωπα:\nΤαυτότητα (Identity) Ο πιο κρίσιμος πυλώνας. Οι περισσότερες σύγχρονες επιθέσεις ξεκινούν από credentials, και οι actions εδώ έχουν τη μεγαλύτερη αξία πόντων και όχι τυχαία. Προτεραιότητες: MFA για όλους, απενεργοποίηση legacy auth (POP3, IMAP, SMTP basic), conditional access policies, just-in-time admin πρόσβαση μέσω PIM.\nΣυσκευές (Devices) Onboarding όλων των endpoints στο Defender for Endpoint, εφαρμογή security baselines για Windows, encryption (BitLocker), συμμόρφωση μέσω Intune ως προϋπόθεση πρόσβασης σε εταιρικά δεδομένα.\nΕφαρμογές (Apps) Safe Links και Safe Attachments στο Defender for Office 365, anti-phishing policies με impersonation protection, αυστηρός έλεγχος OAuth grants σε cloud εφαρμογές.\nΔεδομένα (Data) Sensitivity labels για ταξινόμηση και κρυπτογράφηση, DLP policies σε Exchange και Teams, ενεργοποίηση audit log search σε επίπεδο tenant.\nΤι ΔΕΝ είναι το Secure Score — μια αναγκαία διευκρίνιση Μας ρωτάει ο compliance manager αν ο οργανισμός μας είναι GDPR-compliant; Το Secure Score δεν θα μας απαντήσει. Για αυτό υπάρχει το Microsoft Purview Compliance Manager, εργαλείο διαφορετικό σε σκοπό και μοντέλο. Το Secure Score εστιάζει σε configuration \u0026 posture, όχι σε regulatory adherence.\nΕπίσης, μην το συγχέουμε με το Cloud Secure Score του Microsoft Defender for Cloud — αυτό αξιολογεί την υποδομή Azure (VMs, Storage, SQL) με διαφορετικό μοντέλο υπολογισμού. Είναι συμπληρωματικό, όχι ισοδύναμο.\nΑπό πού να ξεκινήσει ένας junior μηχανικός με το Microsoft Secure Score Αν αύριο μπούμε για πρώτη φορά στο Defender portal, μια λογική σειρά ενεργειών είναι:\n📷 Image 3 — Recommended actions ταξινομημένα κατά Score impact. Microsoft Secure Score → Recommended actions tab.\nΤαξινομούμε τα recommended actions με βάση το Score impact σε φθίνουσα σειρά. Φιλτράρουμε για κατηγορία Identity πρώτα — εδώ είναι το low-hanging fruit με τη μεγαλύτερη μείωση κινδύνου. Πριν ενεργοποιήσουμε οτιδήποτε, διαβάζουμε το πεδίο User impact. Ορισμένα actions — όπως block legacy auth — μπορούν να σπάσουν παλαιές εφαρμογές. Πάντα pilot σε μικρή ομάδα πριν την ευρεία εφαρμογή. Χρησιμοποιούμε το History tab για να παρακολουθήσουμε trends και να αποδείξουμε πρόοδο σε stakeholders και διοίκηση. Συγκρίνουμε τη βαθμολογία μας με το benchmark παρόμοιων οργανισμών (μέγεθος, κλάδος) — δίνει ένα κρίσιμο context στο νούμερο που έχουμε επιτύχει. Το μεγάλο συμπέρασμα Το Microsoft Secure Score δεν είναι παιχνίδι gamification για να ανέβουμε στο 80%. Είναι ένας πρακτικός μηχανισμός μετάφρασης ανάμεσα στις best practices της Microsoft και στο τι μπορούμε να κάνουμε σήμερα, αυτή τη στιγμή, στο tenant μας. Για τον junior μηχανικό που νιώθει χαμένος μπροστά στο εύρος του Defender ecosystem, είναι ο πιο γρήγορος τρόπος να μετατρέψει το χάος σε προτεραιότητες — και τις προτεραιότητες σε μετρήσιμη μείωση κινδύνου σε ταυτότητες χρηστών, συσκευές, εφαρμογές και δεδομένα.\nΤο Microsoft Secure Score από μόνο του δεν έχει αξία· η αξία γεννιέται όταν κάθε πόντος μεταφράζεται σε μια ρύθμιση που πραγματικά μειώνει την έκθεση του οργανισμού μας. Και αυτή ακριβώς η μετάφραση είναι το πραγματικό έργο της κυβερνοασφάλειας.\nΘες να εμβαθύνεις περισσότερο; 🔗 Αν θες να δεις πώς το Microsoft Secure Score μπορεί να γίνει η ραχοκοκαλιά ενός ολοκληρωμένου GRC προγράμματος ευθυγραμμισμένου με ISO 27001:2022 και NIS2, ρίξε μια ματιά στη σειρά Microsoft Secure Score as a Cyber GRC Instrument:\nSeries Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score Part 1 — Opening Your First Recommendation Part 2 — Where It Sits in the Microsoft Defender World Διάβασέ τα με τη σειρά όταν είσαι έτοιμος. Καλή ανάγνωση! 📚\nFollow me on LinkedIn for new-post notifications.\nΠηγές \u0026 επιπλέον υλικό Microsoft Secure Score overview How Microsoft Secure Score is calculated Microsoft Defender XDR overview Microsoft Purview Compliance Manager Microsoft Defender for Cloud — Secure Score Νόμος 5160/2024 ",
+  "wordCount" : "1539",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/MSS-NIS2.png","datePublished": "2026-04-27T10:00:00+03:00",
+  "dateModified": "2026-05-21T13:42:15+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/secure-score-defender-praktikos-odigos/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Microsoft Secure Score για τον ΥΑΣΠΕ
+    </h1>
+    <div class="post-description">
+      Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-04-27 10:00:00 +0300 EEST'>April 27, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/ms-security-blog/edit/main/content/posts/secure-score-defender-praktikos-odigos.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/MSS-NIS2.png" alt="Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ (NIS2">
+        <figcaption>Πρακτικός οδηγός — Microsoft Secure Score &amp; Defender</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#δευτέρα-πρωί-χαμένος-στο-microsoft-defender-portal">Δευτέρα πρωί χαμένος στο Microsoft Defender portal&hellip;</a></li>
+    <li><a href="#γιατί-τώρα--nis2-και-ο-νόμος-51602024">Γιατί τώρα — NIS2 και ο Νόμος 5160/2024</a></li>
+    <li><a href="#τι-είναι-στ-αλήθεια-το-microsoft-secure-score">Τι είναι, στ&rsquo; αλήθεια, το Microsoft Secure Score</a></li>
+    <li><a href="#πώς-δουλεύει-μηχανικά-το-microsoft-secure-score">Πώς δουλεύει μηχανικά το Microsoft Secure Score</a></li>
+    <li><a href="#η-σύνδεση-με-το-microsoft-defender--γιατί-το-secure-score-δεν-δουλεύει-σε-vacuum">Η σύνδεση με το Microsoft Defender — γιατί το Secure Score δεν δουλεύει σε vacuum</a></li>
+    <li><a href="#οι-τέσσερις-πυλώνες-του-microsoft-secure-score">Οι τέσσερις πυλώνες του Microsoft Secure Score</a>
+      <ul>
+        <li><a href="#ταυτότητα-identity">Ταυτότητα (Identity)</a></li>
+        <li><a href="#συσκευές-devices">Συσκευές (Devices)</a></li>
+        <li><a href="#εφαρμογές-apps">Εφαρμογές (Apps)</a></li>
+        <li><a href="#δεδομένα-data">Δεδομένα (Data)</a></li>
+      </ul>
+    </li>
+    <li><a href="#τι-δεν-είναι-το-secure-score--μια-αναγκαία-διευκρίνιση">Τι ΔΕΝ είναι το Secure Score — μια αναγκαία διευκρίνιση</a></li>
+    <li><a href="#από-πού-να-ξεκινήσει-ένας-junior-μηχανικός-με-το-microsoft-secure-score">Από πού να ξεκινήσει ένας junior μηχανικός με το Microsoft Secure Score</a></li>
+    <li><a href="#το-μεγάλο-συμπέρασμα">Το μεγάλο συμπέρασμα</a></li>
+    <li><a href="#θες-να-εμβαθύνεις-περισσότερο">Θες να εμβαθύνεις περισσότερο;</a></li>
+    <li><a href="#πηγές--επιπλέον-υλικό">Πηγές &amp; επιπλέον υλικό</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><blockquote>
+<p>📌 <strong>TL;DR</strong></p>
+<ul>
+<li>Το <strong>Microsoft Secure Score</strong> είναι ποσοτικός δείκτης security posture.</li>
+<li>Διαβάζει configuration data από όλο το <strong>Microsoft Defender stack</strong> (Entra ID, Defender for Endpoint, Office 365, Cloud Apps, Purview) και δίνει ένα ενιαίο νούμερο.</li>
+<li>Για τον Έλληνα <strong>Υ.Α.Σ.Π.Ε.</strong> στο πλαίσιο του <strong>Νόμου 5160/2024 (NIS2)</strong>, αποτελεί την ταχύτερη γέφυρα από τη συμμόρφωση «στα χαρτιά» σε <strong>μετρήσιμη μείωση τεχνικού κινδύνου</strong>.</li>
+<li>Δεν αντικαθιστά τη συστηματική ανάλυση κινδύνου — αλλά δίνει μια ιεραρχημένη βάση τεχνικών controls που μπορεί να ξεκινήσει σήμερα.</li>
+</ul>
+</blockquote>
+<h2 id="δευτέρα-πρωί-χαμένος-στο-microsoft-defender-portal">Δευτέρα πρωί χαμένος στο Microsoft Defender portal&hellip;<a hidden class="anchor" aria-hidden="true" href="#δευτέρα-πρωί-χαμένος-στο-microsoft-defender-portal">#</a></h2>
+<p>Είναι Δευτέρα πρωί και ένας junior μηχανικός ασφάλειας ανοίγει για πρώτη φορά το <strong>Microsoft Defender</strong> portal. Αντικρίζει εκατοντάδες ρυθμίσεις διασκορπισμένες σε Entra ID, Exchange Online, SharePoint, Intune και Defender for Endpoint. Από πού να ξεκινήσει; Πώς θα ξέρει ότι αυτό που κάνει σήμερα έχει πραγματικό αντίκτυπο στο επίπεδο ασφάλειας του οργανισμού; Ποια είναι τα <strong>Secure Score best practices</strong> και ποια <strong>Secure Score actions</strong> απαιτούνται?</p>
+<p>Η απάντηση συχνά κρύβεται σε ένα εργαλείο που υποτιμάται: το <strong>Microsoft Secure Score</strong> με άπειρα <strong>Microsoft Secure Score recommendations</strong>.</p>
+<h2 id="γιατί-τώρα--nis2-και-ο-νόμος-51602024">Γιατί τώρα — NIS2 και ο Νόμος 5160/2024<a hidden class="anchor" aria-hidden="true" href="#γιατί-τώρα--nis2-και-ο-νόμος-51602024">#</a></h2>
+<p>Στην Ελλάδα, ο <strong>Νόμος 5160/2024</strong> ενσωμάτωσε την οδηγία NIS2 και επέκτεινε δραματικά τον αριθμό των οργανισμών με υποχρεώσεις κυβερνοασφάλειας, συμπεριλαμβανομένων εκατοντάδων μικρομεσαίων επιχειρήσεων που βρίσκονται για πρώτη φορά αντιμέτωπες με απαιτήσεις risk management, incident reporting και τεκμηριωμένων μέτρων ασφαλείας.</p>
+<p>Παράλληλα, ο νόμος επιβάλλει τον ορισμό <strong>Υπευθύνου Ασφάλειας Πληροφοριακών και Επικοινωνιακών Συστημάτων (Υ.Α.Σ.Π.Ε.)</strong>, ρόλος που σε πολλές μικρομεσαίες ανατίθεται σε στελέχη IT χωρίς αμιγώς εξειδίκευση στην ασφάλεια ή σε εξωτερικούς συνεργάτες με περιορισμένο χρόνο εμβάθυνσης. Το αποτέλεσμα είναι ένα γνώριμο μοτίβο: η συμμόρφωση αντιμετωπίζεται ως «paperwork exercise», ενώ τα τεχνικά μέτρα, αυτά που πραγματικά μειώνουν τον κίνδυνο, μένουν πίσω.</p>
+<p>Εδώ ακριβώς το <strong>Microsoft Secure Score</strong> μπορεί να λειτουργήσει ως <strong>γρήγορη πρώτη γραμμή άμυνας</strong>: για έναν Υ.Α.Σ.Π.Ε. που διαχειρίζεται έναν Microsoft 365 tenant με Business Premium ή E3/E5 license, προσφέρει έτοιμη, ιεραρχημένη λίστα τεχνικών controls που ευθυγραμμίζονται φυσικά με τα core requirements της NIS2 — MFA, access control, endpoint protection, email security, data protection, audit logging.</p>
+<p>Δεν αντικαθιστά τη συστηματική ανάλυση κινδύνου που απαιτεί ο νόμος, αλλά δίνει στον Υ.Α.Σ.Π.Ε. κάτι εξίσου πολύτιμο: μια <strong>μετρήσιμη βάση</strong> που μπορεί να βελτιωθεί σταδιακά, να τεκμηριωθεί στους ελέγχους και να παρουσιαστεί στη διοίκηση ως concrete πρόοδος — αντί για ασαφείς διαβεβαιώσεις. Σε ένα τοπίο όπου ο πήχης ανέβηκε απότομα και οι πόροι παραμένουν περιορισμένοι, αυτή η γρήγορη μετάβαση από αμηχανία σε δράση μπορεί να κάνει τη διαφορά ανάμεσα σε έναν οργανισμό που απλώς υπάρχει στα μητρώα και σε έναν που πραγματικά αμύνεται.</p>
+<h2 id="τι-είναι-στ-αλήθεια-το-microsoft-secure-score">Τι είναι, στ&rsquo; αλήθεια, το Microsoft Secure Score<a hidden class="anchor" aria-hidden="true" href="#τι-είναι-στ-αλήθεια-το-microsoft-secure-score">#</a></h2>
+<p>Το Microsoft Secure Score είναι ένα ποσοτικό μέτρο της θέσης ασφάλειας (security posture) του κάθε οργανισμού εντός του Microsoft 365 και ευρύτερα του οικοσυστήματος Defender. Το βρίσκουμε στη διεύθυνση <strong><a href="https://security.microsoft.com/securescore">security.microsoft.com/securescore</a></strong>, ως ενσωματωμένο τμήμα του Microsoft Defender portal.</p>
+<p>Σε απλή γλώσσα: αναλύει τις τρέχουσες ρυθμίσεις του tenant μας, τις συγκρίνει με τις βέλτιστες πρακτικές της Microsoft και μας δίνει έναν αριθμό. Όσο υψηλότερο το ποσοστό, τόσο περισσότερα από τα συνιστώμενα actions έχουμε εφαρμόσει.</p>
+<p>Δεν είναι όμως εγγύηση ότι δεν θα παραβιαστούμε&hellip;και αυτό είναι κρίσιμο να εμπεδώσει κάθε junior μηχανικός. Το score αντικατοπτρίζει το <strong>πόσο χρησιμοποιούμε τα διαθέσιμα controls</strong>, όχι την πραγματική πιθανότητα παραβίασης.</p>
+<p><a href="http://localhost:1313/images/secure-score-defender-praktikos-odigos/01-overview.png"><img alt="Microsoft Secure Score overview page στο Microsoft Defender portal για τον Έλληνα Υ.Α.Σ.Π.Ε. και NIS2 συμμόρφωση" loading="lazy" src="http://localhost:1313/images/secure-score-defender-praktikos-odigos/01-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 1 — Το Microsoft Secure Score overview page.</strong>
+<em>Microsoft Defender portal → Exposure management → Microsoft Secure Score.</em></p>
+</blockquote>
+<h2 id="πώς-δουλεύει-μηχανικά-το-microsoft-secure-score">Πώς δουλεύει μηχανικά το Microsoft Secure Score<a hidden class="anchor" aria-hidden="true" href="#πώς-δουλεύει-μηχανικά-το-microsoft-secure-score">#</a></h2>
+<p>Κάθε recommended action έχει αξία σε πόντους, βασισμένη στο πόσο μειώνει τον κίνδυνο. Η ενεργοποίηση MFA για όλους τους χρήστες, για παράδειγμα, αξίζει σημαντικά περισσότερους πόντους από μια μικρή ρύθμιση στο SharePoint — γιατί ακριβώς κλείνει μεγαλύτερη επιφάνεια επίθεσης.</p>
+<p>Δύο πράγματα αξίζει να κρατήσουμε:</p>
+<ul>
+<li>Υπάρχει <strong>partial credit</strong>. Αν προστατεύουμε 50 από τους 100 χρήστες μας με MFA, παίρνουμε τους μισούς πόντους. Δεν είναι all-or-nothing, οπότε ξεκινάμε από κάπου, όσο μικρό κι αν φαίνεται.</li>
+<li>Κάθε recommendation έχει <strong>status</strong> που μπορούμε να ορίσουμε: <em>To address</em>, <em>Planned</em>, <em>Risk accepted</em>, <em>Resolved through third party</em>, <em>Resolved through alternate mitigation</em>, <em>Completed</em>. Είναι πολύτιμο όταν χρησιμοποιούμε ένα control που η Microsoft δεν «βλέπει» άμεσα, π.χ. ένα third-party MFA solution. Δηλώνουμε χειροκίνητα την ισοδύναμη αντιμετώπιση και κερδίζουμε τους πόντους χωρίς να αλλοιώνεται η εικόνα της θέσης μας.</li>
+</ul>
+<p><a href="http://localhost:1313/images/secure-score-defender-praktikos-odigos/03-overview.png"><img alt="Microsoft Secure Score Status dropdown με επιλογές Resolved through alternate mitigation για third-party controls" loading="lazy" src="http://localhost:1313/images/secure-score-defender-praktikos-odigos/03-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 2 — Status dropdown σε recommendation.</strong>
+<em>Οι επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.</em></p>
+</blockquote>
+<p>Οι ενημερώσεις των πόντων γίνονται περίπου κάθε 24 ώρες — δεν περιμένουμε, λοιπόν, να δούμε την αλλαγή που κάναμε άμεσα μετά από ένα toggle.</p>
+<h2 id="η-σύνδεση-με-το-microsoft-defender--γιατί-το-secure-score-δεν-δουλεύει-σε-vacuum">Η σύνδεση με το Microsoft Defender — γιατί το Secure Score δεν δουλεύει σε vacuum<a hidden class="anchor" aria-hidden="true" href="#η-σύνδεση-με-το-microsoft-defender--γιατί-το-secure-score-δεν-δουλεύει-σε-vacuum">#</a></h2>
+<p>Εδώ το Secure Score αποκτά την πραγματική του αξία. Δεν είναι standalone tool, είναι ο <strong>κοινός δείκτης</strong> που ενοποιεί σήματα από όλο το Defender stack. Πρέπει να το σκεφτούμε ως το κεντρικό dashboard που μαζεύει ό,τι βλέπει το καθένα από τα παρακάτω εργαλεία:</p>
+<ul>
+<li><strong>Microsoft Defender for Endpoint</strong> — δίνει τα δεδομένα για την κατηγορία <strong>Devices</strong> (γνωστή και ως Microsoft Secure Score for Devices). Αξιολογεί misconfigurations, vulnerabilities και security baselines στους endpoints.</li>
+<li><strong>Microsoft Defender for Office 365</strong> — τροφοδοτεί συστάσεις για <strong>email &amp; συνεργασία</strong>: Safe Links, Safe Attachments, anti-phishing policies, impersonation protection.</li>
+<li><strong>Microsoft Entra ID &amp; Defender for Identity</strong> — υπεύθυνα για τον πυλώνα <strong>Identity</strong>. Εδώ μπαίνουν MFA, conditional access, αποσύνδεση από legacy authentication, privileged identity management.</li>
+<li><strong>Microsoft Defender for Cloud Apps</strong> — καλύπτει ορατότητα και έλεγχο σε cloud εφαρμογές, OAuth permissions, shadow IT.</li>
+<li><strong>Microsoft Purview / Information Protection</strong> — φροντίζει για τον πυλώνα <strong>Data</strong>: DLP policies, sensitivity labels, audit log retention.</li>
+</ul>
+<p>Όταν αλλάζουμε λοιπόν μια ρύθμιση π.χ. στο Intune ή στο Entra, δεν «δουλεύουμε στο Secure Score» — δουλεύουμε στην πηγή και το score απλώς αντικατοπτρίζει το αποτέλεσμα. Αυτή η σύνδεση είναι που μετατρέπει το score από έναν αριθμό σε <strong>οδηγό προτεραιοτήτων</strong>.</p>
+<h2 id="οι-τέσσερις-πυλώνες-του-microsoft-secure-score">Οι τέσσερις πυλώνες του Microsoft Secure Score<a hidden class="anchor" aria-hidden="true" href="#οι-τέσσερις-πυλώνες-του-microsoft-secure-score">#</a></h2>
+<p>Για να σχηματίσουμε πραγματική εικόνα, πρέπει να σκεφτούμε το score ως τέσσερα διακριτά και διαφορετικά μέτωπα:</p>
+<h3 id="ταυτότητα-identity">Ταυτότητα (Identity)<a hidden class="anchor" aria-hidden="true" href="#ταυτότητα-identity">#</a></h3>
+<p>Ο πιο κρίσιμος πυλώνας. Οι περισσότερες σύγχρονες επιθέσεις ξεκινούν από credentials, και οι actions εδώ έχουν τη μεγαλύτερη αξία πόντων και όχι τυχαία. Προτεραιότητες: MFA για όλους, απενεργοποίηση legacy auth (POP3, IMAP, SMTP basic), conditional access policies, just-in-time admin πρόσβαση μέσω PIM.</p>
+<h3 id="συσκευές-devices">Συσκευές (Devices)<a hidden class="anchor" aria-hidden="true" href="#συσκευές-devices">#</a></h3>
+<p>Onboarding όλων των endpoints στο Defender for Endpoint, εφαρμογή security baselines για Windows, encryption (BitLocker), συμμόρφωση μέσω Intune ως προϋπόθεση πρόσβασης σε εταιρικά δεδομένα.</p>
+<h3 id="εφαρμογές-apps">Εφαρμογές (Apps)<a hidden class="anchor" aria-hidden="true" href="#εφαρμογές-apps">#</a></h3>
+<p>Safe Links και Safe Attachments στο Defender for Office 365, anti-phishing policies με impersonation protection, αυστηρός έλεγχος OAuth grants σε cloud εφαρμογές.</p>
+<h3 id="δεδομένα-data">Δεδομένα (Data)<a hidden class="anchor" aria-hidden="true" href="#δεδομένα-data">#</a></h3>
+<p>Sensitivity labels για ταξινόμηση και κρυπτογράφηση, DLP policies σε Exchange και Teams, ενεργοποίηση audit log search σε επίπεδο tenant.</p>
+<h2 id="τι-δεν-είναι-το-secure-score--μια-αναγκαία-διευκρίνιση">Τι ΔΕΝ είναι το Secure Score — μια αναγκαία διευκρίνιση<a hidden class="anchor" aria-hidden="true" href="#τι-δεν-είναι-το-secure-score--μια-αναγκαία-διευκρίνιση">#</a></h2>
+<p>Μας ρωτάει ο compliance manager αν ο οργανισμός μας είναι GDPR-compliant; Το Secure Score δεν θα μας απαντήσει. Για αυτό υπάρχει το <strong>Microsoft Purview Compliance Manager</strong>, εργαλείο διαφορετικό σε σκοπό και μοντέλο. Το Secure Score εστιάζει σε <strong>configuration &amp; posture</strong>, όχι σε regulatory adherence.</p>
+<p>Επίσης, μην το συγχέουμε με το <strong>Cloud Secure Score</strong> του Microsoft Defender for Cloud — αυτό αξιολογεί την υποδομή Azure (VMs, Storage, SQL) με διαφορετικό μοντέλο υπολογισμού. Είναι συμπληρωματικό, όχι ισοδύναμο.</p>
+<h2 id="από-πού-να-ξεκινήσει-ένας-junior-μηχανικός-με-το-microsoft-secure-score">Από πού να ξεκινήσει ένας junior μηχανικός με το Microsoft Secure Score<a hidden class="anchor" aria-hidden="true" href="#από-πού-να-ξεκινήσει-ένας-junior-μηχανικός-με-το-microsoft-secure-score">#</a></h2>
+<p>Αν αύριο μπούμε για πρώτη φορά στο Defender portal, μια λογική σειρά ενεργειών είναι:</p>
+<p><a href="http://localhost:1313/images/secure-score-defender-praktikos-odigos/02-overview.png"><img alt="Microsoft Secure Score Recommended actions ταξινομημένα κατά Score impact για NIS2 προτεραιοποίηση κινδύνου" loading="lazy" src="http://localhost:1313/images/secure-score-defender-praktikos-odigos/02-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 3 — Recommended actions ταξινομημένα κατά Score impact.</strong>
+<em>Microsoft Secure Score → Recommended actions tab.</em></p>
+</blockquote>
+<ol>
+<li><strong>Ταξινομούμε</strong> τα recommended actions με βάση το <strong>Score impact</strong> σε φθίνουσα σειρά.</li>
+<li><strong>Φιλτράρουμε</strong> για κατηγορία <strong>Identity</strong> πρώτα — εδώ είναι το low-hanging fruit με τη μεγαλύτερη μείωση κινδύνου.</li>
+<li>Πριν ενεργοποιήσουμε οτιδήποτε, <strong>διαβάζουμε</strong> το πεδίο <strong>User impact</strong>. Ορισμένα actions — όπως block legacy auth — μπορούν να σπάσουν παλαιές εφαρμογές. Πάντα pilot σε μικρή ομάδα πριν την ευρεία εφαρμογή.</li>
+<li><strong>Χρησιμοποιούμε</strong> το <strong>History tab</strong> για να παρακολουθήσουμε trends και να αποδείξουμε πρόοδο σε stakeholders και διοίκηση.</li>
+<li><strong>Συγκρίνουμε</strong> τη βαθμολογία μας με το <strong>benchmark</strong> παρόμοιων οργανισμών (μέγεθος, κλάδος) — δίνει ένα κρίσιμο context στο νούμερο που έχουμε επιτύχει.</li>
+</ol>
+<h2 id="το-μεγάλο-συμπέρασμα">Το μεγάλο συμπέρασμα<a hidden class="anchor" aria-hidden="true" href="#το-μεγάλο-συμπέρασμα">#</a></h2>
+<p>Το <strong>Microsoft Secure Score</strong> δεν είναι παιχνίδι gamification για να ανέβουμε στο 80%. Είναι ένας <strong>πρακτικός μηχανισμός μετάφρασης</strong> ανάμεσα στις best practices της Microsoft και στο τι μπορούμε να κάνουμε σήμερα, αυτή τη στιγμή, στο tenant μας. Για τον junior μηχανικό που νιώθει χαμένος μπροστά στο εύρος του Defender ecosystem, είναι ο πιο γρήγορος τρόπος να μετατρέψει το χάος σε προτεραιότητες — και τις προτεραιότητες σε μετρήσιμη μείωση κινδύνου σε ταυτότητες χρηστών, συσκευές, εφαρμογές και δεδομένα.</p>
+<p>Το <strong>Microsoft Secure Score</strong> από μόνο του δεν έχει αξία· η αξία γεννιέται όταν κάθε πόντος μεταφράζεται σε μια ρύθμιση που πραγματικά μειώνει την έκθεση του οργανισμού μας. Και αυτή ακριβώς η μετάφραση είναι το πραγματικό έργο της κυβερνοασφάλειας.</p>
+<h2 id="θες-να-εμβαθύνεις-περισσότερο">Θες να εμβαθύνεις περισσότερο;<a hidden class="anchor" aria-hidden="true" href="#θες-να-εμβαθύνεις-περισσότερο">#</a></h2>
+<blockquote>
+<p>🔗 <strong>Αν θες να δεις πώς το Microsoft Secure Score μπορεί να γίνει η ραχοκοκαλιά ενός ολοκληρωμένου GRC προγράμματος ευθυγραμμισμένου με ISO 27001:2022 και NIS2,</strong> ρίξε μια ματιά στη σειρά <strong><a href="http://localhost:1313/series/microsoft-secure-score-as-a-cyber-grc-instrument/">Microsoft Secure Score as a Cyber GRC Instrument</a></strong>:</p>
+<ul>
+<li><strong><a href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">Series Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score</a></strong></li>
+<li><strong><a href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/">Part 1 — Opening Your First Recommendation</a></strong></li>
+<li><strong><a href="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/">Part 2 — Where It Sits in the Microsoft Defender World</a></strong></li>
+</ul>
+</blockquote>
+<p>Διάβασέ τα με τη σειρά όταν είσαι έτοιμος. Καλή ανάγνωση! 📚</p>
+<p>Follow me on <a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a> for new-post notifications.</p>
+<h2 id="πηγές--επιπλέον-υλικό">Πηγές &amp; επιπλέον υλικό<a hidden class="anchor" aria-hidden="true" href="#πηγές--επιπλέον-υλικό">#</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score">Microsoft Secure Score overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions">How Microsoft Secure Score is calculated</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender">Microsoft Defender XDR overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/purview/compliance-manager">Microsoft Purview Compliance Manager</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls">Microsoft Defender for Cloud — Secure Score</a></li>
+<li><a href="https://cyber.gov.gr/wp-content/uploads/2024/12/ENOTHTA_5_%CE%9D%CE%9F%CE%9C%CE%9F%CE%98%CE%95%CE%A3%CE%99%CE%91_fek_a_195_2024-5160-2024.pdf">Νόμος 5160/2024</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-secure-score/">Microsoft Secure Score</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-xdr/">Microsoft Defender XDR</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-entra-id/">Microsoft Entra ID</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-endpoint/">Microsoft Defender for Endpoint</a></li>
+      <li><a href="http://localhost:1313/tags/nis2/">NIS2</a></li>
+      <li><a href="http://localhost:1313/tags/%CE%BD%CF%8C%CE%BC%CE%BF%CF%82-5160/2024/">Νόμος 5160/2024</a></li>
+      <li><a href="http://localhost:1313/tags/%CF%85%CE%B1%CF%83%CF%80%CE%B5/">ΥΑΣΠΕ</a></li>
+      <li><a href="http://localhost:1313/tags/cyber-grc/">Cyber GRC</a></li>
+      <li><a href="http://localhost:1313/tags/iso-27001/">ISO 27001</a></li>
+      <li><a href="http://localhost:1313/tags/security-posture-management/">Security Posture Management</a></li>
+      <li><a href="http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/">Junior Μηχανικός Ασφάλειας</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/welcome/">
+    <span class="title">« Prev</span>
+    <span>About This Security Blog</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">
+    <span class="title">Next »</span>
+    <span>Gold GRC on Microsoft Secure Score</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Secure Score για τον ΥΑΣΠΕ on x"
+            href="https://x.com/intent/tweet/?text=Microsoft%20Secure%20Score%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%ce%bd%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-defender-praktikos-odigos%2f&amp;hashtags=MicrosoftSecureScore%2cMicrosoftDefenderXDR%2cMicrosoft365Security%2cMicrosoftEntraID%2cMicrosoftDefenderforEndpoint%2cNIS2%2c%ce%9d%cf%8c%ce%bc%ce%bf%cf%825160%2f2024%2c%ce%a5%ce%91%ce%a3%ce%a0%ce%95%2cCyberGRC%2cISO27001%2cSecurityPostureManagement%2cJunior%ce%9c%ce%b7%cf%87%ce%b1%ce%bd%ce%b9%ce%ba%cf%8c%cf%82%ce%91%cf%83%cf%86%ce%ac%ce%bb%ce%b5%ce%b9%ce%b1%cf%82">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Secure Score για τον ΥΑΣΠΕ on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-defender-praktikos-odigos%2f&amp;title=Microsoft%20Secure%20Score%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%ce%bd%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95&amp;summary=Microsoft%20Secure%20Score%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%ce%bd%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-defender-praktikos-odigos%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Secure Score για τον ΥΑΣΠΕ on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-defender-praktikos-odigos%2f&title=Microsoft%20Secure%20Score%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%ce%bd%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

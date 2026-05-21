@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Security Baselines on My New Hugo Project</title>
+    <title>Security Baselines on Microsoft 365 Security Insights</title>
     <link>http://localhost:1313/tags/security-baselines/</link>
-    <description>Recent content in Security Baselines on My New Hugo Project</description>
+    <description>Recent content in Security Baselines on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 May 2026 15:32:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/security-baselines/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Defender Vulnerability Management Remediation</title>
       <link>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/</link>
       <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/</guid>
-      <description>Part 4 of 4. From identified vulnerability to fixed vulnerability — and how MDVM data flows out to the rest of the Microsoft security stack.</description>
+      <description>How Microsoft Defender Vulnerability Management remediation closes the loop — Intune, Security Baselines, Sentinel, and the Microsoft Secure Score GRC link.</description>
     </item>
   </channel>
 </rss>

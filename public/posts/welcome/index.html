@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>About This Security Blog | Microsoft 365 Security Insights</title>
+<meta name="keywords" content="Microsoft Security blog, Microsoft 365 security, Security Copilot tutorial, Defender XDR hunting, M365 hardening baseline">
+<meta name="description" content="A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/welcome/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/welcome/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"About This Security Blog\"",
+  "description": "\"An intro to the blog, the topics I\\u0026rsquo;ll cover, and the first series planned for 2026.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-04-22T10:00:00+03:00\"",
+  "dateModified": "\"2026-05-21T13:42:15+03:00\"",
+  "image": "\"http://localhost:1313/images/welcome-cover.png\"",
+  "url": "\"http://localhost:1313/posts/welcome/\"",
+  "wordCount":  274 ,
+  "keywords": "\"Welcome, Roadmap, Microsoft 365, Microsoft Security, Security Copilot, Defender XDR, Cybersecurity, GRC\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/welcome/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/welcome/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="About This Security Blog">
+  <meta property="og:description" content="A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-22T10:00:00+03:00">
+    <meta property="article:modified_time" content="2026-05-21T13:42:15+03:00">
+    <meta property="article:tag" content="Welcome">
+    <meta property="article:tag" content="Roadmap">
+    <meta property="article:tag" content="Microsoft 365">
+    <meta property="article:tag" content="Microsoft Security">
+    <meta property="article:tag" content="Security Copilot">
+    <meta property="article:tag" content="Defender XDR">
+    <meta property="og:image" content="http://localhost:1313/images/welcome-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/welcome-cover.png">
+  <meta name="twitter:title" content="About This Security Blog">
+  <meta name="twitter:description" content="A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "About This Security Blog",
+      "item": "http://localhost:1313/posts/welcome/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "About This Security Blog",
+  "name": "About This Security Blog",
+  "description": "A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros.",
+  "keywords": [
+    "Microsoft Security blog", "Microsoft 365 security", "Security Copilot tutorial", "Defender XDR hunting", "M365 hardening baseline"
+  ],
+  "articleBody": "If you’re here, you probably manage, secure, or architect Microsoft 365 environments and you’ve hit the same wall I keep hitting: the official docs tell you the what but rarely the why or the what-if.\nThat’s the gap this blog tries to fill.\nWhat you’ll get Every post here is built on three rules:\nHands-on. No theory dumps. If I cover a feature, I configure it, break it, and tell you what happened. Production-realistic. I write from the perspective of someone who has to live with the configuration on Monday morning, not just demo it in a lab. No vendor cheerleading. Microsoft does some things brilliantly. It also ships features that aren’t ready. I’ll tell you which is which. What’s coming first The first series I’m planning for 2026:\nMicrosoft Secure Score as a Cyber GRC Instrument — A 2 to 4 parts series on turning Secure Score into a board-level governance tool. A note on the format Posts will often be long. Some will run 15–20 minutes of reading time. That’s intentional short posts on these topics tend to leave the most important questions unanswered. There’s a table of contents on every long post, and a search box in the menu. Use them.\nIf a post is part of a series, you’ll see a Series badge in the header and links to the other parts at the bottom.\nGet in touch If you spot a mistake, have a better way to do something, or want to suggest a topic, ping me on LinkedIn.\nRelated technical notes, implementation details, and supporting references are maintained here: Github\nThanks for reading. The next post drops soon. ",
+  "wordCount" : "274",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/welcome-cover.png","datePublished": "2026-04-22T10:00:00+03:00",
+  "dateModified": "2026-05-21T13:42:15+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/welcome/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      About This Security Blog
+    </h1>
+    <div class="post-description">
+      A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-04-22 10:00:00 +0300 EEST'>April 22, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/ms-security-blog/edit/main/content/posts/welcome.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/welcome-cover.png" alt="Microsoft 365 Security Insights blog — Microsoft 365 security and Defender content for IT Pros">
+        <figcaption>Welcome to Microsoft 365 Security Insights</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-youll-get">What you&rsquo;ll get</a></li>
+    <li><a href="#whats-coming-first">What&rsquo;s coming first</a></li>
+    <li><a href="#a-note-on-the-format">A note on the format</a></li>
+    <li><a href="#get-in-touch">Get in touch</a></li>
+    <li><a href="#thanks-for-reading-the-next-post-drops-soon">Thanks for reading. The next post drops soon.</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>If you&rsquo;re here, you probably manage, secure, or architect Microsoft 365
+environments and you&rsquo;ve hit the same wall I keep hitting: <strong>the official docs
+tell you the <em>what</em> but rarely the <em>why</em> or the <em>what-if</em>.</strong></p>
+<p>That&rsquo;s the gap this blog tries to fill.</p>
+<h2 id="what-youll-get">What you&rsquo;ll get<a hidden class="anchor" aria-hidden="true" href="#what-youll-get">#</a></h2>
+<p>Every post here is built on three rules:</p>
+<ol>
+<li><strong>Hands-on.</strong> No theory dumps. If I cover a feature, I configure it,
+break it, and tell you what happened.</li>
+<li><strong>Production-realistic.</strong> I write from the perspective of someone who
+has to live with the configuration on Monday morning, not just demo it
+in a lab.</li>
+<li><strong>No vendor cheerleading.</strong> Microsoft does some things brilliantly. It
+also ships features that aren&rsquo;t ready. I&rsquo;ll tell you which is which.</li>
+</ol>
+<h2 id="whats-coming-first">What&rsquo;s coming first<a hidden class="anchor" aria-hidden="true" href="#whats-coming-first">#</a></h2>
+<p>The first series I&rsquo;m planning for 2026:</p>
+<ul>
+<li><strong><a href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">Microsoft Secure Score as a Cyber GRC Instrument</a></strong>
+— A 2 to 4 parts series on turning Secure Score into a board-level governance tool.</li>
+</ul>
+<h2 id="a-note-on-the-format">A note on the format<a hidden class="anchor" aria-hidden="true" href="#a-note-on-the-format">#</a></h2>
+<p>Posts will often be long. Some will run 15–20 minutes of reading time.
+That&rsquo;s intentional short posts on these topics tend to leave the most
+important questions unanswered. There&rsquo;s a table of contents on every
+long post, and a search box in the menu. Use them.</p>
+<p>If a post is part of a series, you&rsquo;ll see a <strong>Series</strong> badge in the
+header and links to the other parts at the bottom.</p>
+<h2 id="get-in-touch">Get in touch<a hidden class="anchor" aria-hidden="true" href="#get-in-touch">#</a></h2>
+<p>If you spot a mistake, have a better way to do something, or want to
+suggest a topic, ping me on
+<a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a>.</p>
+<p>Related technical notes, implementation details, and supporting references are maintained here: <a href="https://github.com/dimosatteia/dimosatteia.github.io">Github</a></p>
+<h2 id="thanks-for-reading-the-next-post-drops-soon">Thanks for reading. The next post drops soon.<a hidden class="anchor" aria-hidden="true" href="#thanks-for-reading-the-next-post-drops-soon">#</a></h2>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/welcome/">Welcome</a></li>
+      <li><a href="http://localhost:1313/tags/roadmap/">Roadmap</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365/">Microsoft 365</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-security/">Microsoft Security</a></li>
+      <li><a href="http://localhost:1313/tags/security-copilot/">Security Copilot</a></li>
+      <li><a href="http://localhost:1313/tags/defender-xdr/">Defender XDR</a></li>
+      <li><a href="http://localhost:1313/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="http://localhost:1313/tags/grc/">GRC</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/">
+    <span class="title">Next »</span>
+    <span>Microsoft Secure Score για τον ΥΑΣΠΕ</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share About This Security Blog on x"
+            href="https://x.com/intent/tweet/?text=About%20This%20Security%20Blog&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fwelcome%2f&amp;hashtags=Welcome%2cRoadmap%2cMicrosoft365%2cMicrosoftSecurity%2cSecurityCopilot%2cDefenderXDR%2cCybersecurity%2cGRC">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share About This Security Blog on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fwelcome%2f&amp;title=About%20This%20Security%20Blog&amp;summary=About%20This%20Security%20Blog&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fwelcome%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share About This Security Blog on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fwelcome%2f&title=About%20This%20Security%20Blog">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

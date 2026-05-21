@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Posts | Microsoft 365 Security Insights</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - Microsoft 365 Security Insights">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script><meta property="og:url" content="http://localhost:1313/posts/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Posts">
+  <meta property="og:description" content="Practical, hands-on content on Microsoft 365 and Microsoft Security Copilot from a Senior Cloud Architect.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Posts">
+  <meta name="twitter:description" content="Practical, hands-on content on Microsoft 365 and Microsoft Security Copilot from a Senior Cloud Architect.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span class="active">Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    Posts
+    <a href="http://localhost:1313/posts/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/welcome-cover.png" alt="Microsoft 365 Security Insights blog — Microsoft 365 security and Defender content for IT Pros">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">About This Security Blog
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>An intro to the blog, the topics I’ll cover, and the first series planned for 2026.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-04-22 10:00:00 +0300 EEST'>April 22, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to About This Security Blog" href="http://localhost:1313/posts/welcome/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/MSS-NIS2.png" alt="Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ (NIS2">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Microsoft Secure Score για τον ΥΑΣΠΕ
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-04-27 10:00:00 +0300 EEST'>April 27, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Microsoft Secure Score για τον ΥΑΣΠΕ" href="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/CyberGRCGoldAward.png" alt="Microsoft Secure Score dashboard powering Gold-Award GRC programme for ISO 27001 and NIS2">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Gold GRC on Microsoft Secure Score
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-04-22 10:00:00 +0300 EEST'>April 22, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Gold GRC on Microsoft Secure Score" href="http://localhost:1313/posts/secure-score-grc-part-0-intro/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/MSS.png" alt="Microsoft Secure Score recommendation details pane in the Microsoft Defender portal — fields explained for junior administrators">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Secure Score P1: 1st Recommendation
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Part 1 of the Secure Score series. A beginner-friendly walk through a single Microsoft Secure Score recommendation — every field on the screen, what each one means, and the small observations that help new professionals start extracting value in under an hour.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-04-27 07:00:00 +0300 EEST'>April 27, 2026</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Secure Score P1: 1st Recommendation" href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/MSS.png" alt="Microsoft Secure Score in the Microsoft Defender XDR ecosystem — how Entra ID, Defender for Endpoint, Office 365, and Purview feed the score">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Secure Score P2: Defender XDR
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-04 07:00:00 +0300 EEST'>May 4, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Secure Score P2: Defender XDR" href="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/MSS.png" alt="Microsoft Secure Score operational workflow — prioritization, change management, and compliance mapping for ISO 27001 and NIS2">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Secure Score P3: Operations
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Part 3 of the Secure Score series. How to actually run Microsoft Secure Score day-to-day: prioritizing 260&#43; recommendations, building a change management process that doesn’t break production, mapping controls to ISO 27001 and NIS2, collecting audit evidence, and reporting to the board.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-21 07:00:00 +0300 EEST'>May 21, 2026</span>&nbsp;·&nbsp;<span>20 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Secure Score P3: Operations" href="http://localhost:1313/posts/secure-score-grc-part-3-operations/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/DefenderDemystified/MSDef.png" alt="The Microsoft Defender family, as Microsoft itself organises it">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Defender P1: How Many Exist?
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Confused by Microsoft Defender naming? You’re not alone. This guide maps the entire Microsoft Defender family, 8 core products, licensing tiers, and when you actually need each one. For CISOs, IT managers, and security teams implementing Microsoft 365 E5 or EMS E5.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-18 10:00:00 +0300 EEST'>May 18, 2026</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Defender P1: How Many Exist?" href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/Microsoft-Defender-Vulnerability-Management-Series/Microsoft-Defender-Vulnerability-Management-4hours.png" alt="Microsoft Defender Vulnerability Management closes the gap from a 771-day to a 4-hour patch window">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Microsoft Defender Vulnerability Management: 771 Days to 4 Hours
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>A bridge from ‘we’re not a target’ to a four-part technical deep-dive on Microsoft Defender Vulnerability Management.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-05 07:00:00 +0300 EEST'>May 5, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Microsoft Defender Vulnerability Management: 771 Days to 4 Hours" href="http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/00-mdvm-bridge-from-771-days-to-4-hours/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/MDE/MDE.png" alt="Microsoft Defender for Endpoint — deep dive">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Microsoft Defender for Endpoint explained the way a working professional needs it. Plan 1 and Plan 2 side by side, what each one does, how onboarding actually works for Windows, macOS, Linux, iOS, and Android, and the Defender portal configuration settings to check in your first week.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-04-22 10:00:00 +0300 EEST'>April 22, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out" href="http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="http://localhost:1313/images/Microsoft-Defender-Vulnerability-Management-Series/Microsoft-Defender-Vulnerability-Management.png" alt="Microsoft Defender Vulnerability Management licensing tiers and architecture in the Defender family">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Microsoft Defender Vulnerability Management Licensing Tiers
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Part 1 of 4. The licensing maze, the architecture that makes ‘continuous assessment’ work, and the platforms it actually covers.</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-05 07:00:00 +0300 EEST'>May 5, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span></footer>
+  <a class="entry-link" aria-label="post link to Microsoft Defender Vulnerability Management Licensing Tiers" href="http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/01-mdvm-foundations-and-architecture/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="http://localhost:1313/posts/page/2/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+</body>
+
+</html>

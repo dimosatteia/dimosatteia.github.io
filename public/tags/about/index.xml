@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>About on My New Hugo Project</title>
+    <title>About on Microsoft 365 Security Insights</title>
     <link>http://localhost:1313/tags/about/</link>
-    <description>Recent content in About on My New Hugo Project</description>
+    <description>Recent content in About on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2026 14:28:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Defender P1: How Many Exist? | Microsoft 365 Security Insights</title>
+<meta name="keywords" content="how many microsoft defender products are there, difference between microsoft defender products, microsoft defender xdr vs defender for cloud, which microsoft defender license do i need, microsoft defender for endpoint vs office 365, microsoft defender family explained, microsoft defender naming confusion, microsoft defender product comparison, microsoft 365 e5 security what is included, microsoft defender for ciso, microsoft defender iso 27001 mapping, microsoft defender nis2 compliance, microsoft defender implementation guide, microsoft defender for small business explained, what is the difference between all the microsoft defenders">
+<meta name="description" content="How many Microsoft Defender products are there? Which one do you actually need? A practitioner&#39;s guide to the Microsoft Defender family, Endpoint, Office 365, Identity, Cloud Apps, XDR, and more. Written by a CISO for CISOs, IT managers, and security professionals navigating Microsoft 365 E5 licensing.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Defender P1: How Many Exist?\"",
+  "description": "\"Confused by Microsoft Defender naming? You\\u0026rsquo;re not alone. This guide maps the entire Microsoft Defender family, 8 core products, licensing tiers, and when you actually need each one. For CISOs, IT managers, and security teams implementing Microsoft 365 E5 or EMS E5.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-05-18T10:00:00+03:00\"",
+  "dateModified": "\"2026-05-21T13:42:15+03:00\"",
+  "image": "\"http://localhost:1313/images/DefenderDemystified/MSDef.png\"",
+  "url": "\"http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/\"",
+  "wordCount":  2125 ,
+  "keywords": "\"Microsoft Defender XDR, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, Microsoft Defender for Cloud Apps, Microsoft Defender Vulnerability Management, Microsoft Sentinel, Microsoft 365 E5 Security, XDR Implementation, CISO Guide, Security Operations, Endpoint Security, Email Security, Identity Security, ISO 27001, NIS2 Compliance, Security Architecture\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Defender P1: How Many Exist?">
+  <meta property="og:description" content="How many Microsoft Defender products are there? Which one do you actually need? A practitioner&#39;s guide to the Microsoft Defender family, Endpoint, Office 365, Identity, Cloud Apps, XDR, and more. Written by a CISO for CISOs, IT managers, and security professionals navigating Microsoft 365 E5 licensing.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-05-18T10:00:00+03:00">
+    <meta property="article:modified_time" content="2026-05-21T13:42:15+03:00">
+    <meta property="article:tag" content="Microsoft Defender XDR">
+    <meta property="article:tag" content="Microsoft Defender for Endpoint">
+    <meta property="article:tag" content="Microsoft Defender for Office 365">
+    <meta property="article:tag" content="Microsoft Defender for Identity">
+    <meta property="article:tag" content="Microsoft Defender for Cloud Apps">
+    <meta property="article:tag" content="Microsoft Defender Vulnerability Management">
+    <meta property="og:image" content="http://localhost:1313/images/DefenderDemystified/MSDef.png">
+      <meta property="og:see_also" content="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/DefenderDemystified/MSDef.png">
+  <meta name="twitter:title" content="Defender P1: How Many Exist?">
+  <meta name="twitter:description" content="How many Microsoft Defender products are there? Which one do you actually need? A practitioner&#39;s guide to the Microsoft Defender family, Endpoint, Office 365, Identity, Cloud Apps, XDR, and more. Written by a CISO for CISOs, IT managers, and security professionals navigating Microsoft 365 E5 licensing.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Defender P1: How Many Exist?",
+      "item": "http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Defender P1: How Many Exist?",
+  "name": "Defender P1: How Many Exist?",
+  "description": "How many Microsoft Defender products are there? Which one do you actually need? A practitioner's guide to the Microsoft Defender family, Endpoint, Office 365, Identity, Cloud Apps, XDR, and more. Written by a CISO for CISOs, IT managers, and security professionals navigating Microsoft 365 E5 licensing.",
+  "keywords": [
+    "how many microsoft defender products are there", "difference between microsoft defender products", "microsoft defender xdr vs defender for cloud", "which microsoft defender license do i need", "microsoft defender for endpoint vs office 365", "microsoft defender family explained", "microsoft defender naming confusion", "microsoft defender product comparison", "microsoft 365 e5 security what is included", "microsoft defender for ciso", "microsoft defender iso 27001 mapping", "microsoft defender nis2 compliance", "microsoft defender implementation guide", "microsoft defender for small business explained", "what is the difference between all the microsoft defenders"
+  ],
+  "articleBody": "How Many Microsoft Defender Products Are There, Really? I’ve been doing security work for a while now, and I’ll admit something that took me longer than it should have to sort out: for the first year I was deep into the Microsoft ecosystem, every time someone said “let’s look at this in Defender” I had to quietly think “okay, which Defender do they mean?” before responding.\nIf you’ve felt that too, you’re not alone. Microsoft has put the Defender name on so many distinct products that the confusion is genuinely structural, not something you need to be embarrassed about. Even the Microsoft Defender products and services hub on Microsoft Learn lists eight core products, plus a couple of close cousins in a “related content” section, plus a consumer app that lives entirely outside this world.\nThis post is the friendly walking tour I wish I’d had on day one. We’ll go through the family the way Microsoft itself organises it, with a sentence or two on each, so by the end you can look at any Defender product name and have a rough idea of what it does, who it’s for, and whether it applies to you.\nNo marketing fog. No acronym soup. Just a map.\nThe Big Umbrella: What is Microsoft Defender XDR? 📷 Image 1 — The Microsoft Defender family, as Microsoft organises it.\nWhen someone in an enterprise context says “Defender” without any qualifier, they almost always mean Microsoft Defender XDR. Microsoft Defender XDR is not itself a product that does anything, it’s the umbrella. It’s the name for the unified portal at security.microsoft.com, the single incident queue, and the cross-product correlation engine that stitches signals from the underlying workloads into one attack story.\nThink of it like this: if you imagine a security-operations team as an orchestra, Microsoft Defender XDR is the conductor. The actual music comes from the individual instruments, and those are the four workloads we’ll look at next.\n📷 Image 2 — The Microsoft Defender XDR portal at security.microsoft.com — your unified security operations hub.\nThe four core XDR workloads These four are Microsoft’s flagship security products. Each one is sold separately (or bundled into Microsoft 365 E5), and each one can exist without the others — but together, under the XDR umbrella, they’re much more than the sum of their parts.\nMicrosoft Defender for Endpoint Microsoft Defender for Endpoint protects your devices. Windows laptops, Macs, Linux servers, iPhones, Androids if an employee does work on it, this is what’s watching. It does next-generation antivirus, EDR (Endpoint Detection and Response), attack surface reduction, automated investigation and remediation, and it’s the foundation most organisations start their Microsoft security journey with.\nWhen you need it: the moment you realise that endpoint protection in 2026 means more than just antivirus.\n📖 Deep dive: I’ll write about it sometime later, a dedicated walkthrough of Microsoft Defender for Endpoint, what Plan 1 and Plan 2 actually differ on, how to deploy it, and what to configure first.\nMicrosoft Defender for Office 365 Microsoft Defender for Office 365 protects the productivity surface most of your users spend their day in like email, Microsoft Teams, SharePoint Online, and OneDrive for Business. It rewrites every URL in inbound email so it can be checked at click-time (not just at delivery), detonates suspicious attachments in a sandbox, catches business email compromise attempts, and includes attack simulation training if you want to test your users.\nWhen you need it: the moment someone on the finance team tells you about the “really convincing” email they almost replied to.\n📖 Deep dive: Plan 1 vs Plan 2, the policies that actually matter, Safe Links and Safe Attachments configuration step by step.\nMicrosoft Defender for Identity Microsoft Defender for Identity watches your identity infrastructure, on-premises Active Directory and Microsoft Entra ID, for the kinds of attacks that happen after a password has been stolen. Pass-the-hash, pass-the-ticket, Kerberoasting, golden ticket forgeries, lateral movement, suspicious LDAP reconnaissance. The stuff that doesn’t look like anything unusual from an endpoint or email perspective but is very unusual when you’re the domain controller watching your own authentication traffic.\nWhen you need it: the moment your risk register includes a credible lateral-movement scenario. For most organisations with any on-premises AD footprint, that’s from day one.\n📖 Deep dive: How sensors work, where to install them, what alerts to expect, and how to wire it all up against your on-prem AD.\nMicrosoft Defender for Cloud Apps Microsoft Defender for Cloud Apps is a CASB — a Cloud Access Security Broker. That’s a fancy way of saying it sits between your users and the SaaS applications they use, giving you visibility into shadow IT, control over risky OAuth apps, and the ability to extend your information-protection policies into third-party services like Salesforce, Box, or Google Workspace.\nWhen you need it: the moment you realise you have no idea how many SaaS apps your users have actually signed up for. For most mid-market organisations, the real number is roughly four times what IT thinks.\n📖 Deep dive: Shadow IT discovery, OAuth app governance, Conditional Access App Control, and how to actually configure a CASB so it helps rather than annoys your users.\nThe specialist workloads Beyond the four core XDR workloads, Microsoft groups several more products on the same Microsoft Learn hub. They’re equally part of the family — just more targeted.\nMicrosoft Defender Vulnerability Management Microsoft Defender Vulnerability Management tracks known software vulnerabilities across your fleet, which CVEs are present on which devices, which patches are available, which browser extensions users have installed that they shouldn’t have, and which applications have reached end-of-support. A chunk of this capability is bundled into Microsoft Defender for Endpoint Plan 2; the standalone product gives you a fuller experience across a wider asset footprint.\nWhen you need it: the moment your ISO 27001 auditor asks you how you handle vulnerability management and you realise “we patch Tuesday” isn’t really an answer anymore.\nMicrosoft Defender for IoT This one is personal for me. I run security at a manufacturing company with real OT and ICS infrastructure — Siemens PLCs, SCADA systems, HMIs, and Microsoft Defender for IoT is the product in the Defender family that addresses that world. It discovers OT devices on the network without requiring agents (which matters because you absolutely cannot install anything on a PLC), builds an asset inventory, identifies vulnerabilities specific to industrial protocols, and detects anomalous behaviour that might indicate an attack on production systems.\nIf you’ve read the Greek news on NIS2 and recognised that the new directive has teeth in manufacturing, chemicals, food, water, and energy, Microsoft Defender for IoT is part of the conversation. I’ll write a dedicated post on this one later in the series, there’s too much to cover in a sentence.\nWhen you need it: the moment you realise your factory floor has more unmanaged devices than your office floor.\nMicrosoft Sentinel Worth pausing on. Microsoft Sentinel is Microsoft’s cloud-native Security Information and Event Management, and Security Orchestration, Automation, and Response. It collects security telemetry from everywhere (Microsoft products, third-party tools, network appliances, custom sources) and gives you a unified place to write detection rules, run investigations, and automate response.\nMicrosoft positions Sentinel as part of the Defender hub now, which is a relatively recent change. In the unified Microsoft Defender portal at security.microsoft.com, Sentinel and Defender XDR have essentially merged into one security operations experience. Microsoft has announced that Sentinel in the Azure portal will be retired entirely — so if you’re still using Sentinel only from Azure, the clock is ticking.\nWhen you need it: the moment you need to correlate security signals that don’t all come from Microsoft products.\nThe close cousins (Microsoft lists them separately, but they belong in your mental model) On the Microsoft Learn hub page, two more products appear under a separate “Other content” heading. They’re not part of Microsoft Defender XDR strictly speaking, but you absolutely need to know them:\nMicrosoft Security Exposure Management Microsoft Security Exposure Management is where Microsoft Secure Score now lives, alongside broader attack-surface and exposure analytics. It’s the posture layer of the Microsoft security story — the answer to “how exposed are we?” rather than “are we under attack right now?”.\nIf you’re curious about turning this into a full compliance programme, I’ve written about that elsewhere: How We Built a Gold-Winning GRC Programme on Microsoft Secure Score.\nMicrosoft Defender for Cloud Microsoft Defender for Cloud is the big one most people confuse with the rest of the Defender family. It protects cloud workloads — Azure VMs, storage, containers, databases, Kubernetes clusters, and extends to AWS and Google Cloud. Completely separate portal (it lives in the Azure portal, not security.microsoft.com), completely separate licensing model (per resource, not per user).\nWe’ll cover this properly in Part 3 of the series.\nThe consumer app (brief mention for completeness) If you’re a subscriber to Microsoft 365 Personal or Family, you’ve probably seen a phone app simply called Microsoft Defender. It’s a cross-device security app for your family’s phones and laptops, identity-theft monitoring, VPN, basic device security. It’s real, it’s useful, and it’s completely unrelated to everything else we’ve talked about. No overlap in licensing, portals, or audience. If someone in your family asks you “is Microsoft Defender good?”, this is probably what they mean, and the answer is yes, for personal use, it’s fine.\nQuick Reference: Which Microsoft Defender Product Do I Need? So the next time someone says “let’s look at this in Defender”, you now have a mental map to ask the right follow-up question:\nWhich part of the estate? Tells you the workload (Endpoint, Office 365, Identity, Cloud Apps, IoT) Cloud workloads or user devices? Tells you whether we’re in Defender XDR or Defender for Cloud Looking at posture, or at an active incident? Tells you whether we’re in Exposure Management or Incidents Is it a Microsoft-only view, or does it include third-party tools? Tells you whether Sentinel is in play That’s it. That’s the whole family. Eight core products, two close cousins, and one consumer app. You won’t need all of them, but you should know they exist.\nOne more thing, where does EMS fit? If you’ve been around Microsoft licensing long enough, you’ve seen the phrase Enterprise Mobility + Security (EMS) in proposals, quotes, or old contracts. EMS is the identity + management + protection bundle that predates Microsoft 365 E3/E5 and is still actively sold — especially to organisations that don’t need the full Microsoft 365 stack but do need the security and management layer on top of their existing productivity suite.\nI’ll write about it sometime later, a separate post on EMS E3 and EMS E5, what’s actually in each, and when it’s the right buy instead of (or alongside) Microsoft 365.\nWhat’s next In Part 2 we zoom into the four XDR workloads and look at how they actually correlate signals, with a real multi-stage attack example that walks through all four in sequence.\n🔗 Related deep-dive series: If you’re already comfortable with the Microsoft Defender landscape and want to see what’s possible on top of it, start here: How We Built a Gold-Winning GRC Programme on Microsoft Secure Score.\nFollow me on LinkedIn for new-post notifications, or subscribe via RSS at the top of the page.\nRelated Questions Readers Often Ask “Do I need all Microsoft Defender products?” No. Most organisations start with Defender for Endpoint (device protection) and Defender for Office 365 (email security), then add Identity and Cloud Apps as their environment matures. See the individual workload sections above for when each applies.\n“What’s included in Microsoft 365 E5 Security?” All four core XDR workloads are included: Defender for Endpoint, Defender for Office 365 (Plan 2), Defender for Identity, and Defender for Cloud Apps. You also get the unified XDR portal and cross product correlation.\n“Can I use Microsoft Defender without Microsoft 365?” Yes, standalone licensing exists. Each workload can be purchased separately (Defender for Endpoint Plan 1/2, Defender for Office 365 Plan 1/2, etc.), which is useful if you only need specific protection layers.\n“Is Microsoft Defender good enough for ISO 27001 compliance?” Yes, when properly configured. The four core workloads cover most technical controls in Annex A (A.8, A.9, A.12, A.13). Many organizations use Microsoft Secure Score as ongoing audit evidence. See my Secure Score GRC series for the full mapping.\nMicrosoft Learn resources Microsoft Defender products and services hub Microsoft Defender XDR overview Microsoft Defender for Endpoint overview Microsoft Defender for Office 365 overview Microsoft Defender for Identity overview Microsoft Defender for Cloud Apps overview Microsoft Defender Vulnerability Management overview Microsoft Defender for IoT overview Microsoft Sentinel overview Microsoft Security Exposure Management overview Microsoft Defender for Cloud overview ",
+  "wordCount" : "2125",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/DefenderDemystified/MSDef.png","datePublished": "2026-05-18T10:00:00+03:00",
+  "dateModified": "2026-05-21T13:42:15+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Defender P1: How Many Exist?
+    </h1>
+    <div class="post-description">
+      How many Microsoft Defender products are there? Which one do you actually need? A practitioner&#39;s guide to the Microsoft Defender family, Endpoint, Office 365, Identity, Cloud Apps, XDR, and more. Written by a CISO for CISOs, IT managers, and security professionals navigating Microsoft 365 E5 licensing.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-05-18 10:00:00 +0300 EEST'>May 18, 2026</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/ms-security-blog/edit/main/content/posts/Defender-Demystified-Series/defender-demystified-part-1-what-is-microsoft-defender.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/DefenderDemystified/MSDef.png" alt="The Microsoft Defender family, as Microsoft itself organises it">
+        <figcaption>Microsoft Defender Demystified — Part 1</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-many-microsoft-defender-products-are-there-really">How Many Microsoft Defender Products Are There, Really?</a></li>
+    <li><a href="#the-big-umbrella-what-is-microsoft-defender-xdr">The Big Umbrella: What is Microsoft Defender XDR?</a></li>
+    <li><a href="#the-four-core-xdr-workloads">The four core XDR workloads</a>
+      <ul>
+        <li><a href="#microsoft-defender-for-endpoint">Microsoft Defender for Endpoint</a></li>
+        <li><a href="#microsoft-defender-for-office-365">Microsoft Defender for Office 365</a></li>
+        <li><a href="#microsoft-defender-for-identity">Microsoft Defender for Identity</a></li>
+        <li><a href="#microsoft-defender-for-cloud-apps">Microsoft Defender for Cloud Apps</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-specialist-workloads">The specialist workloads</a>
+      <ul>
+        <li><a href="#microsoft-defender-vulnerability-management">Microsoft Defender Vulnerability Management</a></li>
+        <li><a href="#microsoft-defender-for-iot">Microsoft Defender for IoT</a></li>
+        <li><a href="#microsoft-sentinel">Microsoft Sentinel</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-close-cousins-microsoft-lists-them-separately-but-they-belong-in-your-mental-model">The close cousins (Microsoft lists them separately, but they belong in your mental model)</a>
+      <ul>
+        <li><a href="#microsoft-security-exposure-management">Microsoft Security Exposure Management</a></li>
+        <li><a href="#microsoft-defender-for-cloud">Microsoft Defender for Cloud</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-consumer-app-brief-mention-for-completeness">The consumer app (brief mention for completeness)</a></li>
+    <li><a href="#quick-reference-which-microsoft-defender-product-do-i-need">Quick Reference: Which Microsoft Defender Product Do I Need?</a></li>
+    <li><a href="#one-more-thing-where-does-ems-fit">One more thing, where does EMS fit?</a></li>
+    <li><a href="#whats-next">What&rsquo;s next</a></li>
+    <li><a href="#related-questions-readers-often-ask">Related Questions Readers Often Ask</a></li>
+    <li><a href="#microsoft-learn-resources">Microsoft Learn resources</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="how-many-microsoft-defender-products-are-there-really">How Many Microsoft Defender Products Are There, Really?<a hidden class="anchor" aria-hidden="true" href="#how-many-microsoft-defender-products-are-there-really">#</a></h2>
+<p>I&rsquo;ve been doing security work for a while now, and I&rsquo;ll admit something that took me longer than it should have to sort out: for the first year I was deep into the Microsoft ecosystem, every time someone said <em>&ldquo;let&rsquo;s look at this in Defender&rdquo;</em> I had to quietly think <em>&ldquo;okay, which Defender do they mean?&rdquo;</em> before responding.</p>
+<p>If you&rsquo;ve felt that too, you&rsquo;re not alone. Microsoft has put the Defender name on so many distinct products that the confusion is genuinely structural, not something you need to be embarrassed about. Even the <a href="https://learn.microsoft.com/en-us/defender/">Microsoft Defender products and services hub on Microsoft Learn</a> lists <strong>eight core products</strong>, plus a couple of close cousins in a &ldquo;related content&rdquo; section, plus a consumer app that lives entirely outside this world.</p>
+<p>This post is the friendly walking tour I wish I&rsquo;d had on day one. We&rsquo;ll go through the family the way Microsoft itself organises it, with a sentence or two on each, so by the end you can look at any Defender product name and have a rough idea of what it does, who it&rsquo;s for, and whether it applies to you.</p>
+<p>No marketing fog. No acronym soup. Just a map.</p>
+<h2 id="the-big-umbrella-what-is-microsoft-defender-xdr">The Big Umbrella: What is Microsoft Defender XDR?<a hidden class="anchor" aria-hidden="true" href="#the-big-umbrella-what-is-microsoft-defender-xdr">#</a></h2>
+<p><a href="http://localhost:1313/images/DefenderDemystified/The_Microsoft_Defender_family.png"><img alt="The Microsoft Defender family, as Microsoft organises it." loading="lazy" src="http://localhost:1313/images/DefenderDemystified/The_Microsoft_Defender_family.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 1 — The Microsoft Defender family, as Microsoft organises it.</strong></p>
+</blockquote>
+<p>When someone in an enterprise context says <strong>&ldquo;Defender&rdquo;</strong> without any qualifier, they almost always mean <strong><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender">Microsoft Defender XDR</a></strong>. Microsoft Defender XDR is not itself a product that does anything, it&rsquo;s the <strong>umbrella</strong>. It&rsquo;s the name for the unified portal at <code>security.microsoft.com</code>, the single incident queue, and the cross-product correlation engine that stitches signals from the underlying workloads into one attack story.</p>
+<p>Think of it like this: if you imagine a security-operations team as an orchestra, Microsoft Defender XDR is the conductor. The actual music comes from the individual instruments, and those are the four workloads we&rsquo;ll look at next.</p>
+<p><a href="http://localhost:1313/images/DefenderDemystified/defender-xdr-portal-overview.png"><img alt="The Microsoft Defender XDR portal - unified security operations hub" loading="lazy" src="http://localhost:1313/images/DefenderDemystified/defender-xdr-portal-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 2 — The Microsoft Defender XDR portal at security.microsoft.com — your unified security operations hub.</strong></p>
+</blockquote>
+<h2 id="the-four-core-xdr-workloads">The four core XDR workloads<a hidden class="anchor" aria-hidden="true" href="#the-four-core-xdr-workloads">#</a></h2>
+<p>These four are Microsoft&rsquo;s flagship security products. Each one is sold separately (or bundled into Microsoft 365 E5), and each one can exist without the others — but together, under the XDR umbrella, they&rsquo;re much more than the sum of their parts.</p>
+<h3 id="microsoft-defender-for-endpoint">Microsoft Defender for Endpoint<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-endpoint">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint">Microsoft Defender for Endpoint</a></strong> protects your devices. Windows laptops, Macs, Linux servers, iPhones, Androids if an employee does work on it, this is what&rsquo;s watching. It does next-generation antivirus, EDR (Endpoint Detection and Response), attack surface reduction, automated investigation and remediation, and it&rsquo;s the foundation most organisations start their Microsoft security journey with.</p>
+<p><strong>When you need it:</strong> the moment you realise that endpoint protection in 2026 means more than just antivirus.</p>
+<blockquote>
+<p>📖 <strong>Deep dive:</strong> I&rsquo;ll write about it sometime later, a dedicated walkthrough of Microsoft Defender for Endpoint, what Plan 1 and Plan 2 actually differ on, how to deploy it, and what to configure first.</p>
+</blockquote>
+<!--**[Microsoft Defender for Endpoint, Up Close](/posts/microsoft-defender-for-endpoint-deep-dive/).**-->
+<h3 id="microsoft-defender-for-office-365">Microsoft Defender for Office 365<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-office-365">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-office-365/mdo-about">Microsoft Defender for Office 365</a></strong> protects the productivity surface most of your users spend their day in like email, Microsoft Teams, SharePoint Online, and OneDrive for Business. It rewrites every URL in inbound email so it can be checked at click-time (not just at delivery), detonates suspicious attachments in a sandbox, catches business email compromise attempts, and includes attack simulation training if you want to test your users.</p>
+<p><strong>When you need it:</strong> the moment someone on the finance team tells you about the <em>&ldquo;really convincing&rdquo;</em> email they almost replied to.</p>
+<blockquote>
+<p>📖 <strong>Deep dive:</strong> Plan 1 vs Plan 2, the policies that actually matter, Safe Links and Safe Attachments configuration step by step.</p>
+</blockquote>
+<!--**[Microsoft Defender for Office 365, Up Close](/posts/microsoft-defender-for-office-365-deep-dive/).**-->
+<h3 id="microsoft-defender-for-identity">Microsoft Defender for Identity<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-identity">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-for-identity/what-is">Microsoft Defender for Identity</a></strong> watches your identity infrastructure, on-premises Active Directory and Microsoft Entra ID, for the kinds of attacks that happen <em>after</em> a password has been stolen. Pass-the-hash, pass-the-ticket, Kerberoasting, golden ticket forgeries, lateral movement, suspicious LDAP reconnaissance. The stuff that doesn&rsquo;t look like anything unusual from an endpoint or email perspective but is very unusual when you&rsquo;re the domain controller watching your own authentication traffic.</p>
+<p><strong>When you need it:</strong> the moment your risk register includes a credible lateral-movement scenario. For most organisations with any on-premises AD footprint, that&rsquo;s from day one.</p>
+<blockquote>
+<p>📖 <strong>Deep dive:</strong> How sensors work, where to install them, what alerts to expect, and how to wire it all up against your on-prem AD.</p>
+</blockquote>
+<!--**[Microsoft Defender for Identity, Up Close](/posts/microsoft-defender-for-identity-deep-dive/).**-->
+<h3 id="microsoft-defender-for-cloud-apps">Microsoft Defender for Cloud Apps<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-cloud-apps">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps">Microsoft Defender for Cloud Apps</a></strong> is a CASB — a Cloud Access Security Broker. That&rsquo;s a fancy way of saying it sits between your users and the SaaS applications they use, giving you visibility into shadow IT, control over risky OAuth apps, and the ability to extend your information-protection policies into third-party services like Salesforce, Box, or Google Workspace.</p>
+<p><strong>When you need it:</strong> the moment you realise you have no idea how many SaaS apps your users have actually signed up for. For most mid-market organisations, the real number is roughly four times what IT thinks.</p>
+<blockquote>
+<p>📖 <strong>Deep dive:</strong> Shadow IT discovery, OAuth app governance, Conditional Access App Control, and how to actually configure a CASB so it helps rather than annoys your users.</p>
+</blockquote>
+<!--**[Microsoft Defender for Cloud Apps, Up Close](/posts/microsoft-defender-for-cloud-apps-deep-dive/).**-->
+<h2 id="the-specialist-workloads">The specialist workloads<a hidden class="anchor" aria-hidden="true" href="#the-specialist-workloads">#</a></h2>
+<p>Beyond the four core XDR workloads, Microsoft groups several more products on the same Microsoft Learn hub. They&rsquo;re equally part of the family — just more targeted.</p>
+<h3 id="microsoft-defender-vulnerability-management">Microsoft Defender Vulnerability Management<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-vulnerability-management">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management">Microsoft Defender Vulnerability Management</a></strong> tracks known software vulnerabilities across your fleet, which CVEs are present on which devices, which patches are available, which browser extensions users have installed that they shouldn&rsquo;t have, and which applications have reached end-of-support. A chunk of this capability is bundled into Microsoft Defender for Endpoint Plan 2; the standalone product gives you a fuller experience across a wider asset footprint.</p>
+<p><strong>When you need it:</strong> the moment your ISO 27001 auditor asks you how you handle vulnerability management and you realise &ldquo;we patch Tuesday&rdquo; isn&rsquo;t really an answer anymore.</p>
+<h3 id="microsoft-defender-for-iot">Microsoft Defender for IoT<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-iot">#</a></h3>
+<p>This one is personal for me. I run security at a manufacturing company with real OT and ICS infrastructure — Siemens PLCs, SCADA systems, HMIs, and <strong><a href="https://learn.microsoft.com/en-us/defender-for-iot/microsoft-defender-iot">Microsoft Defender for IoT</a></strong> is the product in the Defender family that addresses that world. It discovers OT devices on the network without requiring agents (which matters because you absolutely cannot install anything on a PLC), builds an asset inventory, identifies vulnerabilities specific to industrial protocols, and detects anomalous behaviour that might indicate an attack on production systems.</p>
+<p>If you&rsquo;ve read the Greek news on <strong>NIS2</strong> and recognised that the new directive has teeth in manufacturing, chemicals, food, water, and energy, Microsoft Defender for IoT is part of the conversation. I&rsquo;ll write a dedicated post on this one later in the series, there&rsquo;s too much to cover in a sentence.</p>
+<p><strong>When you need it:</strong> the moment you realise your factory floor has more unmanaged devices than your office floor.</p>
+<h3 id="microsoft-sentinel">Microsoft Sentinel<a hidden class="anchor" aria-hidden="true" href="#microsoft-sentinel">#</a></h3>
+<p>Worth pausing on. <strong><a href="https://learn.microsoft.com/en-us/unified-secops-platform/overview-unified-security">Microsoft Sentinel</a></strong> is Microsoft&rsquo;s cloud-native Security Information and Event Management, and Security Orchestration, Automation, and Response. It collects security telemetry from everywhere (Microsoft products, third-party tools, network appliances, custom sources) and gives you a unified place to write detection rules, run investigations, and automate response.</p>
+<p>Microsoft positions Sentinel as part of the Defender hub now, which is a relatively recent change. In the unified Microsoft Defender portal at <code>security.microsoft.com</code>, Sentinel and Defender XDR have essentially merged into one security operations experience. Microsoft has announced that Sentinel in the Azure portal will be retired entirely — so if you&rsquo;re still using Sentinel only from Azure, the clock is ticking.</p>
+<p><strong>When you need it:</strong> the moment you need to correlate security signals that don&rsquo;t all come from Microsoft products.</p>
+<h2 id="the-close-cousins-microsoft-lists-them-separately-but-they-belong-in-your-mental-model">The close cousins (Microsoft lists them separately, but they belong in your mental model)<a hidden class="anchor" aria-hidden="true" href="#the-close-cousins-microsoft-lists-them-separately-but-they-belong-in-your-mental-model">#</a></h2>
+<p>On the Microsoft Learn hub page, two more products appear under a separate &ldquo;Other content&rdquo; heading. They&rsquo;re not part of Microsoft Defender XDR strictly speaking, but you absolutely need to know them:</p>
+<h3 id="microsoft-security-exposure-management">Microsoft Security Exposure Management<a hidden class="anchor" aria-hidden="true" href="#microsoft-security-exposure-management">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management">Microsoft Security Exposure Management</a></strong> is where <strong>Microsoft Secure Score</strong> now lives, alongside broader attack-surface and exposure analytics. It&rsquo;s the posture layer of the Microsoft security story — the answer to <em>&ldquo;how exposed are we?&rdquo;</em> rather than <em>&ldquo;are we under attack right now?&rdquo;</em>.</p>
+<p>If you&rsquo;re curious about turning this into a full compliance programme, I&rsquo;ve written about that elsewhere: <strong><a href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">How We Built a Gold-Winning GRC Programme on Microsoft Secure Score</a></strong>.</p>
+<h3 id="microsoft-defender-for-cloud">Microsoft Defender for Cloud<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-cloud">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/azure/defender-for-cloud/">Microsoft Defender for Cloud</a></strong> is the big one most people confuse with the rest of the Defender family. It protects <strong>cloud workloads</strong> — Azure VMs, storage, containers, databases, Kubernetes clusters, and extends to AWS and Google Cloud. Completely separate portal (it lives in the Azure portal, not <code>security.microsoft.com</code>), completely separate licensing model (per resource, not per user).</p>
+<p>We&rsquo;ll cover this properly in Part 3 of the series.</p>
+<h2 id="the-consumer-app-brief-mention-for-completeness">The consumer app (brief mention for completeness)<a hidden class="anchor" aria-hidden="true" href="#the-consumer-app-brief-mention-for-completeness">#</a></h2>
+<p>If you&rsquo;re a subscriber to Microsoft 365 Personal or Family, you&rsquo;ve probably seen a phone app simply called <strong>Microsoft Defender</strong>. It&rsquo;s a cross-device security app for your family&rsquo;s phones and laptops, identity-theft monitoring, VPN, basic device security. It&rsquo;s real, it&rsquo;s useful, and it&rsquo;s completely unrelated to everything else we&rsquo;ve talked about. No overlap in licensing, portals, or audience. If someone in your family asks you &ldquo;is Microsoft Defender good?&rdquo;, this is probably what they mean, and the answer is <em>yes, for personal use, it&rsquo;s fine</em>.</p>
+<h2 id="quick-reference-which-microsoft-defender-product-do-i-need">Quick Reference: Which Microsoft Defender Product Do I Need?<a hidden class="anchor" aria-hidden="true" href="#quick-reference-which-microsoft-defender-product-do-i-need">#</a></h2>
+<p>So the next time someone says <em>&ldquo;let&rsquo;s look at this in Defender&rdquo;</em>, you now have a mental map to ask the right follow-up question:</p>
+<ul>
+<li><em>Which part of the estate?</em> Tells you the workload (Endpoint, Office 365, Identity, Cloud Apps, IoT)</li>
+<li><em>Cloud workloads or user devices?</em> Tells you whether we&rsquo;re in Defender XDR or Defender for Cloud</li>
+<li><em>Looking at posture, or at an active incident?</em> Tells you whether we&rsquo;re in Exposure Management or Incidents</li>
+<li><em>Is it a Microsoft-only view, or does it include third-party tools?</em> Tells you whether Sentinel is in play</li>
+</ul>
+<p>That&rsquo;s it. That&rsquo;s the whole family. Eight core products, two close cousins, and one consumer app. You won&rsquo;t need all of them, but you should know they exist.</p>
+<h2 id="one-more-thing-where-does-ems-fit">One more thing, where does EMS fit?<a hidden class="anchor" aria-hidden="true" href="#one-more-thing-where-does-ems-fit">#</a></h2>
+<p>If you&rsquo;ve been around Microsoft licensing long enough, you&rsquo;ve seen the phrase <strong>Enterprise Mobility + Security (EMS)</strong> in proposals, quotes, or old contracts. EMS is the identity + management + protection bundle that predates Microsoft 365 E3/E5 and is still actively sold — especially to organisations that don&rsquo;t need the full Microsoft 365 stack but do need the security and management layer on top of their existing productivity suite.</p>
+<p>I&rsquo;ll write about it sometime later, a separate post on EMS E3 and EMS E5, what&rsquo;s actually in each, and when it&rsquo;s the right buy instead of (or alongside) Microsoft 365.</p>
+<!--**[Enterprise Mobility + Security Explained](/posts/enterprise-mobility-security-explained/).**-->
+<h2 id="whats-next">What&rsquo;s next<a hidden class="anchor" aria-hidden="true" href="#whats-next">#</a></h2>
+<p>In <strong>Part 2</strong> we zoom into the four XDR workloads and look at how they actually correlate signals, with a real multi-stage attack example that walks through all four in sequence.</p>
+<blockquote>
+<p>🔗 <strong>Related deep-dive series:</strong> If you&rsquo;re already comfortable with the Microsoft Defender landscape and want to see what&rsquo;s possible on top of it, start here: <strong><a href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">How We Built a Gold-Winning GRC Programme on Microsoft Secure Score</a></strong>.</p>
+</blockquote>
+<p>Follow me on <a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a> for new-post notifications, or subscribe via RSS at the top of the page.</p>
+<h2 id="related-questions-readers-often-ask">Related Questions Readers Often Ask<a hidden class="anchor" aria-hidden="true" href="#related-questions-readers-often-ask">#</a></h2>
+<ul>
+<li>
+<p><strong>&ldquo;Do I need all Microsoft Defender products?&rdquo;</strong> No. Most organisations start with Defender for Endpoint (device protection) and Defender for Office 365 (email security), then add Identity and Cloud Apps as their environment matures. See the individual workload sections above for when each applies.</p>
+</li>
+<li>
+<p><strong>&ldquo;What&rsquo;s included in Microsoft 365 E5 Security?&rdquo;</strong> All four core XDR workloads are included: Defender for Endpoint, Defender for Office 365 (Plan 2), Defender for Identity, and Defender for Cloud Apps. You also get the unified XDR portal and cross product correlation.</p>
+</li>
+<li>
+<p><strong>&ldquo;Can I use Microsoft Defender without Microsoft 365?&rdquo;</strong> Yes, standalone licensing exists. Each workload can be purchased separately (Defender for Endpoint Plan 1/2, Defender for Office 365 Plan 1/2, etc.), which is useful if you only need specific protection layers.</p>
+</li>
+<li>
+<p><strong>&ldquo;Is Microsoft Defender good enough for ISO 27001 compliance?&rdquo;</strong> Yes, when properly configured. The four core workloads cover most technical controls in Annex A (A.8, A.9, A.12, A.13). Many organizations use Microsoft Secure Score as ongoing audit evidence. See my <a href="http://localhost:1313/posts/secure-score-grc-part-0-intro/">Secure Score GRC series</a> for the full mapping.</p>
+</li>
+</ul>
+<h2 id="microsoft-learn-resources">Microsoft Learn resources<a hidden class="anchor" aria-hidden="true" href="#microsoft-learn-resources">#</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/defender/">Microsoft Defender products and services hub</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender">Microsoft Defender XDR overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint">Microsoft Defender for Endpoint overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-office-365/mdo-about">Microsoft Defender for Office 365 overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-for-identity/what-is">Microsoft Defender for Identity overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps">Microsoft Defender for Cloud Apps overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management">Microsoft Defender Vulnerability Management overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-for-iot/microsoft-defender-iot">Microsoft Defender for IoT overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/unified-secops-platform/overview-unified-security">Microsoft Sentinel overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management">Microsoft Security Exposure Management overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/defender-for-cloud/">Microsoft Defender for Cloud overview</a></li>
+</ul>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-defender-xdr/">Microsoft Defender XDR</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-endpoint/">Microsoft Defender for Endpoint</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-office-365/">Microsoft Defender for Office 365</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-identity/">Microsoft Defender for Identity</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-cloud-apps/">Microsoft Defender for Cloud Apps</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-vulnerability-management/">Microsoft Defender Vulnerability Management</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-sentinel/">Microsoft Sentinel</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-e5-security/">Microsoft 365 E5 Security</a></li>
+      <li><a href="http://localhost:1313/tags/xdr-implementation/">XDR Implementation</a></li>
+      <li><a href="http://localhost:1313/tags/ciso-guide/">CISO Guide</a></li>
+      <li><a href="http://localhost:1313/tags/security-operations/">Security Operations</a></li>
+      <li><a href="http://localhost:1313/tags/endpoint-security/">Endpoint Security</a></li>
+      <li><a href="http://localhost:1313/tags/email-security/">Email Security</a></li>
+      <li><a href="http://localhost:1313/tags/identity-security/">Identity Security</a></li>
+      <li><a href="http://localhost:1313/tags/iso-27001/">ISO 27001</a></li>
+      <li><a href="http://localhost:1313/tags/nis2-compliance/">NIS2 Compliance</a></li>
+      <li><a href="http://localhost:1313/tags/security-architecture/">Security Architecture</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/secure-score-grc-part-3-operations/">
+    <span class="title">« Prev</span>
+    <span>Secure Score P3: Operations</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/00-mdvm-bridge-from-771-days-to-4-hours/">
+    <span class="title">Next »</span>
+    <span>Microsoft Defender Vulnerability Management: 771 Days to 4 Hours</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Defender P1: How Many Exist? on x"
+            href="https://x.com/intent/tweet/?text=Defender%20P1%3a%20How%20Many%20Exist%3f&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fdefender-demystified-series%2fdefender-demystified-part-1-what-is-microsoft-defender%2f&amp;hashtags=MicrosoftDefenderXDR%2cMicrosoftDefenderforEndpoint%2cMicrosoftDefenderforOffice365%2cMicrosoftDefenderforIdentity%2cMicrosoftDefenderforCloudApps%2cMicrosoftDefenderVulnerabilityManagement%2cMicrosoftSentinel%2cMicrosoft365E5Security%2cXDRImplementation%2cCISOGuide%2cSecurityOperations%2cEndpointSecurity%2cEmailSecurity%2cIdentitySecurity%2cISO27001%2cNIS2Compliance%2cSecurityArchitecture">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Defender P1: How Many Exist? on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fdefender-demystified-series%2fdefender-demystified-part-1-what-is-microsoft-defender%2f&amp;title=Defender%20P1%3a%20How%20Many%20Exist%3f&amp;summary=Defender%20P1%3a%20How%20Many%20Exist%3f&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fdefender-demystified-series%2fdefender-demystified-part-1-what-is-microsoft-defender%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Defender P1: How Many Exist? on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fdefender-demystified-series%2fdefender-demystified-part-1-what-is-microsoft-defender%2f&title=Defender%20P1%3a%20How%20Many%20Exist%3f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

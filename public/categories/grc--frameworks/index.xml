@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>GRC &amp; Frameworks on My New Hugo Project</title>
+    <title>GRC &amp; Frameworks on Microsoft 365 Security Insights</title>
     <link>http://localhost:1313/categories/grc--frameworks/</link>
-    <description>Recent content in GRC &amp; Frameworks on My New Hugo Project</description>
+    <description>Recent content in GRC &amp; Frameworks on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 07:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/grc--frameworks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Secure Score για τον ΥΑΣΠΕ</title>
       <link>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</link>
       <pubDate>Mon, 27 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</guid>
-      <description>Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024.</description>
+      <description>Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.</description>
     </item>
     <item>
       <title>Gold GRC on Microsoft Secure Score</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-0-intro/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-0-intro/</guid>
-      <description>Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate.</description>
+      <description>Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools.</description>
     </item>
     <item>
       <title>Secure Score P1: 1st Recommendation</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</link>
       <pubDate>Mon, 27 Apr 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</guid>
-      <description>Part 1 of the Secure Score series. A beginner-friendly walk through a single Microsoft Secure Score recommendation — every field on the screen, what each one means, and the small observations that help new professionals start extracting value in under an hour.</description>
+      <description>How to read a Microsoft Secure Score recommendation: every field on the details pane explained for junior admins and Tier 1 SOC analysts.</description>
     </item>
     <item>
       <title>Secure Score P2: Defender XDR</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</link>
       <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</guid>
-      <description>Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it.</description>
+      <description>Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here&amp;#39;s where every score point comes from.</description>
     </item>
     <item>
       <title>Secure Score P3: Operations</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-3-operations/</link>
       <pubDate>Thu, 21 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-3-operations/</guid>
-      <description>Part 3 of the Secure Score series. How to actually run Microsoft Secure Score day-to-day: prioritizing 260+ recommendations, building a change management process that doesn&amp;rsquo;t break production, mapping controls to ISO 27001 and NIS2, collecting audit evidence, and reporting to the board.</description>
+      <description>Microsoft Secure Score in daily operations: prioritization framework, formal remediation workflow, ISO 27001 and NIS2 control mapping, continuous monitoring, and audit evidence collection.</description>
     </item>
   </channel>
 </rss>

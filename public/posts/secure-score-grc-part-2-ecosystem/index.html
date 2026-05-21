@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Secure Score P2: Defender XDR | Microsoft 365 Security Insights</title>
+<meta name="keywords" content="where does Microsoft Secure Score data come from, which Microsoft products contribute to Secure Score, Microsoft Secure Score Exposure Management, Microsoft Secure Score license dependency, why are some Secure Score recommendations missing, Microsoft Secure Score refresh time, Microsoft Secure Score for ISO 27001, Microsoft Secure Score as audit evidence, Microsoft Secure Score NIS2 compliance">
+<meta name="description" content="Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here&#39;s where every score point comes from.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Secure Score P2: Defender XDR\"",
+  "description": "\"Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-05-04T07:00:00+03:00\"",
+  "dateModified": "\"2026-05-21T13:42:15+03:00\"",
+  "image": "\"http://localhost:1313/images/MSS.png\"",
+  "url": "\"http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/\"",
+  "wordCount":  1742 ,
+  "keywords": "\"Microsoft Secure Score, Microsoft Defender XDR, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, Microsoft Entra ID, Microsoft Purview, Microsoft 365 Security, Exposure Management, Cyber GRC, NIS2, ISO 27001\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Secure Score P2: Defender XDR">
+  <meta property="og:description" content="Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here&#39;s where every score point comes from.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-05-04T07:00:00+03:00">
+    <meta property="article:modified_time" content="2026-05-21T13:42:15+03:00">
+    <meta property="article:tag" content="Microsoft Secure Score">
+    <meta property="article:tag" content="Microsoft Defender XDR">
+    <meta property="article:tag" content="Microsoft Defender for Endpoint">
+    <meta property="article:tag" content="Microsoft Defender for Office 365">
+    <meta property="article:tag" content="Microsoft Defender for Identity">
+    <meta property="article:tag" content="Microsoft Entra ID">
+    <meta property="og:image" content="http://localhost:1313/images/MSS.png">
+      <meta property="og:see_also" content="http://localhost:1313/posts/secure-score-grc-part-0-intro/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/secure-score-grc-part-3-operations/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/MSS.png">
+  <meta name="twitter:title" content="Secure Score P2: Defender XDR">
+  <meta name="twitter:description" content="Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here&#39;s where every score point comes from.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Secure Score P2: Defender XDR",
+      "item": "http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Secure Score P2: Defender XDR",
+  "name": "Secure Score P2: Defender XDR",
+  "description": "Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here's where every score point comes from.",
+  "keywords": [
+    "where does Microsoft Secure Score data come from", "which Microsoft products contribute to Secure Score", "Microsoft Secure Score Exposure Management", "Microsoft Secure Score license dependency", "why are some Secure Score recommendations missing", "Microsoft Secure Score refresh time", "Microsoft Secure Score for ISO 27001", "Microsoft Secure Score as audit evidence", "Microsoft Secure Score NIS2 compliance"
+  ],
+  "articleBody": "A small moment most beginners hit In Part 1 we opened a single Microsoft Secure Score recommendation and walked through every field. By now you can look at a recommendation and understand what you’re seeing.\nBut if you’ve been clicking around for a few days, you’ve probably hit this moment: you look at your overall score, and you wonder, where does this number actually come from? Who’s measuring what? Is Microsoft running some kind of scan on my tenant? And why are there recommendations about products I didn’t even know I had?\nThese are good questions. The answers are genuinely useful to know, and once they click, the whole Microsoft Defender portal stops feeling like a random collection of features and starts feeling like a system.\nThis is that post.\nThe honest, short version Microsoft Secure Score isn’t a product on its own. It’s a scoreboard that reads configuration data from a bunch of other Microsoft products and gives you a single number.\nEach of those other products already knows what it should be configured like. Microsoft Secure Score asks them “hey, is this specific thing configured correctly in this tenant?”, gets a yes/no back, tallies the results, and shows you the total.\nThat’s really it. The rest of this post is just unpacking which products contribute what, and how to trace a score point back to its source.\nThe Microsoft Defender family in one paragraph The short version for now: Microsoft groups its security products into a family called Microsoft Defender, the umbrella brand being Microsoft Defender XDR, as described in the (Microsoft Defender XDR documentation). Inside that umbrella are several workloads, Microsoft Defender for Endpoint (devices), Microsoft Defender for Office 365 (email and Teams), Microsoft Defender for Identity (Active Directory), Microsoft Defender for Cloud Apps (SaaS apps), plus a couple of close cousins like Microsoft Defender for Cloud (Azure workloads). A full deep dive into the Microsoft Defender family is on the way in a dedicated companion series, Microsoft Defender Demystified, starting in June 2026.\nMicrosoft Secure Score reads from most of these.\nWhere Microsoft Secure Score physically lives Remember from Part 1, the navigation path is:\nsecurity.microsoft.com → Exposure management → Microsoft Secure Score\nThe important word is Exposure management. Microsoft Secure Score moved into that section a while back, and it lives alongside other posture-related features.\n📷 Image 1 — The Exposure management section in the left navigation.\nMicrosoft Security Exposure Management is a newer Microsoft surface that tries to answer “how exposed are we?”. It includes:\nYour attack surface (what an attacker could see from outside) Your exposure insights (what risks matter most right now) Microsoft Secure Score (how configured-correctly your tenant is) Other posture signals Microsoft Secure Score is one of several posture instruments that live here. For now you don’t need to use the other ones, just notice they exist and they’re related.\nThe products that feed your Microsoft Secure Score This is the part that usually surprises new professionals. Your Microsoft Secure Score is calculated from configuration data in many different Microsoft products. Here’s the main list:\n📷 Image 2 — The Recommended actions list with the Category column visible.\nMicrosoft Entra ID (identity) Microsoft Entra ID is Microsoft’s cloud identity and access management service. It provides a big chunk of your Microsoft Secure Score recommendations, things like:\nMultifactor authentication policies Conditional Access policies Password protection Risk-based sign-in policies Self-service password reset Privileged account controls Any recommendation with a badge or category of Identity comes from Microsoft Entra ID.\nMicrosoft Defender for Endpoint (devices) Microsoft Defender for Endpoint protects the devices in your fleet. Its Microsoft Secure Score contribution covers:\nWhether antivirus is enabled and up to date Whether attack surface reduction rules are configured Whether network protection is on Device security baselines and exposure levels Recommendations with the Device category come from here. If you see very few Device recommendations, it usually means Microsoft Defender for Endpoint isn’t fully deployed yet.\nMicrosoft Defender for Office 365 (email and Teams) Microsoft Defender for Office 365 protects email and Microsoft Teams. Its Microsoft Secure Score contributions include:\nAnti-phishing policies Safe Links and Safe Attachments policies Anti-spam and anti-malware configurations DKIM, SPF, DMARC email authentication Attack Simulation Training usage (in Plan 2) These show up mostly under the Apps or Data category, depending on the specific recommendation.\nMicrosoft Defender for Cloud Apps (SaaS apps) Microsoft Defender for Cloud Apps watches over your SaaS application usage. Its recommendations include:\nCloud app governance policies OAuth app review status Anomaly detection policy coverage Microsoft Purview (data protection and compliance) Microsoft Purview handles data protection and compliance. It contributes recommendations about:\nSensitivity labels being configured Data Loss Prevention (DLP) policies being active Audit log search being enabled Retention policies and records management These show up under the Data category.\nMicrosoft Exchange Online (mail flow) Some foundational email configuration recommendations come directly from Microsoft Exchange Online, things like mailbox auditing settings, modern authentication, and external forwarding restrictions. They usually appear with Apps or Data badges.\nTracing one score point back to its source Here’s a concrete exercise that makes all this click. Open your Microsoft Secure Score, pick any recommendation that’s currently To address, and we’ll trace it back to its source together.\nExample: let’s say the recommendation is “Ensure internal phishing protection for Forms is enabled”.\n📷 Image 3 — A recommendation’s Implementation tab showing which Microsoft product configures it.\nThe Implementation tab tells you to go to Microsoft 365 admin center → Settings → Org Settings → Microsoft Forms and enable internal phishing protection. Notice what just happened:\nScoreboard: Microsoft Secure Score (in the Defender portal) Source product: Microsoft Forms (configured in Microsoft 365 admin center) Score answers the question: Is internal phishing protection enabled in Forms? Data collected by: Microsoft Forms, continuously, from tenant settings When you implement the policy in Microsoft 365 admin center, Microsoft Entra ID reports back to Microsoft Secure Score that the configuration has changed. The recommendation’s status flips to Completed (usually within a few hours), and your score goes up by the recommendation’s point value.\nThe insight: Microsoft Secure Score never did anything in your tenant. It’s just asking Microsoft Entra ID a question and reading the answer. The same pattern applies to every other source product.\nWhy don’t I see all Secure Score recommendations? This is a common beginner moment of confusion. You’ve read an article or watched a webinar that mentioned a specific Microsoft Secure Score recommendation, and when you look in your own tenant, it isn’t there.\nThe reason is almost always licensing. Microsoft Secure Score only shows you recommendations for products you’re licensed for. If your tenant doesn’t have Microsoft Defender for Office 365 Plan 2, you won’t see the recommendations that are specific to Plan 2 (like the Attack Simulation Training ones). If you don’t have Microsoft Defender for Cloud Apps, you won’t see any Cloud App recommendations at all.\n📷 Image 4 — The Microsoft 365 admin center licenses page.\nThis is why two people comparing their scores can get confusing numbers. A company with Microsoft 365 E5 might have 180 recommendations; a company with Microsoft 365 E3 might have 120. They’re not being scored against the same set of questions.\nFor a deeper walk through what each license includes, an upcoming post, the Microsoft Defender Demystified — Part 4 (licensing decoder) will cover this in plain language.\nHow long does Microsoft Secure Score take to update? Not instantly. When you make a configuration change in Microsoft Entra ID, Microsoft Defender for Endpoint, or any other source product, there’s a lag before Microsoft Secure Score picks it up.\nIn practice:\nMost recommendations: refresh within 24 hours Some identity and policy recommendations: can take up to 48 hours to update Certain Microsoft Defender for Endpoint recommendations: depend on device check-in frequency, can be longer If you implement a change and your score hasn’t moved by the next day, don’t panic, come back the day after. If it still hasn’t moved after 72 hours, that’s when you’d start investigating, usually the configuration isn’t quite what Microsoft Secure Score is checking for happens occasionally.\nThe history tab tells a story One last part of the page worth knowing about: History.\n📷 Image 5 — The Microsoft Secure Score History tab.\nThe History tab shows every score event over time, when a recommendation got completed, when a new one was added (which drops the score temporarily), when configuration drifted (which can also drop the score).\nThis is genuinely useful when:\nYour score dropped unexpectedly and you want to find out why You want to see progress over a reporting period (“we improved by 12 points last quarter”) You want to track which configuration changes actually moved the number As you get more comfortable with Microsoft Secure Score, the History tab becomes your evidence source for “yes, we did that work” and “here’s when the drop happened” conversations.\nA quick wrap-up Everything we covered in one paragraph: Microsoft Secure Score is a scoreboard inside the Microsoft Defender portal’s Exposure management section. It reads configuration data from several Microsoft products, Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, Microsoft Purview, Microsoft Exchange Online, and gives you a single number. When you implement a recommendation, you’re not changing anything in Microsoft Secure Score itself; you’re changing configuration in one of those source products, which then reports back. The score refreshes within 24–48 hours of configuration changes. Licensing determines which recommendations you can see. The History tab tells you everything that’s happened.\nThat’s the whole mental model. Once you have it, everything else in Microsoft Secure Score, and a surprising amount of the broader Microsoft Defender portal, makes intuitive sense.\nWhat’s next In Microsoft Defender Demystified Series we move into actually managing Microsoft Secure Score as part of a compliance programme, how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.\n🔗 For a ground-up tour of the Microsoft Defender ecosystem, the upcoming Microsoft Defender Demystified series will start there. Subscribe via LinkedIn to be notified when it drops.\nFollow me on LinkedIn for new-post notifications.\nMicrosoft Learn resources Microsoft Secure Score overview How Microsoft Secure Score is calculated Microsoft Security Exposure Management overview Microsoft Defender XDR overview Microsoft Entra ID overview Microsoft Purview overview ",
+  "wordCount" : "1742",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/MSS.png","datePublished": "2026-05-04T07:00:00+03:00",
+  "dateModified": "2026-05-21T13:42:15+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Secure Score P2: Defender XDR
+    </h1>
+    <div class="post-description">
+      Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here&#39;s where every score point comes from.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-05-04 07:00:00 +0300 EEST'>May 4, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/ms-security-blog/edit/main/content/posts/secure-score-grc-part-2-ecosystem.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/MSS.png" alt="Microsoft Secure Score in the Microsoft Defender XDR ecosystem — how Entra ID, Defender for Endpoint, Office 365, and Purview feed the score">
+        <figcaption>Secure Score Series — Part 2: The Defender Ecosystem</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#a-small-moment-most-beginners-hit">A small moment most beginners hit</a></li>
+    <li><a href="#the-honest-short-version">The honest, short version</a></li>
+    <li><a href="#the-microsoft-defender-family-in-one-paragraph">The Microsoft Defender family in one paragraph</a></li>
+    <li><a href="#where-microsoft-secure-score-physically-lives">Where Microsoft Secure Score physically lives</a></li>
+    <li><a href="#the-products-that-feed-your-microsoft-secure-score">The products that feed your Microsoft Secure Score</a>
+      <ul>
+        <li><a href="#microsoft-entra-id-identity">Microsoft Entra ID (identity)</a></li>
+        <li><a href="#microsoft-defender-for-endpoint-devices">Microsoft Defender for Endpoint (devices)</a></li>
+        <li><a href="#microsoft-defender-for-office-365-email-and-teams">Microsoft Defender for Office 365 (email and Teams)</a></li>
+        <li><a href="#microsoft-defender-for-cloud-apps-saas-apps">Microsoft Defender for Cloud Apps (SaaS apps)</a></li>
+        <li><a href="#microsoft-purview-data-protection-and-compliance">Microsoft Purview (data protection and compliance)</a></li>
+        <li><a href="#microsoft-exchange-online-mail-flow">Microsoft Exchange Online (mail flow)</a></li>
+      </ul>
+    </li>
+    <li><a href="#tracing-one-score-point-back-to-its-source">Tracing one score point back to its source</a></li>
+    <li><a href="#why-dont-i-see-all-secure-score-recommendations">Why don&rsquo;t I see all Secure Score recommendations?</a></li>
+    <li><a href="#how-long-does-microsoft-secure-score-take-to-update">How long does Microsoft Secure Score take to update?</a></li>
+    <li><a href="#the-history-tab-tells-a-story">The history tab tells a story</a></li>
+    <li><a href="#a-quick-wrap-up">A quick wrap-up</a></li>
+    <li><a href="#whats-next">What&rsquo;s next</a></li>
+    <li><a href="#microsoft-learn-resources">Microsoft Learn resources</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="a-small-moment-most-beginners-hit">A small moment most beginners hit<a hidden class="anchor" aria-hidden="true" href="#a-small-moment-most-beginners-hit">#</a></h2>
+<p>In <strong><a href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/">Part 1</a></strong> we opened a single Microsoft Secure Score recommendation and walked through every field. By now you can look at a recommendation and understand what you&rsquo;re seeing.</p>
+<p>But if you&rsquo;ve been clicking around for a few days, you&rsquo;ve probably hit this moment: you look at your overall score, and you wonder, <em>where does this number actually come from? Who&rsquo;s measuring what? Is Microsoft running some kind of scan on my tenant? And why are there recommendations about products I didn&rsquo;t even know I had?</em></p>
+<p>These are good questions. The answers are genuinely useful to know, and once they click, the whole Microsoft Defender portal stops feeling like a random collection of features and starts feeling like a system.</p>
+<p>This is that post.</p>
+<h2 id="the-honest-short-version">The honest, short version<a hidden class="anchor" aria-hidden="true" href="#the-honest-short-version">#</a></h2>
+<p>Microsoft Secure Score isn&rsquo;t a product on its own. It&rsquo;s <strong>a scoreboard that reads configuration data from a bunch of other Microsoft products and gives you a single number.</strong></p>
+<p>Each of those other products already knows what it should be configured like. Microsoft Secure Score asks them <em>&ldquo;hey, is this specific thing configured correctly in this tenant?&rdquo;</em>, gets a yes/no back, tallies the results, and shows you the total.</p>
+<p>That&rsquo;s really it. The rest of this post is just unpacking which products contribute what, and how to trace a score point back to its source.</p>
+<h2 id="the-microsoft-defender-family-in-one-paragraph">The Microsoft Defender family in one paragraph<a hidden class="anchor" aria-hidden="true" href="#the-microsoft-defender-family-in-one-paragraph">#</a></h2>
+<p>The short version for now: Microsoft groups its security products into a family called <strong>Microsoft Defender</strong>, the umbrella brand being <strong>Microsoft Defender XDR</strong>, as described in the (<a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender">Microsoft Defender XDR documentation</a>). Inside that umbrella are several workloads, Microsoft Defender for Endpoint (devices), Microsoft Defender for Office 365 (email and Teams), Microsoft Defender for Identity (Active Directory), Microsoft Defender for Cloud Apps (SaaS apps), plus a couple of close cousins like Microsoft Defender for Cloud (Azure workloads). A full deep dive into the Microsoft Defender family is on the way in a dedicated companion series, <strong>Microsoft Defender Demystified</strong>, starting in June 2026.</p>
+<p>Microsoft Secure Score reads from most of these.</p>
+<h2 id="where-microsoft-secure-score-physically-lives">Where Microsoft Secure Score physically lives<a hidden class="anchor" aria-hidden="true" href="#where-microsoft-secure-score-physically-lives">#</a></h2>
+<p>Remember from <strong><a href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/">Part 1</a></strong>, the navigation path is:</p>
+<p><strong><code>security.microsoft.com</code> → Exposure management → Microsoft Secure Score</strong></p>
+<p>The important word is <strong>Exposure management</strong>. Microsoft Secure Score moved into that section a while back, and it lives alongside other posture-related features.</p>
+<p><a href="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_1.png"><img alt="Microsoft Secure Score location in Defender portal Exposure management navigation" loading="lazy" src="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_1.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 1 — The Exposure management section in the left navigation.</strong></p>
+</blockquote>
+<p><strong><a href="https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management">Microsoft Security Exposure Management</a></strong> is a newer Microsoft surface that tries to answer <em>&ldquo;how exposed are we?&rdquo;</em>. It includes:</p>
+<ul>
+<li>Your <strong>attack surface</strong> (what an attacker could see from outside)</li>
+<li>Your <strong>exposure insights</strong> (what risks matter most right now)</li>
+<li><strong>Microsoft Secure Score</strong> (how configured-correctly your tenant is)</li>
+<li>Other posture signals</li>
+</ul>
+<p>Microsoft Secure Score is one of several posture instruments that live here. For now you don&rsquo;t need to use the other ones, just notice they exist and they&rsquo;re related.</p>
+<h2 id="the-products-that-feed-your-microsoft-secure-score">The products that feed your Microsoft Secure Score<a hidden class="anchor" aria-hidden="true" href="#the-products-that-feed-your-microsoft-secure-score">#</a></h2>
+<p>This is the part that usually surprises new professionals. Your Microsoft Secure Score is calculated from configuration data in <strong>many different Microsoft products</strong>. Here&rsquo;s the main list:</p>
+<p><a href="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_2.png"><img alt="Microsoft Secure Score Recommended actions showing Identity Data Device Apps source categories" loading="lazy" src="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_2.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 2 — The Recommended actions list with the Category column visible.</strong></p>
+</blockquote>
+<h3 id="microsoft-entra-id-identity">Microsoft Entra ID (identity)<a hidden class="anchor" aria-hidden="true" href="#microsoft-entra-id-identity">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/entra/fundamentals/whatis">Microsoft Entra ID</a></strong> is Microsoft&rsquo;s cloud identity and access management service. It provides a big chunk of your Microsoft Secure Score recommendations, things like:</p>
+<ul>
+<li>Multifactor authentication policies</li>
+<li>Conditional Access policies</li>
+<li>Password protection</li>
+<li>Risk-based sign-in policies</li>
+<li>Self-service password reset</li>
+<li>Privileged account controls</li>
+</ul>
+<p>Any recommendation with a badge or category of <strong>Identity</strong> comes from Microsoft Entra ID.</p>
+<h3 id="microsoft-defender-for-endpoint-devices">Microsoft Defender for Endpoint (devices)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-endpoint-devices">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint">Microsoft Defender for Endpoint</a></strong> protects the devices in your fleet. Its Microsoft Secure Score contribution covers:</p>
+<ul>
+<li>Whether antivirus is enabled and up to date</li>
+<li>Whether attack surface reduction rules are configured</li>
+<li>Whether network protection is on</li>
+<li>Device security baselines and exposure levels</li>
+</ul>
+<p>Recommendations with the <strong>Device</strong> category come from here. If you see very few Device recommendations, it usually means Microsoft Defender for Endpoint isn&rsquo;t fully deployed yet.</p>
+<h3 id="microsoft-defender-for-office-365-email-and-teams">Microsoft Defender for Office 365 (email and Teams)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-office-365-email-and-teams">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-office-365/mdo-about">Microsoft Defender for Office 365</a></strong> protects email and Microsoft Teams. Its Microsoft Secure Score contributions include:</p>
+<ul>
+<li>Anti-phishing policies</li>
+<li>Safe Links and Safe Attachments policies</li>
+<li>Anti-spam and anti-malware configurations</li>
+<li>DKIM, SPF, DMARC email authentication</li>
+<li>Attack Simulation Training usage (in Plan 2)</li>
+</ul>
+<p>These show up mostly under the <strong>Apps</strong> or <strong>Data</strong> category, depending on the specific recommendation.</p>
+<h3 id="microsoft-defender-for-cloud-apps-saas-apps">Microsoft Defender for Cloud Apps (SaaS apps)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-cloud-apps-saas-apps">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps">Microsoft Defender for Cloud Apps</a></strong> watches over your SaaS application usage. Its recommendations include:</p>
+<ul>
+<li>Cloud app governance policies</li>
+<li>OAuth app review status</li>
+<li>Anomaly detection policy coverage</li>
+</ul>
+<h3 id="microsoft-purview-data-protection-and-compliance">Microsoft Purview (data protection and compliance)<a hidden class="anchor" aria-hidden="true" href="#microsoft-purview-data-protection-and-compliance">#</a></h3>
+<p><strong><a href="https://learn.microsoft.com/en-us/purview/purview">Microsoft Purview</a></strong> handles data protection and compliance. It contributes recommendations about:</p>
+<ul>
+<li>Sensitivity labels being configured</li>
+<li>Data Loss Prevention (DLP) policies being active</li>
+<li>Audit log search being enabled</li>
+<li>Retention policies and records management</li>
+</ul>
+<p>These show up under the <strong>Data</strong> category.</p>
+<h3 id="microsoft-exchange-online-mail-flow">Microsoft Exchange Online (mail flow)<a hidden class="anchor" aria-hidden="true" href="#microsoft-exchange-online-mail-flow">#</a></h3>
+<p>Some foundational email configuration recommendations come directly from <strong>Microsoft Exchange Online</strong>, things like mailbox auditing settings, modern authentication, and external forwarding restrictions. They usually appear with <strong>Apps</strong> or <strong>Data</strong> badges.</p>
+<h2 id="tracing-one-score-point-back-to-its-source">Tracing one score point back to its source<a hidden class="anchor" aria-hidden="true" href="#tracing-one-score-point-back-to-its-source">#</a></h2>
+<p>Here&rsquo;s a concrete exercise that makes all this click. Open your Microsoft Secure Score, pick any recommendation that&rsquo;s currently <strong>To address</strong>, and we&rsquo;ll trace it back to its source together.</p>
+<p>Example: let&rsquo;s say the recommendation is <em>&ldquo;Ensure internal phishing protection for Forms is enabled&rdquo;</em>.</p>
+<p><a href="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_3.png"><img alt="Tracing a Microsoft Secure Score recommendation back to Microsoft Entra ID source product" loading="lazy" src="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_3.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 3 — A recommendation&rsquo;s Implementation tab showing which Microsoft product configures it.</strong></p>
+</blockquote>
+<p>The Implementation tab tells you to go to <strong>Microsoft 365 admin center → Settings → Org Settings → Microsoft Forms</strong> and enable internal phishing
+protection. Notice what just happened:</p>
+<ul>
+<li><strong>Scoreboard:</strong> Microsoft Secure Score (in the Defender portal)</li>
+<li><strong>Source product:</strong> Microsoft Forms (configured in Microsoft 365 admin center)</li>
+<li><strong>Score answers the question:</strong> <em>Is internal phishing protection enabled in Forms?</em></li>
+<li><strong>Data collected by:</strong> Microsoft Forms, continuously, from tenant settings</li>
+</ul>
+<p>When you implement the policy in Microsoft 365 admin center, Microsoft Entra ID reports back to Microsoft Secure Score that the configuration has changed. The recommendation&rsquo;s status flips to <strong>Completed</strong> (usually within a few hours), and your score goes up by the recommendation&rsquo;s point value.</p>
+<p><strong>The insight:</strong> Microsoft Secure Score never <em>did</em> anything in your tenant. It&rsquo;s just asking Microsoft Entra ID a question and reading the answer. The same pattern applies to every other source product.</p>
+<h2 id="why-dont-i-see-all-secure-score-recommendations">Why don&rsquo;t I see all Secure Score recommendations?<a hidden class="anchor" aria-hidden="true" href="#why-dont-i-see-all-secure-score-recommendations">#</a></h2>
+<p>This is a common beginner moment of confusion. You&rsquo;ve read an article or watched a webinar that mentioned a specific Microsoft Secure Score recommendation, and when you look in your own tenant, it isn&rsquo;t there.</p>
+<p>The reason is almost always <strong>licensing</strong>. Microsoft Secure Score only shows you recommendations for products you&rsquo;re <strong>licensed for</strong>. If your tenant doesn&rsquo;t have Microsoft Defender for Office 365 Plan 2, you won&rsquo;t see the recommendations that are specific to Plan 2 (like the Attack Simulation Training ones). If you don&rsquo;t have Microsoft Defender for Cloud Apps, you won&rsquo;t see any Cloud App recommendations at all.</p>
+<p><a href="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_4.png"><img alt="Microsoft 365 admin center licenses page showing which Secure Score recommendations apply to your tenant" loading="lazy" src="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_4.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 4 — The Microsoft 365 admin center licenses page.</strong></p>
+</blockquote>
+<p>This is why two people comparing their scores can get confusing numbers. A company with Microsoft 365 E5 might have 180 recommendations; a company with Microsoft 365 E3 might have 120. They&rsquo;re not being scored against the same set of questions.</p>
+<p>For a deeper walk through what each license includes, an upcoming post, the <strong>Microsoft Defender Demystified — Part 4 (licensing decoder)</strong> will cover this in plain language.</p>
+<!--(/posts/defender-demystified-part-4-licensing-decoder/)-->
+<h2 id="how-long-does-microsoft-secure-score-take-to-update">How long does Microsoft Secure Score take to update?<a hidden class="anchor" aria-hidden="true" href="#how-long-does-microsoft-secure-score-take-to-update">#</a></h2>
+<p>Not instantly. When you make a configuration change in Microsoft Entra ID, Microsoft Defender for Endpoint, or any other source product, there&rsquo;s a lag before Microsoft Secure Score picks it up.</p>
+<p>In practice:</p>
+<ul>
+<li><strong>Most recommendations:</strong> refresh within 24 hours</li>
+<li><strong>Some identity and policy recommendations:</strong> can take up to 48 hours to update</li>
+<li><strong>Certain Microsoft Defender for Endpoint recommendations:</strong> depend on device check-in frequency, can be longer</li>
+</ul>
+<p>If you implement a change and your score hasn&rsquo;t moved by the next day, don&rsquo;t panic, come back the day after. If it still hasn&rsquo;t moved after 72 hours, that&rsquo;s when you&rsquo;d start investigating, usually the configuration isn&rsquo;t quite what Microsoft Secure Score is checking for happens occasionally.</p>
+<h2 id="the-history-tab-tells-a-story">The history tab tells a story<a hidden class="anchor" aria-hidden="true" href="#the-history-tab-tells-a-story">#</a></h2>
+<p>One last part of the page worth knowing about: <strong>History</strong>.</p>
+<p><a href="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_5.png"><img alt="Microsoft Secure Score History tab as audit evidence and ISO 27001 compliance trail" loading="lazy" src="http://localhost:1313/images/SS_GRC_P2_Ecosystem_image_5.png"></a></p>
+<blockquote>
+<p>📷 <strong>Image 5 — The Microsoft Secure Score History tab.</strong></p>
+</blockquote>
+<p>The History tab shows every score event over time, when a recommendation got completed, when a new one was added (which drops the score temporarily), when configuration drifted (which can also drop the score).</p>
+<p>This is genuinely useful when:</p>
+<ul>
+<li>Your score dropped unexpectedly and you want to find out why</li>
+<li>You want to see progress over a reporting period (<em>&ldquo;we improved by 12 points last quarter&rdquo;</em>)</li>
+<li>You want to track which configuration changes actually moved the number</li>
+</ul>
+<p>As you get more comfortable with Microsoft Secure Score, the History tab becomes your evidence source for <em>&ldquo;yes, we did that work&rdquo;</em> and <em>&ldquo;here&rsquo;s when the drop happened&rdquo;</em> conversations.</p>
+<h2 id="a-quick-wrap-up">A quick wrap-up<a hidden class="anchor" aria-hidden="true" href="#a-quick-wrap-up">#</a></h2>
+<p>Everything we covered in one paragraph: Microsoft Secure Score is a scoreboard inside the Microsoft Defender portal&rsquo;s Exposure management section. It reads configuration data from several Microsoft products, Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, Microsoft Purview, Microsoft Exchange Online, and gives you a single number. When you implement a recommendation, you&rsquo;re not changing anything in Microsoft Secure Score itself; you&rsquo;re changing configuration in one of those source products, which then reports back. The score refreshes within 24–48 hours of configuration changes. Licensing determines which recommendations you can see. The History tab tells you everything that&rsquo;s happened.</p>
+<p>That&rsquo;s the whole mental model. Once you have it, everything else in Microsoft Secure Score, and a surprising amount of the broader Microsoft Defender portal, makes intuitive sense.</p>
+<h2 id="whats-next">What&rsquo;s next<a hidden class="anchor" aria-hidden="true" href="#whats-next">#</a></h2>
+<p>In <strong>Microsoft Defender Demystified Series</strong> we move into actually managing Microsoft Secure Score as part of a compliance programme, how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.</p>
+<blockquote>
+<p>🔗 For a ground-up tour of the Microsoft Defender ecosystem, the upcoming <strong>Microsoft Defender Demystified</strong> series will start there. <em>Subscribe via <a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a> to be notified when it drops.</em></p>
+</blockquote>
+<p>Follow me on <a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a> for new-post notifications.</p>
+<h2 id="microsoft-learn-resources">Microsoft Learn resources<a hidden class="anchor" aria-hidden="true" href="#microsoft-learn-resources">#</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score">Microsoft Secure Score overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions">How Microsoft Secure Score is calculated</a></li>
+<li><a href="https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management">Microsoft Security Exposure Management overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender">Microsoft Defender XDR overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/fundamentals/whatis">Microsoft Entra ID overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/purview/purview">Microsoft Purview overview</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-secure-score/">Microsoft Secure Score</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-xdr/">Microsoft Defender XDR</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-endpoint/">Microsoft Defender for Endpoint</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-office-365/">Microsoft Defender for Office 365</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-identity/">Microsoft Defender for Identity</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-entra-id/">Microsoft Entra ID</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-purview/">Microsoft Purview</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/exposure-management/">Exposure Management</a></li>
+      <li><a href="http://localhost:1313/tags/cyber-grc/">Cyber GRC</a></li>
+      <li><a href="http://localhost:1313/tags/nis2/">NIS2</a></li>
+      <li><a href="http://localhost:1313/tags/iso-27001/">ISO 27001</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/secure-score-grc-part-1-anatomy/">
+    <span class="title">« Prev</span>
+    <span>Secure Score P1: 1st Recommendation</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/secure-score-grc-part-3-operations/">
+    <span class="title">Next »</span>
+    <span>Secure Score P3: Operations</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Secure Score P2: Defender XDR on x"
+            href="https://x.com/intent/tweet/?text=Secure%20Score%20P2%3a%20Defender%20XDR&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-2-ecosystem%2f&amp;hashtags=MicrosoftSecureScore%2cMicrosoftDefenderXDR%2cMicrosoftDefenderforEndpoint%2cMicrosoftDefenderforOffice365%2cMicrosoftDefenderforIdentity%2cMicrosoftEntraID%2cMicrosoftPurview%2cMicrosoft365Security%2cExposureManagement%2cCyberGRC%2cNIS2%2cISO27001">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Secure Score P2: Defender XDR on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-2-ecosystem%2f&amp;title=Secure%20Score%20P2%3a%20Defender%20XDR&amp;summary=Secure%20Score%20P2%3a%20Defender%20XDR&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-2-ecosystem%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Secure Score P2: Defender XDR on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fsecure-score-grc-part-2-ecosystem%2f&title=Secure%20Score%20P2%3a%20Defender%20XDR">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

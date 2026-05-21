@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>ΥΑΣΠΕ on My New Hugo Project</title>
+    <title>ΥΑΣΠΕ on Microsoft 365 Security Insights</title>
     <link>http://localhost:1313/tags/%CF%85%CE%B1%CF%83%CF%80%CE%B5/</link>
-    <description>Recent content in ΥΑΣΠΕ on My New Hugo Project</description>
+    <description>Recent content in ΥΑΣΠΕ on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2026 10:41:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%CF%85%CE%B1%CF%83%CF%80%CE%B5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Secure Score για τον ΥΑΣΠΕ</title>
       <link>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</link>
       <pubDate>Mon, 27 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</guid>
-      <description>Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024.</description>
+      <description>Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.</description>
     </item>
   </channel>
 </rss>

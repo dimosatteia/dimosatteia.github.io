@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Security Copilot on My New Hugo Project</title>
+    <title>Security Copilot on Microsoft 365 Security Insights</title>
     <link>http://localhost:1313/tags/security-copilot/</link>
-    <description>Recent content in Security Copilot on My New Hugo Project</description>
+    <description>Recent content in Security Copilot on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 May 2026 10:54:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/security-copilot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About This Security Blog</title>
       <link>http://localhost:1313/posts/welcome/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/welcome/</guid>
-      <description>An intro to the blog, the topics I&amp;rsquo;ll cover, and the first series planned for 2026.</description>
+      <description>A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros.</description>
     </item>
     <item>
       <title>Microsoft Security Copilot in Production — Part 1: Architecture &amp; Licensing You Need to Understand First</title>
       <link>http://localhost:1313/posts/standalone-series/security-copilot-part-1-architecture-licensing/</link>
       <pubDate>Wed, 22 Apr 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/standalone-series/security-copilot-part-1-architecture-licensing/</guid>
-      <description>Part 1 of the Security Copilot in Production series. Architecture, SCU pricing model, plugin model, and the governance decisions you should make before pilot.</description>
+      <description>Before you turn on Microsoft Security Copilot, understand what you&amp;#39;re actually buying, how it integrates with the Defender stack, and where it can quietly cost you money.</description>
     </item>
   </channel>
 </rss>

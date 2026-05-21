@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Endpoint Security on My New Hugo Project</title>
+    <title>Endpoint Security on Microsoft 365 Security Insights</title>
     <link>http://localhost:1313/categories/endpoint-security/</link>
-    <description>Recent content in Endpoint Security on My New Hugo Project</description>
+    <description>Recent content in Endpoint Security on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Apr 2026 10:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/endpoint-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out</title>
       <link>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/</guid>
-      <description>Microsoft Defender for Endpoint explained the way a working professional needs it. Plan 1 and Plan 2 side by side, what each one does, how onboarding actually works for Windows, macOS, Linux, iOS, and Android, and the Defender portal configuration settings to check in your first week.</description>
+      <description>A practical, friendly deep dive into Microsoft Defender for Endpoint — Plan 1 vs Plan 2, what each tier actually gives you, how to onboard devices, and the configuration settings that matter most in the first week.</description>
     </item>
   </channel>
 </rss>

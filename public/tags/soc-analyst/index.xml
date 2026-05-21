@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>SOC Analyst on My New Hugo Project</title>
+    <title>SOC Analyst on Microsoft 365 Security Insights</title>
     <link>http://localhost:1313/tags/soc-analyst/</link>
-    <description>Recent content in SOC Analyst on My New Hugo Project</description>
+    <description>Recent content in SOC Analyst on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2026 10:41:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/soc-analyst/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Secure Score P1: 1st Recommendation</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</link>
       <pubDate>Mon, 27 Apr 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</guid>
-      <description>Part 1 of the Secure Score series. A beginner-friendly walk through a single Microsoft Secure Score recommendation — every field on the screen, what each one means, and the small observations that help new professionals start extracting value in under an hour.</description>
+      <description>How to read a Microsoft Secure Score recommendation: every field on the details pane explained for junior admins and Tier 1 SOC analysts.</description>
     </item>
     <item>
       <title>Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out</title>
       <link>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/</guid>
-      <description>Microsoft Defender for Endpoint explained the way a working professional needs it. Plan 1 and Plan 2 side by side, what each one does, how onboarding actually works for Windows, macOS, Linux, iOS, and Android, and the Defender portal configuration settings to check in your first week.</description>
+      <description>A practical, friendly deep dive into Microsoft Defender for Endpoint — Plan 1 vs Plan 2, what each tier actually gives you, how to onboard devices, and the configuration settings that matter most in the first week.</description>
     </item>
     <item>
       <title>Microsoft Defender for Office 365, Up Close Part 1b — From Preset Policies to Advanced Configuration</title>
       <link>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/</link>
       <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/</guid>
-      <description>Microsoft Defender for Office 365 explained in practical terms. Plan 1 vs Plan 2, how preset security policies take the friction out of day-one deployment, and the specific settings for Safe Links, Safe Attachments, and anti-phishing that matter most.</description>
+      <description>A hands-on walk through Microsoft Defender for Office 365 — Plan 1 vs Plan 2 differences, the preset security policies that give you 80% of the value in 10 minutes, and the custom policy configuration that matters for the remaining 20%.</description>
     </item>
     <item>
       <title>Microsoft Defender for Identity, Up Close Part 1c — How Sensors Catch Post-Compromise Attacks</title>
       <link>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/</link>
       <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/</guid>
-      <description>Microsoft Defender for Identity explained the way a practitioner needs it. What sensors are and where they live, how to deploy them to on-premises domain controllers and AD FS servers, the Microsoft Entra ID integration for hybrid environments, and the specific alerts worth tuning first.</description>
+      <description>A practical walkthrough of Microsoft Defender for Identity — what the sensors actually do, how to install them on domain controllers and AD FS servers, what alerts to expect in the first week, and how the new Microsoft Entra ID integration changes the picture.</description>
     </item>
     <item>
       <title>Microsoft Defender for Cloud Apps, Up Close Part 1d — A Practical Tour of the CASB</title>
       <link>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/</link>
       <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/</guid>
-      <description>Microsoft Defender for Cloud Apps explained the way a working professional needs it. Shadow IT discovery through cloud app catalog integration, OAuth app governance, Conditional Access App Control session policies, and the file/activity policies that catch anomalous behaviour.</description>
+      <description>A hands-on walk through Microsoft Defender for Cloud Apps — how Shadow IT discovery actually works, how to review and govern risky OAuth applications, setting up Conditional Access App Control, and the file policies that extend Microsoft Purview into third-party SaaS.</description>
     </item>
     <item>
       <title>Enterprise Mobility &#43; Security Explained — E3 and E5, and When You&#39;d Actually Buy It</title>
       <link>http://localhost:1313/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/</link>
       <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/</guid>
-      <description>Enterprise Mobility + Security explained in plain language. EMS E3 and EMS E5 side by side — identity and access management, endpoint management, information protection, identity-driven security. When the EMS bundle is the right choice versus Microsoft 365 E3 or E5.</description>
+      <description>Enterprise Mobility &#43; Security (EMS) is Microsoft&amp;#39;s identity, management, and protection bundle that predates Microsoft 365 E3/E5 — and it&amp;#39;s still actively sold. A practical walkthrough of EMS E3 ($10.60/user) and EMS E5 ($16.40/user), what&amp;#39;s in each, and when it&amp;#39;s the right purchase instead of (or alongside) Microsoft 365.</description>
     </item>
   </channel>
 </rss>
