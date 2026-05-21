@@ -1,0 +1,174 @@
+name: Notify IndexNow
+
+on:
+  workflow_run:
+    workflows: ["Deploy Hugo site to GitHub Pages"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  notify-indexnow:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Wait for CDN propagation
+        run: |
+          echo "⏳ Waiting 45 seconds for deployment to fully propagate..."
+          sleep 45
+      
+      - name: Verify key file accessibility
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          KEY_URL="https://thecybersec.gr/$INDEXNOW_KEY.txt"
+          echo "🔐 Verifying key file at $KEY_URL"
+          
+          for i in {1..3}; do
+            if curl -sf "$KEY_URL" > /dev/null; then
+              echo "✅ Key file verified!"
+              exit 0
+            fi
+            echo "⚠️ Attempt $i/3 failed, retrying in 10s..."
+            sleep 10
+          done
+          
+          echo "❌ ERROR: Key file not accessible after 3 attempts"
+          exit 1
+      
+      - name: Fetch sitemap and extract URLs with Python
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          SITEMAP_URL="https://thecybersec.gr/sitemap.xml"
+          echo "📥 Fetching sitemap from $SITEMAP_URL"
+          
+          if ! curl -sf "$SITEMAP_URL" -o sitemap.xml; then
+            echo "❌ Failed to fetch sitemap"
+            exit 1
+          fi
+          
+          echo "✅ Sitemap fetched successfully"
+          
+          # Use Python to parse XML properly
+          python3 << 'PYTHON_SCRIPT'
+          import re
+          import json
+          
+          print("🔍 Extracting URLs from sitemap...")
+          
+          # Read sitemap
+          with open('sitemap.xml', 'r', encoding='utf-8') as f:
+              content = f.read()
+          
+          # Extract all <loc> URLs using regex
+          urls = re.findall(r'<loc>(.*?)</loc>', content)
+          
+          print(f"📄 Found {len(urls)} URLs")
+          
+          if len(urls) == 0:
+              print("❌ No URLs found in sitemap")
+              print("Sitemap content preview:")
+              print(content[:500])
+              exit(1)
+          
+          # Show first 5 URLs
+          print("📄 First 5 URLs extracted:")
+          for url in urls[:5]:
+              print(f"  - {url}")
+          
+          # Limit to 10,000 URLs (IndexNow API limit)
+          if len(urls) > 10000:
+              print(f"⚠️ Limiting to 10,000 URLs (found {len(urls)})")
+              urls = urls[:10000]
+          
+          # Build IndexNow payload
+          payload = {
+              "host": "thecybersec.gr",
+              "key": "${{ secrets.INDEXNOW_KEY }}",
+              "keyLocation": "https://thecybersec.gr/${{ secrets.INDEXNOW_KEY }}.txt",
+              "urlList": urls
+          }
+          
+          # Save payload
+          with open('payload.json', 'w', encoding='utf-8') as f:
+              json.dump(payload, f, indent=2, ensure_ascii=False)
+          
+          # Save URL count for later steps
+          with open('url_count.txt', 'w') as f:
+              f.write(str(len(urls)))
+          
+          print("✅ Payload created successfully")
+          print(f"📄 Payload preview (first 3 URLs): {urls[:3]}")
+          PYTHON_SCRIPT
+      
+      - name: Submit to IndexNow API
+        run: |
+          URL_COUNT=$(cat url_count.txt)
+          echo "📤 Submitting $URL_COUNT URLs to IndexNow..."
+          
+          HTTP_CODE=$(curl -s -o response.json -w "%{http_code}" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d @payload.json)
+          
+          echo "📊 HTTP Status: $HTTP_CODE"
+          
+          if [ -s response.json ]; then
+            echo "📄 Response:"
+            cat response.json
+            echo ""
+          fi
+          
+          case "$HTTP_CODE" in
+            200|202)
+              echo "✅ Successfully submitted $URL_COUNT URLs to IndexNow"
+              exit 0
+              ;;
+            400)
+              echo "❌ Bad Request (400)"
+              cat response.json
+              exit 1
+              ;;
+            403)
+              echo "❌ Forbidden (403) - Key verification failed"
+              echo "   Check: https://thecybersec.gr/${{ secrets.INDEXNOW_KEY }}.txt"
+              cat response.json
+              exit 1
+              ;;
+            422)
+              echo "❌ Unprocessable Entity (422)"
+              cat response.json
+              exit 1
+              ;;
+            429)
+              echo "⚠️ Rate Limited (429) - Skipping (not an error)"
+              exit 0
+              ;;
+            *)
+              echo "⚠️ Unexpected status: $HTTP_CODE"
+              cat response.json
+              exit 1
+              ;;
+          esac
+      
+      - name: Create summary
+        if: always()
+        run: |
+          URL_COUNT=$(cat url_count.txt 2>/dev/null || echo "0")
+          
+          cat << EOF >> $GITHUB_STEP_SUMMARY
+          ## 📊 IndexNow Submission Report
+          
+          | Metric | Value |
+          |--------|-------|
+          | URLs Submitted | **$URL_COUNT** |
+          | Domain | \`thecybersec.gr\` |
+          | Status | ${{ job.status }} |
+          
+          ### 🔗 Submitted URLs:
+          \`\`\`json
+          $(cat payload.json 2>/dev/null | head -c 1000 || echo "Payload not available")
+          \`\`\`
+          EOF
