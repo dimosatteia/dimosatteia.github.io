@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microsoft Purview on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/microsoft-purview/</link>
+    <description>Recent content in Microsoft Purview on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 May 2026 10:41:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/microsoft-purview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gold GRC on Microsoft Secure Score</title>
+      <link>http://localhost:1313/posts/secure-score-grc-part-0-intro/</link>
+      <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/secure-score-grc-part-0-intro/</guid>
+      <description>Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate.</description>
+    </item>
+    <item>
+      <title>Secure Score P2: Defender XDR</title>
+      <link>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</link>
+      <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</guid>
+      <description>Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Email Security on My New Hugo Project</title>
+    <link>http://localhost:1313/categories/email-security/</link>
+    <description>Recent content in Email Security on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Apr 2026 10:00:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/email-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Defender for Office 365, Up Close Part 1b — From Preset Policies to Advanced Configuration</title>
+      <link>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/</link>
+      <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/</guid>
+      <description>Microsoft Defender for Office 365 explained in practical terms. Plan 1 vs Plan 2, how preset security policies take the friction out of day-one deployment, and the specific settings for Safe Links, Safe Attachments, and anti-phishing that matter most.</description>
+    </item>
+  </channel>
+</rss>

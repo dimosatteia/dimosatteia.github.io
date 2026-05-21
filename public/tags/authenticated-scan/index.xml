@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authenticated Scan on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/authenticated-scan/</link>
+    <description>Recent content in Authenticated Scan on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 May 2026 15:32:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/authenticated-scan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Defender Vulnerability Management Device Discovery</title>
+      <link>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/</link>
+      <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/</guid>
+      <description>Part 2 of 4. Device discovery, software inventory, certificates, network shares, firmware, and the authenticated scan model for unmanaged hosts.</description>
+    </item>
+  </channel>
+</rss>

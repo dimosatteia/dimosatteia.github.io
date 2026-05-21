@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microsoft Defender for Endpoint on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/microsoft-defender-for-endpoint/</link>
+    <description>Recent content in Microsoft Defender for Endpoint on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 May 2026 10:41:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/microsoft-defender-for-endpoint/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Secure Score για τον ΥΑΣΠΕ</title>
+      <link>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</link>
+      <pubDate>Mon, 27 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</guid>
+      <description>Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024.</description>
+    </item>
+    <item>
+      <title>Secure Score P2: Defender XDR</title>
+      <link>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</link>
+      <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</guid>
+      <description>Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it.</description>
+    </item>
+    <item>
+      <title>Defender P1: How Many Exist?</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/</link>
+      <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/</guid>
+      <description>Confused by Microsoft Defender naming? You&amp;rsquo;re not alone. This guide maps the entire Microsoft Defender family, 8 core products, licensing tiers, and when you actually need each one. For CISOs, IT managers, and security teams implementing Microsoft 365 E5 or EMS E5.</description>
+    </item>
+    <item>
+      <title>Microsoft Defender Demystified — Part 3: Microsoft Defender for Cloud (The One That&#39;s Actually Different)</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/</link>
+      <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/</guid>
+      <description>Part 3 of the Microsoft Defender Demystified series. Microsoft Defender for Cloud explained in plain language — the CSPM foundation, the paid Defender CSPM tier, the eleven workload protection plans, the multicloud story, and why the unified Microsoft Defender portal is quietly making all this one experience.</description>
+    </item>
+    <item>
+      <title>Microsoft Defender Demystified — Part 4: Which Defender Do You Actually Need?</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/</link>
+      <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/</guid>
+      <description>Part 4 of the Microsoft Defender Demystified series. A licensing decoder across the 2026 Microsoft 365 lineup, including the new Defender Suite add-ons, the July 2026 pricing update, and three real-world scenarios (small business, mid-market, enterprise) for sizing the right purchase.</description>
+    </item>
+    <item>
+      <title>Microsoft Defender Demystified — Part 5: A Walk Through the Microsoft Defender Portal</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</link>
+      <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</guid>
+      <description>Part 5 closes the series. A guided walk through the unified Microsoft Defender portal — every major navigation section explained, where Microsoft Secure Score now lives inside Exposure Management, how to set up the right roles, a simple KQL hunting query to try, and a 60-minute first-time agenda.</description>
+    </item>
+  </channel>
+</rss>

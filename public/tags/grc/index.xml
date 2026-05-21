@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GRC on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/grc/</link>
+    <description>Recent content in GRC on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 May 2026 10:54:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/grc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About This Security Blog</title>
+      <link>http://localhost:1313/posts/welcome/</link>
+      <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/welcome/</guid>
+      <description>An intro to the blog, the topics I&amp;rsquo;ll cover, and the first series planned for 2026.</description>
+    </item>
+  </channel>
+</rss>

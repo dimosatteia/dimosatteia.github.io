@@ -1,0 +1,197 @@
+---
+title: "Gold GRC on Microsoft Secure Score"
+date: 2026-04-22T10:00:00+03:00
+lastmod: 2026-05-19T11:47:00+03:00
+draft: false
+keywords:
+  - Microsoft Secure Score for ISO 27001 and NIS2 compliance
+  - build a GRC programme on Microsoft 365
+  - Microsoft Secure Score Compliance Manager mapping
+  - Microsoft 365 GRC without third-party platform
+  - Microsoft Secure Score audit evidence
+  - ISO 27001 Annex A Microsoft 365 controls
+  - NIS2 Article 21 Microsoft 365
+  - Microsoft Secure Score case study
+  - live audit evidence Microsoft 365
+tags:
+  - Microsoft Secure Score
+  - Microsoft 365 Security
+  - Microsoft Purview
+  - Microsoft Defender XDR
+  - ISO 27001
+  - NIS2
+  - Cyber GRC
+  - Compliance Manager
+  - CISO
+  - Security Posture Management
+author: "Dimosthenis Atteia"
+description: "Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools."
+summary: "Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate."
+categories: ["GRC & Frameworks", "Microsoft 365"]
+series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
+ShowToc: true
+TocOpen: false
+weight: -4
+cover:
+  image: "/images/CyberGRCGoldAward.png"
+  alt: "Microsoft Secure Score dashboard powering Gold-Award GRC programme for ISO 27001 and NIS2"
+  caption: "Series introduction — built on Microsoft 365"
+  relative: false
+  hidden: false
+---
+
+## The Mid-Market GRC Problem: NIS2 and ISO 27001 Without a Big Budget
+
+If you run security in a mid-market organisation that is in scope for **NIS2** or pursuing **ISO 27001**, you know the squeeze. Regulatory demands are growing fast. Audit cycles are tight. Boards want cyber risk in numbers, not narratives. And the GRC budget, let's be honest, is never what it should be.
+
+Most teams answer this by buying a dedicated GRC platform or by hiring more analysts. We took a different route — and that route is called **Microsoft Secure Score**. This series is the practical playbook for using Microsoft Secure Score as a GRC engine for ISO 27001 and NIS2 compliance, built entirely on tools you already have inside **Microsoft 365**. The approach is reproducible by almost any organisation running an E3 or E5 tenant — and it's how we delivered a Gold-Award-winning GRC programme without buying a third-party platform.
+
+> ⚡**TL;DR for the impatient:** Microsoft Secure Score, paired with **Microsoft Purview Compliance Manager**, can evidence **60-70% of ISO 27001:2022 Annex A and NIS2 Article 21** technical controls automatically, using only the licensing you already pay for. The remaining **30-40%** is covered by Purview tooling and documented procedures. **Total third-party GRC spend: 0€.**
+
+## The Microsoft Secure Score GRC Engine Hidden Inside Microsoft 365
+
+We were already licensed for **Microsoft 365 E5**. We already used **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)** every day. And right there, in the Microsoft Defender portal, was something most teams treat as a vanity dashboard: **[Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)**.
+
+[![Microsoft Secure Score dashboard powering an ISO 27001 and NIS2 GRC programme on Microsoft 365](/images/Overall.png)](/images/Overall.png)
+> 📷 **Image 1 — The Microsoft Secure Score dashboard.**
+
+Looking at it with fresh eyes, we realised Microsoft had already done most of the heavy GRC lifting:
+
+- A **continuously refreshed assessment** of our tenant configuration against a control catalogue Microsoft maintains and updates as the threat landscape shifts.
+- A **machine-readable dataset**, exposed via the **[Microsoft Graph Security API](https://learn.microsoft.com/en-us/graph/api/resources/security-api-overview)**, that any modern reporting tool can consume.
+- **Native integration** with **[Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)**, **Microsoft Sentinel**, and **Power BI**, platforms we already owned.
+
+The gap we had to bridge was small: connect Microsoft's data to our compliance frameworks, build the right reports, and put governance around the risk decisions. Additional third-party spend: essentially nothing.
+
+## The Gold Award at Cyber Security Awards 2026 (Built on Microsoft Secure Score)
+
+[![Cyber Security Awards 2026 Gold Award for GRC programme built on Microsoft Secure Score](/images/CyberGRCGoldAward.png)](/images/CyberGRCGoldAward.png)
+> 📷 **Image 2 — The Gold Award Logo.**
+
+[![Gold Award plate Cyber Security Awards 2026 Governance Risk and Compliance category](/images/CyberGRCGoldAwardPlate.png)](/images/CyberGRCGoldAwardPlate.png)
+> 📷 **Image 3 — The Gold Award Plate.**
+
+[![Cyber Security Awards 2026 ceremony Gold Award for Microsoft Secure Score GRC programme](/images/CSAward2026_1.png)](/images/CSAward2026_1.png)
+> 📷 **Image 4 — The Gold Award Ceremony with colleagues.**
+
+The programme we built on this foundation received the **Gold Award in Governance, Risk & Compliance at the [Cyber Security Awards 2026 — Honoring Cyber Excellence](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)**, under the title *"From theory to measurable compliance: Microsoft Secure Score as a Cyber GRC tool"*.
+
+The principle the panel recognised is the same one that runs through this entire series: **Microsoft 365 already contains the GRC engine most organisations are paying separately to acquire.** They just need to recognise it for what it is and wire it correctly.
+
+## How we did it? Four building blocks on top of Microsoft 365
+
+The full implementation is unpacked, with screenshots and worked examples, across the rest of this series. Here is the shape, so you can decide whether to follow along.
+
+### Building block 1: Microsoft Secure Score as the single source of truth
+
+[![Microsoft Secure Score recommendation for phishing-resistant MFA strength for administrators expanded view](/images/PrMFA0.png)](/images/PrMFA0.png)
+> 📷 **Image 5 — A Secure Score recommendation about "Ensure 'Phishing-resistant MFA strength' is required for Administrators", expanded.**
+
+[![Microsoft Secure Score general action description for MFA control with Microsoft engineering implementation guidance](/images/PrMFA1.png)](/images/PrMFA1.png)
+> 📷 **Image 6 — A general recommendation regarding this specific Secure Score action.**
+
+[![Microsoft Secure Score implementation steps for phishing-resistant MFA Conditional Access policy](/images/PrMFA2.png)](/images/PrMFA2.png)
+> 📷 **Image 7 — A Secure Score implementation for the specific action.**
+
+We stopped treating Secure Score as a number to raise. We started treating each recommendation as a **continuously tested control**. Microsoft tells us, in real time, which controls are configured, which are not, and crucially provides the implementation guidance and user-impact analysis right inside each recommendation. That guidance, written by Microsoft engineering, is gold for any GRC team that previously had to draft remediation plans from scratch.
+
+### Building block 2: Bridging Microsoft Compliance Manager with Secure Score for live evidence
+
+Here is where the Microsoft platform already does an enormous amount of the work, and most teams don't realise it.
+
+**[Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)** ships with pre-built assessments for **ISO/IEC 27001:2022**, **NIS 2 Directive**, **GDPR**, **NIST CSF**, and over 300 other regulations. Microsoft has done the foundational mapping for you: each framework control is linked to one or more **Improvement Actions** concrete configuration changes you can make across Microsoft 365, Entra ID, Microsoft Purview, and Azure to satisfy that control.
+
+[![Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17](/images/A.5.17_AuthenticationInformation.png)](/images/A.5.17_AuthenticationInformation.png)
+> 📷 **Image 8 — Microsoft Purview Compliance Manager, ISO 27001:2022 assessment, Authentication Information, Control ID A.5.17.**
+
+What Compliance Manager does *not* give you out of the box is a live link between an Improvement Action and the corresponding **Microsoft Secure Score** recommendation that proves the control is currently configured correctly across your tenant. The Improvement Action tells you *what to do*; Secure Score tells you, in real time, *whether it is done*.
+
+This is exactly the gap we closed. We built a thin mapping layer that, for each Compliance Manager Improvement Action covered by ISO 27001:2022 Annex A and NIS2 Article 21, identifies the matching Microsoft Secure Score recommendation and pulls its current state via the Microsoft Graph API. The result: **a live evidence view over Microsoft's own framework mappings**, so a control is not "satisfied" because someone ticked a box, it is satisfied because Microsoft Secure Score confirms today, with a timestamp, that the configuration is in place.
+
+Roughly **60–70%** of the technical controls in ISO 27001:2022 Annex A and NIS2 Article 21 can be evidenced this way directly from Microsoft Secure Score telemetry. The remaining 30–40% are covered either by other Microsoft Purview tooling (Data Loss Prevention, Information Protection, Insider Risk Management) or by documented organisational procedures. The mapping self-maintains: when Microsoft adds or revises an Improvement Action or a Secure Score recommendation, we triage the change once and the live evidence pipeline picks it up automatically.
+
+### Building block 3: Microsoft Graph API + Power BI for live audit evidence
+
+Using the **Microsoft Graph Security API**, we pull Secure Score telemetry into a Power BI workspace daily. The output is a live evidence dashboard that auditors can be given read-only access to, with full timestamped history. No more screenshot-scrambles before the next surveillance audit.
+
+[![Power BI dashboard with live Microsoft Secure Score audit evidence via Microsoft Graph Security API](/images/PBI_Def.png)](/images/PBI_Def.png)
+> 📷 **Image 9 — Microsoft PowerBi for live audit evidence.**
+
+This is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing.
+
+### Building block 4: Microsoft Purview Compliance Manager for the board view
+
+For board reporting we pair Secure Score data with **Microsoft Purview Compliance Manager**, which Microsoft pre-populates with assessments aligned to **ISO 27001, NIS2, GDPR**, and dozens of other frameworks. The combination gives the board both a security-configuration view (Secure Score) and a regulatory-conformance view (Compliance Manager) in a single quarterly slide.
+
+## The business results: from weeks of audit prep to live evidence
+
+Within the first year of running the programme:
+
+- **Audit preparation time** for ISO 27001 surveillance dropped from weeks to days.
+- **Board cyber-risk reporting** moved from qualitative narratives to live, defensible numbers backed by Microsoft telemetry.
+- **Microsoft Secure Score** itself improved by **30%** and every remaining gap is a documented, board-approved risk decision.
+- **Total external GRC tooling cost: €0.** Everything was delivered on the existing Microsoft 365 E5 investment.
+- And, the Gold Award.
+
+## What you will get from this series
+
+The goal of the series is simple: help you understand Microsoft Secure Score well enough to turn it into a real governance and compliance instrument for your organisation, the same way we did for ours.
+
+To get there without skipping steps, the recommended reading path is:
+
+**Foundation first: The Microsoft Defender family**
+
+If the names Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, or Microsoft Defender for Cloud Apps don't mean much to you yet, start with the companion series that covers the whole Microsoft Defender ecosystem end to end:
+
+1. **Microsoft Defender Demystified, Part 1: How Many Defenders Are There, Really?** *(coming soon)* the whole family map in one post.
+<!-- /posts/defender-demystified-part-1-what-is-microsoft-defender/ -->
+
+2. **Microsoft Defender Demystified, Part 2: The Four Core XDR Workloads, Up Close** *(coming soon)* what each workload protects.
+<!-- /posts/defender-demystified-part-2-four-workloads/ -->
+
+3. **Microsoft Defender Demystified, Part 3: Microsoft Defender for Cloud** *(coming soon)* the Azure and multicloud story.
+<!-- /posts/defender-demystified-part-3-defender-for-cloud/ -->
+
+4. **Microsoft Defender Demystified, Part 4: Which Defender Do You Actually Need?** *(coming soon)* licensing across Microsoft 365 and Enterprise Mobility + Security.
+<!-- /posts/defender-demystified-part-4-licensing-decoder/ -->
+
+5. **Microsoft Defender Demystified, Part 5: A Walk Through the Microsoft Defender Portal** *(coming soon)* where everything lives.
+<!-- /posts/defender-demystified-part-5-portal-tour/ -->
+
+6. **Enterprise Mobility + Security Explained** *(coming soon)* the security bundle many organisations already own and don't fully use.
+<!-- /posts/enterprise-mobility-security-explained/ -->
+
+Want to go deeper into any single workload? The **Microsoft Defender Up Close** series has hands-on, configuration-level walkthroughs of Microsoft Defender for Endpoint, Office 365, Identity, and Cloud Apps.
+<!-- (/series/microsoft-defender-up-close/) -->
+
+**Then, the Secure Score series itself**
+
+Once the Microsoft Defender landscape feels familiar, come back here. You'll now have the context to follow what Microsoft Secure Score is actually measuring.
+
+1. [**Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
+2. [**Where Microsoft Secure Score Sits in the Microsoft Defender World**](/posts/secure-score-grc-part-2-ecosystem/) how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
+
+
+**Why read Parts 1 and 2 first**
+
+**Secure Score** is the destination of this series — the daily dashboard that will show you where 
+your organization stands regarding secure maturity, regardless of the organization's size, geographic location, and presence, and help 
+you decide what to tackle first and what can wait, across applications, data, devices, and user identity.
+But for it to be genuinely useful and not just another number you stare at without knowing what it means, you first need to understand how it is built **(Part 1: Anatomy)** and the ecosystem it lives in **(Part 2: Ecosystem)**. Once these two parts are clear, the Defender Secure Score stops being a "magic number" and becomes a decision-making tool.
+So read Parts 1 and 2 in order. After that, everything we cover in the Defender chapters will carry a concrete meaning within your own environment.
+
+You don't need to be a developer. You don't need a third-party GRC platform. You need a Microsoft 365 tenant, a few focused hours per week, and the willingness to look at Microsoft Secure Score with fresh eyes.
+
+If you already know the Microsoft Defender landscape well, feel free to skip the foundation section and dive straight into the Secure Score posts.
+
+## Ready to start?
+
+[**Part 1 — Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available, you can read it whenever you're ready. Enjoy!
+
+[**[Part 2 — Where It Sits in the Microsoft Defender World]**](/posts/secure-score-grc-part-2-ecosystem/) is already published and available, you can read it whenever you're ready. Enjoy!
+
+More parts coming in the following weeks, so check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
+
+Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
+
+---

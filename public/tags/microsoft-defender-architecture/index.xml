@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microsoft Defender Architecture on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/microsoft-defender-architecture/</link>
+    <description>Recent content in Microsoft Defender Architecture on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 May 2026 15:32:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/microsoft-defender-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Defender Vulnerability Management Licensing Tiers</title>
+      <link>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/01-mdvm-foundations-and-architecture/</link>
+      <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/01-mdvm-foundations-and-architecture/</guid>
+      <description>Part 1 of 4. The licensing maze, the architecture that makes &amp;lsquo;continuous assessment&amp;rsquo; work, and the platforms it actually covers.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Compliance Manager on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/compliance-manager/</link>
+    <description>Recent content in Compliance Manager on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 May 2026 11:47:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/compliance-manager/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gold GRC on Microsoft Secure Score</title>
+      <link>http://localhost:1313/posts/secure-score-grc-part-0-intro/</link>
+      <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/secure-score-grc-part-0-intro/</guid>
+      <description>Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate.</description>
+    </item>
+  </channel>
+</rss>

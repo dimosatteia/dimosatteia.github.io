@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security Baselines on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/security-baselines/</link>
+    <description>Recent content in Security Baselines on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 May 2026 15:32:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/security-baselines/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Defender Vulnerability Management Remediation</title>
+      <link>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/</link>
+      <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/</guid>
+      <description>Part 4 of 4. From identified vulnerability to fixed vulnerability — and how MDVM data flows out to the rest of the Microsoft security stack.</description>
+    </item>
+  </channel>
+</rss>
