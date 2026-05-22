@@ -1,8 +1,8 @@
 ---
 title: "Secure Score P3: Operations"
-date: 2026-05-21T07:00:00+03:00
-lastmod: 2026-05-21T07:00:00+03:00
-draft: true
+date: 2026-05-22T07:00:00+03:00
+lastmod: 2026-05-22T07:00:00+03:00
+draft: false
 keywords:
   - Microsoft Secure Score remediation workflow
   - how to prioritize Secure Score recommendations
@@ -67,9 +67,9 @@ We evaluate every Microsoft Secure Score recommendation against three dimensions
 
 1. **Risk reduction** (what threat does this mitigate?)
 2. **Implementation effort** (how hard is this to configure?)
-3. **Regulatory alignment** (does this satisfy ISO 27001, NIS2, or other frameworks we're audited against?)
+3. **Regulatory alignment** (*optional but nice to have*, does this satisfy ISO 27001, NIS2, or other frameworks we're audited against?)
 
-[![Microsoft Secure Score prioritization matrix risk reduction versus implementation effort with regulatory alignment overlay](/images/3axis.png)](/images/3axis.png)
+[![Microsoft Secure Score prioritization matrix risk reduction versus implementation effort with regulatory alignment overlay](/images/SecureScoreRecommendationTriage.png)](/images/SecureScoreRecommendationTriage.png)
 > 📷 **Image 1 — The three-axis prioritization matrix used for triage.**
 
 #### Axis 1: Risk reduction
@@ -92,12 +92,12 @@ Examples:
 
 Scale: **High, Medium, Low**. Be honest about effort. Underestimating effort is how recommendations get stuck in *Planned* status for six months.
 
-#### Axis 3: Regulatory alignment
+#### Axis 3: Regulatory alignment *(optional but highly recommended for audited organizations)*
 
 Does this recommendation map to a control in **ISO 27001:2022 Annex A**, **NIS2 Article 21**, **GDPR Article 32**, or another framework we're audited against?
 
 Examples:
-- *"Require phishing-resistant MFA for administrators"*: Maps to **ISO 27001:2022 A.5.17** (Authentication information), **NIS2 Article 21(2)(a)** (Policies on risk analysis and information system security), and **GDPR Article 32(1)(b)** (Ability to ensure confidentiality).
+- *"Require phishing-resistant MFA for administrators"*: Maps to **ISO 27001:2022 A.5.17** (Authentication information), **NIS2 Article 21(2)(j)** (Use of multi-factor authentication or continuous authentication solutions), and **GDPR Article 32(1)(b)** (Ability to ensure confidentiality).
 - *"Enable Microsoft Defender for Cloud Apps"*: **Not directly mapped** to ISO 27001 or NIS2 baseline requirements, though it supports several controls indirectly.
 
 If a recommendation satisfies a control you'll be audited on, it gets priority. If it doesn't, it's still valuable, but it can wait.
@@ -114,7 +114,7 @@ Example: *"Enable audit log search"* (ISO 27001 A.8.15, NIS2 Article 21(2)(e), l
 **Priority 2: High risk, high effort, regulatory-aligned**
 These are your big projects. They take time, but they're non-negotiable for both security and compliance.
 
-Example: *"Require phishing-resistant MFA for administrators"* (ISO 27001 A.5.17, NIS2 Article 21(2)(a), high effort, critical risk reduction).
+Example: *"Require phishing-resistant MFA for administrators"* (ISO 27001 A.5.17, NIS2 Article 21(2)(j), high effort, critical risk reduction).
 
 **Priority 3: Medium/low risk, low effort, regulatory-aligned**
 These are compliance hygiene items. Not urgent from a threat perspective, but they close audit findings cheaply.
@@ -124,7 +124,7 @@ Example: *"Ensure password protection is enabled for Active Directory"* (ISO 270
 **Priority 4: Everything else**
 Medium/low risk, not mapped to current audit scope. These go into the backlog. You'll get to them eventually, or you'll document a risk acceptance.
 
-Example: *"Enable Cloud App Discovery"* (useful for visibility, but not required by ISO 27001 or NIS2 baseline).
+Example: *"Set up Cloud Discovery"* in Microsoft Defender for Cloud Apps (useful for visibility into Shadow IT, but not required by ISO 27001 or NIS2 baseline).
 
 ### How to actually use this in practice
 
@@ -140,9 +140,9 @@ We learned this the hard way. Here's the workflow we use now.
 
 ### Step 1: Impact assessment
 
-Before touching any configuration, read the recommendation's **User impact** field and the **Implementation** tab. Microsoft usually tells you exactly what will happen to end users.
+Before touching any configuration, read the recommendation's **General** tab and the **Implementation** tab. Microsoft usually tells you exactly what will happen to end users.
 
-[![Microsoft Secure Score recommendation Implementation tab showing step-by-step configuration guide and user impact analysis](/images/SS_GRC_P3_Operations_image_2_placeholder.png)](/images/SS_GRC_P3_Operations_image_2_placeholder.png)
+[![Microsoft Secure Score recommendation Implementation tab showing step-by-step configuration guide and user impact analysis](/images/SecureScoreImplementationTab.png)](/images/SecureScoreImplementationTab.png)
 > 📷 **Image 2 — The Implementation tab in a Microsoft Secure Score recommendation.**
 
 Then ask:
@@ -184,7 +184,7 @@ Between each phase, we check the Microsoft Entra ID **Sign-in logs** and **Micro
 
 Only after Phase 3 is stable do we mark the recommendation as *Completed* in Microsoft Secure Score. This updates the score, locks in the evidence timestamp (important for audits), and moves the recommendation out of the *To address* list.
 
-[![Microsoft Secure Score recommendation status options Completed Planned Risk accepted Third party Resolved through alternate mitigation](/images/SS_GRC_P3_Operations_image_3_placeholder.png)](/images/SS_GRC_P3_Operations_image_3_placeholder.png)
+[![Microsoft Secure Score recommendation status options Completed Planned Risk accepted Third party Resolved through alternate mitigation](/images/SecureScoreRecommendationStatus.png)](/images/SecureScoreRecommendationStatus.png)
 > 📷 **Image 3 — Status options for a Microsoft Secure Score recommendation.**
 
 ### What if you can't implement a recommendation?
@@ -193,7 +193,7 @@ Sometimes a recommendation isn't feasible. Maybe it breaks a legacy application.
 
 In those cases, you have three options in Microsoft Secure Score:
 
-1. **Risk accepted**: You acknowledge the gap, document the business reason, and accept the residual risk. This keeps the recommendation visible (so auditors can see you made a conscious decision), but it doesn't count against your score.
+1. **Risk accepted**: You acknowledge the gap, document the business reason, and accept the residual risk. The recommendation remains visible (so auditors can see you made a conscious decision), *but you won't earn any points for it*, which means it does effectively count against your maximum achievable score.
 2. **Resolved through alternate mitigation**: You've implemented a compensating control outside of Microsoft 365. Example: You don't use Microsoft Defender for Cloud Apps, but you have a third-party CASB (Netskope, Zscaler, etc.) doing the same job.
 3. **Third party**: Similar to alternate mitigation, but specifically for non-Microsoft products that satisfy the control.
 
@@ -209,45 +209,44 @@ The magic is that many of these Improvement Actions are **directly linked to Mic
 
 ### How to access Compliance Manager
 
-1. Open **`https://compliance.microsoft.com`** (the Microsoft Purview compliance portal)
+1. Open **`https://purview.microsoft.com`** (the Microsoft Purview compliance portal)
 2. In the left navigation, click **Compliance Manager**
 3. Click **Assessments** at the top
 4. Select **ISO/IEC 27001:2022** or **NIS 2 Directive** (or create a custom assessment if you don't see your framework)
 
-[![Microsoft Purview Compliance Manager ISO 27001:2022 assessment showing Improvement Actions linked to Microsoft Secure Score recommendations](/images/SS_GRC_P3_Operations_image_4_placeholder.png)](/images/SS_GRC_P3_Operations_image_4_placeholder.png)
+[![Microsoft Purview Compliance Manager ISO 27001:2022 assessment showing Improvement Actions linked to Microsoft Secure Score recommendations](/images/Purview_Compliance_Manager_ISO27001.png)](/images/Purview_Compliance_Manager_ISO27001.png)
 > 📷 **Image 4 — The ISO 27001:2022 assessment in Microsoft Purview Compliance Manager.**
 
-### Example mapping: Phishing-resistant MFA for administrators
+### Example mapping: Ensure 'Phishing-resistant MFA strength' is required for Administrators
 
-Let's walk through a concrete example. The Microsoft Secure Score recommendation *"Require phishing-resistant MFA for administrators"* maps to:
+Let's walk through a concrete example. The Microsoft Secure Score recommendation *"Ensure 'Phishing-resistant MFA strength' is required for Administrators"* maps to:
 
 **ISO 27001:2022**
 - **A.5.17 — Authentication information**: *"The allocation and management of authentication information shall be controlled by a management process, including advising personnel on appropriate handling of authentication information."*
 
 **NIS2 Directive**
-- **Article 21(2)(a) — Policies on risk analysis and information system security**: *"Policies concerning the use of cryptography and, where appropriate, encryption."*
-- **Article 21(2)(b) — Policies concerning the handling of security incidents**: *"Measures to prevent and control the spread of malicious software and information security incidents."*
+- **Article 21(2)(j): Use of multi-factor authentication or continuous authentication solutions**: *"the use of multi-factor authentication or continuous authentication solutions, secured voice, video and text communications and secured emergency communication systems within the entity, where appropriate."*
+- **Article 21(2)(i): Human resources security, access control policies and asset management**: *"human resources security, access control policies and asset management."*
 
-In Compliance Manager, you'll find an Improvement Action titled something like *"Require multi-factor authentication for administrative roles"*. When you click into it, you'll see:
+In Compliance Manager, you'll find an Improvement Action titled something like *"Configure and manage multi-factor authentication (MFA) fraud alerts"*. When you click into it, you'll see:
 
-- **Control mapping**: Which ISO 27001 or NIS2 controls this satisfies
-- **Implementation status**: Whether it's configured in your tenant (pulled from Microsoft Secure Score)
-- **Test status**: Whether you've validated it works
-- **Evidence**: Timestamped proof that the control is in place
+- **Details**: Microsoft's implementation guidance, including the exact path in Entra admin center and a "Launch Now" deep link
+- **Evidence**: Upload files or links as proof of implementation, with metadata (name, type, uploader, date) for audit trail purposes.
+- **Related Controls**: The ISO 27001:2022 clauses and controls mapped to this action, here Clause 9.1 'Monitoring, measurement, analysis and evaluation
 
-[![Microsoft Purview Compliance Manager Improvement Action detail pane showing control mapping implementation status and evidence collection](/images/SS_GRC_P3_Operations_image_5_placeholder.png)](/images/SS_GRC_P3_Operations_image_5_placeholder.png)
-> 📷 **Image 5 — An Improvement Action in Compliance Manager linked to a Microsoft Secure Score recommendation.**
+[![Microsoft Purview Compliance Manager Improvement Action detail pane showing control mapping implementation status and evidence collection](/images/ISO27001_Improvement_Action_MFA.png)](/images/ISO27001_Improvement_Action_MFA.png)
+> 📷 **Image 5 — An Improvement Action in Compliance Manager.**
 
 ### Coverage: How much of ISO 27001 and NIS2 can Microsoft Secure Score evidence?
 
 Based on our implementation, here's the rough coverage:
 
-**ISO 27001:2022 Annex A (93 controls)**
+**ISO/IEC 27001:2022 Assessment (123 Microsoft Items)**
 - **60-65% evidenced directly** by Microsoft Secure Score + Compliance Manager Improvement Actions
 - **20-25% evidenced** by other Microsoft Purview tools (Data Loss Prevention, Information Protection, Insider Risk Management, Communication Compliance)
 - **10-15% organizational controls** (policies, training, incident response procedures) that require manual documentation
 
-**NIS2 Directive Article 21 (10 baseline measures)**
+**NIS2 Directive (EU) 2022/2555 Assessment (142 Microsoft Items)**
 - **70-75% evidenced** by Microsoft Secure Score + Microsoft Purview (most of Article 21 is technical controls, which Microsoft 365 covers well)
 - **25-30% organizational measures** (governance, supply chain security, business continuity) that require documented procedures
 
@@ -262,24 +261,7 @@ Here's what we give them:
 **Option 1: Compliance Manager export**
 Go to **Compliance Manager → Assessments → [Your assessment] → Export to Excel**. This gives you a complete list of Improvement Actions, their implementation status, and the timestamp of the last verification.
 
-**Option 2: Microsoft Graph API pull**
-We use the **Microsoft Graph Security API** to pull Microsoft Secure Score data daily and store it in a **Power BI** workspace. This gives us:
-
-- **Historical trend**: Score over time
-- **Control implementation dates**: When each recommendation was marked *Completed*
-- **Change audit trail**: Who changed what, and when
-
-The API endpoint is:
-```
-GET https://graph.microsoft.com/v1.0/security/secureScores
-```
-
-We run this daily via a **Power Automate** flow, dump the JSON into **Azure Data Lake Storage**, and visualize it in Power BI.
-
-[![Power BI dashboard showing Microsoft Secure Score historical trend and control implementation timeline via Microsoft Graph Security API](/images/SS_GRC_P3_Operations_image_6_placeholder.png)](/images/SS_GRC_P3_Operations_image_6_placeholder.png)
-> 📷 **Image 6 — A Power BI dashboard with live Microsoft Secure Score audit evidence.**
-
-**Option 3: Manual screenshot + timestamp**
+**Option 2: Manual screenshot + timestamp**
 For one-off audit requests, we take a screenshot of the Microsoft Secure Score recommendation marked as *Completed*, with the timestamp visible, and attach it to the audit evidence folder.
 
 Not elegant, but it works. Auditors accept it.
@@ -295,27 +277,6 @@ But if you're only checking the dashboard once a month, you won't know about reg
 First, establish a baseline. What's your "healthy" Microsoft Secure Score? For us, it's **82%**. That's where we stabilized after implementing all Priority 1 and 2 recommendations. The remaining 18% is a mix of Priority 3 (on the roadmap for next year) and documented *Risk accepted* items.
 
 Your baseline might be 70%. It might be 90%. The number doesn't matter. What matters is that you know what *normal* looks like, so you can detect when something changes.
-
-### Alerting on score drops
-
-We use **Power Automate** to monitor the Microsoft Secure Score via the **Microsoft Graph API** and send an alert if the score drops by more than **2 percentage points** in a 24-hour window.
-
-The flow runs daily and checks:
-```
-GET https://graph.microsoft.com/v1.0/security/secureScores?$top=2
-```
-
-This returns the current score and yesterday's score. If the delta is > 2%, the flow sends a **Microsoft Teams** message to the `#security-ops` channel with a link to the Microsoft Secure Score dashboard.
-
-[![Microsoft Teams alert triggered by Microsoft Secure Score drop detected via Power Automate and Microsoft Graph Security API](/images/SS_GRC_P3_Operations_image_7_placeholder.png)](/images/SS_GRC_P3_Operations_image_7_placeholder.png)
-> 📷 **Image 7 — A Microsoft Teams alert triggered by a Secure Score drop.**
-
-This has caught several unintended changes:
-- A Conditional Access policy accidentally deleted during troubleshooting
-- A device compliance policy disabled by a junior admin
-- An Entra ID security default turned off by mistake
-
-Each time, we caught it within 24 hours and restored the configuration before any damage.
 
 ### Regression detection: Controls that get "unconfigured"
 
@@ -336,14 +297,20 @@ If the answer to any of these is *yes*, we triage and assign an owner.
 Every quarter, we export the Microsoft Secure Score data from Power BI and include it in the **quarterly security report** to the board. The report includes:
 
 - **Current score**: Where we are today
-- **Trend**: Score over the last 12 months
+- **Trend**: Score over the last month
 - **Completed actions this quarter**: What we implemented, and which ISO 27001/NIS2 controls they satisfy
 - **Outstanding gaps**: What's still in *To address* or *Risk accepted*, and why
 
 The board doesn't care about the individual recommendations. They care about the trend. As long as the score is stable or improving, and all high-risk gaps are either closed or risk-accepted with documented justification, they're satisfied.
 
-[![Board-level quarterly security report showing Microsoft Secure Score trend and ISO 27001 NIS2 control coverage](/images/SS_GRC_P3_Operations_image_8_placeholder.png)](/images/SS_GRC_P3_Operations_image_8_placeholder.png)
-> 📷 **Image 8 — A board-level quarterly report excerpt showing Secure Score trend.**
+[![Board-level quarterly security report showing Microsoft Secure Score trend](/images/Secure_Score_History.png)](/images/Secure_Score_History.png)
+> 📷 **Image 6 — A board-level quarterly report excerpt showing Secure Score trend.**
+
+[![Board-level quarterly security report showing ISO 27001 control coverage](/images/ISO27001_Coverage.png)](/images/ISO27001_Coverage.png)
+> 📷 **Image 7 — A board-level quarterly report excerpt showing ISO 27001 control coverage.**
+
+[![Board-level quarterly security report showing NIS2 control coverage](/images/NIS2_Coverage.png)](/images/NIS2_Coverage.png)
+> 📷 **Image 8 — A board-level quarterly report excerpt showing NIS2 control coverage.**
 
 ## Governance and risk acceptance: How to document the gaps you can't close
 
@@ -370,7 +337,7 @@ Example entry:
 
 | Field | Value |
 |-------|-------|
-| **Recommendation** | Enable Cloud App Discovery in Microsoft Defender for Cloud Apps |
+| **Recommendation** | Set up Cloud Discovery in Microsoft Defender for Cloud Apps |
 | **Category** | Apps |
 | **Score impact** | 4.50 points |
 | **Risk description** | Reduces visibility into unsanctioned SaaS app usage (shadow IT) |
@@ -401,7 +368,7 @@ If you've read this far, you now understand the operational mechanics of running
 
 ### Step 1: Export your current Microsoft Secure Score recommendations
 
-1. Go to **`security.microsoft.com` → Exposure management → Microsoft Secure Score → Recommended actions**
+1. Go to **`https://security.microsoft.com` → in the left navigation, locate Microsoft Secure Score (under Exposure management in newer tenant configurations) → click Recommended actions tab**
 2. Click **Export** (top-right corner)
 3. Open the CSV in Excel
 
@@ -492,7 +459,7 @@ We assign new hires a **pilot project**: Pick 5 recommendations from Priority 3,
 
 You now have the operational framework:
 
-- How to prioritize 150+ recommendations into a manageable roadmap
+- How to prioritize 260+ recommendations into a manageable roadmap
 - How to build a change management process that doesn't break production
 - How to map Microsoft Secure Score to ISO 27001 and NIS2
 - How to collect audit evidence
@@ -506,10 +473,10 @@ Within 90 days, you'll have a functioning GRC programme built on Microsoft 365, 
 
 This is the final post in the core **Microsoft Secure Score as a Cyber GRC Instrument** series. You've now seen:
 
-- **[Part 0 — Series Introduction](/posts/secure-score-grc-part-0-intro/)**: The business case for using Microsoft Secure Score as a GRC engine
-- **[Part 1 — Anatomy](/posts/secure-score-grc-part-1-anatomy/)**: How to read a single Microsoft Secure Score recommendation
-- **[Part 2 — Ecosystem](/posts/secure-score-grc-part-2-ecosystem/)**: Where Microsoft Secure Score gets its data and how it fits into the Microsoft Defender family
-- **Part 3 — Operations** (this post): How to run Microsoft Secure Score day-to-day in a production environment
+- **[Part 0: Series Introduction](/posts/secure-score-grc-part-0-intro/)**: The business case for using Microsoft Secure Score as a GRC engine
+- **[Part 1: Anatomy](/posts/secure-score-grc-part-1-anatomy/)**: How to read a single Microsoft Secure Score recommendation
+- **[Part 2: Ecosystem](/posts/secure-score-grc-part-2-ecosystem/)**: Where Microsoft Secure Score gets its data and how it fits into the Microsoft Defender family
+- **Part 3: Operations** (this post): How to run Microsoft Secure Score day-to-day in a production environment
 
 If you want to go deeper into the Microsoft Defender ecosystem itself, how **Microsoft Defender for Endpoint**, **Microsoft Defender for Office 365**, **Microsoft Defender for Identity**, and **Microsoft Defender for Cloud Apps** actually work, the **Microsoft Defender Demystified** series and **Microsoft Defender Up Close** series are coming in June 2026.
 
