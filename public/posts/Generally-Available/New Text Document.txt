@@ -1,0 +1,9 @@
+---
+title: "Microsoft Defender XDR Cross-Product Integration"
+date: 2026-05-15
+categories: ["Microsoft Defender"]
+tags: ["Defender XDR", "Integration"]
+releases: ["generally-available"]    # ← αυτό στο /releases/generally-available/
+---
+
+Το Defender XDR...

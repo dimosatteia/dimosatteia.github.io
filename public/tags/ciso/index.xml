@@ -6,7 +6,7 @@
     <description>Recent content in CISO on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 10:02:27 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/ciso/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Gold GRC on Microsoft Secure Score</title>
@@ -18,7 +18,7 @@
     <item>
       <title>Secure Score P3: Operations</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-3-operations/</link>
-      <pubDate>Thu, 21 May 2026 07:00:00 +0300</pubDate>
+      <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-3-operations/</guid>
       <description>Microsoft Secure Score in daily operations: prioritization framework, formal remediation workflow, ISO 27001 and NIS2 control mapping, continuous monitoring, and audit evidence collection.</description>
     </item>

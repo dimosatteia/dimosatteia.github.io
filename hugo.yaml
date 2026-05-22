@@ -39,6 +39,7 @@ taxonomies:
   category: categories
   tag: tags
   series: series
+  release: releases        # νέα taxonomy για Preview/GA status
 
 # -----------------------------------------------------------------------------
 # Markdown rendering
@@ -148,6 +149,11 @@ params:
       This dual role allows me to translate complex security challenges into practical guidance, community content, and actionable best practices for the Microsoft professional community.
 
 
+      **🆕 New:** Microsoft 365 features are now tagged by [**Release Status**].
+
+
+      **🚧 Preview** vs **✅ Generally Available**. Know at a glance which features are safe to deploy in compliance-regulated environments.
+
       Pick a topic from the menu above, or start with the latest posts below.
 
   # Social links — show as icons in the header
@@ -191,6 +197,10 @@ menu:
       name: Series
       url: /series/
       weight: 20
+    - identifier: releases
+      name: Release Status
+      url: /releases/
+      weight: 25
     - identifier: categories
       name: Categories
       url: /categories/
@@ -207,7 +217,7 @@ menu:
       name: 🔍
       url: /search/
       weight: 60
-
+   
 # -----------------------------------------------------------------------------
 # Privacy
 # -----------------------------------------------------------------------------
