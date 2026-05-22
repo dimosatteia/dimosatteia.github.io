@@ -1,6 +1,6 @@
 ---
 title: "Release Status"
-description: "Track Microsoft 365 Security features by their release stage, Preview vs Generally Available"
+description: "Track Microsoft 365 Security features by their release stage — Preview vs Generally Available"
 summary: "Understanding the difference between Preview and Generally Available features helps security architects make informed deployment decisions in enterprise environments."
 date: 2026-05-22
 lastmod: 2026-05-22
@@ -30,11 +30,11 @@ ShowWordCount: false
 ShowRssButtonInSectionTermList: true
 ---
 
-Microsoft 365 Security features roll out in two main phases, and understanding where a feature sits in its lifecycle is critical for making informed deployment decisions in enterprise environments.
+Microsoft 365 features roll out in multiple phases, and understanding where a feature sits in its lifecycle is critical for making informed deployment decisions in enterprise environments.
 
 ## 🚧 Preview (Public Preview)
 
-Features that are **available for testing** but **not recommended for production** environments. 
+Features that are **available for testing** but **not recommended for production** environments.
 
 **Ideal for:**
 - Lab and PoC environments where breaking changes are acceptable
@@ -44,10 +44,11 @@ Features that are **available for testing** but **not recommended for production
 
 ⚠️ **Important considerations:**
 - Preview features may change significantly before GA
-- No SLA or official support guarantees
+- **No SLA coverage** — Microsoft explicitly states Preview features are provided "as-is" without service level agreements
 - Features can be deprecated or retired without prior notice
 - Limited or evolving documentation
-- Not suitable for compliance-regulated workloads
+- **Not suitable for compliance-regulated workloads** or production environments
+- May require separate tenant or opt-in enrollment
 
 ## ✅ Generally Available (GA)
 
@@ -62,23 +63,36 @@ Features that are **production-ready** and officially supported by Microsoft wit
 **What GA means in practice:**
 - Features have completed extensive testing cycles
 - Full documentation and official support channels available
-- Covered by Microsoft's standard support agreements
+- **Covered by Microsoft's service level agreements (SLAs)**
 - Stable feature set with predictable update cadence
 - Integration points are documented and supported
+- **Included in standard licensing** (unless specified as premium add-on)
 
----
+## Additional Release Stages You May Encounter
+
+Microsoft also uses these intermediate stages:
+
+- **Private Preview** — Invitation-only, NDA-protected early access
+- **Targeted Release** — First Release in production for select customers (Office 365)
+- **Standard Release** — Same as Generally Available
 
 ## Why This Classification Matters
 
 As a CISO or Security Architect operating real-world production environments, you need clear signals about feature maturity:
 
 - **Risk management:** Preview features introduce unknown variables into your security posture
-- **Compliance alignment:** Auditors and regulators expect production-grade controls with vendor support
+- **Compliance alignment:** Auditors and regulators expect production-grade controls with vendor support and SLAs
 - **Operational stability:** GA features won't change behavior unexpectedly during incident response
 - **Resource planning:** You can commit training and runbook development to stable capabilities
+- **Licensing considerations:** Some Preview features become paid add-ons at GA
 
-This taxonomy helps you separate "what's possible in the lab" from "what's deployable in production", saving you from costly rollbacks and compliance headaches.
+This taxonomy helps you separate "what's possible in the lab" from "what's deployable in production" — saving you from costly rollbacks and compliance headaches.
 
 ---
 
-*Features are categorized based on their status at the time of writing. Always verify current release status in the [Microsoft 365 Roadmap](https://www.microsoft.com/en-us/microsoft-365/roadmap) before production deployment.*
+**Important:** Features are categorized based on their status at the time of writing. Microsoft can change release stages without notice. Always verify current release status in the [Microsoft 365 Roadmap](https://www.microsoft.com/en-us/microsoft-365/roadmap) and official [Microsoft 365 Message Center](https://admin.microsoft.com/Adminportal/Home#/MessageCenter) before production deployment.
+
+**Learn more:**
+- [Microsoft 365 Public Roadmap](https://www.microsoft.com/en-us/microsoft-365/roadmap)
+- [Microsoft Product Lifecycle](https://learn.microsoft.com/en-us/lifecycle/products/)
+- [Service Level Agreements (SLA) for Online Services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)
