@@ -1,5 +1,5 @@
 ---
-title: "Secure Score P1: 1st Recommendation"
+title: "Microsoft Secure Score Part 1: How to Read a Recommendation"
 date: 2026-04-27T07:00:00+03:00
 lastmod: 2026-05-20T10:41:00+03:00
 draft: false

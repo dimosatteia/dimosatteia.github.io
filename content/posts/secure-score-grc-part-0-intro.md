@@ -1,5 +1,5 @@
 ---
-title: "Gold GRC on Microsoft Secure Score"
+title: "Microsoft Secure Score as a GRC Tool for ISO 27001 & NIS2"
 date: 2026-04-22T10:00:00+03:00
 lastmod: 2026-05-23T16:48:00+03:00
 draft: false

@@ -1,5 +1,5 @@
 ---
-title: "Secure Score P2: Defender XDR"
+title: "Microsoft Secure Score Part 2: Inside the Defender Ecosystem"
 date: 2026-05-04T07:00:00+03:00
 lastmod: 2026-05-20T10:41:00+03:00
 draft: false

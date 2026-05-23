@@ -1,5 +1,5 @@
 ---
-title: "Secure Score P3: Operations"
+title: "Microsoft Secure Score Part 3: Daily Operations & ISO 27001"
 date: 2026-05-22T07:00:00+03:00
 lastmod: 2026-05-22T07:00:00+03:00
 draft: false

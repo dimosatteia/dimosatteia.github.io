@@ -1,5 +1,5 @@
 ---
-title: "About This Security Blog"
+title: "Microsoft 365 Security Blog: Hands-On Guides for IT Pros"
 date: 2026-04-22T10:00:00+03:00
 lastmod: 2026-05-19T10:54:00+03:00
 draft: false
