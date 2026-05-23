@@ -171,6 +171,8 @@ Once the Microsoft Defender landscape feels familiar, come back here. You'll now
 1. [**Microsoft Secure Score Anatomy, how to Open Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
 2. [**Microsoft Secure Score in the Microsoft Defender Ecosystem**](/posts/secure-score-grc-part-2-ecosystem/) how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
 3. [**Microsoft Secure Score in Daily Operations**](/posts/secure-score-grc-part-3-operations/) how to prioritize recommendations, build a remediation workflow, map controls to ISO 27001 and NIS2, collect audit evidence, and report to the board.
+
+
 **Why read Parts 1, 2, and 3 first**
 
 **Secure Score** is the destination of this series — the daily dashboard that will show you where
