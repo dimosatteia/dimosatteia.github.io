@@ -1,7 +1,7 @@
 ---
 title: "Gold GRC on Microsoft Secure Score"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-05-19T11:47:00+03:00
+lastmod: 2026-05-23T16:25:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score for ISO 27001 and NIS2 compliance
