@@ -25,8 +25,8 @@ tags:
   - CISO
   - Security Posture Management
 author: "Dimosthenis Atteia"
-description: "Microsoft Secure Score for ISO 27001 and NIS2 compliance: how a Gold-Award GRC programme was built on Microsoft 365, no third-party tools."
-summary: "Series introduction. The business problem, what Microsoft 365 already gives you for free, the four building blocks of the programme that won Gold, and what the next 7 posts will teach you to replicate."
+description: "How we built an ISO 27001 & NIS2 GRC programme on Microsoft Secure Score with €0 extra cost, no third-party platform, Gold Award winner. Series intro and reading path."
+summary: "Series introduction: the mid-market GRC problem, how Microsoft Secure Score covers 60–70% of ISO 27001:2022 Annex A and NIS2 Article 21 controls automatically, the four building blocks of the Gold-Award programme, and the recommended reading path for the full series."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
