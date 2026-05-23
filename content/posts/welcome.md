@@ -1,7 +1,7 @@
 ---
 title: "Microsoft 365 Security Blog: Hands-On Guides for IT Pros"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-05-19T10:54:00+03:00
+lastmod: 2026-05-23T19:30:00+03:00
 draft: false
 keywords:
   - "Microsoft Security blog"
@@ -19,7 +19,7 @@ tags:
   - "Cybersecurity"
   - "GRC"
 author: "Dimosthenis Atteia"
-description: "A quick intro to what you can expect from this blog: practical, hands-on Microsoft 365 and Security Copilot content for security architects and IT pros."
+description: "Hands-on Microsoft 365 Security content for IT Pros — Defender walkthroughs, hardening guides, and compliance lessons from production environments."
 summary: "An intro to the blog, the topics I'll cover, and the first series planned for 2026."
 categories:
   - "Meta"

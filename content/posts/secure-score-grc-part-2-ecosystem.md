@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Secure Score Part 2: Inside the Defender Ecosystem"
 date: 2026-05-04T07:00:00+03:00
-lastmod: 2026-05-20T10:41:00+03:00
+lastmod: 2026-05-23T19:30:00+03:00
 draft: false
 keywords:
   - where does Microsoft Secure Score data come from
@@ -27,7 +27,7 @@ tags:
   - NIS2
   - ISO 27001
 author: "Dimosthenis Atteia"
-description: "Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here's where every score point comes from."
+description: "Where does Microsoft Secure Score come from? Which Defender products feed it and how? Learn to trace any score point back to its source."
 summary: "Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]

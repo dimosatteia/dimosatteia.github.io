@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2"
 date: 2026-04-27T10:00:00+03:00
-lastmod: 2026-05-20T10:41:00+03:00
+lastmod: 2026-05-23T19:30:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score NIS2
@@ -27,7 +27,7 @@ tags:
   - Security Posture Management
   - Junior Μηχανικός Ασφάλειας
 author: "Dimosthenis Atteia"
-description: "Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024."
+description: "Microsoft Secure Score για τον Υ.Α.Σ.Π.Ε.: τεχνικά controls NIS2, Νόμος 5160/2024, ιεράρχηση ενεργειών και μετρήσιμη συμμόρφωση Microsoft 365."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ"]

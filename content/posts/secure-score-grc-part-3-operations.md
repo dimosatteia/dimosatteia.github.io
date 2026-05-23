@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Secure Score Part 3: Daily Operations & ISO 27001"
 date: 2026-05-22T07:00:00+03:00
-lastmod: 2026-05-22T07:00:00+03:00
+lastmod: 2026-05-23T19:30:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score remediation workflow
@@ -28,7 +28,7 @@ tags:
   - Risk Management
   - Compliance Evidence
 author: "Dimosthenis Atteia"
-description: "Microsoft Secure Score in daily operations: prioritization framework, formal remediation workflow, ISO 27001 and NIS2 control mapping, continuous monitoring, and audit evidence collection."
+description: "260+ recommendations, one team. How to prioritize, remediate, map controls to ISO 27001 & NIS2, and collect audit evidence, without burning out."
 summary: "Part 3 of the Secure Score series. How to actually run Microsoft Secure Score day-to-day: prioritizing 260+ recommendations, building a change management process that doesn't break production, mapping controls to ISO 27001 and NIS2, collecting audit evidence, and reporting to the board."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
