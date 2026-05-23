@@ -188,7 +188,7 @@ If you already know the Microsoft Defender landscape well, feel free to skip the
 
 [**Part 1 — Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available, you can read it whenever you're ready. Enjoy!
 
-[**[Part 2 — Where It Sits in the Microsoft Defender World]**](/posts/secure-score-grc-part-2-ecosystem/) is already published and available, you can read it whenever you're ready. Enjoy!
+[**Part 2 — Where It Sits in the Microsoft Defender World**](/posts/secure-score-grc-part-2-ecosystem/) is already published and available, you can read it whenever you're ready. Enjoy!
 
 More parts coming in the following weeks, so check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
 
