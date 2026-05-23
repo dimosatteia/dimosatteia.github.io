@@ -1,7 +1,7 @@
 ---
 title: "Gold GRC on Microsoft Secure Score"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-05-23T16:25:00+03:00
+lastmod: 2026-05-23T16:42:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score for ISO 27001 and NIS2 compliance
@@ -34,7 +34,7 @@ TocOpen: false
 weight: -4
 cover:
   image: "/images/CyberGRCGoldAward.png"
-  alt: "Microsoft Secure Score dashboard powering Gold-Award GRC programme for ISO 27001 and NIS2"
+  alt: "Microsoft Secure Score dashboard used as GRC engine for ISO 27001:2022 and NIS2 Article 21 compliance, Gold Award winner"
   caption: "Series introduction — built on Microsoft 365"
   relative: false
   hidden: false
@@ -168,17 +168,16 @@ Want to go deeper into any single workload? The **Microsoft Defender Up Close** 
 
 Once the Microsoft Defender landscape feels familiar, come back here. You'll now have the context to follow what Microsoft Secure Score is actually measuring.
 
-1. [**Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
-2. [**Where Microsoft Secure Score Sits in the Microsoft Defender World**](/posts/secure-score-grc-part-2-ecosystem/) how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
+1. [**Microsoft Secure Score Anatomy, how to Open Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) every field on a Microsoft Secure Score recommendation, explained the way a friendly colleague would. Written for people opening the score for the first time.
+2. [**Microsoft Secure Score in the Microsoft Defender Ecosystem**](/posts/secure-score-grc-part-2-ecosystem/) how the scoreboard actually works, which Microsoft products feed it, and how to trace one score point back to its source.
+3. [**Microsoft Secure Score in Daily Operations**](/posts/secure-score-grc-part-3-operations/) how to prioritize recommendations, build a remediation workflow, map controls to ISO 27001 and NIS2, collect audit evidence, and report to the board.
+**Why read Parts 1, 2, and 3 first**
 
-
-**Why read Parts 1 and 2 first**
-
-**Secure Score** is the destination of this series — the daily dashboard that will show you where 
-your organization stands regarding secure maturity, regardless of the organization's size, geographic location, and presence, and help 
+**Secure Score** is the destination of this series — the daily dashboard that will show you where
+your organization stands regarding secure maturity, regardless of the organization's size, geographic location, and presence, and help
 you decide what to tackle first and what can wait, across applications, data, devices, and user identity.
-But for it to be genuinely useful and not just another number you stare at without knowing what it means, you first need to understand how it is built **(Part 1: Anatomy)** and the ecosystem it lives in **(Part 2: Ecosystem)**. Once these two parts are clear, the Defender Secure Score stops being a "magic number" and becomes a decision-making tool.
-So read Parts 1 and 2 in order. After that, everything we cover in the Defender chapters will carry a concrete meaning within your own environment.
+But for it to be genuinely useful and not just another number you stare at without knowing what it means, you first need to understand how it is built **(Part 1: Anatomy)**, the ecosystem it lives in **(Part 2: Ecosystem)**, and how to run it day-to-day as a real operational and compliance tool **(Part 3: Daily Operations)**. Once these three parts are clear, the Defender Secure Score stops being a "magic number" and becomes a decision-making tool.
+So read Parts 1, 2, and 3 in order. After that, everything we cover in the GRC and evidence chapters will carry a concrete meaning within your own environment.
 
 You don't need to be a developer. You don't need a third-party GRC platform. You need a Microsoft 365 tenant, a few focused hours per week, and the willingness to look at Microsoft Secure Score with fresh eyes.
 
@@ -186,9 +185,11 @@ If you already know the Microsoft Defender landscape well, feel free to skip the
 
 ## Ready to start?
 
-[**Part 1 — Opening Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available, you can read it whenever you're ready. Enjoy!
+[**Part 1: Microsoft Secure Score Anatomy, how to Open Your First Recommendation**](/posts/secure-score-grc-part-1-anatomy/) is already published and available, you can read it whenever you're ready. Enjoy!
 
-[**Part 2 — Where It Sits in the Microsoft Defender World**](/posts/secure-score-grc-part-2-ecosystem/) is already published and available, you can read it whenever you're ready. Enjoy!
+[**Part 2: Microsoft Secure Score in the Microsoft Defender Ecosystem**](/posts/secure-score-grc-part-2-ecosystem/) is already published and available, you can read it whenever you're ready. Enjoy!
+
+[**Part 3: Microsoft Secure Score in Daily Operations**](/posts/secure-score-grc-part-3-operations/) is already published and available, you can read it whenever you're ready. Enjoy!
 
 More parts coming in the following weeks, so check the [series page](/series/microsoft-secure-score-as-a-cyber-grc-instrument/) for the latest.
 
