@@ -1,7 +1,7 @@
 ---
 title: "Gold GRC on Microsoft Secure Score"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-05-23T16:42:00+03:00
+lastmod: 2026-05-23T16:48:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score for ISO 27001 and NIS2 compliance
@@ -178,7 +178,7 @@ Once the Microsoft Defender landscape feels familiar, come back here. You'll now
 **Secure Score** is the destination of this series — the daily dashboard that will show you where
 your organization stands regarding secure maturity, regardless of the organization's size, geographic location, and presence, and help
 you decide what to tackle first and what can wait, across applications, data, devices, and user identity.
-But for it to be genuinely useful and not just another number you stare at without knowing what it means, you first need to understand how it is built **(Part 1: Anatomy)**, the ecosystem it lives in **(Part 2: Ecosystem)**, and how to run it day-to-day as a real operational and compliance tool **(Part 3: Daily Operations)**. Once these three parts are clear, the Defender Secure Score stops being a "magic number" and becomes a decision-making tool.
+But for it to be genuinely useful and not just another number you stare at without knowing what it means, you first need to understand how it is built [**(Part 1: Anatomy)**](/posts/secure-score-grc-part-1-anatomy/), the ecosystem it lives in [**(Part 2: Ecosystem)**](/posts/secure-score-grc-part-2-ecosystem/), and how to run it day-to-day as a real operational and compliance tool [**(Part 3: Daily Operations)**](/posts/secure-score-grc-part-3-operations/). Once these three parts are clear, the Defender Secure Score stops being a "magic number" and becomes a decision-making tool.
 So read Parts 1, 2, and 3 in order. After that, everything we cover in the GRC and evidence chapters will carry a concrete meaning within your own environment.
 
 You don't need to be a developer. You don't need a third-party GRC platform. You need a Microsoft 365 tenant, a few focused hours per week, and the willingness to look at Microsoft Secure Score with fresh eyes.
