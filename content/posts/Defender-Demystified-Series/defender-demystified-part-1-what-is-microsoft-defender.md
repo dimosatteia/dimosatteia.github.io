@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Defender Part 1: All Products Explained & Which One Do You Need"
+title: "Microsoft Defender Part 1: Products Explained, Which One Do You Need"
 date: 2026-05-18T10:00:00+03:00
 lastmod: 2026-05-25T15:45:00+03:00
 draft: false
