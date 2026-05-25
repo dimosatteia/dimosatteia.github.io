@@ -6,14 +6,14 @@
     <description>Recent content in Junior Μηχανικός Ασφάλειας on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2026 19:32:25 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Microsoft Secure Score για τον ΥΑΣΠΕ</title>
+      <title>Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2</title>
       <link>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</link>
       <pubDate>Mon, 27 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</guid>
-      <description>Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.</description>
+      <description>Microsoft Secure Score για τον Υ.Α.Σ.Π.Ε.: τεχνικά controls NIS2, Νόμος 5160/2024, ιεράρχηση ενεργειών και μετρήσιμη συμμόρφωση Microsoft 365.</description>
     </item>
   </channel>
 </rss>

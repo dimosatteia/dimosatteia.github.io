@@ -6,14 +6,14 @@
     <description>Recent content in SOC Analyst on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2026 19:32:25 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/soc-analyst/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Secure Score P1: 1st Recommendation</title>
+      <title>Microsoft Secure Score Part 1: How to Read a Recommendation</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</link>
       <pubDate>Mon, 27 Apr 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</guid>
-      <description>How to read a Microsoft Secure Score recommendation: every field on the details pane explained for junior admins and Tier 1 SOC analysts.</description>
+      <description>Every field on a Microsoft Secure Score recommendation explained for Junior M365 Admins and Tier 1 SOC Analysts. No theory, just the screen.</description>
     </item>
     <item>
       <title>Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out</title>

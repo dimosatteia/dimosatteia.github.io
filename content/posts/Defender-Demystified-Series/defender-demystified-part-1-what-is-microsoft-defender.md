@@ -1,7 +1,7 @@
 ---
-title: "Defender P1: How Many Exist?"
+title: "Microsoft Defender Part 1: All Products Explained & Which One Do You Need"
 date: 2026-05-18T10:00:00+03:00
-lastmod: 2026-05-20T10:41:00+03:00
+lastmod: 2026-05-25T15:45:00+03:00
 draft: false
 keywords:
   - how many microsoft defender products are there
@@ -38,7 +38,7 @@ tags:
   - NIS2 Compliance
   - Security Architecture
 author: "Dimosthenis Atteia"
-description: "How many Microsoft Defender products are there? Which one do you actually need? A practitioner's guide to the Microsoft Defender family, Endpoint, Office 365, Identity, Cloud Apps, XDR, and more. Written by a CISO for CISOs, IT managers, and security professionals navigating Microsoft 365 E5 licensing."
+description: "Microsoft has 8 Defender products and most confuse them. A practical map of the full family: XDR, Endpoint, Identity, Office 365, and Cloud Apps."
 summary: "Confused by Microsoft Defender naming? You're not alone. This guide maps the entire Microsoft Defender family, 8 core products, licensing tiers, and when you actually need each one. For CISOs, IT managers, and security teams implementing Microsoft 365 E5 or EMS E5."
 categories: ["Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]

@@ -6,14 +6,14 @@
     <description>Recent content in Microsoft Defender for Office 365 on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 13:42:15 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2026 19:32:25 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/microsoft-defender-for-office-365/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Secure Score P2: Defender XDR</title>
+      <title>Microsoft Secure Score Part 2: Inside the Defender Ecosystem</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</link>
       <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</guid>
-      <description>Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here&amp;#39;s where every score point comes from.</description>
+      <description>Where does Microsoft Secure Score come from? Which Defender products feed it and how? Learn to trace any score point back to its source.</description>
     </item>
     <item>
       <title>Defender P1: How Many Exist?</title>

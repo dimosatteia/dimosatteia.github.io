@@ -6,42 +6,42 @@
     <description>Recent content in Microsoft 365 on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 May 2026 16:58:48 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2026 19:32:25 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/microsoft-365/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Microsoft Secure Score για τον ΥΑΣΠΕ</title>
+      <title>Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2</title>
       <link>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</link>
       <pubDate>Mon, 27 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</guid>
-      <description>Microsoft Secure Score για Έλληνα Υ.Α.Σ.Π.Ε.: από το score στη μετρήσιμη συμμόρφωση με NIS2 και Νόμο 5160/2024.</description>
+      <description>Microsoft Secure Score για τον Υ.Α.Σ.Π.Ε.: τεχνικά controls NIS2, Νόμος 5160/2024, ιεράρχηση ενεργειών και μετρήσιμη συμμόρφωση Microsoft 365.</description>
     </item>
     <item>
-      <title>Gold GRC on Microsoft Secure Score</title>
+      <title>Microsoft Secure Score as a GRC Tool for ISO 27001 &amp; NIS2</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-0-intro/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-0-intro/</guid>
-      <description>How we built an ISO 27001 &amp;amp; NIS2 GRC programme on Microsoft Secure Score with €0 extra cost, no third-party platform, Gold Award winner. Series intro and reading path.</description>
+      <description>How we built an ISO 27001 &amp;amp; NIS2 GRC programme on Microsoft Secure Score — €0 extra cost, no third-party platform, Gold Award result.</description>
     </item>
     <item>
-      <title>Secure Score P1: 1st Recommendation</title>
+      <title>Microsoft Secure Score Part 1: How to Read a Recommendation</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</link>
       <pubDate>Mon, 27 Apr 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-1-anatomy/</guid>
-      <description>How to read a Microsoft Secure Score recommendation: every field on the details pane explained for junior admins and Tier 1 SOC analysts.</description>
+      <description>Every field on a Microsoft Secure Score recommendation explained for Junior M365 Admins and Tier 1 SOC Analysts. No theory, just the screen.</description>
     </item>
     <item>
-      <title>Secure Score P2: Defender XDR</title>
+      <title>Microsoft Secure Score Part 2: Inside the Defender Ecosystem</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</link>
       <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-2-ecosystem/</guid>
-      <description>Microsoft Secure Score reads from Defender for Endpoint, Defender for Office 365, Entra ID, and Microsoft Purview. Here&amp;#39;s where every score point comes from.</description>
+      <description>Where does Microsoft Secure Score come from? Which Defender products feed it and how? Learn to trace any score point back to its source.</description>
     </item>
     <item>
-      <title>Secure Score P3: Operations</title>
+      <title>Microsoft Secure Score Part 3: Daily Operations &amp; ISO 27001</title>
       <link>http://localhost:1313/posts/secure-score-grc-part-3-operations/</link>
       <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-3-operations/</guid>
-      <description>Microsoft Secure Score in daily operations: prioritization framework, formal remediation workflow, ISO 27001 and NIS2 control mapping, continuous monitoring, and audit evidence collection.</description>
+      <description>260&#43; recommendations, one team. How to prioritize, remediate, map controls to ISO 27001 &amp;amp; NIS2, and collect audit evidence, without burning out.</description>
     </item>
     <item>
       <title>Defender P1: How Many Exist?</title>
