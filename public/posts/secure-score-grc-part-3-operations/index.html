@@ -64,6 +64,13 @@
         document.querySelector("html").dataset.theme = 'light';
     }
 
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx5s18mpi4");
 </script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">
@@ -97,13 +104,6 @@
     "@id": "\"http://localhost:1313/posts/secure-score-grc-part-3-operations/\""
   }
 }
-</script>
-<script>
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wx5s18mpi4");
 </script><meta property="og:url" content="http://localhost:1313/posts/secure-score-grc-part-3-operations/">
   <meta property="og:site_name" content="Microsoft 365 Security Insights">
   <meta property="og:title" content="Microsoft Secure Score Part 3: Daily Operations & ISO 27001">
@@ -585,50 +585,50 @@ For one-off audit requests, we take a screenshot of the Microsoft Secure Score r
 </ul>
 <p>Example entry:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Field</th>
-          <th>Value</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Recommendation</strong></td>
-          <td>Set up Cloud Discovery in Microsoft Defender for Cloud Apps</td>
-      </tr>
-      <tr>
-          <td><strong>Category</strong></td>
-          <td>Apps</td>
-      </tr>
-      <tr>
-          <td><strong>Score impact</strong></td>
-          <td>4.50 points</td>
-      </tr>
-      <tr>
-          <td><strong>Risk description</strong></td>
-          <td>Reduces visibility into unsanctioned SaaS app usage (shadow IT)</td>
-      </tr>
-      <tr>
-          <td><strong>Business justification</strong></td>
-          <td>Limited SaaS footprint (only Microsoft 365 and 3 approved SaaS apps). Cost/benefit does not justify enabling Defender for Cloud Apps.</td>
-      </tr>
-      <tr>
-          <td><strong>Compensating controls</strong></td>
-          <td>Entra ID Conditional Access blocks all non-approved SaaS apps. Network firewall logs egress traffic for anomaly detection.</td>
-      </tr>
-      <tr>
-          <td><strong>Approval date</strong></td>
-          <td>2025-11-12</td>
-      </tr>
-      <tr>
-          <td><strong>Approver</strong></td>
-          <td>CISO (Dimosthenis Atteia)</td>
-      </tr>
-      <tr>
-          <td><strong>Review date</strong></td>
-          <td>2026-11-12 (annual review)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Field</th>
+					<th>Value</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Recommendation</strong></td>
+					<td>Set up Cloud Discovery in Microsoft Defender for Cloud Apps</td>
+			</tr>
+			<tr>
+					<td><strong>Category</strong></td>
+					<td>Apps</td>
+			</tr>
+			<tr>
+					<td><strong>Score impact</strong></td>
+					<td>4.50 points</td>
+			</tr>
+			<tr>
+					<td><strong>Risk description</strong></td>
+					<td>Reduces visibility into unsanctioned SaaS app usage (shadow IT)</td>
+			</tr>
+			<tr>
+					<td><strong>Business justification</strong></td>
+					<td>Limited SaaS footprint (only Microsoft 365 and 3 approved SaaS apps). Cost/benefit does not justify enabling Defender for Cloud Apps.</td>
+			</tr>
+			<tr>
+					<td><strong>Compensating controls</strong></td>
+					<td>Entra ID Conditional Access blocks all non-approved SaaS apps. Network firewall logs egress traffic for anomaly detection.</td>
+			</tr>
+			<tr>
+					<td><strong>Approval date</strong></td>
+					<td>2025-11-12</td>
+			</tr>
+			<tr>
+					<td><strong>Approver</strong></td>
+					<td>CISO (Dimosthenis Atteia)</td>
+			</tr>
+			<tr>
+					<td><strong>Review date</strong></td>
+					<td>2026-11-12 (annual review)</td>
+			</tr>
+	</tbody>
 </table>
 <p>Auditors will ask to see this register. If it&rsquo;s well-documented, they&rsquo;ll move on. If it&rsquo;s not, they&rsquo;ll write a finding.</p>
 <h3 id="risk-acceptance-approval-workflow">Risk acceptance approval workflow<a hidden class="anchor" aria-hidden="true" href="#risk-acceptance-approval-workflow">#</a></h3>

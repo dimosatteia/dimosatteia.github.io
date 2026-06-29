@@ -1,8 +1,8 @@
 ---
 title: "Microsoft Defender Demystified — Part 2: The Four Core XDR Workloads, Up Close"
 date: 2026-05-25T10:00:00+03:00
-lastmod: 2026-05-25T10:32:00+03:00
-draft: true
+lastmod: 2026-06-29T10:00:00+03:00
+draft: false
 keywords:
   - how does microsoft defender xdr correlation work
   - microsoft defender for endpoint vs office 365 difference
