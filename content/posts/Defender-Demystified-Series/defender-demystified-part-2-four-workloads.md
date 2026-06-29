@@ -52,8 +52,8 @@ First, let's meet each one properly.
 
 ## Microsoft Defender for Endpoint: EDR and Behavioral Monitoring Explained
 
-![Microsoft Defender portal home with the left navigation expanded, showing Endpoints, Email & collaboration, Identities, and Cloud apps](/images/DefenderDemystified/microsoft-defender-portal-navigation-workloads.png)
-📷 *Image 1: The unified Microsoft Defender portal at security.microsoft.com, one console for all four XDR workloads.*
+[![Microsoft Defender portal home with the left navigation expanded, showing Endpoints, Email & collaboration, Identities, and Cloud apps](/images/DefenderDemystified/microsoft-defender-portal-navigation-workloads.png)](/images/DefenderDemystified/microsoft-defender-portal-navigation-workloads.png)
+> 📷 *Image 1: The unified Microsoft Defender portal at security.microsoft.com, one console for all four XDR workloads.*
 
 **[Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** is probably the one you've heard of. It protects the devices — Windows 10/11, Windows Server, macOS, Linux, iOS, Android. If someone's doing work on it, Microsoft Defender for Endpoint is watching.
 
@@ -69,8 +69,8 @@ Here's a concrete example. Someone in accounting opens an invoice that turns out
 
 Notice the phrase *"the original email"*. That's not something Microsoft Defender for Endpoint sees on its own. That signal came from somewhere else. Hold that thought.
 
-![Microsoft Defender for Endpoint device inventory showing onboarded devices with risk and exposure levels](/images/DefenderDemystified/microsoft-defender-for-endpoint-device-inventory.png)
-📷 *Image 2: Device inventory (Assets → Devices) with per-device risk and exposure scoring.*
+[![Microsoft Defender for Endpoint device inventory showing onboarded devices with risk and exposure levels](/images/DefenderDemystified/microsoft-defender-for-endpoint-device-inventory.png)](/images/DefenderDemystified/microsoft-defender-for-endpoint-device-inventory.png)
+> 📷 *Image 2: Device inventory (Assets → Devices) with per-device risk and exposure scoring.*
 
 ## Microsoft Defender for Office 365: Safe Links, Safe Attachments, and Anti-Phishing
 
@@ -85,8 +85,8 @@ A few of the things Microsoft Defender for Office 365 does that are worth knowin
 
 A concrete example. A spear-phishing email impersonating your CEO lands in the CFO's inbox with a fake invoice attached. Microsoft Defender for Office 365 spots the impersonation pattern, sandboxes the attachment, identifies it as a credential harvester, and pulls the email out of every recipient's inbox before anyone clicks. If a click *had* already happened, that's where the signal handover to Microsoft Defender for Endpoint becomes powerful.
 
-![Microsoft Defender for Office 365 Threat Explorer showing a timeline of phishing emails, blocked versus delivered](/images/DefenderDemystified/microsoft-defender-office-365-threat-explorer-phish.png)
-📷 *Image 3: Threat Explorer (Email & collaboration → Explorer) — phishing detections over time, blocked vs delivered.*
+[![Microsoft Defender for Office 365 Threat Explorer showing a timeline of phishing emails, blocked versus delivered](/images/DefenderDemystified/microsoft-defender-office-365-threat-explorer-phish.png)](/images/DefenderDemystified/microsoft-defender-office-365-threat-explorer-phish.png)
+> 📷 *Image 3: Threat Explorer (Email & collaboration → Explorer) — phishing detections over time, blocked vs delivered.*
 
 ## Microsoft Defender for Identity: Lateral Movement and Pass the Hash Detection
 
@@ -107,8 +107,8 @@ Here's a scenario to make it tangible. An attacker has compromised one workstati
 
 For any organisation with a meaningful on-premises AD footprint — which is still the vast majority of mid-market and enterprise companies — this workload is genuinely non-optional.
 
-![Microsoft Defender for Identity timeline showing identity activity events for a user account](/images/DefenderDemystified/microsoft-defender-for-identity-timeline.png)
-📷 *Image 4: Defender for Identity timeline on an identity entity page (Assets → Identities → user → Timeline).*
+[![Microsoft Defender for Identity timeline showing identity activity events for a user account](/images/DefenderDemystified/microsoft-defender-for-identity-timeline.png)](/images/DefenderDemystified/microsoft-defender-for-identity-timeline.png)
+> 📷 *Image 4: Defender for Identity timeline on an identity entity page (Assets → Identities → user → Timeline).*
 
 ## Microsoft Defender for Cloud Apps: Shadow IT Discovery and CASB Controls
 
@@ -126,8 +126,8 @@ Here's what Microsoft Defender for Cloud Apps actually does day to day:
 
 The concrete example I like for this one: a user, somewhere, gets phished into granting an OAuth consent to a malicious app that requests broad mailbox access. The attacker never stole the password, but now has read access to every email the user ever receives. Microsoft Defender for Cloud Apps flags the consent grant, identifies the app as malicious through Microsoft threat intelligence, revokes the consent, and alerts the SOC. The attacker is locked out within minutes, not days.
 
-![Microsoft Defender for Cloud Apps Cloud Discovery dashboard showing discovered shadow IT SaaS apps and risk levels](/images/DefenderDemystified/microsoft-defender-cloud-apps-shadow-it-discovery.png)
-📷 *Image 5: Cloud Discovery dashboard (Cloud apps → Cloud discovery) — 259 discovered apps, the classic shadow-IT gap.*
+[![Microsoft Defender for Cloud Apps Cloud Discovery dashboard showing discovered shadow IT SaaS apps and risk levels](/images/DefenderDemystified/microsoft-defender-cloud-apps-shadow-it-discovery.png)](/images/DefenderDemystified/microsoft-defender-cloud-apps-shadow-it-discovery.png)
+> 📷 *Image 5: Cloud Discovery dashboard (Cloud apps → Cloud discovery) — 259 discovered apps, the classic shadow-IT gap.*
 
 ## How Microsoft Defender XDR Correlates Signals: A Real Multi-Stage Attack Example
 
@@ -150,8 +150,8 @@ In Microsoft Defender XDR, **all four alerts collapse into one incident**, prese
 
 This is what you're paying for when you buy into Microsoft Defender XDR. It's also why deploying only one workload, just Microsoft Defender for Endpoint, for example, a common starting point, gives you maybe 30% of the platform's value. The cross-product correlation is the product.
 
-![Microsoft Defender XDR incident attack story with an incident graph correlating alerts, devices, users, and processes](/images/DefenderDemystified/microsoft-defender-xdr-incident-attack-story.png)
-📷 *Image 6: An incident attack story (Incidents → incident → Attack story) with the correlation graph.*
+[![Microsoft Defender XDR incident attack story with an incident graph correlating alerts, devices, users, and processes](/images/DefenderDemystified/microsoft-defender-xdr-incident-attack-story.png)](/images/DefenderDemystified/microsoft-defender-xdr-incident-attack-story.png)
+> 📷 *Image 6: An incident attack story (Incidents → incident → Attack story) with the correlation graph.*
 
 ## What's next
 
