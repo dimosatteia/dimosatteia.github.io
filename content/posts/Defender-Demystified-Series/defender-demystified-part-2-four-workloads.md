@@ -44,7 +44,7 @@ cover:
 
 ## Picking up from Part 1
 
-In **[Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)** I called **Microsoft Defender XDR** the conductor of an orchestra, and the individual Microsoft security products the instruments. It's a tidy metaphor, but it's time to actually meet the instruments.
+In **[Part 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** I called **Microsoft Defender XDR** the conductor of an orchestra, and the individual Microsoft security products the instruments. It's a tidy metaphor, but it's time to actually meet the instruments.
 
 There are four of them at the core of Microsoft Defender XDR. Each one is sold on its own, each one has its own engineering team at Microsoft, each one has its own portal section, and each one could protect a tenant in isolation. What makes them XDR — Extended Detection and Response — is what happens when they start sharing signals. We'll get to that at the end.
 
@@ -192,50 +192,3 @@ Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-
 - [Microsoft Defender for Cloud Apps overview](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)
 
 ---
-
-<!--
-=========================================================
-IMAGE PRODUCTION NOTES (delete before publish)
-=========================================================
-
-Image 1 — Defender portal navigation with workloads highlighted (cover)
-  Source: security.microsoft.com (your tenant)
-  Capture: left navigation pane expanded
-  Annotate: red boxes around Endpoints, Email & collaboration, Identities, Cloud apps
-  Format: 16:9, full-width
-  Redaction: tenant name
-
-Image 2 — Defender for Endpoint device inventory
-  Source: security.microsoft.com → Endpoints → Device inventory
-  Crop: 5–10 device rows with risk/exposure columns
-  Redaction: device names
-
-Image 3 — Defender for Office 365 Threat Explorer
-  Source: Email & collaboration → Explorer
-  Crop: timeline view with detected events
-  Redaction: subjects, recipients
-
-Image 4 — Defender for Identity timeline
-  Source: Identities section (user timeline or alert detail)
-  Crop: identity events timeline
-  Redaction: user names
-
-Image 5 — Defender for Cloud Apps dashboard
-  Source: Cloud apps → Cloud app catalog OR App governance
-  Crop: discovered apps OR OAuth apps panel
-  Redaction: sensitive app names
-
-Image 6 — Defender XDR incident with cross-workload correlation
-  Source: Investigation & response → Incidents → multi-workload incident
-  View: attack story
-  Redaction: user names, device names, IPs
-  Note: most important image in the post — pick a clean incident
-
-TODO before publish:
-  [ ] Capture the 6 images
-  [ ] Save to /static/images/posts/defender-demystified-part-2/
-  [ ] Replace 📷 placeholders with inline ![alt](path) markdown
-  [ ] Verify link to /posts/defender-demystified-part-1-what-is-microsoft-defender/ resolves
-  [ ] Verify link to /posts/secure-score-grc-part-0-intro/ resolves
-=========================================================
--->
