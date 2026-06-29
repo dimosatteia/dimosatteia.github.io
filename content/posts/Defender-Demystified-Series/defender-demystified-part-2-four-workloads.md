@@ -92,7 +92,7 @@ A concrete example. A spear-phishing email impersonating your CEO lands in the C
 
 This is the workload I find most interesting, because it catches what the other two cannot: **what an attacker does after they've already got valid credentials.**
 
-**[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** watches your on-premises Active Directory and the hybrid identities you've synchronized to Microsoft Entra ID. (For attacks against cloud-only identities, that's the job of Microsoft Entra ID Protection — a separate product.) Lightweight sensors installed on your domain controllers and, where present, on AD FS, AD CS, and Microsoft Entra Connect servers — forward telemetry to the Microsoft Defender portal, where the platform looks for the kinds of things that don't look unusual from any single log but are very unusual when you see them in context.
+**[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** watches your on-premises Active Directory and the hybrid identities you've synchronized to Microsoft Entra ID. (For attacks against cloud-only identities, that's the job of Microsoft Entra ID Protection — a separate product.) Lightweight sensors installed on your domain controllers and, where present, on AD FS, AD CS, and Microsoft Entra Connect servers forward telemetry to the Microsoft Defender portal, where the platform looks for the kinds of things that don't look unusual from any single log but are very unusual when you see them in context.
 
 What kinds of things?
 
