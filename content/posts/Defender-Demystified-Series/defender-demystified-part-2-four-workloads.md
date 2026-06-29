@@ -4,9 +4,8 @@ date: 2026-05-25T10:00:00+03:00
 lastmod: 2026-06-29T17:30:00+03:00
 draft: false
 keywords:
-  - how does microsoft defender xdr correlation work
-  - microsoft defender for endpoint vs office 365 difference
-  - what is the difference between defender workloads
+  - microsoft defender xdr explained
+  - microsoft defender for endpoint vs office 365
   - microsoft defender xdr incident correlation example
   - which microsoft defender workload to deploy first
   - microsoft defender for endpoint plan 1 vs plan 2
@@ -14,29 +13,21 @@ keywords:
   - microsoft defender for identity lateral movement detection
   - microsoft defender for cloud apps shadow it discovery
   - how microsoft defender detects multi stage attacks
-  - microsoft defender xdr attack story explained
-  - microsoft defender cross product correlation
+  - microsoft defender xdr attack story
   - microsoft defender edr behavioral monitoring
   - microsoft defender for office 365 anti phishing
-  - microsoft defender workload deployment order
+  - microsoft defender xdr automatic attack disruption
+  - microsoft 365 e5 security workloads
 tags:
   - Microsoft Defender XDR
-  - XDR Correlation
   - Microsoft Defender for Endpoint
   - Microsoft Defender for Office 365
   - Microsoft Defender for Identity
   - Microsoft Defender for Cloud Apps
-  - EDR Endpoint Detection Response
-  - Safe Links Safe Attachments
-  - Identity Threat Detection
-  - CASB Cloud Security
-  - Multi Stage Attack Detection
+  - XDR Correlation
+  - EDR
   - Incident Response
-  - Security Operations
-  - Attack Story Timeline
-  - Cross Product Correlation
-  - SOC Implementation
-  - Microsoft 365 E5 Security
+  - Microsoft 365 E5
 author: "Dimosthenis Atteia"
 description: "How does Microsoft Defender XDR actually correlate signals across Endpoint, Office 365, Identity, and Cloud Apps? A technical walkthrough of the four core XDR workloads with a real multi-stage attack example showing cross-product correlation in action. For SOC teams, security architects, and CISOs implementing Microsoft 365 E5."
 summary: "Deep dive into Microsoft Defender's four XDR workloads. Endpoint EDR, Office 365 Safe Links, Identity lateral movement detection, and Cloud Apps shadow IT discovery. Includes a phishing-to-data-exfiltration attack scenario showing how XDR correlation transforms four separate alerts into one unified incident."
@@ -101,7 +92,7 @@ A concrete example. A spear-phishing email impersonating your CEO lands in the C
 
 This is the workload I find most interesting, because it catches what the other two cannot: **what an attacker does after they've already got valid credentials.**
 
-**[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** watches your on-premises Active Directory and your Microsoft Entra ID tenant for identity-based attacks. Lightweight sensors installed on domain controllers and AD FS servers forward telemetry to the Microsoft Defender portal, where the platform looks for the kinds of things that don't look unusual from any single log but are very unusual when you see them in context.
+**[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** watches your on-premises Active Directory and the hybrid identities you've synchronized to Microsoft Entra ID. (For attacks against cloud-only identities, that's the job of Microsoft Entra ID Protection — a separate product.) Lightweight sensors installed on your domain controllers and, where present, on AD FS, AD CS, and Microsoft Entra Connect servers — forward telemetry to the Microsoft Defender portal, where the platform looks for the kinds of things that don't look unusual from any single log but are very unusual when you see them in context.
 
 What kinds of things?
 
@@ -176,7 +167,7 @@ Start with Defender for Endpoint (device protection) and Defender for Office 365
 
 **"What's the difference between Defender for Endpoint Plan 1 and Plan 2?"**
 
-Plan 1 is next gen antivirus and basic EDR. Plan 2 adds automated investigation, threat hunting, vulnerability management, and the full behavioral analysis engine. Most enterprises need Plan 2 for meaningful SOC capability.
+Plan 1 is prevention-focused: next-gen antivirus, attack surface reduction, device control, web/network protection, and manual response actions, but no EDR. Plan 2 is what adds the EDR engine itself (continuous behavioral monitoring with alerts and telemetry retention), automated investigation and remediation, advanced hunting, Live Response, and vulnerability management. Most enterprises need Plan 2 for meaningful SOC capability.
 
 **"How long does it take for Microsoft Defender XDR to correlate an incident?"**
 

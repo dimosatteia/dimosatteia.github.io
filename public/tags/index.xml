@@ -9,38 +9,10 @@
     <lastBuildDate>Mon, 25 May 2026 15:58:46 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Attack Story Timeline</title>
-      <link>http://localhost:1313/tags/attack-story-timeline/</link>
+      <title>EDR</title>
+      <link>http://localhost:1313/tags/edr/</link>
       <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/attack-story-timeline/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>CASB Cloud Security</title>
-      <link>http://localhost:1313/tags/casb-cloud-security/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/casb-cloud-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cross Product Correlation</title>
-      <link>http://localhost:1313/tags/cross-product-correlation/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/cross-product-correlation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>EDR Endpoint Detection Response</title>
-      <link>http://localhost:1313/tags/edr-endpoint-detection-response/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/edr-endpoint-detection-response/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Identity Threat Detection</title>
-      <link>http://localhost:1313/tags/identity-threat-detection/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/identity-threat-detection/</guid>
+      <guid>http://localhost:1313/tags/edr/</guid>
       <description></description>
     </item>
     <item>
@@ -51,10 +23,10 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365 E5 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-e5-security/</link>
+      <title>Microsoft 365 E5</title>
+      <link>http://localhost:1313/tags/microsoft-365-e5/</link>
       <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-e5-security/</guid>
+      <guid>http://localhost:1313/tags/microsoft-365-e5/</guid>
       <description></description>
     </item>
     <item>
@@ -90,34 +62,6 @@
       <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
       <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Multi Stage Attack Detection</title>
-      <link>http://localhost:1313/tags/multi-stage-attack-detection/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/multi-stage-attack-detection/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Safe Links Safe Attachments</title>
-      <link>http://localhost:1313/tags/safe-links-safe-attachments/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/safe-links-safe-attachments/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security Operations</title>
-      <link>http://localhost:1313/tags/security-operations/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/security-operations/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SOC Implementation</title>
-      <link>http://localhost:1313/tags/soc-implementation/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/soc-implementation/</guid>
       <description></description>
     </item>
     <item>
@@ -198,6 +142,13 @@
       <description></description>
     </item>
     <item>
+      <title>Security Operations</title>
+      <link>http://localhost:1313/tags/security-operations/</link>
+      <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/security-operations/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Critical Assets</title>
       <link>http://localhost:1313/tags/critical-assets/</link>
       <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
@@ -265,6 +216,13 @@
       <link>http://localhost:1313/tags/identity-security/</link>
       <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/identity-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 E5 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-e5-security/</link>
+      <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-e5-security/</guid>
       <description></description>
     </item>
     <item>
@@ -601,6 +559,62 @@
       <link>http://localhost:1313/tags/welcome/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/welcome/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Attack Story Timeline</title>
+      <link>http://localhost:1313/tags/attack-story-timeline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/attack-story-timeline/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CASB Cloud Security</title>
+      <link>http://localhost:1313/tags/casb-cloud-security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/casb-cloud-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cross Product Correlation</title>
+      <link>http://localhost:1313/tags/cross-product-correlation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/cross-product-correlation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>EDR Endpoint Detection Response</title>
+      <link>http://localhost:1313/tags/edr-endpoint-detection-response/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/edr-endpoint-detection-response/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Identity Threat Detection</title>
+      <link>http://localhost:1313/tags/identity-threat-detection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/identity-threat-detection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Multi Stage Attack Detection</title>
+      <link>http://localhost:1313/tags/multi-stage-attack-detection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/multi-stage-attack-detection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Safe Links Safe Attachments</title>
+      <link>http://localhost:1313/tags/safe-links-safe-attachments/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/safe-links-safe-attachments/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SOC Implementation</title>
+      <link>http://localhost:1313/tags/soc-implementation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/soc-implementation/</guid>
       <description></description>
     </item>
   </channel>
