@@ -46,7 +46,7 @@ cover:
 
 In **[Part 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** I called **Microsoft Defender XDR** the conductor of an orchestra, and the individual Microsoft security products the instruments. It's a tidy metaphor, but it's time to actually meet the instruments.
 
-There are four of them at the core of Microsoft Defender XDR. Each one is sold on its own, each one has its own engineering team at Microsoft, each one has its own portal section, and each one could protect a tenant in isolation. What makes them XDR — Extended Detection and Response — is what happens when they start sharing signals. We'll get to that at the end.
+There are four of them at the core of Microsoft Defender XDR. Each one is sold on its own, each one has its own engineering team at Microsoft, each one has its own portal section, and each one could protect a tenant in isolation. What makes them XDR, aka "Extended Detection and Response" is what happens when they start sharing signals. We'll get to that at the end.
 
 First, let's meet each one properly.
 
@@ -60,12 +60,12 @@ First, let's meet each one properly.
 What does "watching" actually mean in 2026? Quite a lot, as it turns out:
 
 - Next-generation antivirus that catches things traditional signature-based AV misses
-- **EDR** — Endpoint Detection and Response — the continuous behavioural monitoring that picks up on an attack in progress, not just a known bad file
+- **EDR** aka "Endpoint Detection and Response" the continuous behavioural monitoring that picks up on an attack in progress, not just a known bad file
 - Attack Surface Reduction rules that close off the paths attackers actually use (malicious macros, credential theft, suspicious scripts)
 - Automated Investigation and Remediation that does the first 15 minutes of SOC triage while your analysts are still reading the alert
 - Microsoft Defender Vulnerability Management bundled in (at Plan 2) — more on that one in a later post
 
-Here's a concrete example. Someone in accounting opens an invoice that turns out to be a ransomware dropper. Within seconds, Microsoft Defender for Endpoint notices the suspicious behavioural pattern, isolates the device from the network so the infection can't spread, kills the malicious process, and where possible rolls back the files it encrypted. An automated investigation opens that traces the thing backwards — *how did it get onto this device in the first place?* — and in many cases finds that the original email is still sitting in other inboxes, which the platform can then quarantine.
+Here's a concrete example. Someone in accounting opens an invoice that turns out to be a ransomware dropper. Within seconds, Microsoft Defender for Endpoint notices the suspicious behavioural pattern, isolates the device from the network so the infection can't spread, kills the malicious process, and where possible rolls back the files it encrypted. An automated investigation opens that traces the thing backwards (*how did it get onto this device in the first place?*) and in many cases finds that the original email is still sitting in other inboxes, which the platform can then quarantine.
 
 Notice the phrase *"the original email"*. That's not something Microsoft Defender for Endpoint sees on its own. That signal came from somewhere else. Hold that thought.
 
@@ -78,12 +78,12 @@ Notice the phrase *"the original email"*. That's not something Microsoft Defende
 
 A few of the things Microsoft Defender for Office 365 does that are worth knowing:
 
-- **Safe Links** rewrites every URL in inbound email and scans the destination *at click time*, not just at delivery. This matters because attackers know delivery-time scanning exists — they send links that go to a benign page on Monday and flip to a credential harvester on Wednesday.
+- **Safe Links** rewrites every URL in inbound email and scans the destination *at click time*, not just at delivery. This matters because attackers know delivery-time scanning exists, they send links that go to a benign page on Monday and flip to a credential harvester on Wednesday.
 - **Safe Attachments** detonates attachments in a sandbox before handing them to the user, so if someone forwards you a "quarterly report" that actually runs PowerShell on open, the sandbox finds out first.
-- **Anti-phishing policies** with impersonation protection — the thing that catches the *"Hi, this is the CEO, I need you to buy gift cards for the client meeting"* email even when it comes from a believable-looking domain.
+- **Anti-phishing policies** with impersonation protection, the thing that catches the *"Hi, this is the CEO, I need you to buy gift cards for the client meeting"* email even when it comes from a believable-looking domain.
 - **Attack Simulation Training** lets you run realistic phishing simulations against your own users for training purposes. This is both useful and occasionally humbling.
 
-A concrete example. A spear-phishing email impersonating your CEO lands in the CFO's inbox with a fake invoice attached. Microsoft Defender for Office 365 spots the impersonation pattern, sandboxes the attachment, identifies it as a credential harvester, and pulls the email out of every recipient's inbox before anyone clicks. If a click *had* already happened — that's where the signal handover to Microsoft Defender for Endpoint becomes powerful.
+A concrete example. A spear-phishing email impersonating your CEO lands in the CFO's inbox with a fake invoice attached. Microsoft Defender for Office 365 spots the impersonation pattern, sandboxes the attachment, identifies it as a credential harvester, and pulls the email out of every recipient's inbox before anyone clicks. If a click *had* already happened, that's where the signal handover to Microsoft Defender for Endpoint becomes powerful.
 
 > 📷 **Image 3 — Microsoft Defender for Office 365 Threat Explorer.**
 > *Capture from: Email & collaboration → Explorer. Show a recent timeline of detected phishing or malware emails. Redact subject lines and recipient names.*
@@ -118,13 +118,13 @@ Why is this a distinct product? Because the way people work changed, and securit
 
 Here's what Microsoft Defender for Cloud Apps actually does day to day:
 
-- **Shadow IT discovery** — finds the unsanctioned SaaS apps your users are already using. The number is always bigger than you think. I've seen tenants where the IT team believed they were running 40 apps and the reality was over 200.
-- **App governance** — surfaces risky **OAuth applications** that users have granted consent to. This is one of the most under-appreciated attack vectors of the last five years.
-- **Conditional Access App Control** — applies real-time session policies to risky sessions. Think: *"you can read this document in a browser, but you can't download it on an unmanaged device."*
-- **Information protection extension** — takes your Microsoft Purview policies and applies them to third-party SaaS apps like Salesforce or Box.
-- **Anomalous user behaviour detection** — impossible-travel logins, mass downloads, unusual admin activities.
+- **Shadow IT discovery**: finds the unsanctioned SaaS apps your users are already using. The number is always bigger than you think. I've seen tenants where the IT team believed they were running 40 apps and the reality was over 200.
+- **App governance**: surfaces risky **OAuth applications** that users have granted consent to. This is one of the most under-appreciated attack vectors of the last five years.
+- **Conditional Access App Control**: applies real-time session policies to risky sessions. Think: *"you can read this document in a browser, but you can't download it on an unmanaged device."*
+- **Information protection extension**: takes your Microsoft Purview policies and applies them to third-party SaaS apps like Salesforce or Box.
+- **Anomalous user behaviour detection**: impossible-travel logins, mass downloads, unusual admin activities.
 
-The concrete example I like for this one: a user, somewhere, gets phished into granting an OAuth consent to a malicious app that requests broad mailbox access. The attacker never stole the password — but now has read access to every email the user ever receives. Microsoft Defender for Cloud Apps flags the consent grant, identifies the app as malicious through Microsoft threat intelligence, revokes the consent, and alerts the SOC. The attacker is locked out within minutes, not days.
+The concrete example I like for this one: a user, somewhere, gets phished into granting an OAuth consent to a malicious app that requests broad mailbox access. The attacker never stole the password, but now has read access to every email the user ever receives. Microsoft Defender for Cloud Apps flags the consent grant, identifies the app as malicious through Microsoft threat intelligence, revokes the consent, and alerts the SOC. The attacker is locked out within minutes, not days.
 
 > 📷 **Image 5 — Microsoft Defender for Cloud Apps dashboard.**
 > *Capture from: Cloud apps → Cloud app catalog or App governance. Show discovered apps or the OAuth apps panel. Redact tenant-specific app names if needed.*
