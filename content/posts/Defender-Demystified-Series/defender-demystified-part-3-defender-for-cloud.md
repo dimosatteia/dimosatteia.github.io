@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Demystified — Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
-date: 2026-04-23T10:00:00+03:00
-draft: true
+date: 2026-07-10T10:51:00+03:00
+draft: false
 keywords:
   - where does Microsoft Secure Score data come from
   - which Microsoft products contribute to Secure Score
