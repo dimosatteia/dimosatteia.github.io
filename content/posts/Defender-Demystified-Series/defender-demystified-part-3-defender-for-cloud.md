@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
 date: 2026-07-10T10:51:00+03:00
-lastmod: 2026-07-10T11:25:00+03:00
+lastmod: 2026-07-11T09:30:00+03:00
 draft: false
 keywords:
   - Microsoft Defender for Cloud vs Defender XDR
