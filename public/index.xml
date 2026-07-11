@@ -6,7 +6,7 @@
     <description>Recent content on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jun 2026 19:18:44 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jul 2026 11:25:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</title>
@@ -93,11 +93,18 @@
       <description>A hands-on walk through Microsoft Defender for Office 365 — Plan 1 vs Plan 2 differences, the preset security policies that give you 80% of the value in 10 minutes, and the custom policy configuration that matters for the remaining 20%.</description>
     </item>
     <item>
-      <title>Microsoft Defender Demystified — Part 3: Microsoft Defender for Cloud (The One That&#39;s Actually Different)</title>
+      <title>Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That&#39;s Actually Different)</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud-old/</link>
+      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud-old/</guid>
+      <description>Microsoft Defender for Cloud is the one product in the Defender family most people confuse with Defender XDR — and the mistake is costly. Different portal, different licensing, different audience. A friendly, honest walk through what it is, how its two layers fit together, and which plans matter for Azure, AWS, and GCP workloads.</description>
+    </item>
+    <item>
+      <title>Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That&#39;s Actually Different)</title>
       <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/</link>
       <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/</guid>
-      <description>Microsoft Defender for Cloud is the one product in the Defender family most people confuse with Defender XDR — and the mistake is costly. Different portal, different licensing, different audience. A friendly, honest walk through what it is, how its two layers fit together, and which plans matter for Azure, AWS, and GCP workloads.</description>
+      <description>Microsoft Defender for Cloud vs Defender XDR: different portal, licensing, and audience. CSPM tiers, workload protection plans, and multicloud explained.</description>
     </item>
     <item>
       <title>Microsoft Defender Vulnerability Management Device Discovery</title>

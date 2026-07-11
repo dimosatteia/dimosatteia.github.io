@@ -17,7 +17,7 @@ keywords:
   - microsoft defender edr behavioral monitoring
   - microsoft defender for office 365 anti phishing
   - microsoft defender xdr automatic attack disruption
-  - microsoft 365 e5 security workloads
+  - microsoft 365 E5 security workloads
 tags:
   - Microsoft Defender XDR
   - Microsoft Defender for Endpoint

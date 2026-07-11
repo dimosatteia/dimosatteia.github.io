@@ -1,33 +1,35 @@
 ---
-title: "Microsoft Defender Demystified — Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
+title: "Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
 date: 2026-07-10T10:51:00+03:00
-draft: true
+lastmod: 2026-07-10T11:25:00+03:00
+draft: false
 keywords:
-  - where does Microsoft Secure Score data come from
-  - which Microsoft products contribute to Secure Score
-  - Microsoft Secure Score Exposure Management
-  - Microsoft Secure Score license dependency
-  - why are some Secure Score recommendations missing
-  - Microsoft Secure Score refresh time
-  - Microsoft Secure Score for ISO 27001
-  - Microsoft Secure Score as audit evidence
-  - Microsoft Secure Score NIS2 compliance
+  - Microsoft Defender for Cloud vs Defender XDR
+  - what is Microsoft Defender for Cloud
+  - Defender for Cloud licensing explained
+  - Foundational CSPM vs Defender CSPM
+  - Defender for Cloud pricing per resource
+  - Microsoft CNAPP explained
+  - Defender for Cloud workload protection plans
+  - Defender for Cloud AWS GCP multicloud
+  - is Microsoft Defender for Cloud free
+  - Defender for Cloud unified Defender portal
 tags:
-  - Microsoft Secure Score
+  - Microsoft Defender for Cloud
   - Microsoft Defender XDR
-  - Microsoft 365
-  - Microsoft Defender for Endpoint
-  - Microsoft Defender for Office 365
-  - Microsoft Defender for Identity
+  - Azure Security
+  - CSPM
+  - CWPP
+  - CNAPP
+  - Cloud Security Posture Management
+  - Multicloud Security
   - Microsoft 365 Security
-  - Exposure Management
   - Cyber GRC
-  - Security Posture Management
   - NIS2
   - ISO 27001
 author: "Dimosthenis Atteia"
-description: "Microsoft Defender for Cloud is the one product in the Defender family most people confuse with Defender XDR — and the mistake is costly. Different portal, different licensing, different audience. A friendly, honest walk through what it is, how its two layers fit together, and which plans matter for Azure, AWS, and GCP workloads."
-summary: "Part 3 of the Microsoft Defender Demystified series. Microsoft Defender for Cloud explained in plain language — the CSPM foundation, the paid Defender CSPM tier, the eleven workload protection plans, the multicloud story, and why the unified Microsoft Defender portal is quietly making all this one experience."
+description: "Microsoft Defender for Cloud vs Defender XDR: different portal, licensing, and audience. CSPM tiers, workload protection plans, and multicloud explained."
+summary: "Part 3 of the Microsoft Defender Demystified series. Microsoft Defender for Cloud explained in plain language, the CSPM foundation, the paid Defender CSPM tier, the workload protection plans, the multicloud story, and why the unified Microsoft Defender portal is quietly making all this one experience."
 categories: ["Microsoft Defender", "Azure Security"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
@@ -41,98 +43,123 @@ cover:
 
 ## Where we are so far
 
-**[Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)** gave us the whole family map. **[Part 2](/posts/defender-demystified-part-2-four-workloads/)** went deep into the four core XDR workloads. Now we move to the product that Microsoft itself lists under a separate "Other content" heading on the [Microsoft Defender hub](https://learn.microsoft.com/en-us/defender/), and the one I see confused with everything else more often than any other: **[Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)**.
+**[Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)** gave us the whole family map. **[Part 2](/posts/defender-demystified-part-2-four-workloads/)** went deep into the four core XDR workloads. Now we move to the product that Microsoft itself documents separately from the rest of the Defender family on the [Microsoft Defender hub](https://learn.microsoft.com/en-us/defender/), and the one I see confused with everything else more often than any other: **[Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)**.
 
 Let me say this clearly up front, because it's the single most expensive misunderstanding in Microsoft security conversations: **Microsoft Defender for Cloud is a different product from Microsoft Defender XDR.** Different portal. Different licensing. Different billing. Different audience.
 
 Every Microsoft security professional will have this conversation at some point, usually with someone holding an invoice. Let me save you from being that person.
 
-## What makes Microsoft Defender for Cloud different
+## Microsoft Defender for Cloud vs Microsoft Defender XDR: what's different
 
-> 📷 **Image 1 — The Microsoft Defender for Cloud overview page in the Azure portal.**
-> *Capture from `portal.azure.com` → search "Defender for Cloud" → Overview. Show the security posture cards (Secure Score, Recommendations, Alerts, Inventory). This is literally a different portal from the one we've been touring, and that's the point. Format: 16:9, full-width. Redact subscription names if sensitive.*
+{{< figure
+    src="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.png"
+    link="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.png"
+    target="_blank"
+    alt="Microsoft Defender for Cloud overview dashboard in the Azure portal showing secure score, recommendations and security alerts"
+    caption="📷 **Image 1: The Microsoft Defender for Cloud overview in the Azure portal. A different portal from Microsoft Defender XDR at security.microsoft.com.**"
+    loading="lazy"
+>}}
 
-Everything in **Part 2** lived at `security.microsoft.com` and was licensed **per user** as part of a **Microsoft 365** plan. Microsoft Defender for Cloud lives in the **Azure portal** at `portal.azure.com` and is licensed **per resource** — per VM, per storage account, per database — as part of your **Azure consumption**.
+Everything in **Part 2** lived at `security.microsoft.com` and was licensed **per user** as part of a **Microsoft 365** plan. Microsoft Defender for Cloud lives in the **Azure portal** at `portal.azure.com` and is licensed **per resource** (per VM, per storage account, per database) as part of your **Azure consumption**.
 
-Your Microsoft 365 E5 license does not give you Microsoft Defender for Cloud entitlement. Your Microsoft Defender for Cloud subscription does not give you Microsoft 365 Defender entitlement. These are two genuinely separate products that happen to share a brand.
+Your Microsoft 365 E5 license does not give you Microsoft Defender for Cloud entitlement. Your Microsoft Defender for Cloud subscription does not give you Microsoft Defender XDR entitlement. These are two genuinely separate products that happen to share a brand.
 
-What they protect is also different. The four workloads in Part 2 protect **user-facing surfaces** — devices, email, identities, SaaS. Microsoft Defender for Cloud protects **infrastructure** — the VMs, containers, databases, storage, and increasingly the AI services that run your applications. Different problem, different tool.
+What they protect is also different. The four workloads in Part 2 protect **user-facing surfaces**, devices, email, identities, SaaS. Microsoft Defender for Cloud protects **infrastructure** like the VMs, containers, databases, storage, and increasingly the AI services that run your applications. Different problem, different tool.
 
-Microsoft calls this category a **CNAPP** — Cloud Native Application Protection Platform — which is an industry term for a single product that combines several cloud-security disciplines:
+Microsoft calls this category a **CNAPP** aka Cloud Native Application Protection Platform, which is an industry term for a single product that combines several cloud-security disciplines:
 
-- **CSPM** — Cloud Security Posture Management — finding misconfigurations before attackers do
-- **CWPP** — Cloud Workload Protection — runtime threat detection for workloads
-- **DevSecOps** — pulling security earlier into the development process
-- **CIEM** — Cloud Infrastructure Entitlement Management — managing permissions across cloud resources
+- **CSPM** is Cloud Security Posture Management: finding misconfigurations before attackers do
+- **CWPP** is Cloud Workload Protection: runtime threat detection for workloads
+- **DevSecOps**: pulling security earlier into the development process
+- **CIEM** is Cloud Infrastructure Entitlement Management: managing permissions across cloud resources
 
 You don't need to remember the acronyms. What you do need to remember is the **two-layer structure** Microsoft Defender for Cloud is sold in. That's the practical bit.
 
-## Layer 1 — CSPM, the posture layer
+## Layer 1: CSPM, the posture layer
 
 The first thing Microsoft Defender for Cloud does, the moment you onboard an Azure subscription, an AWS account, or a GCP project, is **assess your posture** against a security baseline. This is the CSPM layer. It comes in two tiers.
 
-### Foundational CSPM — free, automatic, multicloud
+### Foundational CSPM: Free, Automatic, Multicloud
 
 Every onboarded environment gets **[Foundational CSPM](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)** at no cost. What you get:
 
 - **Asset inventory** across Azure, AWS, and GCP
 - Continuous **security recommendations** based on the **[Microsoft Cloud Security Benchmark](https://learn.microsoft.com/en-us/security/benchmark/azure/introduction)**
-- A **Secure Score** — the cloud-infrastructure equivalent of the Microsoft 365 Secure Score I've written about in the [Gold-winning GRC series](/posts/secure-score-grc-part-0-intro/)
-- **Regulatory compliance** dashboards mapped to standards like ISO 27001, NIST CSF, PCI DSS, and GDPR
+- A **Secure Score**: the cloud-infrastructure equivalent of the Microsoft 365 Secure Score I've written about in the [Gold-winning GRC series](/posts/secure-score-grc-part-0-intro/)
+- **Regulatory compliance** assessment against the Microsoft Cloud Security Benchmark itself, note that adding *additional* standards like ISO 27001, NIST CSF, or PCI DSS to the compliance dashboard requires the paid **Defender CSPM** plan (a detail that surprises many people, so plan for it if compliance dashboards are your goal)
 
 This alone is worth turning on. It's free, it takes minutes, and within a few hours you'll have a clearer picture of your cloud estate than most organisations ever build.
 
-If your company has any presence in Azure, AWS, or GCP — even a single subscription someone spun up for a side project that nobody remembers — turn on Foundational CSPM today. It will tell you things you didn't know and cost you nothing.
+If your company has any presence in Azure, AWS, or GCP (even a single subscription someone spun up for a side project that nobody remembers) turn on Foundational CSPM today. It will tell you things you didn't know and cost you nothing.
 
-> 📷 **Image 2 — The Microsoft Cloud Security Benchmark recommendations view.**
-> *Capture from: Defender for Cloud → Recommendations. Show the list grouped by control with severity visible. Crop to 8–12 rows. This is what readers will see within minutes of turning it on.*
+{{< figure
+    src="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.png"
+    link="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.png"
+    target="_blank"
+    alt="Microsoft Defender for Cloud security recommendations based on the Microsoft Cloud Security Benchmark with risk levels"
+    caption="📷 **Image 2: The Microsoft Cloud Security Benchmark recommendations view.**"
+    loading="lazy"
+>}}
 
-### Defender CSPM — the paid tier
+### Defender CSPM: The paid tier
 
-If you want **proactive, attacker-perspective** analysis — which is a real upgrade over reactive recommendation lists — you enable the paid **Defender CSPM** plan. What the paid tier adds:
+If you want **proactive, attacker-perspective** analysis, which is a real upgrade over reactive recommendation lists, you enable the paid **Defender CSPM** plan. What the paid tier adds:
 
 - **Agentless vulnerability scanning** of your VMs and container images (no agent to install, no performance overhead)
-- **Attack path analysis** — Microsoft graphs your cloud estate and shows you the actual paths an attacker could take to reach your sensitive data, which is a genuinely different way of thinking about risk
-- **Cloud Security Explorer** — a queryable knowledge graph of your cloud environment
+- **Attack path analysis**: Microsoft graphs your cloud estate and shows you the actual paths an attacker could take to reach your sensitive data, which is a genuinely different way of thinking about risk
+- **Cloud Security Explorer**: a queryable knowledge graph of your cloud environment
 - **Sensitive data discovery** across storage and databases
+- **Regulatory compliance dashboards** for standards beyond the MCSB, ISO 27001, NIST CSF, PCI DSS, CIS Benchmarks, and more
 - **AI security posture management** for organisations running generative AI workloads
 - **DevOps security** with pull-request annotations and code-to-cloud mapping
 
-Approximate pricing is around **$5 per billable resource per month**, billed on Servers, Databases, Storage accounts, and Serverless resources. Use the **[official pricing calculator](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** before enabling — costs scale with your estate.
+Approximate pricing is around **$5 per billable resource per month** (list price $5.11 at the time of writing), billed on Compute, Databases, Storage, and (since April 2026) Serverless resources. Use the **[official pricing calculator](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** before enabling, costs scale with your estate.
 
-## Layer 2 — CWPP, the workload protection plans
+## Layer 2: CWPP, the workload protection plans
 
 Where CSPM tells you *"this VM is misconfigured"*, **CWPP tells you "this VM is being attacked right now."** That's an important distinction.
 
-Workload protection isn't one plan — it's **separate plans per resource type**, each enabled independently, each with its own pricing and threat-detection capabilities. As of 2026, the Microsoft Defender for Cloud hub on Microsoft Learn lists these:
+Workload protection isn't one plan, it's **separate plans per resource type**, each enabled independently, each with its own pricing and threat-detection capabilities. As of mid-2026, these are the plans you'll find in your Environment settings:
 
-- **Microsoft Defender for Servers** — Windows and Linux VMs, on-premises and multicloud. Plan 2 includes the full Microsoft Defender for Endpoint agent on every protected VM, which is a genuine bonus if you're already in that ecosystem.
-- **Microsoft Defender for Containers** — Kubernetes (AKS, EKS, GKE) clusters and container registries
-- **Microsoft Defender for Storage** — Azure Storage accounts (blob, file, queue)
-- **Microsoft Defender for SQL** — SQL Server on VMs and Azure SQL PaaS
-- **Microsoft Defender for open-source relational databases** — PostgreSQL, MySQL, MariaDB, Cosmos DB
-- **Microsoft Defender for App Service** — Azure App Service web apps
-- **Microsoft Defender for Key Vault** — Azure Key Vault
-- **Microsoft Defender for Resource Manager** — the Azure control plane itself
-- **Microsoft Defender for DNS** — suspicious DNS activity from Azure resources
-- **Microsoft Defender for APIs** — Azure API Management endpoints
-- **Microsoft Defender for AI Services** — Azure OpenAI and Azure AI Services workloads (this one is newer and will only get more important)
+- **Microsoft Defender for Servers**: Windows and Linux VMs, on-premises and multicloud. Plan 2 includes the full Microsoft Defender for Endpoint agent on every protected VM, which is a genuine bonus if you're already in that ecosystem. It also bundles DNS threat detection, the old standalone **Microsoft Defender for DNS** plan was retired for new subscriptions back in August 2023 and lives on inside Plan 2.
+- **Microsoft Defender for Containers**: Kubernetes (AKS, EKS, GKE) clusters and container registries
+- **Microsoft Defender for Storage**: Azure Blob Storage, Azure Files, and Azure Data Lake Storage Gen2 (note: queues and tables are not covered), including on-upload malware scanning
+- **Microsoft Defender for SQL**: technically two plans: one for Azure SQL PaaS (Azure SQL Database, Managed Instance, elastic pools, Synapse dedicated pools) and one for SQL Server on machines, Azure or Arc-enabled
+- **Microsoft Defender for open-source relational databases**: PostgreSQL, MySQL, MariaDB on Azure PaaS, and (generally available since June 2026) AWS RDS instances including Aurora PostgreSQL and Aurora MySQL
+- **Microsoft Defender for Azure Cosmos DB**: Microsoft's NoSQL database gets its own dedicated plan (it's neither open-source nor relational, so don't look for it in the plan above)
+- **Microsoft Defender for App Service**: Azure App Service web apps
+- **Microsoft Defender for Key Vault**: Azure Key Vault
+- **Microsoft Defender for Resource Manager**: the Azure control plane itself
+- **Microsoft Defender for APIs**: Azure API Management endpoints
+- **Microsoft Defender for AI Services**: Azure OpenAI and Azure AI Services workloads (this one is newer and will only get more important)
 
-> 📷 **Image 3 — The Environment settings page showing enabled plans.**
-> *Capture from: Defender for Cloud → Environment settings → select a subscription → Defender plans. Show the toggles for each plan with per-resource pricing visible. Redact subscription name.*
+{{< figure
+    src="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.png"
+    link="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.png"
+    target="_blank"
+    alt="Defender for Cloud environment settings showing Defender CSPM and workload protection plans with per-resource pricing toggles"
+    caption="📷 **Image 3: The Environment settings page showing enabled plans.**"
+    loading="lazy"
+>}}
 
 Each plan turns on additional Microsoft-curated detections specific to that resource type. You enable only what you need. A startup with 10 VMs and a storage account might enable just **Microsoft Defender for Servers** Plan 2 and **Microsoft Defender for Storage**. A large bank running hundreds of databases and a Kubernetes platform will enable nearly everything.
 
 ## The multicloud story
 
-Microsoft Defender for Cloud is genuinely multicloud. Onboarding an **AWS account** or a **GCP project** takes minutes through native connectors — an IAM role in AWS, a service account in GCP, and you're done.
+Microsoft Defender for Cloud is genuinely multicloud. Onboarding an **AWS account** or a **GCP project** takes minutes through native connectors, an IAM role in AWS, a service account in GCP, and you're done.
 
-Once connected, Foundational CSPM runs immediately across the multicloud estate. The paid tier and most CWPP plans — especially Microsoft Defender for Servers and Microsoft Defender for Containers — extend natively to AWS and GCP. The same Microsoft platform that protects your Azure resources can protect your Linux VM in EC2 and your GKE cluster in Google Cloud.
+Once connected, Foundational CSPM runs immediately across the multicloud estate. The paid tier and most CWPP plans (especially Microsoft Defender for Servers and Microsoft Defender for Containers) extend natively to AWS and GCP. The same Microsoft platform that protects your Azure resources can protect your Linux VM in EC2 and your GKE cluster in Google Cloud.
 
-This matters more every year, because most organisations don't actually live on a single cloud, even when they think they do. Run a quick inventory. You'll find AWS accounts in a subsidiary, a GCP project someone set up for a data science experiment in 2023, maybe a Digital Ocean instance running a marketing landing page. **NIS2** and **DORA** reporting obligations don't care which cloud the workload runs on — they care that the workload is monitored and that incidents are reported on time.
+This matters more every year, because most organisations don't actually live on a single cloud, even when they think they do. Run a quick inventory. You'll find AWS accounts in a subsidiary, a GCP project someone set up for a data science experiment in 2023, maybe a Digital Ocean instance running a marketing landing page. **NIS2** and **DORA** reporting obligations don't care which cloud the workload runs on, they care that the workload is monitored and that incidents are reported on time.
 
-> 📷 **Image 4 — Multicloud environment view in Microsoft Defender for Cloud.**
-> *Capture from: Defender for Cloud → Environment settings. Show Azure subscriptions plus at least one AWS or GCP connector. If you only have Azure, capture the "Add environment" view showing AWS / GCP / Azure / On-premises options — it still makes the multicloud point.*
+{{< figure
+    src="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.png"
+    link="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.png"
+    target="_blank"
+    alt="Adding AWS and GCP environments to Microsoft Defender for Cloud through native multicloud connectors"
+    caption="📷 **Image 4: Multicloud environment view in Microsoft Defender for Cloud.**"
+    loading="lazy"
+>}}
 
 ## How this flows back into the unified Microsoft Defender portal
 
@@ -146,10 +173,16 @@ Practically, this means an attack that starts with a phishing email (**Microsoft
 
 The CNAPP vision Microsoft has been talking about for years is finally a single operational experience. It's taken a while, but it's here.
 
-> 📷 **Image 5 — A Defender for Cloud incident inside the unified Defender portal.**
-> *Capture from security.microsoft.com → Investigation & response → Incidents. Find an incident sourced from Defender for Cloud. Show the cloud workload context inside the unified incident view. Redact resource names, IPs, user names. Pick the cleanest example — this image proves the integration claim.*
+{{< figure
+    src="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.png"
+    link="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.png"
+    target="_blank"
+    alt="Microsoft Defender for Cloud incident displayed in the unified Microsoft Defender portal incident queue at security.microsoft.com"
+    caption="📷 **Image 5: A Defender for Cloud incident inside the unified Defender portal.**"
+    loading="lazy"
+>}}
 
-## A simple "do I need this?" check
+## Do I need Microsoft Defender for Cloud? A quick checklist
 
 - **Any Azure subscriptions at all?** Turn on Foundational CSPM today. It's free.
 - **Production workloads in Azure, AWS, or GCP?** Evaluate the relevant CWPP plans.
@@ -157,15 +190,29 @@ The CNAPP vision Microsoft has been talking about for years is finally a single 
 - **Multicloud, single-pane-of-glass requirement?** This is one of the few products that credibly delivers end-to-end.
 - **Zero cloud presence, fully on-premises?** You don't need this right now. Focus on Microsoft Defender XDR for your endpoints, email, identity, and SaaS.
 
-The specific licensing decisions — which plan, for which resource, at which budget — are what we'll work through in **Part 4**.
+The specific licensing decisions (which plan, for which resource, at which budget) are what we'll work through in **Part 4**.
 
 ## What's next
 
 In **Part 4** we tackle the question most readers actually arrived with: *"Which Microsoft Defender do I need, and which plan should I buy?"* A practical decoder with three real scenarios.
 
-> 🔗 **Related deep-dive series:** Curious how the Microsoft Cloud Security Benchmark approach — continuous assessment against a maintained control catalogue — can be turned into a full GRC programme at the Microsoft 365 layer? Read [How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/).
+> 🔗 **Related deep-dive series:** Curious how the Microsoft Cloud Security Benchmark approach (continuous assessment against a maintained control catalogue) can be turned into a full GRC programme at the Microsoft 365 layer? Read [How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/).
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+
+## Frequently asked questions
+
+**Is Microsoft Defender for Cloud free?**
+Partially. Foundational CSPM (asset inventory, security recommendations, Secure Score, and assessment against the Microsoft Cloud Security Benchmark) is free on every onboarded subscription. The Defender CSPM plan and all workload protection plans are paid, billed per resource through Azure consumption.
+
+**Is Microsoft Defender for Cloud included in Microsoft 365 E5?**
+No. Microsoft 365 E5 includes the Defender XDR workloads (Endpoint, Office 365, Identity, Cloud Apps), which are licensed per user. Microsoft Defender for Cloud is licensed per resource through your Azure subscription and is a separate purchase.
+
+**Does Microsoft Defender for Cloud work with AWS and GCP?**
+Yes. Native connectors onboard AWS accounts and GCP projects in minutes, and both the CSPM layers and the main workload protection plans (Servers, Containers, and open-source relational databases) extend to AWS and GCP resources.
+
+**What is the difference between Defender for Cloud and Defender XDR?**
+Defender XDR protects user-facing surfaces (devices, email, identities, SaaS apps), lives at security.microsoft.com, and is licensed per user. Defender for Cloud protects infrastructure (VMs, containers, databases, storage, AI services), is managed from the Azure portal, and is licensed per resource, though its incidents now surface in the unified Defender portal too.
 
 ## Microsoft Learn resources
 
@@ -180,47 +227,3 @@ Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-
 - [Microsoft Defender for Cloud pricing](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)
 
 ---
-
-<!--
-=========================================================
-IMAGE PRODUCTION NOTES (delete before publish)
-=========================================================
-
-Image 1 — Defender for Cloud overview in Azure portal (cover)
-  Source: portal.azure.com → search "Defender for Cloud" → Overview
-  Capture: overview page with security posture cards
-  Format: 16:9, full-width
-  Redaction: subscription names, score numbers if sensitive
-
-Image 2 — Microsoft Cloud Security Benchmark recommendations
-  Source: Defender for Cloud → Recommendations
-  Crop: 8–12 rows grouped by control with severity column
-  Redaction: resource names
-
-Image 3 — Environment settings showing enabled plans
-  Source: Defender for Cloud → Environment settings → subscription → Defender plans
-  Capture: table of plans with toggles and per-resource pricing
-  Redaction: subscription name
-
-Image 4 — Multicloud environment view
-  Source: Defender for Cloud → Environment settings
-  Show: Azure plus AWS/GCP connectors ideally
-  Fallback: "Add environment" view showing AWS / GCP / Azure / On-premises options
-
-Image 5 — Defender for Cloud incident in unified Defender portal
-  Source: security.microsoft.com → Investigation & response → Incidents
-  Filter for an incident sourced from Defender for Cloud
-  Capture: unified incident view with cloud workload context
-  Redaction: resource names, IPs, user names
-
-TODO before publish:
-  [ ] Capture the 5 images
-  [ ] Save to /static/images/posts/defender-demystified-part-3/
-  [ ] Replace 📷 placeholders with inline ![alt](path) markdown
-  [ ] Verify all internal links resolve
-  [ ] If you don't have Defender for Cloud in production, consider spinning up
-      a free Azure trial subscription ($200 credit) and enabling Foundational
-      CSPM — it's free, takes ~15 minutes, and gives you clean screenshots
-      without redaction issues
-=========================================================
--->
