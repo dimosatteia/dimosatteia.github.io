@@ -198,12 +198,12 @@ cover:
 
 **Πώς δένουν όλα μαζί:**
 
-- **Combined incidents queue** — όλα τα alerts ομαδοποιημένα ανά incident, με πλήρες scope και impacted assets
-- **Automatic response** — σε πραγματικό χρόνο, π.χ. malware σε endpoint → οδηγία στο MDO να το αφαιρέσει από όλα τα emails
-- **Self-healing** — AI-driven playbooks επαναφέρουν devices, ταυτότητες και mailboxes σε ασφαλή κατάσταση
-- **Cross-product hunting** — custom queries πάνω σε 30 ημέρες raw signals από endpoint και Office data
-- **Full attack story** — alerts, suspicious events και impacted assets ενωμένα σε incidents που αφηγούνται την επίθεση
-- **Single pane of glass** — μία κεντρική εικόνα detections, ενεργειών και evidence στο Defender portal
+- **Combined incidents queue**: όλα τα alerts ομαδοποιημένα ανά incident, με πλήρες scope και impacted assets
+- **Automatic response**: σε πραγματικό χρόνο, π.χ. malware σε endpoint → οδηγία στο MDO να το αφαιρέσει από όλα τα emails
+- **Self-healing**: AI-driven playbooks επαναφέρουν devices, ταυτότητες και mailboxes σε ασφαλή κατάσταση
+- **Cross-product hunting**: custom queries πάνω σε 30 ημέρες raw signals από endpoint και Office data
+- **Full attack story**: alerts, suspicious events και impacted assets ενωμένα σε incidents που αφηγούνται την επίθεση
+- **Single pane of glass**: μία κεντρική εικόνα detections, ενεργειών και evidence στο Defender portal
 
 ### Ένα ρεαλιστικό σενάριο επίθεσης
 
@@ -212,7 +212,7 @@ cover:
 1. Ένας χρήστης λαμβάνει **phishing email**. Το **MDO** εντοπίζει το ύποπτο μήνυμα.
 2. Ο χρήστης ανοίγει το κακόβουλο αρχείο. Το **MDE** καταγράφει τη συμπεριφορά του malware στο endpoint.
 3. Ο επιτιθέμενος προσπαθεί να αποκτήσει credentials. Το **MDI** εντοπίζει ασυνήθιστη δραστηριότητα ταυτότητας.
-4. Το **Defender XDR** ενώνει όλα τα δεδομένα σε **ένα incident** — όχι τρία ξεχωριστά alerts σε τρία διαφορετικά εργαλεία.
+4. Το **Defender XDR** ενώνει όλα τα δεδομένα σε **ένα incident**, όχι τρία ξεχωριστά alerts σε τρία διαφορετικά εργαλεία.
 5. Ακολουθούν αυτόματες ενέργειες: απομόνωση συσκευής, απενεργοποίηση λογαριασμού, αφαίρεση του email από όλα τα mailboxes, blocking indicators σε όλη τη σουίτα.
 
 Αυτό είναι το πραγματικό πλεονέκτημα της ενοποίησης: αντί για δεκάδες απομονωμένα alerts, έχουμε **μία ολοκληρωμένη ιστορία επίθεσης**.
