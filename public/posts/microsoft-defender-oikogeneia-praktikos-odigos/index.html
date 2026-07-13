@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας &amp; ΥΑΣΠΕ</title>
+<meta name="keywords" content="Microsoft Defender οικογένεια προϊόντων, τι είναι το Microsoft Defender, MDE MDO MDI MDA MDC διαφορές, Microsoft Defender for Endpoint ελληνικά, Microsoft Defender for Office 365 ελληνικά, Microsoft Defender for Identity ελληνικά, Microsoft Defender for Cloud Apps ελληνικά, Microsoft Defender XDR πώς λειτουργεί, οδηγός για junior security analyst, Microsoft Defender portal security.microsoft.com">
+<meta name="description" content="Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται όλα μεταξύ τους.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/microsoft-defender-oikogeneia-praktikos-odigos/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/microsoft-defender-oikogeneia-praktikos-odigos/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx5s18mpi4");
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας \\u0026 ΥΑΣΠΕ\"",
+  "description": "\"Ένας πρακτικός χάρτης της οικογένειας Microsoft Defender για νέους επαγγελματίες ασφάλειας: Endpoint, Office 365, Identity, Cloud Apps, Cloud και το ενοποιημένο Defender XDR που τα συνδέει όλα σε ένα incident.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-07-13T10:00:00+03:00\"",
+  "dateModified": "\"2026-07-13T10:00:00+03:00\"",
+  "image": "\"http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png\"",
+  "url": "\"http://localhost:1313/posts/microsoft-defender-oikogeneia-praktikos-odigos/\"",
+  "wordCount":  2120 ,
+  "keywords": "\"Microsoft Defender, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity, Microsoft Defender for Cloud Apps, Microsoft Defender for Cloud, Microsoft Defender XDR, Microsoft 365 Security, Cyber GRC, Junior Μηχανικός Ασφάλειας, Security Operations\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/microsoft-defender-oikogeneia-praktikos-odigos/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/microsoft-defender-oikogeneia-praktikos-odigos/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ">
+  <meta property="og:description" content="Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται όλα μεταξύ τους.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-13T10:00:00+03:00">
+    <meta property="article:modified_time" content="2026-07-13T10:00:00+03:00">
+    <meta property="article:tag" content="Microsoft Defender">
+    <meta property="article:tag" content="Microsoft Defender for Endpoint">
+    <meta property="article:tag" content="Microsoft Defender for Office 365">
+    <meta property="article:tag" content="Microsoft Defender for Identity">
+    <meta property="article:tag" content="Microsoft Defender for Cloud Apps">
+    <meta property="article:tag" content="Microsoft Defender for Cloud">
+    <meta property="og:image" content="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png">
+  <meta name="twitter:title" content="Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ">
+  <meta name="twitter:description" content="Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται όλα μεταξύ τους.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας \u0026 ΥΑΣΠΕ",
+      "item": "http://localhost:1313/posts/microsoft-defender-oikogeneia-praktikos-odigos/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας \u0026 ΥΑΣΠΕ",
+  "name": "Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας \u0026 ΥΑΣΠΕ",
+  "description": "Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται όλα μεταξύ τους.",
+  "keywords": [
+    "Microsoft Defender οικογένεια προϊόντων", "τι είναι το Microsoft Defender", "MDE MDO MDI MDA MDC διαφορές", "Microsoft Defender for Endpoint ελληνικά", "Microsoft Defender for Office 365 ελληνικά", "Microsoft Defender for Identity ελληνικά", "Microsoft Defender for Cloud Apps ελληνικά", "Microsoft Defender XDR πώς λειτουργεί", "οδηγός για junior security analyst", "Microsoft Defender portal security.microsoft.com"
+  ],
+  "articleBody": "Δευτέρα πρωί, νέος στην ομάδα ασφάλειας Ας υποθέσουμε ότι μόλις μπήκατε σε μια ομάδα Security ή IT και κάποιος συνάδελφος σάς λέει «κοίτα το στο Defender». Ποιο Defender όμως; Το antivirus των Windows που ξέρουμε όλοι από τον προσωπικό μας υπολογιστή, ή κάτι πολύ μεγαλύτερο;\nΣτην πραγματικότητα, το Microsoft Defender δεν είναι ένα προϊόν. Είναι μια ολόκληρη οικογένεια προϊόντων ασφάλειας που καλύπτει endpoints, email, ταυτότητες, cloud εφαρμογές και cloud υποδομές, όλα κάτω από μία ενοποιημένη ομπρέλα. Αυτό το άρθρο είναι η γραπτή εκδοχή μιας παρουσίασης που ετοίμασα για νέους συναδέλφους που μπαίνουν πρώτη φορά στον κόσμο του Microsoft Security, και στόχος του είναι απλός: να καταλάβετε τι κάνει κάθε προϊόν, τι προστατεύει, πού «ζει» και πώς όλα δένουν μαζί μέσα από το Microsoft Defender XDR.\n📌 TL;DR\nΗ οικογένεια Microsoft Defender έχει έξι βασικά κομμάτια: MDE (Endpoint), MDO (Office 365), MDI (Identity), MDA (Cloud Apps), MDC (Cloud) και το Defender XDR που τα ενοποιεί όλα. Κάθε προϊόν προστατεύει διαφορετική επιφάνεια επίθεσης — δεν υπάρχει ένα εργαλείο που τα λύνει όλα. Τα περισσότερα ζουν στο ίδιο portal, το security.microsoft.com, με εξαίρεση το onboarding του Defender for Cloud που ξεκινά από το Azure portal. Η πραγματική δύναμη δεν είναι το κάθε προϊόν μεμονωμένα, αλλά η συσχέτιση (correlation) των σημάτων τους μέσα από το Defender XDR, που μετατρέπει δεκάδες απομονωμένα alerts σε ένα ενιαίο incident με πλήρη εικόνα της επίθεσης. Η οικογένεια Microsoft Defender με μια ματιά Έξι προϊόντα, ένα portal (σχεδόν πάντα), μία ενοποιημένη άμυνα:\nΣυντομογραφία Προϊόν Τι προστατεύει Πού ζει MDE Microsoft Defender for Endpoint Συσκευές: Windows, macOS, Linux, mobile, servers security.microsoft.com MDO Microsoft Defender for Office 365 Email \u0026 συνεργασία: Exchange, Teams, SharePoint, OneDrive security.microsoft.com MDI Microsoft Defender for Identity Ταυτότητες: on-prem AD, Entra ID, hybrid security.microsoft.com MDA Microsoft Defender for Cloud Apps SaaS εφαρμογές, Shadow IT, CASB security.microsoft.com MDC Microsoft Defender for Cloud Cloud υποδομή: Azure, AWS, GCP (CNAPP) Defender portal, onboarding: Azure portal XDR Microsoft Defender XDR Συσχέτιση σημάτων απ’ όλα τα παραπάνω σε ενιαία incidents security.microsoft.com 📷 Εικόνα 1 — Η Οικογένεια Microsoft Defender. Πρακτικός οδηγός για νέους επαγγελματίες Security.\nMicrosoft Defender for Endpoint (MDE) Τι είναι: Η enterprise πλατφόρμα ασφάλειας endpoint της Microsoft. Βοηθά τους οργανισμούς να προλαμβάνουν, ανιχνεύουν, διερευνούν και αποκρίνονται σε προηγμένες απειλές σε laptops, mobile συσκευές, tablets, PCs, αλλά και σε access points, routers και firewalls.\n📷 Εικόνα 2 — Microsoft Defender for Endpoint (MDE). Τι είναι και τι προστατεύει.\nΤι προστατεύει:\nWorkstations \u0026 laptops — Windows, macOS, Linux, με next-gen προστασία και EDR Mobile (iOS/Android) — Mobile Threat Defense ενσωματωμένο στο ίδιο portal Servers — μέσω Defender for Endpoint for servers ή Defender for Business servers Zero Trust — επαλήθευση ταυτότητας και device health πριν την πρόσβαση Ένα σημείο που εκπλήσσει τους νέους αναλυτές: το MDE δεν έχει agent σε συσκευές δικτύου όπως firewalls της Cisco/Fortinet, routers MikroTik ή access points Aruba/Ubiquiti. Παρ’ όλα αυτά, μέσω Device Discovery (passive network monitoring, DHCP/ARP/traffic observation) μπορεί να τα ανακαλύψει στο δίκτυο και να δώσει ορατότητα σε unmanaged assets — κρίσιμο για κάθε οργανισμό που θέλει πλήρες inventory.\n📷 Εικόνα 3 — MDE, βασικές δυνατότητες. Και αδειοδότηση: Plan 1, Plan 2, Defender for Business.\nΒασικές δυνατότητες: next-generation protection με πρόληψη ransomware, EDR (Endpoint Detection \u0026 Response), Attack Surface Reduction, autonomous protection με automatic attack disruption, Defender Vulnerability Management, καθώς και APIs για integrations με τα δικά σας workflows.\nΑδειοδότηση: Plan 1, Plan 2 και Defender for Business. Τα M365 E5 / E5 Security περιλαμβάνουν το Plan 2.\nΓια τον νέο αναλυτή: Στο ενοποιημένο Defender portal μπορείτε να ιχνηλατήσετε μια επίθεση από το phishing email μέχρι το compromised endpoint και το lateral movement — όλα σε ένα σημείο.\nMicrosoft Defender for Office 365 (MDO) Τι είναι: Η κύρια cloud-based υπηρεσία φιλτραρίσματος email της Microsoft και το πρώτο επίπεδο άμυνας απέναντι στις περισσότερες κυβερνοεπιθέσεις, αφού το email παραμένει η μεγαλύτερη πηγή επιθέσεων σήμερα.\n📷 Εικόνα 4 — Microsoft Defender for Office 365 (MDO). Τι είναι και τι προστατεύει.\nΤι προστατεύει:\nEmail \u0026 μηνύματα — Safe Attachments, anti-phishing, real-time reports Links/URLs — Safe Links σε email, Office και Microsoft Teams SharePoint, OneDrive, Teams — protection και Safe Attachments στο Teams Εσωτερικό mail — advanced protection ακόμη και για εσωτερική αλληλογραφία 📷 Εικόνα 5 — MDO, βασικές δυνατότητες. Και αδειοδότηση: Plan 1, Plan 2.\nΒασικές δυνατότητες: Safe Attachments (ανοίγει συνημμένα σε ασφαλές sandbox περιβάλλον πριν φτάσουν στον χρήστη), Safe Links (επανελέγχει τον σύνδεσμο τη στιγμή του click, ακόμη κι αν ήταν ασφαλής όταν στάλθηκε), anti-phishing policies με προστασία από user/domain impersonation (διαθέσιμο και στο Plan 1), Automated Investigation and Response (AIR) και Attack Simulation Training για ρεαλιστικά σενάρια εκπαίδευσης χρηστών.\nΑδειοδότηση: Plan 1 (π.χ. M365 Business Premium) με Safe Links, Safe Attachments και real-time detection, και Plan 2 (M365 E5, A5, GCC G5) που προσθέτει advanced threat hunting, automation και Explorer/Campaign Views.\nΓια τον νέο αναλυτή: Ένα από τα προϊόντα με το καλύτερο ROI στην ασφάλεια. Για γρήγορο και σωστό setup, ξεκινήστε από τα Preset security policies και τον Configuration Analyzer.\nMicrosoft Defender for Identity (MDI) Τι είναι: Βοηθά τους οργανισμούς να ανιχνεύουν, διερευνούν και αποκρίνονται σε επιθέσεις βασισμένες στην ταυτότητα, σε on-premises, cloud και hybrid περιβάλλοντα. Οι επιτιθέμενοι στοχεύουν όλο και περισσότερο users, service accounts και εφαρμογές αντί για συσκευές, για πρόσβαση, κλιμάκωση δικαιωμάτων και persistence.\n📷 Εικόνα 6 — Microsoft Defender for Identity (MDI). Τι είναι και τι προστατεύει.\nΤι προστατεύει:\nOn-prem Active Directory — σήματα ταυτότητας μέσω lightweight sensors Ταυτότητες \u0026 credentials — users, service accounts, non-human identities Hybrid identity — συσχέτιση με Entra ID και άλλα IAM συστήματα (π.χ. Okta) μέσω API connectors 📷 Εικόνα 7 — MDI, βασικές δυνατότητες. Και αρχιτεκτονική: sensors, API connectors.\nΒασικές δυνατότητες: posture assessments μέσω Microsoft Secure Score για μείωση του identity attack surface, behavioral analytics για ανίχνευση αποκλίσεων στη συμπεριφορά χρηστών, ανίχνευση επιθέσεων όπως reconnaissance, credential theft, lateral movement, DCShadow και Golden Ticket, καθώς και Lateral Movement Paths που αποκαλύπτουν οπτικά πώς ένας επιτιθέμενος μπορεί να φτάσει σε privileged accounts.\nΑρχιτεκτονική: Lightweight sensors και API connectors τροφοδοτούν cloud-based analytics στο Defender portal.\nΓια τον νέο αναλυτή: Από ένα alert μπορείτε να δείτε τις επηρεαζόμενες ταυτότητες και το lateral movement path προς privileged accounts (π.χ. domain administrators) — και όλα αυτά συσχετίζονται σε ενιαίο incident με σήματα από endpoints και email.\nMicrosoft Defender for Cloud Apps (MDA) Τι είναι: Ο CASB (Cloud Access Security Broker) της Microsoft. Δίνει visibility σε Shadow IT, ελέγχει τη χρήση cloud εφαρμογών και προστατεύει τα δεδομένα τους, πηγαίνοντας πέρα από το παραδοσιακό εύρος ενός CASB.\n📷 Εικόνα 8 — Microsoft Defender for Cloud Apps (MDA). Τι είναι και τι προστατεύει.\nΤι προστατεύει:\nCASB functionality — Shadow IT discovery, visibility και προστασία από app-based threats SSPM — SaaS Security Posture Management Advanced threat protection — συσχέτιση σε όλο το kill chain, ως μέρος του Defender XDR App-to-app protection — για OAuth-enabled εφαρμογές με πρόσβαση σε κρίσιμα δεδομένα 📷 Εικόνα 9 — MDA, βασικές δυνατότητες. Και ενσωμάτωση με Purview και Defender XDR.\nΒασικές δυνατότητες: Cloud Discovery (εντοπισμός cloud services με risk ranking και 90+ δείκτες κινδύνου), anomaly detection, adaptive access control και UEBA, information protection με DLP και sensitivity labels που μπορούν να μπλοκάρουν download σε unmanaged device, app governance για παρακολούθηση OAuth apps και credentials, και φυσικά XDR correlation για incident-level ανίχνευση.\nΓια τον νέο αναλυτή: Μέσω Cloud Discovery εντοπίζετε άγνωστα cloud services, τα αξιολογείτε με δείκτες κινδύνου και προστατεύετε ευαίσθητα δεδομένα — π.χ. μπλοκάροντας download σε unmanaged device ή αφαιρώντας external collaborators. Τα δεδομένα SSPM τροφοδοτούν αυτόματα το Microsoft Secure Score.\nMicrosoft Defender for Cloud (MDC) Τι είναι: Η ολοκληρωμένη πλατφόρμα CNAPP (Cloud-Native Application Protection Platform) της Microsoft, πλέον βαθιά ενσωματωμένη στο Defender portal. Η threat protection ήταν ήδη εκεί· η ενσωμάτωση προσθέτει posture management σε μία ενιαία εμπειρία χωρίς σιλό, υποστηρίζοντας Azure, AWS, GCP και άλλες πλατφόρμες.\n📷 Εικόνα 10 — Microsoft Defender for Cloud (MDC). Τι είναι και τι προστατεύει.\nΤι προστατεύει:\nPosture management — Cloud Secure Score, recommendations, attack paths και cloud vulnerabilities Threat detection \u0026 response — incidents, alerts, response actions, advanced hunting Multicloud \u0026 hybrid — Azure, AWS, GCP και άλλες πλατφόρμες, σε cloud, hybrid και code 📷 Εικόνα 11 — MDC, βασικές δυνατότητες. Και πώς ξεκινάς: Cloud Overview dashboard.\nΒασικές δυνατότητες: Cloud Secure Score με μετρήσιμο posture και prioritized ενέργειες βελτίωσης, recommendations για μείωση ρίσκου, attack paths και cloud vulnerabilities στο posture, πλήρες cloud asset inventory ανά workload και criticality, ενοποιημένα incidents \u0026 alerts μέσα στο Defender portal, και Cloud Scopes \u0026 RBAC για granular access ανά business unit ή region.\nΠού ζει: Defender portal → Cloud security, αν και το onboarding νέων πελατών ξεκινά ακόμη από το Azure portal.\nΓια τον νέο αναλυτή: Ανοίξτε το Cloud Overview dashboard, δείτε τα top improvement actions για μείωση ρίσκου και παρακολουθήστε την πρόοδο του Cloud Secure Score διαχρονικά — διαθέσιμο με οποιοδήποτε paid plan.\nMicrosoft Defender XDR — η ενοποίηση Φτάνουμε στην καρδιά της οικογένειας. Το Microsoft Defender XDR δεν αντικαθιστά τα προηγούμενα πέντε προϊόντα — τα ενοποιεί. Είναι μια ενοποιημένη pre-breach και post-breach σουίτα άμυνας που συντονίζει εγγενώς detection, prevention, investigation και response σε endpoints, ταυτότητες, email και εφαρμογές.\n📷 Εικόνα 12 — Microsoft Defender XDR. Τι είναι και τι προστατεύει.\nΣυσχετίζει τα σήματα από MDE, MDO, MDI και MDA σε ένα ενιαίο incident, δείχνοντας πώς μπήκε η επίθεση, τι επηρέασε και πώς εξελίσσεται. Και δεν σταματά εκεί: λαμβάνει αυτόματες ενέργειες και κάνει self-heal σε mailboxes, endpoints και ταυτότητες.\nΠυλώνας Πηγή Τι καλύπτει Devices MDE Endpoints \u0026 vulnerability management Email MDO Email \u0026 collaboration security Identities MDI / Entra On-prem AD \u0026 Entra ID Protection Apps \u0026 Cloud MDA / MDC SaaS apps, DLP, Exposure Management Πώς δένουν όλα μαζί:\nCombined incidents queue — όλα τα alerts ομαδοποιημένα ανά incident, με πλήρες scope και impacted assets Automatic response — σε πραγματικό χρόνο, π.χ. malware σε endpoint → οδηγία στο MDO να το αφαιρέσει από όλα τα emails Self-healing — AI-driven playbooks επαναφέρουν devices, ταυτότητες και mailboxes σε ασφαλή κατάσταση Cross-product hunting — custom queries πάνω σε 30 ημέρες raw signals από endpoint και Office data Full attack story — alerts, suspicious events και impacted assets ενωμένα σε incidents που αφηγούνται την επίθεση Single pane of glass — μία κεντρική εικόνα detections, ενεργειών και evidence στο Defender portal Ένα ρεαλιστικό σενάριο επίθεσης Ας δούμε πώς όλα αυτά συνδέονται στην πράξη:\nΈνας χρήστης λαμβάνει phishing email. Το MDO εντοπίζει το ύποπτο μήνυμα. Ο χρήστης ανοίγει το κακόβουλο αρχείο. Το MDE καταγράφει τη συμπεριφορά του malware στο endpoint. Ο επιτιθέμενος προσπαθεί να αποκτήσει credentials. Το MDI εντοπίζει ασυνήθιστη δραστηριότητα ταυτότητας. Το Defender XDR ενώνει όλα τα δεδομένα σε ένα incident — όχι τρία ξεχωριστά alerts σε τρία διαφορετικά εργαλεία. Ακολουθούν αυτόματες ενέργειες: απομόνωση συσκευής, απενεργοποίηση λογαριασμού, αφαίρεση του email από όλα τα mailboxes, blocking indicators σε όλη τη σουίτα. Αυτό είναι το πραγματικό πλεονέκτημα της ενοποίησης: αντί για δεκάδες απομονωμένα alerts, έχουμε μία ολοκληρωμένη ιστορία επίθεσης.\n📷 Εικόνα 13 — Πώς δένουν όλα μαζί στο Defender XDR. Combined incidents queue, automatic response, self-healing, cross-product hunting.\nΠώς ξεκινάτε: Το Defender XDR συσχετίζει μόνο licensed και provisioned προϊόντα. Η ενεργοποίηση γίνεται στο security.microsoft.com.\n📷 Εικόνα 14 — Η οικογένεια Microsoft Defender με μια ματιά. Έξι προϊόντα, ένα portal, μία ενοποιημένη άμυνα.\nΤρία πράγματα που αξίζει να θυμάστε Δεν υπάρχει ένα προϊόν που λύνει όλα τα προβλήματα. Κάθε Defender προστατεύει διαφορετική επιφάνεια επίθεσης, και η στρατηγική ασφάλειας χτίζεται πάνω σε αυτή τη διαφοροποίηση, όχι ενάντια σε αυτήν. Η πραγματική δύναμη βρίσκεται στο Defender XDR. Η συσχέτιση των δεδομένων απ’ όλα τα προϊόντα επιτρέπει ταχύτερη ανίχνευση και απόκριση απ’ ό,τι θα επέτρεπε το κάθε προϊόν μεμονωμένα. Όσο περισσότερα workloads ενεργοποιείτε (identity, email, cloud apps, endpoints), τόσο πιο πλούσια γίνεται η εικόνα ασφαλείας του οργανισμού, και τόσο πιο αποτελεσματική η συνολική άμυνα. Θες να εμβαθύνεις περισσότερο; 🔗 Αν θέλεις μια πιο αναλυτική, βήμα-βήμα ματιά στα ίδια προϊόντα στα αγγλικά, με πραγματικά screenshots από το Defender portal, δες τη σειρά Microsoft Defender Demystified:\nPart 1 — All Products, Which One Do You Need Part 2 — The Four Core XDR Workloads, Up Close Part 3 — Microsoft Defender for Cloud Αν σε ενδιαφέρει πώς όλα αυτά τα σήματα τροφοδοτούν το Microsoft Secure Score και πώς μπορεί να γίνει η ραχοκοκαλιά ενός προγράμματος GRC ευθυγραμμισμένου με ISO 27001 και NIS2, διάβασε επίσης Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2.\nFollow me στο LinkedIn για ειδοποιήσεις για νέα άρθρα, ή κάνε subscribe μέσω RSS στην κορυφή της σελίδας.\nΠηγές \u0026 επιπλέον υλικό Microsoft Defender for Endpoint overview\nWhy do I need Microsoft Defender for Office 365?\nMicrosoft Defender for Identity overview\nWhat is Microsoft Defender for Cloud Apps?\nMicrosoft Defender for Cloud overview\nWhat is Microsoft Defender XDR?\nMicrosoft Defender\nMicrosoft Defender for Endpoint\nMicrosoft Defender for Office 365\nMicrosoft Defender for Identity\nMicrosoft Defender for Cloud Apps\nMicrosoft Defender XDR\nMicrosoft 365 Security\nCyber GRC\nJunior Μηχανικός Ασφάλειας\n",
+  "wordCount" : "2120",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png","datePublished": "2026-07-13T10:00:00+03:00",
+  "dateModified": "2026-07-13T10:00:00+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/microsoft-defender-oikogeneia-praktikos-odigos/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/releases/" title="Release Status">
+                    <span>Release Status</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας &amp; ΥΑΣΠΕ
+    </h1>
+    <div class="post-description">
+      Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται όλα μεταξύ τους.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-07-13 10:00:00 +0300 EEST'>July 13, 2026</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/ms-security-blog/edit/main/content/posts/microsoft-defender-oikogeneia-praktikos-odigos.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png" alt="Η οικογένεια Microsoft Defender — MDE, MDO, MDI, MDA, MDC και Defender XDR">
+        <figcaption>Η Οικογένεια Microsoft Defender — πρακτικός οδηγός για νέους επαγγελματίες Security</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#δευτέρα-πρωί-νέος-στην-ομάδα-ασφάλειας">Δευτέρα πρωί, νέος στην ομάδα ασφάλειας</a></li>
+    <li><a href="#η-οικογένεια-microsoft-defender-με-μια-ματιά">Η οικογένεια Microsoft Defender με μια ματιά</a></li>
+    <li><a href="#microsoft-defender-for-endpoint-mde">Microsoft Defender for Endpoint (MDE)</a></li>
+    <li><a href="#microsoft-defender-for-office-365-mdo">Microsoft Defender for Office 365 (MDO)</a></li>
+    <li><a href="#microsoft-defender-for-identity-mdi">Microsoft Defender for Identity (MDI)</a></li>
+    <li><a href="#microsoft-defender-for-cloud-apps-mda">Microsoft Defender for Cloud Apps (MDA)</a></li>
+    <li><a href="#microsoft-defender-for-cloud-mdc">Microsoft Defender for Cloud (MDC)</a></li>
+    <li><a href="#microsoft-defender-xdr--η-ενοποίηση">Microsoft Defender XDR — η ενοποίηση</a>
+      <ul>
+        <li><a href="#ένα-ρεαλιστικό-σενάριο-επίθεσης">Ένα ρεαλιστικό σενάριο επίθεσης</a></li>
+      </ul>
+    </li>
+    <li><a href="#τρία-πράγματα-που-αξίζει-να-θυμάστε">Τρία πράγματα που αξίζει να θυμάστε</a></li>
+    <li><a href="#θες-να-εμβαθύνεις-περισσότερο">Θες να εμβαθύνεις περισσότερο;</a></li>
+    <li><a href="#πηγές--επιπλέον-υλικό">Πηγές &amp; επιπλέον υλικό</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="δευτέρα-πρωί-νέος-στην-ομάδα-ασφάλειας">Δευτέρα πρωί, νέος στην ομάδα ασφάλειας<a hidden class="anchor" aria-hidden="true" href="#δευτέρα-πρωί-νέος-στην-ομάδα-ασφάλειας">#</a></h2>
+<p>Ας υποθέσουμε ότι μόλις μπήκατε σε μια ομάδα Security ή IT και κάποιος συνάδελφος σάς λέει «κοίτα το στο Defender». Ποιο Defender όμως; Το antivirus των Windows που ξέρουμε όλοι από τον προσωπικό μας υπολογιστή, ή κάτι πολύ μεγαλύτερο;</p>
+<p>Στην πραγματικότητα, το <strong>Microsoft Defender</strong> δεν είναι ένα προϊόν. Είναι μια ολόκληρη <strong>οικογένεια προϊόντων ασφάλειας</strong> που καλύπτει endpoints, email, ταυτότητες, cloud εφαρμογές και cloud υποδομές, όλα κάτω από μία ενοποιημένη ομπρέλα. Αυτό το άρθρο είναι η γραπτή εκδοχή μιας παρουσίασης που ετοίμασα για νέους συναδέλφους που μπαίνουν πρώτη φορά στον κόσμο του Microsoft Security, και στόχος του είναι απλός: να καταλάβετε <strong>τι κάνει κάθε προϊόν, τι προστατεύει, πού «ζει»</strong> και <strong>πώς όλα δένουν μαζί</strong> μέσα από το Microsoft Defender XDR.</p>
+<blockquote>
+<p>📌 <strong>TL;DR</strong></p>
+<ul>
+<li>Η οικογένεια Microsoft Defender έχει <strong>έξι βασικά κομμάτια</strong>: <strong>MDE</strong> (Endpoint), <strong>MDO</strong> (Office 365), <strong>MDI</strong> (Identity), <strong>MDA</strong> (Cloud Apps), <strong>MDC</strong> (Cloud) και το <strong>Defender XDR</strong> που τα ενοποιεί όλα.</li>
+<li>Κάθε προϊόν προστατεύει <strong>διαφορετική επιφάνεια επίθεσης</strong> — δεν υπάρχει ένα εργαλείο που τα λύνει όλα.</li>
+<li>Τα περισσότερα ζουν στο ίδιο portal, το <strong>security.microsoft.com</strong>, με εξαίρεση το onboarding του Defender for Cloud που ξεκινά από το Azure portal.</li>
+<li>Η πραγματική δύναμη δεν είναι το κάθε προϊόν μεμονωμένα, αλλά η <strong>συσχέτιση (correlation)</strong> των σημάτων τους μέσα από το <strong>Defender XDR</strong>, που μετατρέπει δεκάδες απομονωμένα alerts σε <strong>ένα ενιαίο incident</strong> με πλήρη εικόνα της επίθεσης.</li>
+</ul>
+</blockquote>
+<h2 id="η-οικογένεια-microsoft-defender-με-μια-ματιά">Η οικογένεια Microsoft Defender με μια ματιά<a hidden class="anchor" aria-hidden="true" href="#η-οικογένεια-microsoft-defender-με-μια-ματιά">#</a></h2>
+<p>Έξι προϊόντα, ένα portal (σχεδόν πάντα), μία ενοποιημένη άμυνα:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Συντομογραφία</th>
+					<th>Προϊόν</th>
+					<th>Τι προστατεύει</th>
+					<th>Πού ζει</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>MDE</strong></td>
+					<td>Microsoft Defender for Endpoint</td>
+					<td>Συσκευές: Windows, macOS, Linux, mobile, servers</td>
+					<td>security.microsoft.com</td>
+			</tr>
+			<tr>
+					<td><strong>MDO</strong></td>
+					<td>Microsoft Defender for Office 365</td>
+					<td>Email &amp; συνεργασία: Exchange, Teams, SharePoint, OneDrive</td>
+					<td>security.microsoft.com</td>
+			</tr>
+			<tr>
+					<td><strong>MDI</strong></td>
+					<td>Microsoft Defender for Identity</td>
+					<td>Ταυτότητες: on-prem AD, Entra ID, hybrid</td>
+					<td>security.microsoft.com</td>
+			</tr>
+			<tr>
+					<td><strong>MDA</strong></td>
+					<td>Microsoft Defender for Cloud Apps</td>
+					<td>SaaS εφαρμογές, Shadow IT, CASB</td>
+					<td>security.microsoft.com</td>
+			</tr>
+			<tr>
+					<td><strong>MDC</strong></td>
+					<td>Microsoft Defender for Cloud</td>
+					<td>Cloud υποδομή: Azure, AWS, GCP (CNAPP)</td>
+					<td>Defender portal, onboarding: Azure portal</td>
+			</tr>
+			<tr>
+					<td><strong>XDR</strong></td>
+					<td>Microsoft Defender XDR</td>
+					<td>Συσχέτιση σημάτων απ&rsquo; όλα τα παραπάνω σε ενιαία incidents</td>
+					<td>security.microsoft.com</td>
+			</tr>
+	</tbody>
+</table>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png"><img alt="Η οικογένεια Microsoft Defender — MDE, MDO, MDI, MDA, MDC και Defender XDR" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 1 — Η Οικογένεια Microsoft Defender.</strong> <em>Πρακτικός οδηγός για νέους επαγγελματίες Security.</em></p>
+</blockquote>
+<h2 id="microsoft-defender-for-endpoint-mde">Microsoft Defender for Endpoint (MDE)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-endpoint-mde">#</a></h2>
+<p><strong>Τι είναι:</strong> Η <strong>enterprise πλατφόρμα ασφάλειας endpoint</strong> της Microsoft. Βοηθά τους οργανισμούς να προλαμβάνουν, ανιχνεύουν, διερευνούν και αποκρίνονται σε προηγμένες απειλές σε laptops, mobile συσκευές, tablets, PCs, αλλά και σε access points, routers και firewalls.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/02-mde-overview.png"><img alt="Microsoft Defender for Endpoint (MDE) — ο πυλώνας ασφάλειας endpoint: πρόληψη, ανίχνευση και απόκριση σε κάθε συσκευή" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/02-mde-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 2 — Microsoft Defender for Endpoint (MDE).</strong> <em>Τι είναι και τι προστατεύει.</em></p>
+</blockquote>
+<p><strong>Τι προστατεύει:</strong></p>
+<ul>
+<li><strong>Workstations &amp; laptops</strong> — Windows, macOS, Linux, με next-gen προστασία και EDR</li>
+<li><strong>Mobile (iOS/Android)</strong> — Mobile Threat Defense ενσωματωμένο στο ίδιο portal</li>
+<li><strong>Servers</strong> — μέσω Defender for Endpoint for servers ή Defender for Business servers</li>
+<li><strong>Zero Trust</strong> — επαλήθευση ταυτότητας και device health πριν την πρόσβαση</li>
+</ul>
+<p>Ένα σημείο που εκπλήσσει τους νέους αναλυτές: το MDE <strong>δεν έχει agent</strong> σε συσκευές δικτύου όπως firewalls της Cisco/Fortinet, routers MikroTik ή access points Aruba/Ubiquiti. Παρ&rsquo; όλα αυτά, μέσω <strong>Device Discovery</strong> (passive network monitoring, DHCP/ARP/traffic observation) μπορεί να τα ανακαλύψει στο δίκτυο και να δώσει ορατότητα σε <strong>unmanaged assets</strong> — κρίσιμο για κάθε οργανισμό που θέλει πλήρες inventory.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/03-mde-capabilities.png"><img alt="MDE βασικές δυνατότητες: next-generation protection, EDR, Attack Surface Reduction, autonomous protection, vulnerability management, APIs" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/03-mde-capabilities.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 3 — MDE, βασικές δυνατότητες.</strong> <em>Και αδειοδότηση: Plan 1, Plan 2, Defender for Business.</em></p>
+</blockquote>
+<p><strong>Βασικές δυνατότητες:</strong> next-generation protection με πρόληψη ransomware, <strong>EDR</strong> (Endpoint Detection &amp; Response), <strong>Attack Surface Reduction</strong>, autonomous protection με automatic attack disruption, <strong>Defender Vulnerability Management</strong>, καθώς και APIs για integrations με τα δικά σας workflows.</p>
+<p><strong>Αδειοδότηση:</strong> Plan 1, Plan 2 και Defender for Business. Τα M365 E5 / E5 Security περιλαμβάνουν το Plan 2.</p>
+<p><strong>Για τον νέο αναλυτή:</strong> Στο ενοποιημένο Defender portal μπορείτε να ιχνηλατήσετε μια επίθεση από το phishing email μέχρι το compromised endpoint και το lateral movement — όλα σε ένα σημείο.</p>
+<h2 id="microsoft-defender-for-office-365-mdo">Microsoft Defender for Office 365 (MDO)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-office-365-mdo">#</a></h2>
+<p><strong>Τι είναι:</strong> Η κύρια <strong>cloud-based υπηρεσία φιλτραρίσματος email</strong> της Microsoft και το πρώτο επίπεδο άμυνας απέναντι στις περισσότερες κυβερνοεπιθέσεις, αφού το email παραμένει η μεγαλύτερη πηγή επιθέσεων σήμερα.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/04-mdo-overview.png"><img alt="Microsoft Defender for Office 365 (MDO) — προστασία email και collaboration από phishing, malware και κακόβουλα URLs" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/04-mdo-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 4 — Microsoft Defender for Office 365 (MDO).</strong> <em>Τι είναι και τι προστατεύει.</em></p>
+</blockquote>
+<p><strong>Τι προστατεύει:</strong></p>
+<ul>
+<li><strong>Email &amp; μηνύματα</strong> — Safe Attachments, anti-phishing, real-time reports</li>
+<li><strong>Links/URLs</strong> — Safe Links σε email, Office και Microsoft Teams</li>
+<li><strong>SharePoint, OneDrive, Teams</strong> — protection και Safe Attachments στο Teams</li>
+<li><strong>Εσωτερικό mail</strong> — advanced protection ακόμη και για εσωτερική αλληλογραφία</li>
+</ul>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/05-mdo-capabilities.png"><img alt="MDO βασικές δυνατότητες: Safe Attachments, Safe Links, anti-phishing policies, threat investigation, Automated Investigation, Attack Simulation Training" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/05-mdo-capabilities.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 5 — MDO, βασικές δυνατότητες.</strong> <em>Και αδειοδότηση: Plan 1, Plan 2.</em></p>
+</blockquote>
+<p><strong>Βασικές δυνατότητες:</strong> <strong>Safe Attachments</strong> (ανοίγει συνημμένα σε ασφαλές sandbox περιβάλλον πριν φτάσουν στον χρήστη), <strong>Safe Links</strong> (επανελέγχει τον σύνδεσμο τη στιγμή του click, ακόμη κι αν ήταν ασφαλής όταν στάλθηκε), <strong>anti-phishing policies</strong> με προστασία από user/domain impersonation (διαθέσιμο και στο Plan 1), <strong>Automated Investigation and Response (AIR)</strong> και <strong>Attack Simulation Training</strong> για ρεαλιστικά σενάρια εκπαίδευσης χρηστών.</p>
+<p><strong>Αδειοδότηση:</strong> Plan 1 (π.χ. M365 Business Premium) με Safe Links, Safe Attachments και real-time detection, και Plan 2 (M365 E5, A5, GCC G5) που προσθέτει advanced threat hunting, automation και Explorer/Campaign Views.</p>
+<p><strong>Για τον νέο αναλυτή:</strong> Ένα από τα προϊόντα με το καλύτερο ROI στην ασφάλεια. Για γρήγορο και σωστό setup, ξεκινήστε από τα <strong>Preset security policies</strong> και τον <strong>Configuration Analyzer</strong>.</p>
+<h2 id="microsoft-defender-for-identity-mdi">Microsoft Defender for Identity (MDI)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-identity-mdi">#</a></h2>
+<p><strong>Τι είναι:</strong> Βοηθά τους οργανισμούς να ανιχνεύουν, διερευνούν και αποκρίνονται σε <strong>επιθέσεις βασισμένες στην ταυτότητα</strong>, σε on-premises, cloud και hybrid περιβάλλοντα. Οι επιτιθέμενοι στοχεύουν όλο και περισσότερο users, service accounts και εφαρμογές αντί για συσκευές, για πρόσβαση, κλιμάκωση δικαιωμάτων και persistence.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/06-mdi-overview.png"><img alt="Microsoft Defender for Identity (MDI) — ανίχνευση επιθέσεων ταυτότητας σε on-prem, cloud και hybrid περιβάλλοντα" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/06-mdi-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 6 — Microsoft Defender for Identity (MDI).</strong> <em>Τι είναι και τι προστατεύει.</em></p>
+</blockquote>
+<p><strong>Τι προστατεύει:</strong></p>
+<ul>
+<li><strong>On-prem Active Directory</strong> — σήματα ταυτότητας μέσω lightweight sensors</li>
+<li><strong>Ταυτότητες &amp; credentials</strong> — users, service accounts, non-human identities</li>
+<li><strong>Hybrid identity</strong> — συσχέτιση με Entra ID και άλλα IAM συστήματα (π.χ. Okta) μέσω API connectors</li>
+</ul>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/07-mdi-capabilities.png"><img alt="MDI βασικές δυνατότητες: posture assessments, behavioral analytics, ανίχνευση επιθέσεων, Lateral Movement Paths, investigation context, response actions" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/07-mdi-capabilities.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 7 — MDI, βασικές δυνατότητες.</strong> <em>Και αρχιτεκτονική: sensors, API connectors.</em></p>
+</blockquote>
+<p><strong>Βασικές δυνατότητες:</strong> <strong>posture assessments</strong> μέσω Microsoft Secure Score για μείωση του identity attack surface, <strong>behavioral analytics</strong> για ανίχνευση αποκλίσεων στη συμπεριφορά χρηστών, ανίχνευση επιθέσεων όπως reconnaissance, credential theft, lateral movement, DCShadow και Golden Ticket, καθώς και <strong>Lateral Movement Paths</strong> που αποκαλύπτουν οπτικά πώς ένας επιτιθέμενος μπορεί να φτάσει σε privileged accounts.</p>
+<p><strong>Αρχιτεκτονική:</strong> Lightweight sensors και API connectors τροφοδοτούν cloud-based analytics στο Defender portal.</p>
+<p><strong>Για τον νέο αναλυτή:</strong> Από ένα alert μπορείτε να δείτε τις επηρεαζόμενες ταυτότητες και το lateral movement path προς privileged accounts (π.χ. domain administrators) — και όλα αυτά συσχετίζονται σε ενιαίο incident με σήματα από endpoints και email.</p>
+<h2 id="microsoft-defender-for-cloud-apps-mda">Microsoft Defender for Cloud Apps (MDA)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-cloud-apps-mda">#</a></h2>
+<p><strong>Τι είναι:</strong> Ο <strong>CASB (Cloud Access Security Broker) της Microsoft</strong>. Δίνει visibility σε <strong>Shadow IT</strong>, ελέγχει τη χρήση cloud εφαρμογών και προστατεύει τα δεδομένα τους, πηγαίνοντας πέρα από το παραδοσιακό εύρος ενός CASB.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/08-mda-overview.png"><img alt="Microsoft Defender for Cloud Apps (MDA) — ο CASB της Microsoft: visibility και control για τις SaaS εφαρμογές" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/08-mda-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 8 — Microsoft Defender for Cloud Apps (MDA).</strong> <em>Τι είναι και τι προστατεύει.</em></p>
+</blockquote>
+<p><strong>Τι προστατεύει:</strong></p>
+<ul>
+<li><strong>CASB functionality</strong> — Shadow IT discovery, visibility και προστασία από app-based threats</li>
+<li><strong>SSPM</strong> — SaaS Security Posture Management</li>
+<li><strong>Advanced threat protection</strong> — συσχέτιση σε όλο το kill chain, ως μέρος του Defender XDR</li>
+<li><strong>App-to-app protection</strong> — για OAuth-enabled εφαρμογές με πρόσβαση σε κρίσιμα δεδομένα</li>
+</ul>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.png"><img alt="MDA βασικές δυνατότητες: Cloud Discovery, anomaly detection, adaptive access control, information protection, app governance, XDR correlation" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 9 — MDA, βασικές δυνατότητες.</strong> <em>Και ενσωμάτωση με Purview και Defender XDR.</em></p>
+</blockquote>
+<p><strong>Βασικές δυνατότητες:</strong> <strong>Cloud Discovery</strong> (εντοπισμός cloud services με risk ranking και 90+ δείκτες κινδύνου), <strong>anomaly detection</strong>, <strong>adaptive access control</strong> και UEBA, <strong>information protection</strong> με DLP και sensitivity labels που μπορούν να μπλοκάρουν download σε unmanaged device, <strong>app governance</strong> για παρακολούθηση OAuth apps και credentials, και φυσικά <strong>XDR correlation</strong> για incident-level ανίχνευση.</p>
+<p><strong>Για τον νέο αναλυτή:</strong> Μέσω Cloud Discovery εντοπίζετε άγνωστα cloud services, τα αξιολογείτε με δείκτες κινδύνου και προστατεύετε ευαίσθητα δεδομένα — π.χ. μπλοκάροντας download σε unmanaged device ή αφαιρώντας external collaborators. Τα δεδομένα SSPM τροφοδοτούν αυτόματα το Microsoft Secure Score.</p>
+<h2 id="microsoft-defender-for-cloud-mdc">Microsoft Defender for Cloud (MDC)<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-for-cloud-mdc">#</a></h2>
+<p><strong>Τι είναι:</strong> Η ολοκληρωμένη πλατφόρμα <strong>CNAPP</strong> (Cloud-Native Application Protection Platform) της Microsoft, πλέον βαθιά ενσωματωμένη στο Defender portal. Η threat protection ήταν ήδη εκεί· η ενσωμάτωση προσθέτει <strong>posture management</strong> σε μία ενιαία εμπειρία χωρίς σιλό, υποστηρίζοντας Azure, AWS, GCP και άλλες πλατφόρμες.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.png"><img alt="Microsoft Defender for Cloud (MDC) — CNAPP: ενοποιημένο posture management και threat protection σε multicloud/hybrid" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 10 — Microsoft Defender for Cloud (MDC).</strong> <em>Τι είναι και τι προστατεύει.</em></p>
+</blockquote>
+<p><strong>Τι προστατεύει:</strong></p>
+<ul>
+<li><strong>Posture management</strong> — Cloud Secure Score, recommendations, attack paths και cloud vulnerabilities</li>
+<li><strong>Threat detection &amp; response</strong> — incidents, alerts, response actions, advanced hunting</li>
+<li><strong>Multicloud &amp; hybrid</strong> — Azure, AWS, GCP και άλλες πλατφόρμες, σε cloud, hybrid και code</li>
+</ul>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.png"><img alt="MDC βασικές δυνατότητες: Cloud Secure Score, recommendations, attack paths, cloud asset inventory, incidents &amp; alerts, Cloud Scopes &amp; RBAC" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 11 — MDC, βασικές δυνατότητες.</strong> <em>Και πώς ξεκινάς: Cloud Overview dashboard.</em></p>
+</blockquote>
+<p><strong>Βασικές δυνατότητες:</strong> <strong>Cloud Secure Score</strong> με μετρήσιμο posture και prioritized ενέργειες βελτίωσης, <strong>recommendations</strong> για μείωση ρίσκου, <strong>attack paths</strong> και cloud vulnerabilities στο posture, πλήρες <strong>cloud asset inventory</strong> ανά workload και criticality, ενοποιημένα <strong>incidents &amp; alerts</strong> μέσα στο Defender portal, και <strong>Cloud Scopes &amp; RBAC</strong> για granular access ανά business unit ή region.</p>
+<p><strong>Πού ζει:</strong> Defender portal → Cloud security, αν και το onboarding νέων πελατών ξεκινά ακόμη από το Azure portal.</p>
+<p><strong>Για τον νέο αναλυτή:</strong> Ανοίξτε το <strong>Cloud Overview dashboard</strong>, δείτε τα top improvement actions για μείωση ρίσκου και παρακολουθήστε την πρόοδο του Cloud Secure Score διαχρονικά — διαθέσιμο με οποιοδήποτε paid plan.</p>
+<h2 id="microsoft-defender-xdr--η-ενοποίηση">Microsoft Defender XDR — η ενοποίηση<a hidden class="anchor" aria-hidden="true" href="#microsoft-defender-xdr--η-ενοποίηση">#</a></h2>
+<p>Φτάνουμε στην καρδιά της οικογένειας. Το <strong>Microsoft Defender XDR</strong> δεν αντικαθιστά τα προηγούμενα πέντε προϊόντα — τα <strong>ενοποιεί</strong>. Είναι μια ενοποιημένη <strong>pre-breach και post-breach σουίτα άμυνας</strong> που συντονίζει εγγενώς detection, prevention, investigation και response σε endpoints, ταυτότητες, email και εφαρμογές.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/12-xdr-overview.png"><img alt="Microsoft Defender XDR — το ενοποιημένο XDR που συσχετίζει σήματα και δένει όλα τα προϊόντα μαζί" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/12-xdr-overview.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 12 — Microsoft Defender XDR.</strong> <em>Τι είναι και τι προστατεύει.</em></p>
+</blockquote>
+<p>Συσχετίζει τα σήματα από <strong>MDE, MDO, MDI και MDA</strong> σε ένα ενιαίο incident, δείχνοντας πώς μπήκε η επίθεση, τι επηρέασε και πώς εξελίσσεται. Και δεν σταματά εκεί: λαμβάνει <strong>αυτόματες ενέργειες</strong> και κάνει <strong>self-heal</strong> σε mailboxes, endpoints και ταυτότητες.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Πυλώνας</th>
+					<th>Πηγή</th>
+					<th>Τι καλύπτει</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Devices</td>
+					<td>MDE</td>
+					<td>Endpoints &amp; vulnerability management</td>
+			</tr>
+			<tr>
+					<td>Email</td>
+					<td>MDO</td>
+					<td>Email &amp; collaboration security</td>
+			</tr>
+			<tr>
+					<td>Identities</td>
+					<td>MDI / Entra</td>
+					<td>On-prem AD &amp; Entra ID Protection</td>
+			</tr>
+			<tr>
+					<td>Apps &amp; Cloud</td>
+					<td>MDA / MDC</td>
+					<td>SaaS apps, DLP, Exposure Management</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Πώς δένουν όλα μαζί:</strong></p>
+<ul>
+<li><strong>Combined incidents queue</strong> — όλα τα alerts ομαδοποιημένα ανά incident, με πλήρες scope και impacted assets</li>
+<li><strong>Automatic response</strong> — σε πραγματικό χρόνο, π.χ. malware σε endpoint → οδηγία στο MDO να το αφαιρέσει από όλα τα emails</li>
+<li><strong>Self-healing</strong> — AI-driven playbooks επαναφέρουν devices, ταυτότητες και mailboxes σε ασφαλή κατάσταση</li>
+<li><strong>Cross-product hunting</strong> — custom queries πάνω σε 30 ημέρες raw signals από endpoint και Office data</li>
+<li><strong>Full attack story</strong> — alerts, suspicious events και impacted assets ενωμένα σε incidents που αφηγούνται την επίθεση</li>
+<li><strong>Single pane of glass</strong> — μία κεντρική εικόνα detections, ενεργειών και evidence στο Defender portal</li>
+</ul>
+<h3 id="ένα-ρεαλιστικό-σενάριο-επίθεσης">Ένα ρεαλιστικό σενάριο επίθεσης<a hidden class="anchor" aria-hidden="true" href="#ένα-ρεαλιστικό-σενάριο-επίθεσης">#</a></h3>
+<p>Ας δούμε πώς όλα αυτά συνδέονται στην πράξη:</p>
+<ol>
+<li>Ένας χρήστης λαμβάνει <strong>phishing email</strong>. Το <strong>MDO</strong> εντοπίζει το ύποπτο μήνυμα.</li>
+<li>Ο χρήστης ανοίγει το κακόβουλο αρχείο. Το <strong>MDE</strong> καταγράφει τη συμπεριφορά του malware στο endpoint.</li>
+<li>Ο επιτιθέμενος προσπαθεί να αποκτήσει credentials. Το <strong>MDI</strong> εντοπίζει ασυνήθιστη δραστηριότητα ταυτότητας.</li>
+<li>Το <strong>Defender XDR</strong> ενώνει όλα τα δεδομένα σε <strong>ένα incident</strong> — όχι τρία ξεχωριστά alerts σε τρία διαφορετικά εργαλεία.</li>
+<li>Ακολουθούν αυτόματες ενέργειες: απομόνωση συσκευής, απενεργοποίηση λογαριασμού, αφαίρεση του email από όλα τα mailboxes, blocking indicators σε όλη τη σουίτα.</li>
+</ol>
+<p>Αυτό είναι το πραγματικό πλεονέκτημα της ενοποίησης: αντί για δεκάδες απομονωμένα alerts, έχουμε <strong>μία ολοκληρωμένη ιστορία επίθεσης</strong>.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/13-xdr-integration.png"><img alt="Παράδειγμα ενοποίησης σημάτων στο Microsoft Defender XDR από endpoint, email και identity σε ένα incident" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/13-xdr-integration.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 13 — Πώς δένουν όλα μαζί στο Defender XDR.</strong> <em>Combined incidents queue, automatic response, self-healing, cross-product hunting.</em></p>
+</blockquote>
+<p><strong>Πώς ξεκινάτε:</strong> Το Defender XDR συσχετίζει μόνο licensed και provisioned προϊόντα. Η ενεργοποίηση γίνεται στο <strong>security.microsoft.com</strong>.</p>
+<p><a href="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/14-summary.png"><img alt="Η οικογένεια Microsoft Defender με μια ματιά — έξι προϊόντα, ένα portal, μία ενοποιημένη άμυνα" loading="lazy" src="http://localhost:1313/images/microsoft-defender-oikogeneia-praktikos-odigos/14-summary.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 14 — Η οικογένεια Microsoft Defender με μια ματιά.</strong> <em>Έξι προϊόντα, ένα portal, μία ενοποιημένη άμυνα.</em></p>
+</blockquote>
+<h2 id="τρία-πράγματα-που-αξίζει-να-θυμάστε">Τρία πράγματα που αξίζει να θυμάστε<a hidden class="anchor" aria-hidden="true" href="#τρία-πράγματα-που-αξίζει-να-θυμάστε">#</a></h2>
+<ol>
+<li><strong>Δεν υπάρχει ένα προϊόν που λύνει όλα τα προβλήματα.</strong> Κάθε Defender προστατεύει διαφορετική επιφάνεια επίθεσης, και η στρατηγική ασφάλειας χτίζεται πάνω σε αυτή τη διαφοροποίηση, όχι ενάντια σε αυτήν.</li>
+<li><strong>Η πραγματική δύναμη βρίσκεται στο Defender XDR.</strong> Η συσχέτιση των δεδομένων απ&rsquo; όλα τα προϊόντα επιτρέπει ταχύτερη ανίχνευση και απόκριση απ&rsquo; ό,τι θα επέτρεπε το κάθε προϊόν μεμονωμένα.</li>
+<li><strong>Όσο περισσότερα workloads ενεργοποιείτε</strong> (identity, email, cloud apps, endpoints), <strong>τόσο πιο πλούσια γίνεται η εικόνα ασφαλείας</strong> του οργανισμού, και τόσο πιο αποτελεσματική η συνολική άμυνα.</li>
+</ol>
+<h2 id="θες-να-εμβαθύνεις-περισσότερο">Θες να εμβαθύνεις περισσότερο;<a hidden class="anchor" aria-hidden="true" href="#θες-να-εμβαθύνεις-περισσότερο">#</a></h2>
+<blockquote>
+<p>🔗 <strong>Αν θέλεις μια πιο αναλυτική, βήμα-βήμα ματιά στα ίδια προϊόντα στα αγγλικά,</strong> με πραγματικά screenshots από το Defender portal, δες τη σειρά <strong>Microsoft Defender Demystified</strong>:</p>
+<ul>
+<li><strong><a href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/">Part 1 — All Products, Which One Do You Need</a></strong></li>
+<li><strong><a href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/">Part 2 — The Four Core XDR Workloads, Up Close</a></strong></li>
+<li><strong><a href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/">Part 3 — Microsoft Defender for Cloud</a></strong></li>
+</ul>
+</blockquote>
+<p>Αν σε ενδιαφέρει πώς όλα αυτά τα σήματα τροφοδοτούν το <strong>Microsoft Secure Score</strong> και πώς μπορεί να γίνει η ραχοκοκαλιά ενός προγράμματος <strong>GRC</strong> ευθυγραμμισμένου με <strong>ISO 27001</strong> και <strong>NIS2</strong>, διάβασε επίσης <strong><a href="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/">Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2</a></strong>.</p>
+<p>Follow me στο <a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a> για ειδοποιήσεις για νέα άρθρα, ή κάνε subscribe μέσω RSS στην κορυφή της σελίδας.</p>
+<h2 id="πηγές--επιπλέον-υλικό">Πηγές &amp; επιπλέον υλικό<a hidden class="anchor" aria-hidden="true" href="#πηγές--επιπλέον-υλικό">#</a></h2>
+<ul>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint">Microsoft Defender for Endpoint overview</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/defender-office-365/mdo-about">Why do I need Microsoft Defender for Office 365?</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/defender-for-identity/what-is">Microsoft Defender for Identity overview</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps">What is Microsoft Defender for Cloud Apps?</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction">Microsoft Defender for Cloud overview</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender">What is Microsoft Defender XDR?</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/microsoft-defender/">Microsoft Defender</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/microsoft-defender-for-endpoint/">Microsoft Defender for Endpoint</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/microsoft-defender-for-office-365/">Microsoft Defender for Office 365</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/microsoft-defender-for-identity/">Microsoft Defender for Identity</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/microsoft-defender-for-cloud-apps/">Microsoft Defender for Cloud Apps</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/microsoft-defender-xdr/">Microsoft Defender XDR</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/cyber-grc/">Cyber GRC</a></p>
+</li>
+<li>
+<p><a href="http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/">Junior Μηχανικός Ασφάλειας</a></p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-defender/">Microsoft Defender</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-endpoint/">Microsoft Defender for Endpoint</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-office-365/">Microsoft Defender for Office 365</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-identity/">Microsoft Defender for Identity</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-cloud-apps/">Microsoft Defender for Cloud Apps</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-cloud/">Microsoft Defender for Cloud</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-xdr/">Microsoft Defender XDR</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/cyber-grc/">Cyber GRC</a></li>
+      <li><a href="http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/">Junior Μηχανικός Ασφάλειας</a></li>
+      <li><a href="http://localhost:1313/tags/security-operations/">Security Operations</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/">
+    <span class="title">« Prev</span>
+    <span>Microsoft Defender Demystified — Part 5: A Walk Through the Microsoft Defender Portal</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/previews/selective-response-actions/">
+    <span class="title">Next »</span>
+    <span>Selective Response Actions on Critical Assets in Microsoft Defender for Endpoint</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ on x"
+            href="https://x.com/intent/tweet/?text=%ce%97%20%ce%9f%ce%b9%ce%ba%ce%bf%ce%b3%ce%ad%ce%bd%ce%b5%ce%b9%ce%b1%20%ce%a0%cf%81%ce%bf%cf%8a%cf%8c%ce%bd%cf%84%cf%89%ce%bd%20%cf%84%ce%bf%cf%85%20Microsoft%20Defender%20%ce%bc%ce%b5%20%cf%80%cf%81%ce%b1%ce%ba%cf%84%ce%b9%ce%ba%cf%8c%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%20%ce%b3%ce%b9%ce%b1%20%ce%bd%ce%ad%ce%bf%cf%85%cf%82%20%ce%b5%cf%80%ce%b1%ce%b3%ce%b3%ce%b5%ce%bb%ce%bc%ce%b1%cf%84%ce%af%ce%b5%cf%82%20%ce%b1%cf%83%cf%86%ce%ac%ce%bb%ce%b5%ce%b9%ce%b1%cf%82%20%26%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-defender-oikogeneia-praktikos-odigos%2f&amp;hashtags=MicrosoftDefender%2cMicrosoftDefenderforEndpoint%2cMicrosoftDefenderforOffice365%2cMicrosoftDefenderforIdentity%2cMicrosoftDefenderforCloudApps%2cMicrosoftDefenderforCloud%2cMicrosoftDefenderXDR%2cMicrosoft365Security%2cCyberGRC%2cJunior%ce%9c%ce%b7%cf%87%ce%b1%ce%bd%ce%b9%ce%ba%cf%8c%cf%82%ce%91%cf%83%cf%86%ce%ac%ce%bb%ce%b5%ce%b9%ce%b1%cf%82%2cSecurityOperations">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-defender-oikogeneia-praktikos-odigos%2f&amp;title=%ce%97%20%ce%9f%ce%b9%ce%ba%ce%bf%ce%b3%ce%ad%ce%bd%ce%b5%ce%b9%ce%b1%20%ce%a0%cf%81%ce%bf%cf%8a%cf%8c%ce%bd%cf%84%cf%89%ce%bd%20%cf%84%ce%bf%cf%85%20Microsoft%20Defender%20%ce%bc%ce%b5%20%cf%80%cf%81%ce%b1%ce%ba%cf%84%ce%b9%ce%ba%cf%8c%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%20%ce%b3%ce%b9%ce%b1%20%ce%bd%ce%ad%ce%bf%cf%85%cf%82%20%ce%b5%cf%80%ce%b1%ce%b3%ce%b3%ce%b5%ce%bb%ce%bc%ce%b1%cf%84%ce%af%ce%b5%cf%82%20%ce%b1%cf%83%cf%86%ce%ac%ce%bb%ce%b5%ce%b9%ce%b1%cf%82%20%26%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95&amp;summary=%ce%97%20%ce%9f%ce%b9%ce%ba%ce%bf%ce%b3%ce%ad%ce%bd%ce%b5%ce%b9%ce%b1%20%ce%a0%cf%81%ce%bf%cf%8a%cf%8c%ce%bd%cf%84%cf%89%ce%bd%20%cf%84%ce%bf%cf%85%20Microsoft%20Defender%20%ce%bc%ce%b5%20%cf%80%cf%81%ce%b1%ce%ba%cf%84%ce%b9%ce%ba%cf%8c%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%20%ce%b3%ce%b9%ce%b1%20%ce%bd%ce%ad%ce%bf%cf%85%cf%82%20%ce%b5%cf%80%ce%b1%ce%b3%ce%b3%ce%b5%ce%bb%ce%bc%ce%b1%cf%84%ce%af%ce%b5%cf%82%20%ce%b1%cf%83%cf%86%ce%ac%ce%bb%ce%b5%ce%b9%ce%b1%cf%82%20%26%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-defender-oikogeneia-praktikos-odigos%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-defender-oikogeneia-praktikos-odigos%2f&title=%ce%97%20%ce%9f%ce%b9%ce%ba%ce%bf%ce%b3%ce%ad%ce%bd%ce%b5%ce%b9%ce%b1%20%ce%a0%cf%81%ce%bf%cf%8a%cf%8c%ce%bd%cf%84%cf%89%ce%bd%20%cf%84%ce%bf%cf%85%20Microsoft%20Defender%20%ce%bc%ce%b5%20%cf%80%cf%81%ce%b1%ce%ba%cf%84%ce%b9%ce%ba%cf%8c%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%20%ce%b3%ce%b9%ce%b1%20%ce%bd%ce%ad%ce%bf%cf%85%cf%82%20%ce%b5%cf%80%ce%b1%ce%b3%ce%b3%ce%b5%ce%bb%ce%bc%ce%b1%cf%84%ce%af%ce%b5%cf%82%20%ce%b1%cf%83%cf%86%ce%ac%ce%bb%ce%b5%ce%b9%ce%b1%cf%82%20%26%20%ce%a5%ce%91%ce%a3%ce%a0%ce%95">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

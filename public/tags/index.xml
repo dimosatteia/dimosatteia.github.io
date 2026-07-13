@@ -6,8 +6,85 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jul 2026 11:25:00 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 10:00:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyber GRC</title>
+      <link>http://localhost:1313/tags/cyber-grc/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/cyber-grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Junior Μηχανικός Ασφάλειας</title>
+      <link>http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-security/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender</title>
+      <link>http://localhost:1313/tags/microsoft-defender/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-cloud/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-cloud/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud Apps</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-cloud-apps/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-cloud-apps/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Endpoint</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-endpoint/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-endpoint/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Identity</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-identity/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-identity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Office 365</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender XDR</title>
+      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security Operations</title>
+      <link>http://localhost:1313/tags/security-operations/</link>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/security-operations/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Azure Security</title>
       <link>http://localhost:1313/tags/azure-security/</link>
@@ -44,80 +121,10 @@
       <description></description>
     </item>
     <item>
-      <title>Cyber GRC</title>
-      <link>http://localhost:1313/tags/cyber-grc/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/cyber-grc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Exposure Management</title>
-      <link>http://localhost:1313/tags/exposure-management/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/exposure-management/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>ISO 27001</title>
       <link>http://localhost:1313/tags/iso-27001/</link>
       <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/iso-27001/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft 365</title>
-      <link>http://localhost:1313/tags/microsoft-365/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft 365 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-security/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Cloud</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-cloud/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-cloud/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Endpoint</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-endpoint/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-endpoint/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Identity</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-identity/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-identity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Office 365</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender XDR</title>
-      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Secure Score</title>
-      <link>http://localhost:1313/tags/microsoft-secure-score/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-secure-score/</guid>
       <description></description>
     </item>
     <item>
@@ -132,13 +139,6 @@
       <link>http://localhost:1313/tags/nis2/</link>
       <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/nis2/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security Posture Management</title>
-      <link>http://localhost:1313/tags/security-posture-management/</link>
-      <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/security-posture-management/</guid>
       <description></description>
     </item>
     <item>
@@ -160,13 +160,6 @@
       <link>http://localhost:1313/tags/microsoft-365-e5/</link>
       <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-365-e5/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Cloud Apps</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-cloud-apps/</link>
-      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-cloud-apps/</guid>
       <description></description>
     </item>
     <item>
@@ -205,17 +198,17 @@
       <description></description>
     </item>
     <item>
+      <title>Microsoft Secure Score</title>
+      <link>http://localhost:1313/tags/microsoft-secure-score/</link>
+      <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-secure-score/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Risk Management</title>
       <link>http://localhost:1313/tags/risk-management/</link>
       <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/risk-management/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security Operations</title>
-      <link>http://localhost:1313/tags/security-operations/</link>
-      <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/security-operations/</guid>
       <description></description>
     </item>
     <item>
@@ -226,10 +219,31 @@
       <description></description>
     </item>
     <item>
+      <title>Deployment Strategy</title>
+      <link>http://localhost:1313/tags/deployment-strategy/</link>
+      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/deployment-strategy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Feature Lifecycle</title>
+      <link>http://localhost:1313/tags/feature-lifecycle/</link>
+      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/feature-lifecycle/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>MDE</title>
       <link>http://localhost:1313/tags/mde/</link>
       <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/mde/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365</title>
+      <link>http://localhost:1313/tags/microsoft-365/</link>
+      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365/</guid>
       <description></description>
     </item>
     <item>
@@ -436,6 +450,13 @@
       <description></description>
     </item>
     <item>
+      <title>Exposure Management</title>
+      <link>http://localhost:1313/tags/exposure-management/</link>
+      <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/exposure-management/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Microsoft Purview</title>
       <link>http://localhost:1313/tags/microsoft-purview/</link>
       <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
@@ -443,10 +464,10 @@
       <description></description>
     </item>
     <item>
-      <title>Junior Μηχανικός Ασφάλειας</title>
-      <link>http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/</link>
+      <title>Security Posture Management</title>
+      <link>http://localhost:1313/tags/security-posture-management/</link>
       <pubDate>Mon, 27 Apr 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/</guid>
+      <guid>http://localhost:1313/tags/security-posture-management/</guid>
       <description></description>
     </item>
     <item>
@@ -594,20 +615,6 @@
       <link>http://localhost:1313/tags/welcome/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/welcome/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Deployment Strategy</title>
-      <link>http://localhost:1313/tags/deployment-strategy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/deployment-strategy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Feature Lifecycle</title>
-      <link>http://localhost:1313/tags/feature-lifecycle/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/feature-lifecycle/</guid>
       <description></description>
     </item>
   </channel>
