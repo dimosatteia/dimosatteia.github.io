@@ -1,6 +1,6 @@
 ---
 title: "Release Status"
-description: "Track Microsoft 365 Security features by their release stage — Preview vs Generally Available"
+description: "Track Microsoft 365 Security features by their release stage: Preview vs Generally Available"
 summary: "Understanding the difference between Preview and Generally Available features helps security architects make informed deployment decisions in enterprise environments."
 date: 2026-05-22
 lastmod: 2026-05-22
@@ -44,7 +44,7 @@ Features that are **available for testing** but **not recommended for production
 
 ⚠️ **Important considerations:**
 - Preview features may change significantly before GA
-- **No SLA coverage** — Microsoft explicitly states Preview features are provided "as-is" without service level agreements
+- **No SLA coverage**: Microsoft explicitly states Preview features are provided "as-is" without service level agreements
 - Features can be deprecated or retired without prior notice
 - Limited or evolving documentation
 - **Not suitable for compliance-regulated workloads** or production environments
@@ -72,9 +72,9 @@ Features that are **production-ready** and officially supported by Microsoft wit
 
 Microsoft also uses these intermediate stages:
 
-- **Private Preview** — Invitation-only, NDA-protected early access
-- **Targeted Release** — First Release in production for select customers (Office 365)
-- **Standard Release** — Same as Generally Available
+- **Private Preview:** Invitation-only, NDA-protected early access
+- **Targeted Release:** First Release in production for select customers (Office 365)
+- **Standard Release:** Same as Generally Available
 
 ## Why This Classification Matters
 
@@ -86,7 +86,7 @@ As a CISO or Security Architect operating real-world production environments, yo
 - **Resource planning:** You can commit training and runbook development to stable capabilities
 - **Licensing considerations:** Some Preview features become paid add-ons at GA
 
-This taxonomy helps you separate "what's possible in the lab" from "what's deployable in production" — saving you from costly rollbacks and compliance headaches.
+This taxonomy helps you separate "what's possible in the lab" from "what's deployable in production", saving you from costly rollbacks and compliance headaches.
 
 ---
 
