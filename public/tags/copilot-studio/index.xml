@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Copilot Studio on Microsoft 365 Security Insights</title>
+    <link>http://localhost:1313/tags/copilot-studio/</link>
+    <description>Recent content in Copilot Studio on Microsoft 365 Security Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Jul 2026 18:30:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/copilot-studio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generally Available: Security for Microsoft Agent 365 with Defender</title>
+      <link>http://localhost:1313/posts/generally-available/security-for-microsoft-agent-365-defender/</link>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/generally-available/security-for-microsoft-agent-365-defender/</guid>
+      <description>Το Microsoft Defender αποκτά ενσωματωμένη ασφάλεια για AI agents μέσω του Microsoft Agent 365: discovery, security posture, real-time protection και investigation, πλέον Generally Available.</description>
+    </item>
+  </channel>
+</rss>

@@ -6,7 +6,7 @@
     <description>Recent content in Identity Security on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2026 15:58:46 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 11:32:10 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/identity-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Defender Part 1: All Products, Which One Do You Need</title>
@@ -18,7 +18,7 @@
     <item>
       <title>Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity</title>
       <link>http://localhost:1313/posts/generally-available/investigate-ad-domain-defender-identity/</link>
-      <pubDate>Sat, 23 May 2026 19:30:00 +0300</pubDate>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/generally-available/investigate-ad-domain-defender-identity/</guid>
       <description>Το Microsoft Defender for Identity ενοποιεί πλέον σε ένα σημείο την υγεία, τις πολιτικές ασφαλείας και τα trust relationships ενός Active Directory domain. Δες τι αλλάζει στην καθημερινή investigation.</description>
     </item>
