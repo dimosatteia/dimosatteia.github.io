@@ -84,4 +84,4 @@ cover:
 
 ---
 
-**Πηγή:** Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Investigate an Active Directory domain](https://learn.microsoft.com/en-us/defender-for-identity/investigate-domain).
+**Πηγές:** Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Investigate an Active Directory domain](https://learn.microsoft.com/en-us/defender-for-identity/investigate-domain), και στην καταχώρηση Ιουλίου 2026 του [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new), όπου το Domain investigation page καταγράφεται πλέον ως Generally Available.
