@@ -6,8 +6,43 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jul 2026 11:51:17 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 12:14:43 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Security</title>
+      <link>http://localhost:1313/tags/ai-security/</link>
+      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/ai-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GRC</title>
+      <link>http://localhost:1313/tags/grc/</link>
+      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Intune</title>
+      <link>http://localhost:1313/tags/microsoft-intune/</link>
+      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-intune/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security Copilot</title>
+      <link>http://localhost:1313/tags/security-copilot/</link>
+      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/security-copilot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vulnerability Management</title>
+      <link>http://localhost:1313/tags/vulnerability-management/</link>
+      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/vulnerability-management/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Active Directory</title>
       <link>http://localhost:1313/tags/active-directory/</link>
@@ -16,24 +51,10 @@
       <description></description>
     </item>
     <item>
-      <title>AI Security</title>
-      <link>http://localhost:1313/tags/ai-security/</link>
-      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/ai-security/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Copilot Studio</title>
       <link>http://localhost:1313/tags/copilot-studio/</link>
       <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/copilot-studio/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GRC</title>
-      <link>http://localhost:1313/tags/grc/</link>
-      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/grc/</guid>
       <description></description>
     </item>
     <item>
@@ -464,13 +485,6 @@
       <description></description>
     </item>
     <item>
-      <title>Vulnerability Management</title>
-      <link>http://localhost:1313/tags/vulnerability-management/</link>
-      <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/vulnerability-management/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Vulnerability Prioritization</title>
       <link>http://localhost:1313/tags/vulnerability-prioritization/</link>
       <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
@@ -587,13 +601,6 @@
       <link>http://localhost:1313/tags/licensing/</link>
       <pubDate>Wed, 22 Apr 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/licensing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security Copilot</title>
-      <link>http://localhost:1313/tags/security-copilot/</link>
-      <pubDate>Wed, 22 Apr 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/security-copilot/</guid>
       <description></description>
     </item>
     <item>

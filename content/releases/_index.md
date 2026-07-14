@@ -23,6 +23,12 @@ categories:
   - "Microsoft 365"
 ShowToc: true
 TocOpen: false
+cover:
+  image: "/images/welcome-cover.png"
+  alt: "Microsoft 365 Security Insights blog — Microsoft 365 security and Defender content for IT Pros"
+  caption: "Welcome to Microsoft 365 Security Insights"
+  relative: false
+  hidden: true
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: false
