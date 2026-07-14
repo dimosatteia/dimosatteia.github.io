@@ -1,7 +1,7 @@
 ---
 title: "Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity"
-date: 2026-05-23T19:30:00+03:00
-lastmod: 2026-05-23T19:30:00+03:00
+date: 2026-07-14T11:00:00+03:00
+lastmod: 2026-07-14T11:19:00+03:00
 draft: false
 keywords:
   - Microsoft Defender for Identity

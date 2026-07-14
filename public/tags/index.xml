@@ -170,27 +170,6 @@
       <description></description>
     </item>
     <item>
-      <title>Active Directory</title>
-      <link>http://localhost:1313/tags/active-directory/</link>
-      <pubDate>Sat, 23 May 2026 19:30:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/active-directory/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GRC</title>
-      <link>http://localhost:1313/tags/grc/</link>
-      <pubDate>Sat, 23 May 2026 19:30:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/grc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Identity Security</title>
-      <link>http://localhost:1313/tags/identity-security/</link>
-      <pubDate>Sat, 23 May 2026 19:30:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/identity-security/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Change Management</title>
       <link>http://localhost:1313/tags/change-management/</link>
       <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
@@ -293,6 +272,13 @@
       <link>http://localhost:1313/tags/endpoint-security/</link>
       <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/endpoint-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Identity Security</title>
+      <link>http://localhost:1313/tags/identity-security/</link>
+      <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/identity-security/</guid>
       <description></description>
     </item>
     <item>
@@ -604,6 +590,13 @@
       <description></description>
     </item>
     <item>
+      <title>GRC</title>
+      <link>http://localhost:1313/tags/grc/</link>
+      <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/grc/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Microsoft Security</title>
       <link>http://localhost:1313/tags/microsoft-security/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
@@ -622,6 +615,13 @@
       <link>http://localhost:1313/tags/welcome/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/welcome/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Active Directory</title>
+      <link>http://localhost:1313/tags/active-directory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/active-directory/</guid>
       <description></description>
     </item>
   </channel>
