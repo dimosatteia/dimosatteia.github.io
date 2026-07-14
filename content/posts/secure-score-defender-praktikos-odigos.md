@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2"
 date: 2026-04-27T10:00:00+03:00
-lastmod: 2026-05-23T19:30:00+03:00
+lastmod: 2026-07-14T12:11:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score NIS2
@@ -28,7 +28,7 @@ tags:
   - Junior Μηχανικός Ασφάλειας
 author: "Dimosthenis Atteia"
 description: "Microsoft Secure Score για τον Υ.Α.Σ.Π.Ε.: τεχνικά controls NIS2, Νόμος 5160/2024, ιεράρχηση ενεργειών και μετρήσιμη συμμόρφωση Microsoft 365."
-summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε. — από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
+summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε., από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Frameworks", "Microsoft 365"]
 series: ["Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ"]
 ShowToc: true
@@ -60,7 +60,7 @@ cover:
 
 Παράλληλα, ο νόμος επιβάλλει τον ορισμό **Υπευθύνου Ασφάλειας Πληροφοριακών και Επικοινωνιακών Συστημάτων (Υ.Α.Σ.Π.Ε.)**, ρόλος που σε πολλές μικρομεσαίες ανατίθεται σε στελέχη IT χωρίς αμιγώς εξειδίκευση στην ασφάλεια ή σε εξωτερικούς συνεργάτες με περιορισμένο χρόνο εμβάθυνσης. Το αποτέλεσμα είναι ένα γνώριμο μοτίβο: η συμμόρφωση αντιμετωπίζεται ως «paperwork exercise», ενώ τα τεχνικά μέτρα, αυτά που πραγματικά μειώνουν τον κίνδυνο, μένουν πίσω.
 
-Εδώ ακριβώς το **Microsoft Secure Score** μπορεί να λειτουργήσει ως **γρήγορη πρώτη γραμμή άμυνας**: για έναν Υ.Α.Σ.Π.Ε. που διαχειρίζεται έναν Microsoft 365 tenant με Business Premium ή E3/E5 license, προσφέρει έτοιμη, ιεραρχημένη λίστα τεχνικών controls που ευθυγραμμίζονται φυσικά με τα core requirements της NIS2 — MFA, access control, endpoint protection, email security, data protection, audit logging.
+Εδώ ακριβώς το **Microsoft Secure Score** μπορεί να λειτουργήσει ως **γρήγορη πρώτη γραμμή άμυνας**: για έναν Υ.Α.Σ.Π.Ε. που διαχειρίζεται έναν Microsoft 365 tenant με Business Premium ή E3/E5 license, προσφέρει έτοιμη, ιεραρχημένη λίστα τεχνικών controls που ευθυγραμμίζονται φυσικά με τα core requirements της NIS2 όπως MFA, access control, endpoint protection, email security, data protection, audit logging.
 
 Δεν αντικαθιστά τη συστηματική ανάλυση κινδύνου που απαιτεί ο νόμος, αλλά δίνει στον Υ.Α.Σ.Π.Ε. κάτι εξίσου πολύτιμο: μια **μετρήσιμη βάση** που μπορεί να βελτιωθεί σταδιακά, να τεκμηριωθεί στους ελέγχους και να παρουσιαστεί στη διοίκηση ως concrete πρόοδος — αντί για ασαφείς διαβεβαιώσεις. Σε ένα τοπίο όπου ο πήχης ανέβηκε απότομα και οι πόροι παραμένουν περιορισμένοι, αυτή η γρήγορη μετάβαση από αμηχανία σε δράση μπορεί να κάνει τη διαφορά ανάμεσα σε έναν οργανισμό που απλώς υπάρχει στα μητρώα και σε έναν που πραγματικά αμύνεται.
 
@@ -78,7 +78,7 @@ cover:
 
 ## Πώς δουλεύει μηχανικά το Microsoft Secure Score
 
-Κάθε recommended action έχει αξία σε πόντους, βασισμένη στο πόσο μειώνει τον κίνδυνο. Η ενεργοποίηση MFA για όλους τους χρήστες, για παράδειγμα, αξίζει σημαντικά περισσότερους πόντους από μια μικρή ρύθμιση στο SharePoint — γιατί ακριβώς κλείνει μεγαλύτερη επιφάνεια επίθεσης.
+Κάθε recommended action έχει αξία σε πόντους, βασισμένη στο πόσο μειώνει τον κίνδυνο. Η ενεργοποίηση MFA για όλους τους χρήστες, για παράδειγμα, αξίζει σημαντικά περισσότερους πόντους από μια μικρή ρύθμιση στο SharePoint, γιατί ακριβώς κλείνει μεγαλύτερη επιφάνεια επίθεσης.
 
 Δύο πράγματα αξίζει να κρατήσουμε:
 
@@ -95,13 +95,13 @@ cover:
 
 Εδώ το Secure Score αποκτά την πραγματική του αξία. Δεν είναι standalone tool, είναι ο **κοινός δείκτης** που ενοποιεί σήματα από όλο το Defender stack. Πρέπει να το σκεφτούμε ως το κεντρικό dashboard που μαζεύει ό,τι βλέπει το καθένα από τα παρακάτω εργαλεία:
 
-- **Microsoft Defender for Endpoint** — δίνει τα δεδομένα για την κατηγορία **Devices** (γνωστή και ως Microsoft Secure Score for Devices). Αξιολογεί misconfigurations, vulnerabilities και security baselines στους endpoints.
-- **Microsoft Defender for Office 365** — τροφοδοτεί συστάσεις για **email & συνεργασία**: Safe Links, Safe Attachments, anti-phishing policies, impersonation protection.
-- **Microsoft Entra ID & Defender for Identity** — υπεύθυνα για τον πυλώνα **Identity**. Εδώ μπαίνουν MFA, conditional access, αποσύνδεση από legacy authentication, privileged identity management.
-- **Microsoft Defender for Cloud Apps** — καλύπτει ορατότητα και έλεγχο σε cloud εφαρμογές, OAuth permissions, shadow IT.
-- **Microsoft Purview / Information Protection** — φροντίζει για τον πυλώνα **Data**: DLP policies, sensitivity labels, audit log retention.
+- **Microsoft Defender for Endpoint:** δίνει τα δεδομένα για την κατηγορία **Devices** (γνωστή και ως Microsoft Secure Score for Devices). Αξιολογεί misconfigurations, vulnerabilities και security baselines στους endpoints.
+- **Microsoft Defender for Office 365:** τροφοδοτεί συστάσεις για **email & συνεργασία**: Safe Links, Safe Attachments, anti-phishing policies, impersonation protection.
+- **Microsoft Entra ID & Defender for Identity:** υπεύθυνα για τον πυλώνα **Identity**. Εδώ μπαίνουν MFA, conditional access, αποσύνδεση από legacy authentication, privileged identity management.
+- **Microsoft Defender for Cloud Apps:** καλύπτει ορατότητα και έλεγχο σε cloud εφαρμογές, OAuth permissions, shadow IT.
+- **Microsoft Purview / Information Protection:** φροντίζει για τον πυλώνα **Data**: DLP policies, sensitivity labels, audit log retention.
 
-Όταν αλλάζουμε λοιπόν μια ρύθμιση π.χ. στο Intune ή στο Entra, δεν «δουλεύουμε στο Secure Score» — δουλεύουμε στην πηγή και το score απλώς αντικατοπτρίζει το αποτέλεσμα. Αυτή η σύνδεση είναι που μετατρέπει το score από έναν αριθμό σε **οδηγό προτεραιοτήτων**.
+Όταν αλλάζουμε λοιπόν μια ρύθμιση π.χ. στο Intune ή στο Entra, δεν «δουλεύουμε στο Secure Score», δουλεύουμε στην πηγή και το score απλώς αντικατοπτρίζει το αποτέλεσμα. Αυτή η σύνδεση είναι που μετατρέπει το score από έναν αριθμό σε **οδηγό προτεραιοτήτων**.
 
 ## Οι τέσσερις πυλώνες του Microsoft Secure Score
 
@@ -123,11 +123,11 @@ Safe Links και Safe Attachments στο Defender for Office 365, anti-phishing
 
 Sensitivity labels για ταξινόμηση και κρυπτογράφηση, DLP policies σε Exchange και Teams, ενεργοποίηση audit log search σε επίπεδο tenant.
 
-## Τι ΔΕΝ είναι το Secure Score — μια αναγκαία διευκρίνιση
+## Τι ΔΕΝ είναι το Secure Score, μια αναγκαία διευκρίνιση
 
 Μας ρωτάει ο compliance manager αν ο οργανισμός μας είναι GDPR-compliant; Το Secure Score δεν θα μας απαντήσει. Για αυτό υπάρχει το **Microsoft Purview Compliance Manager**, εργαλείο διαφορετικό σε σκοπό και μοντέλο. Το Secure Score εστιάζει σε **configuration & posture**, όχι σε regulatory adherence.
 
-Επίσης, μην το συγχέουμε με το **Cloud Secure Score** του Microsoft Defender for Cloud — αυτό αξιολογεί την υποδομή Azure (VMs, Storage, SQL) με διαφορετικό μοντέλο υπολογισμού. Είναι συμπληρωματικό, όχι ισοδύναμο.
+Επίσης, μην το συγχέουμε με το **Cloud Secure Score** του Microsoft Defender for Cloud, αυτό αξιολογεί την υποδομή Azure (VMs, Storage, SQL) με διαφορετικό μοντέλο υπολογισμού. Είναι συμπληρωματικό, όχι ισοδύναμο.
 
 ## Από πού να ξεκινήσει ένας junior μηχανικός με το Microsoft Secure Score
 
@@ -138,16 +138,16 @@ Sensitivity labels για ταξινόμηση και κρυπτογράφηση
 > *Microsoft Secure Score → Recommended actions tab.*
 
 1. **Ταξινομούμε** τα recommended actions με βάση το **Score impact** σε φθίνουσα σειρά.
-2. **Φιλτράρουμε** για κατηγορία **Identity** πρώτα — εδώ είναι το low-hanging fruit με τη μεγαλύτερη μείωση κινδύνου.
-3. Πριν ενεργοποιήσουμε οτιδήποτε, **διαβάζουμε** το πεδίο **User impact**. Ορισμένα actions — όπως block legacy auth — μπορούν να σπάσουν παλαιές εφαρμογές. Πάντα pilot σε μικρή ομάδα πριν την ευρεία εφαρμογή.
+2. **Φιλτράρουμε** για κατηγορία **Identity** πρώτα, εδώ είναι το low-hanging fruit με τη μεγαλύτερη μείωση κινδύνου.
+3. Πριν ενεργοποιήσουμε οτιδήποτε, **διαβάζουμε** το πεδίο **User impact**. Ορισμένα actions (όπως block legacy auth) μπορούν να σπάσουν παλαιές εφαρμογές. Πάντα pilot σε μικρή ομάδα πριν την ευρεία εφαρμογή.
 4. **Χρησιμοποιούμε** το **History tab** για να παρακολουθήσουμε trends και να αποδείξουμε πρόοδο σε stakeholders και διοίκηση.
-5. **Συγκρίνουμε** τη βαθμολογία μας με το **benchmark** παρόμοιων οργανισμών (μέγεθος, κλάδος) — δίνει ένα κρίσιμο context στο νούμερο που έχουμε επιτύχει.
+5. **Συγκρίνουμε** τη βαθμολογία μας με το **benchmark** παρόμοιων οργανισμών (μέγεθος, κλάδος) δίνει ένα κρίσιμο context στο νούμερο που έχουμε επιτύχει.
 
 ## Το μεγάλο συμπέρασμα
 
-Το **Microsoft Secure Score** δεν είναι παιχνίδι gamification για να ανέβουμε στο 80%. Είναι ένας **πρακτικός μηχανισμός μετάφρασης** ανάμεσα στις best practices της Microsoft και στο τι μπορούμε να κάνουμε σήμερα, αυτή τη στιγμή, στο tenant μας. Για τον junior μηχανικό που νιώθει χαμένος μπροστά στο εύρος του Defender ecosystem, είναι ο πιο γρήγορος τρόπος να μετατρέψει το χάος σε προτεραιότητες — και τις προτεραιότητες σε μετρήσιμη μείωση κινδύνου σε ταυτότητες χρηστών, συσκευές, εφαρμογές και δεδομένα.
+Το **Microsoft Secure Score** δεν είναι παιχνίδι gamification για να ανέβουμε στο 80%. Είναι ένας **πρακτικός μηχανισμός μετάφρασης** ανάμεσα στις best practices της Microsoft και στο τι μπορούμε να κάνουμε σήμερα, αυτή τη στιγμή, στο tenant μας. Για τον junior μηχανικό που νιώθει χαμένος μπροστά στο εύρος του Defender ecosystem, είναι ο πιο γρήγορος τρόπος να μετατρέψει το χάος σε προτεραιότητες, και τις προτεραιότητες σε μετρήσιμη μείωση κινδύνου σε ταυτότητες χρηστών, συσκευές, εφαρμογές και δεδομένα.
 
-Το **Microsoft Secure Score** από μόνο του δεν έχει αξία· η αξία γεννιέται όταν κάθε πόντος μεταφράζεται σε μια ρύθμιση που πραγματικά μειώνει την έκθεση του οργανισμού μας. Και αυτή ακριβώς η μετάφραση είναι το πραγματικό έργο της κυβερνοασφάλειας.
+Το **Microsoft Secure Score** από μόνο του δεν έχει αξία η αξία γεννιέται όταν κάθε πόντος μεταφράζεται σε μια ρύθμιση που πραγματικά μειώνει την έκθεση του οργανισμού μας. Και αυτή ακριβώς η μετάφραση είναι το πραγματικό έργο της κυβερνοασφάλειας.
 
 ## Θες να εμβαθύνεις περισσότερο;
 
