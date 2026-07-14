@@ -59,11 +59,11 @@ cover:
 
 ## Πώς ενεργοποιείται στην πράξη
 
-Το πρώτο πράγμα που αξίζει να ξέρεις είναι ότι, μόλις κάνεις onboard στο Agent 365, η βασική ασφάλεια (discovery, posture assessment, threat detection) ενεργοποιείται αυτόματα — δεν χρειάζεται κάποια επιπλέον ενέργεια. Η ρύθμιση γίνεται από **Settings > Security for AI > Get started** στο Defender portal, όπου ένα checklist σου δείχνει την κατάσταση κάθε data source.
+Το πρώτο πράγμα που αξίζει να ξέρεις είναι ότι, μόλις κάνεις onboard στο Agent 365, η βασική ασφάλεια (discovery, posture assessment, threat detection) ενεργοποιείται αυτόματα, δεν χρειάζεται κάποια επιπλέον ενέργεια. Η ρύθμιση γίνεται από **Settings > Security for AI > Get started** στο Defender portal, όπου ένα checklist σου δείχνει την κατάσταση κάθε data source.
 
 ![Setup checklist για Security for AI στο Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/media/get-started-defender-security-for-ai/security-for-ai-setup-checklist.png)
 
-Για πλήρη ορατότητα, χρειάζεται να συνδέσεις και τον **Microsoft 365 connector**, επιλέγοντας τουλάχιστον τα Microsoft Entra ID Management events και τα Microsoft 365 activities — αυτά τροφοδοτούν το investigation και το advanced hunting με πραγματικό context γύρω από τη δραστηριότητα των agents.
+Για πλήρη ορατότητα, χρειάζεται να συνδέσεις και τον **Microsoft 365 connector**, επιλέγοντας τουλάχιστον τα Microsoft Entra ID Management events και τα Microsoft 365 activities, αυτά τροφοδοτούν το investigation και το advanced hunting με πραγματικό context γύρω από τη δραστηριότητα των agents.
 
 ![Επιλογή components του Microsoft 365 connector](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/media/get-started-defender-security-for-ai/microsoft-365-connector-components.png)
 
