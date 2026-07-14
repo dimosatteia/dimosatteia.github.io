@@ -8,6 +8,13 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/releases/generally-available/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Generally Available: Security for Microsoft Agent 365 with Defender</title>
+      <link>http://localhost:1313/posts/generally-available/security-for-microsoft-agent-365-defender/</link>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/generally-available/security-for-microsoft-agent-365-defender/</guid>
+      <description>Το Microsoft Defender αποκτά ενσωματωμένη ασφάλεια για AI agents μέσω του Microsoft Agent 365: discovery, security posture, real-time protection και investigation, πλέον Generally Available.</description>
+    </item>
+    <item>
       <title>Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity</title>
       <link>http://localhost:1313/posts/generally-available/investigate-ad-domain-defender-identity/</link>
       <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>

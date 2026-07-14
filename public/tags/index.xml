@@ -6,13 +6,27 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jul 2026 11:32:10 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 11:51:17 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Active Directory</title>
       <link>http://localhost:1313/tags/active-directory/</link>
       <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/active-directory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI Security</title>
+      <link>http://localhost:1313/tags/ai-security/</link>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/ai-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Copilot Studio</title>
+      <link>http://localhost:1313/tags/copilot-studio/</link>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/copilot-studio/</guid>
       <description></description>
     </item>
     <item>
@@ -27,6 +41,20 @@
       <link>http://localhost:1313/tags/identity-security/</link>
       <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/identity-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Agent 365</title>
+      <link>http://localhost:1313/tags/microsoft-agent-365/</link>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-agent-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender</title>
+      <link>http://localhost:1313/tags/microsoft-defender/</link>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender/</guid>
       <description></description>
     </item>
     <item>
@@ -62,13 +90,6 @@
       <link>http://localhost:1313/tags/microsoft-365-security/</link>
       <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender</title>
-      <link>http://localhost:1313/tags/microsoft-defender/</link>
-      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender/</guid>
       <description></description>
     </item>
     <item>
@@ -191,6 +212,27 @@
       <description></description>
     </item>
     <item>
+      <title>Deployment Strategy</title>
+      <link>http://localhost:1313/tags/deployment-strategy/</link>
+      <pubDate>Fri, 22 May 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/deployment-strategy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Feature Lifecycle</title>
+      <link>http://localhost:1313/tags/feature-lifecycle/</link>
+      <pubDate>Fri, 22 May 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/feature-lifecycle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365</title>
+      <link>http://localhost:1313/tags/microsoft-365/</link>
+      <pubDate>Fri, 22 May 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Change Management</title>
       <link>http://localhost:1313/tags/change-management/</link>
       <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
@@ -240,31 +282,10 @@
       <description></description>
     </item>
     <item>
-      <title>Deployment Strategy</title>
-      <link>http://localhost:1313/tags/deployment-strategy/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/deployment-strategy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Feature Lifecycle</title>
-      <link>http://localhost:1313/tags/feature-lifecycle/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/feature-lifecycle/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>MDE</title>
       <link>http://localhost:1313/tags/mde/</link>
       <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/mde/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft 365</title>
-      <link>http://localhost:1313/tags/microsoft-365/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365/</guid>
       <description></description>
     </item>
     <item>

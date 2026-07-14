@@ -2,10 +2,9 @@
 title: "Release Status"
 description: "Track Microsoft 365 Security features by their release stage: Preview vs Generally Available"
 summary: "Understanding the difference between Preview and Generally Available features helps security architects make informed deployment decisions in enterprise environments."
-date: 2026-05-22
-lastmod: 2026-05-22
+date: 2026-05-22T11:00:00+03:00
+lastmod: 2026-07-14T11:50:00+03:00
 draft: false
-author: "Dimosthenis Atteia"
 tags:
   - "Microsoft 365"
   - "Feature Lifecycle"
@@ -19,6 +18,7 @@ keywords:
   - Production deployment
   - Security feature lifecycle
   - Microsoft 365 roadmap
+author: "Dimosthenis Atteia"
 categories:
   - "Microsoft 365"
 ShowToc: true
@@ -44,7 +44,7 @@ Features that are **available for testing** but **not recommended for production
 
 ⚠️ **Important considerations:**
 - Preview features may change significantly before GA
-- **No SLA coverage**: Microsoft explicitly states Preview features are provided "as-is" without service level agreements
+- **No SLA coverage:** Microsoft explicitly states Preview features are provided "as-is" without service level agreements
 - Features can be deprecated or retired without prior notice
 - Limited or evolving documentation
 - **Not suitable for compliance-regulated workloads** or production environments
