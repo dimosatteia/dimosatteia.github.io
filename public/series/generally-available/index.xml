@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Generally-Available on Microsoft 365 Security Insights</title>
+    <link>http://localhost:1313/series/generally-available/</link>
+    <description>Recent content in Generally-Available on Microsoft 365 Security Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 May 2026 19:30:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/series/generally-available/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity</title>
+      <link>http://localhost:1313/posts/generally-available/investigate-ad-domain-defender-identity/</link>
+      <pubDate>Sat, 23 May 2026 19:30:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/generally-available/investigate-ad-domain-defender-identity/</guid>
+      <description>Το Microsoft Defender for Identity ενοποιεί πλέον σε ένα σημείο την υγεία, τις πολιτικές ασφαλείας και τα trust relationships ενός Active Directory domain. Δες τι αλλάζει στην καθημερινή investigation.</description>
+    </item>
+  </channel>
+</rss>
