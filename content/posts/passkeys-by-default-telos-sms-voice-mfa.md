@@ -1,7 +1,7 @@
 ---
 title: "Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID"
 date: 2026-07-16T10:00:00+03:00
-lastmod: 2026-07-16T10:30:00+03:00
+lastmod: 2026-07-16T10:48:00+03:00
 draft: false
 keywords:
   - Microsoft Entra ID
@@ -31,6 +31,14 @@ tags:
   - FIDO2
   - Identity Security
   - Microsoft 365 Security
+  - Multi-Factor Authentication
+  - Passwordless Authentication
+  - Zero Trust
+  - Phishing-Resistant Authentication
+  - Conditional Access
+  - GRC
+  - NIS2
+  - ISO 27001
 author: "Dimosthenis Atteia"
 description: "Από 01/09/2026 τα passkeys γίνονται η προεπιλεγμένη μέθοδος ελέγχου ταυτότητας στο Microsoft Entra ID, και από 01/02/2027 αποσύρεται η SMS/Voice αυθεντικοποίηση που παρέχει η ίδια η Microsoft. Τι πρέπει να ξέρετε και τι να ετοιμάσετε από τώρα."
 summary:
