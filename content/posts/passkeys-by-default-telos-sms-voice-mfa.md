@@ -41,7 +41,7 @@ tags:
   - ISO 27001
 author: "Dimosthenis Atteia"
 description: "Από 01/09/2026 τα passkeys γίνονται η προεπιλεγμένη μέθοδος ελέγχου ταυτότητας στο Microsoft Entra ID, και από 01/02/2027 αποσύρεται η SMS/Voice αυθεντικοποίηση που παρέχει η ίδια η Microsoft. Τι πρέπει να ξέρετε και τι να ετοιμάσετε από τώρα."
-summary:
+summary: "Η Microsoft κάνει τα passkeys προεπιλεγμένη μέθοδο σύνδεσης στο Microsoft Entra ID από 01/9/2026, ενώ η SMS/Voice αυθεντικοποίηση που παρέχει η ίδια αποσύρεται πλήρως από 01/2/2027, χωρίς δυνατότητα opt-out. Δες το πλήρες χρονοδιάγραμμα, τι σημαίνει για tenants με ρυθμιστικές απαιτήσεις SMS, και ένα πρακτικό πλάνο δράσης για administrators και security teams."
 categories: ["Microsoft 365 Security Insights"]
 ShowToc: true
 TocOpen: false
