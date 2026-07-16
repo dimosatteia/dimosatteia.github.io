@@ -6,8 +6,50 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jul 2026 12:14:43 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jul 2026 10:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FIDO2</title>
+      <link>http://localhost:1313/tags/fido2/</link>
+      <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/fido2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Identity Security</title>
+      <link>http://localhost:1313/tags/identity-security/</link>
+      <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/identity-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MFA</title>
+      <link>http://localhost:1313/tags/mfa/</link>
+      <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/mfa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-security/</link>
+      <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Entra ID</title>
+      <link>http://localhost:1313/tags/microsoft-entra-id/</link>
+      <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-entra-id/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Passkeys</title>
+      <link>http://localhost:1313/tags/passkeys/</link>
+      <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/passkeys/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI Security</title>
       <link>http://localhost:1313/tags/ai-security/</link>
@@ -58,13 +100,6 @@
       <description></description>
     </item>
     <item>
-      <title>Identity Security</title>
-      <link>http://localhost:1313/tags/identity-security/</link>
-      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/identity-security/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Agent 365</title>
       <link>http://localhost:1313/tags/microsoft-agent-365/</link>
       <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
@@ -104,13 +139,6 @@
       <link>http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/</link>
       <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/junior-%CE%BC%CE%B7%CF%87%CE%B1%CE%BD%CE%B9%CE%BA%CF%8C%CF%82-%CE%B1%CF%83%CF%86%CE%AC%CE%BB%CE%B5%CE%B9%CE%B1%CF%82/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft 365 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-security/</link>
-      <pubDate>Mon, 13 Jul 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
       <description></description>
     </item>
     <item>
@@ -233,27 +261,6 @@
       <description></description>
     </item>
     <item>
-      <title>Deployment Strategy</title>
-      <link>http://localhost:1313/tags/deployment-strategy/</link>
-      <pubDate>Fri, 22 May 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/deployment-strategy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Feature Lifecycle</title>
-      <link>http://localhost:1313/tags/feature-lifecycle/</link>
-      <pubDate>Fri, 22 May 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/feature-lifecycle/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft 365</title>
-      <link>http://localhost:1313/tags/microsoft-365/</link>
-      <pubDate>Fri, 22 May 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Change Management</title>
       <link>http://localhost:1313/tags/change-management/</link>
       <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
@@ -272,13 +279,6 @@
       <link>http://localhost:1313/tags/compliance-evidence/</link>
       <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/compliance-evidence/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Entra ID</title>
-      <link>http://localhost:1313/tags/microsoft-entra-id/</link>
-      <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-entra-id/</guid>
       <description></description>
     </item>
     <item>
@@ -555,6 +555,13 @@
       <description></description>
     </item>
     <item>
+      <title>Microsoft 365</title>
+      <link>http://localhost:1313/tags/microsoft-365/</link>
+      <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Baseline</title>
       <link>http://localhost:1313/tags/baseline/</link>
       <pubDate>Wed, 22 Apr 2026 12:00:00 +0300</pubDate>
@@ -650,6 +657,20 @@
       <link>http://localhost:1313/tags/welcome/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/welcome/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Deployment Strategy</title>
+      <link>http://localhost:1313/tags/deployment-strategy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/deployment-strategy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Feature Lifecycle</title>
+      <link>http://localhost:1313/tags/feature-lifecycle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/feature-lifecycle/</guid>
       <description></description>
     </item>
   </channel>
