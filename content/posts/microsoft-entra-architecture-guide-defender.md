@@ -1,9 +1,8 @@
 ---
 title: "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)"
 date: 2026-07-18T12:00:00+03:00
-lastmod: 2026-07-18T14:20:00+03:00
+lastmod: 2026-07-18T14:28:00+03:00
 draft: false
-slug: "microsoft-entra-architecture-guide-defender"
 keywords: 
   - Microsoft Entra architecture
   - Entra ID αρχιτεκτονική
@@ -34,7 +33,7 @@ summary: "Κατανόησε την αρχιτεκτονική του Microsoft 
 categories: ["Microsoft 365 Security", "Identity & Access Management"]
 series:
 ShowToc: true
-TocOpen: true
+TocOpen: false
 weight:
 cover:
     image: "images/entra-architecture-defender-cover.png"
