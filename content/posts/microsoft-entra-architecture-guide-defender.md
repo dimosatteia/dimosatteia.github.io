@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)"
 date: 2026-07-18T12:00:00+03:00
-lastmod: 2026-07-18T14:28:00+03:00
+lastmod: 2026-07-18T17:37:00+03:00
 draft: false
 keywords: 
   - Microsoft Entra architecture
@@ -29,7 +29,7 @@ tags:
   - Microsoft Sentinel
 author: "Dimosthenis Atteia"
 description: "Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας."
-summary: "Κατανόησε την αρχιτεκτονική του Microsoft Entra ID -partitions, replicas, availability, consistency- και δες γιατί η σωστή γνώση της είναι το θεμέλιο για να χρησιμοποιήσεις σωστά το Microsoft Defender στην καθημερινή σου δουλειά."
+summary: "Κατανόησε την αρχιτεκτονική του Microsoft Entra ID (partitions, replicas, availability, consistency) και δες γιατί η σωστή γνώση της είναι το θεμέλιο για να χρησιμοποιήσεις σωστά το Microsoft Defender στην καθημερινή σου δουλειά."
 categories: ["Microsoft 365 Security", "Identity & Access Management"]
 series:
 ShowToc: true
