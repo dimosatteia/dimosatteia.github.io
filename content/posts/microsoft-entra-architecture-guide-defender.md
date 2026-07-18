@@ -70,6 +70,16 @@ ShowWordCount: true
 
 Με απλά λόγια: όταν κάνεις sign-in, πιθανότατα εξυπηρετείσαι από ένα secondary replica κοντά σου. Όταν όμως αλλάζεις κάτι, π.χ. προσθέτεις MFA method ή σε προσθέτουν σε group αυτό το write πηγαίνει πάντα στο primary replica του partition σου, όπου κι αν βρίσκεται γεωγραφικά.
 
+{{< figure
+    src="/images/entra-primary-secondary-replica-diagram.png"
+    link="/images/entra-primary-secondary-replica-diagram.png"
+    target="_blank"
+    class="center"
+    alt="Διάγραμμα primary replica και secondary replicas στο Microsoft Entra ID, το datacenter με το primary replica δέχεται όλα τα writes, ενώ πολλαπλά datacenters με secondary replicas εξυπηρετούν τα reads, με replication ανάμεσά τους"
+    caption="📷 **Το primary replica δέχεται όλα τα writes του partition και τα αντιγράφει άμεσα σε ένα secondary replica σε άλλο datacenter πριν επιστρέψει επιτυχία, εξασφαλίζοντας geo-redundant durability. Όλα τα reads (π.χ. αιτήματα αυθεντικοποίησης) εξυπηρετούνται από secondary replicas κοντά στον χρήστη, με ασύγχρονο replication σε πολλαπλά datacenters για κλιμάκωση των reads.**"
+    loading="lazy"
+>}}
+
 ### Γιατί αυτό έχει σημασία στην πράξη
 
 Έχεις αναρωτηθεί ποτέ γιατί μια αλλαγή σε group membership ή σε Conditional Access policy μπορεί να χρειαστεί λίγα λεπτά για να «πιάσει» παντού; Αυτό σχετίζεται ακριβώς με το μοντέλο replication που περιγράψαμε -το directory model του Entra ID είναι σχεδιασμένο με **eventual consistency**, όχι strict consistency σε κάθε σημείο του κόσμου ταυτόχρονα. Η Microsoft Graph API φροντίζει να διατηρεί μια λογική «συνέδρια ανάγνωσης-εγγραφής» (session affinity) ώστε μέσα στην ίδια αλληλεπίδραση να βλέπεις συνεπή δεδομένα, αλλά αν χτυπήσεις την υπηρεσία από διαφορετικά datacenters ταυτόχρονα, μπορεί προσωρινά να δεις διαφορετική εικόνα.
