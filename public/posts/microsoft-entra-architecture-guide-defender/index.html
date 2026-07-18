@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)</title>
+<meta name="keywords" content="Microsoft Entra architecture, Entra ID αρχιτεκτονική, Entra ID architecture, Microsoft Entra ID ελληνικά, Microsoft Defender for Identity, hybrid identity, Conditional Access, Zero Trust identity, primary replica secondary replica Entra, Microsoft 365 security αρχιτεκτονική, Microsoft 365 security architecture, identity security operations">
+<meta name="description" content="Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx5s18mpi4");
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)\"",
+  "description": "\"Κατανόησε την αρχιτεκτονική του Microsoft Entra ID -partitions, replicas, availability, consistency- και δες γιατί η σωστή γνώση της είναι το θεμέλιο για να χρησιμοποιήσεις σωστά το Microsoft Defender στην καθημερινή σου δουλειά.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-07-18T12:00:00+03:00\"",
+  "dateModified": "\"2026-07-18T14:20:00+03:00\"",
+  "image": "\"http://localhost:1313/images/entra-architecture-defender-cover.png\"",
+  "url": "\"http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/\"",
+  "wordCount":  1484 ,
+  "keywords": "\"Microsoft Entra ID, Microsoft Entra Architecture, Microsoft Defender, Microsoft 365 Security, Zero Trust, Identity Security, Hybrid Identity, Conditional Access, Defender for Identity, Microsoft Sentinel\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)">
+  <meta property="og:description" content="Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-18T12:00:00+03:00">
+    <meta property="article:modified_time" content="2026-07-18T14:20:00+03:00">
+    <meta property="article:tag" content="Microsoft Entra ID">
+    <meta property="article:tag" content="Microsoft Entra Architecture">
+    <meta property="article:tag" content="Microsoft Defender">
+    <meta property="article:tag" content="Microsoft 365 Security">
+    <meta property="article:tag" content="Zero Trust">
+    <meta property="article:tag" content="Identity Security">
+    <meta property="og:image" content="http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/images/entra-architecture-defender-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/images/entra-architecture-defender-cover.png">
+  <meta name="twitter:title" content="Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)">
+  <meta name="twitter:description" content="Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)",
+      "item": "http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)",
+  "name": "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)",
+  "description": "Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας.",
+  "keywords": [
+    "Microsoft Entra architecture", "Entra ID αρχιτεκτονική", "Entra ID architecture", "Microsoft Entra ID ελληνικά", "Microsoft Defender for Identity", "hybrid identity", "Conditional Access", "Zero Trust identity", "primary replica secondary replica Entra", "Microsoft 365 security αρχιτεκτονική", "Microsoft 365 security architecture", "identity security operations"
+  ],
+  "articleBody": "Γιατί ασχολούμαι σήμερα με κάτι τόσο «θεωρητικό» Όταν ξεκίνησα να δουλεύω σοβαρά με το Microsoft 365 Security, το Entra ID (τότε ακόμα Azure AD) μου φαινόταν σαν ένα «μαύρο κουτί». Έμπαινα στο Conditional Access, έφτιαχνα πολιτικές, έβλεπα sign-in logs, αλλά δεν είχα ιδέα τι συμβαίνει πραγματικά από πίσω όταν ένας χρήστης πατάει «Sign in». Και αυτό, στην πράξη, με είχε φέρει αρκετές φορές σε δύσκολη θέση: όταν κάτι πήγαινε στραβά -μια καθυστέρηση σε replication, ένα inconsistent state μετά από αλλαγή ρόλου- δεν καταλάβαινα γιατί.\nΑν είσαι νέος/α στο Microsoft 365 και θέλεις να χτίσεις πραγματική τεχνογνωσία στο security (όχι μόνο να ξέρεις “πού είναι το κουμπί”) η κατανόηση της αρχιτεκτονικής του Entra ID είναι κάτι που θα σε ξεχωρίσει. Και το καλύτερο μέρος; Δεν χρειάζεται να το μάθεις θεωρητικά και ξέχωρα από το security. Μπορείς να το συνδέσεις κατευθείαν με το πώς δουλεύει το Microsoft Defender, γιατί οι δύο κόσμοι είναι πλέον ένα.\nΣε αυτό το άρθρο θα περάσουμε μαζί από τα βασικά δομικά στοιχεία της αρχιτεκτονικής του Microsoft Entra ID (όπως τα περιγράφει η επίσημη τεκμηρίωση της Microsoft) και θα δούμε πρακτικά πού «κουμπώνει» πάνω σε αυτά το Defender ecosystem.\nΤο θεμέλιο: πώς είναι χτισμένο το Microsoft Entra ID Το Entra ID δεν είναι ένας απλός server ή ένα απλό directory. Είναι μια κατανεμημένη υπηρεσία (distributed service) που τρέχει σε datacenters σε όλο τον κόσμο, σχεδιασμένη έτσι ώστε να είναι διαθέσιμη σχεδόν συνέχεια, ακόμα και όταν αποτυγχάνει ένα ολόκληρο datacenter.\nPartitions: το κατανεμημένο μοντέλο δεδομένων Αντί να κρατάει όλα τα δεδομένα ενός tenant σε ένα σημείο, το Entra ID σπάει τα δεδομένα σε ανεξάρτητες μονάδες κλιμάκωσης, τις λεγόμενες partitions. Κάθε partition έχει τη δική του δομή για writes και reads, κάτι που επιτρέπει στη Microsoft να κλιμακώνει το σύστημα σε παγκόσμιο επίπεδο χωρίς ένα partition να «σέρνει» ολόκληρο το σύστημα μαζί του.\nPrimary replica vs. secondary replicas: η καρδιά της αρχιτεκτονικής Αυτό είναι, κατά τη γνώμη μου, το πιο σημαντικό σημείο για να καταλάβεις πώς «σκέφτεται» το Entra ID:\nΚάθε partition έχει ένα primary replica, το οποίο είναι το μοναδικό σημείο που δέχεται όλες τις εγγραφές (writes), π.χ. μια αλλαγή password, μια νέα ανάθεση ρόλου, μια νέα εγγραφή συσκευής. Όταν γίνεται ένα write, αυτό αντιγράφεται άμεσα (replicate) σε ένα δεύτερο datacenter πριν καν επιστραφεί επιτυχία στον χρήστη ή στην εφαρμογή. Αυτό εξασφαλίζει ότι δεν χάνεται δεδομένο ακόμα κι αν χαθεί ολόκληρο το datacenter που φιλοξενεί το primary. Οι αναγνώσεις (reads) π.χ. ένα αίτημα αυθεντικοποίησης- εξυπηρετούνται από secondary replicas, που βρίσκονται σε πολλά διαφορετικά datacenters κοντά στους χρήστες, ώστε να είναι γρήγορες. Με απλά λόγια: όταν κάνεις sign-in, πιθανότατα εξυπηρετείσαι από ένα secondary replica κοντά σου. Όταν όμως αλλάζεις κάτι, π.χ. προσθέτεις MFA method ή σε προσθέτουν σε group αυτό το write πηγαίνει πάντα στο primary replica του partition σου, όπου κι αν βρίσκεται γεωγραφικά.\nΓιατί αυτό έχει σημασία στην πράξη Έχεις αναρωτηθεί ποτέ γιατί μια αλλαγή σε group membership ή σε Conditional Access policy μπορεί να χρειαστεί λίγα λεπτά για να «πιάσει» παντού; Αυτό σχετίζεται ακριβώς με το μοντέλο replication που περιγράψαμε -το directory model του Entra ID είναι σχεδιασμένο με eventual consistency, όχι strict consistency σε κάθε σημείο του κόσμου ταυτόχρονα. Η Microsoft Graph API φροντίζει να διατηρεί μια λογική «συνέδρια ανάγνωσης-εγγραφής» (session affinity) ώστε μέσα στην ίδια αλληλεπίδραση να βλέπεις συνεπή δεδομένα, αλλά αν χτυπήσεις την υπηρεσία από διαφορετικά datacenters ταυτόχρονα, μπορεί προσωρινά να δεις διαφορετική εικόνα.\nΑυτό δεν είναι bug. Είναι design trade-off ανάμεσα σε ταχύτητα, διαθεσιμότητα σε παγκόσμια κλίμακα και ισχυρή συνέπεια δεδομένων -ένα από τα κλασικά διλήμματα στα κατανεμημένα συστήματα.\nΔιαθεσιμότητα και ανοχή σε βλάβες Το Entra ID έχει σχεδιαστεί ώστε να μη χρειάζεται planned downtime για συντήρηση. Αν το primary replica ενός partition αποτύχει, το σύστημα ανιχνεύει τη βλάβη και προωθεί τα writes σε άλλο replica, το οποίο γίνεται το νέο primary -μια διαδικασία που μπορεί να επηρεάσει τη διαθεσιμότητα εγγραφών για 1-2 λεπτά, ενώ οι αναγνώσεις συνεχίζουν κανονικά, αφού εξυπηρετούνται από άλλα, ανεξάρτητα secondary replicas.\nΕπίσης, η Microsoft κρατά daily backups των directory δεδομένων και υποστηρίζει soft-delete για αρκετούς τύπους αντικειμένων, με δυνατότητα επαναφοράς έως και 30 ημέρες μετά από μια διαγραφή, κάτι πολύ χρήσιμο να ξέρεις όταν κάποιος διαγράψει κατά λάθος ένα critical group ή service principal.\nΑπό την αρχιτεκτονική στο security: εδώ μπαίνει το Defender Μέχρι εδώ μιλήσαμε «καθαρά» αρχιτεκτονική. Αλλά αν δουλεύεις (ή θέλεις να δουλέψεις) σε ρόλο security, η αξία αυτής της γνώσης φαίνεται μόνο όταν τη συνδέσεις με το πώς παρακολουθείς και προστατεύεις αυτό το σύστημα. Κι εδώ μπαίνει το Microsoft Defender family.\nΤο Entra ID ως το “control plane” της ταυτότητας Η φιλοσοφία της Microsoft για Zero Trust βασίζεται στην αρχή του Defense in Depth, με την ταυτότητα (identity) να λειτουργεί ως το κεντρικό control plane. Αυτό σημαίνει ότι σχεδόν κάθε απόφαση πρόσβασης -σε email, σε SharePoint, σε εφαρμογή, σε cloud resource- περνάει, με τον έναν ή τον άλλο τρόπο, μέσα από το Entra ID. Αν καταλαβαίνεις πώς λειτουργεί αυτό το directory από μέσα, καταλαβαίνεις γιατί το Defender χτίζεται γύρω του και όχι δίπλα του.\nHybrid identity: το σημείο όπου συναντιούνται on-prem και cloud Στην πραγματικότητα, οι περισσότερες ελληνικές επιχειρήσεις (ειδικά βιομηχανικές ή με ιστορικό IT infrastructure) δεν είναι «καθαρά cloud». Έχουν hybrid identity, με on-premises Active Directory να συγχρονίζεται με το Entra ID μέσω ενός από τρεις μεθόδους αυθεντικοποίησης: password hash synchronization (PHS), pass-through authentication (PTA), ή federation μέσω AD FS. Η επιλογή της μεθόδου δεν είναι απλά τεχνική λεπτομέρεια καθορίζει και το attack surface σου.\nΑν έχεις hybrid περιβάλλον, η επίσημη καθοδήγηση της Microsoft προτείνει να παρακολουθείς τους domain controllers σου με το Microsoft Defender for Identity, ακριβώς επειδή αυτό δίνει την καλύτερη ανίχνευση επιθέσεων που στοχεύουν το on-prem κομμάτι της ταυτότητάς σου -πράγματα όπως Kerberoasting, lateral movement, ή DCSync attacks, που ένα καθαρό cloud εργαλείο δύσκολα θα έβλεπε.\nΠού «κουμπώνει» κάθε κομμάτι του Defender Αν σκεφτείς την αρχιτεκτονική του Entra ID σαν ένα σύστημα με σημεία εισόδου (sign-ins), αλλαγές κατάστασης (writes/directory changes) και ροές δεδομένων (logs), το κάθε Defender προϊόν καλύπτει διαφορετικό κομμάτι αυτής της εικόνας:\nMicrosoft Entra ID Protection αξιοποιεί τα risk signals από τα sign-in logs και παράγει αναφορές risky users, risky sign-ins και risk detections -ουσιαστικά «διαβάζει» σε πραγματικό χρόνο τη ροή αναγνώσεων που περιγράψαμε παραπάνω. Microsoft Defender for Identity παρακολουθεί το on-premises κομμάτι (τους domain controllers) και συμπληρώνει την εικόνα εκεί όπου το cloud directory δεν έχει ορατότητα. Microsoft Defender for Cloud Apps δίνει ορατότητα στο πώς χρησιμοποιούνται οι εφαρμογές που είναι συνδεδεμένες στο Entra ID, κάτι κρίσιμο όταν σκέφτεσαι πόσες εφαρμογές τρίτων έχουν σήμερα πρόσβαση σε δεδομένα οργανισμού μέσω OAuth consent. Microsoft Sentinel λειτουργεί ως το σημείο συγκέντρωσης -παίρνει audit logs, sign-in logs, Microsoft 365 audit logs, ακόμα και Azure Key Vault logs, και σου δίνει τη δυνατότητα για συσχέτιση σε επίπεδο SIEM. Το σημαντικό εδώ δεν είναι να αποστηθίσεις ονόματα προϊόντων. Είναι να καταλάβεις ότι κάθε ένα από αυτά «βλέπει» ένα διαφορετικό κομμάτι της ίδιας κατανεμημένης αρχιτεκτονικής που περιγράψαμε στην αρχή του άρθρου.\nConditional Access: η πρακτική εφαρμογή του primary/secondary μοντέλου Ένα ωραίο παράδειγμα για να «κλείσει» ο κύκλος: όταν φτιάχνεις μια πολιτική Conditional Access, ουσιαστικά ορίζεις κανόνες που θα εφαρμοστούν σε reads που γίνονται από secondary replicas σε όλο τον κόσμο. Γι’ αυτό η Microsoft προτείνει να χρησιμοποιείς το Conditional Access insights and reporting workbook για να δεις πραγματικά πώς εφαρμόζεται η πολιτική σου σε βάθος χρόνου και σε διαφορετικές τοποθεσίες -γιατί η «καθολική» εφαρμογή μιας πολιτικής δεν είναι στιγμιαία σε παγκόσμιο επίπεδο.\nΤι να κρατήσεις αν είσαι στην αρχή της πορείας σου Αν είσαι νέος/α επαγγελματίας IT και θέλεις να χτίσεις σοβαρή τεχνογνωσία στο Microsoft 365 Security, θα σου πρότεινα:\nΜην μάθεις το Conditional Access ή το Defender σαν «checkbox εργαλεία». Μάθε πρώτα πώς λειτουργεί το directory από κάτω -reads, writes, replication, consistency. Δοκίμασε να διαβάσεις τα sign-in logs σου σκεπτόμενος «από ποιο datacenter εξυπηρετήθηκε αυτό» και «πόσο γρήγορα θα φανεί μια αλλαγή που έκανα». Αν δουλεύεις σε hybrid περιβάλλον, μην αγνοείς το on-premises κομμάτι, το Defender for Identity υπάρχει ακριβώς επειδή το cloud directory δεν βλέπει τα πάντα. Χρησιμοποίησε το official Microsoft Entra SecOps Guide σαν οδικό χάρτη, καλύπτει ξεχωριστά user accounts, privileged accounts, PIM, εφαρμογές, συσκευές και infrastructure, με συγκεκριμένα σενάρια monitoring για το καθένα. Κλείνοντας Η αρχιτεκτονική του Microsoft Entra ID δεν είναι απλά ακαδημαϊκό υλικό για πιστοποιήσεις. Είναι η βάση πάνω στην οποία χτίζεται ολόκληρη η στρατηγική Zero Trust της Microsoft, και κατ’ επέκταση όλο το Defender ecosystem. Όσο πιο βαθιά καταλαβαίνεις πώς κινούνται τα δεδομένα (ποιος γράφει, ποιος διαβάζει, πού αντιγράφεται, πόσο γρήγορα συγχρονίζεται) τόσο πιο εύκολα θα καταλαβαίνεις γιατί ένα alert εμφανίστηκε, γιατί μια πολιτική άργησε να εφαρμοστεί, ή γιατί ένα incident εξελίχθηκε όπως εξελίχθηκε.\nΑν θες να πάμε βαθύτερα σε κάποιο από αυτά τα κομμάτια, π.χ. resilience σε hybrid authentication ή πώς στήνεται σωστά το Defender for Identity, πες μου στα σχόλια, γιατί σκοπεύω να συνεχίσω αυτή τη σειρά.\nΠηγές Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft:\nMicrosoft Entra architecture documentation Architecture overview - Microsoft Entra Microsoft Entra security operations guide ",
+  "wordCount" : "1484",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/images/entra-architecture-defender-cover.png","datePublished": "2026-07-18T12:00:00+03:00",
+  "dateModified": "2026-07-18T14:20:00+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/releases/" title="Release Status">
+                    <span>Release Status</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)
+    </h1>
+    <div class="post-description">
+      Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-07-18 12:00:00 +0300 EEST'>July 18, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>1484 words</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/ms-security-blog/edit/main/content/posts/microsoft-entra-architecture-guide-defender.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/entra-architecture-defender-cover.png" alt="Διάγραμμα αρχιτεκτονικής Microsoft Entra ID με σύνδεση προς Microsoft Defender, geo-distributed datacenters και ροή αυθεντικοποίησης">
+        <figcaption>Η αρχιτεκτονική του Microsoft Entra ID ως θεμέλιο για τη στρατηγική Zero Trust και το Microsoft Defender</figcaption>
+</figure><details class="toc"  open>
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#γιατί-ασχολούμαι-σήμερα-με-κάτι-τόσο-θεωρητικό">Γιατί ασχολούμαι σήμερα με κάτι τόσο «θεωρητικό»</a></li>
+    <li><a href="#το-θεμέλιο-πώς-είναι-χτισμένο-το-microsoft-entra-id">Το θεμέλιο: πώς είναι χτισμένο το Microsoft Entra ID</a>
+      <ul>
+        <li><a href="#partitions-το-κατανεμημένο-μοντέλο-δεδομένων">Partitions: το κατανεμημένο μοντέλο δεδομένων</a></li>
+        <li><a href="#primary-replica-vs-secondary-replicas-η-καρδιά-της-αρχιτεκτονικής">Primary replica vs. secondary replicas: η καρδιά της αρχιτεκτονικής</a></li>
+        <li><a href="#γιατί-αυτό-έχει-σημασία-στην-πράξη">Γιατί αυτό έχει σημασία στην πράξη</a></li>
+        <li><a href="#διαθεσιμότητα-και-ανοχή-σε-βλάβες">Διαθεσιμότητα και ανοχή σε βλάβες</a></li>
+      </ul>
+    </li>
+    <li><a href="#από-την-αρχιτεκτονική-στο-security-εδώ-μπαίνει-το-defender">Από την αρχιτεκτονική στο security: εδώ μπαίνει το Defender</a>
+      <ul>
+        <li><a href="#το-entra-id-ως-το-control-plane-της-ταυτότητας">Το Entra ID ως το &ldquo;control plane&rdquo; της ταυτότητας</a></li>
+        <li><a href="#hybrid-identity-το-σημείο-όπου-συναντιούνται-on-prem-και-cloud">Hybrid identity: το σημείο όπου συναντιούνται on-prem και cloud</a></li>
+        <li><a href="#πού-κουμπώνει-κάθε-κομμάτι-του-defender">Πού «κουμπώνει» κάθε κομμάτι του Defender</a></li>
+        <li><a href="#conditional-access-η-πρακτική-εφαρμογή-του-primarysecondary-μοντέλου">Conditional Access: η πρακτική εφαρμογή του primary/secondary μοντέλου</a></li>
+      </ul>
+    </li>
+    <li><a href="#τι-να-κρατήσεις-αν-είσαι-στην-αρχή-της-πορείας-σου">Τι να κρατήσεις αν είσαι στην αρχή της πορείας σου</a></li>
+    <li><a href="#κλείνοντας">Κλείνοντας</a>
+      <ul>
+        <li><a href="#πηγές">Πηγές</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="γιατί-ασχολούμαι-σήμερα-με-κάτι-τόσο-θεωρητικό">Γιατί ασχολούμαι σήμερα με κάτι τόσο «θεωρητικό»<a hidden class="anchor" aria-hidden="true" href="#γιατί-ασχολούμαι-σήμερα-με-κάτι-τόσο-θεωρητικό">#</a></h2>
+<p>Όταν ξεκίνησα να δουλεύω σοβαρά με το Microsoft 365 Security, το Entra ID (τότε ακόμα Azure AD) μου φαινόταν σαν ένα «μαύρο κουτί». Έμπαινα στο Conditional Access, έφτιαχνα πολιτικές, έβλεπα sign-in logs, αλλά δεν είχα ιδέα <em>τι</em> συμβαίνει πραγματικά από πίσω όταν ένας χρήστης πατάει «Sign in». Και αυτό, στην πράξη, με είχε φέρει αρκετές φορές σε δύσκολη θέση: όταν κάτι πήγαινε στραβά -μια καθυστέρηση σε replication, ένα inconsistent state μετά από αλλαγή ρόλου- δεν καταλάβαινα <em>γιατί</em>.</p>
+<p>Αν είσαι νέος/α στο Microsoft 365 και θέλεις να χτίσεις πραγματική τεχνογνωσία στο security (όχι μόνο να ξέρεις &ldquo;πού είναι το κουμπί&rdquo;) η κατανόηση της αρχιτεκτονικής του Entra ID είναι κάτι που θα σε ξεχωρίσει. Και το καλύτερο μέρος; Δεν χρειάζεται να το μάθεις θεωρητικά και ξέχωρα από το security. Μπορείς να το συνδέσεις κατευθείαν με το πώς δουλεύει το Microsoft Defender, γιατί οι δύο κόσμοι είναι πλέον ένα.</p>
+<p>Σε αυτό το άρθρο θα περάσουμε μαζί από τα βασικά δομικά στοιχεία της αρχιτεκτονικής του Microsoft Entra ID (όπως τα περιγράφει η επίσημη τεκμηρίωση της Microsoft) και θα δούμε πρακτικά πού «κουμπώνει» πάνω σε αυτά το Defender ecosystem.</p>
+<h2 id="το-θεμέλιο-πώς-είναι-χτισμένο-το-microsoft-entra-id">Το θεμέλιο: πώς είναι χτισμένο το Microsoft Entra ID<a hidden class="anchor" aria-hidden="true" href="#το-θεμέλιο-πώς-είναι-χτισμένο-το-microsoft-entra-id">#</a></h2>
+<p>Το Entra ID δεν είναι ένας απλός server ή ένα απλό directory. Είναι μια κατανεμημένη υπηρεσία (distributed service) που τρέχει σε datacenters σε όλο τον κόσμο, σχεδιασμένη έτσι ώστε να είναι διαθέσιμη σχεδόν συνέχεια, ακόμα και όταν αποτυγχάνει ένα ολόκληρο datacenter.</p>
+<h3 id="partitions-το-κατανεμημένο-μοντέλο-δεδομένων">Partitions: το κατανεμημένο μοντέλο δεδομένων<a hidden class="anchor" aria-hidden="true" href="#partitions-το-κατανεμημένο-μοντέλο-δεδομένων">#</a></h3>
+<p>Αντί να κρατάει όλα τα δεδομένα ενός tenant σε ένα σημείο, το Entra ID σπάει τα δεδομένα σε ανεξάρτητες μονάδες κλιμάκωσης, τις λεγόμενες <strong>partitions</strong>. Κάθε partition έχει τη δική του δομή για writes και reads, κάτι που επιτρέπει στη Microsoft να κλιμακώνει το σύστημα σε παγκόσμιο επίπεδο χωρίς ένα partition να «σέρνει» ολόκληρο το σύστημα μαζί του.</p>
+<h3 id="primary-replica-vs-secondary-replicas-η-καρδιά-της-αρχιτεκτονικής">Primary replica vs. secondary replicas: η καρδιά της αρχιτεκτονικής<a hidden class="anchor" aria-hidden="true" href="#primary-replica-vs-secondary-replicas-η-καρδιά-της-αρχιτεκτονικής">#</a></h3>
+<p>Αυτό είναι, κατά τη γνώμη μου, το πιο σημαντικό σημείο για να καταλάβεις πώς «σκέφτεται» το Entra ID:</p>
+<ul>
+<li>Κάθε partition έχει ένα <strong>primary replica</strong>, το οποίο είναι το μοναδικό σημείο που δέχεται όλες τις εγγραφές (writes), π.χ. μια αλλαγή password, μια νέα ανάθεση ρόλου, μια νέα εγγραφή συσκευής.</li>
+<li>Όταν γίνεται ένα write, αυτό αντιγράφεται άμεσα (replicate) σε ένα δεύτερο datacenter πριν καν επιστραφεί επιτυχία στον χρήστη ή στην εφαρμογή. Αυτό εξασφαλίζει ότι δεν χάνεται δεδομένο ακόμα κι αν χαθεί ολόκληρο το datacenter που φιλοξενεί το primary.</li>
+<li>Οι αναγνώσεις (reads) π.χ. ένα αίτημα αυθεντικοποίησης- εξυπηρετούνται από <strong>secondary replicas</strong>, που βρίσκονται σε πολλά διαφορετικά datacenters κοντά στους χρήστες, ώστε να είναι γρήγορες.</li>
+</ul>
+<p>Με απλά λόγια: όταν κάνεις sign-in, πιθανότατα εξυπηρετείσαι από ένα secondary replica κοντά σου. Όταν όμως αλλάζεις κάτι, π.χ. προσθέτεις MFA method ή σε προσθέτουν σε group αυτό το write πηγαίνει πάντα στο primary replica του partition σου, όπου κι αν βρίσκεται γεωγραφικά.</p>
+<h3 id="γιατί-αυτό-έχει-σημασία-στην-πράξη">Γιατί αυτό έχει σημασία στην πράξη<a hidden class="anchor" aria-hidden="true" href="#γιατί-αυτό-έχει-σημασία-στην-πράξη">#</a></h3>
+<p>Έχεις αναρωτηθεί ποτέ γιατί μια αλλαγή σε group membership ή σε Conditional Access policy μπορεί να χρειαστεί λίγα λεπτά για να «πιάσει» παντού; Αυτό σχετίζεται ακριβώς με το μοντέλο replication που περιγράψαμε -το directory model του Entra ID είναι σχεδιασμένο με <strong>eventual consistency</strong>, όχι strict consistency σε κάθε σημείο του κόσμου ταυτόχρονα. Η Microsoft Graph API φροντίζει να διατηρεί μια λογική «συνέδρια ανάγνωσης-εγγραφής» (session affinity) ώστε μέσα στην ίδια αλληλεπίδραση να βλέπεις συνεπή δεδομένα, αλλά αν χτυπήσεις την υπηρεσία από διαφορετικά datacenters ταυτόχρονα, μπορεί προσωρινά να δεις διαφορετική εικόνα.</p>
+<p>Αυτό δεν είναι bug. Είναι design trade-off ανάμεσα σε ταχύτητα, διαθεσιμότητα σε παγκόσμια κλίμακα και ισχυρή συνέπεια δεδομένων -ένα από τα κλασικά διλήμματα στα κατανεμημένα συστήματα.</p>
+<h3 id="διαθεσιμότητα-και-ανοχή-σε-βλάβες">Διαθεσιμότητα και ανοχή σε βλάβες<a hidden class="anchor" aria-hidden="true" href="#διαθεσιμότητα-και-ανοχή-σε-βλάβες">#</a></h3>
+<p>Το Entra ID έχει σχεδιαστεί ώστε να μη χρειάζεται planned downtime για συντήρηση. Αν το primary replica ενός partition αποτύχει, το σύστημα ανιχνεύει τη βλάβη και προωθεί τα writes σε άλλο replica, το οποίο γίνεται το νέο primary -μια διαδικασία που μπορεί να επηρεάσει τη διαθεσιμότητα εγγραφών για 1-2 λεπτά, ενώ οι αναγνώσεις συνεχίζουν κανονικά, αφού εξυπηρετούνται από άλλα, ανεξάρτητα secondary replicas.</p>
+<p>Επίσης, η Microsoft κρατά <strong>daily backups</strong> των directory δεδομένων και υποστηρίζει soft-delete για αρκετούς τύπους αντικειμένων, με δυνατότητα επαναφοράς έως και 30 ημέρες μετά από μια διαγραφή, κάτι πολύ χρήσιμο να ξέρεις όταν κάποιος διαγράψει κατά λάθος ένα critical group ή service principal.</p>
+<h2 id="από-την-αρχιτεκτονική-στο-security-εδώ-μπαίνει-το-defender">Από την αρχιτεκτονική στο security: εδώ μπαίνει το Defender<a hidden class="anchor" aria-hidden="true" href="#από-την-αρχιτεκτονική-στο-security-εδώ-μπαίνει-το-defender">#</a></h2>
+<p>Μέχρι εδώ μιλήσαμε «καθαρά» αρχιτεκτονική. Αλλά αν δουλεύεις (ή θέλεις να δουλέψεις) σε ρόλο security, η αξία αυτής της γνώσης φαίνεται μόνο όταν τη συνδέσεις με το πώς παρακολουθείς και προστατεύεις αυτό το σύστημα. Κι εδώ μπαίνει το Microsoft Defender family.</p>
+<h3 id="το-entra-id-ως-το-control-plane-της-ταυτότητας">Το Entra ID ως το &ldquo;control plane&rdquo; της ταυτότητας<a hidden class="anchor" aria-hidden="true" href="#το-entra-id-ως-το-control-plane-της-ταυτότητας">#</a></h3>
+<p>Η φιλοσοφία της Microsoft για Zero Trust βασίζεται στην αρχή του Defense in Depth, με την ταυτότητα (identity) να λειτουργεί ως το κεντρικό control plane. Αυτό σημαίνει ότι σχεδόν κάθε απόφαση πρόσβασης -σε email, σε SharePoint, σε εφαρμογή, σε cloud resource- περνάει, με τον έναν ή τον άλλο τρόπο, μέσα από το Entra ID. Αν καταλαβαίνεις πώς λειτουργεί αυτό το directory από μέσα, καταλαβαίνεις <em>γιατί</em> το Defender χτίζεται γύρω του και όχι δίπλα του.</p>
+<h3 id="hybrid-identity-το-σημείο-όπου-συναντιούνται-on-prem-και-cloud">Hybrid identity: το σημείο όπου συναντιούνται on-prem και cloud<a hidden class="anchor" aria-hidden="true" href="#hybrid-identity-το-σημείο-όπου-συναντιούνται-on-prem-και-cloud">#</a></h3>
+<p>Στην πραγματικότητα, οι περισσότερες ελληνικές επιχειρήσεις (ειδικά βιομηχανικές ή με ιστορικό IT infrastructure) δεν είναι «καθαρά cloud». Έχουν hybrid identity, με on-premises Active Directory να συγχρονίζεται με το Entra ID μέσω ενός από τρεις μεθόδους αυθεντικοποίησης: password hash synchronization (PHS), pass-through authentication (PTA), ή federation μέσω AD FS. Η επιλογή της μεθόδου δεν είναι απλά τεχνική λεπτομέρεια καθορίζει και το attack surface σου.</p>
+<p>Αν έχεις hybrid περιβάλλον, η επίσημη καθοδήγηση της Microsoft προτείνει να παρακολουθείς τους domain controllers σου με το <strong>Microsoft Defender for Identity</strong>, ακριβώς επειδή αυτό δίνει την καλύτερη ανίχνευση επιθέσεων που στοχεύουν το on-prem κομμάτι της ταυτότητάς σου -πράγματα όπως Kerberoasting, lateral movement, ή DCSync attacks, που ένα καθαρό cloud εργαλείο δύσκολα θα έβλεπε.</p>
+<h3 id="πού-κουμπώνει-κάθε-κομμάτι-του-defender">Πού «κουμπώνει» κάθε κομμάτι του Defender<a hidden class="anchor" aria-hidden="true" href="#πού-κουμπώνει-κάθε-κομμάτι-του-defender">#</a></h3>
+<p>Αν σκεφτείς την αρχιτεκτονική του Entra ID σαν ένα σύστημα με σημεία εισόδου (sign-ins), αλλαγές κατάστασης (writes/directory changes) και ροές δεδομένων (logs), το κάθε Defender προϊόν καλύπτει διαφορετικό κομμάτι αυτής της εικόνας:</p>
+<ul>
+<li><strong>Microsoft Entra ID Protection</strong> αξιοποιεί τα risk signals από τα sign-in logs και παράγει αναφορές risky users, risky sign-ins και risk detections -ουσιαστικά «διαβάζει» σε πραγματικό χρόνο τη ροή αναγνώσεων που περιγράψαμε παραπάνω.</li>
+<li><strong>Microsoft Defender for Identity</strong> παρακολουθεί το on-premises κομμάτι (τους domain controllers) και συμπληρώνει την εικόνα εκεί όπου το cloud directory δεν έχει ορατότητα.</li>
+<li><strong>Microsoft Defender for Cloud Apps</strong> δίνει ορατότητα στο πώς χρησιμοποιούνται οι εφαρμογές που είναι συνδεδεμένες στο Entra ID, κάτι κρίσιμο όταν σκέφτεσαι πόσες εφαρμογές τρίτων έχουν σήμερα πρόσβαση σε δεδομένα οργανισμού μέσω OAuth consent.</li>
+<li><strong>Microsoft Sentinel</strong> λειτουργεί ως το σημείο συγκέντρωσης -παίρνει audit logs, sign-in logs, Microsoft 365 audit logs, ακόμα και Azure Key Vault logs, και σου δίνει τη δυνατότητα για συσχέτιση σε επίπεδο SIEM.</li>
+</ul>
+<p>Το σημαντικό εδώ δεν είναι να αποστηθίσεις ονόματα προϊόντων. Είναι να καταλάβεις ότι κάθε ένα από αυτά «βλέπει» ένα διαφορετικό κομμάτι της ίδιας κατανεμημένης αρχιτεκτονικής που περιγράψαμε στην αρχή του άρθρου.</p>
+<h3 id="conditional-access-η-πρακτική-εφαρμογή-του-primarysecondary-μοντέλου">Conditional Access: η πρακτική εφαρμογή του primary/secondary μοντέλου<a hidden class="anchor" aria-hidden="true" href="#conditional-access-η-πρακτική-εφαρμογή-του-primarysecondary-μοντέλου">#</a></h3>
+<p>Ένα ωραίο παράδειγμα για να «κλείσει» ο κύκλος: όταν φτιάχνεις μια πολιτική Conditional Access, ουσιαστικά ορίζεις κανόνες που θα εφαρμοστούν σε reads που γίνονται από secondary replicas σε όλο τον κόσμο. Γι&rsquo; αυτό η Microsoft προτείνει να χρησιμοποιείς το <strong>Conditional Access insights and reporting workbook</strong> για να δεις πραγματικά πώς εφαρμόζεται η πολιτική σου σε βάθος χρόνου και σε διαφορετικές τοποθεσίες -γιατί η «καθολική» εφαρμογή μιας πολιτικής δεν είναι στιγμιαία σε παγκόσμιο επίπεδο.</p>
+<h2 id="τι-να-κρατήσεις-αν-είσαι-στην-αρχή-της-πορείας-σου">Τι να κρατήσεις αν είσαι στην αρχή της πορείας σου<a hidden class="anchor" aria-hidden="true" href="#τι-να-κρατήσεις-αν-είσαι-στην-αρχή-της-πορείας-σου">#</a></h2>
+<p>Αν είσαι νέος/α επαγγελματίας IT και θέλεις να χτίσεις σοβαρή τεχνογνωσία στο Microsoft 365 Security, θα σου πρότεινα:</p>
+<ol>
+<li>Μην μάθεις το Conditional Access ή το Defender σαν «checkbox εργαλεία». Μάθε πρώτα πώς λειτουργεί το directory από κάτω -reads, writes, replication, consistency.</li>
+<li>Δοκίμασε να διαβάσεις τα sign-in logs σου σκεπτόμενος «από ποιο datacenter εξυπηρετήθηκε αυτό» και «πόσο γρήγορα θα φανεί μια αλλαγή που έκανα».</li>
+<li>Αν δουλεύεις σε hybrid περιβάλλον, μην αγνοείς το on-premises κομμάτι, το Defender for Identity υπάρχει ακριβώς επειδή το cloud directory δεν βλέπει τα πάντα.</li>
+<li>Χρησιμοποίησε το official Microsoft Entra SecOps Guide σαν οδικό χάρτη, καλύπτει ξεχωριστά user accounts, privileged accounts, PIM, εφαρμογές, συσκευές και infrastructure, με συγκεκριμένα σενάρια monitoring για το καθένα.</li>
+</ol>
+<h2 id="κλείνοντας">Κλείνοντας<a hidden class="anchor" aria-hidden="true" href="#κλείνοντας">#</a></h2>
+<p>Η αρχιτεκτονική του Microsoft Entra ID δεν είναι απλά ακαδημαϊκό υλικό για πιστοποιήσεις. Είναι η βάση πάνω στην οποία χτίζεται ολόκληρη η στρατηγική Zero Trust της Microsoft, και κατ&rsquo; επέκταση όλο το Defender ecosystem. Όσο πιο βαθιά καταλαβαίνεις πώς κινούνται τα δεδομένα (ποιος γράφει, ποιος διαβάζει, πού αντιγράφεται, πόσο γρήγορα συγχρονίζεται) τόσο πιο εύκολα θα καταλαβαίνεις <em>γιατί</em> ένα alert εμφανίστηκε, <em>γιατί</em> μια πολιτική άργησε να εφαρμοστεί, ή <em>γιατί</em> ένα incident εξελίχθηκε όπως εξελίχθηκε.</p>
+<p>Αν θες να πάμε βαθύτερα σε κάποιο από αυτά τα κομμάτια, π.χ. resilience σε hybrid authentication ή πώς στήνεται σωστά το Defender for Identity, πες μου στα σχόλια, γιατί σκοπεύω να συνεχίσω αυτή τη σειρά.</p>
+<hr>
+<h3 id="πηγές">Πηγές<a hidden class="anchor" aria-hidden="true" href="#πηγές">#</a></h3>
+<p>Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/entra/architecture/">Microsoft Entra architecture documentation</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/architecture/architecture">Architecture overview - Microsoft Entra</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/architecture/security-operations-introduction">Microsoft Entra security operations guide</a></li>
+</ul>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-entra-id/">Microsoft Entra ID</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-entra-architecture/">Microsoft Entra Architecture</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender/">Microsoft Defender</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/zero-trust/">Zero Trust</a></li>
+      <li><a href="http://localhost:1313/tags/identity-security/">Identity Security</a></li>
+      <li><a href="http://localhost:1313/tags/hybrid-identity/">Hybrid Identity</a></li>
+      <li><a href="http://localhost:1313/tags/conditional-access/">Conditional Access</a></li>
+      <li><a href="http://localhost:1313/tags/defender-for-identity/">Defender for Identity</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-sentinel/">Microsoft Sentinel</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/">
+    <span class="title">« Prev</span>
+    <span>Microsoft Defender Demystified — Part 5: A Walk Through the Microsoft Defender Portal</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/passkeys-by-default-telos-sms-voice-mfa/">
+    <span class="title">Next »</span>
+    <span>Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει) on x"
+            href="https://x.com/intent/tweet/?text=Microsoft%20Entra%20Architecture%3a%20%ce%a0%cf%8e%cf%82%20%ce%a3%cf%84%ce%ae%ce%bd%ce%b5%cf%84%ce%b1%ce%b9%20%ce%a0%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b7%20%ce%a4%ce%b1%cf%85%cf%84%cf%8c%cf%84%ce%b7%cf%84%ce%ac%20%cf%83%ce%bf%cf%85%20%cf%83%cf%84%ce%bf%20Cloud%20%28%ce%ba%ce%b1%ce%b9%20%ce%b3%ce%b9%ce%b1%cf%84%ce%af%20%ce%bf%20Defender%20%cf%83%ce%b5%20%ce%bd%ce%bf%ce%b9%ce%ac%ce%b6%ce%b5%ce%b9%29&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-entra-architecture-guide-defender%2f&amp;hashtags=MicrosoftEntraID%2cMicrosoftEntraArchitecture%2cMicrosoftDefender%2cMicrosoft365Security%2cZeroTrust%2cIdentitySecurity%2cHybridIdentity%2cConditionalAccess%2cDefenderforIdentity%2cMicrosoftSentinel">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει) on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-entra-architecture-guide-defender%2f&amp;title=Microsoft%20Entra%20Architecture%3a%20%ce%a0%cf%8e%cf%82%20%ce%a3%cf%84%ce%ae%ce%bd%ce%b5%cf%84%ce%b1%ce%b9%20%ce%a0%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b7%20%ce%a4%ce%b1%cf%85%cf%84%cf%8c%cf%84%ce%b7%cf%84%ce%ac%20%cf%83%ce%bf%cf%85%20%cf%83%cf%84%ce%bf%20Cloud%20%28%ce%ba%ce%b1%ce%b9%20%ce%b3%ce%b9%ce%b1%cf%84%ce%af%20%ce%bf%20Defender%20%cf%83%ce%b5%20%ce%bd%ce%bf%ce%b9%ce%ac%ce%b6%ce%b5%ce%b9%29&amp;summary=Microsoft%20Entra%20Architecture%3a%20%ce%a0%cf%8e%cf%82%20%ce%a3%cf%84%ce%ae%ce%bd%ce%b5%cf%84%ce%b1%ce%b9%20%ce%a0%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b7%20%ce%a4%ce%b1%cf%85%cf%84%cf%8c%cf%84%ce%b7%cf%84%ce%ac%20%cf%83%ce%bf%cf%85%20%cf%83%cf%84%ce%bf%20Cloud%20%28%ce%ba%ce%b1%ce%b9%20%ce%b3%ce%b9%ce%b1%cf%84%ce%af%20%ce%bf%20Defender%20%cf%83%ce%b5%20%ce%bd%ce%bf%ce%b9%ce%ac%ce%b6%ce%b5%ce%b9%29&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-entra-architecture-guide-defender%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει) on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-entra-architecture-guide-defender%2f&title=Microsoft%20Entra%20Architecture%3a%20%ce%a0%cf%8e%cf%82%20%ce%a3%cf%84%ce%ae%ce%bd%ce%b5%cf%84%ce%b1%ce%b9%20%ce%a0%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b7%20%ce%a4%ce%b1%cf%85%cf%84%cf%8c%cf%84%ce%b7%cf%84%ce%ac%20%cf%83%ce%bf%cf%85%20%cf%83%cf%84%ce%bf%20Cloud%20%28%ce%ba%ce%b1%ce%b9%20%ce%b3%ce%b9%ce%b1%cf%84%ce%af%20%ce%bf%20Defender%20%cf%83%ce%b5%20%ce%bd%ce%bf%ce%b9%ce%ac%ce%b6%ce%b5%ce%b9%29">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

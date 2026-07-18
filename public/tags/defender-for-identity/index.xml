@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Defender for Identity on Microsoft 365 Security Insights</title>
+    <link>http://localhost:1313/tags/defender-for-identity/</link>
+    <description>Recent content in Defender for Identity on Microsoft 365 Security Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Jul 2026 12:10:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/defender-for-identity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)</title>
+      <link>http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/</link>
+      <pubDate>Sat, 18 Jul 2026 12:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/</guid>
+      <description>Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας.</description>
+    </item>
+  </channel>
+</rss>

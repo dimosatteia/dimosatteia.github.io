@@ -6,14 +6,14 @@
     <description>Recent content on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jul 2026 10:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jul 2026 10:50:56 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/microsoft-365-security-insights/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID</title>
       <link>http://localhost:1313/posts/passkeys-by-default-telos-sms-voice-mfa/</link>
       <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/passkeys-by-default-telos-sms-voice-mfa/</guid>
-      <description>Από 1/9/2026 τα passkeys γίνονται η προεπιλεγμένη μέθοδος ελέγχου ταυτότητας στο Microsoft Entra ID, και από 1/2/2027 αποσύρεται η SMS/Voice αυθεντικοποίηση που παρέχει η ίδια η Microsoft. Τι πρέπει να ξέρετε και τι να ετοιμάσετε από τώρα.</description>
+      <description>Από 01/09/2026 τα passkeys γίνονται η προεπιλεγμένη μέθοδος ελέγχου ταυτότητας στο Microsoft Entra ID, και από 01/02/2027 αποσύρεται η SMS/Voice αυθεντικοποίηση που παρέχει η ίδια η Microsoft. Τι πρέπει να ξέρετε και τι να ετοιμάσετε από τώρα.</description>
     </item>
   </channel>
 </rss>
