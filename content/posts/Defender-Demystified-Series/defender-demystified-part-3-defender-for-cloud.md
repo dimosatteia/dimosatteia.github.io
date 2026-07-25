@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
 date: 2026-07-10T10:51:00+03:00
-lastmod: 2026-07-11T09:30:00+03:00
+lastmod: 2026-07-25T20:07:00+03:00
 draft: false
 keywords:
   - Microsoft Defender for Cloud vs Defender XDR
@@ -43,7 +43,7 @@ cover:
 
 ## Where we are so far
 
-**[Part 1](/posts/defender-demystified-part-1-what-is-microsoft-defender/)** gave us the whole family map. **[Part 2](/posts/defender-demystified-part-2-four-workloads/)** went deep into the four core XDR workloads. Now we move to the product that Microsoft itself documents separately from the rest of the Defender family on the [Microsoft Defender hub](https://learn.microsoft.com/en-us/defender/), and the one I see confused with everything else more often than any other: **[Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)**.
+**[Part 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** gave us the whole family map. **[Part 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)** went deep into the four core XDR workloads. Now we move to the product that Microsoft itself documents separately from the rest of the Defender family on the [Microsoft Defender hub](https://learn.microsoft.com/en-us/defender/), and the one I see confused with everything else more often than any other: **[Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)**.
 
 Let me say this clearly up front, because it's the single most expensive misunderstanding in Microsoft security conversations: **Microsoft Defender for Cloud is a different product from Microsoft Defender XDR.** Different portal. Different licensing. Different billing. Different audience.
 
