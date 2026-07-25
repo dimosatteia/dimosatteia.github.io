@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 4: The Licensing Decoder"
 date: 2026-07-25T20:00:00+03:00
-lastmod: 2026-07-25T20:55:00+03:00
+lastmod: 2026-07-25T21:53:00+03:00
 draft: false
 keywords:
   - which microsoft 365 plan includes defender
@@ -45,7 +45,7 @@ cover:
 
 If you've done any time in Microsoft security, you'll have had this meeting. Finance or procurement wants a number. Leadership wants to know whether you're over-licensed or under-licensed. Someone says *"let's just buy E5, problem solved"* and someone else says *"E5 is overkill, we're a small shop"*. A third person mentions the "Defender Suite" that they heard about at a conference but nobody in the room is entirely sure what that includes.
 
-Everyone wants clarity. Nobody wants to read the [Microsoft 365 Subscription Suites licensing guidance](https://www.microsoft.com/licensing/guidance/subscription-suites) end to end, which is fair — it's thorough and important but it isn't exactly written to help you make a Tuesday-morning decision.
+Everyone wants clarity. Nobody wants to read the [Microsoft 365 Subscription Suites licensing guidance](https://www.microsoft.com/licensing/guidance/subscription-suites) end to end, which is fair, it's thorough and important but it isn't exactly written to help you make a Tuesday-morning decision.
 
 This post is the Tuesday-morning version. We'll cover what Microsoft 365 Business Premium, E3, and E5 actually give you from the Defender family, the newish Defender Suite add-ons that Microsoft launched in late 2025, three realistic organisation profiles, and a decision flow you can take into your next budget meeting.
 
@@ -53,7 +53,7 @@ This post is the Tuesday-morning version. We'll cover what Microsoft 365 Busines
 
 Before we look at any plan comparison, this distinction:
 
-- **Microsoft Defender XDR** (everything we covered in Part 2 — endpoint, email, identity, SaaS) is licensed **per user, per month** as part of a **Microsoft 365** plan.
+- **Microsoft Defender XDR** (everything we covered in Part 2, endpoint, email, identity, SaaS) is licensed **per user, per month** as part of a **Microsoft 365** plan.
 - **Microsoft Defender for Cloud** (Part 3 — Azure and multicloud workloads) is licensed **per resource, per month** as part of your **Azure consumption**.
 
 These show up on different invoices. Your Microsoft 365 E5 license gives you zero Microsoft Defender for Cloud entitlement, and vice versa. I've seen companies budget for "Defender" as a single line item and be unpleasantly surprised when the two different products turn up as two different costs.
@@ -63,23 +63,23 @@ The rest of this post focuses on the per-user, Microsoft 365 side. We'll close w
 ## The Microsoft 365 ladder, from least to most security
 
 [![Comparison table of Defender for Endpoint, Office 365, Identity and Cloud Apps entitlements across Microsoft 365 Business Premium, E3, E5, and E3 + Defender Suite](/images/DefenderDemystified/m365-defender-entitlements-comparison.png)](/images/DefenderDemystified/m365-defender-entitlements-comparison.png)
-> 📷 **Image 1 — Which Defender products come with which Microsoft 365 plan.**
+> 📷 **Image 1: Which Defender products come with which Microsoft 365 plan.**
 
 Here's what each main Microsoft 365 plan currently includes from the Defender family, after the **July 2026 packaging update** that added meaningful security capabilities to lower-tier plans.
 
-### Microsoft 365 Business Basic — $7/user/month
+### Microsoft 365 Business Basic: $7/user/month
 
 - **Safe Links URL checks** in Outlook (added in the 2026 packaging update)
 
 That's it from the Defender family. This plan is for lightweight collaboration accounts that barely need security tooling.
 
-### Microsoft 365 Business Standard — $14/user/month
+### Microsoft 365 Business Standard: $14/user/month
 
 - **Safe Links URL checks** in Outlook
 
 Similar story. Business Standard is a productivity plan, not a security plan.
 
-### Microsoft 365 Business Premium — $22/user/month
+### Microsoft 365 Business Premium: $22/user/month
 
 This is the security sweet spot for anyone under 300 users. Worth flagging that **its price did not change** in the July 2026 update while E3 and E5 both went up — so the value gap has actually widened. What you get:
 
@@ -92,7 +92,7 @@ For a small or mid-sized business, one $22 license replaces what used to need a 
 
 Honestly, if someone asks me the single best per-dollar security decision in the entire Microsoft catalogue, this is my answer. It's not close.
 
-### Microsoft 365 E3 — $39/user/month
+### Microsoft 365 E3: $39/user/month
 
 E3 is the standard enterprise productivity plan. After the July 2026 packaging update, it includes noticeably more security than it used to:
 
@@ -104,7 +104,7 @@ E3 is the standard enterprise productivity plan. After the July 2026 packaging u
 
 E3 works if you want enterprise productivity plus *basic* security, with the option to bolt on advanced security separately.
 
-### Microsoft 365 E5 — $60/user/month
+### Microsoft 365 E5: $60/user/month
 
 E5 is the full enterprise security stack in a single per-user SKU. Everything in E3, plus:
 
@@ -121,15 +121,15 @@ E5 is the full enterprise security stack in a single per-user SKU. Everything in
 
 E5 is for organisations that want a unified security and compliance stack from one vendor rather than stitching together point products. The $21 gap over E3 sounds like a lot until you price out what it would cost you separately for a SIEM, an EDR, a CASB, identity protection, Power BI, and now Security Copilot. Those numbers add up fast.
 
-### Microsoft 365 E7 — $99/user/month *(new in 2026)*
+### Microsoft 365 E7: $99/user/month *(new in 2026)*
 
-The new top tier. Everything in E5 plus **Microsoft 365 Copilot**, **Microsoft Entra Suite**, and **Microsoft Agent 365**. This one is for AI-forward enterprises and isn't primarily a security upgrade — E5 already gives you the full Defender story.
+The new top tier. Everything in E5 plus **Microsoft 365 Copilot**, **Microsoft Entra Suite**, and **Microsoft Agent 365**. This one is for AI-forward enterprises and isn't primarily a security upgrade, E5 already gives you the full Defender story.
 
 ## The 2026 Defender Suite add-ons, actually useful flexibility
 
 Until late 2025, if you wanted E5-level Defender capabilities but were stuck on E3 or Business Premium, your only realistic option was the full upgrade. That changed. Microsoft launched **standalone Defender Suite add-ons** that let you layer enterprise-grade security onto lower-tier plans without committing to E5 across the board.
 
-- **Microsoft Defender Suite:** *(formerly "Microsoft 365 E5 Security")* — adds to **Microsoft 365 E3** the missing pieces: Defender for Endpoint Plan 2, Defender for Office 365 Plan 2, Defender for Identity, Defender for Cloud Apps, and Microsoft Entra ID P2.
+- **Microsoft Defender Suite:** *(formerly "Microsoft 365 E5 Security")*, adds to **Microsoft 365 E3** the missing pieces: Defender for Endpoint Plan 2, Defender for Office 365 Plan 2, Defender for Identity, Defender for Cloud Apps, and Microsoft Entra ID P2.
 - **Microsoft Defender Suite for Business Premium:** the same idea for Business Premium customers. (Separately, since October 2025, Business Premium is no longer a required prerequisite to purchase the standard Defender Suite add-on on top of E3.)
 
 One small but important operational note from the Microsoft licensing docs: a tenant that ends up with both **Microsoft Defender for Business** (from Business Premium) and **Defender for Endpoint Plan 2** (from the Defender Suite add-on) **defaults to the Defender for Business experience**. Plan accordingly if you're mixing.
@@ -139,7 +139,7 @@ One small but important operational note from the Microsoft licensing docs: a te
 
 ## Three realistic scenarios
 
-### Scenario 1 — the small firm (50 people)
+### Scenario 1: the small firm (50 people)
 
 **Profile:** 50 knowledge workers, no on-premises infrastructure, hybrid work, GDPR obligations, no dedicated security team.
 
@@ -149,7 +149,7 @@ For around $1,100 a month total, you get genuinely strong security — endpoint 
 
 If you also handle highly sensitive data (legal, healthcare, financial advisory), consider adding the **Microsoft Defender Suite for Business Premium** add-on. You get the full enterprise Defender stack at SMB-friendly pricing.
 
-### Scenario 2 — the mid-market organisation (500 people)
+### Scenario 2: the mid-market organisation (500 people)
 
 **Profile:** 500 people, a mix of office and shop-floor workers, on-premises Active Directory, growing Microsoft Entra ID footprint, ISO 27001 in scope, NIS2 in scope, a small but real security team.
 
@@ -163,7 +163,7 @@ Why this beats standardising on E5:
 
 This pattern — **right-sizing licenses instead of uniformly deploying E5** — saves mid-market organisations 15–30% in many engagements I've seen. It's worth the thirty minutes to actually do the analysis.
 
-### Scenario 3 — the enterprise (5,000 people, multicloud)
+### Scenario 3: the enterprise (5,000 people, multicloud)
 
 **Profile:** 5,000 people, multiple business units, hybrid AD plus Microsoft Entra ID, full SOC team, compliance obligations spanning ISO 27001, NIS2, GDPR, and DORA, workloads running in both Microsoft Azure and Amazon Web Services.
 
@@ -208,7 +208,7 @@ Frontline workers in either scenario → F1/F3 + appropriate add-ons. Azure/AWS/
 
 ## What's next
 
-In **Part 5** — the final post of this series — we open the **Microsoft Defender portal** at `security.microsoft.com` together and go on a guided tour. Where to find each workload, where Microsoft Secure Score now lives, how to set up the right roles, and a practical "first hour in the portal" agenda you can follow today.
+In **Part 5**, the final post of this series — we open the **Microsoft Defender portal** at `security.microsoft.com` together and go on a guided tour. Where to find each workload, where Microsoft Secure Score now lives, how to set up the right roles, and a practical "first hour in the portal" agenda you can follow today.
 
 > 🔗 **Related deep-dive series:** Once you've chosen your licensing, the next question is what to do with it. [How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/) walks through turning Microsoft Defender telemetry into an award-winning compliance programme, end to end.
 
