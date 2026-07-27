@@ -164,8 +164,8 @@ params:
       url: "https://github.com/dimosatteia"
 
   # Edit on GitHub (great for community contributions)
-  editPost:
-    URL: "https://github.com/dimosatteia/ms-security-blog/edit/main/content"
+editPost:
+    URL: "https://github.com/dimosatteia/dimosatteia.github.io/edit/main/content"
     Text: "Suggest an edit"
     appendFilePath: true
 
