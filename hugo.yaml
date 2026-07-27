@@ -168,6 +168,7 @@ editPost:
     URL: "https://github.com/dimosatteia/dimosatteia.github.io/edit/main/content"
     Text: "Suggest an edit"
     appendFilePath: true
+    
 
   # Cover images per post (default behaviour)
   cover:
