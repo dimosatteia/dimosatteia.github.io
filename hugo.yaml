@@ -1,3 +1,4 @@
+
 # -----------------------------------------------------------------------------
 # Hugo configuration — Microsoft 365 & Security Copilot Blog
 # Theme: PaperMod (https://github.com/adityatelange/hugo-PaperMod)
@@ -62,10 +63,10 @@ markup:
 # -----------------------------------------------------------------------------
 # PaperMod site parameters
 # -----------------------------------------------------------------------------
-  sitemap:
-    changefreq: "weekly"
-    priority: 0.5
-    filename: "sitemap.xml"
+sitemap:
+  changefreq: "weekly"
+  priority: 0.5
+  filename: "sitemap.xml"
 
 # -----------------------------------------------------------------------------
 # PaperMod theme parameters
@@ -164,12 +165,11 @@ params:
       url: "https://github.com/dimosatteia"
 
   # Edit on GitHub (great for community contributions)
-editPost:
+  editPost:
     URL: "https://github.com/dimosatteia/dimosatteia.github.io/edit/main/content"
     Text: "Suggest an edit"
     appendFilePath: true
     
-
   # Cover images per post (default behaviour)
   cover:
     hidden: false
@@ -231,3 +231,4 @@ privacy:
     enableDNT: true
   youtube:
     privacyEnhanced: true
+ 

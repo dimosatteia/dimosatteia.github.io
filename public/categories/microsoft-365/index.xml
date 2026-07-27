@@ -6,7 +6,7 @@
     <description>Recent content in Microsoft 365 on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Jul 2026 21:18:47 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 11:40:40 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/microsoft-365/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2</title>
@@ -70,6 +70,13 @@
       <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/</guid>
       <description>The most practical post in the Microsoft Defender Demystified series. Which Microsoft 365 plan includes which Defender? When does Business Premium beat E3? When is E5 worth the jump? Three realistic scenarios, verified 2026 prices, a decision flow you can actually use.</description>
+    </item>
+    <item>
+      <title>Microsoft Defender Part 5: A Walk Through the Microsoft Defender Portal</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</guid>
+      <description>The final post in the Microsoft Defender Demystified series. A friendly, hands-on walk through the Microsoft Defender portal at security.microsoft.com, every major section explained, where Microsoft Secure Score now lives, the unified Microsoft Sentinel experience, and a practical &amp;#39;first hour&amp;#39; agenda any professional can follow today.</description>
     </item>
     <item>
       <title>Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune</title>
