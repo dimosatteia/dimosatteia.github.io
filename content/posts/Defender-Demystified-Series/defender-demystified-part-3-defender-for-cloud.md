@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
 date: 2026-07-10T10:51:00+03:00
-lastmod: 2026-07-25T20:07:00+03:00
+lastmod: 2026-07-27T11:00:00+03:00
 draft: false
 keywords:
   - Microsoft Defender for Cloud vs Defender XDR
@@ -30,7 +30,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Microsoft Defender for Cloud vs Defender XDR: different portal, licensing, and audience. CSPM tiers, workload protection plans, and multicloud explained."
 summary: "Part 3 of the Microsoft Defender Demystified series. Microsoft Defender for Cloud explained in plain language, the CSPM foundation, the paid Defender CSPM tier, the workload protection plans, the multicloud story, and why the unified Microsoft Defender portal is quietly making all this one experience."
-categories: ["Microsoft Defender", "Azure Security"]
+categories: ["Azure Security", "Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false

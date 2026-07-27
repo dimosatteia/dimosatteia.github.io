@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 1: All Products, Which One Do You Need"
 date: 2026-05-18T10:00:00+03:00
-lastmod: 2026-05-25T15:57:00+03:00
+lastmod: 2026-07-27T11:00:00+03:00
 draft: false
 keywords:
   - how many microsoft defender products are there
@@ -40,7 +40,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Microsoft has 8 Defender products and most confuse them. A practical map of the full family: XDR, Endpoint, Identity, Office 365, and Cloud Apps."
 summary: "Confused by Microsoft Defender naming? You're not alone. This guide maps the entire Microsoft Defender family, 8 core products, licensing tiers, and when you actually need each one. For CISOs, IT managers, and security teams implementing Microsoft 365 E5 or EMS E5."
-categories: ["Microsoft Defender", "Microsoft 365"]
+categories: ["Azure Security", "Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
@@ -64,14 +64,14 @@ No marketing fog. No acronym soup. Just a map.
 ## The Big Umbrella: What is Microsoft Defender XDR?
 
 [![The Microsoft Defender family, as Microsoft organises it.](/images/DefenderDemystified/The_Microsoft_Defender_family.png)](/images/DefenderDemystified/The_Microsoft_Defender_family.png)
-> 📷 **Image 1 — The Microsoft Defender family, as Microsoft organises it.**
+> 📷 **Image 1: The Microsoft Defender family, as Microsoft organises it.**
 
 When someone in an enterprise context says **"Defender"** without any qualifier, they almost always mean **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)**. Microsoft Defender XDR is not itself a product that does anything, it's the **umbrella**. It's the name for the unified portal at `security.microsoft.com`, the single incident queue, and the cross-product correlation engine that stitches signals from the underlying workloads into one attack story.
 
 Think of it like this: if you imagine a security-operations team as an orchestra, Microsoft Defender XDR is the conductor. The actual music comes from the individual instruments, and those are the four workloads we'll look at next.
 
 [![The Microsoft Defender XDR portal - unified security operations hub](/images/DefenderDemystified/defender-xdr-portal-overview.png)](/images/DefenderDemystified/defender-xdr-portal-overview.png)
-> 📷 **Image 2 — The Microsoft Defender XDR portal at security.microsoft.com — your unified security operations hub.**
+> 📷 **Image 2: The Microsoft Defender XDR portal at security.microsoft.com — your unified security operations hub.**
 
 ## The four core XDR workloads
 

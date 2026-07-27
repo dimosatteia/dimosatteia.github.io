@@ -65,13 +65,6 @@
       <description>A hands-on walk through Microsoft Defender for Cloud Apps — how Shadow IT discovery actually works, how to review and govern risky OAuth applications, setting up Conditional Access App Control, and the file policies that extend Microsoft Purview into third-party SaaS.</description>
     </item>
     <item>
-      <title>Microsoft Defender Demystified — Part 5: A Walk Through the Microsoft Defender Portal</title>
-      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</link>
-      <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</guid>
-      <description>The final post in the Microsoft Defender Demystified series. A friendly, hands-on walk through the Microsoft Defender portal at security.microsoft.com — every major section explained, where Microsoft Secure Score now lives, the unified Microsoft Sentinel experience, and a practical &amp;#39;first hour&amp;#39; agenda any professional can follow today.</description>
-    </item>
-    <item>
       <title>Generally Available: Security for Microsoft Agent 365 with Defender</title>
       <link>http://localhost:1313/posts/generally-available/security-for-microsoft-agent-365-defender/</link>
       <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>

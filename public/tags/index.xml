@@ -6,13 +6,90 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Jul 2026 21:18:47 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2026 21:54:44 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced Hunting</title>
+      <link>http://localhost:1313/tags/advanced-hunting/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/advanced-hunting/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cyber GRC</title>
       <link>http://localhost:1313/tags/cyber-grc/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/cyber-grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Exposure Management</title>
+      <link>http://localhost:1313/tags/exposure-management/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/exposure-management/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>KQL</title>
+      <link>http://localhost:1313/tags/kql/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/kql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365</title>
+      <link>http://localhost:1313/tags/microsoft-365/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-security/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Endpoint</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-endpoint/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-endpoint/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Identity</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-identity/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-identity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Office 365</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender Portal</title>
+      <link>http://localhost:1313/tags/microsoft-defender-portal/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-portal/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender XDR</title>
+      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Sentinel</title>
+      <link>http://localhost:1313/tags/microsoft-sentinel/</link>
+      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-sentinel/</guid>
       <description></description>
     </item>
     <item>
@@ -23,13 +100,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365</title>
-      <link>http://localhost:1313/tags/microsoft-365/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft 365 Licensing</title>
       <link>http://localhost:1313/tags/microsoft-365-licensing/</link>
       <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
@@ -37,45 +107,10 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-security/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Endpoint</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-endpoint/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-endpoint/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Identity</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-identity/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-identity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Office 365</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Defender Suite</title>
       <link>http://localhost:1313/tags/microsoft-defender-suite/</link>
       <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-suite/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender XDR</title>
-      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
       <description></description>
     </item>
     <item>
@@ -132,13 +167,6 @@
       <link>http://localhost:1313/tags/microsoft-entra-id/</link>
       <pubDate>Sat, 18 Jul 2026 12:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-entra-id/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Sentinel</title>
-      <link>http://localhost:1313/tags/microsoft-sentinel/</link>
-      <pubDate>Sat, 18 Jul 2026 12:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-sentinel/</guid>
       <description></description>
     </item>
     <item>
@@ -580,13 +608,6 @@
       <link>http://localhost:1313/tags/vulnerability-remediation/</link>
       <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/vulnerability-remediation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Exposure Management</title>
-      <link>http://localhost:1313/tags/exposure-management/</link>
-      <pubDate>Mon, 04 May 2026 07:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/exposure-management/</guid>
       <description></description>
     </item>
     <item>

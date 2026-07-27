@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 4: The Licensing Decoder"
 date: 2026-07-25T20:00:00+03:00
-lastmod: 2026-07-25T21:17:00+03:00
+lastmod: 2026-07-27T11:00:00+03:00
 draft: false
 keywords:
   - which microsoft 365 plan includes defender
@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "The most practical post in the Microsoft Defender Demystified series. Which Microsoft 365 plan includes which Defender? When does Business Premium beat E3? When is E5 worth the jump? Three realistic scenarios, verified 2026 prices, a decision flow you can actually use."
 summary: "Part 4 of the Microsoft Defender Demystified series. A licensing decoder across the 2026 Microsoft 365 lineup, including the new Defender Suite add-ons, the July 2026 pricing update, and three real-world scenarios (small business, mid-market, enterprise) for sizing the right purchase."
-categories: ["Microsoft Defender", "Azure Security"]
+categories: ["Azure Security", "Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
@@ -36,7 +36,7 @@ weight: 4
 cover:
   image: "/images/DefenderDemystified/MSDef.png"
   alt: "Which Microsoft Defender products come with Business Premium, E3, E5, and E7"
-  caption: "Microsoft Defender Part 4: The Licensing Decoder"
+  caption: "Microsoft Defender Demystified — Part 4"
 ---
 
 > ⚠️ **Prices move.** Everything below is in **USD, list price, as of July 1, 2026**, when Microsoft's most recent pricing and packaging update took effect. Local pricing varies by region and currency. Always double-check on the official **[Microsoft 365 plans page](https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans)** and the **[Microsoft Defender for Cloud pricing page](https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing/)** before making a purchase decision.

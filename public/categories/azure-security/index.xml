@@ -9,6 +9,20 @@
     <lastBuildDate>Sat, 25 Jul 2026 21:18:47 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/azure-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Microsoft Defender Part 1: All Products, Which One Do You Need</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/</link>
+      <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/</guid>
+      <description>Microsoft has 8 Defender products and most confuse them. A practical map of the full family: XDR, Endpoint, Identity, Office 365, and Cloud Apps.</description>
+    </item>
+    <item>
+      <title>Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close</title>
+      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/</link>
+      <pubDate>Mon, 25 May 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/</guid>
+      <description>How does Microsoft Defender XDR actually correlate signals across Endpoint, Office 365, Identity, and Cloud Apps? A technical walkthrough of the four core XDR workloads with a real multi-stage attack example showing cross-product correlation in action. For SOC teams, security architects, and CISOs implementing Microsoft 365 E5.</description>
+    </item>
+    <item>
       <title>Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That&#39;s Actually Different)</title>
       <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/</link>
       <pubDate>Fri, 10 Jul 2026 10:51:00 +0300</pubDate>

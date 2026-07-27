@@ -100,13 +100,6 @@
       <description>Enterprise Mobility &#43; Security (EMS) is Microsoft&amp;#39;s identity, management, and protection bundle that predates Microsoft 365 E3/E5 — and it&amp;#39;s still actively sold. A practical walkthrough of EMS E3 ($10.60/user) and EMS E5 ($16.40/user), what&amp;#39;s in each, and when it&amp;#39;s the right purchase instead of (or alongside) Microsoft 365.</description>
     </item>
     <item>
-      <title>Microsoft Defender Demystified — Part 5: A Walk Through the Microsoft Defender Portal</title>
-      <link>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</link>
-      <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</guid>
-      <description>The final post in the Microsoft Defender Demystified series. A friendly, hands-on walk through the Microsoft Defender portal at security.microsoft.com — every major section explained, where Microsoft Secure Score now lives, the unified Microsoft Sentinel experience, and a practical &amp;#39;first hour&amp;#39; agenda any professional can follow today.</description>
-    </item>
-    <item>
       <title>Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID</title>
       <link>http://localhost:1313/posts/passkeys-by-default-telos-sms-voice-mfa/</link>
       <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>

@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close"
 date: 2026-05-25T10:00:00+03:00
-lastmod: 2026-06-29T19:05:00+03:00
+lastmod: 2026-07-27T11:00:00+03:00
 draft: false
 keywords:
   - microsoft defender xdr explained
@@ -31,7 +31,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "How does Microsoft Defender XDR actually correlate signals across Endpoint, Office 365, Identity, and Cloud Apps? A technical walkthrough of the four core XDR workloads with a real multi-stage attack example showing cross-product correlation in action. For SOC teams, security architects, and CISOs implementing Microsoft 365 E5."
 summary: "Deep dive into Microsoft Defender's four XDR workloads. Endpoint EDR, Office 365 Safe Links, Identity lateral movement detection, and Cloud Apps shadow IT discovery. Includes a phishing-to-data-exfiltration attack scenario showing how XDR correlation transforms four separate alerts into one unified incident."
-categories: ["Microsoft Defender", "Microsoft 365"]
+categories: ["Azure Security", "Microsoft Defender", "Microsoft 365"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
