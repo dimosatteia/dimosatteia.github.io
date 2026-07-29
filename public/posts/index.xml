@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jul 2026 11:40:40 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jul 2026 09:00:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</title>
@@ -154,6 +154,13 @@
       <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/</guid>
       <description>Enterprise Mobility &#43; Security (EMS) is Microsoft&amp;#39;s identity, management, and protection bundle that predates Microsoft 365 E3/E5 — and it&amp;#39;s still actively sold. A practical walkthrough of EMS E3 ($10.60/user) and EMS E5 ($16.40/user), what&amp;#39;s in each, and when it&amp;#39;s the right purchase instead of (or alongside) Microsoft 365.</description>
+    </item>
+    <item>
+      <title>Preview: AD Group Enforcement στο Entra Cloud Sync</title>
+      <link>http://localhost:1313/posts/previews/ad-group-enforcement-cloud-sync/</link>
+      <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/previews/ad-group-enforcement-cloud-sync/</guid>
+      <description>Το AD group enforcement κλειδώνει τα synced groups του Active Directory ώστε να αλλάζουν μόνο μέσω του Entra provisioning service. Αναλυτικός οδηγός για το Public Preview: προϋποθέσεις, SOA-Policies, Enforced vs Audit mode και περιορισμοί.</description>
     </item>
     <item>
       <title>Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)</title>

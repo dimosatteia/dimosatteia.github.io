@@ -8,6 +8,13 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/releases/preview/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Preview: AD Group Enforcement στο Entra Cloud Sync</title>
+      <link>http://localhost:1313/posts/previews/ad-group-enforcement-cloud-sync/</link>
+      <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/previews/ad-group-enforcement-cloud-sync/</guid>
+      <description>Το AD group enforcement κλειδώνει τα synced groups του Active Directory ώστε να αλλάζουν μόνο μέσω του Entra provisioning service. Αναλυτικός οδηγός για το Public Preview: προϋποθέσεις, SOA-Policies, Enforced vs Audit mode και περιορισμοί.</description>
+    </item>
+    <item>
       <title>Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune</title>
       <link>http://localhost:1313/posts/previews/vulnerability-remediation-agent-intune/</link>
       <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
