@@ -6,12 +6,26 @@
     <description>Recent content in Categories on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jul 2026 09:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 09:00:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyber GRC</title>
+      <link>http://localhost:1313/categories/cyber-grc/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/categories/cyber-grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IT Procurement</title>
+      <link>http://localhost:1313/categories/it-procurement/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/categories/it-procurement/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Microsoft 365</title>
       <link>http://localhost:1313/categories/microsoft-365/</link>
-      <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/categories/microsoft-365/</guid>
       <description></description>
     </item>

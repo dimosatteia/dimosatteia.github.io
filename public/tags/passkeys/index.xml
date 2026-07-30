@@ -6,8 +6,15 @@
     <description>Recent content in Passkeys on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jul 2026 10:50:56 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 09:00:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/passkeys/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου</title>
+      <link>http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/</guid>
+      <description>Πρακτική ανάλυση από την οπτική ενός CISO για την ενημέρωση τιμολόγησης και πακέτων Microsoft 365 της 1ης Ιουλίου 2026: τι άλλαξε πραγματικά ανά SKU, γιατί οι αυξήσεις δεν είναι ενιαίες, και το ακριβές playbook για να μοντελοποιήσετε την ανανέωσή σας, να καταργήσετε περιττά πρόσθετα, και να διαπραγματευτείτε έχοντας πλήρη εικόνα.</description>
+    </item>
     <item>
       <title>Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID</title>
       <link>http://localhost:1313/posts/passkeys-by-default-telos-sms-voice-mfa/</link>

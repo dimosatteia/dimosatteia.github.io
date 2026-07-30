@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου</title>
+<meta name="keywords" content="αύξηση τιμών microsoft 365 2026, αλλαγές τιμολόγησης microsoft 365 e3 e5 ιούλιος 2026, microsoft 365 packaging and pricing updates faq, defender for office 365 plan 1 στο e3, security copilot scu τιμολόγηση επεξήγηση, αύξηση τιμής frontline f1 f3 microsoft 365, προετοιμασία ανανέωσης microsoft 365 2026, στρατηγική αδειοδότησης microsoft 365 για ciso, soc identity responder ρόλος entra id, device-bound passkeys έναντι synced passkeys aitm, στρατηγική ανανέωσης enterprise agreement">
+<meta name="description" content="Πρακτική ανάλυση από την οπτική ενός CISO για την ενημέρωση τιμολόγησης και πακέτων Microsoft 365 της 1ης Ιουλίου 2026: τι άλλαξε πραγματικά ανά SKU, γιατί οι αυξήσεις δεν είναι ενιαίες, και το ακριβές playbook για να μοντελοποιήσετε την ανανέωσή σας, να καταργήσετε περιττά πρόσθετα, και να διαπραγματευτείτε έχοντας πλήρη εικόνα.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx5s18mpi4");
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου\"",
+  "description": "\"Η ενημέρωση τιμολόγησης και πακέτων Microsoft 365 του Ιουλίου 2026 ενσωμάτωσε ουσιαστική αξία ασφαλείας στα E3 και E5, όμως οι αυξήσεις κυμαίνονται από 5% έως 43% και δεν κατανέμονται ομοιόμορφα. Το άρθρο αναλύει το χρονοδιάγραμμα, τον θερμικό χάρτη τιμών ανά SKU, το κρυφό φαινόμενο σώρευσης με την απώλεια εκπτώσεων Enterprise Agreement, τι μεταφέρθηκε ουσιαστικά στη βασική άδεια, και ένα playbook πέντε βημάτων για εκκαθάριση, μοντελοποίηση και κλείδωμα της ανανέωσής σας.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-07-30T20:00:00+03:00\"",
+  "dateModified": "\"2026-07-30T20:15:00+03:00\"",
+  "image": "\"http://localhost:1313/images/M365Strategy2026/Cover-m365-2026-strategy-cover.png\"",
+  "url": "\"http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/\"",
+  "wordCount":  2496 ,
+  "keywords": "\"Microsoft 365, Microsoft 365 Licensing, Microsoft 365 Security, Microsoft Defender for Office 365, Microsoft Intune, Microsoft Security Copilot, Microsoft Entra ID, Zero Trust, Passkeys, Cyber GRC, IT Procurement, NIS2\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου">
+  <meta property="og:description" content="Πρακτική ανάλυση από την οπτική ενός CISO για την ενημέρωση τιμολόγησης και πακέτων Microsoft 365 της 1ης Ιουλίου 2026: τι άλλαξε πραγματικά ανά SKU, γιατί οι αυξήσεις δεν είναι ενιαίες, και το ακριβές playbook για να μοντελοποιήσετε την ανανέωσή σας, να καταργήσετε περιττά πρόσθετα, και να διαπραγματευτείτε έχοντας πλήρη εικόνα.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-30T20:00:00+03:00">
+    <meta property="article:modified_time" content="2026-07-30T20:15:00+03:00">
+    <meta property="article:tag" content="Microsoft 365">
+    <meta property="article:tag" content="Microsoft 365 Licensing">
+    <meta property="article:tag" content="Microsoft 365 Security">
+    <meta property="article:tag" content="Microsoft Defender for Office 365">
+    <meta property="article:tag" content="Microsoft Intune">
+    <meta property="article:tag" content="Microsoft Security Copilot">
+    <meta property="og:image" content="http://localhost:1313/images/M365Strategy2026/Cover-m365-2026-strategy-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/M365Strategy2026/Cover-m365-2026-strategy-cover.png">
+  <meta name="twitter:title" content="Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου">
+  <meta name="twitter:description" content="Πρακτική ανάλυση από την οπτική ενός CISO για την ενημέρωση τιμολόγησης και πακέτων Microsoft 365 της 1ης Ιουλίου 2026: τι άλλαξε πραγματικά ανά SKU, γιατί οι αυξήσεις δεν είναι ενιαίες, και το ακριβές playbook για να μοντελοποιήσετε την ανανέωσή σας, να καταργήσετε περιττά πρόσθετα, και να διαπραγματευτείτε έχοντας πλήρη εικόνα.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου",
+      "item": "http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου",
+  "name": "Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου",
+  "description": "Πρακτική ανάλυση από την οπτική ενός CISO για την ενημέρωση τιμολόγησης και πακέτων Microsoft 365 της 1ης Ιουλίου 2026: τι άλλαξε πραγματικά ανά SKU, γιατί οι αυξήσεις δεν είναι ενιαίες, και το ακριβές playbook για να μοντελοποιήσετε την ανανέωσή σας, να καταργήσετε περιττά πρόσθετα, και να διαπραγματευτείτε έχοντας πλήρη εικόνα.",
+  "keywords": [
+    "αύξηση τιμών microsoft 365 2026", "αλλαγές τιμολόγησης microsoft 365 e3 e5 ιούλιος 2026", "microsoft 365 packaging and pricing updates faq", "defender for office 365 plan 1 στο e3", "security copilot scu τιμολόγηση επεξήγηση", "αύξηση τιμής frontline f1 f3 microsoft 365", "προετοιμασία ανανέωσης microsoft 365 2026", "στρατηγική αδειοδότησης microsoft 365 για ciso", "soc identity responder ρόλος entra id", "device-bound passkeys έναντι synced passkeys aitm", "στρατηγική ανανέωσης enterprise agreement"
+  ],
+  "articleBody": "Το συμπέρασμα με μία γραμμή Στις 4 Δεκεμβρίου 2025, η Microsoft ανακοίνωσε μια παγκόσμια ενημέρωση τιμολόγησης και πακέτων για τα εμπορικά suites του Microsoft 365. Οι νέες τιμές τέθηκαν σε ισχύ στις 1 Ιουλίου 2026. Αν διαβάζετε αυτό το άρθρο μετά από αυτή την ημερομηνία, όπως κι εγώ τη στιγμή που το γράφω, η αλλαγή δεν είναι πια ένα μελλοντικό ενδεχόμενο είναι ο αριθμός στην επόμενη προσφορά ανανέωσής σας. Οι αυξήσεις κυμαίνονται από 5% έως 43% ανάλογα με το πλάνο, νέες δυνατότητες ασφάλειας και AI ενσωματώθηκαν απευθείας στη βασική άδεια για αρκετά SKUs, και οι υπάρχοντες πελάτες διατηρούν την τρέχουσα τιμή τους μόνο μέχρι την επόμενη ανανέωσή τους μετά την 1η Ιουλίου 2026. Αυτή η τελευταία λεπτομέρεια είναι αυτή που τα περισσότερα τμήματα IT και προμηθειών υποτιμούν, και γύρω από αυτήν στρέφεται όλο το υπόλοιπο άρθρο.\nΕτοίμασα ένα εσωτερικό executive briefing για να καθοδηγήσω τη διοίκηση και το τμήμα προμηθειών μας σε ό,τι ακριβώς άλλαξε και τι πρέπει να γίνει. Αυτό το άρθρο είναι η δημόσια εκδοχή του, ξαναχτισμένη ως σημείο αναφοράς για όποιον κάνει την ίδια άσκηση στο δικό του tenant.\nΤο χρονοδιάγραμμα της ενημέρωσης: τρεις ημερομηνίες που μετράνε Η αλλαγή δεν ήρθε μονομιάς. Η Microsoft τη χώρισε σε ανάπτυξη δυνατοτήτων και σε αλλαγή τιμολόγησης, και το κενό ανάμεσα στα δύο είναι εκεί που ξεκινά η σύγχυση.\n📷 Εικόνα 1: Τα τρία κρίσιμα ορόσημα της ενημέρωσης πακέτων και τιμολόγησης Microsoft 365 2026, από την ενεργοποίηση των νέων δυνατοτήτων μέχρι την πλήρη ολοκλήρωση.\nΙούνιος 2026 (CY26 Q3): έναρξη νέων δυνατοτήτων. Νέα εργαλεία AI και διαχείρισης αρχίζουν να εμφανίζονται στα tenants. Οι διαχειριστές λαμβάνουν ειδοποίηση 30 ημερών στο Message Center πριν ενεργοποιηθεί οτιδήποτε. 1 Ιουλίου 2026: εφαρμογή της νέας τιμολόγησης. Οι ενημερωμένες λιανικές τιμές ισχύουν παγκοσμίως, με τοπικές νομισματικές προσαρμογές, για νέους πελάτες και για όποιον ανανεώνει από αυτή την ημερομηνία και μετά. 1 Αυγούστου 2026: πλήρης ολοκλήρωση. Μέχρι αυτή την ημερομηνία, κάθε νέα παροχή που συνδέεται με την ενημέρωση (Defender for Office 365 Plan 1, Intune Remote Help, Intune Advanced Analytics και οι υπόλοιπες) είναι πλήρως διαθέσιμη σε όλα τα qualifying SKUs. Το σημείο που αξίζει να επαναληφθεί: οι υπάρχοντες πελάτες δεν ξυπνούν με νέο τιμολόγιο την 1η Ιουλίου. Το επίσημο FAQ της Microsoft είναι ξεκάθαρο ότι η τρέχουσα τιμολόγηση διατηρείται μέχρι την επόμενη ανανέωσή σας μετά από αυτή την ημερομηνία. Η πραγματική σας προθεσμία είναι η ημερομηνία ανανέωσής σας, όχι η ημερομηνία-ορόσημο για την οποία μιλούν όλοι.\nΟ θερμικός χάρτης: η αύξηση δεν είναι ενιαία Η μεγαλύτερη παρανόηση που συναντώ συνεχώς είναι η αντιμετώπιση αυτής της αλλαγής ως «το Microsoft 365 αυξήθηκε κατά Χ%». Δεν αυξήθηκε έτσι. Το ποσοστό αύξησης εξαρτάται σε μεγάλο βαθμό από την οικογένεια πλάνου στην οποία βρίσκεστε, και η διαφορά είναι μεγάλη.\n📷 Εικόνα 2: Θερμικός χάρτης τιμολόγησης Microsoft 365 2026. Τα πλάνα Frontline απορροφούν κατά πολύ τις μεγαλύτερες ποσοστιαίες αυξήσεις, ενώ τα Business Premium και Office 365 E1 παραμένουν σταθερά.\nΤο μοτίβο που ξεχωρίζει: τα πλάνα Frontline δέχονται το μεγαλύτερο πλήγμα, ενώ οι κορυφαίες εταιρικές σουίτες το μικρότερο.\nMicrosoft 365 F1 (χωρίς Teams): +43% ($1.75 → $2.50) Microsoft 365 F1 (με Teams): +33% ($2.25 → $3.00) Microsoft 365 Apps for Business: +21% Office 365 E3: +13% ($23 → $26) Microsoft 365 Business Standard: +12% Microsoft 365 E3: +8% ($36 → $39) Microsoft 365 E5: +5% ($57 → $60) Microsoft 365 Business Premium και Office 365 E1: αμετάβλητα Αυτή η τελευταία γραμμή αξίζει προσοχή. Η σταθεροποίηση των Business Premium και Office 365 E1 μοιάζει με σιωπηρό «τιμολογιακό κατώφλι» που θέτει η Microsoft, και συμπιέζει αισθητά τη διαφορά τιμής ανάμεσα σε Business Standard και Business Premium, κάτι που αλλάζει τα μαθηματικά αναβάθμισης για πολλά SMB και mid-market tenants.\nΤα ποσοστά κρύβουν επίσης το φαινόμενο κλίμακας. Μια αύξηση 43% στο Frontline F1 φαίνεται ασήμαντη ανά χρήστη όπως $0.75 τον μήνα. Για έναν οργανισμό με 5.000 εργαζομένους Frontline, αυτό μεταφράζεται σε περίπου $45.000 επιπλέον ετήσιο κόστος για ένα πλάνο που οι περισσότερες διοικήσεις θεωρούν «το φθηνό».\nΟ πραγματικός «καταρράκτης» κόστους για πελάτες Enterprise Agreement Αν βρίσκεστε σε Enterprise Agreement, το ανακοινωμένο ποσοστό είναι μόνο ένα κομμάτι του αριθμού που θα εμφανιστεί τελικά στην προσφορά ανανέωσής σας.\n📷 Εικόνα 3: Ο πραγματικός καταρράκτης κόστους. Η ανακοινωμένη αύξηση τιμής είναι μόνο ένα επίπεδο η απώλεια των εκπτώσεων όγκου EA Level D σωρεύεται πάνω της για μεγάλες εταιρικές αναπτύξεις.\nΗ Microsoft κατάργησε τις εκπτώσεις όγκου EA Level D τον Νοέμβριο του 2025. Αυτή η αλλαγή συμβαίνει ανεξάρτητα από, αλλά μέσα στον ίδιο κύκλο ανανέωσης με, την αύξηση τιμής του Ιουλίου 2026, και οι δύο σωρεύονται. Για έναν οργανισμό με περίπου 25.000 θέσεις E5, η πραγματική αύξηση μπορεί να φτάσει τα $3 εκατομμύρια ετησίως, πλησιάζοντας το 20% αντί για το ονομαστικό 5-8% που αναφέρεται στους τίτλους. Αν η μοντελοποίηση της ανανέωσής σας λαμβάνει υπόψη μόνο το δημοσιευμένο ποσοστό, σχεδόν σίγουρα υποεκτιμάτε τον προϋπολογισμό σας.\nΤο πλαίσιο «ισορροπίας αξίας» της Microsoft Η Microsoft δεν το παρουσιάζει καθαρά ως αύξηση κόστους. Η θέση της είναι ότι πρόκειται για αναδιάρθρωση του ίδιου του μοντέλου αδειοδότησης, αντικαθιστώντας την παλιά λογική «βασικό πλάνο συν επί πληρωμή πρόσθετα» με λιγότερα, πλουσιότερα, ενοποιημένα πακέτα.\n📷 Εικόνα 4: Το πλαίσιο αναδιάρθρωσης αξίας της Microsoft. Ο δηλωμένος στόχος είναι να αντισταθμιστεί η αύξηση κόστους αδειοδότησης με ενσωματωμένες δυνατότητες ασφάλειας, AI και διαχείρισης — αν πραγματικά τις χρησιμοποιήσετε.\nΑυτή η προσέγγιση είναι δίκαιη, αλλά υπό προϋποθέσεις. Η στρατηγική της Microsoft είναι να αντικαταστήσει τα αυτόνομα πρόσθετα με εμπλουτισμένες, ενοποιημένες σουίτες. Η δουλειά του IT είναι να αντισταθμίσει την αύξηση κόστους καταργώντας τις περιττές, αυτόνομες συνδρομές ασφάλειας και διαχείρισης που πλέον καλύπτει το νέο πακέτο. Η αξία υλοποιείται μόνο αν το τμήμα προμηθειών ακυρώσει πράγματι ό,τι είναι πλέον διπλό, και η υιοθέτηση των νέων εργαλείων πρέπει να δικαιολογεί τη δαπάνη, όχι απλώς να μένει αναξιοποίητη στο tenant.\nΒαθιά ανάλυση E3: η ασφάλεια και η διαχείριση συσκευών περνούν στο βασικό πλάνο Από όλα τα πλάνα της ενημέρωσης, το E3 δέχεται την πιο ουσιαστική αναβάθμιση δυνατοτήτων.\n📷 Εικόνα 5: Τι μεταφέρεται στη βασική άδεια E3 το 2026: Microsoft Defender for Office 365 Plan 1, συν Intune Plan 2, Remote Help και Advanced Analytics.\nΤο Microsoft Defender for Office 365 Plan 1 γίνεται μέρος του βασικού πακέτου με προηγμένη προστασία anti-phishing, Safe Links και malware protection που παλαιότερα κόστιζε περίπου $2/μήνα ως αυτόνομο πρόσθετο. Το Intune αναβαθμίζεται, με την προσθήκη Intune Plan 2, Remote Help και Advanced Analytics. Καθαρό αποτέλεσμα: οργανισμοί που ήδη πλήρωναν ξεχωριστά για αυτά τα εργαλεία μπορούν να απορροφήσουν πλήρως την αύξηση των $3 του E3 μέσω των αυτόνομων αδειών που πλέον μπορούν να ακυρώσουν, καταλήγοντας με χαμηλότερο συνολικό λειτουργικό κόστος από πριν την ενημέρωση. Αυτό είναι το σημείο με τη μεγαλύτερη μόχλευση σε όλη την ανακοίνωση για τον έλεγχο αδειών μιας ομάδας ασφάλειας. Αν το Defender for Office 365 P1 ή τα προηγμένα πρόσθετα Intune βρίσκονται σήμερα πάνω από ένα βασικό πλάνο E3, εκεί βρίσκεται η εξοικονόμηση.\nΓιατί τώρα: οι αυξήσεις χρηματοδοτούν τη μετάβαση σε Zero Trust Υπάρχει ένα νήμα μέσα στην ενημέρωση που δεν εμφανίζεται σε κανέναν πίνακα τιμών: η Microsoft συνδέει ρητά μέρος αυτής της επένδυσης με την επιτάχυνση της κατάργησης αδύναμων μεθόδων αυθεντικοποίησης.\n📷 Εικόνα 6: Η αλλαγή παραδείγματος αυθεντικοποίησης που χρηματοδοτεί αυτή η ενημέρωση. Τα SMS και τα synced passkeys παραμένουν εκτεθειμένα σε επιθέσεις AiTM τα device-bound passkeys με attestation κλείνουν αυτό το κενό.\nΗ ευπάθεια: η αυθεντικοποίηση μέσω SMS και synced passkeys παραμένει εκτεθειμένη σε επιθέσεις Adversary-in-the-Middle (AiTM) και fragmenting που μπορούν να οδηγήσουν απευθείας σε παραβίαση. Η λύση: η αυθεντικοποίηση μέσω SMS και φωνητικών κλήσεων καταργείται μέχρι το τέλος του έτους. Τα device-bound passkeys προσφέρουν κρυπτογραφική attestation (απόδειξη ταυτότητας που δεν μπορεί να αναπαραχθεί) κάτι που τα καθιστά ανθεκτικά σε επιθέσεις AiTM, σε αντίθεση με τα synced passkeys που βασίζονται σε οικοσυστήματα τρίτων (π.χ. Apple Keychain). Αν ο οδικός χάρτης ασφάλειάς σας περιλαμβάνει ακόμα SMS ή φωνητική κλήση ως εναλλακτική μέθοδο MFA, αυτή η ενημέρωση είναι η αφορμή να ολοκληρώσετε επιτέλους αυτή τη μετάβαση και όχι απλά μια υποσημείωση αδειοδότησης.\nΒαθιά ανάλυση E5: ο κινητήρας κατανάλωσης του Security Copilot Το E5 δέχεται τη μικρότερη ποσοστιαία αύξηση τιμής, αλλά τη μεγαλύτερη στρατηγική προσθήκη: το Security Copilot είναι πλέον ενσωματωμένο στο πλάνο, και λειτουργεί με μοντέλο κατανάλωσης που αξίζει να κατανοήσετε πριν υποθέσετε ότι είναι «δωρεάν συμπεριλαμβανόμενο».\n📷 Εικόνα 7: Πώς κατανέμεται η χωρητικότητα του Security Copilot μέσα στο E5: 400 Security Compute Units τον μήνα για κάθε 1.000 επί πληρωμή άδειες, με ανώτατο όριο 10.000 SCUs.\nΑυτόνομη προστασία: το Agentic AI ενσωματώνεται απευθείας στις ροές εργασίας Defender, Entra, Intune και Purview για ταχύτερη ανίχνευση και απόκριση, χωρίς ξεχωριστή κονσόλα προς εκμάθηση. Το μοντέλο κατανομής: κάθε 1.000 επί πληρωμή άδειες χρηστών E5 παράγουν 400 Security Compute Units (SCUs) τον μήνα, μέχρι ένα σκληρό ανώτατο όριο 10.000 SCUs. Μόλις φτάσετε σε αυτό το όριο, η επιπλέον χρήση Copilot πρέπει να αγοραστεί ξεχωριστά ως pay-as-you-go χωρητικότητα. Επίσης νέο στο E5: Intune Endpoint Privilege Management, Enterprise App Management και Microsoft Cloud PKI. Για τους επικεφαλής SOC, το όριο SCU είναι ο αριθμός που πρέπει να μοντελοποιήσετε πριν υποσχεθείτε στους αναλυτές σας απεριόριστη έρευνα με τη βοήθεια του Copilot. Είναι ένας πραγματικός, πεπερασμένος πόρος, και θα πρέπει να εμφανίζεται στον σχεδιασμό χωρητικότητάς σας με τον ίδιο τρόπο που εμφανίζεται η πρόσληψη logs ή ο αποθηκευτικός χώρος.\nBusiness και Frontline: αθόρυβες αναβαθμίσεις, σημαντικές αποφάσεις Οι αλλαγές SMB και Frontline τραβούν λιγότερη προσοχή από τα E3/E5, αλλά επιβάλλουν πραγματικές αποφάσεις.\n📷 Εικόνα 8: Τα Business Basic/Standard/Premium κερδίζουν αναβαθμίσεις mailbox και προστασίας από phishing, ενώ το άλμα τιμής στο Frontline F1 επιβάλλει επαναξιολόγηση έναντι του F1 με Teams.\nBusiness Basic/Standard/Premium: ο αποθηκευτικός χώρος mailbox αυξάνεται στα 100GB (από 50GB) στο Business Premium η προστασία URL κατά τη στιγμή του κλικ έρχεται πλέον στο Outlook, κλείνοντας ένα πραγματικό κενό phishing το Copilot Chat αποκτά ενισχύσεις AI, χωρίς το πλήρες πακέτο των $30, με επίγνωση inbox και ημερολογίου. Επαναξιολόγηση Frontline: το άλμα 43% στο F1 χωρίς Teams επιβάλλει άμεση επανεξέταση. Αν το εργατικό δυναμικό Frontline σας χρησιμοποιεί το Teams έστω και περιστασιακά, το F1 με Teams (αύξηση 33%, στα $3.00) είναι πλέον η πιο στρατηγικά ορθή επιλογή μιας και κλείνει το χάσμα τιμής και αφαιρεί τον πειρασμό της υπο-αδειοδότησης. Η μήτρα ενοποίησης: εξάλειψη επικαλύψεων εκ σχεδιασμού Ο δηλωμένος κανόνας της Microsoft για το νέο μοντέλο είναι απλός: καμία αλληλεπικάλυψη δυνατοτήτων. Ό,τι παλαιότερα απαιτούσε αυτόνομο πρόσθετο πάνω σε ένα βασικό πλάνο, θα πρέπει, μέχρι τον Αύγουστο του 2026, να είναι κάτι που μπορείτε να καταργήσετε.\n📷 Εικόνα 9: Παλιό μοντέλο έναντι ενοποιημένου μοντέλου. Αν πληρώνετε ακόμα ξεχωριστά για αυτόνομο Defender for Office 365 P1 ή προηγμένα πρόσθετα Intune πάνω από το E3, ο Αύγουστος του 2026 είναι η στιγμή να τα ακυρώσετε.\nΤρεις συγκεκριμένες ενέργειες προκύπτουν από αυτή τη μήτρα:\nΕλέγξτε το τρέχον χαρτοφυλάκιο αδειών σας. Γνωρίστε ακριβώς ποια αυτόνομα πρόσθετα διατηρείτε σήμερα. Ελέγξτε για επικαλύψεις με το νέο βασικό πλάνο. Αν πληρώνετε ξεχωριστά για Defender for Office 365 P1 ή προηγμένα πρόσθετα Intune πάνω από ένα βασικό πλάνο E3, η ενοποίηση του Αυγούστου 2026 είναι το σήμα να ακυρώσετε τις αυτόνομες άδειες. Μοντελοποιήστε την αντιστάθμιση. Η κατάργηση αυτών των περιττών πρόσθετων μπορεί να απορροφήσει πλήρως, και σε ορισμένες περιπτώσεις να ξεπεράσει, την αύξηση της βασικής τιμής. Κάντε εκκαθάριση πριν την ανανέωση Η μείωση της βάσης αδειοδότησής σας είναι η πρώτη, και φθηνότερη, γραμμή άμυνας απέναντι σε αυτή την αύξηση, και ταυτόχρονα βασική υγιεινή ασφάλειας.\n📷 Εικόνα 10: Εκκαθάριση πριν την ανανέωση και ο νέος ρόλος SOC Identity Responder, απομόνωση λογαριασμών και ανάκληση ενεργών sessions κατά τη διάρκεια περιστατικού χωρίς να χρειάζεται Global Admin.\nΕλέγξτε πρώτα τους ενεργούς χρήστες. Εξάγετε αναφορές δραστηριότητας 90 ημερών από το M365 Admin Center και αφαιρέστε άδειες από ανενεργούς λογαριασμούς πριν υπολογιστεί το νέο κόστος ανανέωσης βάσει του τρέχοντος αριθμού θέσεων. Νέος διαχειριστικός ρόλος που αξίζει να γνωρίζετε: η Microsoft εισήγαγε τον ρόλο SOC Identity Responder στο Microsoft Entra ID. Επιτρέπει την απομόνωση λογαριασμών και την ανάκληση ενεργών sessions κατά τη διάρκεια ενός περιστατικού, χωρίς να απαιτούνται πλήρη δικαιώματα Global Administrator —μια ουσιαστική βελτίωση ελάχιστου προνομίου για ομάδες απόκρισης σε περιστατικά, που δεν έχει καμία σχέση με την τιμολόγηση αλλά κυκλοφορεί στο ίδιο κύμα αλλαγών. Αυτή είναι επίσης η στιγμή να εντάξετε τις υποχρεώσεις σας για NIS2, ISO 27001, ή ισοδύναμες επανεξετάσεις πρόσβασης. Ένας έλεγχος αδειών και μια τριμηνιαία επανεξέταση πρόσβασης είναι, στην πράξη, η ίδια άσκηση — κάντε τις μαζί.\nΤο στρατηγικό παράθυρο ανανέωσης Ο χρόνος είναι το ισχυρότερο διαπραγματευτικό εργαλείο που διαθέτετε αυτή τη στιγμή, επειδή ο ίδιος ο κανόνας μετάβασης της Microsoft δημιουργεί ένα τέτοιο παράθυρο.\n📷 Εικόνα 11: Το στρατηγικό παράθυρο ανανέωσης. Η ανανέωση πριν την προγραμματισμένη ημερομηνία σας μπορεί να κλειδώσει την τρέχουσα τιμή για όλη τη διάρκεια της νέας σύμβασης, σε ορισμένες περιπτώσεις έως το 2029.\nΟ κανόνας που μετράει: οι υπάρχοντες πελάτες διατηρούν την τρέχουσα τιμή τους μέχρι την επόμενη ανανέωσή τους μετά την 1η Ιουλίου 2026. Η 1η Ιουλίου δεν είναι η δική σας προθεσμία η δική σας ημερομηνία ανανέωσης είναι. Πρόωρη ανανέωση: αν η σύμβασή σας λήγει το δεύτερο εξάμηνο του 2026 ή μέσα στο 2027, η ανανέωση πριν από αυτή την ημερομηνία κλειδώνει τη χαμηλότερη, τρέχουσα τιμή για όλη τη διάρκεια της νέας σύμβασης, έως το 2029 για ένα τριετές Enterprise Agreement. Αν η ανανέωσή σας δεν έχει γίνει ακόμα, αξίζει μια άμεση συζήτηση με τον συνεργάτη αδειοδότησής σας τώρα, όχι πιο κοντά στην ημερομηνία, γιατί ο κύκλος μοντελοποίησης και έγκρισης για μια πρόωρη ανανέωση χρειάζεται πραγματικό χρόνο προετοιμασίας.\nΤο executive playbook: τρεις κινήσεις Οι οργανισμοί που βγαίνουν κερδισμένοι από αυτή την αλλαγή είναι εκείνοι που μοντελοποιούν τα δεδομένα αδειών τους τώρα, όχι όσοι αντιδρούν στη συνάντηση ανανέωσης.\n📷 Εικόνα 12: Το playbook τριών βημάτων, εκκαθάριση και έλεγχος, μοντελοποίηση του μείγματος, και κλείδωμα τιμής πριν την ημερομηνία ανανέωσής σας.\nΕκκαθάριση \u0026 Έλεγχος. Εντοπίστε και αφαιρέστε ανενεργές άδειες. Επανεκτιμήστε ποιοι χρήστες Frontline χρειάζονται πραγματικά πλήρη δικαιώματα Teams, αντί να τα δίνετε σε όλους ως προεπιλογή στο ακριβότερο επίπεδο. Μοντελοποίηση του Μείγματος. Ελέγξτε αν η στενότερη διαφορά τιμής Business Standard έναντι Premium (πλέον $8) δικαιολογεί αναβάθμιση, ή αν τα νέα ενσωματωμένα χαρακτηριστικά ασφάλειας του E3 σας επιτρέπουν να ακυρώσετε εντελώς αυτόνομα πρόσθετα. Κλείδωμα Τιμής. Επικοινωνήστε τώρα με τον συνεργάτη αδειοδότησής σας για να μοντελοποιήσετε το οικονομικό όφελος μιας ανανέωσης πριν την προγραμματισμένη ημερομηνία σας, πριν η νέα τιμολόγηση εφαρμοστεί στη δική σας σύμβαση. Πού εντάσσεται αυτό σε έναν ευρύτερο προϋπολογισμό ασφάλειας Για όσους από εμάς διαχειριζόμαστε προγράμματα ασφάλειας υπό NIS2 ή ISO 27001, αυτή η ενημέρωση αξίζει να διαβαστεί ως κάτι παραπάνω από μια γραμμή προμηθειών. Η μετάβαση του Defender for Office 365 P1 στη βασική άδεια E3, οι agentic δυνατότητες του Security Copilot που φτάνουν σε Defender, Entra, Intune και Purview, και ένας νέος ρόλος ελάχιστου προνομίου για απόκριση σε περιστατικά στο Entra ID, είναι όλα controls που αντιστοιχίζονται απευθείας σε σχέδια αντιμετώπισης κινδύνου και σε ελέγχους Annex A / ISO 27002 που οι περισσότεροι από εμάς ήδη παρακολουθούμε. Η μοντελοποίηση αυτής της ανανέωσης είναι, ουσιαστικά, μια ευκαιρία να χρηματοδοτήσετε μέρος του οδικού χάρτη ασφάλειάς σας μέσα από την ενοποίηση αδειοδότησης, αντί για ξεχωριστό αίτημα προϋπολογισμού.\nΑκολουθήστε με στο LinkedIn για ειδοποιήσεις νέων άρθρων, ή εγγραφείτε μέσω RSS στην κορυφή της σελίδας.\nΕπίσημοι πόροι Microsoft Microsoft 365 Packaging and Pricing Updates Microsoft 365 Packaging and Pricing Updates — Public FAQ ",
+  "wordCount" : "2496",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/M365Strategy2026/Cover-m365-2026-strategy-cover.png","datePublished": "2026-07-30T20:00:00+03:00",
+  "dateModified": "2026-07-30T20:15:00+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/releases/" title="Release Status">
+                    <span>Release Status</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου
+    </h1>
+    <div class="post-description">
+      Πρακτική ανάλυση από την οπτική ενός CISO για την ενημέρωση τιμολόγησης και πακέτων Microsoft 365 της 1ης Ιουλίου 2026: τι άλλαξε πραγματικά ανά SKU, γιατί οι αυξήσεις δεν είναι ενιαίες, και το ακριβές playbook για να μοντελοποιήσετε την ανανέωσή σας, να καταργήσετε περιττά πρόσθετα, και να διαπραγματευτείτε έχοντας πλήρη εικόνα.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-07-30 20:00:00 +0300 EEST'>July 30, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;·&nbsp;<span>2496 words</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/dimosatteia.github.io/edit/main/content/posts/microsoft-365-price-increase-2026-security-leader-playbook.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/M365Strategy2026/Cover-m365-2026-strategy-cover.png" alt="Στρατηγική αξιολόγηση τιμολόγησης και πακέτων Microsoft 365 2026 — διαφάνεια τίτλου με την αναδιάρθρωση αδειοδότησης, την ενσωμάτωση ασφάλειας και AI, και τη στρατηγική ανανέωσης ως τρεις συνδεδεμένους πυλώνες">
+        <figcaption>Microsoft 365 2026: Στρατηγική Αξιολόγηση και Οικονομικός Σχεδιασμός</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#το-συμπέρασμα-με-μία-γραμμή">Το συμπέρασμα με μία γραμμή</a></li>
+    <li><a href="#το-χρονοδιάγραμμα-της-ενημέρωσης-τρεις-ημερομηνίες-που-μετράνε">Το χρονοδιάγραμμα της ενημέρωσης: τρεις ημερομηνίες που μετράνε</a></li>
+    <li><a href="#ο-θερμικός-χάρτης-η-αύξηση-δεν-είναι-ενιαία">Ο θερμικός χάρτης: η αύξηση δεν είναι ενιαία</a></li>
+    <li><a href="#ο-πραγματικός-καταρράκτης-κόστους-για-πελάτες-enterprise-agreement">Ο πραγματικός «καταρράκτης» κόστους για πελάτες Enterprise Agreement</a></li>
+    <li><a href="#το-πλαίσιο-ισορροπίας-αξίας-της-microsoft">Το πλαίσιο «ισορροπίας αξίας» της Microsoft</a></li>
+    <li><a href="#βαθιά-ανάλυση-e3-η-ασφάλεια-και-η-διαχείριση-συσκευών-περνούν-στο-βασικό-πλάνο">Βαθιά ανάλυση E3: η ασφάλεια και η διαχείριση συσκευών περνούν στο βασικό πλάνο</a></li>
+    <li><a href="#γιατί-τώρα-οι-αυξήσεις-χρηματοδοτούν-τη-μετάβαση-σε-zero-trust">Γιατί τώρα: οι αυξήσεις χρηματοδοτούν τη μετάβαση σε Zero Trust</a></li>
+    <li><a href="#βαθιά-ανάλυση-e5-ο-κινητήρας-κατανάλωσης-του-security-copilot">Βαθιά ανάλυση E5: ο κινητήρας κατανάλωσης του Security Copilot</a></li>
+    <li><a href="#business-και-frontline-αθόρυβες-αναβαθμίσεις-σημαντικές-αποφάσεις">Business και Frontline: αθόρυβες αναβαθμίσεις, σημαντικές αποφάσεις</a></li>
+    <li><a href="#η-μήτρα-ενοποίησης-εξάλειψη-επικαλύψεων-εκ-σχεδιασμού">Η μήτρα ενοποίησης: εξάλειψη επικαλύψεων εκ σχεδιασμού</a></li>
+    <li><a href="#κάντε-εκκαθάριση-πριν-την-ανανέωση">Κάντε εκκαθάριση πριν την ανανέωση</a></li>
+    <li><a href="#το-στρατηγικό-παράθυρο-ανανέωσης">Το στρατηγικό παράθυρο ανανέωσης</a></li>
+    <li><a href="#το-executive-playbook-τρεις-κινήσεις">Το executive playbook: τρεις κινήσεις</a></li>
+    <li><a href="#πού-εντάσσεται-αυτό-σε-έναν-ευρύτερο-προϋπολογισμό-ασφάλειας">Πού εντάσσεται αυτό σε έναν ευρύτερο προϋπολογισμό ασφάλειας</a></li>
+    <li><a href="#επίσημοι-πόροι-microsoft">Επίσημοι πόροι Microsoft</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="το-συμπέρασμα-με-μία-γραμμή">Το συμπέρασμα με μία γραμμή<a hidden class="anchor" aria-hidden="true" href="#το-συμπέρασμα-με-μία-γραμμή">#</a></h2>
+<p>Στις 4 Δεκεμβρίου 2025, η Microsoft ανακοίνωσε μια παγκόσμια ενημέρωση τιμολόγησης και πακέτων για τα εμπορικά suites του Microsoft 365. Οι νέες τιμές τέθηκαν σε ισχύ στις <strong>1 Ιουλίου 2026</strong>. Αν διαβάζετε αυτό το άρθρο μετά από αυτή την ημερομηνία, όπως κι εγώ τη στιγμή που το γράφω, η αλλαγή δεν είναι πια ένα μελλοντικό ενδεχόμενο είναι ο αριθμός στην επόμενη προσφορά ανανέωσής σας. Οι αυξήσεις κυμαίνονται από <strong>5% έως 43%</strong> ανάλογα με το πλάνο, νέες δυνατότητες ασφάλειας και AI ενσωματώθηκαν απευθείας στη βασική άδεια για αρκετά SKUs, και οι υπάρχοντες πελάτες διατηρούν την τρέχουσα τιμή τους μόνο μέχρι την <strong>επόμενη ανανέωσή τους μετά την 1η Ιουλίου 2026</strong>. Αυτή η τελευταία λεπτομέρεια είναι αυτή που τα περισσότερα τμήματα IT και προμηθειών υποτιμούν, και γύρω από αυτήν στρέφεται όλο το υπόλοιπο άρθρο.</p>
+<p>Ετοίμασα ένα εσωτερικό executive briefing για να καθοδηγήσω τη διοίκηση και το τμήμα προμηθειών μας σε ό,τι ακριβώς άλλαξε και τι πρέπει να γίνει. Αυτό το άρθρο είναι η δημόσια εκδοχή του, ξαναχτισμένη ως σημείο αναφοράς για όποιον κάνει την ίδια άσκηση στο δικό του tenant.</p>
+<h2 id="το-χρονοδιάγραμμα-της-ενημέρωσης-τρεις-ημερομηνίες-που-μετράνε">Το χρονοδιάγραμμα της ενημέρωσης: τρεις ημερομηνίες που μετράνε<a hidden class="anchor" aria-hidden="true" href="#το-χρονοδιάγραμμα-της-ενημέρωσης-τρεις-ημερομηνίες-που-μετράνε">#</a></h2>
+<p>Η αλλαγή δεν ήρθε μονομιάς. Η Microsoft τη χώρισε σε ανάπτυξη δυνατοτήτων και σε αλλαγή τιμολόγησης, και το κενό ανάμεσα στα δύο είναι εκεί που ξεκινά η σύγχυση.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-price-change-timeline.webp"><img alt="Χρονοδιάγραμμα τριών σημείων που δείχνει την ενημέρωση πακέτων και τιμολόγησης Microsoft 365 2026: Ιούνιος 2026 έναρξη νέων δυνατοτήτων AI και διαχείρισης με ειδοποίηση 30 ημερών στο Message Center, 1 Ιουλίου 2026 εφαρμογή νέας τιμολόγησης, και 1 Αυγούστου 2026 πλήρης ολοκλήρωση όλων των νέων παροχών σε όλα τα qualifying SKUs" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-price-change-timeline.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 1: Τα τρία κρίσιμα ορόσημα της ενημέρωσης πακέτων και τιμολόγησης Microsoft 365 2026, από την ενεργοποίηση των νέων δυνατοτήτων μέχρι την πλήρη ολοκλήρωση.</strong></p>
+</blockquote>
+<ul>
+<li><strong>Ιούνιος 2026 (CY26 Q3): έναρξη νέων δυνατοτήτων.</strong> Νέα εργαλεία AI και διαχείρισης αρχίζουν να εμφανίζονται στα tenants. Οι διαχειριστές λαμβάνουν ειδοποίηση 30 ημερών στο Message Center πριν ενεργοποιηθεί οτιδήποτε.</li>
+<li><strong>1 Ιουλίου 2026: εφαρμογή της νέας τιμολόγησης.</strong> Οι ενημερωμένες λιανικές τιμές ισχύουν παγκοσμίως, με τοπικές νομισματικές προσαρμογές, για νέους πελάτες και για όποιον ανανεώνει από αυτή την ημερομηνία και μετά.</li>
+<li><strong>1 Αυγούστου 2026: πλήρης ολοκλήρωση.</strong> Μέχρι αυτή την ημερομηνία, κάθε νέα παροχή που συνδέεται με την ενημέρωση (Defender for Office 365 Plan 1, Intune Remote Help, Intune Advanced Analytics και οι υπόλοιπες) είναι πλήρως διαθέσιμη σε όλα τα qualifying SKUs.</li>
+</ul>
+<p>Το σημείο που αξίζει να επαναληφθεί: <strong>οι υπάρχοντες πελάτες δεν ξυπνούν με νέο τιμολόγιο την 1η Ιουλίου.</strong> Το επίσημο FAQ της Microsoft είναι ξεκάθαρο ότι η τρέχουσα τιμολόγηση διατηρείται μέχρι την επόμενη ανανέωσή σας μετά από αυτή την ημερομηνία. Η πραγματική σας προθεσμία είναι η ημερομηνία ανανέωσής σας, όχι η ημερομηνία-ορόσημο για την οποία μιλούν όλοι.</p>
+<h2 id="ο-θερμικός-χάρτης-η-αύξηση-δεν-είναι-ενιαία">Ο θερμικός χάρτης: η αύξηση δεν είναι ενιαία<a hidden class="anchor" aria-hidden="true" href="#ο-θερμικός-χάρτης-η-αύξηση-δεν-είναι-ενιαία">#</a></h2>
+<p>Η μεγαλύτερη παρανόηση που συναντώ συνεχώς είναι η αντιμετώπιση αυτής της αλλαγής ως «το Microsoft 365 αυξήθηκε κατά Χ%». Δεν αυξήθηκε έτσι. Το ποσοστό αύξησης εξαρτάται σε μεγάλο βαθμό από την οικογένεια πλάνου στην οποία βρίσκεστε, και η διαφορά είναι μεγάλη.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-pricing-heatmap-infographic.webp"><img alt="Infographic θερμικού χάρτη τιμολόγησης που δείχνει τις ποσοστιαίες αυξήσεις τιμών Microsoft 365 2026 ανά πλάνο: Frontline F1 χωρίς Teams +43%, F1 με Teams +33%, Apps for Business +21%, Office 365 E3 +13%, Microsoft 365 Business Standard +12%, Microsoft 365 E3 +8% στα $39, Microsoft 365 E5 +5%, με Business Premium και Office 365 E1 αμετάβλητα" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-pricing-heatmap-infographic.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 2: Θερμικός χάρτης τιμολόγησης Microsoft 365 2026. Τα πλάνα Frontline απορροφούν κατά πολύ τις μεγαλύτερες ποσοστιαίες αυξήσεις, ενώ τα Business Premium και Office 365 E1 παραμένουν σταθερά.</strong></p>
+</blockquote>
+<p>Το μοτίβο που ξεχωρίζει: <strong>τα πλάνα Frontline δέχονται το μεγαλύτερο πλήγμα, ενώ οι κορυφαίες εταιρικές σουίτες το μικρότερο.</strong></p>
+<ul>
+<li><strong>Microsoft 365 F1 (χωρίς Teams): +43%</strong> ($1.75 → $2.50)</li>
+<li><strong>Microsoft 365 F1 (με Teams): +33%</strong> ($2.25 → $3.00)</li>
+<li><strong>Microsoft 365 Apps for Business: +21%</strong></li>
+<li><strong>Office 365 E3: +13%</strong> ($23 → $26)</li>
+<li><strong>Microsoft 365 Business Standard: +12%</strong></li>
+<li><strong>Microsoft 365 E3: +8%</strong> ($36 → $39)</li>
+<li><strong>Microsoft 365 E5: +5%</strong> ($57 → $60)</li>
+<li><strong>Microsoft 365 Business Premium και Office 365 E1: αμετάβλητα</strong></li>
+</ul>
+<p>Αυτή η τελευταία γραμμή αξίζει προσοχή. Η σταθεροποίηση των Business Premium και Office 365 E1 μοιάζει με σιωπηρό «τιμολογιακό κατώφλι» που θέτει η Microsoft, και συμπιέζει αισθητά τη διαφορά τιμής ανάμεσα σε Business Standard και Business Premium, κάτι που αλλάζει τα μαθηματικά αναβάθμισης για πολλά SMB και mid-market tenants.</p>
+<p>Τα ποσοστά κρύβουν επίσης το φαινόμενο κλίμακας. Μια αύξηση 43% στο Frontline F1 φαίνεται ασήμαντη ανά χρήστη όπως $0.75 τον μήνα. Για έναν οργανισμό με 5.000 εργαζομένους Frontline, αυτό μεταφράζεται σε περίπου <strong>$45.000 επιπλέον ετήσιο κόστος</strong> για ένα πλάνο που οι περισσότερες διοικήσεις θεωρούν «το φθηνό».</p>
+<h2 id="ο-πραγματικός-καταρράκτης-κόστους-για-πελάτες-enterprise-agreement">Ο πραγματικός «καταρράκτης» κόστους για πελάτες Enterprise Agreement<a hidden class="anchor" aria-hidden="true" href="#ο-πραγματικός-καταρράκτης-κόστους-για-πελάτες-enterprise-agreement">#</a></h2>
+<p>Αν βρίσκεστε σε Enterprise Agreement, το ανακοινωμένο ποσοστό είναι μόνο ένα κομμάτι του αριθμού που θα εμφανιστεί τελικά στην προσφορά ανανέωσής σας.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-enterprise-cost-waterfall.webp"><img alt="Γράφημα καταρράκτη κόστους που δείχνει πώς η ανακοινωθείσα αύξηση τιμής Microsoft 365 5 έως 13 τοις εκατό σωρεύεται με την κατάργηση των εκπτώσεων όγκου Enterprise Agreement Level D από τον Νοέμβριο του 2025, παράγοντας πραγματική αύξηση κόστους περίπου 20 τοις εκατό για μεγάλες αναπτύξεις E5" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-enterprise-cost-waterfall.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 3: Ο πραγματικός καταρράκτης κόστους. Η ανακοινωμένη αύξηση τιμής είναι μόνο ένα επίπεδο η απώλεια των εκπτώσεων όγκου EA Level D σωρεύεται πάνω της για μεγάλες εταιρικές αναπτύξεις.</strong></p>
+</blockquote>
+<p>Η Microsoft κατάργησε τις <strong>εκπτώσεις όγκου EA Level D τον Νοέμβριο του 2025</strong>. Αυτή η αλλαγή συμβαίνει ανεξάρτητα από, αλλά μέσα στον ίδιο κύκλο ανανέωσης με, την αύξηση τιμής του Ιουλίου 2026, και οι δύο σωρεύονται. Για έναν οργανισμό με περίπου <strong>25.000 θέσεις E5</strong>, η πραγματική αύξηση μπορεί να φτάσει τα <strong>$3 εκατομμύρια ετησίως</strong>, πλησιάζοντας το <strong>20%</strong> αντί για το ονομαστικό 5-8% που αναφέρεται στους τίτλους. Αν η μοντελοποίηση της ανανέωσής σας λαμβάνει υπόψη μόνο το δημοσιευμένο ποσοστό, σχεδόν σίγουρα υποεκτιμάτε τον προϋπολογισμό σας.</p>
+<h2 id="το-πλαίσιο-ισορροπίας-αξίας-της-microsoft">Το πλαίσιο «ισορροπίας αξίας» της Microsoft<a hidden class="anchor" aria-hidden="true" href="#το-πλαίσιο-ισορροπίας-αξίας-της-microsoft">#</a></h2>
+<p>Η Microsoft δεν το παρουσιάζει καθαρά ως αύξηση κόστους. Η θέση της είναι ότι πρόκειται για αναδιάρθρωση του ίδιου του μοντέλου αδειοδότησης, αντικαθιστώντας την παλιά λογική «βασικό πλάνο συν επί πληρωμή πρόσθετα» με λιγότερα, πλουσιότερα, ενοποιημένα πακέτα.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-value-balance-framework.webp"><img alt="Διάγραμμα ζυγαριάς ισορροπίας που απεικονίζει το πλαίσιο αναδιάρθρωσης αξίας της Microsoft για το 2026: στη μία πλευρά το κόστος και οι αλλαγές αδειοδότησης, στην άλλη η ενσωμάτωση ασφάλειας, AI και διαχείρισης, αναπαριστώντας τον συμβιβασμό που πρέπει να μοντελοποιήσουν τα τμήματα IT στην ανανέωση" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-value-balance-framework.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 4: Το πλαίσιο αναδιάρθρωσης αξίας της Microsoft. Ο δηλωμένος στόχος είναι να αντισταθμιστεί η αύξηση κόστους αδειοδότησης με ενσωματωμένες δυνατότητες ασφάλειας, AI και διαχείρισης — αν πραγματικά τις χρησιμοποιήσετε.</strong></p>
+</blockquote>
+<p>Αυτή η προσέγγιση είναι δίκαιη, αλλά υπό προϋποθέσεις. <strong>Η στρατηγική της Microsoft</strong> είναι να αντικαταστήσει τα αυτόνομα πρόσθετα με εμπλουτισμένες, ενοποιημένες σουίτες. <strong>Η δουλειά του IT</strong> είναι να αντισταθμίσει την αύξηση κόστους καταργώντας τις περιττές, αυτόνομες συνδρομές ασφάλειας και διαχείρισης που πλέον καλύπτει το νέο πακέτο. Η αξία υλοποιείται μόνο αν το τμήμα προμηθειών ακυρώσει πράγματι ό,τι είναι πλέον διπλό, και η υιοθέτηση των νέων εργαλείων πρέπει να δικαιολογεί τη δαπάνη, όχι απλώς να μένει αναξιοποίητη στο tenant.</p>
+<h2 id="βαθιά-ανάλυση-e3-η-ασφάλεια-και-η-διαχείριση-συσκευών-περνούν-στο-βασικό-πλάνο">Βαθιά ανάλυση E3: η ασφάλεια και η διαχείριση συσκευών περνούν στο βασικό πλάνο<a hidden class="anchor" aria-hidden="true" href="#βαθιά-ανάλυση-e3-η-ασφάλεια-και-η-διαχείριση-συσκευών-περνούν-στο-βασικό-πλάνο">#</a></h2>
+<p>Από όλα τα πλάνα της ενημέρωσης, το <strong>E3 δέχεται την πιο ουσιαστική αναβάθμιση δυνατοτήτων.</strong></p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-e3-defender-intune-bundle.webp"><img alt="Διάγραμμα που δείχνει το Microsoft Defender for Office 365 Plan 1 και το Intune Plan 2 με Remote Help και Advanced Analytics να ενσωματώνονται στο license container του Microsoft 365 E3 ως μέρος της ενημέρωσης πακέτων 2026" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-e3-defender-intune-bundle.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 5: Τι μεταφέρεται στη βασική άδεια E3 το 2026: Microsoft Defender for Office 365 Plan 1, συν Intune Plan 2, Remote Help και Advanced Analytics.</strong></p>
+</blockquote>
+<ul>
+<li>Το <strong>Microsoft Defender for Office 365 Plan 1</strong> γίνεται μέρος του βασικού πακέτου με προηγμένη προστασία anti-phishing, Safe Links και malware protection που παλαιότερα κόστιζε περίπου <strong>$2/μήνα</strong> ως αυτόνομο πρόσθετο.</li>
+<li>Το <strong>Intune αναβαθμίζεται</strong>, με την προσθήκη Intune Plan 2, Remote Help και Advanced Analytics.</li>
+<li><strong>Καθαρό αποτέλεσμα:</strong> οργανισμοί που ήδη πλήρωναν ξεχωριστά για αυτά τα εργαλεία μπορούν να απορροφήσουν πλήρως την αύξηση των $3 του E3 μέσω των αυτόνομων αδειών που πλέον μπορούν να ακυρώσουν, καταλήγοντας με χαμηλότερο συνολικό λειτουργικό κόστος από πριν την ενημέρωση.</li>
+</ul>
+<p>Αυτό είναι το σημείο με τη μεγαλύτερη μόχλευση σε όλη την ανακοίνωση για τον έλεγχο αδειών μιας ομάδας ασφάλειας. Αν το Defender for Office 365 P1 ή τα προηγμένα πρόσθετα Intune βρίσκονται σήμερα πάνω από ένα βασικό πλάνο E3, εκεί βρίσκεται η εξοικονόμηση.</p>
+<h2 id="γιατί-τώρα-οι-αυξήσεις-χρηματοδοτούν-τη-μετάβαση-σε-zero-trust">Γιατί τώρα: οι αυξήσεις χρηματοδοτούν τη μετάβαση σε Zero Trust<a hidden class="anchor" aria-hidden="true" href="#γιατί-τώρα-οι-αυξήσεις-χρηματοδοτούν-τη-μετάβαση-σε-zero-trust">#</a></h2>
+<p>Υπάρχει ένα νήμα μέσα στην ενημέρωση που δεν εμφανίζεται σε κανέναν πίνακα τιμών: η Microsoft συνδέει ρητά μέρος αυτής της επένδυσης με την επιτάχυνση της κατάργησης αδύναμων μεθόδων αυθεντικοποίησης.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-passkey-zero-trust-security-shift.webp"><img alt="Διάγραμμα που αντιπαραβάλλει δύο διαδρομές αυθεντικοποίησης: SMS και synced passkeys ευάλωτα σε επιθέσεις adversary-in-the-middle και fragmenting που οδηγούν σε παραβίαση ασφαλείας, έναντι device-bound passkeys με κρυπτογραφική attestation που αποκρούουν την ίδια επίθεση" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-passkey-zero-trust-security-shift.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 6: Η αλλαγή παραδείγματος αυθεντικοποίησης που χρηματοδοτεί αυτή η ενημέρωση. Τα SMS και τα synced passkeys παραμένουν εκτεθειμένα σε επιθέσεις AiTM τα device-bound passkeys με attestation κλείνουν αυτό το κενό.</strong></p>
+</blockquote>
+<ul>
+<li><strong>Η ευπάθεια:</strong> η αυθεντικοποίηση μέσω SMS και synced passkeys παραμένει εκτεθειμένη σε επιθέσεις Adversary-in-the-Middle (AiTM) και fragmenting που μπορούν να οδηγήσουν απευθείας σε παραβίαση.</li>
+<li><strong>Η λύση:</strong> η αυθεντικοποίηση μέσω SMS και φωνητικών κλήσεων καταργείται μέχρι το τέλος του έτους. Τα device-bound passkeys προσφέρουν κρυπτογραφική attestation (απόδειξη ταυτότητας που δεν μπορεί να αναπαραχθεί) κάτι που τα καθιστά ανθεκτικά σε επιθέσεις AiTM, σε αντίθεση με τα synced passkeys που βασίζονται σε οικοσυστήματα τρίτων (π.χ. Apple Keychain).</li>
+</ul>
+<p>Αν ο οδικός χάρτης ασφάλειάς σας περιλαμβάνει ακόμα SMS ή φωνητική κλήση ως εναλλακτική μέθοδο MFA, αυτή η ενημέρωση είναι η αφορμή να ολοκληρώσετε επιτέλους αυτή τη μετάβαση και όχι απλά μια υποσημείωση αδειοδότησης.</p>
+<h2 id="βαθιά-ανάλυση-e5-ο-κινητήρας-κατανάλωσης-του-security-copilot">Βαθιά ανάλυση E5: ο κινητήρας κατανάλωσης του Security Copilot<a hidden class="anchor" aria-hidden="true" href="#βαθιά-ανάλυση-e5-ο-κινητήρας-κατανάλωσης-του-security-copilot">#</a></h2>
+<p>Το E5 δέχεται τη μικρότερη ποσοστιαία αύξηση τιμής, αλλά τη μεγαλύτερη στρατηγική προσθήκη: το <strong>Security Copilot είναι πλέον ενσωματωμένο στο πλάνο</strong>, και λειτουργεί με μοντέλο κατανάλωσης που αξίζει να κατανοήσετε πριν υποθέσετε ότι είναι «δωρεάν συμπεριλαμβανόμενο».</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-e5-security-copilot-scu-model.webp"><img alt="Διάγραμμα του κινητήρα SCU του Security Copilot που δείχνει 1.000 επί πληρωμή άδειες χρηστών να κατανέμονται μέσω ενός μηχανισμού κατανομής πόρων σε 400 Security Compute Units τον μήνα, με μετρητή που δείχνει εύρος από 0 έως ανώτατο όριο 10.000 SCU" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-e5-security-copilot-scu-model.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 7: Πώς κατανέμεται η χωρητικότητα του Security Copilot μέσα στο E5: 400 Security Compute Units τον μήνα για κάθε 1.000 επί πληρωμή άδειες, με ανώτατο όριο 10.000 SCUs.</strong></p>
+</blockquote>
+<ul>
+<li><strong>Αυτόνομη προστασία:</strong> το Agentic AI ενσωματώνεται απευθείας στις ροές εργασίας Defender, Entra, Intune και Purview για ταχύτερη ανίχνευση και απόκριση, χωρίς ξεχωριστή κονσόλα προς εκμάθηση.</li>
+<li><strong>Το μοντέλο κατανομής:</strong> κάθε 1.000 επί πληρωμή άδειες χρηστών E5 παράγουν <strong>400 Security Compute Units (SCUs) τον μήνα</strong>, μέχρι ένα σκληρό ανώτατο όριο <strong>10.000 SCUs</strong>. Μόλις φτάσετε σε αυτό το όριο, η επιπλέον χρήση Copilot πρέπει να αγοραστεί ξεχωριστά ως pay-as-you-go χωρητικότητα.</li>
+<li><strong>Επίσης νέο στο E5:</strong> Intune Endpoint Privilege Management, Enterprise App Management και Microsoft Cloud PKI.</li>
+</ul>
+<p>Για τους επικεφαλής SOC, το όριο SCU είναι ο αριθμός που πρέπει να μοντελοποιήσετε πριν υποσχεθείτε στους αναλυτές σας απεριόριστη έρευνα με τη βοήθεια του Copilot. Είναι ένας πραγματικός, πεπερασμένος πόρος, και θα πρέπει να εμφανίζεται στον σχεδιασμό χωρητικότητάς σας με τον ίδιο τρόπο που εμφανίζεται η πρόσληψη logs ή ο αποθηκευτικός χώρος.</p>
+<h2 id="business-και-frontline-αθόρυβες-αναβαθμίσεις-σημαντικές-αποφάσεις">Business και Frontline: αθόρυβες αναβαθμίσεις, σημαντικές αποφάσεις<a hidden class="anchor" aria-hidden="true" href="#business-και-frontline-αθόρυβες-αναβαθμίσεις-σημαντικές-αποφάσεις">#</a></h2>
+<p>Οι αλλαγές SMB και Frontline τραβούν λιγότερη προσοχή από τα E3/E5, αλλά επιβάλλουν πραγματικές αποφάσεις.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-business-frontline-changes.webp"><img alt="Σύγκριση δύο πλαισίων για τις αλλαγές Microsoft 365 Business και Frontline: αύξηση αποθηκευτικού χώρου mailbox στα 100GB και προστασία URL κατά τη στιγμή του κλικ στο Outlook για πλάνα Business, μαζί με την επαναξιολόγηση Frontline F1 έναντι F3 λόγω της αύξησης τιμής 43 τοις εκατό στο F1 χωρίς Teams" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-business-frontline-changes.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 8: Τα Business Basic/Standard/Premium κερδίζουν αναβαθμίσεις mailbox και προστασίας από phishing, ενώ το άλμα τιμής στο Frontline F1 επιβάλλει επαναξιολόγηση έναντι του F1 με Teams.</strong></p>
+</blockquote>
+<ul>
+<li><strong>Business Basic/Standard/Premium:</strong> ο αποθηκευτικός χώρος mailbox αυξάνεται στα <strong>100GB</strong> (από 50GB) στο Business Premium η <strong>προστασία URL κατά τη στιγμή του κλικ</strong> έρχεται πλέον στο Outlook, κλείνοντας ένα πραγματικό κενό phishing το Copilot Chat αποκτά ενισχύσεις AI, χωρίς το πλήρες πακέτο των $30, με επίγνωση inbox και ημερολογίου.</li>
+<li><strong>Επαναξιολόγηση Frontline:</strong> το άλμα 43% στο F1 χωρίς Teams επιβάλλει άμεση επανεξέταση. Αν το εργατικό δυναμικό Frontline σας χρησιμοποιεί το Teams έστω και περιστασιακά, το F1 με Teams (αύξηση 33%, στα $3.00) είναι πλέον η πιο στρατηγικά ορθή επιλογή μιας και κλείνει το χάσμα τιμής και αφαιρεί τον πειρασμό της υπο-αδειοδότησης.</li>
+</ul>
+<h2 id="η-μήτρα-ενοποίησης-εξάλειψη-επικαλύψεων-εκ-σχεδιασμού">Η μήτρα ενοποίησης: εξάλειψη επικαλύψεων εκ σχεδιασμού<a hidden class="anchor" aria-hidden="true" href="#η-μήτρα-ενοποίησης-εξάλειψη-επικαλύψεων-εκ-σχεδιασμού">#</a></h2>
+<p>Ο δηλωμένος κανόνας της Microsoft για το νέο μοντέλο είναι απλός: <strong>καμία αλληλεπικάλυψη δυνατοτήτων.</strong> Ό,τι παλαιότερα απαιτούσε αυτόνομο πρόσθετο πάνω σε ένα βασικό πλάνο, θα πρέπει, μέχρι τον Αύγουστο του 2026, να είναι κάτι που μπορείτε να καταργήσετε.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-license-unification-matrix.webp"><img alt="Πίνακας σύγκρισης που δείχνει το παλιό μοντέλο αδειοδότησης Microsoft 365 2024-2025 με βασική άδεια συν αυτόνομο Defender for Office 365 Plan 1 και αυτόνομο Intune ως ξεχωριστά επί πληρωμή πρόσθετα που καταλήγουν σε υψηλό συνολικό κόστος, έναντι του ενοποιημένου μοντέλου Αυγούστου 2026 με νέα βασική άδεια και ενσωματωμένα χαρακτηριστικά που καταλήγουν σε ισοσταθμισμένο κόστος" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-license-unification-matrix.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 9: Παλιό μοντέλο έναντι ενοποιημένου μοντέλου. Αν πληρώνετε ακόμα ξεχωριστά για αυτόνομο Defender for Office 365 P1 ή προηγμένα πρόσθετα Intune πάνω από το E3, ο Αύγουστος του 2026 είναι η στιγμή να τα ακυρώσετε.</strong></p>
+</blockquote>
+<p>Τρεις συγκεκριμένες ενέργειες προκύπτουν από αυτή τη μήτρα:</p>
+<ol>
+<li><strong>Ελέγξτε το τρέχον χαρτοφυλάκιο αδειών σας.</strong> Γνωρίστε ακριβώς ποια αυτόνομα πρόσθετα διατηρείτε σήμερα.</li>
+<li><strong>Ελέγξτε για επικαλύψεις με το νέο βασικό πλάνο.</strong> Αν πληρώνετε ξεχωριστά για Defender for Office 365 P1 ή προηγμένα πρόσθετα Intune πάνω από ένα βασικό πλάνο E3, η ενοποίηση του Αυγούστου 2026 είναι το σήμα να ακυρώσετε τις αυτόνομες άδειες.</li>
+<li><strong>Μοντελοποιήστε την αντιστάθμιση.</strong> Η κατάργηση αυτών των περιττών πρόσθετων μπορεί να απορροφήσει πλήρως, και σε ορισμένες περιπτώσεις να ξεπεράσει, την αύξηση της βασικής τιμής.</li>
+</ol>
+<h2 id="κάντε-εκκαθάριση-πριν-την-ανανέωση">Κάντε εκκαθάριση πριν την ανανέωση<a hidden class="anchor" aria-hidden="true" href="#κάντε-εκκαθάριση-πριν-την-ανανέωση">#</a></h2>
+<p>Η μείωση της βάσης αδειοδότησής σας είναι η πρώτη, και φθηνότερη, γραμμή άμυνας απέναντι σε αυτή την αύξηση, και ταυτόχρονα βασική υγιεινή ασφάλειας.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-pre-renewal-admin-cleanup.webp"><img alt="Διάγραμμα που δείχνει ένα δέντρο λογαριασμών Microsoft Entra ID κατά τη διάρκεια ελέγχου συστήματος, με αρκετούς λογαριασμούς απομονωμένους και πρόσβαση ανακληθείσα μέσω του νέου ρόλου SOC Identity Responder, ο οποίος επιτρέπει ανάκληση ενεργών sessions και απομόνωση λογαριασμών κατά τη διάρκεια περιστατικού χωρίς να απαιτούνται πλήρη δικαιώματα Global Administrator" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-pre-renewal-admin-cleanup.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 10: Εκκαθάριση πριν την ανανέωση και ο νέος ρόλος SOC Identity Responder, απομόνωση λογαριασμών και ανάκληση ενεργών sessions κατά τη διάρκεια περιστατικού χωρίς να χρειάζεται Global Admin.</strong></p>
+</blockquote>
+<ul>
+<li><strong>Ελέγξτε πρώτα τους ενεργούς χρήστες.</strong> Εξάγετε αναφορές δραστηριότητας 90 ημερών από το M365 Admin Center και αφαιρέστε άδειες από ανενεργούς λογαριασμούς <em>πριν</em> υπολογιστεί το νέο κόστος ανανέωσης βάσει του τρέχοντος αριθμού θέσεων.</li>
+<li><strong>Νέος διαχειριστικός ρόλος που αξίζει να γνωρίζετε:</strong> η Microsoft εισήγαγε τον ρόλο <strong>SOC Identity Responder</strong> στο Microsoft Entra ID. Επιτρέπει την απομόνωση λογαριασμών και την ανάκληση ενεργών sessions κατά τη διάρκεια ενός περιστατικού, χωρίς να απαιτούνται πλήρη δικαιώματα Global Administrator —μια ουσιαστική βελτίωση ελάχιστου προνομίου για ομάδες απόκρισης σε περιστατικά, που δεν έχει καμία σχέση με την τιμολόγηση αλλά κυκλοφορεί στο ίδιο κύμα αλλαγών.</li>
+</ul>
+<p>Αυτή είναι επίσης η στιγμή να εντάξετε τις υποχρεώσεις σας για NIS2, ISO 27001, ή ισοδύναμες επανεξετάσεις πρόσβασης. Ένας έλεγχος αδειών και μια τριμηνιαία επανεξέταση πρόσβασης είναι, στην πράξη, η ίδια άσκηση — κάντε τις μαζί.</p>
+<h2 id="το-στρατηγικό-παράθυρο-ανανέωσης">Το στρατηγικό παράθυρο ανανέωσης<a hidden class="anchor" aria-hidden="true" href="#το-στρατηγικό-παράθυρο-ανανέωσης">#</a></h2>
+<p>Ο χρόνος είναι το ισχυρότερο διαπραγματευτικό εργαλείο που διαθέτετε αυτή τη στιγμή, επειδή ο ίδιος ο κανόνας μετάβασης της Microsoft δημιουργεί ένα τέτοιο παράθυρο.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-strategic-renewal-window.webp"><img alt="Γράφημα χρονοδιαγράμματος ανανέωσης από το 2026 έως το 2029 που δείχνει το στρατηγικό παράθυρο ανανέωσης: η ανανέωση πριν την προγραμματισμένη ημερομηνία σας κλειδώνει τη χαμηλότερη τρέχουσα τιμή για όλη τη διάρκεια της σύμβασης, ενώ μια καθυστερημένη ανανέωση μετά την 1η Ιουλίου 2026 κλειδώνει τη νέα υψηλότερη τιμή, με μια ζώνη αποφυγής κόστους ανάμεσά τους" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-strategic-renewal-window.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 11: Το στρατηγικό παράθυρο ανανέωσης. Η ανανέωση πριν την προγραμματισμένη ημερομηνία σας μπορεί να κλειδώσει την τρέχουσα τιμή για όλη τη διάρκεια της νέας σύμβασης, σε ορισμένες περιπτώσεις έως το 2029.</strong></p>
+</blockquote>
+<ul>
+<li><strong>Ο κανόνας που μετράει:</strong> οι υπάρχοντες πελάτες διατηρούν την τρέχουσα τιμή τους μέχρι την <strong>επόμενη ανανέωσή τους μετά την 1η Ιουλίου 2026.</strong> Η 1η Ιουλίου δεν είναι η δική σας προθεσμία η δική σας ημερομηνία ανανέωσης είναι.</li>
+<li><strong>Πρόωρη ανανέωση:</strong> αν η σύμβασή σας λήγει το δεύτερο εξάμηνο του 2026 ή μέσα στο 2027, η ανανέωση πριν από αυτή την ημερομηνία κλειδώνει τη χαμηλότερη, τρέχουσα τιμή για <strong>όλη τη διάρκεια της νέας σύμβασης</strong>, έως το 2029 για ένα τριετές Enterprise Agreement.</li>
+</ul>
+<p>Αν η ανανέωσή σας δεν έχει γίνει ακόμα, αξίζει μια άμεση συζήτηση με τον συνεργάτη αδειοδότησής σας τώρα, όχι πιο κοντά στην ημερομηνία, γιατί ο κύκλος μοντελοποίησης και έγκρισης για μια πρόωρη ανανέωση χρειάζεται πραγματικό χρόνο προετοιμασίας.</p>
+<h2 id="το-executive-playbook-τρεις-κινήσεις">Το executive playbook: τρεις κινήσεις<a hidden class="anchor" aria-hidden="true" href="#το-executive-playbook-τρεις-κινήσεις">#</a></h2>
+<p>Οι οργανισμοί που βγαίνουν κερδισμένοι από αυτή την αλλαγή είναι εκείνοι που μοντελοποιούν τα δεδομένα αδειών τους τώρα, όχι όσοι αντιδρούν στη συνάντηση ανανέωσης.</p>
+<p><a href="http://localhost:1313/images/M365Strategy2026/m365-2026-executive-playbook-next-steps.webp"><img alt="Playbook τριών βημάτων για την αύξηση τιμής Microsoft 365 2026: βήμα ένα, εκκαθάριση και έλεγχος ανενεργών αδειών και δικαιωμάτων Teams σε πλάνα Frontline βήμα δύο, μοντελοποίηση του μείγματος Business Standard έναντι Premium και πρόσθετων E3 βήμα τρία, επικοινωνία με τον συνεργάτη αδειοδότησης για κλείδωμα τιμής πριν την ανανέωση" loading="lazy" src="http://localhost:1313/images/M365Strategy2026/m365-2026-executive-playbook-next-steps.webp"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 12: Το playbook τριών βημάτων, εκκαθάριση και έλεγχος, μοντελοποίηση του μείγματος, και κλείδωμα τιμής πριν την ημερομηνία ανανέωσής σας.</strong></p>
+</blockquote>
+<ol>
+<li><strong>Εκκαθάριση &amp; Έλεγχος.</strong> Εντοπίστε και αφαιρέστε ανενεργές άδειες. Επανεκτιμήστε ποιοι χρήστες Frontline χρειάζονται πραγματικά πλήρη δικαιώματα Teams, αντί να τα δίνετε σε όλους ως προεπιλογή στο ακριβότερο επίπεδο.</li>
+<li><strong>Μοντελοποίηση του Μείγματος.</strong> Ελέγξτε αν η στενότερη διαφορά τιμής Business Standard έναντι Premium (πλέον $8) δικαιολογεί αναβάθμιση, ή αν τα νέα ενσωματωμένα χαρακτηριστικά ασφάλειας του E3 σας επιτρέπουν να ακυρώσετε εντελώς αυτόνομα πρόσθετα.</li>
+<li><strong>Κλείδωμα Τιμής.</strong> Επικοινωνήστε τώρα με τον συνεργάτη αδειοδότησής σας για να μοντελοποιήσετε το οικονομικό όφελος μιας ανανέωσης πριν την προγραμματισμένη ημερομηνία σας, πριν η νέα τιμολόγηση εφαρμοστεί στη δική σας σύμβαση.</li>
+</ol>
+<h2 id="πού-εντάσσεται-αυτό-σε-έναν-ευρύτερο-προϋπολογισμό-ασφάλειας">Πού εντάσσεται αυτό σε έναν ευρύτερο προϋπολογισμό ασφάλειας<a hidden class="anchor" aria-hidden="true" href="#πού-εντάσσεται-αυτό-σε-έναν-ευρύτερο-προϋπολογισμό-ασφάλειας">#</a></h2>
+<p>Για όσους από εμάς διαχειριζόμαστε προγράμματα ασφάλειας υπό NIS2 ή ISO 27001, αυτή η ενημέρωση αξίζει να διαβαστεί ως κάτι παραπάνω από μια γραμμή προμηθειών. Η μετάβαση του Defender for Office 365 P1 στη βασική άδεια E3, οι agentic δυνατότητες του Security Copilot που φτάνουν σε Defender, Entra, Intune και Purview, και ένας νέος ρόλος ελάχιστου προνομίου για απόκριση σε περιστατικά στο Entra ID, είναι όλα controls που αντιστοιχίζονται απευθείας σε σχέδια αντιμετώπισης κινδύνου και σε ελέγχους Annex A / ISO 27002 που οι περισσότεροι από εμάς ήδη παρακολουθούμε. Η μοντελοποίηση αυτής της ανανέωσης είναι, ουσιαστικά, μια ευκαιρία να χρηματοδοτήσετε μέρος του οδικού χάρτη ασφάλειάς σας μέσα από την ενοποίηση αδειοδότησης, αντί για ξεχωριστό αίτημα προϋπολογισμού.</p>
+<p>Ακολουθήστε με στο <a href="https://www.linkedin.com/in/dimosthenisatteia/">LinkedIn</a> για ειδοποιήσεις νέων άρθρων, ή εγγραφείτε μέσω RSS στην κορυφή της σελίδας.</p>
+<h2 id="επίσημοι-πόροι-microsoft">Επίσημοι πόροι Microsoft<a hidden class="anchor" aria-hidden="true" href="#επίσημοι-πόροι-microsoft">#</a></h2>
+<ul>
+<li><a href="https://www.microsoft.com/en-us/licensing/news/2026-m365-packaging-pricing-updates">Microsoft 365 Packaging and Pricing Updates</a></li>
+<li><a href="https://www.microsoft.com/en-us/licensing/news/2026-m365-packaging-pricing-updates-faq">Microsoft 365 Packaging and Pricing Updates — Public FAQ</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-365/">Microsoft 365</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-licensing/">Microsoft 365 Licensing</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-office-365/">Microsoft Defender for Office 365</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-intune/">Microsoft Intune</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-security-copilot/">Microsoft Security Copilot</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-entra-id/">Microsoft Entra ID</a></li>
+      <li><a href="http://localhost:1313/tags/zero-trust/">Zero Trust</a></li>
+      <li><a href="http://localhost:1313/tags/passkeys/">Passkeys</a></li>
+      <li><a href="http://localhost:1313/tags/cyber-grc/">Cyber GRC</a></li>
+      <li><a href="http://localhost:1313/tags/it-procurement/">IT Procurement</a></li>
+      <li><a href="http://localhost:1313/tags/nis2/">NIS2</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/welcome/">
+    <span class="title">« Prev</span>
+    <span>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/secure-score-defender-praktikos-odigos/">
+    <span class="title">Next »</span>
+    <span>Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου on x"
+            href="https://x.com/intent/tweet/?text=%ce%91%cf%8d%ce%be%ce%b7%cf%83%ce%b7%20%ce%a4%ce%b9%ce%bc%cf%8e%ce%bd%20Microsoft%20365%202026%3a%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%cf%82%20%ce%a3%cf%84%cf%81%ce%b1%cf%84%ce%b7%ce%b3%ce%b9%ce%ba%ce%ae%cf%82%20%ce%b3%ce%b9%ce%b1%20Security%20Leaders%20%ce%b5%ce%bd%cf%8c%cf%88%ce%b5%ce%b9%20%cf%84%ce%b7%cf%82%201%ce%b7%cf%82%20%ce%99%ce%bf%cf%85%ce%bb%ce%af%ce%bf%cf%85&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-365-price-increase-2026-security-leader-playbook%2f&amp;hashtags=Microsoft365%2cMicrosoft365Licensing%2cMicrosoft365Security%2cMicrosoftDefenderforOffice365%2cMicrosoftIntune%2cMicrosoftSecurityCopilot%2cMicrosoftEntraID%2cZeroTrust%2cPasskeys%2cCyberGRC%2cITProcurement%2cNIS2">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-365-price-increase-2026-security-leader-playbook%2f&amp;title=%ce%91%cf%8d%ce%be%ce%b7%cf%83%ce%b7%20%ce%a4%ce%b9%ce%bc%cf%8e%ce%bd%20Microsoft%20365%202026%3a%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%cf%82%20%ce%a3%cf%84%cf%81%ce%b1%cf%84%ce%b7%ce%b3%ce%b9%ce%ba%ce%ae%cf%82%20%ce%b3%ce%b9%ce%b1%20Security%20Leaders%20%ce%b5%ce%bd%cf%8c%cf%88%ce%b5%ce%b9%20%cf%84%ce%b7%cf%82%201%ce%b7%cf%82%20%ce%99%ce%bf%cf%85%ce%bb%ce%af%ce%bf%cf%85&amp;summary=%ce%91%cf%8d%ce%be%ce%b7%cf%83%ce%b7%20%ce%a4%ce%b9%ce%bc%cf%8e%ce%bd%20Microsoft%20365%202026%3a%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%cf%82%20%ce%a3%cf%84%cf%81%ce%b1%cf%84%ce%b7%ce%b3%ce%b9%ce%ba%ce%ae%cf%82%20%ce%b3%ce%b9%ce%b1%20Security%20Leaders%20%ce%b5%ce%bd%cf%8c%cf%88%ce%b5%ce%b9%20%cf%84%ce%b7%cf%82%201%ce%b7%cf%82%20%ce%99%ce%bf%cf%85%ce%bb%ce%af%ce%bf%cf%85&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-365-price-increase-2026-security-leader-playbook%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-365-price-increase-2026-security-leader-playbook%2f&title=%ce%91%cf%8d%ce%be%ce%b7%cf%83%ce%b7%20%ce%a4%ce%b9%ce%bc%cf%8e%ce%bd%20Microsoft%20365%202026%3a%20%ce%9f%ce%b4%ce%b7%ce%b3%cf%8c%cf%82%20%ce%a3%cf%84%cf%81%ce%b1%cf%84%ce%b7%ce%b3%ce%b9%ce%ba%ce%ae%cf%82%20%ce%b3%ce%b9%ce%b1%20Security%20Leaders%20%ce%b5%ce%bd%cf%8c%cf%88%ce%b5%ce%b9%20%cf%84%ce%b7%cf%82%201%ce%b7%cf%82%20%ce%99%ce%bf%cf%85%ce%bb%ce%af%ce%bf%cf%85">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

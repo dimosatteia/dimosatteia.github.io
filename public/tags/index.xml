@@ -6,8 +6,92 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jul 2026 09:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 09:00:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyber GRC</title>
+      <link>http://localhost:1313/tags/cyber-grc/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/cyber-grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IT Procurement</title>
+      <link>http://localhost:1313/tags/it-procurement/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/it-procurement/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365</title>
+      <link>http://localhost:1313/tags/microsoft-365/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 Licensing</title>
+      <link>http://localhost:1313/tags/microsoft-365-licensing/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-licensing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-security/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Office 365</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Entra ID</title>
+      <link>http://localhost:1313/tags/microsoft-entra-id/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-entra-id/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Intune</title>
+      <link>http://localhost:1313/tags/microsoft-intune/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-intune/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Security Copilot</title>
+      <link>http://localhost:1313/tags/microsoft-security-copilot/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-security-copilot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NIS2</title>
+      <link>http://localhost:1313/tags/nis2/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/nis2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Passkeys</title>
+      <link>http://localhost:1313/tags/passkeys/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/passkeys/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Zero Trust</title>
+      <link>http://localhost:1313/tags/zero-trust/</link>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/zero-trust/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Active Directory</title>
       <link>http://localhost:1313/tags/active-directory/</link>
@@ -44,24 +128,10 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft Entra ID</title>
-      <link>http://localhost:1313/tags/microsoft-entra-id/</link>
-      <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-entra-id/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Advanced Hunting</title>
       <link>http://localhost:1313/tags/advanced-hunting/</link>
       <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/advanced-hunting/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cyber GRC</title>
-      <link>http://localhost:1313/tags/cyber-grc/</link>
-      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/cyber-grc/</guid>
       <description></description>
     </item>
     <item>
@@ -79,20 +149,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365</title>
-      <link>http://localhost:1313/tags/microsoft-365/</link>
-      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft 365 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-security/</link>
-      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Defender for Endpoint</title>
       <link>http://localhost:1313/tags/microsoft-defender-for-endpoint/</link>
       <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
@@ -104,13 +160,6 @@
       <link>http://localhost:1313/tags/microsoft-defender-for-identity/</link>
       <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-for-identity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Office 365</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
-      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
       <description></description>
     </item>
     <item>
@@ -142,24 +191,10 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365 Licensing</title>
-      <link>http://localhost:1313/tags/microsoft-365-licensing/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-licensing/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Defender Suite</title>
       <link>http://localhost:1313/tags/microsoft-defender-suite/</link>
       <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-suite/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>NIS2</title>
-      <link>http://localhost:1313/tags/nis2/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/nis2/</guid>
       <description></description>
     </item>
     <item>
@@ -198,13 +233,6 @@
       <description></description>
     </item>
     <item>
-      <title>Zero Trust</title>
-      <link>http://localhost:1313/tags/zero-trust/</link>
-      <pubDate>Sat, 18 Jul 2026 12:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/zero-trust/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>FIDO2</title>
       <link>http://localhost:1313/tags/fido2/</link>
       <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
@@ -226,13 +254,6 @@
       <description></description>
     </item>
     <item>
-      <title>Passkeys</title>
-      <link>http://localhost:1313/tags/passkeys/</link>
-      <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/passkeys/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Passwordless Authentication</title>
       <link>http://localhost:1313/tags/passwordless-authentication/</link>
       <pubDate>Thu, 16 Jul 2026 10:00:00 +0300</pubDate>
@@ -251,13 +272,6 @@
       <link>http://localhost:1313/tags/ai-security/</link>
       <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/ai-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Intune</title>
-      <link>http://localhost:1313/tags/microsoft-intune/</link>
-      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-intune/</guid>
       <description></description>
     </item>
     <item>
