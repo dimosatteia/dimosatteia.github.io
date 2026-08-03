@@ -6,8 +6,15 @@
     <description>Recent content in NIS2 on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jul 2026 09:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 20:47:10 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/nis2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου</title>
+      <link>http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/</link>
+      <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/</guid>
+      <description>Τι σημαίνει στην πράξη η αύξηση τιμών του Microsoft 365 από 1η Ιουλίου 2026, χωρίς τα ωραία λόγια της Microsoft. Τι όντως άλλαξε ανά πλάνο, πού κρύβεται το πραγματικό κόστος, και τι να κάνεις πριν την ανανέωσή σου.</description>
+    </item>
     <item>
       <title>Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2</title>
       <link>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</link>
@@ -91,13 +98,6 @@
       <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/</guid>
       <description>Enterprise Mobility &#43; Security (EMS) is Microsoft&amp;#39;s identity, management, and protection bundle that predates Microsoft 365 E3/E5 — and it&amp;#39;s still actively sold. A practical walkthrough of EMS E3 ($10.60/user) and EMS E5 ($16.40/user), what&amp;#39;s in each, and when it&amp;#39;s the right purchase instead of (or alongside) Microsoft 365.</description>
-    </item>
-    <item>
-      <title>Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου</title>
-      <link>http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/</link>
-      <pubDate>Thu, 30 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/</guid>
-      <description>Πρακτική ανάλυση από την οπτική ενός CISO για την ενημέρωση τιμολόγησης και πακέτων Microsoft 365 της 1ης Ιουλίου 2026: τι άλλαξε πραγματικά ανά SKU, γιατί οι αυξήσεις δεν είναι ενιαίες, και το ακριβές playbook για να μοντελοποιήσετε την ανανέωσή σας, να καταργήσετε περιττά πρόσθετα, και να διαπραγματευτείτε έχοντας πλήρη εικόνα.</description>
     </item>
     <item>
       <title>Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID</title>
