@@ -6,12 +6,19 @@
     <description>Recent content in Series on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2026 09:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2026 19:39:02 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Defender Deep Dives</title>
+      <link>http://localhost:1313/series/microsoft-defender-deep-dives/</link>
+      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/series/microsoft-defender-deep-dives/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Threat Watch</title>
       <link>http://localhost:1313/series/threat-watch/</link>
-      <pubDate>Mon, 03 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Mon, 03 Aug 2026 19:00:00 +0300</pubDate>
       <guid>http://localhost:1313/series/threat-watch/</guid>
       <description></description>
     </item>

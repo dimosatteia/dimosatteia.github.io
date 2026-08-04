@@ -6,14 +6,14 @@
     <description>Recent content in Automated Investigation and Response on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2026 09:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2026 19:39:02 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/automated-investigation-and-response/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Defender AIR: Πώς το Automated Investigation &amp; Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)</title>
       <link>http://localhost:1313/posts/microsoft-defender-air-automated-investigation-response/</link>
-      <pubDate>Mon, 03 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-air-automated-investigation-response/</guid>
-      <description>Ένας πρακτικός, ανθρώπινος οδηγός για το Automated Investigation &amp;amp; Response (AIR) στο Microsoft Defender: πώς δουλεύει, τι σημαίνουν τα verdicts, ποια είναι τα πέντε automation levels με τη σωστή ορολογία, πώς διαβάζεις τα αποτελέσματα και — κυρίως — τι αλλάζει την 1η Σεπτεμβρίου 2026 όταν το AIR παύει να τρέχει ως ξεχωριστή εμπειρία.</description>
+      <description>Ένας πρακτικός, ανθρώπινος οδηγός για το Automated Investigation &amp;amp; Response (AIR) στο Microsoft Defender: πώς δουλεύει, τι σημαίνουν τα verdicts, ποια είναι τα πέντε automation levels με τη σωστή ορολογία, πώς διαβάζεις τα αποτελέσματα και κυρίως, τι αλλάζει την 1η Σεπτεμβρίου 2026 όταν το AIR παύει να τρέχει ως ξεχωριστή εμπειρία.</description>
     </item>
   </channel>
 </rss>

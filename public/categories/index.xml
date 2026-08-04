@@ -6,26 +6,33 @@
     <description>Recent content in Categories on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2026 09:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2026 19:39:02 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft 365 Security</title>
       <link>http://localhost:1313/categories/microsoft-365-security/</link>
-      <pubDate>Mon, 03 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/categories/microsoft-365-security/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft Defender</title>
       <link>http://localhost:1313/categories/microsoft-defender/</link>
-      <pubDate>Mon, 03 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/categories/microsoft-defender/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SOC Operations</title>
+      <link>http://localhost:1313/categories/soc-operations/</link>
+      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/categories/soc-operations/</guid>
       <description></description>
     </item>
     <item>
       <title>Threat Intelligence</title>
       <link>http://localhost:1313/categories/threat-intelligence/</link>
-      <pubDate>Mon, 03 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Mon, 03 Aug 2026 19:00:00 +0300</pubDate>
       <guid>http://localhost:1313/categories/threat-intelligence/</guid>
       <description></description>
     </item>
