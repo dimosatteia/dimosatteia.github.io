@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2026 19:39:02 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2026 11:10:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</title>
@@ -175,6 +175,13 @@
       <pubDate>Thu, 23 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/</guid>
       <description>Enterprise Mobility &#43; Security (EMS) is Microsoft&amp;#39;s identity, management, and protection bundle that predates Microsoft 365 E3/E5 — and it&amp;#39;s still actively sold. A practical walkthrough of EMS E3 ($10.60/user) and EMS E5 ($16.40/user), what&amp;#39;s in each, and when it&amp;#39;s the right purchase instead of (or alongside) Microsoft 365.</description>
+    </item>
+    <item>
+      <title>Test</title>
+      <link>http://localhost:1313/posts/new-features/test/</link>
+      <pubDate>Tue, 04 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/test/</guid>
+      <description>Test</description>
     </item>
     <item>
       <title>Preview: AD Group Enforcement στο Entra Cloud Sync</title>

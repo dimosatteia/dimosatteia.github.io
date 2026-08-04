@@ -14,6 +14,20 @@
 {{- end }}
 
 {{- /* Preview Section */ -}}
+{{- $previewPage := site.GetPage "/releases/new-features" }}
+{{- if $previewPage }}
+<h2>🆕 New Features ({{ len $previewPage.Pages }})</h2>
+<ul class="terms-tags">
+  {{- range $previewPage.Pages }}
+  <li>
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+    <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
+  </li>
+  {{- end }}
+</ul>
+{{- end }}
+
+{{- /* Preview Section */ -}}
 {{- $previewPage := site.GetPage "/releases/preview" }}
 {{- if $previewPage }}
 <h2>🚧 Preview Features ({{ len $previewPage.Pages }})</h2>

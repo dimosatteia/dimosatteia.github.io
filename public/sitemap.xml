@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
         <loc>http://localhost:1313/posts/welcome/</loc><lastmod>2026-05-23T16:32:25Z</lastmod></url><url>
-        <loc>http://localhost:1313/posts/microsoft-defender-air-automated-investigation-response/</loc><lastmod>2026-08-03T16:39:02Z</lastmod></url><url>
-        <loc>http://localhost:1313/posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/</loc><lastmod>2026-08-03T16:39:02Z</lastmod></url><url>
+        <loc>http://localhost:1313/posts/microsoft-defender-air-automated-investigation-response/</loc><lastmod>2026-08-04T06:09:36Z</lastmod></url><url>
+        <loc>http://localhost:1313/posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/</loc><lastmod>2026-08-04T06:09:36Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-365-price-increase-2026-security-leader-playbook/</loc><lastmod>2026-07-30T17:47:10Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/secure-score-defender-praktikos-odigos/</loc><lastmod>2026-07-14T09:14:43Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/secure-score-grc-part-0-intro/</loc><lastmod>2026-05-23T16:22:33Z</lastmod></url><url>
@@ -23,6 +23,7 @@
         <loc>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</loc><lastmod>2026-07-27T08:40:40Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
+        <loc>http://localhost:1313/posts/new-features/test/</loc><lastmod>2026-08-04T08:10:00Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/previews/ad-group-enforcement-cloud-sync/</loc><lastmod>2026-07-29T09:13:13Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-entra-architecture-guide-defender/</loc><lastmod>2026-07-26T18:54:44Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/passkeys-by-default-telos-sms-voice-mfa/</loc><lastmod>2026-07-16T07:50:56Z</lastmod></url><url>

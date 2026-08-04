@@ -33,7 +33,7 @@ ShowRssButtonInSectionTermList: true
 Microsoft 365 features roll out in multiple phases, and understanding where a feature sits in its lifecycle is critical for making informed deployment decisions in enterprise environments.
 
 <details>
-<summary><h2 style="display:inline">🆕 New Feature (Announced / In Development)</h2></summary>
+<summary><h2 style="display:inline">🆕 New Features (Announced / In Development)</h2></summary>
 
 Features that have been **announced on the Microsoft 365 Roadmap** but are **not yet available** for testing or use in any tenant.
 
