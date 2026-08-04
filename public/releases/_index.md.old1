@@ -1,9 +1,9 @@
 ---
 title: "Release Status"
-description: "Track Microsoft 365 Security features by their release stage: New Feature vs Preview vs Generally Available"
+description: "Track Microsoft 365 Security features by their release stage: Preview vs Generally Available"
 summary: "Understanding the difference between Preview and Generally Available features helps security architects make informed deployment decisions in enterprise environments."
 date: 2026-05-22T11:00:00+03:00
-lastmod: 2026-08-04T11:00:00+03:00
+lastmod: 2026-08-04T10:50:00+03:00
 draft: false
 tags:
   - "Microsoft 365"
@@ -32,8 +32,7 @@ ShowRssButtonInSectionTermList: true
 
 Microsoft 365 features roll out in multiple phases, and understanding where a feature sits in its lifecycle is critical for making informed deployment decisions in enterprise environments.
 
-<details>
-<summary><h2 style="display:inline">🆕 New Feature (Announced / In Development)</h2></summary>
+## 🆕 New Feature (Announced / In Development)
 
 Features that have been **announced on the Microsoft 365 Roadmap** but are **not yet available** for testing or use in any tenant.
 
@@ -48,10 +47,7 @@ Features that have been **announced on the Microsoft 365 Roadmap** but are **not
 - **Useful for:** early risk and licensing forecasting, vendor-management conversations, and flagging upcoming changes to stakeholders
 - Track via the **Microsoft 365 Roadmap ID** for change-management traceability once the feature is announced
 
-</details>
-
-<details>
-<summary><h2 style="display:inline">🚧 Preview (Public Preview)</h2></summary>
+## 🚧 Preview (Public Preview)
 
 Features that are **available for testing** but **not recommended for production** environments.
 
@@ -69,10 +65,7 @@ Features that are **available for testing** but **not recommended for production
 - **Not suitable for compliance-regulated workloads** or production environments
 - May require separate tenant or opt-in enrollment
 
-</details>
-
-<details>
-<summary><h2 style="display:inline">✅ Generally Available (GA)</h2></summary>
+## ✅ Generally Available (GA)
 
 Features that are **production-ready** and officially supported by Microsoft with full SLA coverage.
 
@@ -89,8 +82,6 @@ Features that are **production-ready** and officially supported by Microsoft wit
 - Stable feature set with predictable update cadence
 - Integration points are documented and supported
 - **Included in standard licensing** (unless specified as premium add-on)
-
-</details>
 
 ## Additional Release Stages You May Encounter
 

@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Release Status</title>
 <meta name="keywords" content="Microsoft 365 Preview, Generally Available, GA features, Public Preview, Production deployment, Security feature lifecycle, Microsoft 365 roadmap">
-<meta name="description" content="Track Microsoft 365 Security features by their release stage: Preview vs Generally Available">
+<meta name="description" content="Track Microsoft 365 Security features by their release stage: New Feature vs Preview vs Generally Available">
 <meta name="author" content="Dimosthenis Atteia">
 <link rel="canonical" href="http://localhost:1313/releases/">
 <link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
@@ -76,13 +76,13 @@
         async src="//gc.zgo.at/count.js"></script><meta property="og:url" content="http://localhost:1313/releases/">
   <meta property="og:site_name" content="Microsoft 365 Security Insights">
   <meta property="og:title" content="Release Status">
-  <meta property="og:description" content="Track Microsoft 365 Security features by their release stage: Preview vs Generally Available">
+  <meta property="og:description" content="Track Microsoft 365 Security features by their release stage: New Feature vs Preview vs Generally Available">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Release Status">
-  <meta name="twitter:description" content="Track Microsoft 365 Security features by their release stage: Preview vs Generally Available">
+  <meta name="twitter:description" content="Track Microsoft 365 Security features by their release stage: New Feature vs Preview vs Generally Available">
 
 </head>
 <body class="list" id="top">
@@ -156,11 +156,12 @@
 
 <header class="page-header">
   <h1>Release Status</h1>
-  <div class="post-description">Track Microsoft 365 Security features by their release stage: Preview vs Generally Available</div>
+  <div class="post-description">Track Microsoft 365 Security features by their release stage: New Feature vs Preview vs Generally Available</div>
 </header>
 <div class="post-content">
   <p>Microsoft 365 features roll out in multiple phases, and understanding where a feature sits in its lifecycle is critical for making informed deployment decisions in enterprise environments.</p>
-<h2 id="-new-feature-announced--in-development">🆕 New Feature (Announced / In Development)</h2>
+<details>
+<summary><h2 style="display:inline">🆕 New Feature (Announced / In Development)</h2></summary>
 <p>Features that have been <strong>announced on the Microsoft 365 Roadmap</strong> but are <strong>not yet available</strong> for testing or use in any tenant.</p>
 <p><strong>Typical roadmap status:</strong></p>
 <ul>
@@ -175,7 +176,9 @@
 <li><strong>Useful for:</strong> early risk and licensing forecasting, vendor-management conversations, and flagging upcoming changes to stakeholders</li>
 <li>Track via the <strong>Microsoft 365 Roadmap ID</strong> for change-management traceability once the feature is announced</li>
 </ul>
-<h2 id="-preview-public-preview">🚧 Preview (Public Preview)</h2>
+</details>
+<details>
+<summary><h2 style="display:inline">🚧 Preview (Public Preview)</h2></summary>
 <p>Features that are <strong>available for testing</strong> but <strong>not recommended for production</strong> environments.</p>
 <p><strong>Ideal for:</strong></p>
 <ul>
@@ -193,7 +196,9 @@
 <li><strong>Not suitable for compliance-regulated workloads</strong> or production environments</li>
 <li>May require separate tenant or opt-in enrollment</li>
 </ul>
-<h2 id="-generally-available-ga">✅ Generally Available (GA)</h2>
+</details>
+<details>
+<summary><h2 style="display:inline">✅ Generally Available (GA)</h2></summary>
 <p>Features that are <strong>production-ready</strong> and officially supported by Microsoft with full SLA coverage.</p>
 <p><strong>Suitable for:</strong></p>
 <ul>
@@ -211,6 +216,7 @@
 <li>Integration points are documented and supported</li>
 <li><strong>Included in standard licensing</strong> (unless specified as premium add-on)</li>
 </ul>
+</details>
 <h2 id="additional-release-stages-you-may-encounter">Additional Release Stages You May Encounter</h2>
 <p>Microsoft also uses these intermediate stages:</p>
 <ul>

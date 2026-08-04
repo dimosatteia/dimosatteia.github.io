@@ -6,20 +6,20 @@
     <description>Recent content in Release Status on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jul 2026 12:13:13 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 21:38:08 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/releases/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Preview</title>
-      <link>http://localhost:1313/releases/preview/</link>
-      <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/releases/preview/</guid>
+      <title>✅ Generally Available</title>
+      <link>http://localhost:1313/releases/generally-available/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/releases/generally-available/</guid>
       <description></description>
     </item>
     <item>
-      <title>Generally-Available</title>
-      <link>http://localhost:1313/releases/generally-available/</link>
-      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/releases/generally-available/</guid>
+      <title>🚧 Preview</title>
+      <link>http://localhost:1313/releases/preview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/releases/preview/</guid>
       <description></description>
     </item>
   </channel>
