@@ -3,7 +3,7 @@ title: "Release Status"
 description: "Track Microsoft 365 Security features by their release stage: Preview vs Generally Available"
 summary: "Understanding the difference between Preview and Generally Available features helps security architects make informed deployment decisions in enterprise environments."
 date: 2026-05-22T11:00:00+03:00
-lastmod: 2026-08-04T00:00:00+03:00
+lastmod: 2026-08-04T10:50:00+03:00
 draft: false
 tags:
   - "Microsoft 365"
