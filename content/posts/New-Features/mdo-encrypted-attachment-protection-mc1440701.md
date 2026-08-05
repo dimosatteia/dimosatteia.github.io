@@ -37,7 +37,7 @@ releases:
   - "new-features"
 ShowToc: true
 TocOpen: false
-weight: 1
+weight: -5
 cover:
   image: "/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png"
   alt: "Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει (MC1440701)"
