@@ -21,12 +21,5 @@
       <guid>http://localhost:1313/posts/generally-available/investigate-ad-domain-defender-identity/</guid>
       <description>Το Microsoft Defender for Identity ενοποιεί πλέον σε ένα σημείο την υγεία, τις πολιτικές ασφαλείας και τα trust relationships ενός Active Directory domain. Δες τι αλλάζει στην καθημερινή investigation.</description>
     </item>
-    <item>
-      <title>Microsoft Defender XDR Cross-Product Integration</title>
-      <link>http://localhost:1313/posts/generally-available/defender-xdr-integration/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/generally-available/defender-xdr-integration/</guid>
-      <description>How Defender XDR correlates signals across Endpoint, Office 365, Identity, and Cloud Apps</description>
-    </item>
   </channel>
 </rss>

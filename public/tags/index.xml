@@ -6,8 +6,85 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2026 11:02:27 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 09:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced Hunting</title>
+      <link>http://localhost:1313/tags/advanced-hunting/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/advanced-hunting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cyber GRC</title>
+      <link>http://localhost:1313/tags/cyber-grc/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/cyber-grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Email Security</title>
+      <link>http://localhost:1313/tags/email-security/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/email-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Exchange Online</title>
+      <link>http://localhost:1313/tags/exchange-online/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/exchange-online/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Message Center</title>
+      <link>http://localhost:1313/tags/message-center/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/message-center/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-security/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Office 365</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender XDR</title>
+      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Phishing Awareness</title>
+      <link>http://localhost:1313/tags/phishing-awareness/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/phishing-awareness/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quarantine</title>
+      <link>http://localhost:1313/tags/quarantine/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/quarantine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Safe Attachments</title>
+      <link>http://localhost:1313/tags/safe-attachments/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/safe-attachments/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Action Center</title>
       <link>http://localhost:1313/tags/action-center/</link>
@@ -37,13 +114,6 @@
       <description></description>
     </item>
     <item>
-      <title>Cyber GRC</title>
-      <link>http://localhost:1313/tags/cyber-grc/</link>
-      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/cyber-grc/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Device Groups</title>
       <link>http://localhost:1313/tags/device-groups/</link>
       <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
@@ -58,13 +128,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-security/</link>
-      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Defender for Business</title>
       <link>http://localhost:1313/tags/microsoft-defender-for-business/</link>
       <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
@@ -76,13 +139,6 @@
       <link>http://localhost:1313/tags/microsoft-defender-for-endpoint/</link>
       <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-for-endpoint/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender XDR</title>
-      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
-      <pubDate>Tue, 04 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
       <description></description>
     </item>
     <item>
@@ -191,13 +247,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft Defender for Office 365</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
-      <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Intune</title>
       <link>http://localhost:1313/tags/microsoft-intune/</link>
       <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
@@ -265,13 +314,6 @@
       <link>http://localhost:1313/tags/identity-governance/</link>
       <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/identity-governance/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Advanced Hunting</title>
-      <link>http://localhost:1313/tags/advanced-hunting/</link>
-      <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/advanced-hunting/</guid>
       <description></description>
     </item>
     <item>
@@ -562,38 +604,10 @@
       <description></description>
     </item>
     <item>
-      <title>Critical Assets</title>
-      <link>http://localhost:1313/tags/critical-assets/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/critical-assets/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>MDE</title>
-      <link>http://localhost:1313/tags/mde/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/mde/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Response Actions</title>
-      <link>http://localhost:1313/tags/response-actions/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/response-actions/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>CISO Guide</title>
       <link>http://localhost:1313/tags/ciso-guide/</link>
       <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/ciso-guide/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Email Security</title>
-      <link>http://localhost:1313/tags/email-security/</link>
-      <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/email-security/</guid>
       <description></description>
     </item>
     <item>
@@ -636,20 +650,6 @@
       <link>http://localhost:1313/tags/xdr-implementation/</link>
       <pubDate>Mon, 18 May 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/xdr-implementation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Defender XDR</title>
-      <link>http://localhost:1313/tags/defender-xdr/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/defender-xdr/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Integration</title>
-      <link>http://localhost:1313/tags/integration/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/integration/</guid>
       <description></description>
     </item>
     <item>
@@ -828,6 +828,13 @@
       <description></description>
     </item>
     <item>
+      <title>Defender XDR</title>
+      <link>http://localhost:1313/tags/defender-xdr/</link>
+      <pubDate>Wed, 22 Apr 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/defender-xdr/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Licensing</title>
       <link>http://localhost:1313/tags/licensing/</link>
       <pubDate>Wed, 22 Apr 2026 11:00:00 +0300</pubDate>
@@ -881,13 +888,6 @@
       <link>http://localhost:1313/tags/welcome/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/welcome/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1313/tags/test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/test/</guid>
       <description></description>
     </item>
   </channel>

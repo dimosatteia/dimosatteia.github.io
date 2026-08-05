@@ -6,8 +6,15 @@
     <description>Recent content in Series on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2026 09:09:36 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 09:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Message Center Decoded</title>
+      <link>http://localhost:1313/series/message-center-decoded/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/series/message-center-decoded/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Microsoft Defender Deep Dives</title>
       <link>http://localhost:1313/series/microsoft-defender-deep-dives/</link>
@@ -51,20 +58,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft Defender for Endpoint</title>
-      <link>http://localhost:1313/series/microsoft-defender-for-endpoint/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/series/microsoft-defender-for-endpoint/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender XDR</title>
-      <link>http://localhost:1313/series/microsoft-defender-xdr/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/series/microsoft-defender-xdr/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Defender Vulnerability Management</title>
       <link>http://localhost:1313/series/microsoft-defender-vulnerability-management/</link>
       <pubDate>Tue, 05 May 2026 07:00:00 +0300</pubDate>
@@ -97,13 +90,6 @@
       <link>http://localhost:1313/series/security-copilot-in-production/</link>
       <pubDate>Wed, 22 Apr 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/series/security-copilot-in-production/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1313/series/test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/series/test/</guid>
       <description></description>
     </item>
   </channel>

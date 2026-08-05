@@ -21,12 +21,5 @@
       <guid>http://localhost:1313/posts/previews/vulnerability-remediation-agent-intune/</guid>
       <description>Ο Vulnerability Remediation Agent φέρνει το Security Copilot μέσα στο Intune, εντοπίζοντας και ιεραρχώντας CVEs στα managed devices με βήμα-βήμα οδηγίες αποκατάστασης. Διαθέσιμος σε Public Preview.</description>
     </item>
-    <item>
-      <title>Selective Response Actions on Critical Assets in Microsoft Defender for Endpoint</title>
-      <link>http://localhost:1313/posts/previews/selective-response-actions/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/previews/selective-response-actions/</guid>
-      <description>How to restrict response actions on high-value assets to prevent operational disruption while maintaining security capabilities</description>
-    </item>
   </channel>
 </rss>

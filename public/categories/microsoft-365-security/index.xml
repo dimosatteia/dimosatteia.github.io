@@ -6,7 +6,7 @@
     <description>Recent content in Microsoft 365 Security on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2026 09:09:36 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 09:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/microsoft-365-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Defender AIR: Πώς το Automated Investigation &amp; Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)</title>
@@ -21,6 +21,13 @@
       <pubDate>Mon, 03 Aug 2026 19:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/</guid>
       <description>Η Microsoft αποκάλυψε την επιχείρηση CaptiveCrunch: μια ρωσική ομάδα κατασκοπείας που χτυπά ταξιδιώτες μέσα από το Wi-Fi ξενοδοχείων και συνεδρίων, ρίχνοντας malware και κλέβοντας credentials και Microsoft 365 tokens. Εξηγώ με απλά λόγια τι συμβαίνει, πώς δουλεύει η επίθεση, ποια εργαλεία χρησιμοποιούν και τι να κάνεις για να προστατέψεις εσένα και την ομάδα σου.</description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)</title>
+      <link>http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/</guid>
+      <description>Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.</description>
     </item>
     <item>
       <title>Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)</title>

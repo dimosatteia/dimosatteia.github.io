@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)</title>
+<meta name="keywords" content="mc1440701, mdo encrypted attachment protection, safe attachments password protected, quarantine password protected attachments defender, microsoft defender for office 365 encrypted attachments, κρυπτογραφημένα συνημμένα defender, safe attachments policy opt-in, αποδέσμευση quarantine με password, defender for office 365 νέα δυνατότητα, IsPasswordProtectedItem advanced hunting, password protected attachment scanning, safe attachments detonation sandbox">
+<meta name="description" content="Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx5s18mpi4");
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)\"",
+  "description": "\"Νέα opt-in δυνατότητα στο Microsoft Defender for Office 365 (MC1440701): quarantine για μηνύματα με password-protected συνημμένα που δεν σαρώνονται. Δες πώς δουλεύει βήμα-βήμα, ποιοι είναι οι δύο δρόμοι αποδέσμευσης (χρήστης με password / admin χωρίς), γιατί η όλη ιστορία είναι και ρίσκο phishing, το χρονοδιάγραμμα διάθεσης και μια πρακτική λίστα ενεργειών με έτοιμο Advanced Hunting query.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-08-05T09:00:00+03:00\"",
+  "dateModified": "\"2026-08-05T09:30:00+03:00\"",
+  "image": "\"http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png\"",
+  "url": "\"http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/\"",
+  "wordCount":  1256 ,
+  "keywords": "\"Microsoft Defender for Office 365, Safe Attachments, Quarantine, Exchange Online, Email Security, Microsoft Defender XDR, Advanced Hunting, Message Center, Phishing Awareness, Microsoft 365 Security, Cyber GRC\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/\""
+  }
+}
+</script><meta property="og:url" content="http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)">
+  <meta property="og:description" content="Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-05T09:00:00+03:00">
+    <meta property="article:modified_time" content="2026-08-05T09:30:00+03:00">
+    <meta property="article:tag" content="Microsoft Defender for Office 365">
+    <meta property="article:tag" content="Safe Attachments">
+    <meta property="article:tag" content="Quarantine">
+    <meta property="article:tag" content="Exchange Online">
+    <meta property="article:tag" content="Email Security">
+    <meta property="article:tag" content="Microsoft Defender XDR">
+    <meta property="og:image" content="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png">
+  <meta name="twitter:title" content="Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)">
+  <meta name="twitter:description" content="Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)",
+      "item": "http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)",
+  "name": "Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)",
+  "description": "Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.",
+  "keywords": [
+    "mc1440701", "mdo encrypted attachment protection", "safe attachments password protected", "quarantine password protected attachments defender", "microsoft defender for office 365 encrypted attachments", "κρυπτογραφημένα συνημμένα defender", "safe attachments policy opt-in", "αποδέσμευση quarantine με password", "defender for office 365 νέα δυνατότητα", "IsPasswordProtectedItem advanced hunting", "password protected attachment scanning", "safe attachments detonation sandbox"
+  ],
+  "articleBody": "Το τυφλό σημείο που όλοι ξέραμε αλλά κάναμε πως δεν βλέπαμε Ας πούμε την αλήθεια μεταξύ μας. Όλοι έχουμε στείλει ή λάβει ένα ZIP με κωδικό, ένα «κλειδωμένο» PDF, ένα password-protected αρχείο του Office. Το κάνουμε γιατί νομίζουμε ότι είναι πιο ασφαλές και σε επίπεδο confidentiality, ναι, είναι. Το πρόβλημα είναι ότι αυτό που κρύβει το περιεχόμενο από τα αδιάκριτα μάτια, το κρύβει και από τον scanner ασφάλειας.\nΌταν φτάνει ένα κρυπτογραφημένο συνημμένο στο mailbox και το Microsoft Defender for Office 365 (MDO) δεν έχει τον κωδικό, δεν μπορεί να το «ανοίξει» για να το σαρώσει ή να το εκτελέσει ελεγχόμενα (detonation) στο sandbox. Αποτέλεσμα; Το malware μπορεί να ταξιδεύει μέσα σε ένα «κουτί» που κανείς δεν άνοιξε, μέχρι να το ανοίξει ο χρήστης, στο δικό του μηχάνημα, με τον κωδικό που του έδωσε ευγενικά ο επιτιθέμενος στο ίδιο email.\nΜε το MC1440701, η Microsoft κλείνει αυτό ακριβώς το κενό. Και επειδή Ελληνικό, κατανοητό υλικό πάνω στα Message Center posts δεν βρίσκεις εύκολα, ας το δούμε μαζί, απλά, χωρίς να χρειάζεται να είσαι ήδη ειδικός στο MDO.\n📷 Εικόνα 1: Ό,τι δεν μπορεί να ελεγχθεί, δεν παραδίδεται στα τυφλά. Αυτή είναι όλη η ιδέα.\nΤι ανακοίνωσε η Microsoft, σε δύο γραμμές Το MDO αποκτά μια νέα, προαιρετική (opt-in) ρύθμιση στις πολιτικές Safe Attachments. Όταν την ενεργοποιήσεις, κάθε μήνυμα που φέρει password-protected συνημμένο το οποίο δεν μπόρεσε να σαρωθεί ή να γίνει detonation, μπαίνει αυτόματα σε quarantine αντί να παραδοθεί.\nΔύο λέξεις-κλειδιά για να μην παρεξηγηθεί: opt-in και off by default. Δεν θα ξυπνήσεις ένα πρωί με μπλοκαρισμένα emails. Τίποτα δεν αλλάζει αν εσύ δεν το ενεργοποιήσεις συνειδητά. Είναι εργαλείο που σου δίνει η Microsoft, όχι απόφαση που παίρνει για σένα.\nΠώς λειτουργεί, βήμα-βήμα Για να καταλάβεις πού «κουμπώνει» η νέα ρύθμιση, ας δούμε τη διαδρομή ενός τέτοιου μηνύματος.\n📷 Εικόνα 2: Το κρίσιμο σημείο είναι το τρίτο βήμα, εκεί που χωρίς password, η ανάλυση μένει μισή.\nΈρχεται ένα email με κρυπτογραφημένο συνημμένο. Το Safe Attachments προσπαθεί, όπως πάντα, να το σαρώσει και να το εκτελέσει ελεγχόμενα σε απομονωμένο περιβάλλον για να δει τι κάνει. Αν το αρχείο είναι κλειδωμένο και ο κωδικός δεν είναι διαθέσιμος, η ανάλυση δεν ολοκληρώνεται, το MDO ουσιαστικά «τυφλώνεται». Εδώ μπαίνει η νέα λογική: αντί να παραδοθεί ένα μήνυμα που δεν ελέγχθηκε ποτέ, αυτό μπαίνει σε quarantine (εφόσον έχεις ενεργοποιήσει τη ρύθμιση). Και από εκεί, ακολουθεί μια ελεγχόμενη αποδέσμευση, που είναι και το πιο ενδιαφέρον κομμάτι.\nΗ προστασία καλύπτει τους τύπους αρχείων που συναντάς στην πράξη: ZIP, GZIP, 7z, RAR, PDF και τα Microsoft Office formats. Αν για κάποιον επιχειρησιακό λόγο θέλεις να εξαιρέσεις συγκεκριμένες κατηγορίες, μπορείς μιας και η ρύθμιση δεν είναι «όλα ή τίποτα».\nΟι δύο δρόμοι για την αποδέσμευση Εδώ η Microsoft έκανε κάτι έξυπνο: δεν κλειδώνει το μήνυμα και «καλή τύχη». Δίνει δύο μονοπάτια, ανάλογα με το ποιος χειρίζεται την υπόθεση.\n📷 Εικόνα 3: Ο χρήστης ξεκλειδώνει με τον κωδικό του αρχείου ο admin αποδεσμεύει χωρίς αυτόν. Δύο ρόλοι, δύο διαφορετικές ανάγκες.\nΟ χρήστης μπορεί να κάνει self-release ενός επιλέξιμου μηνύματος δίνοντας τον κωδικό του συνημμένου. Και προσοχή στη λεπτομέρεια που δείχνει ότι το πράγμα είναι καλοσχεδιασμένο: πριν αποδεσμευτεί το μήνυμα, γίνεται just-in-time detonation, δηλαδή τώρα πια που υπάρχει ο κωδικός, το MDO ανοίγει και ελέγχει το αρχείο πριν φτάσει στα χέρια του χρήστη. Δεν αποδεσμεύεται στα τυφλά αποδεσμεύεται αφού ελεγχθεί.\nΟ admin / SecOps από την άλλη, μπορεί να αποδεσμεύσει ένα μήνυμα χωρίς να χρειάζεται τον κωδικό του συνημμένου, κάτι λογικό, γιατί ο διαχειριστής διαχειρίζεται τη ροή, δεν είναι πάντα ο παραλήπτης. Η διαχείριση γίνεται από το Quarantine, και ο εντοπισμός των επηρεαζόμενων μηνυμάτων μέσα από Advanced Hunting (θα δούμε το query παρακάτω).\nΟ κίνδυνος που κρύβεται πίσω από ένα «καλό» feature Εδώ βάζω το καπέλο του CISO, γιατί κάθε νέα δυνατότητα φέρνει και μια νέα συνήθεια και οι συνήθειες είναι ό,τι αγαπούν οι επιτιθέμενοι.\nΣκέψου τι εκπαιδεύεις τον χρήστη να κάνει: «όταν δεις ένα μπλοκαρισμένο email με κλειδωμένο αρχείο, βάλε έναν κωδικό για να το ξεκλειδώσεις». Αυτό, αν δεν το πλαισιώσεις σωστά, είναι ακριβώς το μοτίβο που χρησιμοποιεί το phishing, «βάλε τον κωδικό σου εδώ για να δεις το μήνυμα». Η ίδια η Microsoft το προβλέπει και βάζει ρητές προειδοποιήσεις. Πέρασέ τες στην ομάδα σου σαν κανόνα, όχι σαν υποσημείωση.\n📷 Εικόνα 4: Ο χρυσός κανόνας: ο μόνος κωδικός που μπαίνει ποτέ εκεί είναι ο κωδικός του ίδιου του αρχείου και τίποτε άλλο.\nΜε απλά λόγια, το μήνυμα προς τους χρήστες είναι: βάζεις μόνο τον κωδικό του συγκεκριμένου συνημμένου, ποτέ κωδικό λογαριασμού, e-banking ή οποιονδήποτε άσχετο κωδικό. Αποδεσμεύεις μόνο μηνύματα που περίμενες, από αποστολείς που αναγνωρίζεις. Και οτιδήποτε προστατευμένο έρχεται απρόσμενα, δεν το «ξεκλειδώνεις από περιέργεια», το κλιμακώνεις στο SecOps. Αυτές οι τρεις προτάσεις, αν τις κάνεις κουλτούρα, μετατρέπουν ένα πιθανό attack surface σε πλεονέκτημα.\nΠότε το βλέπεις στο tenant σου Το rollout ξεκινά τον Αύγουστο 2026 και απλώνεται ανά cloud environment.\n📷 Εικόνα 5: Worldwide πρώτα μέσα στον Αύγουστο τα κυβερνητικά clouds ακολουθούν μέχρι το φθινόπωρο.\nΣε Worldwide tenants η διάθεση γίνεται από τις αρχές έως τα τέλη Αυγούστου 2026. Το GCC ακολουθεί από τα τέλη Αυγούστου έως τα τέλη Σεπτεμβρίου, ενώ GCC High και DoD εκτείνονται από τα τέλη Αυγούστου έως τα τέλη Οκτωβρίου 2026. Οι ημερομηνίες είναι, ως συνήθως, ενδεικτικές, αλλά σου δίνουν καθαρή εικόνα του πότε να είσαι έτοιμος.\nΤι να κάνεις τώρα, πρακτικά Καμία ενέργεια δεν είναι υποχρεωτική, αφού το feature είναι opt-in. Αλλά αν θέλεις να το αξιοποιήσεις σωστά (και θα έλεγα ότι αξίζει), να τα βήματα με τη σειρά που θα τα έκανα εγώ:\nΠρώτα, δες τις υπάρχουσες πολιτικές Safe Attachments σου και σκέψου πού ταιριάζει η νέα ρύθμιση. Μετά, μην την ανοίξεις καθολικά από την πρώτη μέρα, κάνε pilot με μια ξεχωριστή, scoped πολιτική σε μια μικρή ομάδα, για να δεις πραγματικό όγκο και false positives πριν την επεκτείνεις. Παράλληλα, ξαναδές τις διαδικασίες αποδέσμευσης από το quarantine (ποιος εγκρίνει, σε πόση ώρα, με ποιο SLA) και ενημέρωσε το helpdesk, γιατί τα πρώτα tickets «γιατί κόλλησε το email μου;» θα έρθουν εκεί. Τέλος και ίσως το πιο σημαντικό, εκπαίδευσε τους χρήστες στον κανόνα της Εικόνας 4.\nΓια την ομάδα SecOps, η Microsoft δίνει έτοιμο τον τρόπο να εντοπίσεις τα επηρεαζόμενα μηνύματα μέσα από Advanced Hunting:\nEmailAttachmentInfo | where AdditionalFields contains \"IsPasswordProtectedItem\" Τρέξε το πρώτα σε audit mode λογική, δηλαδή δες πόσα και τι είδους password-protected συνημμένα κυκλοφορούν ήδη στον οργανισμό σου πριν ενεργοποιήσεις το quarantine. Έτσι ξέρεις εκ των προτέρων το μέγεθος του κύματος και ποιες ροές εργασίας (π.χ. λογιστήριο, νομικό, προμηθευτές) θα το «νιώσουν» περισσότερο.\nΗ GRC ματιά: γιατί αυτό είναι περισσότερο από ένα toggle Θα κλείσω με τη διάσταση που συχνά ξεχνιέται. Αυτή η δυνατότητα δεν είναι απλώς μια τεχνική ρύθμιση, είναι ένα control που μπορείς να το γράψεις, να το τεκμηριώσεις και να το αποδείξεις. Σε ένα πλαίσιο όπως το NIS2 ή ένα ISMS κατά ISO 27001, το «τι κάνουμε με περιεχόμενο που δεν μπορεί να ελεγχθεί» είναι ακριβώς το είδος της απόφασης διαχείρισης κινδύνου που θέλει να δει ένας auditor τεκμηριωμένη: ποιος αποφάσισε την ενεργοποίηση, με ποια αιτιολογία, ποια είναι η διαδικασία αποδέσμευσης, πώς εκπαιδεύτηκαν οι χρήστες, πώς παρακολουθείται.\nΜε άλλα λόγια, το opt-in δεν είναι μόνο τεχνική επιλογή είναι ευκαιρία να δείξεις ώριμη διακυβέρνηση. Και αυτό, στο τέλος της ημέρας, είναι που ξεχωρίζει έναν οργανισμό που «έχει εργαλεία» από έναν που «τα χρησιμοποιεί σωστά».\nΠηγές MC1440701 — MDO Encrypted email attachment protection (Message Center Archive) Safe Attachments in Microsoft Defender for Office 365 — Microsoft Learn Set up Safe Attachments policies — Microsoft Learn Manage quarantined messages and files as an admin — Microsoft Learn Microsoft Defender for Office 365 overview — Microsoft Learn ",
+  "wordCount" : "1256",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png","datePublished": "2026-08-05T09:00:00+03:00",
+  "dateModified": "2026-08-05T09:30:00+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/releases/" title="Release Status">
+                    <span>Release Status</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)
+    </h1>
+    <div class="post-description">
+      Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-08-05 09:00:00 +0300 EEST'>August 5, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/dimosatteia.github.io/edit/main/content/posts/New-Features/mdo-encrypted-attachment-protection-mc1440701.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png" alt="Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει (MC1440701)">
+        <figcaption>MDO — Encrypted Attachment Protection: MC1440701</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#το-τυφλό-σημείο-που-όλοι-ξέραμε-αλλά-κάναμε-πως-δεν-βλέπαμε">Το τυφλό σημείο που όλοι ξέραμε αλλά κάναμε πως δεν βλέπαμε</a></li>
+    <li><a href="#τι-ανακοίνωσε-η-microsoft-σε-δύο-γραμμές">Τι ανακοίνωσε η Microsoft, σε δύο γραμμές</a></li>
+    <li><a href="#πώς-λειτουργεί-βήμα-βήμα">Πώς λειτουργεί, βήμα-βήμα</a></li>
+    <li><a href="#οι-δύο-δρόμοι-για-την-αποδέσμευση">Οι δύο δρόμοι για την αποδέσμευση</a></li>
+    <li><a href="#ο-κίνδυνος-που-κρύβεται-πίσω-από-ένα-καλό-feature">Ο κίνδυνος που κρύβεται πίσω από ένα «καλό» feature</a></li>
+    <li><a href="#πότε-το-βλέπεις-στο-tenant-σου">Πότε το βλέπεις στο tenant σου</a></li>
+    <li><a href="#τι-να-κάνεις-τώρα-πρακτικά">Τι να κάνεις τώρα, πρακτικά</a></li>
+    <li><a href="#η-grc-ματιά-γιατί-αυτό-είναι-περισσότερο-από-ένα-toggle">Η GRC ματιά: γιατί αυτό είναι περισσότερο από ένα toggle</a></li>
+    <li><a href="#πηγές">Πηγές</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="το-τυφλό-σημείο-που-όλοι-ξέραμε-αλλά-κάναμε-πως-δεν-βλέπαμε">Το τυφλό σημείο που όλοι ξέραμε αλλά κάναμε πως δεν βλέπαμε<a hidden class="anchor" aria-hidden="true" href="#το-τυφλό-σημείο-που-όλοι-ξέραμε-αλλά-κάναμε-πως-δεν-βλέπαμε">#</a></h2>
+<p>Ας πούμε την αλήθεια μεταξύ μας. Όλοι έχουμε στείλει ή λάβει ένα ZIP με κωδικό, ένα «κλειδωμένο» PDF, ένα password-protected αρχείο του Office. Το κάνουμε γιατί νομίζουμε ότι είναι πιο ασφαλές και σε επίπεδο confidentiality, ναι, είναι. Το πρόβλημα είναι ότι αυτό που κρύβει το περιεχόμενο από τα αδιάκριτα μάτια, το κρύβει και από τον <strong>scanner ασφάλειας</strong>.</p>
+<p>Όταν φτάνει ένα κρυπτογραφημένο συνημμένο στο mailbox και το <strong>Microsoft Defender for Office 365 (MDO)</strong> δεν έχει τον κωδικό, δεν μπορεί να το «ανοίξει» για να το σαρώσει ή να το εκτελέσει ελεγχόμενα (detonation) στο sandbox. Αποτέλεσμα; Το malware μπορεί να ταξιδεύει μέσα σε ένα «κουτί» που κανείς δεν άνοιξε, μέχρι να το ανοίξει ο χρήστης, στο δικό του μηχάνημα, με τον κωδικό που του έδωσε ευγενικά ο επιτιθέμενος στο ίδιο email.</p>
+<p>Με το <strong>MC1440701</strong>, η Microsoft κλείνει αυτό ακριβώς το κενό. Και επειδή Ελληνικό, κατανοητό υλικό πάνω στα Message Center posts δεν βρίσκεις εύκολα, ας το δούμε μαζί, απλά, χωρίς να χρειάζεται να είσαι ήδη ειδικός στο MDO.</p>
+<p><img alt="Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png"></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 1: Ό,τι δεν μπορεί να ελεγχθεί, δεν παραδίδεται στα τυφλά. Αυτή είναι όλη η ιδέα.</strong></p>
+</blockquote>
+<h2 id="τι-ανακοίνωσε-η-microsoft-σε-δύο-γραμμές">Τι ανακοίνωσε η Microsoft, σε δύο γραμμές<a hidden class="anchor" aria-hidden="true" href="#τι-ανακοίνωσε-η-microsoft-σε-δύο-γραμμές">#</a></h2>
+<p>Το MDO αποκτά μια <strong>νέα, προαιρετική (opt-in) ρύθμιση</strong> στις πολιτικές <strong>Safe Attachments</strong>. Όταν την ενεργοποιήσεις, κάθε μήνυμα που φέρει password-protected συνημμένο το οποίο <strong>δεν μπόρεσε να σαρωθεί ή να γίνει detonation</strong>, μπαίνει αυτόματα σε <strong>quarantine</strong> αντί να παραδοθεί.</p>
+<p>Δύο λέξεις-κλειδιά για να μην παρεξηγηθεί: <strong>opt-in</strong> και <strong>off by default</strong>. Δεν θα ξυπνήσεις ένα πρωί με μπλοκαρισμένα emails. Τίποτα δεν αλλάζει αν εσύ δεν το ενεργοποιήσεις συνειδητά. Είναι εργαλείο που σου δίνει η Microsoft, όχι απόφαση που παίρνει για σένα.</p>
+<h2 id="πώς-λειτουργεί-βήμα-βήμα">Πώς λειτουργεί, βήμα-βήμα<a hidden class="anchor" aria-hidden="true" href="#πώς-λειτουργεί-βήμα-βήμα">#</a></h2>
+<p>Για να καταλάβεις πού «κουμπώνει» η νέα ρύθμιση, ας δούμε τη διαδρομή ενός τέτοιου μηνύματος.</p>
+<p><img alt="Πώς λειτουργεί η προστασία κρυπτογραφημένων συνημμένων στο MDO, από το εισερχόμενο email μέχρι την ελεγχόμενη αποδέσμευση" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.png"></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 2: Το κρίσιμο σημείο είναι το τρίτο βήμα, εκεί που χωρίς password, η ανάλυση μένει μισή.</strong></p>
+</blockquote>
+<p>Έρχεται ένα <strong>email με κρυπτογραφημένο συνημμένο</strong>. Το <strong>Safe Attachments</strong> προσπαθεί, όπως πάντα, να το σαρώσει και να το εκτελέσει ελεγχόμενα σε απομονωμένο περιβάλλον για να δει τι κάνει. Αν το αρχείο είναι κλειδωμένο και ο κωδικός δεν είναι διαθέσιμος, η <strong>ανάλυση δεν ολοκληρώνεται</strong>, το MDO ουσιαστικά «τυφλώνεται». Εδώ μπαίνει η νέα λογική: αντί να παραδοθεί ένα μήνυμα που δεν ελέγχθηκε ποτέ, αυτό μπαίνει σε <strong>quarantine</strong> (εφόσον έχεις ενεργοποιήσει τη ρύθμιση). Και από εκεί, ακολουθεί μια <strong>ελεγχόμενη αποδέσμευση</strong>, που είναι και το πιο ενδιαφέρον κομμάτι.</p>
+<p>Η προστασία καλύπτει τους τύπους αρχείων που συναντάς στην πράξη: <strong>ZIP, GZIP, 7z, RAR, PDF</strong> και τα <strong>Microsoft Office</strong> formats. Αν για κάποιον επιχειρησιακό λόγο θέλεις να εξαιρέσεις συγκεκριμένες κατηγορίες, μπορείς μιας και η ρύθμιση δεν είναι «όλα ή τίποτα».</p>
+<h2 id="οι-δύο-δρόμοι-για-την-αποδέσμευση">Οι δύο δρόμοι για την αποδέσμευση<a hidden class="anchor" aria-hidden="true" href="#οι-δύο-δρόμοι-για-την-αποδέσμευση">#</a></h2>
+<p>Εδώ η Microsoft έκανε κάτι έξυπνο: δεν κλειδώνει το μήνυμα και «καλή τύχη». Δίνει δύο μονοπάτια, ανάλογα με το ποιος χειρίζεται την υπόθεση.</p>
+<p><img alt="Οι δύο δρόμοι αποδέσμευσης από την καραντίνα: ο χρήστης με το password του συνημμένου και ο διαχειριστής χωρίς αυτό" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-release-paths.png"></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 3: Ο χρήστης ξεκλειδώνει με τον κωδικό του αρχείου ο admin αποδεσμεύει χωρίς αυτόν. Δύο ρόλοι, δύο διαφορετικές ανάγκες.</strong></p>
+</blockquote>
+<p>Ο <strong>χρήστης</strong> μπορεί να κάνει <strong>self-release</strong> ενός επιλέξιμου μηνύματος δίνοντας τον κωδικό του συνημμένου. Και προσοχή στη λεπτομέρεια που δείχνει ότι το πράγμα είναι καλοσχεδιασμένο: πριν αποδεσμευτεί το μήνυμα, γίνεται <strong>just-in-time detonation</strong>, δηλαδή τώρα πια που υπάρχει ο κωδικός, το MDO ανοίγει και ελέγχει το αρχείο <em>πριν</em> φτάσει στα χέρια του χρήστη. Δεν αποδεσμεύεται στα τυφλά αποδεσμεύεται αφού ελεγχθεί.</p>
+<p>Ο <strong>admin / SecOps</strong> από την άλλη, μπορεί να αποδεσμεύσει ένα μήνυμα <strong>χωρίς</strong> να χρειάζεται τον κωδικό του συνημμένου, κάτι λογικό, γιατί ο διαχειριστής διαχειρίζεται τη ροή, δεν είναι πάντα ο παραλήπτης. Η διαχείριση γίνεται από το <strong>Quarantine</strong>, και ο εντοπισμός των επηρεαζόμενων μηνυμάτων μέσα από <strong>Advanced Hunting</strong> (θα δούμε το query παρακάτω).</p>
+<h2 id="ο-κίνδυνος-που-κρύβεται-πίσω-από-ένα-καλό-feature">Ο κίνδυνος που κρύβεται πίσω από ένα «καλό» feature<a hidden class="anchor" aria-hidden="true" href="#ο-κίνδυνος-που-κρύβεται-πίσω-από-ένα-καλό-feature">#</a></h2>
+<p>Εδώ βάζω το καπέλο του CISO, γιατί κάθε νέα δυνατότητα φέρνει και μια νέα συνήθεια και οι συνήθειες είναι ό,τι αγαπούν οι επιτιθέμενοι.</p>
+<p>Σκέψου τι εκπαιδεύεις τον χρήστη να κάνει: «όταν δεις ένα μπλοκαρισμένο email με κλειδωμένο αρχείο, βάλε έναν κωδικό για να το ξεκλειδώσεις». Αυτό, αν δεν το πλαισιώσεις σωστά, είναι <strong>ακριβώς το μοτίβο που χρησιμοποιεί το phishing</strong>, «βάλε τον κωδικό σου εδώ για να δεις το μήνυμα». Η ίδια η Microsoft το προβλέπει και βάζει ρητές προειδοποιήσεις. Πέρασέ τες στην ομάδα σου σαν κανόνα, όχι σαν υποσημείωση.</p>
+<p><img alt="Οι κανόνες ασφάλειας για τους χρήστες κατά την αποδέσμευση: μόνο ο κωδικός του συνημμένου, ποτέ account ή banking credentials" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-security-dos-donts.png"></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 4: Ο χρυσός κανόνας: ο μόνος κωδικός που μπαίνει ποτέ εκεί είναι ο κωδικός του ίδιου του αρχείου και τίποτε άλλο.</strong></p>
+</blockquote>
+<p>Με απλά λόγια, το μήνυμα προς τους χρήστες είναι: βάζεις <strong>μόνο</strong> τον κωδικό του συγκεκριμένου συνημμένου, <strong>ποτέ</strong> κωδικό λογαριασμού, e-banking ή οποιονδήποτε άσχετο κωδικό. Αποδεσμεύεις <strong>μόνο</strong> μηνύματα που <strong>περίμενες</strong>, από αποστολείς που <strong>αναγνωρίζεις</strong>. Και οτιδήποτε προστατευμένο έρχεται <strong>απρόσμενα</strong>, δεν το «ξεκλειδώνεις από περιέργεια», το <strong>κλιμακώνεις στο SecOps</strong>. Αυτές οι τρεις προτάσεις, αν τις κάνεις κουλτούρα, μετατρέπουν ένα πιθανό attack surface σε πλεονέκτημα.</p>
+<h2 id="πότε-το-βλέπεις-στο-tenant-σου">Πότε το βλέπεις στο tenant σου<a hidden class="anchor" aria-hidden="true" href="#πότε-το-βλέπεις-στο-tenant-σου">#</a></h2>
+<p>Το rollout ξεκινά τον Αύγουστο 2026 και απλώνεται ανά cloud environment.</p>
+<p><img alt="Χρονοδιάγραμμα διάθεσης της δυνατότητας ανά cloud environment, από τον Αύγουστο έως τον Οκτώβριο 2026" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-rollout-timeline.png"></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 5: Worldwide πρώτα μέσα στον Αύγουστο τα κυβερνητικά clouds ακολουθούν μέχρι το φθινόπωρο.</strong></p>
+</blockquote>
+<p>Σε <strong>Worldwide</strong> tenants η διάθεση γίνεται από τις αρχές έως τα τέλη Αυγούστου 2026. Το <strong>GCC</strong> ακολουθεί από τα τέλη Αυγούστου έως τα τέλη Σεπτεμβρίου, ενώ <strong>GCC High</strong> και <strong>DoD</strong> εκτείνονται από τα τέλη Αυγούστου έως τα τέλη Οκτωβρίου 2026. Οι ημερομηνίες είναι, ως συνήθως, ενδεικτικές, αλλά σου δίνουν καθαρή εικόνα του πότε να είσαι έτοιμος.</p>
+<h2 id="τι-να-κάνεις-τώρα-πρακτικά">Τι να κάνεις τώρα, πρακτικά<a hidden class="anchor" aria-hidden="true" href="#τι-να-κάνεις-τώρα-πρακτικά">#</a></h2>
+<p>Καμία ενέργεια δεν είναι υποχρεωτική, αφού το feature είναι opt-in. Αλλά αν θέλεις να το αξιοποιήσεις σωστά (και θα έλεγα ότι αξίζει), να τα βήματα με τη σειρά που θα τα έκανα εγώ:</p>
+<p>Πρώτα, <strong>δες τις υπάρχουσες πολιτικές Safe Attachments</strong> σου και σκέψου πού ταιριάζει η νέα ρύθμιση. Μετά, <strong>μην την ανοίξεις καθολικά από την πρώτη μέρα</strong>, κάνε <strong>pilot</strong> με μια ξεχωριστή, scoped πολιτική σε μια μικρή ομάδα, για να δεις πραγματικό όγκο και false positives πριν την επεκτείνεις. Παράλληλα, <strong>ξαναδές τις διαδικασίες αποδέσμευσης από το quarantine</strong> (ποιος εγκρίνει, σε πόση ώρα, με ποιο SLA) και <strong>ενημέρωσε το helpdesk</strong>, γιατί τα πρώτα tickets «γιατί κόλλησε το email μου;» θα έρθουν εκεί. Τέλος και ίσως το πιο σημαντικό, <strong>εκπαίδευσε τους χρήστες</strong> στον κανόνα της Εικόνας 4.</p>
+<p>Για την ομάδα SecOps, η Microsoft δίνει έτοιμο τον τρόπο να εντοπίσεις τα επηρεαζόμενα μηνύματα μέσα από <strong>Advanced Hunting</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">EmailAttachmentInfo
+</span></span><span class="line"><span class="cl">| where AdditionalFields contains &#34;IsPasswordProtectedItem&#34;
+</span></span></code></pre></div><p>Τρέξε το πρώτα σε <strong>audit mode λογική</strong>, δηλαδή δες πόσα και τι είδους password-protected συνημμένα κυκλοφορούν ήδη στον οργανισμό σου <em>πριν</em> ενεργοποιήσεις το quarantine. Έτσι ξέρεις εκ των προτέρων το μέγεθος του κύματος και ποιες ροές εργασίας (π.χ. λογιστήριο, νομικό, προμηθευτές) θα το «νιώσουν» περισσότερο.</p>
+<h2 id="η-grc-ματιά-γιατί-αυτό-είναι-περισσότερο-από-ένα-toggle">Η GRC ματιά: γιατί αυτό είναι περισσότερο από ένα toggle<a hidden class="anchor" aria-hidden="true" href="#η-grc-ματιά-γιατί-αυτό-είναι-περισσότερο-από-ένα-toggle">#</a></h2>
+<p>Θα κλείσω με τη διάσταση που συχνά ξεχνιέται. Αυτή η δυνατότητα δεν είναι απλώς μια τεχνική ρύθμιση, είναι ένα <strong>control</strong> που μπορείς να το γράψεις, να το τεκμηριώσεις και να το αποδείξεις. Σε ένα πλαίσιο όπως το <strong>NIS2</strong> ή ένα <strong>ISMS κατά ISO 27001</strong>, το «τι κάνουμε με περιεχόμενο που δεν μπορεί να ελεγχθεί» είναι ακριβώς το είδος της απόφασης διαχείρισης κινδύνου που θέλει να δει ένας auditor τεκμηριωμένη: ποιος αποφάσισε την ενεργοποίηση, με ποια αιτιολογία, ποια είναι η διαδικασία αποδέσμευσης, πώς εκπαιδεύτηκαν οι χρήστες, πώς παρακολουθείται.</p>
+<p>Με άλλα λόγια, το opt-in δεν είναι μόνο τεχνική επιλογή είναι ευκαιρία να δείξεις <strong>ώριμη διακυβέρνηση</strong>. Και αυτό, στο τέλος της ημέρας, είναι που ξεχωρίζει έναν οργανισμό που «έχει εργαλεία» από έναν που «τα χρησιμοποιεί σωστά».</p>
+<h2 id="πηγές">Πηγές<a hidden class="anchor" aria-hidden="true" href="#πηγές">#</a></h2>
+<ul>
+<li><a href="https://mc.merill.net/message/MC1440701">MC1440701 — MDO Encrypted email attachment protection (Message Center Archive)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about">Safe Attachments in Microsoft Defender for Office 365 — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-policies-configure">Set up Safe Attachments policies — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/defender-office-365/quarantine-admin-manage-messages-files">Manage quarantined messages and files as an admin — Microsoft Learn</a></li>
+<li><a href="https://learn.microsoft.com/defender-office-365/mdo-about">Microsoft Defender for Office 365 overview — Microsoft Learn</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-defender-for-office-365/">Microsoft Defender for Office 365</a></li>
+      <li><a href="http://localhost:1313/tags/safe-attachments/">Safe Attachments</a></li>
+      <li><a href="http://localhost:1313/tags/quarantine/">Quarantine</a></li>
+      <li><a href="http://localhost:1313/tags/exchange-online/">Exchange Online</a></li>
+      <li><a href="http://localhost:1313/tags/email-security/">Email Security</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-defender-xdr/">Microsoft Defender XDR</a></li>
+      <li><a href="http://localhost:1313/tags/advanced-hunting/">Advanced Hunting</a></li>
+      <li><a href="http://localhost:1313/tags/message-center/">Message Center</a></li>
+      <li><a href="http://localhost:1313/tags/phishing-awareness/">Phishing Awareness</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/cyber-grc/">Cyber GRC</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/secure-score-grc-part-3-operations/">
+    <span class="title">« Prev</span>
+    <span>Microsoft Secure Score Part 3: Daily Operations &amp; ISO 27001</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/">
+    <span class="title">Next »</span>
+    <span>Microsoft Defender Part 1: All Products, Which One Do You Need</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701) on x"
+            href="https://x.com/intent/tweet/?text=Microsoft%20Defender%20for%20Office%20365%3a%20%ce%9d%ce%ad%ce%b1%20%cf%80%cf%81%ce%bf%cf%83%cf%84%ce%b1%cf%83%ce%af%ce%b1%20%ce%b3%ce%b9%ce%b1%20%ce%ba%cf%81%cf%85%cf%80%cf%84%ce%bf%ce%b3%cf%81%ce%b1%cf%86%ce%b7%ce%bc%ce%ad%ce%bd%ce%b1%20%cf%83%cf%85%ce%bd%ce%b7%ce%bc%ce%bc%ce%ad%ce%bd%ce%b1.%20%ce%a4%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%84%ce%bf%ce%bd%20%ce%91%cf%8d%ce%b3%ce%bf%cf%85%cf%83%cf%84%ce%bf%202026%20%28MC1440701%29&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fnew-features%2fmdo-encrypted-attachment-protection-mc1440701%2f&amp;hashtags=MicrosoftDefenderforOffice365%2cSafeAttachments%2cQuarantine%2cExchangeOnline%2cEmailSecurity%2cMicrosoftDefenderXDR%2cAdvancedHunting%2cMessageCenter%2cPhishingAwareness%2cMicrosoft365Security%2cCyberGRC">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701) on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fnew-features%2fmdo-encrypted-attachment-protection-mc1440701%2f&amp;title=Microsoft%20Defender%20for%20Office%20365%3a%20%ce%9d%ce%ad%ce%b1%20%cf%80%cf%81%ce%bf%cf%83%cf%84%ce%b1%cf%83%ce%af%ce%b1%20%ce%b3%ce%b9%ce%b1%20%ce%ba%cf%81%cf%85%cf%80%cf%84%ce%bf%ce%b3%cf%81%ce%b1%cf%86%ce%b7%ce%bc%ce%ad%ce%bd%ce%b1%20%cf%83%cf%85%ce%bd%ce%b7%ce%bc%ce%bc%ce%ad%ce%bd%ce%b1.%20%ce%a4%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%84%ce%bf%ce%bd%20%ce%91%cf%8d%ce%b3%ce%bf%cf%85%cf%83%cf%84%ce%bf%202026%20%28MC1440701%29&amp;summary=Microsoft%20Defender%20for%20Office%20365%3a%20%ce%9d%ce%ad%ce%b1%20%cf%80%cf%81%ce%bf%cf%83%cf%84%ce%b1%cf%83%ce%af%ce%b1%20%ce%b3%ce%b9%ce%b1%20%ce%ba%cf%81%cf%85%cf%80%cf%84%ce%bf%ce%b3%cf%81%ce%b1%cf%86%ce%b7%ce%bc%ce%ad%ce%bd%ce%b1%20%cf%83%cf%85%ce%bd%ce%b7%ce%bc%ce%bc%ce%ad%ce%bd%ce%b1.%20%ce%a4%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%84%ce%bf%ce%bd%20%ce%91%cf%8d%ce%b3%ce%bf%cf%85%cf%83%cf%84%ce%bf%202026%20%28MC1440701%29&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fnew-features%2fmdo-encrypted-attachment-protection-mc1440701%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701) on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fnew-features%2fmdo-encrypted-attachment-protection-mc1440701%2f&title=Microsoft%20Defender%20for%20Office%20365%3a%20%ce%9d%ce%ad%ce%b1%20%cf%80%cf%81%ce%bf%cf%83%cf%84%ce%b1%cf%83%ce%af%ce%b1%20%ce%b3%ce%b9%ce%b1%20%ce%ba%cf%81%cf%85%cf%80%cf%84%ce%bf%ce%b3%cf%81%ce%b1%cf%86%ce%b7%ce%bc%ce%ad%ce%bd%ce%b1%20%cf%83%cf%85%ce%bd%ce%b7%ce%bc%ce%bc%ce%ad%ce%bd%ce%b1.%20%ce%a4%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%84%ce%bf%ce%bd%20%ce%91%cf%8d%ce%b3%ce%bf%cf%85%cf%83%cf%84%ce%bf%202026%20%28MC1440701%29">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

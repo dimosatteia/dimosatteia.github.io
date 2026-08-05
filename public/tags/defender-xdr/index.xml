@@ -16,13 +16,6 @@
       <description>Hands-on Microsoft 365 Security content for IT Pros — Defender walkthroughs, hardening guides, and compliance lessons from production environments.</description>
     </item>
     <item>
-      <title>Microsoft Defender XDR Cross-Product Integration</title>
-      <link>http://localhost:1313/posts/generally-available/defender-xdr-integration/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/generally-available/defender-xdr-integration/</guid>
-      <description>How Defender XDR correlates signals across Endpoint, Office 365, Identity, and Cloud Apps</description>
-    </item>
-    <item>
       <title>Microsoft Security Copilot in Production — Part 1: Architecture &amp; Licensing You Need to Understand First</title>
       <link>http://localhost:1313/posts/standalone-series/security-copilot-part-1-architecture-licensing/</link>
       <pubDate>Wed, 22 Apr 2026 11:00:00 +0300</pubDate>
