@@ -11,6 +11,7 @@ theme: "PaperMod"
 defaultContentLanguage: "en"
 description: "Practical, hands-on content on Microsoft 365 and Microsoft Security Copilot from a Senior Cloud Architect."
 enableGitInfo: true
+googleAnalytics: G-XL1JKVTRG9
 
 # Pagination & build
 pagination:
@@ -224,7 +225,7 @@ menu:
 # -----------------------------------------------------------------------------
 privacy:
   googleAnalytics:
-    disable: true
+    disable: false
   x:
     enableDNT: true
   vimeo:

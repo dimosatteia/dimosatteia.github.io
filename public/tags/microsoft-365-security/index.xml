@@ -6,8 +6,15 @@
     <description>Recent content in Microsoft 365 Security on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Aug 2026 09:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 09:43:55 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/microsoft-365-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)</title>
+      <link>http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/</guid>
+      <description>Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.</description>
+    </item>
     <item>
       <title>Microsoft Defender AIR: Πώς το Automated Investigation &amp; Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)</title>
       <link>http://localhost:1313/posts/microsoft-defender-air-automated-investigation-response/</link>
@@ -63,13 +70,6 @@
       <pubDate>Fri, 22 May 2026 07:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/secure-score-grc-part-3-operations/</guid>
       <description>260&#43; recommendations, one team. How to prioritize, remediate, map controls to ISO 27001 &amp;amp; NIS2, and collect audit evidence, without burning out.</description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)</title>
-      <link>http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/</link>
-      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/</guid>
-      <description>Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026.</description>
     </item>
     <item>
       <title>Microsoft Defender Vulnerability Management: 771 Days to 4 Hours</title>
