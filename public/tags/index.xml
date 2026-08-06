@@ -6,20 +6,97 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Aug 2026 09:43:55 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2026 10:00:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Advanced Hunting</title>
-      <link>http://localhost:1313/tags/advanced-hunting/</link>
-      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/advanced-hunting/</guid>
+      <title>Agentic AI</title>
+      <link>http://localhost:1313/tags/agentic-ai/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/agentic-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI Security</title>
+      <link>http://localhost:1313/tags/ai-security/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/ai-security/</guid>
       <description></description>
     </item>
     <item>
       <title>Cyber GRC</title>
       <link>http://localhost:1313/tags/cyber-grc/</link>
-      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/cyber-grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MAI-Cyber-1-Flash</title>
+      <link>http://localhost:1313/tags/mai-cyber-1-flash/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/mai-cyber-1-flash/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-security/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender</title>
+      <link>http://localhost:1313/tags/microsoft-defender/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender XDR</title>
+      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Security Copilot</title>
+      <link>http://localhost:1313/tags/microsoft-security-copilot/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-security-copilot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Project Perception</title>
+      <link>http://localhost:1313/tags/project-perception/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/project-perception/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Responsible AI</title>
+      <link>http://localhost:1313/tags/responsible-ai/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/responsible-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SOC</title>
+      <link>http://localhost:1313/tags/soc/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/soc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vulnerability Management</title>
+      <link>http://localhost:1313/tags/vulnerability-management/</link>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/vulnerability-management/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Advanced Hunting</title>
+      <link>http://localhost:1313/tags/advanced-hunting/</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/advanced-hunting/</guid>
       <description></description>
     </item>
     <item>
@@ -44,24 +121,10 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-security/</link>
-      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Defender for Office 365</title>
       <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
       <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender XDR</title>
-      <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
-      <pubDate>Wed, 05 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
       <description></description>
     </item>
     <item>
@@ -254,13 +317,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft Security Copilot</title>
-      <link>http://localhost:1313/tags/microsoft-security-copilot/</link>
-      <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-security-copilot/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>NIS2</title>
       <link>http://localhost:1313/tags/nis2/</link>
       <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
@@ -380,13 +436,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft Defender</title>
-      <link>http://localhost:1313/tags/microsoft-defender/</link>
-      <pubDate>Sat, 18 Jul 2026 12:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Entra Architecture</title>
       <link>http://localhost:1313/tags/microsoft-entra-architecture/</link>
       <pubDate>Sat, 18 Jul 2026 12:00:00 +0300</pubDate>
@@ -429,24 +478,10 @@
       <description></description>
     </item>
     <item>
-      <title>AI Security</title>
-      <link>http://localhost:1313/tags/ai-security/</link>
-      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/ai-security/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Security Copilot</title>
       <link>http://localhost:1313/tags/security-copilot/</link>
       <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/security-copilot/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vulnerability Management</title>
-      <link>http://localhost:1313/tags/vulnerability-management/</link>
-      <pubDate>Tue, 14 Jul 2026 12:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/vulnerability-management/</guid>
       <description></description>
     </item>
     <item>
