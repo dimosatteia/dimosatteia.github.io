@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Microsoft Teams on Microsoft 365 Security Insights</title>
+    <link>http://localhost:1313/tags/microsoft-teams/</link>
+    <description>Recent content in Microsoft Teams on Microsoft 365 Security Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Aug 2026 11:30:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/microsoft-teams/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Report a Call &amp; Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές</title>
+      <link>http://localhost:1313/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/</link>
+      <pubDate>Fri, 07 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/</guid>
+      <description>Τα Report a call και Report a meeting φέρνουν εγγενή αναφορά ασφαλείας στο Microsoft Teams. Τι φτάνει στο Teams Admin Center και στο Defender, τι δείχνει το licensing matrix, και πώς ετοιμάζεις το SOC σου πριν τη Γενική Διαθεσιμότητα τον Οκτώβριο 2026.</description>
+    </item>
+  </channel>
+</rss>

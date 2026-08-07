@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2026 09:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 11:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</title>
@@ -14,6 +14,13 @@
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/welcome/</guid>
       <description>Hands-on Microsoft 365 Security content for IT Pros — Defender walkthroughs, hardening guides, and compliance lessons from production environments.</description>
+    </item>
+    <item>
+      <title>Report a Call &amp; Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές</title>
+      <link>http://localhost:1313/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/</link>
+      <pubDate>Fri, 07 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/</guid>
+      <description>Τα Report a call και Report a meeting φέρνουν εγγενή αναφορά ασφαλείας στο Microsoft Teams. Τι φτάνει στο Teams Admin Center και στο Defender, τι δείχνει το licensing matrix, και πώς ετοιμάζεις το SOC σου πριν τη Γενική Διαθεσιμότητα τον Οκτώβριο 2026.</description>
     </item>
     <item>
       <title>Allowed Agent Types στο Microsoft 365: Γιατί το «Only Certified External Publishers» είναι η μόνη λογική επιλογή</title>
