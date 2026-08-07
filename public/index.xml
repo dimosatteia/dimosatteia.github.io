@@ -6,7 +6,7 @@
     <description>Recent content on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2026 10:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 09:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</title>
@@ -14,6 +14,13 @@
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/welcome/</guid>
       <description>Hands-on Microsoft 365 Security content for IT Pros — Defender walkthroughs, hardening guides, and compliance lessons from production environments.</description>
+    </item>
+    <item>
+      <title>Allowed Agent Types στο Microsoft 365: Γιατί το «Only Certified External Publishers» είναι η μόνη λογική επιλογή</title>
+      <link>http://localhost:1313/posts/allowed-agent-types-only-certified-external-publishers/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/allowed-agent-types-only-certified-external-publishers/</guid>
+      <description>Ρύθμισα το Allowed Agent Types στο δικό μου Microsoft 365 tenant σε «Only certified external publishers». Αναλύω τι σημαίνει στην πράξη, γιατί μετράει για NIS2 και ISO 27001, και πώς να το κάνεις κι εσύ σήμερα.</description>
     </item>
     <item>
       <title>Project Perception: Το Agentic Security System της Microsoft με Red, Blue &amp; Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.</title>

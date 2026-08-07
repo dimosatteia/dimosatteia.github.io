@@ -6,8 +6,78 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2026 10:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 09:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Agents</title>
+      <link>http://localhost:1313/tags/ai-agents/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/ai-agents/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Copilot</title>
+      <link>http://localhost:1313/tags/copilot/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/copilot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cybersecurity</title>
+      <link>http://localhost:1313/tags/cybersecurity/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/cybersecurity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Governance</title>
+      <link>http://localhost:1313/tags/governance/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/governance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GRC</title>
+      <link>http://localhost:1313/tags/grc/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ISO 27001</title>
+      <link>http://localhost:1313/tags/iso-27001/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/iso-27001/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft 365</title>
+      <link>http://localhost:1313/tags/microsoft-365/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NIS2</title>
+      <link>http://localhost:1313/tags/nis2/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/nis2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Publisher Certification</title>
+      <link>http://localhost:1313/tags/publisher-certification/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/publisher-certification/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shadow AI</title>
+      <link>http://localhost:1313/tags/shadow-ai/</link>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/shadow-ai/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Agentic AI</title>
       <link>http://localhost:1313/tags/agentic-ai/</link>
@@ -296,13 +366,6 @@
       <description></description>
     </item>
     <item>
-      <title>Microsoft 365</title>
-      <link>http://localhost:1313/tags/microsoft-365/</link>
-      <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft 365 Licensing</title>
       <link>http://localhost:1313/tags/microsoft-365-licensing/</link>
       <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
@@ -314,13 +377,6 @@
       <link>http://localhost:1313/tags/microsoft-intune/</link>
       <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-intune/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>NIS2</title>
-      <link>http://localhost:1313/tags/nis2/</link>
-      <pubDate>Thu, 30 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/nis2/</guid>
       <description></description>
     </item>
     <item>
@@ -349,13 +405,6 @@
       <link>http://localhost:1313/tags/cloud-sync/</link>
       <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/cloud-sync/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GRC</title>
-      <link>http://localhost:1313/tags/grc/</link>
-      <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/grc/</guid>
       <description></description>
     </item>
     <item>
@@ -405,13 +454,6 @@
       <link>http://localhost:1313/tags/microsoft-sentinel/</link>
       <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-sentinel/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>ISO 27001</title>
-      <link>http://localhost:1313/tags/iso-27001/</link>
-      <pubDate>Sat, 25 Jul 2026 20:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/iso-27001/</guid>
       <description></description>
     </item>
     <item>
@@ -895,13 +937,6 @@
       <link>http://localhost:1313/tags/compliance-manager/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/compliance-manager/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cybersecurity</title>
-      <link>http://localhost:1313/tags/cybersecurity/</link>
-      <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/cybersecurity/</guid>
       <description></description>
     </item>
     <item>
