@@ -51,6 +51,13 @@
       <description></description>
     </item>
     <item>
+      <title>Microsoft 365 Security</title>
+      <link>http://localhost:1313/tags/microsoft-365-security/</link>
+      <pubDate>Mon, 10 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Microsoft Entra ID</title>
       <link>http://localhost:1313/tags/microsoft-entra-id/</link>
       <pubDate>Mon, 10 Aug 2026 09:00:00 +0300</pubDate>
@@ -58,10 +65,24 @@
       <description></description>
     </item>
     <item>
+      <title>Microsoft Teams</title>
+      <link>http://localhost:1313/tags/microsoft-teams/</link>
+      <pubDate>Mon, 10 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-teams/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>NIS2</title>
       <link>http://localhost:1313/tags/nis2/</link>
       <pubDate>Mon, 10 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/nis2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Threat Detection</title>
+      <link>http://localhost:1313/tags/threat-detection/</link>
+      <pubDate>Mon, 10 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/threat-detection/</guid>
       <description></description>
     </item>
     <item>
@@ -111,13 +132,6 @@
       <link>http://localhost:1313/tags/microsoft-defender-xdr/</link>
       <pubDate>Fri, 07 Aug 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-xdr/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Teams</title>
-      <link>http://localhost:1313/tags/microsoft-teams/</link>
-      <pubDate>Fri, 07 Aug 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-teams/</guid>
       <description></description>
     </item>
     <item>
@@ -195,13 +209,6 @@
       <link>http://localhost:1313/tags/mai-cyber-1-flash/</link>
       <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/mai-cyber-1-flash/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft 365 Security</title>
-      <link>http://localhost:1313/tags/microsoft-365-security/</link>
-      <pubDate>Thu, 06 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-365-security/</guid>
       <description></description>
     </item>
     <item>

@@ -16,6 +16,13 @@
       <description>Ανάλυση του Microsoft Entra Token Protection και του γιατί οι συσκευές που μεταναστεύουν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός προστασίας, με την οπτική ενός CISO που πρέπει να το τεκμηριώσει σε NIS2 και ISO 27001 audit.</description>
     </item>
     <item>
+      <title>Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging</title>
+      <link>http://localhost:1313/posts/teams-security-detection-report/</link>
+      <pubDate>Mon, 10 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/teams-security-detection-report/</guid>
+      <description>Ανάλυση του νέου Security Detection Report στο Teams admin center (Microsoft 365 Roadmap ID 560702), με την οπτική ενός CISO που το αξιολογεί ως compensating control για messaging-based απειλές και ως τεκμηρίωση για NIS2 και ISO 27001.</description>
+    </item>
+    <item>
       <title>CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς</title>
       <link>http://localhost:1313/posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/</link>
       <pubDate>Mon, 03 Aug 2026 19:00:00 +0300</pubDate>
