@@ -138,11 +138,10 @@ params:
   homeInfoParams:
     Title: "Hi 👋, I'm Dimosthenis"
     Content: >
-      <img src="/images/Dimos_Banner.png" alt="Dimosthenis" width="774" height="192" fetchpriority="high">
+      ![Dimosthenis](/images/Dimos_Banner.png)
 
       **Senior Cloud Architect** focused on **Microsoft 365** and **Microsoft 365 Security** using **Microsoft Defender** products, with extensive hands‑on experience designing, securing, and operating enterprise‑scale environments.
       
-
       In parallel, I serve as **CIO/CISO** at the second‑largest flour milling and food manufacturing organization in Greece, where I apply **Microsoft 365** and **Microsoft 365 Security** technologies in real‑world, high‑impact production scenarios.
       
       
