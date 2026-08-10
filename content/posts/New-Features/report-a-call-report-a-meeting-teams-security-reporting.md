@@ -32,7 +32,6 @@ categories: ["Microsoft Teams", "Microsoft Defender XDR"]
 series:
 releases:
   - "new-features"
-  - "generally-available"
 ShowToc: true
 TocOpen: false
 weight: -5
