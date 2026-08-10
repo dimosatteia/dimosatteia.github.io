@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Microsoft Unified Risk Score 1</title>
+<meta name="keywords" content="Microsoft Entra Token Protection, Conditional Access session controls, Bulk enrollment Windows, Hybrid Join to Entra Join migration, PRT Primary Refresh Token, Windows Web Account Manager, signInSessionStatusCode 1003, NIS2 τεκμηρίωση μετάβασης συσκευών, ISO 27001 change management, Zero Trust device identity">
+<meta name="description" content="Ανάλυση του Microsoft Entra Token Protection και του γιατί οι συσκευές που μεταναστεύουν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός προστασίας, με την οπτική ενός CISO που πρέπει να το τεκμηριώσει σε NIS2 και ISO 27001 audit.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/microsoft-unified-risk-score1/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/microsoft-unified-risk-score1/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx5s18mpi4");
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Microsoft Unified Risk Score 1\"",
+  "description": "\"Ένα migration project μπορεί να δείχνει 100% επιτυχημένο σε κάθε dashboard, Entra joined, Intune enrolled, compliant, και ταυτόχρονα να είναι εντελώς εκτεθειμένο σε token replay. Το Token Protection δεν ελέγχει compliance, ελέγχει πώς δημιουργήθηκε η ταυτότητα της συσκευής, και αυτό αλλάζει τελείως το πώς πρέπει να σχεδιάζεις ένα migration.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-08-08T09:00:00+03:00\"",
+  "dateModified": "\"2026-08-10T09:30:00+03:00\"",
+  "image": "\"http://localhost:1313/images/entra-token-protection/token-protection-session-control-cover.png\"",
+  "url": "\"http://localhost:1313/posts/microsoft-unified-risk-score1/\"",
+  "wordCount":  1288 ,
+  "keywords": "\"Microsoft Entra ID, Conditional Access, Token Protection, Identity Security, NIS2, ISO 27001, GRC, Cybersecurity, Device Migration, Zero Trust\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/microsoft-unified-risk-score1/\""
+  }
+}
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XL1JKVTRG9"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XL1JKVTRG9');
+        }
+      </script><meta property="og:url" content="http://localhost:1313/posts/microsoft-unified-risk-score1/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Microsoft Unified Risk Score 1">
+  <meta property="og:description" content="Ανάλυση του Microsoft Entra Token Protection και του γιατί οι συσκευές που μεταναστεύουν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός προστασίας, με την οπτική ενός CISO που πρέπει να το τεκμηριώσει σε NIS2 και ISO 27001 audit.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-08T09:00:00+03:00">
+    <meta property="article:modified_time" content="2026-08-10T09:30:00+03:00">
+    <meta property="article:tag" content="Microsoft Entra ID">
+    <meta property="article:tag" content="Conditional Access">
+    <meta property="article:tag" content="Token Protection">
+    <meta property="article:tag" content="Identity Security">
+    <meta property="article:tag" content="NIS2">
+    <meta property="article:tag" content="ISO 27001">
+    <meta property="og:image" content="http://localhost:1313/posts/microsoft-unified-risk-score1/images/entra-token-protection/token-protection-session-control-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/posts/microsoft-unified-risk-score1/images/entra-token-protection/token-protection-session-control-cover.png">
+  <meta name="twitter:title" content="Microsoft Unified Risk Score 1">
+  <meta name="twitter:description" content="Ανάλυση του Microsoft Entra Token Protection και του γιατί οι συσκευές που μεταναστεύουν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός προστασίας, με την οπτική ενός CISO που πρέπει να το τεκμηριώσει σε NIS2 και ISO 27001 audit.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Microsoft Unified Risk Score 1",
+      "item": "http://localhost:1313/posts/microsoft-unified-risk-score1/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Microsoft Unified Risk Score 1",
+  "name": "Microsoft Unified Risk Score 1",
+  "description": "Ανάλυση του Microsoft Entra Token Protection και του γιατί οι συσκευές που μεταναστεύουν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός προστασίας, με την οπτική ενός CISO που πρέπει να το τεκμηριώσει σε NIS2 και ISO 27001 audit.",
+  "keywords": [
+    "Microsoft Entra Token Protection", "Conditional Access session controls", "Bulk enrollment Windows", "Hybrid Join to Entra Join migration", "PRT Primary Refresh Token", "Windows Web Account Manager", "signInSessionStatusCode 1003", "NIS2 τεκμηρίωση μετάβασης συσκευών", "ISO 27001 change management", "Zero Trust device identity"
+  ],
+  "articleBody": "Microsoft Entra ID Protection Επαναπροσδιορίζοντας την Ασφάλεια Ταυτοτήτων στην εποχή των πολυσύνθετων απειλών Από τις μεμονωμένες ειδοποιήσεις στην ενοποιημένη νοημοσύνη.\nΤο Σύγχρονο Οικοσύστημα Ταυτοτήτων Δεν Αφορά Μόνο Ανθρώπους Στο κέντρο βρίσκεται ο Εταιρικός Πυρήνας, ο οποίος προστατεύεται πλέον από διαφορετικές κατηγορίες ταυτοτήτων και σχέσεων πρόσβασης.\nHuman Users Οι παραδοσιακοί υπάλληλοι παραμένουν βασικός στόχος επιθέσεων όπως phishing και AiTM.\nB2B \u0026 Guests Εξωτερικοί συνεργάτες με cross-tenant πρόσβαση δημιουργούν από έλεγχο τρίτων.\nWorkload Identities Εφαρμογές και service principals δεν υποστηρίζουν MFA και συχνά λειτουργούν χωρίς πλήρη κύκλο ζωής.\nAI Agents Αυτόνομα συστήματα που εκτελούν ενέργειες με μέρος των χρηστών. Απαιτούν συνεχή παρακολούθηση λόγω του learning mode.\nΤο Χάσμα του Παραδοσιακού SOC: Ο Επιτιθέμενος Κρύβεται στον Θόρυβο Η παρωχημένη εξίσωση αξιολόγησης κινδύνου 09:14: Entra ID anomalous token, Medium Risk. 09:19: Defender for Cloud Apps suspicious OAuth app, Medium Risk. 14:03: Defender for Identity Kerberoasting on-prem, Medium Risk. Αποτέλεσμα Καμία μεμονωμένη ειδοποίηση δεν αποδεικνύει παραβίαση. Η επίθεση εξελίσσεται χωρίς αυτοματοποιημένη αντίδραση, οδηγώντας σε alert fatigue.\nΗ Αλλαγή Παραδείγματος: Unified Risk Score Η νέα πραγματικότητα της συσχέτισης Όταν τα ίδια σήματα συνδεθούν μεταξύ τους, η εικόνα αλλάζει:\n09:14: Entra ID anomalous token. 09:19: Defender for Cloud Apps suspicious OAuth app. 14:03: Defender for Identity Kerberoasting. Το αποτέλεσμα δεν είναι πλέον τρεις ξεχωριστές ειδοποιήσεις μεσαίου κινδύνου, αλλά ένας Υψηλός Κίνδυνος / High Risk.\nΓιατί αλλάζει η αξιολόγηση Σύνθεση δεδομένων Το Entra και το Microsoft Defender συσχετίζουν πλέον τα σήματα ώστε να δημιουργείται ενιαίο risk score.\nAccount Sets Η σύνδεση της ταυτότητας του χρήστη, της συμπεριφοράς στο cloud και της on-prem δραστηριότητας αυξάνει τον συνολικό κίνδυνο.\nΆμεση αντίδραση Η συσχέτιση μετατρέπει τις μεμονωμένες υποψίες σε ένδειξη ανάγκης για απόκριση, ενεργοποιώντας Conditional Access.\nΟι 4 Πυλώνες Συσχέτισης Δεδομένων Signal Correlation Πώς ο αλγόριθμος ενώνει τα κομμάτια του παζλ μέσω του Risk Engine.\n1. Εύρος Kill Chain / Kill Chain Breadth Καλύπτει πολλαπλά στάδια επίθεσης, όπως reconnaissance, credential access και lateral movement. Αυτό δείχνει πρόθεση, όχι απλή σύμπτωση.\n2. Ποικιλία ειδοποιήσεων / Alert Variety Η ταυτόχρονη εμφάνιση διαφορετικών τύπων ειδοποιήσεων ενισχύει σημαντικά την υπόθεση ενιαίας παραβίασης.\n3. Χρονική σύγκλιση / Temporal Convergence Γεγονότα που συμβαίνουν μέσα σε εξαιρετικά στενό χρονικό παράθυρο ενισχύουν την πιθανότητα να ανήκουν στην ίδια εκστρατεία.\n4. Διαθεματική ορατότητα / Cross-Product Visibility Σήματα από διαφορετικά προϊόντα, όπως Entra, Defender και Purview, παρέχουν την πλήρη εικόνα.\nΜήτρα Ανίχνευσης: Τύποι και Χρονικό Πλαίσιο Αξιολόγησης Η αξιολόγηση κινδύνου εξαρτάται από δύο άξονες:\nΣτόχος: τι αξιολογείται. Χρόνος: πότε αξιολογείται. Sign-in Risk: Συγκεκριμένη σύνδεση Real-time / 5 έως 10 λεπτά Αξιολόγηση κατά την ακριβή στιγμή της προσπάθειας σύνδεσης.\nΠαραδείγματα:\nAnonymous IP. Unfamiliar sign-in properties. Δράση:\nΑποκλεισμός ή απαίτηση MFA πριν δοθεί πρόσβαση. Offline / έως 48 ώρες Βαθύτερη, ετεροχρονισμένη ανάλυση συμπεριφοράς και μοτίβων με machine learning.\nΠαράδειγμα:\nSuspicious API traffic. User Risk: Συνολικό προφίλ χρήστη Real-time / 5 έως 10 λεπτά Άμεση αύξηση του συνολικού κινδύνου χρήστη βάσει κρίσιμου real-time σήματος Unified Score.\nOffline / έως 48 ώρες Πιθανότητα παραβίασης του ίδιου του λογαριασμού μετά από εκτεταμένη ανάλυση.\nΠαραδείγματα:\nLeaked credentials. Verified Threat Actor. Ο Πίνακας Ελέγχου: Ορατότητα και Μετρήσεις σε Πραγματικό Χρόνο Η αξία για το SOC προκύπτει όταν τα δεδομένα μετατρέπονται σε επιχειρησιακή πληροφορία.\nΒασικοί Δείκτες Απόδοσης KPIs 12,500+ αποτρεπτικές ενέργειες όπως επιβεβαίωση ταυτότητας χρήστη. 50,000+ προστατευμένοι χρήστες και λογαριασμοί που ασφαλίστηκαν. \u003c 5 λεπτά MTTR για μείωση χρόνου απόκρισης χωρίς συμμετοχή του Helpdesk. MITRE ATT\u0026CK Mapping Τα σήματα μπορούν να χαρτογραφηθούν σε tactics και techniques, όπως:\nAnomalous Tokens. Unfamiliar Sign-in. T1539 Session Cookie Theft. T1078 Valid Accounts. Γεωγραφική Κατανομή Κινδύνου Η απεικόνιση ανά risky location βοηθά στον εντοπισμό επιθέσεων βάσει τοποθεσίας και στην αξιολόγηση του αν ένας χρήστης συνδέεται από trusted named locations.\nΗ Ασπίδα Επέκταση της Ασπίδας I: Workload Identities και AI Agents Η προστασία πρέπει να επεκτείνεται πέρα από τις ανθρώπινες ταυτότητες, εκεί όπου το MFA δεν μπορεί να εφαρμοστεί.\nWorkload Identities Οι ταυτότητες μηχανών στερούνται εγγενούς προστασίας. Το ID Protection είναι η πρώτη γραμμή άμυνας.\nΠαραδείγματα ανίχνευσης Προσπάθεια από διαρροή μυστικών, όπως leaked secrets από GitHub. Ανίχνευση κακόβουλων εφαρμογών. Εντοπισμός ασυνήθιστης κίνησης API, όπως suspicious API traffic και reconnaissance. AI Agents Microsoft Entra Agent ID Αυτόνομα συστήματα που δρουν εκ μέρους των χρηστών απαιτούν συνεχή παρακολούθηση και συμμόρφωση.\nΈλεγχοι Early Life Malicious Activity με ανίχνευση επικίνδυνης συμπεριφοράς αμέσως μετά τη δημιουργία. Learning Mode με αυτόματη κατώτατη ειδοποίηση για agents μέχρι να συγκεντρωθεί ασφαλές baseline. Διατήρηση 90 ημερών για agent sign-in logs. Επέκταση της Ασπίδας II: B2B Collaboration Risk Διαχείριση κινδύνου πέρα από τα όρια του οργανισμού Η νέα λογική αξιολογεί τον συνολικό κίνδυνο χρήστη στο Home Directory του οργανισμού-επισκέπτη και τον κίνδυνο σύνδεσης στο Resource Directory του δικού σας οργανισμού.\nΠώς λειτουργεί Ο συνολικός κίνδυνος χρήστη αξιολογείται και διατηρείται στο home tenant. Η αξιολόγηση B2B κινδύνου και η ροή πρόσβασης μεταφέρεται προς το resource tenant. Ο κίνδυνος σύνδεσης αξιολογείται τοπικά στο δικό σας tenant. Περιορισμοί και αυτοματοποίηση Ο οργανισμός φιλοξενίας δεν μπορεί να αλλάξει τον συνολικό κίνδυνο του guest χρήστη. Ενεργοποίηση πολιτικής High User Risk στο B2B χρήστη αποκλείει, blocks, αυτόματα την πρόσβαση των πόρων σας. Self-service remediation πρέπει να εκτελεστεί στο home tenant για να ανακτηθεί η πρόσβαση. Από τη Θεωρία στην Πράξη: Risk-Based Conditional Access Μετατρέποντας την πληροφορία κινδύνου σε άμεση, αυτοματοποιημένη δράση Στην κορυφή της ροής βρίσκεται η είσοδος χρήστη και η αξιολόγηση από το Entra ID Protection.\nΠαραδείγματα πολιτικών IF Sign-in Risk = Medium/High Require MFA\nΕπιβεβαίωση ταυτότητας για συγκεκριμένη ύποπτη συνεδρία.\nIF User Risk = High Unified Score Require Secure Password Change\nΟριστική αποκατάσταση κινδύνου. Οι προηγούμενες συνεδρίες ανακαλούνται.\nIF Workload Identity Risk = High Block Access / CAE Enforcement\nΆμεσος αποκλεισμός πρόσβασης για μη ανθρώπινες ταυτότητες. Χρήση Continuous Access Evaluation.\nAdaptive Risk Remediation: Αυτο-αποκατάσταση Χωρίς το Helpdesk Ο έλεγχος Require risk remediation προσαρμόζει έξυπνα τη ροή αποκατάστασης.\nΣενάριο 1: Password Authentication Απειλές Leaked credential. Password spray. Αντίδραση συστήματος Απαίτηση άμεσης αλλαγής κωδικού πρόσβασης μέσω secure password change.\nΑποτέλεσμα Ανάκληση όλων των προηγούμενων συνεδριών. Ο χρήστης είναι πλέον ασφαλής.\nΣενάριο 2: Passwordless Authentication Απειλές Κλοπή session cookie. AiTM phishing. Αντίδραση συστήματος Επειδή δεν υπάρχει κωδικός για αλλαγή, η αλλαγή κωδικού είναι περιττή. Απαιτείται ισχυρός, επαναληπτικός έλεγχος ταυτότητας.\nΑποτέλεσμα Τα sessions ανακαλούνται αυτόματα. Η πρόσβαση ανακτάται άμεσα και με ασφάλεια.\nΠρογνωστική Θωράκιση και Αυτόνομη Απόκριση Security Copilot Χρησιμοποιώντας την ταχύτητα των μηχανών για την αντιμετώπιση επιθέσεων ταχύτητας μηχανών Agentic Triage: Αυτόνομη αξιολόγηση Το Security Copilot αναλύει αυτόματα εκατοντάδες ειδοποιήσεις, δημιουργεί δέντρα επιθέσεων, αναγνωρίζει ευκαιρίες για password spray και Business Email Compromise.\nΑποτέλεσμα: αύξηση ταχύτητας εντοπισμού κατά 6.5x.\nPredictive Shielding: Προγνωστική θωράκιση Κατά τη διάρκεια μιας ενεργής επίθεσης, το σύστημα εφαρμόζει δυναμική σκλήρυνση just-in-time.\nΠαραδείγματα:\nRemoteOps: περιορίζει αυτόματα ενέργειες RCP για την αποτροπή πλευρικής μετακίνησης lateral movement. Remote Registry και SafeBoot: μπλοκάρει την αλλοίωση κρίσιμων ρυθμίσεων ασφαλείας στα endpoints. Το Νέο Μοντέλο: Ένα Αυτόνομο Οικοσύστημα Ασφαλείας Η σύνθεση όλων των συστημάτων οδηγεί σε ελαστική και resilient προστασία με ελάχιστη τριβή.\nInputs: Ορατότητα Human users και B2B guests. Workload identities και AI agents. Σήματα από Microsoft Defender και Purview. The Engine: Συσχέτιση Το κεντρικό μοντέλο αξιολόγησης περιλαμβάνει:\nUnified Risk Machine Learning. Συνεχή αξιολόγηση real-time και offline. Ενοποιημένη ανάλυση account sets, cloud και on-prem. Outputs: Δράση Risk-Based Conditional Access για αποκατάσταση. Agentic Triage για ταχύτητα SOC. Predictive Shielding για προληπτική θωράκιση. Continuous Access Evaluation για άμεση επανεκτίμηση πρόσβασης. Βήματα Δράσης για το Σύγχρονο SOC Η μετάβαση στο Unified Risk μπορεί να ξεκινήσει άμεσα.\n1. Ενεργοποιήστε την Πολιτική Εγγραφής MFA Διασφαλίστε ότι όλοι οι νέοι χρήστες εγγράφονται στην πρώτη ημέρα. Είναι το θεμέλιο για αυτο-αποκατάσταση χωρίς τη βοήθεια του Helpdesk.\n2. Ενοποιήστε τα Σήματα Διαμορφώστε το Microsoft Defender for Identity για να ενεργοποιήσετε την πλήρη ισχύ του Unified Risk Score σε υβριδικά περιβάλλοντα. Ενοποιήστε τις on-prem ταυτότητες με το cloud account set.\n3. Μεταβείτε σε Block / Remediate Εγκαταλείψτε οριστικά το report-only. Εφαρμόστε το Require risk remediation μέσω Risk-Based Conditional Access και επιτρέψτε στο σύστημα να απομονώνει και να διορθώνει τις απειλές αυτόματα.\n",
+  "wordCount" : "1288",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/posts/microsoft-unified-risk-score1/images/entra-token-protection/token-protection-session-control-cover.png","datePublished": "2026-08-08T09:00:00+03:00",
+  "dateModified": "2026-08-10T09:30:00+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/microsoft-unified-risk-score1/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/releases/" title="Release Status">
+                    <span>Release Status</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Microsoft Unified Risk Score 1
+    </h1>
+    <div class="post-description">
+      Ανάλυση του Microsoft Entra Token Protection και του γιατί οι συσκευές που μεταναστεύουν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός προστασίας, με την οπτική ενός CISO που πρέπει να το τεκμηριώσει σε NIS2 και ISO 27001 audit.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-08-08 09:00:00 +0300 EEST'>August 8, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>1288 words</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/dimosatteia.github.io/edit/main/content/posts/Microsoft%20Unified%20Risk%20Score1.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/entra-token-protection/token-protection-session-control-cover.png" alt="Session control Require token protection for sign-in sessions στο Microsoft Entra Conditional Access">
+        <figcaption>Conditional Access → Session → Require token protection for sign-in sessions</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#επαναπροσδιορίζοντας-την-ασφάλεια-ταυτοτήτων-στην-εποχή-των-πολυσύνθετων-απειλών">Επαναπροσδιορίζοντας την Ασφάλεια Ταυτοτήτων στην εποχή των πολυσύνθετων απειλών</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#human-users">Human Users</a></li>
+    <li><a href="#b2b--guests">B2B &amp; Guests</a></li>
+    <li><a href="#workload-identities">Workload Identities</a></li>
+    <li><a href="#ai-agents">AI Agents</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#η-παρωχημένη-εξίσωση-αξιολόγησης-κινδύνου">Η παρωχημένη εξίσωση αξιολόγησης κινδύνου</a></li>
+    <li><a href="#αποτέλεσμα">Αποτέλεσμα</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#η-νέα-πραγματικότητα-της-συσχέτισης">Η νέα πραγματικότητα της συσχέτισης</a></li>
+    <li><a href="#γιατί-αλλάζει-η-αξιολόγηση">Γιατί αλλάζει η αξιολόγηση</a>
+      <ul>
+        <li><a href="#σύνθεση-δεδομένων">Σύνθεση δεδομένων</a></li>
+        <li><a href="#account-sets">Account Sets</a></li>
+        <li><a href="#άμεση-αντίδραση">Άμεση αντίδραση</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-εύρος-kill-chain--kill-chain-breadth">1. Εύρος Kill Chain / Kill Chain Breadth</a></li>
+    <li><a href="#2-ποικιλία-ειδοποιήσεων--alert-variety">2. Ποικιλία ειδοποιήσεων / Alert Variety</a></li>
+    <li><a href="#3-χρονική-σύγκλιση--temporal-convergence">3. Χρονική σύγκλιση / Temporal Convergence</a></li>
+    <li><a href="#4-διαθεματική-ορατότητα--cross-product-visibility">4. Διαθεματική ορατότητα / Cross-Product Visibility</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#sign-in-risk-συγκεκριμένη-σύνδεση">Sign-in Risk: Συγκεκριμένη σύνδεση</a>
+      <ul>
+        <li><a href="#real-time--5-έως-10-λεπτά">Real-time / 5 έως 10 λεπτά</a></li>
+        <li><a href="#offline--έως-48-ώρες">Offline / έως 48 ώρες</a></li>
+      </ul>
+    </li>
+    <li><a href="#user-risk-συνολικό-προφίλ-χρήστη">User Risk: Συνολικό προφίλ χρήστη</a>
+      <ul>
+        <li><a href="#real-time--5-έως-10-λεπτά-1">Real-time / 5 έως 10 λεπτά</a></li>
+        <li><a href="#offline--έως-48-ώρες-1">Offline / έως 48 ώρες</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#βασικοί-δείκτες-απόδοσης-kpis">Βασικοί Δείκτες Απόδοσης KPIs</a></li>
+    <li><a href="#mitre-attck-mapping">MITRE ATT&amp;CK Mapping</a></li>
+    <li><a href="#γεωγραφική-κατανομή-κινδύνου">Γεωγραφική Κατανομή Κινδύνου</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#workload-identities-1">Workload Identities</a>
+      <ul>
+        <li><a href="#παραδείγματα-ανίχνευσης">Παραδείγματα ανίχνευσης</a></li>
+      </ul>
+    </li>
+    <li><a href="#ai-agents-microsoft-entra-agent-id">AI Agents Microsoft Entra Agent ID</a>
+      <ul>
+        <li><a href="#έλεγχοι">Έλεγχοι</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#διαχείριση-κινδύνου-πέρα-από-τα-όρια-του-οργανισμού">Διαχείριση κινδύνου πέρα από τα όρια του οργανισμού</a></li>
+    <li><a href="#πώς-λειτουργεί">Πώς λειτουργεί</a></li>
+    <li><a href="#περιορισμοί-και-αυτοματοποίηση">Περιορισμοί και αυτοματοποίηση</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#μετατρέποντας-την-πληροφορία-κινδύνου-σε-άμεση-αυτοματοποιημένη-δράση">Μετατρέποντας την πληροφορία κινδύνου σε άμεση, αυτοματοποιημένη δράση</a></li>
+    <li><a href="#παραδείγματα-πολιτικών">Παραδείγματα πολιτικών</a>
+      <ul>
+        <li><a href="#if-sign-in-risk--mediumhigh">IF Sign-in Risk = Medium/High</a></li>
+        <li><a href="#if-user-risk--high-unified-score">IF User Risk = High Unified Score</a></li>
+        <li><a href="#if-workload-identity-risk--high">IF Workload Identity Risk = High</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#σενάριο-1-password-authentication">Σενάριο 1: Password Authentication</a>
+      <ul>
+        <li><a href="#απειλές">Απειλές</a></li>
+        <li><a href="#αντίδραση-συστήματος">Αντίδραση συστήματος</a></li>
+        <li><a href="#αποτέλεσμα-1">Αποτέλεσμα</a></li>
+      </ul>
+    </li>
+    <li><a href="#σενάριο-2-passwordless-authentication">Σενάριο 2: Passwordless Authentication</a>
+      <ul>
+        <li><a href="#απειλές-1">Απειλές</a></li>
+        <li><a href="#αντίδραση-συστήματος-1">Αντίδραση συστήματος</a></li>
+        <li><a href="#αποτέλεσμα-2">Αποτέλεσμα</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#χρησιμοποιώντας-την-ταχύτητα-των-μηχανών-για-την-αντιμετώπιση-επιθέσεων-ταχύτητας-μηχανών">Χρησιμοποιώντας την ταχύτητα των μηχανών για την αντιμετώπιση επιθέσεων ταχύτητας μηχανών</a></li>
+    <li><a href="#agentic-triage-αυτόνομη-αξιολόγηση">Agentic Triage: Αυτόνομη αξιολόγηση</a></li>
+    <li><a href="#predictive-shielding-προγνωστική-θωράκιση">Predictive Shielding: Προγνωστική θωράκιση</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#inputs-ορατότητα">Inputs: Ορατότητα</a></li>
+    <li><a href="#the-engine-συσχέτιση">The Engine: Συσχέτιση</a></li>
+    <li><a href="#outputs-δράση">Outputs: Δράση</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-ενεργοποιήστε-την-πολιτική-εγγραφής-mfa">1. Ενεργοποιήστε την Πολιτική Εγγραφής MFA</a></li>
+    <li><a href="#2-ενοποιήστε-τα-σήματα">2. Ενοποιήστε τα Σήματα</a></li>
+    <li><a href="#3-μεταβείτε-σε-block--remediate">3. Μεταβείτε σε Block / Remediate</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="microsoft-entra-id-protection">Microsoft Entra ID Protection<a hidden class="anchor" aria-hidden="true" href="#microsoft-entra-id-protection">#</a></h1>
+<h2 id="επαναπροσδιορίζοντας-την-ασφάλεια-ταυτοτήτων-στην-εποχή-των-πολυσύνθετων-απειλών">Επαναπροσδιορίζοντας την Ασφάλεια Ταυτοτήτων στην εποχή των πολυσύνθετων απειλών<a hidden class="anchor" aria-hidden="true" href="#επαναπροσδιορίζοντας-την-ασφάλεια-ταυτοτήτων-στην-εποχή-των-πολυσύνθετων-απειλών">#</a></h2>
+<p>Από τις μεμονωμένες ειδοποιήσεις στην ενοποιημένη νοημοσύνη.</p>
+<hr>
+<h1 id="το-σύγχρονο-οικοσύστημα-ταυτοτήτων-δεν-αφορά-μόνο-ανθρώπους">Το Σύγχρονο Οικοσύστημα Ταυτοτήτων Δεν Αφορά Μόνο Ανθρώπους<a hidden class="anchor" aria-hidden="true" href="#το-σύγχρονο-οικοσύστημα-ταυτοτήτων-δεν-αφορά-μόνο-ανθρώπους">#</a></h1>
+<p>Στο κέντρο βρίσκεται ο <strong>Εταιρικός Πυρήνας</strong>, ο οποίος προστατεύεται πλέον από διαφορετικές κατηγορίες ταυτοτήτων και σχέσεων πρόσβασης.</p>
+<h2 id="human-users">Human Users<a hidden class="anchor" aria-hidden="true" href="#human-users">#</a></h2>
+<p>Οι παραδοσιακοί υπάλληλοι παραμένουν βασικός στόχος επιθέσεων όπως phishing και AiTM.</p>
+<h2 id="b2b--guests">B2B &amp; Guests<a hidden class="anchor" aria-hidden="true" href="#b2b--guests">#</a></h2>
+<p>Εξωτερικοί συνεργάτες με cross-tenant πρόσβαση δημιουργούν από έλεγχο τρίτων.</p>
+<h2 id="workload-identities">Workload Identities<a hidden class="anchor" aria-hidden="true" href="#workload-identities">#</a></h2>
+<p>Εφαρμογές και service principals δεν υποστηρίζουν MFA και συχνά λειτουργούν χωρίς πλήρη κύκλο ζωής.</p>
+<h2 id="ai-agents">AI Agents<a hidden class="anchor" aria-hidden="true" href="#ai-agents">#</a></h2>
+<p>Αυτόνομα συστήματα που εκτελούν ενέργειες με μέρος των χρηστών. Απαιτούν συνεχή παρακολούθηση λόγω του learning mode.</p>
+<hr>
+<h1 id="το-χάσμα-του-παραδοσιακού-soc-ο-επιτιθέμενος-κρύβεται-στον-θόρυβο">Το Χάσμα του Παραδοσιακού SOC: Ο Επιτιθέμενος Κρύβεται στον Θόρυβο<a hidden class="anchor" aria-hidden="true" href="#το-χάσμα-του-παραδοσιακού-soc-ο-επιτιθέμενος-κρύβεται-στον-θόρυβο">#</a></h1>
+<h2 id="η-παρωχημένη-εξίσωση-αξιολόγησης-κινδύνου">Η παρωχημένη εξίσωση αξιολόγησης κινδύνου<a hidden class="anchor" aria-hidden="true" href="#η-παρωχημένη-εξίσωση-αξιολόγησης-κινδύνου">#</a></h2>
+<ul>
+<li><strong>09:14</strong>: Entra ID anomalous token, <strong>Medium Risk</strong>.</li>
+<li><strong>09:19</strong>: Defender for Cloud Apps suspicious OAuth app, <strong>Medium Risk</strong>.</li>
+<li><strong>14:03</strong>: Defender for Identity Kerberoasting on-prem, <strong>Medium Risk</strong>.</li>
+</ul>
+<h2 id="αποτέλεσμα">Αποτέλεσμα<a hidden class="anchor" aria-hidden="true" href="#αποτέλεσμα">#</a></h2>
+<p>Καμία μεμονωμένη ειδοποίηση δεν αποδεικνύει παραβίαση. Η επίθεση εξελίσσεται χωρίς αυτοματοποιημένη αντίδραση, οδηγώντας σε alert fatigue.</p>
+<hr>
+<h1 id="η-αλλαγή-παραδείγματος-unified-risk-score">Η Αλλαγή Παραδείγματος: Unified Risk Score<a hidden class="anchor" aria-hidden="true" href="#η-αλλαγή-παραδείγματος-unified-risk-score">#</a></h1>
+<h2 id="η-νέα-πραγματικότητα-της-συσχέτισης">Η νέα πραγματικότητα της συσχέτισης<a hidden class="anchor" aria-hidden="true" href="#η-νέα-πραγματικότητα-της-συσχέτισης">#</a></h2>
+<p>Όταν τα ίδια σήματα συνδεθούν μεταξύ τους, η εικόνα αλλάζει:</p>
+<ul>
+<li><strong>09:14</strong>: Entra ID anomalous token.</li>
+<li><strong>09:19</strong>: Defender for Cloud Apps suspicious OAuth app.</li>
+<li><strong>14:03</strong>: Defender for Identity Kerberoasting.</li>
+</ul>
+<p>Το αποτέλεσμα δεν είναι πλέον τρεις ξεχωριστές ειδοποιήσεις μεσαίου κινδύνου, αλλά ένας <strong>Υψηλός Κίνδυνος / High Risk</strong>.</p>
+<h2 id="γιατί-αλλάζει-η-αξιολόγηση">Γιατί αλλάζει η αξιολόγηση<a hidden class="anchor" aria-hidden="true" href="#γιατί-αλλάζει-η-αξιολόγηση">#</a></h2>
+<h3 id="σύνθεση-δεδομένων">Σύνθεση δεδομένων<a hidden class="anchor" aria-hidden="true" href="#σύνθεση-δεδομένων">#</a></h3>
+<p>Το Entra και το Microsoft Defender συσχετίζουν πλέον τα σήματα ώστε να δημιουργείται ενιαίο risk score.</p>
+<h3 id="account-sets">Account Sets<a hidden class="anchor" aria-hidden="true" href="#account-sets">#</a></h3>
+<p>Η σύνδεση της ταυτότητας του χρήστη, της συμπεριφοράς στο cloud και της on-prem δραστηριότητας αυξάνει τον συνολικό κίνδυνο.</p>
+<h3 id="άμεση-αντίδραση">Άμεση αντίδραση<a hidden class="anchor" aria-hidden="true" href="#άμεση-αντίδραση">#</a></h3>
+<p>Η συσχέτιση μετατρέπει τις μεμονωμένες υποψίες σε ένδειξη ανάγκης για απόκριση, ενεργοποιώντας Conditional Access.</p>
+<hr>
+<h1 id="οι-4-πυλώνες-συσχέτισης-δεδομένων-signal-correlation">Οι 4 Πυλώνες Συσχέτισης Δεδομένων Signal Correlation<a hidden class="anchor" aria-hidden="true" href="#οι-4-πυλώνες-συσχέτισης-δεδομένων-signal-correlation">#</a></h1>
+<p>Πώς ο αλγόριθμος ενώνει τα κομμάτια του παζλ μέσω του <strong>Risk Engine</strong>.</p>
+<h2 id="1-εύρος-kill-chain--kill-chain-breadth">1. Εύρος Kill Chain / Kill Chain Breadth<a hidden class="anchor" aria-hidden="true" href="#1-εύρος-kill-chain--kill-chain-breadth">#</a></h2>
+<p>Καλύπτει πολλαπλά στάδια επίθεσης, όπως reconnaissance, credential access και lateral movement. Αυτό δείχνει πρόθεση, όχι απλή σύμπτωση.</p>
+<h2 id="2-ποικιλία-ειδοποιήσεων--alert-variety">2. Ποικιλία ειδοποιήσεων / Alert Variety<a hidden class="anchor" aria-hidden="true" href="#2-ποικιλία-ειδοποιήσεων--alert-variety">#</a></h2>
+<p>Η ταυτόχρονη εμφάνιση διαφορετικών τύπων ειδοποιήσεων ενισχύει σημαντικά την υπόθεση ενιαίας παραβίασης.</p>
+<h2 id="3-χρονική-σύγκλιση--temporal-convergence">3. Χρονική σύγκλιση / Temporal Convergence<a hidden class="anchor" aria-hidden="true" href="#3-χρονική-σύγκλιση--temporal-convergence">#</a></h2>
+<p>Γεγονότα που συμβαίνουν μέσα σε εξαιρετικά στενό χρονικό παράθυρο ενισχύουν την πιθανότητα να ανήκουν στην ίδια εκστρατεία.</p>
+<h2 id="4-διαθεματική-ορατότητα--cross-product-visibility">4. Διαθεματική ορατότητα / Cross-Product Visibility<a hidden class="anchor" aria-hidden="true" href="#4-διαθεματική-ορατότητα--cross-product-visibility">#</a></h2>
+<p>Σήματα από διαφορετικά προϊόντα, όπως Entra, Defender και Purview, παρέχουν την πλήρη εικόνα.</p>
+<hr>
+<h1 id="μήτρα-ανίχνευσης-τύποι-και-χρονικό-πλαίσιο-αξιολόγησης">Μήτρα Ανίχνευσης: Τύποι και Χρονικό Πλαίσιο Αξιολόγησης<a hidden class="anchor" aria-hidden="true" href="#μήτρα-ανίχνευσης-τύποι-και-χρονικό-πλαίσιο-αξιολόγησης">#</a></h1>
+<p>Η αξιολόγηση κινδύνου εξαρτάται από δύο άξονες:</p>
+<ul>
+<li><strong>Στόχος</strong>: τι αξιολογείται.</li>
+<li><strong>Χρόνος</strong>: πότε αξιολογείται.</li>
+</ul>
+<h2 id="sign-in-risk-συγκεκριμένη-σύνδεση">Sign-in Risk: Συγκεκριμένη σύνδεση<a hidden class="anchor" aria-hidden="true" href="#sign-in-risk-συγκεκριμένη-σύνδεση">#</a></h2>
+<h3 id="real-time--5-έως-10-λεπτά">Real-time / 5 έως 10 λεπτά<a hidden class="anchor" aria-hidden="true" href="#real-time--5-έως-10-λεπτά">#</a></h3>
+<p>Αξιολόγηση κατά την ακριβή στιγμή της προσπάθειας σύνδεσης.</p>
+<p>Παραδείγματα:</p>
+<ul>
+<li>Anonymous IP.</li>
+<li>Unfamiliar sign-in properties.</li>
+</ul>
+<p>Δράση:</p>
+<ul>
+<li>Αποκλεισμός ή απαίτηση MFA πριν δοθεί πρόσβαση.</li>
+</ul>
+<h3 id="offline--έως-48-ώρες">Offline / έως 48 ώρες<a hidden class="anchor" aria-hidden="true" href="#offline--έως-48-ώρες">#</a></h3>
+<p>Βαθύτερη, ετεροχρονισμένη ανάλυση συμπεριφοράς και μοτίβων με machine learning.</p>
+<p>Παράδειγμα:</p>
+<ul>
+<li>Suspicious API traffic.</li>
+</ul>
+<h2 id="user-risk-συνολικό-προφίλ-χρήστη">User Risk: Συνολικό προφίλ χρήστη<a hidden class="anchor" aria-hidden="true" href="#user-risk-συνολικό-προφίλ-χρήστη">#</a></h2>
+<h3 id="real-time--5-έως-10-λεπτά-1">Real-time / 5 έως 10 λεπτά<a hidden class="anchor" aria-hidden="true" href="#real-time--5-έως-10-λεπτά-1">#</a></h3>
+<p>Άμεση αύξηση του συνολικού κινδύνου χρήστη βάσει κρίσιμου real-time σήματος Unified Score.</p>
+<h3 id="offline--έως-48-ώρες-1">Offline / έως 48 ώρες<a hidden class="anchor" aria-hidden="true" href="#offline--έως-48-ώρες-1">#</a></h3>
+<p>Πιθανότητα παραβίασης του ίδιου του λογαριασμού μετά από εκτεταμένη ανάλυση.</p>
+<p>Παραδείγματα:</p>
+<ul>
+<li>Leaked credentials.</li>
+<li>Verified Threat Actor.</li>
+</ul>
+<hr>
+<h1 id="ο-πίνακας-ελέγχου-ορατότητα-και-μετρήσεις-σε-πραγματικό-χρόνο">Ο Πίνακας Ελέγχου: Ορατότητα και Μετρήσεις σε Πραγματικό Χρόνο<a hidden class="anchor" aria-hidden="true" href="#ο-πίνακας-ελέγχου-ορατότητα-και-μετρήσεις-σε-πραγματικό-χρόνο">#</a></h1>
+<p>Η αξία για το SOC προκύπτει όταν τα δεδομένα μετατρέπονται σε επιχειρησιακή πληροφορία.</p>
+<h2 id="βασικοί-δείκτες-απόδοσης-kpis">Βασικοί Δείκτες Απόδοσης KPIs<a hidden class="anchor" aria-hidden="true" href="#βασικοί-δείκτες-απόδοσης-kpis">#</a></h2>
+<ul>
+<li><strong>12,500+</strong> αποτρεπτικές ενέργειες όπως επιβεβαίωση ταυτότητας χρήστη.</li>
+<li><strong>50,000+</strong> προστατευμένοι χρήστες και λογαριασμοί που ασφαλίστηκαν.</li>
+<li><strong>&lt; 5 λεπτά MTTR</strong> για μείωση χρόνου απόκρισης χωρίς συμμετοχή του Helpdesk.</li>
+</ul>
+<h2 id="mitre-attck-mapping">MITRE ATT&amp;CK Mapping<a hidden class="anchor" aria-hidden="true" href="#mitre-attck-mapping">#</a></h2>
+<p>Τα σήματα μπορούν να χαρτογραφηθούν σε tactics και techniques, όπως:</p>
+<ul>
+<li>Anomalous Tokens.</li>
+<li>Unfamiliar Sign-in.</li>
+<li>T1539 Session Cookie Theft.</li>
+<li>T1078 Valid Accounts.</li>
+</ul>
+<h2 id="γεωγραφική-κατανομή-κινδύνου">Γεωγραφική Κατανομή Κινδύνου<a hidden class="anchor" aria-hidden="true" href="#γεωγραφική-κατανομή-κινδύνου">#</a></h2>
+<p>Η απεικόνιση ανά risky location βοηθά στον εντοπισμό επιθέσεων βάσει τοποθεσίας και στην αξιολόγηση του αν ένας χρήστης συνδέεται από trusted named locations.</p>
+<hr>
+<h1 id="η-ασπίδα">Η Ασπίδα<a hidden class="anchor" aria-hidden="true" href="#η-ασπίδα">#</a></h1>
+<h1 id="επέκταση-της-ασπίδας-i-workload-identities-και-ai-agents">Επέκταση της Ασπίδας I: Workload Identities και AI Agents<a hidden class="anchor" aria-hidden="true" href="#επέκταση-της-ασπίδας-i-workload-identities-και-ai-agents">#</a></h1>
+<p>Η προστασία πρέπει να επεκτείνεται πέρα από τις ανθρώπινες ταυτότητες, εκεί όπου το MFA δεν μπορεί να εφαρμοστεί.</p>
+<h2 id="workload-identities-1">Workload Identities<a hidden class="anchor" aria-hidden="true" href="#workload-identities-1">#</a></h2>
+<p>Οι ταυτότητες μηχανών στερούνται εγγενούς προστασίας. Το ID Protection είναι η πρώτη γραμμή άμυνας.</p>
+<h3 id="παραδείγματα-ανίχνευσης">Παραδείγματα ανίχνευσης<a hidden class="anchor" aria-hidden="true" href="#παραδείγματα-ανίχνευσης">#</a></h3>
+<ul>
+<li>Προσπάθεια από διαρροή μυστικών, όπως leaked secrets από GitHub.</li>
+<li>Ανίχνευση κακόβουλων εφαρμογών.</li>
+<li>Εντοπισμός ασυνήθιστης κίνησης API, όπως suspicious API traffic και reconnaissance.</li>
+</ul>
+<h2 id="ai-agents-microsoft-entra-agent-id">AI Agents Microsoft Entra Agent ID<a hidden class="anchor" aria-hidden="true" href="#ai-agents-microsoft-entra-agent-id">#</a></h2>
+<p>Αυτόνομα συστήματα που δρουν εκ μέρους των χρηστών απαιτούν συνεχή παρακολούθηση και συμμόρφωση.</p>
+<h3 id="έλεγχοι">Έλεγχοι<a hidden class="anchor" aria-hidden="true" href="#έλεγχοι">#</a></h3>
+<ul>
+<li>Early Life Malicious Activity με ανίχνευση επικίνδυνης συμπεριφοράς αμέσως μετά τη δημιουργία.</li>
+<li>Learning Mode με αυτόματη κατώτατη ειδοποίηση για agents μέχρι να συγκεντρωθεί ασφαλές baseline.</li>
+<li>Διατήρηση 90 ημερών για agent sign-in logs.</li>
+</ul>
+<hr>
+<h1 id="επέκταση-της-ασπίδας-ii-b2b-collaboration-risk">Επέκταση της Ασπίδας II: B2B Collaboration Risk<a hidden class="anchor" aria-hidden="true" href="#επέκταση-της-ασπίδας-ii-b2b-collaboration-risk">#</a></h1>
+<h2 id="διαχείριση-κινδύνου-πέρα-από-τα-όρια-του-οργανισμού">Διαχείριση κινδύνου πέρα από τα όρια του οργανισμού<a hidden class="anchor" aria-hidden="true" href="#διαχείριση-κινδύνου-πέρα-από-τα-όρια-του-οργανισμού">#</a></h2>
+<p>Η νέα λογική αξιολογεί τον συνολικό κίνδυνο χρήστη στο <strong>Home Directory</strong> του οργανισμού-επισκέπτη και τον κίνδυνο σύνδεσης στο <strong>Resource Directory</strong> του δικού σας οργανισμού.</p>
+<h2 id="πώς-λειτουργεί">Πώς λειτουργεί<a hidden class="anchor" aria-hidden="true" href="#πώς-λειτουργεί">#</a></h2>
+<ul>
+<li>Ο συνολικός κίνδυνος χρήστη αξιολογείται και διατηρείται στο home tenant.</li>
+<li>Η αξιολόγηση B2B κινδύνου και η ροή πρόσβασης μεταφέρεται προς το resource tenant.</li>
+<li>Ο κίνδυνος σύνδεσης αξιολογείται τοπικά στο δικό σας tenant.</li>
+</ul>
+<h2 id="περιορισμοί-και-αυτοματοποίηση">Περιορισμοί και αυτοματοποίηση<a hidden class="anchor" aria-hidden="true" href="#περιορισμοί-και-αυτοματοποίηση">#</a></h2>
+<ul>
+<li>Ο οργανισμός φιλοξενίας δεν μπορεί να αλλάξει τον συνολικό κίνδυνο του guest χρήστη.</li>
+<li>Ενεργοποίηση πολιτικής <strong>High User Risk</strong> στο B2B χρήστη αποκλείει, blocks, αυτόματα την πρόσβαση των πόρων σας.</li>
+<li>Self-service remediation πρέπει να εκτελεστεί στο home tenant για να ανακτηθεί η πρόσβαση.</li>
+</ul>
+<hr>
+<h1 id="από-τη-θεωρία-στην-πράξη-risk-based-conditional-access">Από τη Θεωρία στην Πράξη: Risk-Based Conditional Access<a hidden class="anchor" aria-hidden="true" href="#από-τη-θεωρία-στην-πράξη-risk-based-conditional-access">#</a></h1>
+<h2 id="μετατρέποντας-την-πληροφορία-κινδύνου-σε-άμεση-αυτοματοποιημένη-δράση">Μετατρέποντας την πληροφορία κινδύνου σε άμεση, αυτοματοποιημένη δράση<a hidden class="anchor" aria-hidden="true" href="#μετατρέποντας-την-πληροφορία-κινδύνου-σε-άμεση-αυτοματοποιημένη-δράση">#</a></h2>
+<p>Στην κορυφή της ροής βρίσκεται η είσοδος χρήστη και η αξιολόγηση από το Entra ID Protection.</p>
+<h2 id="παραδείγματα-πολιτικών">Παραδείγματα πολιτικών<a hidden class="anchor" aria-hidden="true" href="#παραδείγματα-πολιτικών">#</a></h2>
+<h3 id="if-sign-in-risk--mediumhigh">IF Sign-in Risk = Medium/High<a hidden class="anchor" aria-hidden="true" href="#if-sign-in-risk--mediumhigh">#</a></h3>
+<p><strong>Require MFA</strong></p>
+<p>Επιβεβαίωση ταυτότητας για συγκεκριμένη ύποπτη συνεδρία.</p>
+<h3 id="if-user-risk--high-unified-score">IF User Risk = High Unified Score<a hidden class="anchor" aria-hidden="true" href="#if-user-risk--high-unified-score">#</a></h3>
+<p><strong>Require Secure Password Change</strong></p>
+<p>Οριστική αποκατάσταση κινδύνου. Οι προηγούμενες συνεδρίες ανακαλούνται.</p>
+<h3 id="if-workload-identity-risk--high">IF Workload Identity Risk = High<a hidden class="anchor" aria-hidden="true" href="#if-workload-identity-risk--high">#</a></h3>
+<p><strong>Block Access / CAE Enforcement</strong></p>
+<p>Άμεσος αποκλεισμός πρόσβασης για μη ανθρώπινες ταυτότητες. Χρήση Continuous Access Evaluation.</p>
+<hr>
+<h1 id="adaptive-risk-remediation-αυτο-αποκατάσταση-χωρίς-το-helpdesk">Adaptive Risk Remediation: Αυτο-αποκατάσταση Χωρίς το Helpdesk<a hidden class="anchor" aria-hidden="true" href="#adaptive-risk-remediation-αυτο-αποκατάσταση-χωρίς-το-helpdesk">#</a></h1>
+<p>Ο έλεγχος <strong>Require risk remediation</strong> προσαρμόζει έξυπνα τη ροή αποκατάστασης.</p>
+<h2 id="σενάριο-1-password-authentication">Σενάριο 1: Password Authentication<a hidden class="anchor" aria-hidden="true" href="#σενάριο-1-password-authentication">#</a></h2>
+<h3 id="απειλές">Απειλές<a hidden class="anchor" aria-hidden="true" href="#απειλές">#</a></h3>
+<ul>
+<li>Leaked credential.</li>
+<li>Password spray.</li>
+</ul>
+<h3 id="αντίδραση-συστήματος">Αντίδραση συστήματος<a hidden class="anchor" aria-hidden="true" href="#αντίδραση-συστήματος">#</a></h3>
+<p>Απαίτηση άμεσης αλλαγής κωδικού πρόσβασης μέσω secure password change.</p>
+<h3 id="αποτέλεσμα-1">Αποτέλεσμα<a hidden class="anchor" aria-hidden="true" href="#αποτέλεσμα-1">#</a></h3>
+<p>Ανάκληση όλων των προηγούμενων συνεδριών. Ο χρήστης είναι πλέον ασφαλής.</p>
+<h2 id="σενάριο-2-passwordless-authentication">Σενάριο 2: Passwordless Authentication<a hidden class="anchor" aria-hidden="true" href="#σενάριο-2-passwordless-authentication">#</a></h2>
+<h3 id="απειλές-1">Απειλές<a hidden class="anchor" aria-hidden="true" href="#απειλές-1">#</a></h3>
+<ul>
+<li>Κλοπή session cookie.</li>
+<li>AiTM phishing.</li>
+</ul>
+<h3 id="αντίδραση-συστήματος-1">Αντίδραση συστήματος<a hidden class="anchor" aria-hidden="true" href="#αντίδραση-συστήματος-1">#</a></h3>
+<p>Επειδή δεν υπάρχει κωδικός για αλλαγή, η αλλαγή κωδικού είναι περιττή. Απαιτείται ισχυρός, επαναληπτικός έλεγχος ταυτότητας.</p>
+<h3 id="αποτέλεσμα-2">Αποτέλεσμα<a hidden class="anchor" aria-hidden="true" href="#αποτέλεσμα-2">#</a></h3>
+<p>Τα sessions ανακαλούνται αυτόματα. Η πρόσβαση ανακτάται άμεσα και με ασφάλεια.</p>
+<hr>
+<h1 id="προγνωστική-θωράκιση-και-αυτόνομη-απόκριση-security-copilot">Προγνωστική Θωράκιση και Αυτόνομη Απόκριση Security Copilot<a hidden class="anchor" aria-hidden="true" href="#προγνωστική-θωράκιση-και-αυτόνομη-απόκριση-security-copilot">#</a></h1>
+<h2 id="χρησιμοποιώντας-την-ταχύτητα-των-μηχανών-για-την-αντιμετώπιση-επιθέσεων-ταχύτητας-μηχανών">Χρησιμοποιώντας την ταχύτητα των μηχανών για την αντιμετώπιση επιθέσεων ταχύτητας μηχανών<a hidden class="anchor" aria-hidden="true" href="#χρησιμοποιώντας-την-ταχύτητα-των-μηχανών-για-την-αντιμετώπιση-επιθέσεων-ταχύτητας-μηχανών">#</a></h2>
+<h2 id="agentic-triage-αυτόνομη-αξιολόγηση">Agentic Triage: Αυτόνομη αξιολόγηση<a hidden class="anchor" aria-hidden="true" href="#agentic-triage-αυτόνομη-αξιολόγηση">#</a></h2>
+<p>Το Security Copilot αναλύει αυτόματα εκατοντάδες ειδοποιήσεις, δημιουργεί δέντρα επιθέσεων, αναγνωρίζει ευκαιρίες για password spray και Business Email Compromise.</p>
+<p><strong>Αποτέλεσμα:</strong> αύξηση ταχύτητας εντοπισμού κατά 6.5x.</p>
+<h2 id="predictive-shielding-προγνωστική-θωράκιση">Predictive Shielding: Προγνωστική θωράκιση<a hidden class="anchor" aria-hidden="true" href="#predictive-shielding-προγνωστική-θωράκιση">#</a></h2>
+<p>Κατά τη διάρκεια μιας ενεργής επίθεσης, το σύστημα εφαρμόζει δυναμική σκλήρυνση just-in-time.</p>
+<p>Παραδείγματα:</p>
+<ul>
+<li>RemoteOps: περιορίζει αυτόματα ενέργειες RCP για την αποτροπή πλευρικής μετακίνησης lateral movement.</li>
+<li>Remote Registry και SafeBoot: μπλοκάρει την αλλοίωση κρίσιμων ρυθμίσεων ασφαλείας στα endpoints.</li>
+</ul>
+<hr>
+<h1 id="το-νέο-μοντέλο-ένα-αυτόνομο-οικοσύστημα-ασφαλείας">Το Νέο Μοντέλο: Ένα Αυτόνομο Οικοσύστημα Ασφαλείας<a hidden class="anchor" aria-hidden="true" href="#το-νέο-μοντέλο-ένα-αυτόνομο-οικοσύστημα-ασφαλείας">#</a></h1>
+<p>Η σύνθεση όλων των συστημάτων οδηγεί σε ελαστική και resilient προστασία με ελάχιστη τριβή.</p>
+<h2 id="inputs-ορατότητα">Inputs: Ορατότητα<a hidden class="anchor" aria-hidden="true" href="#inputs-ορατότητα">#</a></h2>
+<ul>
+<li>Human users και B2B guests.</li>
+<li>Workload identities και AI agents.</li>
+<li>Σήματα από Microsoft Defender και Purview.</li>
+</ul>
+<h2 id="the-engine-συσχέτιση">The Engine: Συσχέτιση<a hidden class="anchor" aria-hidden="true" href="#the-engine-συσχέτιση">#</a></h2>
+<p>Το κεντρικό μοντέλο αξιολόγησης περιλαμβάνει:</p>
+<ul>
+<li>Unified Risk Machine Learning.</li>
+<li>Συνεχή αξιολόγηση real-time και offline.</li>
+<li>Ενοποιημένη ανάλυση account sets, cloud και on-prem.</li>
+</ul>
+<h2 id="outputs-δράση">Outputs: Δράση<a hidden class="anchor" aria-hidden="true" href="#outputs-δράση">#</a></h2>
+<ul>
+<li>Risk-Based Conditional Access για αποκατάσταση.</li>
+<li>Agentic Triage για ταχύτητα SOC.</li>
+<li>Predictive Shielding για προληπτική θωράκιση.</li>
+<li>Continuous Access Evaluation για άμεση επανεκτίμηση πρόσβασης.</li>
+</ul>
+<hr>
+<h1 id="βήματα-δράσης-για-το-σύγχρονο-soc">Βήματα Δράσης για το Σύγχρονο SOC<a hidden class="anchor" aria-hidden="true" href="#βήματα-δράσης-για-το-σύγχρονο-soc">#</a></h1>
+<p>Η μετάβαση στο Unified Risk μπορεί να ξεκινήσει άμεσα.</p>
+<h2 id="1-ενεργοποιήστε-την-πολιτική-εγγραφής-mfa">1. Ενεργοποιήστε την Πολιτική Εγγραφής MFA<a hidden class="anchor" aria-hidden="true" href="#1-ενεργοποιήστε-την-πολιτική-εγγραφής-mfa">#</a></h2>
+<p>Διασφαλίστε ότι όλοι οι νέοι χρήστες εγγράφονται στην πρώτη ημέρα. Είναι το θεμέλιο για αυτο-αποκατάσταση χωρίς τη βοήθεια του Helpdesk.</p>
+<h2 id="2-ενοποιήστε-τα-σήματα">2. Ενοποιήστε τα Σήματα<a hidden class="anchor" aria-hidden="true" href="#2-ενοποιήστε-τα-σήματα">#</a></h2>
+<p>Διαμορφώστε το Microsoft Defender for Identity για να ενεργοποιήσετε την πλήρη ισχύ του Unified Risk Score σε υβριδικά περιβάλλοντα. Ενοποιήστε τις on-prem ταυτότητες με το cloud account set.</p>
+<h2 id="3-μεταβείτε-σε-block--remediate">3. Μεταβείτε σε Block / Remediate<a hidden class="anchor" aria-hidden="true" href="#3-μεταβείτε-σε-block--remediate">#</a></h2>
+<p>Εγκαταλείψτε οριστικά το report-only. Εφαρμόστε το <strong>Require risk remediation</strong> μέσω Risk-Based Conditional Access και επιτρέψτε στο σύστημα να απομονώνει και να διορθώνει τις απειλές αυτόματα.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-entra-id/">Microsoft Entra ID</a></li>
+      <li><a href="http://localhost:1313/tags/conditional-access/">Conditional Access</a></li>
+      <li><a href="http://localhost:1313/tags/token-protection/">Token Protection</a></li>
+      <li><a href="http://localhost:1313/tags/identity-security/">Identity Security</a></li>
+      <li><a href="http://localhost:1313/tags/nis2/">NIS2</a></li>
+      <li><a href="http://localhost:1313/tags/iso-27001/">ISO 27001</a></li>
+      <li><a href="http://localhost:1313/tags/grc/">GRC</a></li>
+      <li><a href="http://localhost:1313/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="http://localhost:1313/tags/device-migration/">Device Migration</a></li>
+      <li><a href="http://localhost:1313/tags/zero-trust/">Zero Trust</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/welcome/">
+    <span class="title">« Prev</span>
+    <span>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/microsoft-unified-risk-score2/">
+    <span class="title">Next »</span>
+    <span>Microsoft Unified Risk Score 2</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Unified Risk Score 1 on x"
+            href="https://x.com/intent/tweet/?text=Microsoft%20Unified%20Risk%20Score%201&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-unified-risk-score1%2f&amp;hashtags=MicrosoftEntraID%2cConditionalAccess%2cTokenProtection%2cIdentitySecurity%2cNIS2%2cISO27001%2cGRC%2cCybersecurity%2cDeviceMigration%2cZeroTrust">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Unified Risk Score 1 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-unified-risk-score1%2f&amp;title=Microsoft%20Unified%20Risk%20Score%201&amp;summary=Microsoft%20Unified%20Risk%20Score%201&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-unified-risk-score1%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Microsoft Unified Risk Score 1 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmicrosoft-unified-risk-score1%2f&title=Microsoft%20Unified%20Risk%20Score%201">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
