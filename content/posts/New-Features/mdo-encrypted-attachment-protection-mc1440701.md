@@ -32,7 +32,7 @@ author: "Dimosthenis Atteia"
 description: "Το Microsoft Defender for Office 365 φέρνει μια νέα opt-in ρύθμιση στις πολιτικές Safe Attachments: θέτει σε quarantine μηνύματα με κρυπτογραφημένα ή password-protected συνημμένα που δεν μπορεί να σαρώσει. Εξηγώ με απλά λόγια τι αλλάζει με το MC1440701, πώς λειτουργεί η αποδέσμευση, ποιος κίνδυνος phishing κρύβεται από πίσω και τι πρέπει να κάνεις πριν το rollout του Αυγούστου 2026."
 summary: "Νέα opt-in δυνατότητα στο Microsoft Defender for Office 365 (MC1440701): quarantine για μηνύματα με password-protected συνημμένα που δεν σαρώνονται. Δες πώς δουλεύει βήμα-βήμα, ποιοι είναι οι δύο δρόμοι αποδέσμευσης (χρήστης με password / admin χωρίς), γιατί η όλη ιστορία είναι και ρίσκο phishing, το χρονοδιάγραμμα διάθεσης και μια πρακτική λίστα ενεργειών με έτοιμο Advanced Hunting query."
 categories: ["Microsoft Defender", "Microsoft 365 Security", "Email Security"]
-series: ["Message Center Decoded"]
+series:
 releases:
   - "new-features"
 ShowToc: true

@@ -41,9 +41,9 @@ cover:
     relative: true
 ShowReadingTime: true
 ShowWordCount: true
-canonicalURL: "https://thecybersec.gr/posts/report-a-call-report-a-meeting-teams-security-reporting/"
----
 
+---
+<!-- canonicalURL: "https://thecybersec.gr/posts/report-a-call-report-a-meeting-teams-security-reporting/"-->
 Πριν λίγες μέρες έπεσα πάνω σε δύο ανακοινώσεις στο Message Center που, διαβασμένες μαζί, μου άλλαξαν λίγο τον τρόπο που σκέφτομαι το Teams ως επιφάνεια απειλής. Η μία λέει ότι οι χρήστες θα μπορούν να αναφέρουν ύποπτη κλήση απευθείας από το ιστορικό κλήσεων (MC1447673). Η άλλη λέει το ίδιο για τις συναντήσεις, μέσα από το μενού ή το chat header (MC1446794). Ξεχωριστά ακούγονται σαν δύο ακόμα μικρές προσθήκες σε ένα προϊόν που αλλάζει κάθε βδομάδα. Μαζί, είναι κάτι πολύ πιο ενδιαφέρον: η Microsoft δίνει επιτέλους στον χρήστη ένα κουμπί «κάτι δεν πάει καλά εδώ» για το Teams, ακριβώς όπως έχει χρόνια στο Outlook.
 
 Και αυτό, αν δουλεύεις σε GRC ή σε SecOps, δεν είναι απλώς ένα UX feature. Είναι ένα νέο κανάλι τηλεμετρίας που ως χθες δεν υπήρχε.
