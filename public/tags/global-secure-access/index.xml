@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Global Secure Access on Microsoft 365 Security Insights</title>
+    <link>http://localhost:1313/tags/global-secure-access/</link>
+    <description>Recent content in Global Secure Access on Microsoft 365 Security Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Aug 2026 09:30:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/global-secure-access/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες</title>
+      <link>http://localhost:1313/posts/gsa-mcp-firewall/</link>
+      <pubDate>Tue, 11 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/gsa-mcp-firewall/</guid>
+      <description>Ανάλυση του νέου Global Secure Access MCP firewall της Microsoft, του πρώτου network-based ελέγχου πάνω στο Model Context Protocol, και του γιατί κάθε CISO πρέπει να το βάλει στο radar του πριν οι AI agents στον οργανισμό αρχίσουν να μιλάνε με MCP servers χωρίς κανέναν να το ξέρει.</description>
+    </item>
+  </channel>
+</rss>
