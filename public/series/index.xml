@@ -6,8 +6,22 @@
     <description>Recent content in Series on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2026 09:55:59 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 11:55:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generally Available Features</title>
+      <link>http://localhost:1313/series/generally-available-features/</link>
+      <pubDate>Tue, 11 Aug 2026 11:50:00 +0300</pubDate>
+      <guid>http://localhost:1313/series/generally-available-features/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Preview Features</title>
+      <link>http://localhost:1313/series/preview-features/</link>
+      <pubDate>Tue, 11 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/series/preview-features/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI-Powered Security</title>
       <link>http://localhost:1313/series/ai-powered-security/</link>
@@ -30,24 +44,10 @@
       <description></description>
     </item>
     <item>
-      <title>Preview Features</title>
-      <link>http://localhost:1313/series/preview-features/</link>
-      <pubDate>Wed, 29 Jul 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/series/preview-features/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Microsoft Defender Demystified</title>
       <link>http://localhost:1313/series/microsoft-defender-demystified/</link>
       <pubDate>Mon, 27 Jul 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/series/microsoft-defender-demystified/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Generally Available Features</title>
-      <link>http://localhost:1313/series/generally-available-features/</link>
-      <pubDate>Tue, 14 Jul 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/series/generally-available-features/</guid>
       <description></description>
     </item>
     <item>

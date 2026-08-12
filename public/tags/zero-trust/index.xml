@@ -6,8 +6,22 @@
     <description>Recent content in Zero Trust on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Aug 2026 15:29:34 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 11:55:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/zero-trust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου</title>
+      <link>http://localhost:1313/posts/entra-tenant-governance-ga/</link>
+      <pubDate>Tue, 11 Aug 2026 11:50:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/entra-tenant-governance-ga/</guid>
+      <description>Ανάλυση του Microsoft Entra Tenant Governance μετά τη γενική διαθεσιμότητα, τι είναι πραγματικά GA και τι παραμένει preview, και τι σημαίνει αυτό για οργανισμούς που πρέπει να τεκμηριώσουν τη διακυβέρνηση πολλαπλών tenants σε NIS2 και ISO 27001 audit.</description>
+    </item>
+    <item>
+      <title>Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες</title>
+      <link>http://localhost:1313/posts/gsa-mcp-firewall/</link>
+      <pubDate>Tue, 11 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/gsa-mcp-firewall/</guid>
+      <description>Ανάλυση του νέου Global Secure Access MCP firewall της Microsoft, του πρώτου network-based ελέγχου πάνω στο Model Context Protocol, και του γιατί κάθε CISO πρέπει να το βάλει στο radar του πριν οι AI agents στον οργανισμό αρχίσουν να μιλάνε με MCP servers χωρίς κανέναν να το ξέρει.</description>
+    </item>
     <item>
       <title>Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging</title>
       <link>http://localhost:1313/posts/teams-security-detection-report/</link>
