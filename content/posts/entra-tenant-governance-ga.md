@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου"
-date: 2026-08-11T11:50:00+03:00
-lastmod: 2026-08-11T11:55:00+03:00
+date: 2026-08-12T09:00:00+03:00
+lastmod: 2026-08-12T09:30:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Tenant Governance
