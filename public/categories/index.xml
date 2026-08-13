@@ -6,19 +6,26 @@
     <description>Recent content in Categories on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Aug 2026 11:55:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 09:00:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cloud Security</title>
+      <link>http://localhost:1313/categories/cloud-security/</link>
+      <pubDate>Thu, 13 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/categories/cloud-security/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Identity Security</title>
       <link>http://localhost:1313/categories/identity-security/</link>
-      <pubDate>Tue, 11 Aug 2026 11:50:00 +0300</pubDate>
+      <pubDate>Thu, 13 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/categories/identity-security/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft 365 Security</title>
       <link>http://localhost:1313/categories/microsoft-365-security/</link>
-      <pubDate>Tue, 11 Aug 2026 11:50:00 +0300</pubDate>
+      <pubDate>Wed, 12 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/categories/microsoft-365-security/</guid>
       <description></description>
     </item>

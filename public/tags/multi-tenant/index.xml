@@ -6,12 +6,12 @@
     <description>Recent content in Multi-Tenant on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Aug 2026 11:55:00 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2026 10:12:27 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/multi-tenant/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου</title>
       <link>http://localhost:1313/posts/entra-tenant-governance-ga/</link>
-      <pubDate>Tue, 11 Aug 2026 11:50:00 +0300</pubDate>
+      <pubDate>Wed, 12 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/entra-tenant-governance-ga/</guid>
       <description>Ανάλυση του Microsoft Entra Tenant Governance μετά τη γενική διαθεσιμότητα, τι είναι πραγματικά GA και τι παραμένει preview, και τι σημαίνει αυτό για οργανισμούς που πρέπει να τεκμηριώσουν τη διακυβέρνηση πολλαπλών tenants σε NIS2 και ISO 27001 audit.</description>
     </item>
