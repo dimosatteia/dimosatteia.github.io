@@ -1,0 +1,13 @@
+{{ if .Site.Data.certifications }}
+<div class="cert-widget">
+  <h4 class="cert-widget-title">Certifications</h4>
+  <div class="cert-badges">
+    {{ range .Site.Data.certifications }}
+    <a href="{{ .verify }}" target="_blank" rel="noopener noreferrer" title="{{ .title }}" class="cert-badge">
+      <img src="{{ .badge }}" alt="{{ .name }} - {{ .title }}" loading="lazy" />
+      <span>{{ .name }}</span>
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
