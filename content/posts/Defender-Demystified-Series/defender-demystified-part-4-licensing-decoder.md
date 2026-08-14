@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 4: The Licensing Decoder"
 date: 2026-07-25T20:00:00+03:00
-lastmod: 2026-08-14T09:20:00+03:00
+lastmod: 2026-08-14T09:31:00+03:00
 draft: false
 keywords:
   - which microsoft 365 plan includes defender
@@ -53,7 +53,7 @@ This post is the Tuesday-morning version. We'll cover what Microsoft 365 Busines
 
 Before we look at any plan comparison, this distinction:
 
-- **Microsoft Defender XDR** (everything we covered in Part 2, endpoint, email, identity, SaaS) is licensed **per user, per month** as part of a **Microsoft 365** plan.
+- **Microsoft Defender XDR** (everything we covered in **[Part 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)**, endpoint, email, identity, SaaS) is licensed **per user, per month** as part of a **Microsoft 365** plan.
 - **Microsoft Defender for Cloud** (Part 3 — Azure and multicloud workloads) is licensed **per resource, per month** as part of your **Azure consumption**.
 
 These show up on different invoices. Your Microsoft 365 E5 license gives you zero Microsoft Defender for Cloud entitlement, and vice versa. I've seen companies budget for "Defender" as a single line item and be unpleasantly surprised when the two different products turn up as two different costs.
