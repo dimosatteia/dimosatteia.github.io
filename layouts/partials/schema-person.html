@@ -1,0 +1,24 @@
+{{- $credentials := slice }}
+{{- range .Site.Data.certifications }}
+  {{- $credentials = $credentials | append (dict
+      "@type" "EducationalOccupationalCredential"
+      "credentialCategory" "certification"
+      "name" .title
+      "url" .verify
+  ) }}
+{{- end }}
+
+{{- $person := dict
+    "@context" "https://schema.org"
+    "@type" "Person"
+    "name" "Dimosthenis Atteia"
+    "alternateName" "Δημοσθένης Αττέια"
+    "jobTitle" "CIO/CISO"
+    "url" .Site.BaseURL
+    "worksFor" (dict "@type" "Organization" "name" "Μύλοι Κεπενού Α.Β.Ε.Ε.")
+    "hasCredential" $credentials
+}}
+
+<script type="application/ld+json">
+{{ $person | jsonify (dict "indent" "  ") | safeJS }}
+</script>
