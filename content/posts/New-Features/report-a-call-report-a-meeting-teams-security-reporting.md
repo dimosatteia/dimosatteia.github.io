@@ -1,7 +1,7 @@
 ---
 title: "Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές"
 date: 2026-08-07T11:00:00+03:00
-lastmod: 2026-08-07T11:30:00+03:00
+lastmod: 2026-08-14T09:10:00+03:00
 draft: false
 keywords: 
   - Report a call Microsoft Teams
@@ -35,13 +35,12 @@ releases:
 ShowToc: true
 TocOpen: false
 weight: -5
+ShowReadingTime: true
+ShowWordCount: true
 cover:
     image: "images/teams-reporting/report-a-security-concern.png"
     alt: "Report a security concern στο Microsoft Teams meeting"
-    relative: true
-ShowReadingTime: true
-ShowWordCount: true
-
+    caption: 
 ---
 
 Πριν λίγες μέρες έπεσα πάνω σε δύο ανακοινώσεις στο Message Center που, διαβασμένες μαζί, μου άλλαξαν λίγο τον τρόπο που σκέφτομαι το Teams ως επιφάνεια απειλής. Η μία λέει ότι οι χρήστες θα μπορούν να αναφέρουν ύποπτη κλήση απευθείας από το ιστορικό κλήσεων (MC1447673). Η άλλη λέει το ίδιο για τις συναντήσεις, μέσα από το μενού ή το chat header (MC1446794). Ξεχωριστά ακούγονται σαν δύο ακόμα μικρές προσθήκες σε ένα προϊόν που αλλάζει κάθε βδομάδα. Μαζί, είναι κάτι πολύ πιο ενδιαφέρον: η Microsoft δίνει επιτέλους στον χρήστη ένα κουμπί «κάτι δεν πάει καλά εδώ» για το Teams, ακριβώς όπως έχει χρόνια στο Outlook.

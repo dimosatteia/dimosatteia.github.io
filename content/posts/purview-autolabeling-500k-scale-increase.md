@@ -1,7 +1,7 @@
 ---
 title: "Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου"
-date: 2026-08-13T10:00:00+03:00
-lastmod: 2026-08-13T10:30:00+03:00
+date: 2026-08-14T08:00:00+03:00
+lastmod: 2026-08-14T08:30:00+03:00
 draft: false
 keywords:
   - Microsoft Purview auto-labeling
