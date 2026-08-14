@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 5: A Walk Through the Microsoft Defender Portal"
 date: 2026-07-27T09:00:00+03:00
-lastmod: 2026-08-14T09:31:00+03:00
+lastmod: 2026-08-14T09:39:00+03:00
 draft: false
 keywords:
   - how to use the microsoft defender portal
@@ -44,10 +44,10 @@ cover:
 
 Over four posts we've built up the full picture of the Microsoft Defender family:
 
-- **[Part 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** — the whole family the way Microsoft itself organises it
-- **[Part 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)** — the four core XDR workloads
-- **[Part 3](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)** — Microsoft Defender for Cloud for Azure and multicloud
-- **[Part 4](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)** — which plan to actually buy
+- **[Part 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/):** The whole family the way Microsoft itself organises it
+- **[Part 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/):** The four core XDR workloads
+- **[Part 3](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/):** Microsoft Defender for Cloud for Azure and multicloud
+- **[Part 4](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/):** Which plan to actually buy
 
 Time to open the platform itself. This final post is a **hands-on walk through the unified Microsoft Defender portal at `security.microsoft.com`**, the single console where everything we've covered lives. Open the portal in another tab and read along. By the end, you'll know where everything is and what to click first.
 

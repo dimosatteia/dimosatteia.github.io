@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
         <loc>http://localhost:1313/posts/welcome/</loc><lastmod>2026-05-23T16:32:25Z</lastmod></url><url>
-        <loc>http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/</loc><lastmod>2026-08-13T07:30:00Z</lastmod></url><url>
+        <loc>http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/</loc><lastmod>2026-08-14T06:12:50Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/azure-kai-entra-to-themelio/</loc><lastmod>2026-08-13T06:50:53Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/entra-tenant-governance-ga/</loc><lastmod>2026-08-12T07:12:27Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/gsa-mcp-firewall/</loc><lastmod>2026-08-11T07:43:48Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/teams-security-detection-report/</loc><lastmod>2026-08-10T12:29:34Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/entra-token-protection-bulk-enrollment-limitation/</loc><lastmod>2026-08-10T06:21:43Z</lastmod></url><url>
-        <loc>http://localhost:1313/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/</loc><lastmod>2026-08-10T16:46:15Z</lastmod></url><url>
+        <loc>http://localhost:1313/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/</loc><lastmod>2026-08-14T06:12:50Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/allowed-agent-types-only-certified-external-publishers/</loc><lastmod>2026-08-07T06:43:41Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/previews/project-perception-agentic-security-explained/</loc><lastmod>2026-08-06T06:55:59Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/new-features/mdo-encrypted-attachment-protection-mc1440701/</loc><lastmod>2026-08-10T16:44:38Z</lastmod></url><url>
@@ -27,10 +27,10 @@
         <loc>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/</loc><lastmod>2026-07-27T08:40:40Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
-        <loc>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/</loc><lastmod>2026-07-27T08:40:40Z</lastmod></url><url>
+        <loc>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/</loc><lastmod>2026-08-14T06:32:50Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/03-mdvm-the-prioritization-engine/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
-        <loc>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</loc><lastmod>2026-07-27T08:40:40Z</lastmod></url><url>
+        <loc>http://localhost:1313/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/</loc><lastmod>2026-08-14T06:35:05Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/</loc><lastmod>2026-05-21T10:42:15Z</lastmod></url><url>
         <loc>http://localhost:1313/posts/previews/ad-group-enforcement-cloud-sync/</loc><lastmod>2026-07-29T09:13:13Z</lastmod></url><url>
