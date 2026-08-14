@@ -1,7 +1,7 @@
 ---
 title: "Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ"
 date: 2026-07-13T10:00:00+03:00
-lastmod: 2026-07-13T10:00:00+03:00
+lastmod: 2026-08-14T09:40:00+03:00
 draft: false
 keywords:
   - Microsoft Defender οικογένεια προϊόντων
@@ -160,7 +160,7 @@ cover:
 
 ## Microsoft Defender for Cloud (MDC)
 
-**Τι είναι:** Η ολοκληρωμένη πλατφόρμα **CNAPP** (Cloud-Native Application Protection Platform) της Microsoft, πλέον βαθιά ενσωματωμένη στο Defender portal. Η threat protection ήταν ήδη εκεί· η ενσωμάτωση προσθέτει **posture management** σε μία ενιαία εμπειρία χωρίς σιλό, υποστηρίζοντας Azure, AWS, GCP και άλλες πλατφόρμες.
+**Τι είναι:** Η ολοκληρωμένη πλατφόρμα **CNAPP** (Cloud-Native Application Protection Platform) της Microsoft, πλέον βαθιά ενσωματωμένη στο Defender portal. Η threat protection ήταν ήδη εκεί η ενσωμάτωση προσθέτει **posture management** σε μία ενιαία εμπειρία χωρίς σιλό, υποστηρίζοντας Azure, AWS, GCP και άλλες πλατφόρμες.
 
 [![Microsoft Defender for Cloud (MDC) — CNAPP: ενοποιημένο posture management και threat protection σε multicloud/hybrid](/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.png)
 > 📷 **Εικόνα 10: Microsoft Defender for Cloud (MDC).** *Τι είναι και τι προστατεύει.*
