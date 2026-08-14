@@ -179,7 +179,7 @@ The mistake a lot of enterprises make is **uniform E5 deployment** without actua
 
 ## What about Microsoft Defender for Cloud pricing?
 
-Quick recap from **[Part 3](/posts/Defender-Demystified-Series/defender-demystified-part-3-defender-for-cloud/)**:
+Quick recap from **[Part 3](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)**:
 
 - **Foundational CSPM:** free for any onboarded Azure subscription, AWS account, or GCP project
 - **Defender CSPM:** (paid tier) around $5 per billable resource per month
