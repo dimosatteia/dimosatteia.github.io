@@ -146,10 +146,10 @@ cover:
 
 **Τι προστατεύει:**
 
-- **CASB functionality** — Shadow IT discovery, visibility και προστασία από app-based threats
-- **SSPM** — SaaS Security Posture Management
-- **Advanced threat protection** — συσχέτιση σε όλο το kill chain, ως μέρος του Defender XDR
-- **App-to-app protection** — για OAuth-enabled εφαρμογές με πρόσβαση σε κρίσιμα δεδομένα
+- **CASB functionality:** Shadow IT discovery, visibility και προστασία από app-based threats
+- **SSPM:** SaaS Security Posture Management
+- **Advanced threat protection:** Συσχέτιση σε όλο το kill chain, ως μέρος του Defender XDR
+- **App-to-app protection:** Για OAuth-enabled εφαρμογές με πρόσβαση σε κρίσιμα δεδομένα
 
 [![MDA βασικές δυνατότητες: Cloud Discovery, anomaly detection, adaptive access control, information protection, app governance, XDR correlation](/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.png)
 > 📷 **Εικόνα 9: MDA, βασικές δυνατότητες.** *Και ενσωμάτωση με Purview και Defender XDR.*
@@ -167,9 +167,9 @@ cover:
 
 **Τι προστατεύει:**
 
-- **Posture management** — Cloud Secure Score, recommendations, attack paths και cloud vulnerabilities
-- **Threat detection & response** — incidents, alerts, response actions, advanced hunting
-- **Multicloud & hybrid** — Azure, AWS, GCP και άλλες πλατφόρμες, σε cloud, hybrid και code
+- **Posture management:** Cloud Secure Score, recommendations, attack paths και cloud vulnerabilities
+- **Threat detection & response:** Ιncidents, alerts, response actions, advanced hunting
+- **Multicloud & hybrid:** Azure, AWS, GCP και άλλες πλατφόρμες, σε cloud, hybrid και code
 
 [![MDC βασικές δυνατότητες: Cloud Secure Score, recommendations, attack paths, cloud asset inventory, incidents & alerts, Cloud Scopes & RBAC](/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.png)
 > 📷 **Εικόνα 11: MDC, βασικές δυνατότητες.** *Και πώς ξεκινάς: Cloud Overview dashboard.*
