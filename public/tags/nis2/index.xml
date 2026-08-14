@@ -6,12 +6,19 @@
     <description>Recent content in NIS2 on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Aug 2026 11:59:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 10:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/nis2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου</title>
+      <link>http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/</link>
+      <pubDate>Thu, 13 Aug 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/</guid>
+      <description>Ανάλυση της αύξησης του ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία την ημέρα για SharePoint και OneDrive, με την οπτική ενός CISO που πρέπει να ξαναδεί το labeling roadmap του πριν το GA του Οκτωβρίου.</description>
+    </item>
     <item>
       <title>Azure και Entra: Τι πραγματικά είναι, τι τα ενώνει και τι τα διαφοροποιεί (το θεμέλιο που παραλείπουμε)</title>
       <link>http://localhost:1313/posts/azure-kai-entra-to-themelio/</link>
-      <pubDate>Wed, 12 Aug 2026 11:58:00 +0300</pubDate>
+      <pubDate>Thu, 13 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/azure-kai-entra-to-themelio/</guid>
       <description>Πριν μιλήσουμε ξανά για το επόμενο New Feauture, το νέο Public Preview ή το Generally Available, ας ξεκαθαρίσουμε τι είναι στην πραγματικότητα το Azure, τι είναι το Entra, πού κάθεται το Microsoft 365, πού μπαίνει το Defender, και γιατί αυτή η διάκριση είναι το θεμέλιο κάθε compliance συζήτησης που κάνουμε μετά.</description>
     </item>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου</title>
+<meta name="keywords" content="Microsoft Purview auto-labeling, Sensitivity labels SharePoint OneDrive, Auto-labeling policy scale, RM567890 Message Center, Data classification at scale, Copilot readiness data protection, NIS2 ταξινόμηση πληροφορίας, ISO 27001 A.8 asset management, Simulation mode Purview, Information Protection scale limits">
+<meta name="description" content="Ανάλυση της αύξησης του ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία την ημέρα για SharePoint και OneDrive, με την οπτική ενός CISO που πρέπει να ξαναδεί το labeling roadmap του πριν το GA του Οκτωβρίου.">
+<meta name="author" content="Dimosthenis Atteia">
+<link rel="canonical" href="http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/">
+<link crossorigin="anonymous" href="http://localhost:1313/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-96x96.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx5s18mpi4");
+</script><script data-goatcounter="https://dimosatteia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου\"",
+  "description": "\"Ένα νούμερο που έμενε σταθερό τόσο καιρό που το είχαμε ενσωματώσει σαν δεδομένο στον σχεδιασμό μας, αλλάζει. Το πενταπλάσιο όριο auto-labeling δεν είναι απλώς ένα technical bump, είναι ευκαιρία να ξανακοιτάξεις το labeling backlog σου και να το συνδέσεις με το πώς τεκμηριώνεις classification στο ISO 27001 και στο NIS2.\"",
+  "author": {
+    "@type": "Person",
+    "name": "Dimosthenis Atteia",
+    "url": "https://thecybersec.gr",
+    "jobTitle": "Chief Information Security Officer"
+  },
+  "datePublished": "\"2026-08-13T10:00:00+03:00\"",
+  "dateModified": "\"2026-08-13T10:30:00+03:00\"",
+  "image": "\"http://localhost:1313/images/purview-autolabeling-500k/purview-autolabel-scale-increase-cover.png\"",
+  "url": "\"http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/\"",
+  "wordCount":  1363 ,
+  "keywords": "\"Microsoft Purview, Information Protection, Sensitivity Labels, Data Classification, Microsoft 365 Security, NIS2, ISO 27001, GRC, Cybersecurity, Microsoft 365 Copilot\"",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheCyberSec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thecybersec.gr/android-chrome-512x512.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "\"http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/\""
+  }
+}
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XL1JKVTRG9"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XL1JKVTRG9');
+        }
+      </script><meta property="og:url" content="http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/">
+  <meta property="og:site_name" content="Microsoft 365 Security Insights">
+  <meta property="og:title" content="Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου">
+  <meta property="og:description" content="Ανάλυση της αύξησης του ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία την ημέρα για SharePoint και OneDrive, με την οπτική ενός CISO που πρέπει να ξαναδεί το labeling roadmap του πριν το GA του Οκτωβρίου.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-13T10:00:00+03:00">
+    <meta property="article:modified_time" content="2026-08-13T10:30:00+03:00">
+    <meta property="article:tag" content="Microsoft Purview">
+    <meta property="article:tag" content="Information Protection">
+    <meta property="article:tag" content="Sensitivity Labels">
+    <meta property="article:tag" content="Data Classification">
+    <meta property="article:tag" content="Microsoft 365 Security">
+    <meta property="article:tag" content="NIS2">
+    <meta property="og:image" content="http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/images/purview-autolabeling-500k/purview-autolabel-scale-increase-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/images/purview-autolabeling-500k/purview-autolabel-scale-increase-cover.png">
+  <meta name="twitter:title" content="Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου">
+  <meta name="twitter:description" content="Ανάλυση της αύξησης του ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία την ημέρα για SharePoint και OneDrive, με την οπτική ενός CISO που πρέπει να ξαναδεί το labeling roadmap του πριν το GA του Οκτωβρίου.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου",
+      "item": "http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου",
+  "name": "Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου",
+  "description": "Ανάλυση της αύξησης του ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία την ημέρα για SharePoint και OneDrive, με την οπτική ενός CISO που πρέπει να ξαναδεί το labeling roadmap του πριν το GA του Οκτωβρίου.",
+  "keywords": [
+    "Microsoft Purview auto-labeling", "Sensitivity labels SharePoint OneDrive", "Auto-labeling policy scale", "RM567890 Message Center", "Data classification at scale", "Copilot readiness data protection", "NIS2 ταξινόμηση πληροφορίας", "ISO 27001 A.8 asset management", "Simulation mode Purview", "Information Protection scale limits"
+  ],
+  "articleBody": "Υπάρχουν αλλαγές στο Message Center που διαβάζεις, σημειώνεις νοερά «ωραίο», και προχωράς. Και υπάρχουν αλλαγές που σε κάνουν να ανοίξεις ξανά το spreadsheet με το labeling roadmap του πελάτη ή του οργανισμού σου και να ξαναδείς τους αριθμούς. Το RM567890 είναι από τη δεύτερη κατηγορία.\nΤο όριο των 100.000 αρχείων την ημέρα για auto-labeling σε SharePoint και OneDrive ήταν εκεί τόσο καιρό που το είχαμε όλοι ενσωματώσει σαν σταθερά στον σχεδιασμό μας. Όταν σχεδιάζεις πόσο θα πάρει να «καθαρίσεις» ένα tenant με εκατομμύρια unlabeled documents, αυτό το νούμερο καθόριζε άμεσα το χρονοδιάγραμμα. Τώρα η Microsoft ανακοινώνει πενταπλασιασμό, στα 500.000 αρχεία την ημέρα, με preview τον Σεπτέμβριο και GA τον Οκτώβριο του 2026. Ας δούμε τι σημαίνει αυτό στην πράξη, και γιατί δεν είναι απλώς ένα νούμερο που μεγαλώνει.\nΤι είναι σήμερα το auto-labeling στο Purview, μια γρήγορη υπενθύμιση Πριν μπούμε στο νούμερο, αξίζει να ξεκαθαρίσουμε τι ακριβώς αλλάζει, γιατί το Purview έχει δύο εντελώς διαφορετικούς μηχανισμούς αυτόματης επισήμανσης, και μόνο ο ένας επηρεάζεται.\nΟ πρώτος είναι το client-side auto-labeling, μέσα από Word, Excel, PowerPoint και Outlook. Εκεί η ετικέτα εφαρμόζεται ή προτείνεται στον χρήστη τη στιγμή που επεξεργάζεται ή στέλνει το αρχείο. Δεν υπάρχει κάποιο ημερήσιο όριο εδώ, γιατί η λογική τρέχει τοπικά, ανά έγγραφο, ανά χρήστη.\nΟ δεύτερος είναι το service-side auto-labeling, δηλαδή οι auto-labeling policies που τρέχουν πάνω σε περιεχόμενο που είναι ήδη αποθηκευμένο σε SharePoint και OneDrive, ή που περνάει μέσα από το Exchange Online. Εδώ δεν χρειάζεται ο χρήστης να κάνει τίποτα, ο μηχανισμός σκανάρει και επισημαίνει αρχεία σε scale, ανεξάρτητα από το ποιος τα άνοιξε τελευταία. Και εδώ ακριβώς βρίσκεται το όριο που αλλάζει.\nΤο νούμερο: από 100Κ σε 500Κ, και τι δεν αλλάζει μαζί του Σύμφωνα με την επίσημη τεκμηρίωση της Microsoft, το σημερινό όριο για auto-labeling πάνω σε SharePoint και OneDrive είναι μέγιστο 100.000 αυτόματα επισημασμένα αρχεία στο tenant σου ανά ημέρα. Το RM567890 στο Message Center Archive περιγράφει την επόμενη κίνηση: αύξηση της μέγιστης χωρητικότητας auto-labeling για SharePoint και OneDrive από 100.000 σε έως 500.000 αρχεία ανά tenant την ημέρα. Preview τον Σεπτέμβριο, Γενική Διαθεσιμότητα τον Οκτώβριο του 2026.\n📷 Εικόνα 1: Microsoft Purview portal → Information Protection → Policies → Auto-labeling policies → Overview μιας ενεργής πολιτικής. Το γράφημα «Labeling activity overview» δείχνει την τάση επισημασμένων αρχείων τις τελευταίες 30 ημέρες, τυπικά αρκετές τάξεις μεγέθους κάτω από το σημερινό όριο των 100.000 αρχείων/ημέρα.\nΤο επίσημο σκεπτικό της Microsoft είναι απλό και το βρίσκω εύστοχο: η αύξηση βοηθά τους οργανισμούς να επισημαίνουν και να προστατεύουν περισσότερα δεδομένα σε κατάσταση ηρεμίας, ταχύτερα, κλείνοντας τα κενά labeling σε υπάρχον περιεχόμενο. Και η γραμμή που πραγματικά με ενδιαφέρει ως CISO: με sensitivity labels και ρυθμίσεις προστασίας να εφαρμόζονται σε περισσότερα αρχεία νωρίτερα, οι οργανισμοί μπορούν να προετοιμάσουν καλύτερα το data estate τους για το Microsoft 365 Copilot με μεγαλύτερη εμπιστοσύνη. Δηλαδή η Microsoft συνδέει ανοιχτά αυτή την αλλαγή με το Copilot readiness, όχι μόνο με compliance hygiene. Αν στον οργανισμό σου υπάρχει ήδη πίεση να ενεργοποιηθεί Copilot γρήγορα, αυτό το νούμερο είναι το πρώτο επιχείρημα που θα ακούσεις από την πλευρά του business.\nΚάτι που αξίζει να προσέξεις: το roadmap item μιλάει ρητά για SharePoint και OneDrive. Δεν αναφέρεται πουθενά σε αλλαγή του ξεχωριστού ορίου των 4.000.000 matched files για το simulation mode, ούτε στο όριο των 100 auto-labeling policies ανά tenant. Αν βρεις πηγές που υπονοούν ότι αλλάζουν και αυτά τα δύο, μεταχειρίσου τις με επιφύλαξη, το επίσημο roadmap item δεν το επιβεβαιώνει, και προτιμώ να το πω καθαρά παρά να υποθέσω κάτι που δεν τεκμηριώνεται ακόμα.\nΓιατί το 100Κ ήταν στην πράξη σφιχτό όριο Αν δεν έχεις σχεδιάσει ποτέ auto-labeling rollout σε μεγάλο tenant, το «100.000 αρχεία την ημέρα» μπορεί να ακούγεται γενναιόδωρο. Δεν είναι, όταν μιλάμε για real-world data estates.\nΣκέψου έναν οργανισμό με μερικά εκατομμύρια documents σε SharePoint sites και OneDrive accounts, συσσωρευμένα χρόνια, μεγάλο μέρος τους χωρίς καμία ετικέτα. Με όριο 100.000 την ημέρα, το να «καθαρίσεις» ένα backlog 3-4 εκατομμυρίων αρχείων σήμαινε μήνες συνεχούς λειτουργίας της πολιτικής, χωρίς να υπολογίσεις καθυστερήσεις από simulation runs, refinement κύκλους και αρχεία που παραμένουν κλειδωμένα σε active sessions. Στην πράξη, πολλοί οργανισμοί έτρεχαν auto-labeling policies σε φάσεις, site ανά site, ακριβώς επειδή το daily throughput δεν επαρκούσε για ολόκληρο το tenant ταυτόχρονα.\nΜε το νέο όριο των 500.000, ο ίδιος όγκος δεδομένων επισημαίνεται σε ένα κλάσμα του χρόνου. Αυτό δεν είναι απλώς πιο γρήγορο, αλλάζει τη λογική του project planning. Ένα labeling backlog project που παλιά σχεδιαζόταν σε τρίμηνα μπορεί τώρα να σχεδιαστεί σε εβδομάδες.\nΤο practical checklist πριν το GA του Οκτωβρίου Δεν χρειάζεται να περιμένεις το GA για να ετοιμαστείς. Αυτά είναι τα σημεία που θα ήλεγχα εγώ πρώτα:\nΔες πού στέκεσαι σήμερα. Στο Purview portal, κάτω από Information Protection → Auto-labeling, το labeling progress dashboard δείχνει πόσα αρχεία επισημάνθηκαν τις τελευταίες επτά ημέρες. Αν οι ενεργές πολιτικές σου φτάνουν ήδη κοντά στο σημερινό όριο των 100.000, αυτό είναι το πρώτο σου σημάδι ότι η αύξηση θα σου φανεί χρήσιμη αμέσως μόλις ενεργοποιηθεί.\n📷 Εικόνα 2: Information Protection → Policies → Auto-labeling policies → επεξεργασία υπάρχουσας πολιτικής, βήμα «Choose locations where you want to apply the label», με τις τοποθεσίες SharePoint και OneDrive που καλύπτει σήμερα.\nΞαναδές το scope των πολιτικών σου. Αν στο παρελθόν περιόρισες μια πολιτική σε συγκεκριμένα sites επειδή δεν άντεχε το throughput να καλύψει όλο το tenant, αυτός είναι καλός χρόνος να καταγράψεις ποιες πολιτικές είναι υποψήφιες για επέκταση scope μόλις έρθει το νέο όριο.\nΜην ξεχνάς το simulation mode. Το όριο των 4.000.000 matched files για simulation παραμένει, τουλάχιστον σύμφωνα με ό,τι είναι επίσημα τεκμηριωμένο σήμερα. Αν σχεδιάζεις να επεκτείνεις μια πολιτική σε πολύ μεγαλύτερο εύρος τοποθεσιών, τρέξε πρώτα simulation και βεβαιώσου ότι δεν ξεπερνάς αυτό το ανώτατο όριο πριν ενεργοποιήσεις την πολιτική σε production.\nΈλεγξε τα prerequisites που συχνά ξεχνιούνται. Το auto-labeling σε SharePoint και OneDrive προϋποθέτει ότι έχεις ενεργοποιήσει sensitivity labels για Office files στις συγκεκριμένες τοποθεσίες, και ότι τα αρχεία δεν βρίσκονται σε ανοιχτό session ή checked-out κατάσταση τη στιγμή που τρέχει η πολιτική. Ένα μεγαλύτερο daily throughput δεν βοηθάει αν ένα σημαντικό ποσοστό του backlog σου είναι τεχνικά μη διαθέσιμο για labeling.\nΗ οπτική NIS2 και ISO 27001 Το ενδιαφέρον εδώ δεν είναι το ίδιο το νούμερο, είναι τι σου επιτρέπει να τεκμηριώσεις.\nΤαξινόμηση πληροφορίας ως μετρήσιμος έλεγχος, όχι πρόθεση. Στο NIS2, όταν καλείσαι να αποδείξεις ότι εφαρμόζεις μέτρα ταξινόμησης και προστασίας πληροφορίας, η διαφορά ανάμεσα σε «έχουμε πολιτική auto-labeling» και «το 95% του data estate μας είναι επισημασμένο» είναι τεράστια για έναν auditor. Ένα υψηλότερο daily throughput σημαίνει ότι μπορείς να φτάσεις σε μετρήσιμη κάλυψη labeling πολύ πιο γρήγορα, και άρα να δείξεις πρόοδο σε συγκεκριμένο χρονικό ορίζοντα αντί για αόριστο «σε εξέλιξη».\nΑκρίβεια απογραφής assets κατά ISO 27001 A.8. Ένα labeling backlog που μένει unlabeled για μήνες λόγω τεχνικού ορίου throughput δεν είναι απλώς αισθητικό πρόβλημα, είναι κενό στο information asset inventory σου. Δεν μπορείς να ισχυριστείς ότι ξέρεις την ευαισθησία των δεδομένων σου αν ένα μεγάλο μέρος τους παραμένει άγνωστο λόγω ουράς. Το πενταπλάσιο όριο μειώνει άμεσα αυτό το χρονικό παράθυρο έκθεσης.\nCopilot readiness ως compliance προαπαιτούμενο, όχι μόνο productivity θέμα. Η ίδια η Microsoft συνδέει ρητά αυτή την αλλαγή με το Copilot. Από τη σκοπιά ενός CISO, αυτό είναι σωστή σειρά προτεραιοτήτων: πριν ενεργοποιήσεις AI εργαλεία που θα «διαβάσουν» όλο το data estate σου, χρειάζεσαι να ξέρεις ποιο περιεχόμενο είναι ευαίσθητο και να έχει ήδη τα κατάλληλα permission boundaries μέσω label-based encryption. Αν το labeling coverage σου είναι χαμηλό, το Copilot rollout δεν είναι απλώς πρόωρο, είναι risk-increasing κίνηση που αξίζει να καταγραφεί ως τέτοια στο risk register πριν δοθεί το πράσινο φως.\nΤι θα έκανα εγώ τώρα Δεν χρειάζεται δραματική αλλαγή στρατηγικής, χρειάζεται ενημέρωση του πλάνου. Θα κατέγραφα το τρέχον labeling coverage percentage του tenant ως baseline, θα σημείωνα ποιες πολιτικές περιορίστηκαν στο παρελθόν λόγω throughput, και θα προετοίμαζα ένα timeline για το πότε αναμένω να δω τη νέα χωρητικότητα στο δικό μου tenant μετά το preview του Σεπτεμβρίου. Αν έχεις labeling backlog project σε εξέλιξη, τώρα είναι η στιγμή να ξαναδείς το χρονοδιάγραμμά του, όχι μετά το GA.\nΑν παρακολουθείς κι εσύ Purview roadmap items ή έχεις ήδη labeling policies να τρέχουν σε μεγάλο tenant, χαίρομαι να ακούσω πώς σου φαίνεται το νέο όριο στα σχόλια ή στο LinkedIn.\n",
+  "wordCount" : "1363",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/images/purview-autolabeling-500k/purview-autolabel-scale-increase-cover.png","datePublished": "2026-08-13T10:00:00+03:00",
+  "dateModified": "2026-08-13T10:30:00+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Dimosthenis Atteia"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/purview-autolabeling-500k-scale-increase/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Microsoft 365 Security Insights",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Microsoft 365 Security Insights (Alt + H)">Microsoft 365 Security Insights</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/series/" title="Series">
+                    <span>Series</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/releases/" title="Release Status">
+                    <span>Release Status</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="http://localhost:1313/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="http://localhost:1313/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου
+    </h1>
+    <div class="post-description">
+      Ανάλυση της αύξησης του ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία την ημέρα για SharePoint και OneDrive, με την οπτική ενός CISO που πρέπει να ξαναδεί το labeling roadmap του πριν το GA του Οκτωβρίου.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-08-13 10:00:00 +0300 EEST'>August 13, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>1363 words</span>&nbsp;·&nbsp;<span>Dimosthenis Atteia</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/dimosatteia/dimosatteia.github.io/edit/main/content/posts/purview-autolabeling-500k-scale-increase.md" rel="noopener noreferrer edit" target="_blank">Suggest an edit</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/purview-autolabeling-500k/purview-autolabel-scale-increase-cover.png" alt="Αύξηση ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία ημερησίως">
+        <figcaption>Microsoft Purview Auto-labeling scale increase, από 100K σε 500K files/day, GA Οκτώβριος 2026</figcaption>
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#τι-είναι-σήμερα-το-auto-labeling-στο-purview-μια-γρήγορη-υπενθύμιση">Τι είναι σήμερα το auto-labeling στο Purview, μια γρήγορη υπενθύμιση</a></li>
+    <li><a href="#το-νούμερο-από-100κ-σε-500κ-και-τι-δεν-αλλάζει-μαζί-του">Το νούμερο: από 100Κ σε 500Κ, και τι δεν αλλάζει μαζί του</a></li>
+    <li><a href="#γιατί-το-100κ-ήταν-στην-πράξη-σφιχτό-όριο">Γιατί το 100Κ ήταν στην πράξη σφιχτό όριο</a></li>
+    <li><a href="#το-practical-checklist-πριν-το-ga-του-οκτωβρίου">Το practical checklist πριν το GA του Οκτωβρίου</a></li>
+    <li><a href="#η-οπτική-nis2-και-iso-27001">Η οπτική NIS2 και ISO 27001</a></li>
+    <li><a href="#τι-θα-έκανα-εγώ-τώρα">Τι θα έκανα εγώ τώρα</a></li>
+  </ul>
+</nav>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>Υπάρχουν αλλαγές στο Message Center που διαβάζεις, σημειώνεις νοερά «ωραίο», και προχωράς. Και υπάρχουν αλλαγές που σε κάνουν να ανοίξεις ξανά το spreadsheet με το labeling roadmap του πελάτη ή του οργανισμού σου και να ξαναδείς τους αριθμούς. Το RM567890 είναι από τη δεύτερη κατηγορία.</p>
+<p>Το όριο των 100.000 αρχείων την ημέρα για auto-labeling σε SharePoint και OneDrive ήταν εκεί τόσο καιρό που το είχαμε όλοι ενσωματώσει σαν σταθερά στον σχεδιασμό μας. Όταν σχεδιάζεις πόσο θα πάρει να «καθαρίσεις» ένα tenant με εκατομμύρια unlabeled documents, αυτό το νούμερο καθόριζε άμεσα το χρονοδιάγραμμα. Τώρα η Microsoft ανακοινώνει πενταπλασιασμό, στα 500.000 αρχεία την ημέρα, με preview τον Σεπτέμβριο και GA τον Οκτώβριο του 2026. Ας δούμε τι σημαίνει αυτό στην πράξη, και γιατί δεν είναι απλώς ένα νούμερο που μεγαλώνει.</p>
+<h2 id="τι-είναι-σήμερα-το-auto-labeling-στο-purview-μια-γρήγορη-υπενθύμιση">Τι είναι σήμερα το auto-labeling στο Purview, μια γρήγορη υπενθύμιση<a hidden class="anchor" aria-hidden="true" href="#τι-είναι-σήμερα-το-auto-labeling-στο-purview-μια-γρήγορη-υπενθύμιση">#</a></h2>
+<p>Πριν μπούμε στο νούμερο, αξίζει να ξεκαθαρίσουμε τι ακριβώς αλλάζει, γιατί το Purview έχει δύο εντελώς διαφορετικούς μηχανισμούς αυτόματης επισήμανσης, και μόνο ο ένας επηρεάζεται.</p>
+<p>Ο πρώτος είναι το <strong>client-side auto-labeling</strong>, μέσα από Word, Excel, PowerPoint και Outlook. Εκεί η ετικέτα εφαρμόζεται ή προτείνεται στον χρήστη τη στιγμή που επεξεργάζεται ή στέλνει το αρχείο. Δεν υπάρχει κάποιο ημερήσιο όριο εδώ, γιατί η λογική τρέχει τοπικά, ανά έγγραφο, ανά χρήστη.</p>
+<p>Ο δεύτερος είναι το <strong>service-side auto-labeling</strong>, δηλαδή οι auto-labeling policies που τρέχουν πάνω σε περιεχόμενο που είναι ήδη αποθηκευμένο σε SharePoint και OneDrive, ή που περνάει μέσα από το Exchange Online. Εδώ δεν χρειάζεται ο χρήστης να κάνει τίποτα, ο μηχανισμός σκανάρει και επισημαίνει αρχεία σε scale, ανεξάρτητα από το ποιος τα άνοιξε τελευταία. Και εδώ ακριβώς βρίσκεται το όριο που αλλάζει.</p>
+<h2 id="το-νούμερο-από-100κ-σε-500κ-και-τι-δεν-αλλάζει-μαζί-του">Το νούμερο: από 100Κ σε 500Κ, και τι δεν αλλάζει μαζί του<a hidden class="anchor" aria-hidden="true" href="#το-νούμερο-από-100κ-σε-500κ-και-τι-δεν-αλλάζει-μαζί-του">#</a></h2>
+<p>Σύμφωνα με την επίσημη τεκμηρίωση της Microsoft, το σημερινό όριο για auto-labeling πάνω σε SharePoint και OneDrive είναι <cite index="2-15">μέγιστο 100.000 αυτόματα επισημασμένα αρχεία στο tenant σου ανά ημέρα</cite>. Το RM567890 στο Message Center Archive περιγράφει την επόμενη κίνηση: <cite index="3-6">αύξηση της μέγιστης χωρητικότητας auto-labeling για SharePoint και OneDrive από 100.000 σε έως 500.000 αρχεία ανά tenant την ημέρα</cite>. Preview τον Σεπτέμβριο, Γενική Διαθεσιμότητα τον Οκτώβριο του 2026.</p>
+<p><a href="http://localhost:1313/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.png"><img alt="Σύγκριση παλιού και νέου ορίου auto-labeling ανά ημέρα στο Purview" loading="lazy" src="http://localhost:1313/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 1: Microsoft Purview portal → Information Protection → Policies → Auto-labeling policies → Overview μιας ενεργής πολιτικής. Το γράφημα «Labeling activity overview» δείχνει την τάση επισημασμένων αρχείων τις τελευταίες 30 ημέρες, τυπικά αρκετές τάξεις μεγέθους κάτω από το σημερινό όριο των 100.000 αρχείων/ημέρα.</strong></p>
+</blockquote>
+<p>Το επίσημο σκεπτικό της Microsoft είναι απλό και το βρίσκω εύστοχο: <cite index="3-6">η αύξηση βοηθά τους οργανισμούς να επισημαίνουν και να προστατεύουν περισσότερα δεδομένα σε κατάσταση ηρεμίας, ταχύτερα, κλείνοντας τα κενά labeling σε υπάρχον περιεχόμενο</cite>. Και η γραμμή που πραγματικά με ενδιαφέρει ως CISO: <cite index="3-6">με sensitivity labels και ρυθμίσεις προστασίας να εφαρμόζονται σε περισσότερα αρχεία νωρίτερα, οι οργανισμοί μπορούν να προετοιμάσουν καλύτερα το data estate τους για το Microsoft 365 Copilot με μεγαλύτερη εμπιστοσύνη</cite>. Δηλαδή η Microsoft συνδέει ανοιχτά αυτή την αλλαγή με το Copilot readiness, όχι μόνο με compliance hygiene. Αν στον οργανισμό σου υπάρχει ήδη πίεση να ενεργοποιηθεί Copilot γρήγορα, αυτό το νούμερο είναι το πρώτο επιχείρημα που θα ακούσεις από την πλευρά του business.</p>
+<p>Κάτι που αξίζει να προσέξεις: το roadmap item μιλάει ρητά για SharePoint και OneDrive. Δεν αναφέρεται πουθενά σε αλλαγή του ξεχωριστού ορίου των <strong>4.000.000 matched files</strong> για το simulation mode, ούτε στο όριο των <strong>100 auto-labeling policies ανά tenant</strong>. Αν βρεις πηγές που υπονοούν ότι αλλάζουν και αυτά τα δύο, μεταχειρίσου τις με επιφύλαξη, το επίσημο roadmap item δεν το επιβεβαιώνει, και προτιμώ να το πω καθαρά παρά να υποθέσω κάτι που δεν τεκμηριώνεται ακόμα.</p>
+<h2 id="γιατί-το-100κ-ήταν-στην-πράξη-σφιχτό-όριο">Γιατί το 100Κ ήταν στην πράξη σφιχτό όριο<a hidden class="anchor" aria-hidden="true" href="#γιατί-το-100κ-ήταν-στην-πράξη-σφιχτό-όριο">#</a></h2>
+<p>Αν δεν έχεις σχεδιάσει ποτέ auto-labeling rollout σε μεγάλο tenant, το «100.000 αρχεία την ημέρα» μπορεί να ακούγεται γενναιόδωρο. Δεν είναι, όταν μιλάμε για real-world data estates.</p>
+<p>Σκέψου έναν οργανισμό με μερικά εκατομμύρια documents σε SharePoint sites και OneDrive accounts, συσσωρευμένα χρόνια, μεγάλο μέρος τους χωρίς καμία ετικέτα. Με όριο 100.000 την ημέρα, το να «καθαρίσεις» ένα backlog 3-4 εκατομμυρίων αρχείων σήμαινε μήνες συνεχούς λειτουργίας της πολιτικής, χωρίς να υπολογίσεις καθυστερήσεις από simulation runs, refinement κύκλους και αρχεία που παραμένουν κλειδωμένα σε active sessions. Στην πράξη, πολλοί οργανισμοί έτρεχαν auto-labeling policies σε φάσεις, site ανά site, ακριβώς επειδή το daily throughput δεν επαρκούσε για ολόκληρο το tenant ταυτόχρονα.</p>
+<p>Με το νέο όριο των 500.000, ο ίδιος όγκος δεδομένων επισημαίνεται σε ένα κλάσμα του χρόνου. Αυτό δεν είναι απλώς πιο γρήγορο, αλλάζει τη λογική του project planning. Ένα labeling backlog project που παλιά σχεδιαζόταν σε τρίμηνα μπορεί τώρα να σχεδιαστεί σε εβδομάδες.</p>
+<h2 id="το-practical-checklist-πριν-το-ga-του-οκτωβρίου">Το practical checklist πριν το GA του Οκτωβρίου<a hidden class="anchor" aria-hidden="true" href="#το-practical-checklist-πριν-το-ga-του-οκτωβρίου">#</a></h2>
+<p>Δεν χρειάζεται να περιμένεις το GA για να ετοιμαστείς. Αυτά είναι τα σημεία που θα ήλεγχα εγώ πρώτα:</p>
+<p><strong>Δες πού στέκεσαι σήμερα.</strong> Στο Purview portal, κάτω από <strong>Information Protection → Auto-labeling</strong>, το labeling progress dashboard δείχνει πόσα αρχεία επισημάνθηκαν τις τελευταίες επτά ημέρες. Αν οι ενεργές πολιτικές σου φτάνουν ήδη κοντά στο σημερινό όριο των 100.000, αυτό είναι το πρώτο σου σημάδι ότι η αύξηση θα σου φανεί χρήσιμη αμέσως μόλις ενεργοποιηθεί.</p>
+<p><a href="http://localhost:1313/images/purview-autolabeling-500k/autolabel-policy-locations-config.png"><img alt="Purview auto-labeling policy configuration με τοποθεσίες SharePoint και OneDrive" loading="lazy" src="http://localhost:1313/images/purview-autolabeling-500k/autolabel-policy-locations-config.png"></a></p>
+<blockquote>
+<p>📷 <strong>Εικόνα 2: Information Protection → Policies → Auto-labeling policies → επεξεργασία υπάρχουσας πολιτικής, βήμα «Choose locations where you want to apply the label», με τις τοποθεσίες SharePoint και OneDrive που καλύπτει σήμερα.</strong></p>
+</blockquote>
+<p><strong>Ξαναδές το scope των πολιτικών σου.</strong> Αν στο παρελθόν περιόρισες μια πολιτική σε συγκεκριμένα sites επειδή δεν άντεχε το throughput να καλύψει όλο το tenant, αυτός είναι καλός χρόνος να καταγράψεις ποιες πολιτικές είναι υποψήφιες για επέκταση scope μόλις έρθει το νέο όριο.</p>
+<p><strong>Μην ξεχνάς το simulation mode.</strong> Το όριο των 4.000.000 matched files για simulation παραμένει, τουλάχιστον σύμφωνα με ό,τι είναι επίσημα τεκμηριωμένο σήμερα. Αν σχεδιάζεις να επεκτείνεις μια πολιτική σε πολύ μεγαλύτερο εύρος τοποθεσιών, τρέξε πρώτα simulation και βεβαιώσου ότι δεν ξεπερνάς αυτό το ανώτατο όριο πριν ενεργοποιήσεις την πολιτική σε production.</p>
+<p><strong>Έλεγξε τα prerequisites που συχνά ξεχνιούνται.</strong> Το auto-labeling σε SharePoint και OneDrive προϋποθέτει ότι έχεις ενεργοποιήσει sensitivity labels για Office files στις συγκεκριμένες τοποθεσίες, και ότι τα αρχεία δεν βρίσκονται σε ανοιχτό session ή checked-out κατάσταση τη στιγμή που τρέχει η πολιτική. Ένα μεγαλύτερο daily throughput δεν βοηθάει αν ένα σημαντικό ποσοστό του backlog σου είναι τεχνικά μη διαθέσιμο για labeling.</p>
+<h2 id="η-οπτική-nis2-και-iso-27001">Η οπτική NIS2 και ISO 27001<a hidden class="anchor" aria-hidden="true" href="#η-οπτική-nis2-και-iso-27001">#</a></h2>
+<p>Το ενδιαφέρον εδώ δεν είναι το ίδιο το νούμερο, είναι τι σου επιτρέπει να τεκμηριώσεις.</p>
+<p><strong>Ταξινόμηση πληροφορίας ως μετρήσιμος έλεγχος, όχι πρόθεση.</strong> Στο NIS2, όταν καλείσαι να αποδείξεις ότι εφαρμόζεις μέτρα ταξινόμησης και προστασίας πληροφορίας, η διαφορά ανάμεσα σε «έχουμε πολιτική auto-labeling» και «το 95% του data estate μας είναι επισημασμένο» είναι τεράστια για έναν auditor. Ένα υψηλότερο daily throughput σημαίνει ότι μπορείς να φτάσεις σε μετρήσιμη κάλυψη labeling πολύ πιο γρήγορα, και άρα να δείξεις πρόοδο σε συγκεκριμένο χρονικό ορίζοντα αντί για αόριστο «σε εξέλιξη».</p>
+<p><strong>Ακρίβεια απογραφής assets κατά ISO 27001 A.8.</strong> Ένα labeling backlog που μένει unlabeled για μήνες λόγω τεχνικού ορίου throughput δεν είναι απλώς αισθητικό πρόβλημα, είναι κενό στο information asset inventory σου. Δεν μπορείς να ισχυριστείς ότι ξέρεις την ευαισθησία των δεδομένων σου αν ένα μεγάλο μέρος τους παραμένει άγνωστο λόγω ουράς. Το πενταπλάσιο όριο μειώνει άμεσα αυτό το χρονικό παράθυρο έκθεσης.</p>
+<p><strong>Copilot readiness ως compliance προαπαιτούμενο, όχι μόνο productivity θέμα.</strong> Η ίδια η Microsoft συνδέει ρητά αυτή την αλλαγή με το Copilot. Από τη σκοπιά ενός CISO, αυτό είναι σωστή σειρά προτεραιοτήτων: πριν ενεργοποιήσεις AI εργαλεία που θα «διαβάσουν» όλο το data estate σου, χρειάζεσαι να ξέρεις ποιο περιεχόμενο είναι ευαίσθητο και να έχει ήδη τα κατάλληλα permission boundaries μέσω label-based encryption. Αν το labeling coverage σου είναι χαμηλό, το Copilot rollout δεν είναι απλώς πρόωρο, είναι risk-increasing κίνηση που αξίζει να καταγραφεί ως τέτοια στο risk register πριν δοθεί το πράσινο φως.</p>
+<h2 id="τι-θα-έκανα-εγώ-τώρα">Τι θα έκανα εγώ τώρα<a hidden class="anchor" aria-hidden="true" href="#τι-θα-έκανα-εγώ-τώρα">#</a></h2>
+<p>Δεν χρειάζεται δραματική αλλαγή στρατηγικής, χρειάζεται ενημέρωση του πλάνου. Θα κατέγραφα το τρέχον labeling coverage percentage του tenant ως baseline, θα σημείωνα ποιες πολιτικές περιορίστηκαν στο παρελθόν λόγω throughput, και θα προετοίμαζα ένα timeline για το πότε αναμένω να δω τη νέα χωρητικότητα στο δικό μου tenant μετά το preview του Σεπτεμβρίου. Αν έχεις labeling backlog project σε εξέλιξη, τώρα είναι η στιγμή να ξαναδείς το χρονοδιάγραμμά του, όχι μετά το GA.</p>
+<p>Αν παρακολουθείς κι εσύ Purview roadmap items ή έχεις ήδη labeling policies να τρέχουν σε μεγάλο tenant, χαίρομαι να ακούσω πώς σου φαίνεται το νέο όριο στα σχόλια ή στο LinkedIn.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/microsoft-purview/">Microsoft Purview</a></li>
+      <li><a href="http://localhost:1313/tags/information-protection/">Information Protection</a></li>
+      <li><a href="http://localhost:1313/tags/sensitivity-labels/">Sensitivity Labels</a></li>
+      <li><a href="http://localhost:1313/tags/data-classification/">Data Classification</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-security/">Microsoft 365 Security</a></li>
+      <li><a href="http://localhost:1313/tags/nis2/">NIS2</a></li>
+      <li><a href="http://localhost:1313/tags/iso-27001/">ISO 27001</a></li>
+      <li><a href="http://localhost:1313/tags/grc/">GRC</a></li>
+      <li><a href="http://localhost:1313/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft-365-copilot/">Microsoft 365 Copilot</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/welcome/">
+    <span class="title">« Prev</span>
+    <span>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/azure-kai-entra-to-themelio/">
+    <span class="title">Next »</span>
+    <span>Azure και Entra: Τι πραγματικά είναι, τι τα ενώνει και τι τα διαφοροποιεί (το θεμέλιο που παραλείπουμε)</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου on x"
+            href="https://x.com/intent/tweet/?text=Purview%20Auto-labeling%3a%20%ce%91%cf%80%cf%8c%20100.000%20%cf%83%ce%b5%20500.000%20%ce%b1%cf%81%cf%87%ce%b5%ce%af%ce%b1%20%cf%84%ce%b7%ce%bd%20%ce%b7%ce%bc%ce%ad%cf%81%ce%b1%2c%20%cf%84%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%80%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%20labeling%20backlog%20%cf%83%ce%bf%cf%85&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fpurview-autolabeling-500k-scale-increase%2f&amp;hashtags=MicrosoftPurview%2cInformationProtection%2cSensitivityLabels%2cDataClassification%2cMicrosoft365Security%2cNIS2%2cISO27001%2cGRC%2cCybersecurity%2cMicrosoft365Copilot">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fpurview-autolabeling-500k-scale-increase%2f&amp;title=Purview%20Auto-labeling%3a%20%ce%91%cf%80%cf%8c%20100.000%20%cf%83%ce%b5%20500.000%20%ce%b1%cf%81%cf%87%ce%b5%ce%af%ce%b1%20%cf%84%ce%b7%ce%bd%20%ce%b7%ce%bc%ce%ad%cf%81%ce%b1%2c%20%cf%84%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%80%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%20labeling%20backlog%20%cf%83%ce%bf%cf%85&amp;summary=Purview%20Auto-labeling%3a%20%ce%91%cf%80%cf%8c%20100.000%20%cf%83%ce%b5%20500.000%20%ce%b1%cf%81%cf%87%ce%b5%ce%af%ce%b1%20%cf%84%ce%b7%ce%bd%20%ce%b7%ce%bc%ce%ad%cf%81%ce%b1%2c%20%cf%84%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%80%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%20labeling%20backlog%20%cf%83%ce%bf%cf%85&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fpurview-autolabeling-500k-scale-increase%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fpurview-autolabeling-500k-scale-increase%2f&title=Purview%20Auto-labeling%3a%20%ce%91%cf%80%cf%8c%20100.000%20%cf%83%ce%b5%20500.000%20%ce%b1%cf%81%cf%87%ce%b5%ce%af%ce%b1%20%cf%84%ce%b7%ce%bd%20%ce%b7%ce%bc%ce%ad%cf%81%ce%b1%2c%20%cf%84%ce%b9%20%ce%b1%ce%bb%ce%bb%ce%ac%ce%b6%ce%b5%ce%b9%20%cf%80%cf%81%ce%b1%ce%b3%ce%bc%ce%b1%cf%84%ce%b9%ce%ba%ce%ac%20%ce%b3%ce%b9%ce%b1%20%cf%84%ce%bf%20labeling%20backlog%20%cf%83%ce%bf%cf%85">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Microsoft 365 Security Insights</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span><div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <em>This blog reflects hands-on experience with Microsoft 365 Security products in real-world deployments. Content is authored with AI assistance (M365 Copilot) to accelerate documentation, but all technical guidance is rooted in production implementations. 🏆 The methodology behind this work earned a Gold Award at the <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer">2026 Cyber Security Awards </a>by <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer">©Boussias.</em>
+    </div>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
