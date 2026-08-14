@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Defender Part 4: The Licensing Decoder"
 date: 2026-07-25T20:00:00+03:00
-lastmod: 2026-07-27T11:00:00+03:00
+lastmod: 2026-08-14T09:20:00+03:00
 draft: false
 keywords:
   - which microsoft 365 plan includes defender
@@ -179,7 +179,7 @@ The mistake a lot of enterprises make is **uniform E5 deployment** without actua
 
 ## What about Microsoft Defender for Cloud pricing?
 
-Quick recap from **[Part 3](/posts/defender-demystified-part-3-defender-for-cloud/)**:
+Quick recap from **[Part 3](/posts/Defender-Demystified-Series/defender-demystified-part-3-defender-for-cloud/)**:
 
 - **Foundational CSPM:** free for any onboarded Azure subscription, AWS account, or GCP project
 - **Defender CSPM:** (paid tier) around $5 per billable resource per month
