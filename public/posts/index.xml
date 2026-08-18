@@ -6,14 +6,35 @@
     <description>Recent content in Posts on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Aug 2026 09:47:34 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 10:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις</title>
+      <link>http://localhost:1313/posts/new-features/defender-identity-health-alert-network-traffic/</link>
+      <pubDate>Tue, 18 Aug 2026 10:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/defender-identity-health-alert-network-traffic/</guid>
+      <description>Ανάλυση του νέου health alert του Microsoft Defender for Identity για απούσα δικτυακή κίνηση domain controller (MC1455017), με έμφαση στο πώς ένα κενό ορατότητας στο sensor monitoring μπορεί να μείνει αόρατο για μήνες, και τι σημαίνει αυτό για NIS2 και ISO 27001.</description>
+    </item>
     <item>
       <title>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</title>
       <link>http://localhost:1313/posts/welcome/</link>
       <pubDate>Wed, 22 Apr 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/welcome/</guid>
       <description>Hands-on Microsoft 365 Security content for IT Pros — Defender walkthroughs, hardening guides, and compliance lessons from production environments.</description>
+    </item>
+    <item>
+      <title>Data Security Triage Agent στο Defender XDR: Όταν το Purview «μπαίνει» στο SOC σου</title>
+      <link>http://localhost:1313/posts/new-features/data-security-triage-agent-dlp-defender-xdr/</link>
+      <pubDate>Tue, 18 Aug 2026 09:30:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/data-security-triage-agent-dlp-defender-xdr/</guid>
+      <description>Ανάλυση του MC1255406: πώς ο Microsoft Purview Data Security Triage Agent φέρνει AI-generated summaries και categorization για DLP alerts μέσα στο Microsoft Defender XDR, με την οπτική ενός CISO για licensing, permissions, agent identity και επιπτώσεις σε NIS2 και ISO 27001.</description>
+    </item>
+    <item>
+      <title>Defender for Identity: Το νέο health issue που σου λέει πότε &#39;τυφλώνεσαι&#39; σε έναν Domain Controller</title>
+      <link>http://localhost:1313/posts/new-features/defender-for-identity-health-issue-missing-windows-events/</link>
+      <pubDate>Tue, 18 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/new-features/defender-for-identity-health-issue-missing-windows-events/</guid>
+      <description>Ανάλυση του νέου sensor health issue &amp;#39;No Windows events received from domain controller&amp;#39; στο Microsoft Defender for Identity (MC1455016), με την οπτική ενός CISO που πρέπει να τεκμηριώσει το detection coverage σε NIS2 και ISO 27001 audit.</description>
     </item>
     <item>
       <title>Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου</title>
