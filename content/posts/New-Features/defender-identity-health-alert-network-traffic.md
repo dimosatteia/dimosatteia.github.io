@@ -1,8 +1,8 @@
 ---
 title: "Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις"
-date: 2026-08-18T10:00:00+03:00
-lastmod: 2026-08-18T10:30:00+03:00
-draft: true
+date: 2026-08-21T10:00:00+03:00
+lastmod: 2026-08-21T10:20:00+03:00
+draft: false
 keywords:
   - Microsoft Defender for Identity
   - MDI health alerts
@@ -34,10 +34,10 @@ releases:
   - "new-features"
 ShowToc: true
 TocOpen: false
-weight: -6
+weight: -5
 cover:
   image: "images/defender-identity-network-traffic-alert/mdi-sensor-health-cover.png"
-  alt: "Sensors health issues tab στο Microsoft Defender portal με νέο health alert για missing domain controller network traffic"
+  alt: "Microsoft Defender portal, ενότητα Identity Security Health issues"
   caption: "Defender portal → Settings → Identities → Health issues → Sensors health issues"
   relative: true
 ShowReadingTime: true
@@ -46,7 +46,7 @@ ShowWordCount: true
 
 Ένα από τα πράγματα που μαθαίνεις γρήγορα όταν διαχειρίζεσαι Defender for Identity σε production είναι ότι «ο sensor τρέχει» δεν σημαίνει «ο sensor βλέπει». Είναι δύο διαφορετικές καταστάσεις, και η απόσταση ανάμεσά τους είναι ακριβώς εκεί που κρύβονται τα πιο επικίνδυνα κενά παρακολούθησης. Το service εμφανίζεται ως healthy, ο υπολογιστής τρέχει κανονικά, και όμως το sensor μπορεί να μην παίρνει καμία απολύτως δικτυακή κίνηση από τον domain controller που υποτίθεται ότι καλύπτει.
 
-Στις 14 Αυγούστου η Microsoft ανακοίνωσε μέσω του Message Center (**MC1455017**) ένα ενημερωμένο health alert που στοχεύει ακριβώς σε αυτό το σενάριο: όταν δεν λαμβάνεται καθόλου δικτυακή κίνηση από domain controllers μέσω των Defender for Identity sensors. Δεν είναι εντυπωσιακή ανακοίνωση, δεν έχει το βάρος ενός νέου detection ή μιας αλλαγής αρχιτεκτονικής, αλλά είναι ακριβώς το είδος αλλαγής που ένας CISO πρέπει να προσέξει, γιατί αφορά κάτι πιο θεμελιώδες: το αν ξέρεις πραγματικά τι βλέπεις.
+Στις 14 Αυγούστου η Microsoft ανακοίνωσε μέσω του Message Center (**MC1455017, επιβεβαιωμένο και στο δικό μας tenant**) ένα ενημερωμένο health alert που στοχεύει ακριβώς σε αυτό το σενάριο: όταν δεν λαμβάνεται καθόλου δικτυακή κίνηση από domain controllers μέσω των Defender for Identity sensors. Δεν είναι εντυπωσιακή ανακοίνωση, δεν έχει το βάρος ενός νέου detection ή μιας αλλαγής αρχιτεκτονικής, αλλά είναι ακριβώς το είδος αλλαγής που ένας CISO πρέπει να προσέξει, γιατί αφορά κάτι πιο θεμελιώδες: το αν ξέρεις πραγματικά τι βλέπεις.
 
 ## Τι άλλαξε
 
@@ -54,14 +54,14 @@ ShowWordCount: true
 
 Μετά το rollout, το alert εμφανίζεται στο **Sensors health issues** tab, αλλά και στη γενική εμπειρία **Health issues**, μέσα στο Defender portal, όταν το Defender for Identity δεν λαμβάνει την αναμενόμενη δικτυακή δραστηριότητα από κάποιον domain controller.
 
-[![Sensors health issues tab στο Microsoft Defender portal με το νέο alert](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.png)](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.png)
-> 📷 **Εικόνα 1: Settings → Identities → Health issues → Sensors health issues tab, με το health alert για απούσα δικτυακή κίνηση domain controller.**
+[![Sensor health issues tab στο Microsoft Defender portal, χωρίς κανένα καταγεγραμμένο issue (healthy baseline)](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.png)](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.png)
+> 📷 **Εικόνα 1: Settings → Identities → Deployment → Health issues → Sensor health issues tab. Το rollout του MC1455017 έχει ήδη φτάσει στο tenant μας (επιβεβαιωμένο μέσω Message center), και δεν καταγράφεται κανένα ανοιχτό ή ιστορικό instance, το υγιές baseline.**
 
 Καμία ενέργεια δεν απαιτείται πριν το rollout, το feature είναι ήδη διαθέσιμο, και δεν υπάρχει καμία επίπτωση σε τελικούς χρήστες ή σε compliance ρυθμίσεις από μόνη της η ενεργοποίηση του alert. Αυτό όμως δεν σημαίνει ότι το θέμα είναι αδιάφορο, σημαίνει απλώς ότι η δουλειά ξεκινάει *αν* και *όταν* το alert ενεργοποιηθεί στο δικό σου περιβάλλον.
 
 ## Γιατί «no traffic» δεν είναι μικρό πρόβλημα
 
-Το Defender for Identity δουλεύει πάνω σε δύο βασικές πηγές δεδομένων από κάθε domain controller: Windows events (μέσω event log auditing) και network traffic (μέσω port mirroring ή, στους v3 sensors, native ETW-based capture). Όταν λείπει η δικτυακή κίνηση, δεν χάνεις απλώς κάποιο δευτερεύον signal. Χάνεις ορατότητα σε ολόκληρες κατηγορίες επιθέσεων που ανιχνεύονται αποκλειστικά μέσω network-level ανάλυσης, reconnaissance πάνω σε LDAP, DNS-based enumeration, ορισμένες μορφές Kerberos abuse, lateral movement patterns που δεν αφήνουν πάντα ίχνος στα Windows events.
+Το Defender for Identity δουλεύει πάνω σε δύο βασικές πηγές δεδομένων από κάθε domain controller: Windows events (μέσω event log auditing) και network traffic (μέσω port mirroring για standalone sensors, ή native Npcap-based capture απευθείας στο DC για τους ενσωματωμένους sensors). Όταν λείπει η δικτυακή κίνηση, δεν χάνεις απλώς κάποιο δευτερεύον signal. Χάνεις ορατότητα σε ολόκληρες κατηγορίες επιθέσεων που ανιχνεύονται αποκλειστικά μέσω network-level ανάλυσης, reconnaissance πάνω σε LDAP, DNS-based enumeration, ορισμένες μορφές Kerberos abuse, lateral movement patterns που δεν αφήνουν πάντα ίχνος στα Windows events.
 
 Το πρακτικό πρόβλημα είναι ότι αυτό το κενό είναι σχεδόν αόρατο αν δεν το ψάξεις συγκειμένα. Ο sensor εμφανίζεται ως up and running. Το service δεν έχει crash. Δεν υπάρχει κανένα error που να «φωνάζει». Απλώς, σιωπηλά, ένα ολόκληρο κομμάτι της τηλεμετρίας λείπει. Αν το port mirroring σταμάτησε να δουλεύει μετά από μια αλλαγή σε switch, αν κάποιο firmware update σε virtual switch άλλαξε τη διαμόρφωση, αν ο Npcap driver έμεινε σε παλιά ή λάθος διαμορφωμένη έκδοση, το μόνο σου σημάδι μέχρι τώρα ήταν ένα alert που δεν ήταν πάντα συνεπές στο πότε και πώς εμφανιζόταν. Αυτό ακριβώς είναι το κενό που η αναβαθμισμένη έκδοση του alert έρχεται να κλείσει.
 
@@ -75,8 +75,10 @@ ShowWordCount: true
 - Έλεγξε τη διαμόρφωση του Npcap ή άλλου packet capture driver, όπου εφαρμόζεται.
 - Απενεργοποίησε το Receive Segment Coalescing (RSC) στο capture NIC του sensor.
 
+<!--
 [![Λεπτομέρειες health issue με resolution steps στο Defender portal](/images/defender-identity-network-traffic-alert/mdi-health-issue-resolution-pane.png)](/images/defender-identity-network-traffic-alert/mdi-health-issue-resolution-pane.png)
 > 📷 **Εικόνα 2: Παράδειγμα health issue detail pane με τα βήματα resolution, όπως εμφανίζονται στο Defender portal.**
+-->
 
 Το τελευταίο σημείο, το RSC, είναι από αυτά που ξεχνιούνται εύκολα γιατί δεν είναι Defender for Identity setting, είναι OS-level network adapter setting. Σε πολλά standalone sensor deployments πάνω σε VMware, το Receive Segment Coalescing μπορεί να παραμείνει ενεργό by default στο capture NIC και να «σπάει» αθόρυβα τη ροή της κίνησης που φτάνει στον sensor, χωρίς κανένα άλλο ορατό σύμπτωμα. Αν διαχειρίζεσαι sensors σε virtualized domain controllers, αξίζει να το βάλεις στη standard checklist deployment, όχι μόνο σε troubleshooting.
 

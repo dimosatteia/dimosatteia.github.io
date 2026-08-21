@@ -6,8 +6,15 @@
     <description>Recent content in GRC on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Aug 2026 10:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2026 09:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/grc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Entra Internet Access: Το SSE κομμάτι του Global Secure Access που αλλάζει το πώς σκέφτομαι το perimeter</title>
+      <link>http://localhost:1313/posts/entra-internet-access-global-secure-access/</link>
+      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/entra-internet-access-global-secure-access/</guid>
+      <description>Ανάλυση του Microsoft Entra Internet Access, του SSE (Security Service Edge) προϊόντος της Microsoft μέσα στο Global Secure Access, με έμφαση στην ενσωμάτωσή του με το Conditional Access και στις συνέπειες για NIS2 και ISO 27001, από την οπτική ενός CISO.</description>
+    </item>
     <item>
       <title>Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις</title>
       <link>http://localhost:1313/posts/new-features/defender-identity-health-alert-network-traffic/</link>
