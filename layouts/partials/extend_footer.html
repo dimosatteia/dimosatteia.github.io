@@ -36,8 +36,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 999999;
     padding: 16px;
+  }
+  .announce-overlay[hidden] {
+    display: none !important;
   }
   .announce-modal {
     position: relative;
@@ -93,17 +96,26 @@
   }
   .announce-close {
     position: absolute;
-    top: 10px;
-    right: 12px;
+    top: 4px;
+    right: 4px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1;
     cursor: pointer;
     color: inherit;
     opacity: 0.6;
+    z-index: 2;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
-  .announce-close:hover {
+  .announce-close:hover,
+  .announce-close:active {
     opacity: 1;
   }
 </style>
@@ -127,7 +139,11 @@
 
     setTimeout(openPopup, 800); // μικρή καθυστέρηση ώστε να μη "χτυπάει" αμέσως στο load
 
-    closeBtn.addEventListener("click", closePopup);
+    closeBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closePopup();
+    });
     overlay.addEventListener("click", function (e) {
       if (e.target === overlay) closePopup();
     });
