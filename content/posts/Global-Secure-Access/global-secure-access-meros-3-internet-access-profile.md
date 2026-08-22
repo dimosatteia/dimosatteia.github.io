@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Τρίτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Internet access profile ως Secure Web Gateway, web content filtering, security profiles και priority logic, με έμφαση σε NIS2 και ISO 27001."
 summary: "Αν το Microsoft traffic profile είναι το θεμέλιο, το Internet access profile είναι αυτό που κάνει το Global Secure Access να μοιάζει με πραγματικό Secure Web Gateway. Εδώ μπαίνει το web content filtering, τα security profiles, και η δυνατότητα να αποκλείσεις πρόσβαση σε cloud apps από οπουδήποτε εκτός του δικού σου δικτύου."
-categories: ["Microsoft 365 Security", "Network Security"]
+categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access"]
 series: ["Global Secure Access"]
 slug: "global-secure-access-meros-3-internet-access-profile"
 ShowToc: true

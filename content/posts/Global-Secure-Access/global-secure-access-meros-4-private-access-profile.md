@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Τέταρτο και τελευταίο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Private access profile, Quick Access, private network connectors και per-app access, με έμφαση σε NIS2 και ISO 27001."
 summary: "Κλείνουμε τη σειρά με το κομμάτι που έχει τη μεγαλύτερη πρακτική αξία για όσους ακόμα τρέχουν VPN: το Private access profile. Δεν είναι απλώς μια νέα μέθοδος σύνδεσης, είναι μια διαφορετική φιλοσοφία πρόσβασης, από 'σε βάζω μέσα στο δίκτυο' σε 'σου δίνω πρόσβαση σε αυτό το συγκεκριμένο resource, και μόνο σε αυτό'."
-categories: ["Microsoft 365 Security", "Network Security"]
+categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access"]
 series: ["Global Secure Access"]
 slug: "global-secure-access-meros-4-private-access-profile"
 ShowToc: true

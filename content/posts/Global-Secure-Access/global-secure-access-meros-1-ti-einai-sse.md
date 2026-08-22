@@ -27,7 +27,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Πρώτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Τι είναι το Security Service Edge (SSE) ως κατηγορία, πώς η Microsoft το υλοποιεί πάνω στο Entra ID, και γιατί έχει σημασία για NIS2 και ISO 27001."
 summary: "Πριν μπούμε σε profiles, policies και demos, αξίζει να σταθούμε σε ένα πιο βασικό ερώτημα: τι ακριβώς είναι το SSE, ποιος το εφηύρε, και γιατί η Microsoft επέλεξε να το χτίσει πάνω στο Entra ID αντί να φτιάξει ένα ξεχωριστό, παράλληλο σύστημα. Αυτό το πρώτο μέρος είναι η βάση πάνω στην οποία θα στηθούν τα επόμενα τρία."
-categories: ["Microsoft 365 Security", "Network Security"]
+categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access"]
 series: ["Global Secure Access"]
 ShowToc: true
 TocOpen: false
