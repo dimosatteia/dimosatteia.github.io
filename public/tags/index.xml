@@ -6,117 +6,110 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Aug 2026 09:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2026 09:30:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Conditional Access</title>
-      <link>http://localhost:1313/tags/conditional-access/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/conditional-access/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Cybersecurity</title>
       <link>http://localhost:1313/tags/cybersecurity/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/cybersecurity/</guid>
       <description></description>
     </item>
     <item>
       <title>Global Secure Access</title>
       <link>http://localhost:1313/tags/global-secure-access/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/global-secure-access/</guid>
       <description></description>
     </item>
     <item>
       <title>GRC</title>
       <link>http://localhost:1313/tags/grc/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/grc/</guid>
       <description></description>
     </item>
     <item>
       <title>ISO 27001</title>
       <link>http://localhost:1313/tags/iso-27001/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/iso-27001/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft Entra ID</title>
       <link>http://localhost:1313/tags/microsoft-entra-id/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-entra-id/</guid>
       <description></description>
     </item>
     <item>
       <title>Network Security</title>
       <link>http://localhost:1313/tags/network-security/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/network-security/</guid>
       <description></description>
     </item>
     <item>
       <title>NIS2</title>
       <link>http://localhost:1313/tags/nis2/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/nis2/</guid>
       <description></description>
     </item>
     <item>
       <title>SSE</title>
       <link>http://localhost:1313/tags/sse/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/sse/</guid>
       <description></description>
     </item>
     <item>
       <title>Zero Trust</title>
       <link>http://localhost:1313/tags/zero-trust/</link>
-      <pubDate>Thu, 20 Aug 2026 09:00:00 +0300</pubDate>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/zero-trust/</guid>
       <description></description>
     </item>
     <item>
       <title>Defender XDR</title>
       <link>http://localhost:1313/tags/defender-xdr/</link>
-      <pubDate>Tue, 18 Aug 2026 10:00:00 +0300</pubDate>
+      <pubDate>Fri, 21 Aug 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/defender-xdr/</guid>
       <description></description>
     </item>
     <item>
       <title>Domain Controllers</title>
       <link>http://localhost:1313/tags/domain-controllers/</link>
-      <pubDate>Tue, 18 Aug 2026 10:00:00 +0300</pubDate>
+      <pubDate>Fri, 21 Aug 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/domain-controllers/</guid>
       <description></description>
     </item>
     <item>
       <title>Health Alerts</title>
       <link>http://localhost:1313/tags/health-alerts/</link>
-      <pubDate>Tue, 18 Aug 2026 10:00:00 +0300</pubDate>
+      <pubDate>Fri, 21 Aug 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/health-alerts/</guid>
       <description></description>
     </item>
     <item>
       <title>Identity Security</title>
       <link>http://localhost:1313/tags/identity-security/</link>
-      <pubDate>Tue, 18 Aug 2026 10:00:00 +0300</pubDate>
+      <pubDate>Fri, 21 Aug 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/identity-security/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft Defender for Identity</title>
       <link>http://localhost:1313/tags/microsoft-defender-for-identity/</link>
-      <pubDate>Tue, 18 Aug 2026 10:00:00 +0300</pubDate>
+      <pubDate>Fri, 21 Aug 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/microsoft-defender-for-identity/</guid>
       <description></description>
     </item>
     <item>
       <title>Sensor Monitoring</title>
       <link>http://localhost:1313/tags/sensor-monitoring/</link>
-      <pubDate>Tue, 18 Aug 2026 10:00:00 +0300</pubDate>
+      <pubDate>Fri, 21 Aug 2026 10:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/sensor-monitoring/</guid>
       <description></description>
     </item>
@@ -279,6 +272,13 @@
       <link>http://localhost:1313/tags/ai-security/</link>
       <pubDate>Tue, 11 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/ai-security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Conditional Access</title>
+      <link>http://localhost:1313/tags/conditional-access/</link>
+      <pubDate>Tue, 11 Aug 2026 09:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/conditional-access/</guid>
       <description></description>
     </item>
     <item>
