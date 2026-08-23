@@ -26,7 +26,7 @@ tags:
   - Cybersecurity
 author: "Dimosthenis Atteia"
 description: "Πρώτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Τι είναι το Security Service Edge (SSE) ως κατηγορία, πώς η Microsoft το υλοποιεί πάνω στο Entra ID, και γιατί έχει σημασία για NIS2 και ISO 27001."
-summary: "Πριν μπούμε σε profiles, policies και demos, αξίζει να σταθούμε σε ένα πιο βασικό ερώτημα: τι ακριβώς είναι το SSE, ποιος το εφηύρε, και γιατί η Microsoft επέλεξε να το χτίσει πάνω στο Entra ID αντί να φτιάξει ένα ξεχωριστό, παράλληλο σύστημα. Αυτό το πρώτο μέρος είναι η βάση πάνω στην οποία θα στηθούν τα επόμενα τρία."
+summary: "Πριν μπούμε σε profiles, policies και demos, αξίζει να σταθούμε σε ένα πιο βασικό ερώτημα: τι ακριβώς είναι το SSE, ποιος το εφηύρε, και γιατί η Microsoft επέλεξε να το χτίσει πάνω στο Entra ID αντί να φτιάξει ένα ξεχωριστό, παράλληλο σύστημα. Αυτό το πρώτο μέρος είναι η βάση πάνω στην οποία θα στηθούν τα επόμενα τέσσερα."
 categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access"]
 series: ["Global Secure Access"]
 ShowToc: true
@@ -41,7 +41,7 @@ ShowReadingTime: true
 ShowWordCount: true
 ---
 
-Αποφάσισα να ξεκινήσω μια σειρά άρθρων γύρω από το Microsoft Global Secure Access, γιατί κάθε φορά που το παρουσιάζω σε πελάτες ή σε συναδέλφους, καταλαβαίνω ότι το πρόβλημα δεν είναι ποτέ το «πώς το ρυθμίζω». Το πρόβλημα είναι ότι κανείς δεν έχει σταθεί αρκετά ώρα στο «τι ακριβώς είναι αυτό, και γιατί υπάρχει». Οπότε πριν ανοίξουμε το Entra admin center και αρχίσουμε να πατάμε toggles, θέλω να μείνω σε αυτό το πρώτο μέρος αποκλειστικά στη θεωρία και στη φιλοσοφία. Τα επόμενα τρία μέρη θα μπουν βαθιά στο κάθε traffic profile ξεχωριστά, Microsoft, Internet, Private, με screenshots και πρακτικά βήματα από το δικό μου tenant.
+Αποφάσισα να ξεκινήσω μια σειρά άρθρων γύρω από το Microsoft Global Secure Access, γιατί κάθε φορά που το παρουσιάζω σε πελάτες ή σε συναδέλφους, καταλαβαίνω ότι το πρόβλημα δεν είναι ποτέ το «πώς το ρυθμίζω». Το πρόβλημα είναι ότι κανείς δεν έχει σταθεί αρκετά ώρα στο «τι ακριβώς είναι αυτό, και γιατί υπάρχει». Οπότε πριν ανοίξουμε το Entra admin center και αρχίσουμε να πατάμε toggles, θέλω να μείνω σε αυτό το πρώτο μέρος αποκλειστικά στη θεωρία και στη φιλοσοφία. Τα επόμενα τέσσερα μέρη θα μπουν βαθιά στο κάθε traffic profile ξεχωριστά, Microsoft, Internet, Private, και στο Conditional Access που τα ενώνει όλα μαζί, με screenshots και πρακτικά βήματα από το δικό μου tenant.
 
 ## Το πρόβλημα που δεν λύνεται πια με ένα καλό firewall
 
@@ -95,10 +95,11 @@ ShowWordCount: true
 
 ## Τι θα δούμε στα επόμενα μέρη
 
-Σε αυτό το σημείο έχουμε το θεωρητικό υπόβαθρο που χρειαζόμαστε. Στα επόμενα τρία μέρη θα μπούμε στην πράξη, ένα traffic forwarding profile τη φορά:
+Σε αυτό το σημείο έχουμε το θεωρητικό υπόβαθρο που χρειαζόμαστε. Στα επόμενα τέσσερα μέρη θα μπούμε στην πράξη, ένα traffic forwarding profile τη φορά, και μετά στο Conditional Access που τα δένει όλα μαζί:
 
 - **Μέρος 2**: το Microsoft traffic profile, το προεπιλεγμένο profile που καλύπτει Exchange Online, SharePoint Online, Teams και τις υπόλοιπες υπηρεσίες Microsoft 365
 - **Μέρος 3**: το Internet access profile, που καλύπτει τη γενική πρόσβαση στο δημόσιο internet και σε SaaS εφαρμογές, μαζί με web content filtering και security profiles
 - **Μέρος 4**: το Private access profile, που αντικαθιστά το κλασικό VPN για πρόσβαση σε εσωτερικές εφαρμογές, μέσω Quick Access και private network connectors
+- **Μέρος 5**: το Conditional Access σε βάθος, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile, block χωρίς client, απαίτηση compliant device, και web content filtering μέσω security profile
 
 Κάθε μέρος θα έχει τα δικά του screenshots από το δικό μου tenant, τα δικά του πρακτικά βήματα, και τη δική του ενότητα NIS2/ISO 27001. Αν τρέχεις ήδη κάποιο κομμάτι του Global Secure Access στον οργανισμό σου, ή σκέφτεσαι να ξεκινήσεις, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
