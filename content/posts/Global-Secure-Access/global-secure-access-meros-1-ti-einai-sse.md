@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft"
 date: 2026-08-22T11:00:00+03:00
-lastmod: 2026-08-22T11:30:00+03:00
+lastmod: 2026-08-23T21:30:00+03:00
 draft: false
 keywords:
   - Security Service Edge SSE
