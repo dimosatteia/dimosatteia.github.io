@@ -139,15 +139,12 @@ params:
     Title: "Hi 👋, I'm Dimosthenis"
     Content: >
       ![Dimosthenis](/images/Dimos_Banner.png)
+      
+      I'm a **Microsoft 365 Security** community contributor and **CIO/CISO** at Greece's second-largest flour milling and food manufacturing organization, where I apply **Microsoft Defender, Entra ID, Intune, Azure security services** and **Purview** to secure a real-world, high-impact production environment. This dual role lets me test what I write about against the pressures of an actual enterprise, not just a lab.
 
-      **Senior Cloud Architect** focused on **Microsoft 365** and **Microsoft 365 Security** using **Microsoft Defender** products, with extensive hands‑on experience designing, securing, and operating enterprise‑scale environments.
-      
-      In parallel, I serve as **CIO/CISO** at the second‑largest flour milling and food manufacturing organization in Greece, where I apply **Microsoft 365** and **Microsoft 365 Security** technologies in real‑world, high‑impact production scenarios.
-      
-      
-      I write deep‑dive technical content for security architects, IT professionals, and administrators who actively run these platforms in production, covering hardening guides, configuration walkthroughs, real‑world detections, and lessons learned the hard way.
-      
-      This dual role allows me to translate complex security challenges into practical guidance, community content, and actionable best practices for the Microsoft professional community.
+
+
+      I write in-depth, production-tested content for the security architects, IT professionals, and administrators who run these platforms every day, hardening guides, configuration deep-dives, real-world detections, and the lessons that only show up once something is live. My focus is turning what I learn securing a real environment into practical, reusable knowledge for the broader **Microsoft security community**, through detailed articles, hands-on walkthroughs, and open discussion with peers facing the same challenges.
 
 
       **🆕 New:** Microsoft 365 features are now tagged by [**Release Status**].
