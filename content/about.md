@@ -1,10 +1,11 @@
 ---
 title: "About"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-05-20T14:28:00+03:00
+lastmod: 2026-08-23T22:00:00+03:00
 draft: false
 keywords:
   - Dimosthenis Atteia
+  - CIO/CISO
   - Microsoft 365 Security
   - Microsoft Security MVP
   - Cloud Security Architect
@@ -37,17 +38,13 @@ hideMeta: true
 
 ## About me
 
-Hi, I'm **Dimosthenis**, a **Senior Cloud Architect** specialising in
-**Microsoft 365** and **Microsoft 365 Security** using **Microsoft Defender** products.
+Hi, I'm **Dimosthenis**.
 
-<div style="text-align: center;">
-  <img src="/images/DimosthenisAtteia.png" alt="Dimosthenis Atteia">
-</div>
+![Dimosthenis Atteia](https://thecybersec.gr/images/DimosthenisAtteia.png)
 
-I work day-to-day with the Microsoft cloud security stack like Defender XDR,
-Sentinel, Entra ID, Intune, Purview, and the rapidly evolving Security Copilot
-platform, and I write here to share what works in the real world, what doesn't,
-and what's worth your attention as a practitioner.
+I'm a **Microsoft 365 Security** community contributor and **CIO/CISO** at Greece's second-largest flour milling and food manufacturing organization, where I apply **Microsoft Defender**, **Entra ID**, **Intune**, **Azure security services**, and **Purview** to secure a real-world, high-impact production environment. This dual role lets me test what I write about against the pressures of an actual enterprise, not just a lab.
+
+I write in-depth, production-tested content for the security architects, IT professionals, and administrators who run these platforms every day, hardening guides, configuration deep-dives, real-world detections, and the lessons that only show up once something is live. My focus is turning what I learn securing a real environment into practical, reusable knowledge for the broader Microsoft security community, through detailed articles, hands-on walkthroughs, and open discussion with peers facing the same challenges.
 
 This blog is **practical, hands-on, and opinionated**. It's not a copy of
 Microsoft Learn. The goal is to fill the gap between official documentation
