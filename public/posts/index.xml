@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Aug 2026 21:32:59 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 11:05:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365</title>
@@ -14,6 +14,13 @@
       <pubDate>Mon, 24 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/</guid>
       <description>Δεύτερο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Microsoft traffic profile, του προεπιλεγμένου traffic forwarding profile που δρομολογεί την πρόσβαση σε Exchange Online, SharePoint Online και Teams, με έμφαση σε NIS2 και ISO 27001.</description>
+    </item>
+    <item>
+      <title>Localized Mark and Notify στο Microsoft Defender for Office 365: Γιατί ένα notification email στη σωστή γλώσσα είναι θέμα Security Awareness (MC1387578)</title>
+      <link>http://localhost:1313/posts/generally-available/mdo-mark-and-notify-localization/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/posts/generally-available/mdo-mark-and-notify-localization/</guid>
+      <description>Ανάλυση του MC1387578: το Microsoft Defender for Office 365 τοπικοποιεί το default &amp;#39;Mark and notify&amp;#39; email template για τα user-reported μηνύματα, με βάση τη γλώσσα του Outlook. Τι αλλάζει στην πράξη και γιατί έχει σημασία για NIS2 και ISO 27001 security awareness.</description>
     </item>
     <item>
       <title>Microsoft 365 Security Blog: Hands-On Guides for IT Pros</title>

@@ -6,8 +6,78 @@
     <description>Recent content in Tags on Microsoft 365 Security Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Aug 2026 22:05:41 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 11:05:00 +0300</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cybersecurity</title>
+      <link>http://localhost:1313/tags/cybersecurity/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/cybersecurity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GRC</title>
+      <link>http://localhost:1313/tags/grc/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/grc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ISO 27001</title>
+      <link>http://localhost:1313/tags/iso-27001/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/iso-27001/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Localization</title>
+      <link>http://localhost:1313/tags/localization/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/localization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Message Center</title>
+      <link>http://localhost:1313/tags/message-center/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/message-center/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft Defender for Office 365</title>
+      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NIS2</title>
+      <link>http://localhost:1313/tags/nis2/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/nis2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Phishing</title>
+      <link>http://localhost:1313/tags/phishing/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/phishing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security Awareness</title>
+      <link>http://localhost:1313/tags/security-awareness/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/security-awareness/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>User Reported Messages</title>
+      <link>http://localhost:1313/tags/user-reported-messages/</link>
+      <pubDate>Mon, 24 Aug 2026 11:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/user-reported-messages/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Conditional Access</title>
       <link>http://localhost:1313/tags/conditional-access/</link>
@@ -16,31 +86,10 @@
       <description></description>
     </item>
     <item>
-      <title>Cybersecurity</title>
-      <link>http://localhost:1313/tags/cybersecurity/</link>
-      <pubDate>Mon, 24 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/cybersecurity/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Global Secure Access</title>
       <link>http://localhost:1313/tags/global-secure-access/</link>
       <pubDate>Mon, 24 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/global-secure-access/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GRC</title>
-      <link>http://localhost:1313/tags/grc/</link>
-      <pubDate>Mon, 24 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/grc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>ISO 27001</title>
-      <link>http://localhost:1313/tags/iso-27001/</link>
-      <pubDate>Mon, 24 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/iso-27001/</guid>
       <description></description>
     </item>
     <item>
@@ -62,13 +111,6 @@
       <link>http://localhost:1313/tags/network-security/</link>
       <pubDate>Mon, 24 Aug 2026 09:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/network-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>NIS2</title>
-      <link>http://localhost:1313/tags/nis2/</link>
-      <pubDate>Mon, 24 Aug 2026 09:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/nis2/</guid>
       <description></description>
     </item>
     <item>
@@ -139,13 +181,6 @@
       <link>http://localhost:1313/tags/data-loss-prevention/</link>
       <pubDate>Tue, 18 Aug 2026 09:30:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/data-loss-prevention/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Message Center</title>
-      <link>http://localhost:1313/tags/message-center/</link>
-      <pubDate>Tue, 18 Aug 2026 09:30:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/message-center/</guid>
       <description></description>
     </item>
     <item>
@@ -328,13 +363,6 @@
       <link>http://localhost:1313/tags/kql/</link>
       <pubDate>Fri, 07 Aug 2026 11:00:00 +0300</pubDate>
       <guid>http://localhost:1313/tags/kql/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microsoft Defender for Office 365</title>
-      <link>http://localhost:1313/tags/microsoft-defender-for-office-365/</link>
-      <pubDate>Fri, 07 Aug 2026 11:00:00 +0300</pubDate>
-      <guid>http://localhost:1313/tags/microsoft-defender-for-office-365/</guid>
       <description></description>
     </item>
     <item>
