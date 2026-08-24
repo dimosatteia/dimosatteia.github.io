@@ -1,7 +1,7 @@
 ---
 title: "Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές"
 date: 2026-08-07T11:00:00+03:00
-lastmod: 2026-08-14T09:10:00+03:00
+lastmod: 2026-08-24T10:00:00+03:00
 draft: false
 keywords: 
   - Report a call Microsoft Teams
@@ -61,12 +61,12 @@ cover:
 
 Σε μια ενεργή συνάντηση, η αναφορά ζει στο μενού **More (...) → Report a concern**, ή στο chat header της συνάντησης.
 
-![Μενού More actions στο Microsoft Teams με την επιλογή Report a concern](/images/teams-reporting/report-a-meeting-option.png)
+[![Μενού More actions στο Microsoft Teams με την επιλογή Report a concern](/images/teams-reporting/report-a-meeting-option.png)](/images/teams-reporting/report-a-meeting-option.png)
 > 📷 **Εικόνα 1: Η επιλογή "Report a concern" μέσα από το μενού More actions κατά τη διάρκεια μιας συνάντησης**
 
 Πατώντας το, ανοίγει ένα απλό, καθαρό dialog: ποια συνάντηση αναφέρεις, προαιρετική εξήγηση μέχρι 250 χαρακτήρες, και δυνατότητα να επιλέξεις ποιους συμμετέχοντες αφορά η αναφορά.
 
-![Παράθυρο Report a security concern στο Microsoft Teams](/images/teams-reporting/report-a-security-concern.png)
+[![Παράθυρο Report a security concern στο Microsoft Teams](/images/teams-reporting/report-a-security-concern.png)](/images/teams-reporting/report-a-security-concern.png)
 > 📷 **Εικόνα 2: Το dialog "Report a security concern" τόσο απλό όσο χρειάζεται για να μη σε αποθαρρύνει να το χρησιμοποιήσεις**
 
 Για τις κλήσεις, η λογική είναι αντίστοιχη αλλά ζει στο ιστορικό: **Call History → More options (...) δίπλα σε μια group κλήση → Report a call**. Και οι δύο ροές είναι ενεργές by default, δεν χρειάζεται δηλαδή να τις «ανάψεις» εσύ ως admin για να αρχίσουν να δουλεύουν, κάτι που έχει τη δική του σημασία παρακάτω.
@@ -77,7 +77,7 @@ cover:
 
 Η επίσημη τεκμηρίωση μιλάει για «σχετικά metadata της κλήσης/συνάντησης και περιορισμένη συμφραζόμενη πληροφορία», χωρίς να μπαίνει σε λεπτομέρειες πεδίων. Στην πράξη, με βάση τι έχει ήδη νόημα να συνδέεται με μια αναφορά για να είναι χρήσιμη σε SecOps, αναμένω κάτι στο πνεύμα του παρακάτω σχήματος: ένα μοναδικό αναγνωριστικό αναφοράς/κλήσης, στοιχεία ταυτοποίησης του καλούντος (ώστε να μπορεί να μπλοκαριστεί άμεσα αν χρειαστεί), τη λίστα συμμετεχόντων που εκτέθηκαν, και το context που έγραψε ο χρήστης μαζί με το timestamp.
 
-![Ενδεικτική απεικόνιση των δεδομένων που μπορεί να συνοδεύουν μια αναφορά ασφαλείας στο Teams](/images/teams-reporting/anatomy-of-a-report.png)
+[![Ενδεικτική απεικόνιση των δεδομένων που μπορεί να συνοδεύουν μια αναφορά ασφαλείας στο Teams](/images/teams-reporting/anatomy-of-a-report.png)](/images/teams-reporting/anatomy-of-a-report.png)
 > 📷 **Εικόνα 3: Ενδεικτική σύνθεση του τι περιλαμβάνει μια αναφορά, με βάση τη γενική περιγραφή της Microsoft (όχι επίσημο schema)**
 
 Το τονίζω γιατί είναι σημαντικό να μη διαβάζεις αυτό το κομμάτι σαν επίσημο documentation. Είναι δική μου ανάγνωση πάνω σε αυτά που έχει ήδη πει η Microsoft, όχι κάτι που επιβεβαιώνεται ρητά ακόμα. Θα το ξέρουμε με σιγουριά μόλις κάποιος από εμάς δει την πρώτη πραγματική αναφορά στο δικό του Defender portal.
@@ -86,7 +86,7 @@ cover:
 
 Αυτό όμως που είναι ξεκάθαρα επιβεβαιωμένο είναι το πού πάει το σήμα. Τρία επίπεδα, τρεις ρόλοι.
 
-![Η ροή του σήματος από τον χρήστη στο Teams Admin Center και στο Microsoft Defender](/images/teams-reporting/signal-pipeline.png)
+[![Η ροή του σήματος από τον χρήστη στο Teams Admin Center και στο Microsoft Defender](/images/teams-reporting/signal-pipeline.png)](/images/teams-reporting/signal-pipeline.png)
 > 📷 **Εικόνα 4: Το σήμα ταξιδεύει από την άκρη (χρήστης) στη συγκέντρωση (Teams Admin Center) και στη βαθιά ανάλυση (Defender)**
 
 Στο **Teams Admin Center**, οι αναφορές συγκεντρώνονται κάτω από **Analytics & reports → Protection reports → User-reported security submissions**. Εκεί βλέπεις όγκο, όχι απαραίτητα λεπτομέρειες, χρήσιμο για μια πρώτη εικόνα «κάτι συμβαίνει αυτή την εβδομάδα» χωρίς να χρειάζεσαι license πέρα από το βασικό Teams.
@@ -99,7 +99,7 @@ cover:
 
 Εδώ μπαίνει και η πιο πρακτική ερώτηση κάθε CISO: τι έχω ήδη, και τι μου λείπει.
 
-![Πίνακας σύγκρισης δυνατοτήτων μεταξύ MDO Plan 1 και Plan 2 για το Microsoft Teams](/images/teams-reporting/licensing-matrix.png)
+[![Πίνακας σύγκρισης δυνατοτήτων μεταξύ MDO Plan 1 και Plan 2 για το Microsoft Teams](/images/teams-reporting/licensing-matrix.png)](/images/teams-reporting/licensing-matrix.png)
 > 📷 **Εικόνα 5: Safe Links/Safe Attachments και real-time detections τα έχεις ήδη με Plan 1. Advanced Hunting, AIR και ενοποίηση με Defender XDR θέλουν Plan 2**
 
 Το καλό νέο, και σχετικά φρέσκο: από **1η Ιουλίου 2026, το Microsoft Defender for Office 365 Plan 1 έχει ενσωματωθεί στο Microsoft 365 E3 και στο Office 365 E3**, με το rollout να έχει ολοκληρωθεί ουσιαστικά μέχρι τις αρχές Αυγούστου. Δηλαδή, αν είσαι σε E3 πλέον έχεις by default Safe Links, Safe Attachments και anti-phishing χωρίς πρόσθετη αγορά. Αυτό που δεν έχεις χωρίς Plan 2 (άρα E5 ή GCC G5) είναι Advanced Hunting, Automated Investigation & Response, και η πλήρης ενοποίηση με το Defender XDR. Αν είσαι σε E3, μπορείς να δεις τις αναφορές. Αν θέλεις να τις ψάξεις με KQL και να τις συσχετίσεις αυτόματα με άλλα incidents, χρειάζεσαι Plan 2.
@@ -110,7 +110,7 @@ cover:
 
 Το reporting button είναι reactive από τη φύση του, κάποιος πρέπει πρώτα να το πατήσει. Αν έχεις Plan 2, όμως, μπορείς να συμπληρώσεις το κενό με προληπτικό hunting πάνω σε ό,τι ήδη ρέει από το Safe Links στο Teams.
 
-![Παράδειγμα KQL query για threat hunting σε Teams messages και URLs](/images/teams-reporting/kql-hunting.png)
+[![Παράδειγμα KQL query για threat hunting σε Teams messages και URLs](/images/teams-reporting/kql-hunting.png)](/images/teams-reporting/kql-hunting.png)
 > 📷 **Εικόνα 6: Συσχέτιση MessagePostDeliveryEvents με URL κλικ, για να πιάσεις ό,τι πέρασε πριν καν αναφερθεί**
 
 Οι πίνακες `MessageEvents`, `MessagePostDeliveryEvents` και `UrlClickEvents` στο Advanced Hunting δεν είναι καινούργιοι, τους ξέρουμε ήδη από email hunting, αλλά τώρα που το Safe Links καλύπτει και Teams μηνύματα, το ίδιο query pattern αρχίζει να έχει νόημα και εκεί: join πάνω σε TeamsMessageId για να δεις ποιος έκανε κλικ σε τι, και πότε το ZAP (zero-hour auto protection) έπιασε κάτι μετά την παράδοση. Δεν είναι αντικατάσταση της αναφοράς χρήστη, είναι το συμπλήρωμά της: ο χρήστης σου δίνει context, το hunting σου δίνει κλίμακα.
@@ -143,7 +143,7 @@ cover:
 
 ## Τι κάνεις αύριο
 
-![Σχέδιο δράσης τεσσάρων βημάτων για την προετοιμασία του SOC](/images/teams-reporting/action-plan.png)
+[![Σχέδιο δράσης τεσσάρων βημάτων για την προετοιμασία του SOC](/images/teams-reporting/action-plan.png)](/images/teams-reporting/action-plan.png)
 > 📷 **Εικόνα 7: Δεν χρειάζεται να περιμένεις τη Γενική Διαθεσιμότητα για να ξεκινήσεις**
 
 Αν είσαι σε Targeted Release ή θες απλώς να είσαι έτοιμος πριν τον Οκτώβριο:

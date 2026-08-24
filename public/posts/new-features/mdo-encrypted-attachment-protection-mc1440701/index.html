@@ -360,7 +360,7 @@
 <p>Ας πούμε την αλήθεια μεταξύ μας. Όλοι έχουμε στείλει ή λάβει ένα ZIP με κωδικό, ένα «κλειδωμένο» PDF, ένα password-protected αρχείο του Office. Το κάνουμε γιατί νομίζουμε ότι είναι πιο ασφαλές και σε επίπεδο confidentiality, ναι, είναι. Το πρόβλημα είναι ότι αυτό που κρύβει το περιεχόμενο από τα αδιάκριτα μάτια, το κρύβει και από τον <strong>scanner ασφάλειας</strong>.</p>
 <p>Όταν φτάνει ένα κρυπτογραφημένο συνημμένο στο mailbox και το <strong>Microsoft Defender for Office 365 (MDO)</strong> δεν έχει τον κωδικό, δεν μπορεί να το «ανοίξει» για να το σαρώσει ή να το εκτελέσει ελεγχόμενα (detonation) στο sandbox. Αποτέλεσμα; Το malware μπορεί να ταξιδεύει μέσα σε ένα «κουτί» που κανείς δεν άνοιξε, μέχρι να το ανοίξει ο χρήστης, στο δικό του μηχάνημα, με τον κωδικό που του έδωσε ευγενικά ο επιτιθέμενος στο ίδιο email.</p>
 <p>Με το <strong>MC1440701</strong>, η Microsoft κλείνει αυτό ακριβώς το κενό. Και επειδή Ελληνικό, κατανοητό υλικό πάνω στα Message Center posts δεν βρίσκεις εύκολα, ας το δούμε μαζί, απλά, χωρίς να χρειάζεται να είσαι ήδη ειδικός στο MDO.</p>
-<p><img alt="Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png"></p>
+<p><a href="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png"><img alt="Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 1: Ό,τι δεν μπορεί να ελεγχθεί, δεν παραδίδεται στα τυφλά. Αυτή είναι όλη η ιδέα.</strong></p>
 </blockquote>
@@ -369,7 +369,7 @@
 <p>Δύο λέξεις-κλειδιά για να μην παρεξηγηθεί: <strong>opt-in</strong> και <strong>off by default</strong>. Δεν θα ξυπνήσεις ένα πρωί με μπλοκαρισμένα emails. Τίποτα δεν αλλάζει αν εσύ δεν το ενεργοποιήσεις συνειδητά. Είναι εργαλείο που σου δίνει η Microsoft, όχι απόφαση που παίρνει για σένα.</p>
 <h2 id="πώς-λειτουργεί-βήμα-βήμα">Πώς λειτουργεί, βήμα-βήμα<a hidden class="anchor" aria-hidden="true" href="#πώς-λειτουργεί-βήμα-βήμα">#</a></h2>
 <p>Για να καταλάβεις πού «κουμπώνει» η νέα ρύθμιση, ας δούμε τη διαδρομή ενός τέτοιου μηνύματος.</p>
-<p><img alt="Πώς λειτουργεί η προστασία κρυπτογραφημένων συνημμένων στο MDO, από το εισερχόμενο email μέχρι την ελεγχόμενη αποδέσμευση" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.png"></p>
+<p><a href="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.png"><img alt="Πώς λειτουργεί η προστασία κρυπτογραφημένων συνημμένων στο MDO, από το εισερχόμενο email μέχρι την ελεγχόμενη αποδέσμευση" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 2: Το κρίσιμο σημείο είναι το τρίτο βήμα, εκεί που χωρίς password, η ανάλυση μένει μισή.</strong></p>
 </blockquote>
@@ -377,7 +377,7 @@
 <p>Η προστασία καλύπτει τους τύπους αρχείων που συναντάς στην πράξη: <strong>ZIP, GZIP, 7z, RAR, PDF</strong> και τα <strong>Microsoft Office</strong> formats. Αν για κάποιον επιχειρησιακό λόγο θέλεις να εξαιρέσεις συγκεκριμένες κατηγορίες, μπορείς μιας και η ρύθμιση δεν είναι «όλα ή τίποτα».</p>
 <h2 id="οι-δύο-δρόμοι-για-την-αποδέσμευση">Οι δύο δρόμοι για την αποδέσμευση<a hidden class="anchor" aria-hidden="true" href="#οι-δύο-δρόμοι-για-την-αποδέσμευση">#</a></h2>
 <p>Εδώ η Microsoft έκανε κάτι έξυπνο: δεν κλειδώνει το μήνυμα και «καλή τύχη». Δίνει δύο μονοπάτια, ανάλογα με το ποιος χειρίζεται την υπόθεση.</p>
-<p><img alt="Οι δύο δρόμοι αποδέσμευσης από την καραντίνα: ο χρήστης με το password του συνημμένου και ο διαχειριστής χωρίς αυτό" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-release-paths.png"></p>
+<p><a href="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-release-paths.png"><img alt="Οι δύο δρόμοι αποδέσμευσης από την καραντίνα: ο χρήστης με το password του συνημμένου και ο διαχειριστής χωρίς αυτό" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-release-paths.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 3: Ο χρήστης ξεκλειδώνει με τον κωδικό του αρχείου ο admin αποδεσμεύει χωρίς αυτόν. Δύο ρόλοι, δύο διαφορετικές ανάγκες.</strong></p>
 </blockquote>
@@ -386,14 +386,14 @@
 <h2 id="ο-κίνδυνος-που-κρύβεται-πίσω-από-ένα-καλό-feature">Ο κίνδυνος που κρύβεται πίσω από ένα «καλό» feature<a hidden class="anchor" aria-hidden="true" href="#ο-κίνδυνος-που-κρύβεται-πίσω-από-ένα-καλό-feature">#</a></h2>
 <p>Εδώ βάζω το καπέλο του CISO, γιατί κάθε νέα δυνατότητα φέρνει και μια νέα συνήθεια και οι συνήθειες είναι ό,τι αγαπούν οι επιτιθέμενοι.</p>
 <p>Σκέψου τι εκπαιδεύεις τον χρήστη να κάνει: «όταν δεις ένα μπλοκαρισμένο email με κλειδωμένο αρχείο, βάλε έναν κωδικό για να το ξεκλειδώσεις». Αυτό, αν δεν το πλαισιώσεις σωστά, είναι <strong>ακριβώς το μοτίβο που χρησιμοποιεί το phishing</strong>, «βάλε τον κωδικό σου εδώ για να δεις το μήνυμα». Η ίδια η Microsoft το προβλέπει και βάζει ρητές προειδοποιήσεις. Πέρασέ τες στην ομάδα σου σαν κανόνα, όχι σαν υποσημείωση.</p>
-<p><img alt="Οι κανόνες ασφάλειας για τους χρήστες κατά την αποδέσμευση: μόνο ο κωδικός του συνημμένου, ποτέ account ή banking credentials" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-security-dos-donts.png"></p>
+<p><a href="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-security-dos-donts.png"><img alt="Οι κανόνες ασφάλειας για τους χρήστες κατά την αποδέσμευση: μόνο ο κωδικός του συνημμένου, ποτέ account ή banking credentials" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-security-dos-donts.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 4: Ο χρυσός κανόνας: ο μόνος κωδικός που μπαίνει ποτέ εκεί είναι ο κωδικός του ίδιου του αρχείου και τίποτε άλλο.</strong></p>
 </blockquote>
 <p>Με απλά λόγια, το μήνυμα προς τους χρήστες είναι: βάζεις <strong>μόνο</strong> τον κωδικό του συγκεκριμένου συνημμένου, <strong>ποτέ</strong> κωδικό λογαριασμού, e-banking ή οποιονδήποτε άσχετο κωδικό. Αποδεσμεύεις <strong>μόνο</strong> μηνύματα που <strong>περίμενες</strong>, από αποστολείς που <strong>αναγνωρίζεις</strong>. Και οτιδήποτε προστατευμένο έρχεται <strong>απρόσμενα</strong>, δεν το «ξεκλειδώνεις από περιέργεια», το <strong>κλιμακώνεις στο SecOps</strong>. Αυτές οι τρεις προτάσεις, αν τις κάνεις κουλτούρα, μετατρέπουν ένα πιθανό attack surface σε πλεονέκτημα.</p>
 <h2 id="πότε-το-βλέπεις-στο-tenant-σου">Πότε το βλέπεις στο tenant σου<a hidden class="anchor" aria-hidden="true" href="#πότε-το-βλέπεις-στο-tenant-σου">#</a></h2>
 <p>Το rollout ξεκινά τον Αύγουστο 2026 και απλώνεται ανά cloud environment.</p>
-<p><img alt="Χρονοδιάγραμμα διάθεσης της δυνατότητας ανά cloud environment, από τον Αύγουστο έως τον Οκτώβριο 2026" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-rollout-timeline.png"></p>
+<p><a href="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-rollout-timeline.png"><img alt="Χρονοδιάγραμμα διάθεσης της δυνατότητας ανά cloud environment, από τον Αύγουστο έως τον Οκτώβριο 2026" loading="lazy" src="http://localhost:1313/images/MDO-EncryptedAttachments/mdo-rollout-timeline.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 5: Worldwide πρώτα μέσα στον Αύγουστο τα κυβερνητικά clouds ακολουθούν μέχρι το φθινόπωρο.</strong></p>
 </blockquote>

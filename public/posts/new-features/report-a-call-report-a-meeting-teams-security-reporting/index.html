@@ -368,12 +368,12 @@
 <h2 id="πώς-μοιάζει-στην-πράξη">Πώς μοιάζει στην πράξη<a hidden class="anchor" aria-hidden="true" href="#πώς-μοιάζει-στην-πράξη">#</a></h2>
 <p>Και τα δύο features δουλεύουν εκεί που ήδη βρίσκεται ο χρήστης, χωρίς να χρειάζεται να ανοίξει τίποτα άλλο.</p>
 <p>Σε μια ενεργή συνάντηση, η αναφορά ζει στο μενού <strong>More (&hellip;) → Report a concern</strong>, ή στο chat header της συνάντησης.</p>
-<p><img alt="Μενού More actions στο Microsoft Teams με την επιλογή Report a concern" loading="lazy" src="http://localhost:1313/images/teams-reporting/report-a-meeting-option.png"></p>
+<p><a href="http://localhost:1313/images/teams-reporting/report-a-meeting-option.png"><img alt="Μενού More actions στο Microsoft Teams με την επιλογή Report a concern" loading="lazy" src="http://localhost:1313/images/teams-reporting/report-a-meeting-option.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 1: Η επιλογή &ldquo;Report a concern&rdquo; μέσα από το μενού More actions κατά τη διάρκεια μιας συνάντησης</strong></p>
 </blockquote>
 <p>Πατώντας το, ανοίγει ένα απλό, καθαρό dialog: ποια συνάντηση αναφέρεις, προαιρετική εξήγηση μέχρι 250 χαρακτήρες, και δυνατότητα να επιλέξεις ποιους συμμετέχοντες αφορά η αναφορά.</p>
-<p><img alt="Παράθυρο Report a security concern στο Microsoft Teams" loading="lazy" src="http://localhost:1313/images/teams-reporting/report-a-security-concern.png"></p>
+<p><a href="http://localhost:1313/images/teams-reporting/report-a-security-concern.png"><img alt="Παράθυρο Report a security concern στο Microsoft Teams" loading="lazy" src="http://localhost:1313/images/teams-reporting/report-a-security-concern.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 2: Το dialog &ldquo;Report a security concern&rdquo; τόσο απλό όσο χρειάζεται για να μη σε αποθαρρύνει να το χρησιμοποιήσεις</strong></p>
 </blockquote>
@@ -381,14 +381,14 @@
 <p>Αξίζει να σημειωθεί ότι το «Report a call» αφορά προς το παρόν <strong>ομαδικές κλήσεις</strong> (group calls) και όχι 1:1 κλήσεις, κάτι λογικό αν σκεφτείς ότι το σενάριο-στόχος είναι κυρίως vishing και πλαστοπροσωπία με πολλαπλούς συμμετέχοντες.</p>
 <h2 id="τι-ταξιδεύει-σε-μια-αναφορά">Τι ταξιδεύει σε μια αναφορά<a hidden class="anchor" aria-hidden="true" href="#τι-ταξιδεύει-σε-μια-αναφορά">#</a></h2>
 <p>Η επίσημη τεκμηρίωση μιλάει για «σχετικά metadata της κλήσης/συνάντησης και περιορισμένη συμφραζόμενη πληροφορία», χωρίς να μπαίνει σε λεπτομέρειες πεδίων. Στην πράξη, με βάση τι έχει ήδη νόημα να συνδέεται με μια αναφορά για να είναι χρήσιμη σε SecOps, αναμένω κάτι στο πνεύμα του παρακάτω σχήματος: ένα μοναδικό αναγνωριστικό αναφοράς/κλήσης, στοιχεία ταυτοποίησης του καλούντος (ώστε να μπορεί να μπλοκαριστεί άμεσα αν χρειαστεί), τη λίστα συμμετεχόντων που εκτέθηκαν, και το context που έγραψε ο χρήστης μαζί με το timestamp.</p>
-<p><img alt="Ενδεικτική απεικόνιση των δεδομένων που μπορεί να συνοδεύουν μια αναφορά ασφαλείας στο Teams" loading="lazy" src="http://localhost:1313/images/teams-reporting/anatomy-of-a-report.png"></p>
+<p><a href="http://localhost:1313/images/teams-reporting/anatomy-of-a-report.png"><img alt="Ενδεικτική απεικόνιση των δεδομένων που μπορεί να συνοδεύουν μια αναφορά ασφαλείας στο Teams" loading="lazy" src="http://localhost:1313/images/teams-reporting/anatomy-of-a-report.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 3: Ενδεικτική σύνθεση του τι περιλαμβάνει μια αναφορά, με βάση τη γενική περιγραφή της Microsoft (όχι επίσημο schema)</strong></p>
 </blockquote>
 <p>Το τονίζω γιατί είναι σημαντικό να μη διαβάζεις αυτό το κομμάτι σαν επίσημο documentation. Είναι δική μου ανάγνωση πάνω σε αυτά που έχει ήδη πει η Microsoft, όχι κάτι που επιβεβαιώνεται ρητά ακόμα. Θα το ξέρουμε με σιγουριά μόλις κάποιος από εμάς δει την πρώτη πραγματική αναφορά στο δικό του Defender portal.</p>
 <h2 id="η-ροή-του-σήματος-από-την-άκρη-στο-defender">Η ροή του σήματος: από την άκρη στο Defender<a hidden class="anchor" aria-hidden="true" href="#η-ροή-του-σήματος-από-την-άκρη-στο-defender">#</a></h2>
 <p>Αυτό όμως που είναι ξεκάθαρα επιβεβαιωμένο είναι το πού πάει το σήμα. Τρία επίπεδα, τρεις ρόλοι.</p>
-<p><img alt="Η ροή του σήματος από τον χρήστη στο Teams Admin Center και στο Microsoft Defender" loading="lazy" src="http://localhost:1313/images/teams-reporting/signal-pipeline.png"></p>
+<p><a href="http://localhost:1313/images/teams-reporting/signal-pipeline.png"><img alt="Η ροή του σήματος από τον χρήστη στο Teams Admin Center και στο Microsoft Defender" loading="lazy" src="http://localhost:1313/images/teams-reporting/signal-pipeline.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 4: Το σήμα ταξιδεύει από την άκρη (χρήστης) στη συγκέντρωση (Teams Admin Center) και στη βαθιά ανάλυση (Defender)</strong></p>
 </blockquote>
@@ -397,7 +397,7 @@
 <p>Ένα σημείο που θέλω να τονίσω γιατί το προσπέρασα κι εγώ την πρώτη φορά που το διάβασα: το να έχεις άδεια MDO δεν αρκεί από μόνο του. Χρειάζεται να <strong>επιβεβαιώσεις ρητά στο Defender portal ότι το user reporting είναι ενεργοποιημένο</strong>, αλλιώς οι λεπτομερείς αναφορές απλά δεν θα εμφανιστούν εκεί, ό,τι license κι αν έχεις.</p>
 <h2 id="ποιος-βλέπει-τι-το-licensing-matrix">Ποιος βλέπει τι: το licensing matrix<a hidden class="anchor" aria-hidden="true" href="#ποιος-βλέπει-τι-το-licensing-matrix">#</a></h2>
 <p>Εδώ μπαίνει και η πιο πρακτική ερώτηση κάθε CISO: τι έχω ήδη, και τι μου λείπει.</p>
-<p><img alt="Πίνακας σύγκρισης δυνατοτήτων μεταξύ MDO Plan 1 και Plan 2 για το Microsoft Teams" loading="lazy" src="http://localhost:1313/images/teams-reporting/licensing-matrix.png"></p>
+<p><a href="http://localhost:1313/images/teams-reporting/licensing-matrix.png"><img alt="Πίνακας σύγκρισης δυνατοτήτων μεταξύ MDO Plan 1 και Plan 2 για το Microsoft Teams" loading="lazy" src="http://localhost:1313/images/teams-reporting/licensing-matrix.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 5: Safe Links/Safe Attachments και real-time detections τα έχεις ήδη με Plan 1. Advanced Hunting, AIR και ενοποίηση με Defender XDR θέλουν Plan 2</strong></p>
 </blockquote>
@@ -405,7 +405,7 @@
 <p>Αξίζει να το ελέγξεις στο δικό σου tenant, όχι να το πάρεις ως δεδομένο. Το license assignment σε μεγάλους οργανισμούς σπάνια είναι 100% ομοιόμορφο.</p>
 <h2 id="playbook-για-secops-προληπτικό-κυνήγι-όχι-μόνο-αναμονή">Playbook για SecOps: προληπτικό κυνήγι, όχι μόνο αναμονή<a hidden class="anchor" aria-hidden="true" href="#playbook-για-secops-προληπτικό-κυνήγι-όχι-μόνο-αναμονή">#</a></h2>
 <p>Το reporting button είναι reactive από τη φύση του, κάποιος πρέπει πρώτα να το πατήσει. Αν έχεις Plan 2, όμως, μπορείς να συμπληρώσεις το κενό με προληπτικό hunting πάνω σε ό,τι ήδη ρέει από το Safe Links στο Teams.</p>
-<p><img alt="Παράδειγμα KQL query για threat hunting σε Teams messages και URLs" loading="lazy" src="http://localhost:1313/images/teams-reporting/kql-hunting.png"></p>
+<p><a href="http://localhost:1313/images/teams-reporting/kql-hunting.png"><img alt="Παράδειγμα KQL query για threat hunting σε Teams messages και URLs" loading="lazy" src="http://localhost:1313/images/teams-reporting/kql-hunting.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 6: Συσχέτιση MessagePostDeliveryEvents με URL κλικ, για να πιάσεις ό,τι πέρασε πριν καν αναφερθεί</strong></p>
 </blockquote>
@@ -443,7 +443,7 @@
 	</tbody>
 </table>
 <h2 id="τι-κάνεις-αύριο">Τι κάνεις αύριο<a hidden class="anchor" aria-hidden="true" href="#τι-κάνεις-αύριο">#</a></h2>
-<p><img alt="Σχέδιο δράσης τεσσάρων βημάτων για την προετοιμασία του SOC" loading="lazy" src="http://localhost:1313/images/teams-reporting/action-plan.png"></p>
+<p><a href="http://localhost:1313/images/teams-reporting/action-plan.png"><img alt="Σχέδιο δράσης τεσσάρων βημάτων για την προετοιμασία του SOC" loading="lazy" src="http://localhost:1313/images/teams-reporting/action-plan.png"></a></p>
 <blockquote>
 <p>📷 <strong>Εικόνα 7: Δεν χρειάζεται να περιμένεις τη Γενική Διαθεσιμότητα για να ξεκινήσεις</strong></p>
 </blockquote>
