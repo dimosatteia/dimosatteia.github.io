@@ -1,7 +1,7 @@
 ---
 title: "Localized Mark and Notify στο Microsoft Defender for Office 365: Γιατί ένα notification email στη σωστή γλώσσα είναι θέμα Security Awareness (MC1387578)"
-date: 2026-08-25T09:00:00+03:00
-lastmod: 2026-08-25T09:05:00+03:00
+date: 2026-08-25T09:15:00+03:00
+lastmod: 2026-08-25T09:17:00+03:00
 draft: false
 keywords:
   - Microsoft Defender for Office 365 Mark and Notify
@@ -36,7 +36,7 @@ ShowToc: true
 TocOpen: false
 weight: -6
 cover:
-  image: "images/mdo-mark-and-notify-localization/mdo-mark-and-notify-cover.png"
+  image: "images/mdo-mark-and-notify-localization/mdo-notification-email-before-en.png"
   alt: "Mark as and notify action στο Microsoft Defender for Office 365 Submissions - User reported tab"
   caption: "Defender for Office 365 → Submissions → User reported → Mark as and notify"
   relative: true
