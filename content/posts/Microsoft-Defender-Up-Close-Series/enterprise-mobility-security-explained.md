@@ -1,6 +1,7 @@
 ---
 title: "Enterprise Mobility + Security Explained — E3 and E5, and When You'd Actually Buy It"
 date: 2026-04-23T10:00:00+03:00
+lastmod: 2026-04-23T10:06:00+03:00
 draft: true
 keywords:
   - how to read a Microsoft Secure Score recommendation

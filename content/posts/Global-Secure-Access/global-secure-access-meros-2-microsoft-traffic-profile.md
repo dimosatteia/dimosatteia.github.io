@@ -1,8 +1,8 @@
 ---
 title: "Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365"
-date: 2026-08-24T09:00:00+03:00
-lastmod: 2026-08-24T09:30:00+03:00
-draft: true
+date: 2026-08-31T09:00:00+03:00
+lastmod: 2026-08-31T09:05:00+03:00
+draft: false
 keywords:
   - Microsoft traffic profile
   - Global Secure Access traffic forwarding
