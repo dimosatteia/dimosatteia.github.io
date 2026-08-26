@@ -1,0 +1,59 @@
+{{/*
+  layouts/partials/community-spotlight.html
+  ------------------------------------------
+  Sidebar/floating "Community Spotlight" widget.
+  Διαβάζει το data/community.yaml.
+  - Αν έχει ≤3 άτομα: τα δείχνει όλα, πάντα.
+  - Αν έχει >3 άτομα: επιλέγει deterministic-ά 2 εγγραφές με βάση την
+    ημέρα του έτους (χωρίς JS/random -> καμία επίδραση στο CLS/Lighthouse).
+
+  Wiring: κάλεσέ το από layouts/partials/extend_footer.html με:
+    {{ partial "community-spotlight.html" . }}
+*/}}
+
+{{ $community := .Site.Data.community }}
+{{ $len := len $community }}
+
+{{ if gt $len 0 }}
+  {{ $picks := slice }}
+  {{ if le $len 3 }}
+    {{/* Λίγα άτομα -> τα δείχνει όλα, χωρίς rotation */}}
+    {{ $picks = $community }}
+  {{ else }}
+    {{/* Περισσότερα από 3 -> rotation 2 ανά ημέρα, deterministic */}}
+    {{ $dayIndex := mod now.YearDay $len }}
+    {{ $idx1 := $dayIndex }}
+    {{ $idx2 := mod (add $dayIndex 1) $len }}
+    {{ $item1 := index $community $idx1 }}
+    {{ $item2 := index $community $idx2 }}
+    {{ $picks = $picks | append $item1 }}
+    {{ if ne $idx1 $idx2 }}
+      {{ $picks = $picks | append $item2 }}
+    {{ end }}
+  {{ end }}
+
+  <div class="community-spotlight" id="community-spotlight">
+    <div class="cs-header">
+      <h3 class="cs-title">🌐 Community Spotlight</h3>
+      <button class="cs-toggle" aria-label="Toggle" onclick="document.getElementById('community-spotlight').classList.toggle('cs-collapsed')">—</button>
+    </div>
+    <ul class="cs-list">
+      {{ range $picks }}
+      <li class="cs-item">
+        {{ if .avatar }}
+        <img src="{{ .avatar }}" alt="{{ .name }}" class="cs-avatar" loading="lazy">
+        {{ end }}
+        <div class="cs-info">
+          <span class="cs-name">{{ .name }}</span>
+          {{ if .role }}<span class="cs-role">{{ .role }}</span>{{ end }}
+          <div class="cs-links">
+            {{ range .links }}
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="cs-link cs-link-{{ .type }}">{{ .type }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}

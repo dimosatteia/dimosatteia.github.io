@@ -1,0 +1,149 @@
+/* assets/css/extended/community-spotlight.css
+   Το PaperMod φορτώνει αυτόματα ό,τι υπάρχει σε assets/css/extended/,
+   οπότε αρκεί να τοποθετήσεις αυτό το αρχείο εκεί — δεν χρειάζεται
+   να πειράξεις τα core CSS του theme. */
+
+.community-spotlight {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  width: 240px;
+  z-index: 40;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: max-height 0.2s ease;
+}
+
+.cs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cs-title {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.cs-toggle {
+  background: none;
+  border: none;
+  color: var(--secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.cs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.community-spotlight.cs-collapsed .cs-list {
+  display: none;
+}
+
+.cs-item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.cs-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.cs-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-name {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.cs-role {
+  font-size: 0.72rem;
+  color: var(--secondary);
+  margin-top: 1px;
+}
+
+.cs-links {
+  margin-top: 4px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cs-link {
+  font-size: 0.68rem;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--primary);
+  text-transform: capitalize;
+}
+
+.cs-link:hover {
+  background: var(--tertiary);
+}
+
+/* Κάτω από 1300px δεν υπάρχει πλέον χώρος για floating sidebar χωρίς
+   να καλύπτει το κυρίως περιεχόμενο (το PaperMod δεν έχει native
+   sidebar column). Αντί να κρύβεται εντελώς, το widget "πέφτει" μέσα
+   στη κανονική ροή της σελίδας — γίνεται static block, στοιχισμένο
+   σαν το .cert-widget, με τα άτομα σε οριζόντια λωρίδα. Έτσι μένει
+   πάντα ορατό, ανεξάρτητα από το πλάτος του browser. */
+@media (max-width: 1300px) {
+  .community-spotlight {
+    position: static;
+    top: auto;
+    right: auto;
+    width: auto;
+    max-width: var(--main-width);
+    margin: 2rem auto 1rem;
+    box-shadow: none;
+    border-radius: var(--radius);
+  }
+
+  .cs-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .cs-item {
+    width: 200px;
+  }
+}
+
+/* Σε πολύ στενές οθόνες (κινητό) η οριζόντια λωρίδα ξαναγίνεται
+   κάθετη λίστα, ώστε τα cards να μη στριμώχνονται. */
+@media (max-width: 480px) {
+  .cs-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cs-item {
+    width: 100%;
+    max-width: 280px;
+  }
+}

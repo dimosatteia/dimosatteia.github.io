@@ -1,0 +1,48 @@
+# data/community.yaml
+# Λίστα φίλων/γνωστών MVP (ή Microsoft community figures) που θέλεις να προβάλλεις
+# στο "Community Spotlight" widget. Πρόσθεσε νέο άτομο αντιγράφοντας ένα block.
+#
+# Πεδία:
+#   name    -> εμφανιζόμενο όνομα
+#   role    -> τίτλος/ρόλος (π.χ. "Microsoft MVP", "Sr. Cloud Solution Architect")
+#   avatar  -> URL σε φωτογραφία (προαιρετικό — αν το αφήσεις κενό, δεν εμφανίζεται εικόνα)
+#   links   -> λίστα από {type, url}. Το "type" καθορίζει και το label/style στο widget.
+#              Προτεινόμενα types: blog, youtube, spotify, linkedin, twitter, github
+
+- name: "Κορίνα Κατσάνη"
+  role: "Microsoft MVP"
+  avatar: "https://excelakia.com/wp-content/uploads/2026/02/KorinaKatsani-2048x1650.png"
+  links:
+    - type: "LinkedIn"
+      url: "https://www.linkedin.com/in/korina-katsani/"
+    - type: "Microsoft MVP Community Profile"
+      url: "https://mvp.microsoft.com/en-US/MVP/profile/b96ee47c-1186-4f40-b23b-48b0362ae97e"
+    # πρόσθεσε blog/YouTube URL όταν το έχεις έτοιμο
+
+- name: "Μιχάλης Μιχάλος"
+  role: "Sr. Cloud Solution Architect – Europe South Tech Lead, Threat Protection at Microsoft, ex-MVP"
+  avatar: "https://i0.wp.com/www.michalos.net/wp-content/uploads/2023/05/portrait_michalos.jpg?resize=768%2C767&ssl=1"
+  links:
+    - type: "LinkedIn"
+      url: "https://www.linkedin.com/in/mmihalos/"
+
+- name: "Χρήστος Σπανουγάκης"
+  role: "Microsoft MCT, MVP"
+  avatar: "https://spanougakis.com/wp-content/uploads/2024/10/256x256.png"
+  links:
+    - type: "LinkedIn"
+      url: "https://www.linkedin.com/in/chrisspanougakis/"
+    - type: "Microsoft MVP Community Profile"
+      url: "https://mvp.microsoft.com/en-US/MVP/profile/14e20609-fb53-4f6e-b179-81b6b9325274"
+    # πρόσθεσε blog/YouTube URL όταν το έχεις έτοιμο
+
+# - name: "Νέο άτομο εδώ"
+#   role: "Τίτλος"
+#   avatar: "https://.../photo.jpg"
+#   links:
+#     - type: "blog"
+#       url: "https://..."
+#     - type: "youtube"
+#       url: "https://..."
+#     - type: "spotify"
+#       url: "https://..."
