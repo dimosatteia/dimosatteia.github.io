@@ -27,7 +27,7 @@ categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access
 series: ["Global Secure Access"]
 ShowToc: true
 TocOpen: false
-weight: -5.5
+weight: -6
 slug: "global-secure-access-client-windows-update-auto-upgrade"
 cover:
   image: "images/global-secure-access-series/gsa-client-windows-update-minimum-version.png"
