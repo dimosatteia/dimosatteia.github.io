@@ -19,7 +19,9 @@
 <div id="announce-overlay" class="announce-overlay" hidden>
   <div class="announce-modal" role="dialog" aria-modal="true" aria-labelledby="announce-title">
     <button class="announce-close" id="announce-close" aria-label="Κλείσιμο">&times;</button>
-    <div class="announce-badge">Νέο Άρθρο</div>   				
+    <div class="announce-badge">Νέα Άρθρα</div>
+
+    <div class="announce-item">
     <h3 id="announce-title">MC1461705 - Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο</h3>
     <p>
       Ανάλυση του MC1461705: το Timeline tab στη σελίδα Identity του Microsoft Defender ενοποιεί sign-ins, 
@@ -27,6 +29,17 @@
       Session ID και Unique token identifier, με την οπτική ενός CISO που χτίζει investigation runbooks.
     </p>
     <a href="https://thecybersec.gr/posts/new-features/defender-xdr-unified-identity-timeline//" class="announce-cta">Δες το άρθρο →</a>
+    </div>
+
+    <div class="announce-item">
+    <h3>Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades</h3>
+    <p>
+      Από τον Νοέμβριο του 2026 ο Global Secure Access client για Windows x64 θα ενημερώνεται 
+      αυτόματα μέσω Windows Update. Τι αλλάζει στο patch management μοντέλο, ποια είναι 
+      η ελάχιστη έκδοση, και πώς κάνεις opt-out αν το χρειάζεσαι.
+    </p>
+    <a href="https://thecybersec.gr/posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade//" class="announce-cta">Δες το άρθρο →</a>
+    </div>
   </div>
 </div>
 
@@ -48,7 +61,7 @@
     position: relative;
     background: var(--theme, #fff);
     color: var(--content, #222);
-    max-width: 420px;
+    max-width: 460px;
     width: 100%;
     border-radius: 12px;
     padding: 28px 24px 24px;
@@ -56,6 +69,16 @@
     font-family: inherit;
     text-align: left;
     animation: announce-pop 0.25s ease-out;
+  }
+  .announce-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(128,128,128,0.25);
+  }
+  .announce-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
   }
   @keyframes announce-pop {
     from { transform: scale(0.92); opacity: 0; }
@@ -124,7 +147,7 @@
 
 <script>
   (function () {
-    var STORAGE_KEY = "MC1461705_Defender_XDR_unified_identity_timeline_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
+    var STORAGE_KEY = "announce_two_articles_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
 
     var overlay = document.getElementById("announce-overlay");
     var closeBtn = document.getElementById("announce-close");
