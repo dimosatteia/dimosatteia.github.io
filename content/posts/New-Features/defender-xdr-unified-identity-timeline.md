@@ -1,7 +1,7 @@
 ---
 title: "Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705"
 date: 2026-08-27T08:00:00+03:00
-lastmod: 2026-08-27T09:05:00+03:00
+lastmod: 2026-08-27T08:50:00+03:00
 draft: true
 keywords:
   - Microsoft Defender XDR
