@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory"
 date: 2026-08-29T09:00:00+03:00
-lastmod: 2026-08-29T09:30:00+03:00
+lastmod: 2026-08-29T10:20:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Connect mandatory upgrade
@@ -112,7 +112,12 @@ ShowWordCount: true
 1. **Έλεγξε την τρέχουσα έκδοση.** Στο Entra admin center, πήγαινε σε **Entra ID → Entra Connect → Connect Sync**. Στην ενότητα **Provision from Active Directory** θα δεις το πεδίο **Version**, με σύνδεσμο απευθείας για λήψη της τελευταίας διαθέσιμης έκδοσης, ακριβώς όπως στην Εικόνα 1. Αν έχεις πρόσβαση στον ίδιο τον server, η ίδια πληροφορία υπάρχει και στο **About** dialog της Synchronization Service Manager.
 2. **Σύγκρινε με το ελάχιστο.** Αν η έκδοσή σου είναι κάτω από 2.5.79.0, βρίσκεσαι ήδη εκτός του ελάχιστου ορίου και χρειάζεσαι αναβάθμιση άμεσα, όχι μέχρι την προθεσμία.
 3. **Έλεγξε το status του autoupgrade.** Αν το autoupgrade είναι ενεργό και δουλεύει κανονικά, πιθανότατα είσαι ήδη καλυμμένος. Αν όμως το έχεις απενεργοποιήσει για οποιονδήποτε λόγο, π.χ. λόγω custom synchronization rules ή compliance policy που απαιτεί manual change control, τότε η ευθύνη ελέγχου είναι εξ ολοκλήρου δική σου.
-4. **Κατέβασε τη νέα έκδοση μόνο μέσα από το Entra admin center.** Όχι από παλιά bookmarked links στο Download Center, όχι από αρχειοθετημένα installers σε κάποιο file share που μπορεί να είναι μηνών παλιά.
+4. **Κατέβασε τη νέα έκδοση μόνο μέσα από το Entra admin center.** Όχι από παλιά bookmarked links στο Download Center, όχι από αρχειοθετημένα installers σε κάποιο file share που μπορεί να είναι μηνών παλιά. Ο σωστός δρόμος είναι **Entra ID → Entra Connect → Get started → tab Manage**. Εκεί, αν το tenant σου εξακολουθεί να έχει servers κάτω από το ελάχιστο, θα δεις κι εσύ το ίδιο **"Action Required"** banner που είδα κι εγώ στο δικό μου tenant, με ρητή αναφορά στην ημερομηνία 30 Σεπτεμβρίου 2026 και στο ελάχιστο 2.5.79.0. Δεν είναι κάτι που διάβασα μόνο στην τεκμηρίωση, το tenant σου στην κυριολεξία σου το λέει κατάμουτρα αν χρειάζεται δράση.
+
+   [![Microsoft Entra Connect Get started tab Manage με banner Action Required για retirement εκδόσεων πριν την 2.5.79.0 και κουμπί Download Connect Sync Agent](/images/entra-connect-mandatory-upgrade-2026/entra-connect-manage-tab-download.png)](/images/entra-connect-mandatory-upgrade-2026/entra-connect-manage-tab-download.png)
+   > 📷 **Εικόνα 3: Entra ID → Entra Connect → Get started → Manage. Το πορτοκαλί banner "Action Required" εμφανίζεται αυτόματα όταν υπάρχει server κάτω από το ελάχιστο, με το κουμπί "Download Connect Sync Agent" να είναι το μόνο σωστό σημείο λήψης πλέον, όχι το Download Center.**
+
+   Στο ίδιο tab θα δεις και τη δεύτερη κάρτα, **"Manage from the cloud: Cloud Sync"**, με δικό της κουμπί λήψης του Provisioning agent. Είναι το σημείο-αφετηρία για το βήμα 5 παρακάτω, αν αποφασίσεις να αξιολογήσεις τη μετάβαση.
 5. **Σκέψου αν χρειάζεσαι πραγματικά το Entra Connect Sync.** Αν είσαι eligible, η Microsoft προτείνει ρητά μετάβαση σε Entra Cloud Sync, το οποίο διαχειρίζεται τη σύγχρονη έκδοση εξ ολοκλήρου από το cloud και δεν έχει το ίδιο μοτίβο on-premises server lifecycle. Δεν είναι λύση για όλους, αλλά αν το configuration σου είναι σχετικά απλό, αξίζει να ελέγξεις τη συμβατότητα πριν επενδύσεις χρόνο σε ένα ακόμα κύκλο upgrade στο παλιό μοντέλο.
 
 ## Η οπτική NIS2 και ISO 27001
