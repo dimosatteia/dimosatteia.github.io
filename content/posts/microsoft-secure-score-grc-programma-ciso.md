@@ -1,7 +1,7 @@
 ---
 title: "Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers"
 date: 2026-08-25T09:00:00+03:00
-lastmod: 2026-08-25T09:01:00+03:00
+lastmod: 2026-08-30T21:10:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score
@@ -21,7 +21,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/secure-score-grc-award/secure-score-youtube-thumbnail.png"
+  image: "images/secure-score-grc-award/secure-score-youtube-thumbnail.webp"
   alt: "Microsoft Secure Score dashboard με τους τέσσερις πυλώνες identity, device, apps, data"
   caption: "Microsoft Defender Portal → Secure Score → Overview"
   relative: true

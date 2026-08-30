@@ -1,7 +1,7 @@
 ---
 title: "Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά"
 date: 2026-08-25T09:02:00+03:00
-lastmod: 2026-08-25T09:03:00+03:00
+lastmod: 2026-08-30T21:10:00+03:00
 draft: false
 keywords:
   - Microsoft Defender XDR
@@ -30,7 +30,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/defender-xdr-tutorial/Defender-XDR-tutorial-YouTube-cover.png"
+  image: "images/defender-xdr-tutorial/Defender-XDR-tutorial-YouTube-cover.webp"
   alt: "Live webinar promo: Μάθε το Microsoft Defender XDR σε 60 λεπτά, με Dimosthenis Atteia και Chris Spanougakis MVP"
   caption: "Live Webinar με τον Chris Spanougakis MVP"
   relative: true
