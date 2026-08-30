@@ -138,7 +138,7 @@ params:
   homeInfoParams:
     Title: "Hi 👋, I'm Dimosthenis"
     Content: >
-      ![Dimosthenis](/images/Dimos_Banner.png)
+      ![Dimosthenis](/images/Dimos_Banner.webp)
       
       I'm a **Microsoft 365 Security** community contributor and **CIO/CISO** at Greece's second-largest flour milling and food manufacturing organization, where I apply **Microsoft Defender, Entra ID, Intune, Azure security services** and **Purview** to secure a real-world, high-impact production environment. This dual role lets me test what I write about against the pressures of an actual enterprise, not just a lab.
 
