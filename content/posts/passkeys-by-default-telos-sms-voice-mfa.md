@@ -1,7 +1,7 @@
 ---
 title: "Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID"
 date: 2026-07-16T10:00:00+03:00
-lastmod: 2026-07-16T10:48:00+03:00
+lastmod: 2026-08-30T21:05:00+03:00
 draft: false
 keywords:
   - Microsoft Entra ID
@@ -46,7 +46,7 @@ categories: ["Microsoft 365 Security Insights"]
 ShowToc: true
 TocOpen: false
 cover:
-  image: "images/mfasms-killing-sms.png"
+  image: "images/mfasms-killing-sms.webp"
   alt: "Microsoft is killing SMS authentication - Passkeys are taking over"
   caption: "Το χρονοδιάγραμμα απόσυρσης SMS/Voice MFA στο Microsoft Entra ID"
 ---
