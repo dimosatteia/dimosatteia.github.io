@@ -1,7 +1,7 @@
 ---
 title: "Defender XDR: Μία ενέργεια, όλοι οι λογαριασμοί, το unified response actions για ταυτότητες έρχεται τον Οκτώβριο, τι φέρνει το MC1461704"
 date: 2026-08-28T09:00:00+03:00
-lastmod: 2026-08-28T09:25:00+03:00
+lastmod: 2026-08-30T20:50:00+03:00
 draft: false
 keywords:
   - Microsoft Defender XDR
@@ -36,7 +36,7 @@ ShowToc: true
 TocOpen: false
 weight: -6
 cover:
-  image: "images/defender-xdr-unified-identity-response/defender-xdr-cover.png"
+  image: "images/defender-xdr-unified-identity-response/defender-xdr-cover.webp"
   alt: "Μενού Actions στη σελίδα Identity του Microsoft Defender με ενοποιημένες ενέργειες απόκρισης σε πολλαπλούς λογαριασμούς"
   caption: "Defender portal → Identity page → Actions: ενιαίο workflow για disable, revoke session, force password change σε όλους τους συνδεδεμένους λογαριασμούς"
   relative: true
