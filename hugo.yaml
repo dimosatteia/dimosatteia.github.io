@@ -148,7 +148,7 @@ params:
       I write in-depth, production-tested content for the security architects, IT professionals, and administrators who run these platforms every day, hardening guides, configuration deep-dives, real-world detections, and the lessons that only show up once something is live. My focus is turning what I learn securing a real environment into practical, reusable knowledge for the broader **Microsoft security community**, through detailed articles, hands-on walkthroughs, and open discussion with peers facing the same challenges.
 
 
-      **🆕 New:** Microsoft 365 features are now tagged by [**Release Status**].
+      **🆕 New:** Admin Center Portal Status
 
 
       **🆕 New Features** vs **🚧 Preview** vs **✅ Generally Available**. Know at a glance which features are safe to deploy in compliance-regulated environments.
