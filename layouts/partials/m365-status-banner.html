@@ -4,15 +4,29 @@
   Floating badge πάνω από το community-spotlight widget.
   Διαβάζει το data/m365status.json (ενημερώνεται από GitHub Action
   με βάση το επίσημο https://status.cloud.microsoft/api/feed/mac).
+  Clickable -> ανοίγει το επίσημο status.cloud.microsoft σε νέο tab.
+  Η raw τιμή (Available/Degraded/Unavailable) mapάρεται σε πιο
+  κατανοητό display label, χωρίς να πειράζεται το ίδιο το JSON.
 
   Wiring: κάλεσέ το από layouts/partials/extend_footer.html με:
     {{ partial "m365-status-banner.html" . }}
   ΠΡΙΝ το {{ partial "community-spotlight.html" . }}
 */}}
-<div class="m365-status-widget status-{{ lower .Site.Data.m365status.status }}">
+{{ $rawStatus := .Site.Data.m365status.status }}
+{{ $displayStatus := $rawStatus }}
+{{ if eq $rawStatus "Available" }}
+  {{ $displayStatus = "Operational" }}
+{{ else if eq $rawStatus "Degraded" }}
+  {{ $displayStatus = "Degraded" }}
+{{ else if eq $rawStatus "Unavailable" }}
+  {{ $displayStatus = "Outage" }}
+{{ end }}
+
+<a href="https://status.cloud.microsoft" target="_blank" rel="noopener noreferrer"
+   class="m365-status-widget status-{{ lower $rawStatus }}">
   <span class="dot"></span>
-  <span class="ms-text">Admin Center portal: {{ .Site.Data.m365status.status }}</span>
+  <span class="ms-text">Admin Center portal: <strong>{{ $displayStatus }}</strong></span>
   {{ if .Site.Data.m365status.updated }}
   <span class="ms-updated">({{ .Site.Data.m365status.updated }})</span>
   {{ end }}
-</div>
+</a>
