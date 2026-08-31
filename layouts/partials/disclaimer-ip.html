@@ -1,0 +1,34 @@
+{{/*
+  layouts/partials/disclaimer-ip.html
+  ------------------------------------
+  Floating disclaimer + client-side IP επισκέπτη (μέσω ipify.org).
+  Αγκυρωμένο κάτω-δεξιά, ανεξάρτητο από το ύψος του community-spotlight
+  (που είναι δυναμικό λόγω rotation) και του m365-status-widget.
+
+  Wiring: {{ partial "disclaimer-ip.html" . }} μέσα στο extend_footer.html
+*/}}
+<div class="disclaimer-ip-widget">
+  <p class="di-disclaimer">
+    <strong>Αποποίηση ευθύνης:</strong> Αυτά τα εργαλεία και scripts παρέχονται
+    «ως έχουν», χωρίς καμία εγγύηση. Δεν φέρουμε ευθύνη για τυχόν ζημιά ή
+    απώλεια δεδομένων που προκύψει από τη χρήση τους. Δοκιμάστε πάντα πρώτα
+    σε περιβάλλον μη παραγωγής.
+  </p>
+  <p class="di-ip">
+    Η IP ΣΑΣ: <span id="visitor-ip">φόρτωση…</span>
+  </p>
+  <p class="di-source">
+    *Η IP ανακτάται μέσω του δημόσιου <a href="https://www.ipify.org" target="_blank" rel="noopener noreferrer">ipify.org</a>.
+  </p>
+</div>
+
+<script>
+(function () {
+  var el = document.getElementById('visitor-ip');
+  if (!el) return;
+  fetch('https://api.ipify.org?format=json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) { el.textContent = data.ip; })
+    .catch(function () { el.textContent = 'μη διαθέσιμη'; });
+})();
+</script>

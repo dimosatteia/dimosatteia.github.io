@@ -1,0 +1,41 @@
+.disclaimer-ip-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 240px;
+  z-index: 40;
+  box-sizing: border-box;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.78rem;
+  color: var(--secondary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.disclaimer-ip-widget .di-disclaimer {
+  margin: 0 0 8px;
+  line-height: 1.45;
+}
+
+.disclaimer-ip-widget .di-ip {
+  margin: 0;
+  font-weight: 600;
+  color: var(--content);
+  font-size: 0.78rem;
+}
+
+/* Ίδιο breakpoint με τα άλλα δύο floating widgets */
+@media (max-width: 1300px) {
+  .disclaimer-ip-widget {
+    position: static;
+    bottom: auto;
+    right: auto;
+    width: auto;
+    max-width: var(--main-width);
+    margin: 1.5rem auto 0;
+    box-shadow: none;
+    border-radius: var(--radius);
+  }
+}
