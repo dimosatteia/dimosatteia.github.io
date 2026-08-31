@@ -1,0 +1,18 @@
+{{/*
+  layouts/partials/m365-status-banner.html
+  ------------------------------------------
+  Floating badge πάνω από το community-spotlight widget.
+  Διαβάζει το data/m365status.json (ενημερώνεται από GitHub Action
+  με βάση το επίσημο https://status.cloud.microsoft/api/feed/mac).
+
+  Wiring: κάλεσέ το από layouts/partials/extend_footer.html με:
+    {{ partial "m365-status-banner.html" . }}
+  ΠΡΙΝ το {{ partial "community-spotlight.html" . }}
+*/}}
+<div class="m365-status-widget status-{{ lower .Site.Data.m365status.status }}">
+  <span class="dot"></span>
+  <span class="ms-text">Admin Center portal: {{ .Site.Data.m365status.status }}</span>
+  {{ if .Site.Data.m365status.updated }}
+  <span class="ms-updated">({{ .Site.Data.m365status.updated }})</span>
+  {{ end }}
+</div>

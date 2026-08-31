@@ -97,7 +97,7 @@ ShowWordCount: true
 
 Σε αυτό το σημείο έχουμε το θεωρητικό υπόβαθρο που χρειαζόμαστε. Στα επόμενα τέσσερα μέρη θα μπούμε στην πράξη, ένα traffic forwarding profile τη φορά, και μετά στο Conditional Access που τα δένει όλα μαζί:
 
-- **Μέρος 2**: το Microsoft traffic profile, το προεπιλεγμένο profile που καλύπτει Exchange Online, SharePoint Online, Teams και τις υπόλοιπες υπηρεσίες Microsoft 365
+- [**Μέρος 2**](https://thecybersec.gr/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/): το Microsoft traffic profile, το προεπιλεγμένο profile που καλύπτει Exchange Online, SharePoint Online, Teams και τις υπόλοιπες υπηρεσίες Microsoft 365
 - **Μέρος 3**: το Internet access profile, που καλύπτει τη γενική πρόσβαση στο δημόσιο internet και σε SaaS εφαρμογές, μαζί με web content filtering και security profiles
 - **Μέρος 4**: το Private access profile, που αντικαθιστά το κλασικό VPN για πρόσβαση σε εσωτερικές εφαρμογές, μέσω Quick Access και private network connectors
 - **Μέρος 5**: το Conditional Access σε βάθος, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile, block χωρίς client, απαίτηση compliant device, και web content filtering μέσω security profile

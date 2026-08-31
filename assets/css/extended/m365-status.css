@@ -1,0 +1,52 @@
+/* assets/css/extended/m365-status.css
+   Floating badge, τοποθετημένο πάνω από το community-spotlight
+   (που ξεκινάει σε top:120px) — βλ. community-spotlight.css */
+
+.m365-status-widget {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 240px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.m365-status-widget .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.m365-status-widget.status-available .dot   { background: #10b981; }
+.m365-status-widget.status-degraded .dot    { background: #f59e0b; }
+.m365-status-widget.status-unavailable .dot { background: #ef4444; }
+
+.m365-status-widget .ms-updated {
+  color: var(--secondary);
+  font-size: 0.68rem;
+}
+
+/* Ίδιο breakpoint με το community-spotlight, ώστε και τα δύο να
+   "πέφτουν" στην κανονική ροή της σελίδας ταυτόχρονα κάτω από 1300px */
+@media (max-width: 1300px) {
+  .m365-status-widget {
+    position: static;
+    top: auto;
+    right: auto;
+    width: auto;
+    max-width: var(--main-width);
+    margin: 1.5rem auto 0;
+    box-shadow: none;
+    border-radius: var(--radius);
+  }
+}

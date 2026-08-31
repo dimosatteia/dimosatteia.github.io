@@ -1,0 +1,39 @@
+name: Update M365 status
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch and parse feed
+        run: |
+          curl -s "https://status.cloud.microsoft/api/feed/mac" -o feed.xml
+          python3 - <<'EOF'
+          import xml.etree.ElementTree as ET, json
+
+          tree = ET.parse("feed.xml")
+          item = tree.find(".//item")
+          status = item.findtext("status")
+          updated = tree.find(".//lastBuildDate").text
+
+          with open("data/m365status.json", "w", encoding="utf-8") as f:
+              json.dump({"status": status, "updated": updated}, f, indent=2)
+              f.write("\n")
+          EOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/m365status.json
+          git diff --cached --quiet || git commit -m "Update M365 admin center status"
+          git push
