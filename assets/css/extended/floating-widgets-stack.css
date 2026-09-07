@@ -1,0 +1,37 @@
+/* assets/css/extended/floating-widgets-stack.css
+   Κοινός container για το m365-status-widget και το community-spotlight.
+
+   ΓΙΑΤΙ: πριν, τα δύο widgets ήταν ανεξάρτητα position:fixed elements
+   με hardcoded top offsets (60px / 120px). Όποτε άλλαζε το ύψος του
+   πρώτου (π.χ. μεγαλύτερο padding), το δεύτερο δεν το "ένιωθε" και
+   επικαλύπτονταν.
+
+   ΛΥΣΗ: μόνο το container είναι πλέον position:fixed. Τα δύο widgets
+   μέσα του είναι static/flex items με flex-direction:column + gap,
+   οπότε το πραγματικό ύψος του ενός σπρώχνει αυτόματα το επόμενο —
+   δεν χρειάζεται ποτέ ξανά να συγχρονίζεις top offsets με το χέρι. */
+
+.floating-widgets-stack {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 240px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Ίδιο breakpoint με πριν: κάτω από 1300px δεν υπάρχει χώρος για
+   floating sidebar, οπότε ο container "πέφτει" στην κανονική ροή
+   της σελίδας, στοιχισμένος σαν block στο κέντρο. */
+@media (max-width: 1300px) {
+  .floating-widgets-stack {
+    position: static;
+    top: auto;
+    right: auto;
+    width: auto;
+    max-width: var(--main-width);
+    margin: 1.5rem auto 0;
+  }
+}

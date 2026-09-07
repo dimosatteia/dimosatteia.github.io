@@ -1,0 +1,10 @@
+--- ΠΑΛΙΟ (layouts/partials/extend_footer.html) ---
+{{ partial "m365-status-banner.html" . }}
+
+{{ partial "community-spotlight.html" . }}
+
+--- ΝΕΟ ---
+<div class="floating-widgets-stack">
+  {{ partial "m365-status-banner.html" . }}
+  {{ partial "community-spotlight.html" . }}
+</div>

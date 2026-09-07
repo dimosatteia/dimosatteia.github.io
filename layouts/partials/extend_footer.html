@@ -12,9 +12,10 @@
 </div>
 {{ end }}
 
-{{ partial "m365-status-banner.html" . }}
-
-{{ partial "community-spotlight.html" . }}
+<div class="floating-widgets-stack">
+  {{ partial "m365-status-banner.html" . }}
+  {{ partial "community-spotlight.html" . }}
+</div>
 
 {{ partial "disclaimer-ip.html" . }}
 

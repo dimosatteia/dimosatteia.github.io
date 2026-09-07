@@ -1,14 +1,11 @@
 /* assets/css/extended/community-spotlight.css
-   Το PaperMod φορτώνει αυτόματα ό,τι υπάρχει σε assets/css/extended/,
-   οπότε αρκεί να τοποθετήσεις αυτό το αρχείο εκεί — δεν χρειάζεται
-   να πειράξεις τα core CSS του theme. */
+   Widget εντός του .floating-widgets-stack (βλ. νέο αρχείο
+   floating-widgets-stack.css) — το position/top/right/width/z-index
+   τα δίνει πλέον ο parent container, όχι το widget μόνο του. */
 
 .community-spotlight {
-  position: fixed;
-  top: 120px;
-  right: 20px;
-  width: 240px;
-  z-index: 40;
+  width: 100%;
+  box-sizing: border-box;
   background: var(--entry);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -104,24 +101,11 @@
   background: var(--tertiary);
 }
 
-/* Κάτω από 1300px δεν υπάρχει πλέον χώρος για floating sidebar χωρίς
-   να καλύπτει το κυρίως περιεχόμενο (το PaperMod δεν έχει native
-   sidebar column). Αντί να κρύβεται εντελώς, το widget "πέφτει" μέσα
-   στη κανονική ροή της σελίδας — γίνεται static block, στοιχισμένο
-   σαν το .cert-widget, με τα άτομα σε οριζόντια λωρίδα. Έτσι μένει
-   πάντα ορατό, ανεξάρτητα από το πλάτος του browser. */
+/* Κάτω από 1300px το positioning το χειρίζεται πλέον ο parent
+   .floating-widgets-stack. Εδώ μένει μόνο η εσωτερική αλλαγή layout
+   στη λίστα ατόμων (οριζόντια λωρίδα), ώστε να είναι ορατό ό,τι
+   πλάτος κι αν έχει ο browser. */
 @media (max-width: 1300px) {
-  .community-spotlight {
-    position: static;
-    top: auto;
-    right: auto;
-    width: auto;
-    max-width: var(--main-width);
-    margin: 2rem auto 1rem;
-    box-shadow: none;
-    border-radius: var(--radius);
-  }
-
   .cs-list {
     flex-direction: row;
     flex-wrap: wrap;
