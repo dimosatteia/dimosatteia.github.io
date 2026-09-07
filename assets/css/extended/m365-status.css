@@ -1,6 +1,17 @@
 /* assets/css/extended/m365-status.css
    Floating badge, τοποθετημένο πάνω από το community-spotlight
-   (που ξεκινάει σε top:120px) — βλ. community-spotlight.css */
+   (που ξεκινάει σε top:120px) — βλ. community-spotlight.css.
+   Clickable link προς https://status.cloud.microsoft */
+
+a.m365-status-widget {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a.m365-status-widget:hover {
+  border-color: var(--primary);
+}
 
 .m365-status-widget {
   position: fixed;
@@ -30,6 +41,12 @@
 .m365-status-widget.status-available .dot   { background: #10b981; }
 .m365-status-widget.status-degraded .dot    { background: #f59e0b; }
 .m365-status-widget.status-unavailable .dot { background: #ef4444; }
+
+.m365-status-widget .ms-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
 
 .m365-status-widget .ms-updated {
   color: var(--secondary);

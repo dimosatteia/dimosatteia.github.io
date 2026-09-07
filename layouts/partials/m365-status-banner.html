@@ -25,7 +25,7 @@
 <a href="https://status.cloud.microsoft" target="_blank" rel="noopener noreferrer"
    class="m365-status-widget status-{{ lower $rawStatus }}">
   <span class="dot"></span>
-  <span class="ms-text">Admin Center portal: <strong>{{ $displayStatus }}</strong></span>
+   <span class="ms-text">Admin Center portal: <strong>{{ $displayStatus }}</strong></span>
   {{ if .Site.Data.m365status.updated }}
   <span class="ms-updated">({{ .Site.Data.m365status.updated }})</span>
   {{ end }}

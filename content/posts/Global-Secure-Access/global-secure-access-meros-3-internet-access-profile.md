@@ -2,7 +2,7 @@
 title: "Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway"
 date: 2026-09-07T09:00:00+03:00
 lastmod: 2026-09-07T09:30:00+03:00
-draft: true
+draft: false
 keywords:
   - Microsoft Entra Internet Access
   - Internet access profile Global Secure Access
@@ -33,7 +33,7 @@ series: ["Global Secure Access"]
 slug: "global-secure-access-meros-3-internet-access-profile"
 ShowToc: true
 TocOpen: false
-weight: -8
+weight: -6
 cover:
   image: "images/global-secure-access-series/global-secure-access-dashboard-cover.png"
   alt: "Global Secure Access dashboard στο Microsoft Entra admin center"
