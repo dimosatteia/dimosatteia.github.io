@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway"
 date: 2026-09-07T09:00:00+03:00
-lastmod: 2026-09-19T10:30:00+03:00
+lastmod: 2026-09-19T10:40:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Internet Access
