@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades"
 date: 2026-08-27T14:00:00+03:00
-lastmod: 2026-08-27T14:30:00+03:00
+lastmod: 2026-09-19T10:30:00+03:00
 draft: false
 keywords:
   - Global Secure Access client Windows Update
@@ -30,7 +30,7 @@ TocOpen: false
 weight: -6
 slug: "global-secure-access-client-windows-update-auto-upgrade"
 cover:
-  image: "images/global-secure-access-series/gsa-client-windows-update-minimum-version.png"
+  image: "images/global-secure-access-series/gsa-client-windows-update-minimum-version.webp"
   alt: "Πίνακας ελάχιστης έκδοσης Global Secure Access client για αυτόματα upgrades μέσω Windows Update"
   caption: "Global Secure Access client for Windows release notes → Automatic upgrades from Windows Update"
   relative: true

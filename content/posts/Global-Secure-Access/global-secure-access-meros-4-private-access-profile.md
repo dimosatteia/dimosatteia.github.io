@@ -13,7 +13,7 @@ keywords:
   - Per-app access private resources
   - Conditional Access private access apps
   - NIS2 απομακρυσμένη πρόσβαση
-  - ISO 27001 A.8.20 A.8.3 έλεγχος πρόσβασης δικτύου
+  - ISO 27001 A.8.3 έλεγχος πρόσβασης δικτύου
 tags:
   - Microsoft Entra ID
   - Global Secure Access
@@ -26,7 +26,7 @@ tags:
   - Zero Trust
   - SSE
 author: "Dimosthenis Atteia"
-description: "Τέταρτο και τελευταίο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Private access profile, Quick Access, private network connectors και per-app access, με έμφαση σε NIS2 και ISO 27001."
+description: "Τέταρτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Private access profile, Quick Access, private network connectors και per-app access, με έμφαση σε NIS2 και ISO 27001."
 summary: "Κλείνουμε τη σειρά με το κομμάτι που έχει τη μεγαλύτερη πρακτική αξία για όσους ακόμα τρέχουν VPN: το Private access profile. Δεν είναι απλώς μια νέα μέθοδος σύνδεσης, είναι μια διαφορετική φιλοσοφία πρόσβασης, από 'σε βάζω μέσα στο δίκτυο' σε 'σου δίνω πρόσβαση σε αυτό το συγκεκριμένο resource, και μόνο σε αυτό'."
 categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access"]
 series: ["Global Secure Access"]
@@ -35,7 +35,7 @@ ShowToc: true
 TocOpen: false
 weight: -7
 cover:
-  image: "images/global-secure-access-series/private-access-profile-cover.png"
+  image: "images/global-secure-access-series/private-access-profile-cover.webp"
   alt: "Global Secure Access Connect Traffic forwarding Private access profile στο Microsoft Entra admin center"
   caption: "Global Secure Access → Connect → Traffic forwarding → Private access profile"
   relative: true
@@ -43,7 +43,7 @@ ShowReadingTime: true
 ShowWordCount: true
 ---
 
-Φτάσαμε στο τελευταίο μέρος αυτής της σειράς. Στο [Μέρος 1](/posts/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [Μέρος 2](/posts/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [Μέρος 3](/posts/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Κλείνω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.
+Φτάσαμε στο τέταρτο μέρος αυτής της σειράς. Στο [Μέρος 1](/posts/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [Μέρος 2](/posts/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [Μέρος 3](/posts/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Συνεχίζω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.
 
 ## Το πρόβλημα που λύνει: πρόσβαση σε resource, όχι σε δίκτυο
 
@@ -55,10 +55,10 @@ ShowWordCount: true
 
 Το Entra Private Access δίνει δύο τρόπους να ορίσεις ποιοι private πόροι θα περνούν μέσα από την υπηρεσία, και η επιλογή ανάμεσά τους είναι ουσιαστικά μια απόφαση για το πόσο σφιχτό θέλεις τον έλεγχο.
 
-Το **Quick Access** είναι η κύρια, ευρύτερη ομάδα από FQDNs και IP διευθύνσεις που θέλεις να ασφαλίσεις, ένα σχετικά γρήγορο σημείο εκκίνησης, πρακτικά ένα «αντικατέστησε το VPN μου με το ελάχιστο δυνατό effort» σενάριο. Η **per-app access** μέσα από ένα **Global Secure Access application**, αντίθετα, σου δίνει πιο λεπτομερή προσέγγιση: ορίζεις ένα υποσύνολο private πόρων, συγκεκριμένα application segments, ξεχωριστά για κάθε εφαρμογή ή ομάδα εφαρμογών, με τη δική τους ξεχωριστή πολιτική Conditional Access.
+Το **Quick Access** είναι η κύρια, ευρύτερη ομάδα από FQDNs και IP διευθύνσεις που θέλεις να ασφαλίσεις, ένα σχετικά γρήγορο σημείο εκκίνησης, πρακτικά ένα «αντικατέστησε το VPN μου με το ελάχιστο δυνατό effort» σενάριο. Η ίδια η Microsoft το τοποθετεί ρητά ως μεταβατικό βήμα στο Zero Trust ταξίδι: μόλις το Quick Access σου έχει επιτρέψει να αντικαταστήσεις το VPN, το επόμενο βήμα είναι η **per-app access** μέσα από ένα **Global Secure Access application**, που σου δίνει πιο λεπτομερή προσέγγιση: ορίζεις ένα υποσύνολο private πόρων, συγκεκριμένα application segments, ξεχωριστά για κάθε εφαρμογή ή ομάδα εφαρμογών, με τη δική τους ξεχωριστή πολιτική Conditional Access. Αν σχεδιάζεις πολλαπλές per-app εφαρμογές, απόφυγε επικαλυπτόμενα application segments ανάμεσά τους, καθώς η Microsoft το αναφέρει ρητά ως γνωστό περιορισμό που μπερδεύει τη δρομολόγηση της κίνησης.
 
-[![Δημιουργία Quick Access εφαρμογής με application segments στο Global Secure Access](/images/global-secure-access-series/private-access-quick-access-app-segments.png)](/images/global-secure-access-series/private-access-quick-access-app-segments.png)
-> 📷 **Εικόνα 1: Global Secure Access → Applications → Enterprise applications → Quick Access. Δημιουργία εφαρμογής με application segments (FQDN/IP) που θα τουνελαριστούν μέσα από την υπηρεσία.**
+[![Δημιουργία Quick Access εφαρμογής με application segments στο Global Secure Access](/images/global-secure-access-series/private-access-quick-access-app-segments.webp)](/images/global-secure-access-series/private-access-quick-access-app-segments.webp)
+> 📷 **Εικόνα 1: Global Secure Access → Applications → Quick access. Δημιουργία εφαρμογής με application segments (FQDN/IP) που θα τουνελαριστούν μέσα από την υπηρεσία.**
 
 Και στις δύο περιπτώσεις, ό,τι φτιάχνεις λειτουργεί σαν ένα νέο enterprise application μέσα στο Entra ID, ένα container για τους private πόρους που θέλεις να προστατεύσεις, όχι σαν ξεχωριστό, παράλληλο σύστημα διαχείρισης.
 
@@ -66,8 +66,8 @@ ShowWordCount: true
 
 Για να λειτουργήσει οτιδήποτε από τα παραπάνω, χρειάζεται τουλάχιστον ένας ενεργός **Microsoft Entra private network connector**, εγκατεστημένος σε μηχάνημα μέσα στο εσωτερικό σου δίκτυο. Ο connector είναι αυτός που κάνει το broker ανάμεσα στο cloud service της Microsoft και τους πραγματικούς εσωτερικούς πόρους σου, χωρίς να χρειάζεται να ανοίξεις inbound θύρες προς τα έσω, όπως θα έκανες παραδοσιακά για να εκθέσεις μια υπηρεσία προς τα έξω.
 
-[![Global Secure Access private network connector κατάσταση σύνδεσης](/images/global-secure-access-series/private-access-connector-status.png)](/images/global-secure-access-series/private-access-connector-status.png)
-> 📷 **Εικόνα 2: Global Secure Access → Connect → Connectors and sensors. Κατάσταση ενός εγκατεστημένου private network connector και της connector group στην οποία ανήκει.**
+[![Global Secure Access private network connector κατάσταση σύνδεσης](/images/global-secure-access-series/private-access-connector-status.webp)](/images/global-secure-access-series/private-access-connector-status.webp)
+> 📷 **Εικόνα 2: Global Secure Access → Connect → Connectors. Κατάσταση ενός εγκατεστημένου private network connector και της connector group στην οποία ανήκει.**
 
 Το ελάχιστο υποστηριζόμενο version connector για Private Access είναι το 1.5.3417.0. Οι connectors οργανώνονται σε connector groups, και κάθε Quick Access ή per-app εφαρμογή που φτιάχνεις συνδέεται σε μια συγκεκριμένη connector group, όχι σε μεμονωμένο connector, κάτι που επιτρέπει redundancy αν έχεις περισσότερους από έναν connector στην ίδια ομάδα.
 
@@ -81,11 +81,11 @@ ShowWordCount: true
 
 Η ενεργοποίηση ακολουθεί λογική παρόμοια με τα προηγούμενα profiles, στο **Global Secure Access → Connect → Traffic forwarding**, ενεργοποιείς το Private access profile. Το profile μπορεί να ενεργοποιηθεί και πριν καν έχεις φτιάξει Quick Access ή per-app εφαρμογές, απλώς χωρίς αυτές δεν υπάρχει ακόμα κίνηση να προωθηθεί. Η πλήρης αλληλουχία βημάτων είναι: διαμόρφωση connector και connector group, διαμόρφωση Quick Access ή per-app εφαρμογής με τα resources της, ενεργοποίηση του Private access profile, και εγκατάσταση του client στις συσκευές των χρηστών.
 
-Για ρόλους, χρειάζεσαι **Global Secure Access Administrator** για να ενεργοποιήσεις το profile, και **Conditional Access Administrator** αν θα φτιάξεις ή θα τροποποιήσεις πολιτικές πάνω σε αυτές τις εφαρμογές.
+Για ρόλους, χρειάζεσαι **Global Secure Access Administrator** για να ενεργοποιήσεις το profile, **Application Administrator** για να διαχειριστείς το Quick Access και τα connector groups, και **Conditional Access Administrator** αν θα φτιάξεις ή θα τροποποιήσεις πολιτικές πάνω σε αυτές τις εφαρμογές.
 
 ## Conditional Access πάνω σε private εφαρμογές
 
-Ό,τι φτιάχνεις μέσα από Quick Access ή per-app access λειτουργεί σαν κανονικό enterprise application στο Entra ID, που σημαίνει ότι μπορείς να συνδέσεις πάνω του τις ίδιες πολιτικές Conditional Access που θα έβαζες σε οποιαδήποτε άλλη cloud εφαρμογή, MFA, compliant device, sign-in risk, ακόμα και block από οπουδήποτε εκτός του Global Secure Access δικτύου, ακριβώς όπως είδαμε στο Μέρος 3 για το Internet access profile. Η διαφορά είναι ότι τώρα αυτός ο έλεγχος εφαρμόζεται σε πόρους που παραδοσιακά ζούσαν εντελώς εκτός Entra ID, servers, file shares, εσωτερικές web εφαρμογές που ίσως ούτε καν υποστηρίζουν σύγχρονη αυθεντικοποίηση από μόνες τους.
+Ό,τι φτιάχνεις μέσα από Quick Access ή per-app access λειτουργεί σαν κανονικό enterprise application στο Entra ID, που σημαίνει ότι μπορείς να συνδέσεις πάνω του τις ίδιες πολιτικές Conditional Access που θα έβαζες σε οποιαδήποτε άλλη cloud εφαρμογή: MFA, compliant device, sign-in risk. Ένας περιορισμός που αξίζει να ξέρεις: το compliant network check, το έλεγχο δηλαδή ότι η κίνηση περνάει μέσα από το Global Secure Access δίκτυο, δεν υποστηρίζεται προς το παρόν για Private Access εφαρμογές, σε αντίθεση με ό,τι είδαμε στο Μέρος 3 για το Internet access profile. Η διαφορά σε σχέση με ένα κλασικό cloud app είναι ότι τώρα αυτός ο έλεγχος εφαρμόζεται σε πόρους που παραδοσιακά ζούσαν εντελώς εκτός Entra ID, servers, file shares, εσωτερικές web εφαρμογές που ίσως ούτε καν υποστηρίζουν σύγχρονη αυθεντικοποίηση από μόνες τους.
 
 Για σενάρια με ιδιαίτερα ευαίσθητους πόρους, domain controllers, κρίσιμα line-of-business συστήματα, η Microsoft προτείνει να προστεθεί ένα ακόμα επίπεδο, **Privileged Identity Management (PIM)** πάνω από το ήδη ασφαλισμένο private access, ώστε η πρόσβαση σε αυτούς τους συγκεκριμένους πόρους να είναι just-in-time, όχι μόνιμα ενεργή, ακολουθώντας πιο αυστηρά την αρχή του least privilege.
 
@@ -107,7 +107,7 @@ ShowWordCount: true
 
 ## Κλείνοντας τη βασική εικόνα, πριν το Conditional Access σε βάθος
 
-Με αυτό το τέταρτο μέρος κλείνει η βασική εικόνα των τριών traffic profiles του Global Secure Access: η φιλοσοφία SSE στο Μέρος 1, το θεμέλιο του Microsoft traffic profile στο Μέρος 2, το Secure Web Gateway του Internet access profile στο Μέρος 3, και τώρα η αντικατάσταση του VPN μέσω του Private access profile. Τα τέσσερα profiles δεν λειτουργούν απομονωμένα το ένα από το άλλο, όπως είδαμε, μοιράζονται το ίδιο σημείο διαχείρισης, την ίδια ενσωμάτωση με το Conditional Access, και την ίδια θεμελιώδη φιλοσοφία: η απόφαση πρόσβασης βασίζεται σε ταυτότητα, όχι σε φυσική θέση δικτύου.
+Με αυτό το τέταρτο μέρος κλείνει η βασική εικόνα των τριών traffic profiles του Global Secure Access: η φιλοσοφία SSE στο Μέρος 1, το θεμέλιο του Microsoft traffic profile στο Μέρος 2, το Secure Web Gateway του Internet access profile στο Μέρος 3, και τώρα η αντικατάσταση του VPN μέσω του Private access profile. Τα τρία profiles δεν λειτουργούν απομονωμένα το ένα από το άλλο, όπως είδαμε, μοιράζονται το ίδιο σημείο διαχείρισης, την ίδια ενσωμάτωση με το Conditional Access, και την ίδια θεμελιώδη φιλοσοφία: η απόφαση πρόσβασης βασίζεται σε ταυτότητα, όχι σε φυσική θέση δικτύου.
 
 Μένει ένα ακόμα, πέμπτο μέρος, αφιερωμένο αμιγώς στο πώς το Conditional Access δένει όλα αυτά μαζί σε πράξη, με συγκεκριμένα παραδείγματα πολιτικών που μπορείς να αντιγράψεις κατευθείαν στο δικό σου tenant.
 

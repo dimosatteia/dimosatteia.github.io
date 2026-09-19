@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365"
 date: 2026-08-31T10:00:00+03:00
-lastmod: 2026-08-31T10:02:00+03:00
+lastmod: 2026-09-19T10:30:00+03:00
 draft: false
 keywords:
   - Microsoft traffic profile
@@ -34,7 +34,7 @@ ShowToc: true
 TocOpen: false
 weight: -6
 cover:
-  image: "images/global-secure-access-series/microsoft-traffic-profile-cover.png"
+  image: "images/global-secure-access-series/microsoft-traffic-profile-cover.webp"
   alt: "Global Secure Access Connect Traffic forwarding Microsoft traffic profile στο Microsoft Entra admin center"
   caption: "Global Secure Access → Connect → Traffic forwarding → Microsoft traffic profile"
   relative: true
@@ -54,7 +54,7 @@ ShowWordCount: true
 
 Το Microsoft traffic profile δεν είναι μια λίστα που φτιάχνεις εσύ από το μηδέν. Αντλεί τους κανόνες δρομολόγησης από την επίσημη λίστα **Microsoft 365 IP και FQDN**, την ίδια λίστα που χρησιμοποιεί η Microsoft για το network connectivity guidance της, και ομαδοποιεί τις σχετικές υπηρεσίες με βάση την κατηγορία κίνησης, Exchange Online, SharePoint Online, Teams και τα υπόλοιπα Microsoft 365 workloads. Κάθε κανόνας περιλαμβάνει τύπο προορισμού (IP ή FQDN), τον ίδιο τον προορισμό, πρωτόκολλο, θύρες, κατηγορία κίνησης, και μια ενέργεια, forward ή bypass.
 
-[![Traffic forwarding profile ρυθμίσεις για το Microsoft traffic profile στο Global Secure Access](/images/global-secure-access-series/microsoft-traffic-profile-rules-view.png)](/images/global-secure-access-series/microsoft-traffic-profile-rules-view.png)
+[![Traffic forwarding profile ρυθμίσεις για το Microsoft traffic profile στο Global Secure Access](/images/global-secure-access-series/microsoft-traffic-profile-rules-view.webp)](/images/global-secure-access-series/microsoft-traffic-profile-rules-view.webp)
 > 📷 **Εικόνα 1: Global Secure Access → Connect → Traffic forwarding → Microsoft traffic profile. Η λίστα κανόνων ομαδοποιημένη ανά κατηγορία υπηρεσίας, με ένδειξη Forward ή Bypass ανά ομάδα.**
 
 Το ενδιαφέρον σημείο εδώ είναι ότι δεν χρειάζεται να ξέρεις εσύ ποιες IP και ποια FQDN χρησιμοποιεί το κάθε Microsoft 365 service, αυτό το κάνει η Microsoft και το ενημερώνει αυτόματα. Ο δικός σου ρόλος είναι να αποφασίσεις, ανά ομάδα υπηρεσιών, αν θέλεις forward, δηλαδή η κίνηση να περάσει μέσα από το Global Secure Access, ή bypass, δηλαδή να αγνοηθεί και να ακολουθήσει το κανονικό δικτυακό μονοπάτι της συσκευής προς τα έξω.

@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway"
 date: 2026-09-07T09:00:00+03:00
-lastmod: 2026-09-07T09:30:00+03:00
+lastmod: 2026-09-19T10:30:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Internet Access
@@ -35,7 +35,7 @@ ShowToc: true
 TocOpen: false
 weight: -6
 cover:
-  image: "images/global-secure-access-series/global-secure-access-dashboard-cover.png"
+  image: "images/global-secure-access-series/global-secure-access-dashboard-cover.webp"
   alt: "Global Secure Access dashboard στο Microsoft Entra admin center"
   caption: "Global Secure Access → Dashboard, το σημείο εκκίνησης για το Internet access profile"
   relative: true
@@ -53,7 +53,7 @@ ShowWordCount: true
 
 Πριν από οτιδήποτε άλλο, στο **Global Secure Access → Settings → Session management → Adaptive access**, χρειάζεται να ενεργοποιηθεί το **«Enable Conditional Access signaling for Entra ID»**. Αυτό το toggle είναι αυτό που συνδέει το δίκτυο με το Conditional Access, χωρίς αυτό το Internet access profile λειτουργεί ως απομονωμένο δίκτυο, χωρίς να μπορεί να γίνει signal ή condition μέσα σε πολιτικές. Μόλις ενεργοποιηθεί, εμφανίζεται αυτόματα ένα νέο named location στο Conditional Access, το **«All Compliant Network locations»**.
 
-[![Global Secure Access adaptive access toggle για Conditional Access signaling](/images/global-secure-access-series/adaptive-access-conditional-access-signaling.png)](/images/global-secure-access-series/adaptive-access-conditional-access-signaling.png)
+[![Global Secure Access adaptive access toggle για Conditional Access signaling](/images/global-secure-access-series/adaptive-access-conditional-access-signaling.webp)](/images/global-secure-access-series/adaptive-access-conditional-access-signaling.webp)
 > 📷 **Εικόνα 1: Global Secure Access → Session management → Adaptive access. Το κρίσιμο toggle που συνδέει το δίκτυο με το Conditional Access.**
 
 Στη συνέχεια, στο **Connect → Traffic forwarding**, ενεργοποιείς το Internet access profile. Το ίδιο profile πρέπει να ανατεθεί σε χρήστες ή ομάδες πριν αρχίσει να έχει πρακτικό αποτέλεσμα, μπορείς να το κάνεις για όλους ή σταδιακά, για ένα pilot group. Ο client εγκαθίσταται σε Windows, Android, iOS ή macOS, και σε Windows απαιτείται η συσκευή να είναι Microsoft Entra joined.
@@ -72,10 +72,10 @@ ShowWordCount: true
 
 Το βασικό χαρακτηριστικό του Internet access profile είναι το **web content filtering**, μέσα από το **Global Secure Access → Secure → Web content filtering policies**. Φτιάχνεις πολιτικές block ή allow, είτε πάνω σε **web categories**, έτοιμες κατηγορίες όπως social networking, gambling, alcohol and tobacco, είτε πάνω σε **fully qualified domain names**, συγκεκριμένα domains, με υποστήριξη wildcard.
 
-[![Web content filtering policy με κατηγορία social networking στο Global Secure Access, βήμα δημιουργίας πολιτικής](/images/global-secure-access-series/web-content-filtering-policy-social-media-1.png)](/images/global-secure-access-series/web-content-filtering-policy-social-media-1.png)
+[![Web content filtering policy με κατηγορία social networking στο Global Secure Access, βήμα δημιουργίας πολιτικής](/images/global-secure-access-series/web-content-filtering-policy-social-media-1.webp)](/images/global-secure-access-series/web-content-filtering-policy-social-media-1.webp)
 > 📷 **Εικόνα 2: Global Secure Access → Secure → Web content filtering policies. Δημιουργία πολιτικής αποκλεισμού με βάση web category.**
 
-[![Web content filtering policy με κατηγορία social networking στο Global Secure Access, σύνδεση με security profile](/images/global-secure-access-series/web-content-filtering-policy-social-media-2.png)](/images/global-secure-access-series/web-content-filtering-policy-social-media-2.png)
+[![Web content filtering policy με κατηγορία social networking στο Global Secure Access, σύνδεση με security profile](/images/global-secure-access-series/web-content-filtering-policy-social-media-2.webp)](/images/global-secure-access-series/web-content-filtering-policy-social-media-2.webp)
 > 📷 **Εικόνα 3: Global Secure Access → Secure → Security profiles. Σύνδεση της πολιτικής φιλτραρίσματος με ένα security profile και ανάθεση προτεραιότητας.**
 
 Οι πολιτικές δεν εφαρμόζονται μόνες τους. Ομαδοποιούνται σε ένα **security profile**, το οποίο συνδέεται στη συνέχεια σε μια πολιτική Conditional Access, στο session control **«Use Global Secure Access security profile»**, ώστε να εφαρμόζεται σε συγκεκριμένη ομάδα χρηστών.

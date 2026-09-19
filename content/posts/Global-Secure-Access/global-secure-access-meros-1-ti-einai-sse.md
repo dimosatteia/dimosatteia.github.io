@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft"
 date: 2026-08-25T09:10:00+03:00
-lastmod: 2026-08-25T09:11:00+03:00
+lastmod: 2026-09-19T10:30:00+03:00
 draft: false
 keywords:
   - Security Service Edge SSE
@@ -33,7 +33,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/global-secure-access-series/global-secure-access-overview-cover.png"
+  image: "images/global-secure-access-series/global-secure-access-overview-cover.webp"
   alt: "Global Secure Access στο Microsoft Entra admin center, αρχική σελίδα dashboard"
   caption: "Global Secure Access → Overview, το σημείο εκκίνησης της σειράς"
   relative: true
@@ -60,7 +60,7 @@ ShowWordCount: true
 
 Και τα δύο αυτά κομμάτια ζουν μέσα στο ίδιο, ενοποιημένο σημείο διαχείρισης στο Microsoft Entra admin center, το οποίο ονομάζεται Global Secure Access. Δεν είναι δύο ξεχωριστά portals που πρέπει να μαθαίνεις παράλληλα, είναι ένα σημείο, με κοινή λογική traffic forwarding profiles, κοινή ενσωμάτωση με Conditional Access, κοινά logs.
 
-[![Η σελίδα Traffic forwarding στο Global Secure Access, με το Microsoft traffic profile, το Private access profile και το Internet access profile μαζί στην ίδια οθόνη](/images/global-secure-access-series/global-secure-access-unified-portal.png)](/images/global-secure-access-series/global-secure-access-unified-portal.png)
+[![Η σελίδα Traffic forwarding στο Global Secure Access, με το Microsoft traffic profile, το Private access profile και το Internet access profile μαζί στην ίδια οθόνη](/images/global-secure-access-series/global-secure-access-unified-portal.webp)](/images/global-secure-access-series/global-secure-access-unified-portal.webp)
 > 📷 **Εικόνα 1: Global Secure Access → Connect → Traffic forwarding. Το Microsoft traffic profile, το Private access profile και το Internet access profile ρυθμίζονται μέσα από την ίδια, ενιαία οθόνη, όχι σε ξεχωριστά, ασύνδετα portals.**
 
 Η λογική πίσω από αυτή την επιλογή αρχιτεκτονικής δεν είναι τυχαία. Η Microsoft δεν έχτισε ένα καινούργιο, παράλληλο σύστημα ταυτότητας για να υποστηρίξει το SSE. Το έχτισε πάνω στο ίδιο το Entra ID που ήδη χρησιμοποιούμε για sign-in, MFA και Conditional Access. Αυτό σημαίνει ότι, αν έχεις ήδη επενδύσει χρόνο στο να χτίσεις σωστές πολιτικές Conditional Access, δεν ξεκινάς από το μηδέν. Το δίκτυο γίνεται απλώς μια ακόμα διάσταση μέσα στο ίδιο μοντέλο απόφασης που ήδη χρησιμοποιείς.
