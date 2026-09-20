@@ -23,15 +23,12 @@
 </div>
 
 <script>
-window.addEventListener('load', function () {
+(function () {
   var el = document.getElementById('visitor-ip');
   if (!el) return;
-  var run = function () {
-    fetch('https://api.ipify.org?format=json')
-      .then(function (r) { return r.json(); })
-      .then(function (data) { el.textContent = data.ip; })
-      .catch(function () { el.textContent = 'μη διαθέσιμη'; });
-  };
-  ('requestIdleCallback' in window) ? requestIdleCallback(run) : setTimeout(run, 1500);
-});
+  fetch('https://api.ipify.org?format=json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) { el.textContent = data.ip; })
+    .catch(function () { el.textContent = 'μη διαθέσιμη'; });
+})();
 </script>
