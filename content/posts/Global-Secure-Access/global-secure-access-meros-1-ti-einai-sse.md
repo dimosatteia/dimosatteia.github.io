@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft"
 date: 2026-08-25T09:10:00+03:00
-lastmod: 2026-09-19T10:40:00+03:00
+lastmod: 2026-09-20T18:50:00+03:00
 draft: false
 keywords:
   - Security Service Edge SSE
@@ -98,8 +98,8 @@ ShowWordCount: true
 Σε αυτό το σημείο έχουμε το θεωρητικό υπόβαθρο που χρειαζόμαστε. Στα επόμενα τέσσερα μέρη θα μπούμε στην πράξη, ένα traffic forwarding profile τη φορά, και μετά στο Conditional Access που τα δένει όλα μαζί:
 
 - [**Μέρος 2**](https://thecybersec.gr/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/): το Microsoft traffic profile, το προεπιλεγμένο profile που καλύπτει Exchange Online, SharePoint Online, Teams και τις υπόλοιπες υπηρεσίες Microsoft 365
-- **Μέρος 3**: το Internet access profile, που καλύπτει τη γενική πρόσβαση στο δημόσιο internet και σε SaaS εφαρμογές, μαζί με web content filtering και security profiles
-- **Μέρος 4**: το Private access profile, που αντικαθιστά το κλασικό VPN για πρόσβαση σε εσωτερικές εφαρμογές, μέσω Quick Access και private network connectors
+- [**Μέρος 3**](https://thecybersec.gr/posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/): το Internet access profile, που καλύπτει τη γενική πρόσβαση στο δημόσιο internet και σε SaaS εφαρμογές, μαζί με web content filtering και security profiles
+- [**Μέρος 4**](https://thecybersec.gr/posts/global-secure-access/global-secure-access-meros-4-private-access-profile/): το Private access profile, που αντικαθιστά το κλασικό VPN για πρόσβαση σε εσωτερικές εφαρμογές, μέσω Quick Access και private network connectors
 - **Μέρος 5**: το Conditional Access σε βάθος, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile, block χωρίς client, απαίτηση compliant device, και web content filtering μέσω security profile
 
 Κάθε μέρος θα έχει τα δικά του screenshots από το δικό μου tenant, τα δικά του πρακτικά βήματα, και τη δική του ενότητα NIS2/ISO 27001. Αν τρέχεις ήδη κάποιο κομμάτι του Global Secure Access στον οργανισμό σου, ή σκέφτεσαι να ξεκινήσεις, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
