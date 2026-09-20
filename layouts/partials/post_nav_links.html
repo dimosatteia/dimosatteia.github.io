@@ -1,0 +1,34 @@
+{{- $prev := .PrevInSection }}
+{{- $next := .NextInSection }}
+
+{{- with .Params.series }}
+  {{- $name := index . 0 }}
+  {{- $seriesPages := (where site.RegularPages "Params.series" "intersect" (slice $name)).ByDate }}
+  {{- $prev = false }}
+  {{- $next = false }}
+  {{- range $i, $p := $seriesPages }}
+    {{- if eq $p.RelPermalink $.RelPermalink }}
+      {{- if gt $i 0 }}{{ $prev = index $seriesPages (sub $i 1) }}{{ end }}
+      {{- if lt (add $i 1) (len $seriesPages) }}{{ $next = index $seriesPages (add $i 1) }}{{ end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- if or $prev $next }}
+<nav class="paginav">
+  {{- with $prev }}
+  <a class="prev" href="{{ .Permalink }}">
+    <span class="title">« {{ i18n "prev_page" | default "Prev" }}</span>
+    <br>
+    <span>{{ .Title }}</span>
+  </a>
+  {{- end }}
+  {{- with $next }}
+  <a class="next" href="{{ .Permalink }}">
+    <span class="title">{{ i18n "next_page" | default "Next" }} »</span>
+    <br>
+    <span>{{ .Title }}</span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}
