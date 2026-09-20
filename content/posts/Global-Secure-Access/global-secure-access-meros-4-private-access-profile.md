@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN"
 date: 2026-09-20T18:00:00+03:00
-lastmod: 2026-09-20T18:10:00+03:00
+lastmod: 2026-09-20T18:20:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Private Access
@@ -33,7 +33,7 @@ series: ["Global Secure Access"]
 slug: "global-secure-access-meros-4-private-access-profile"
 ShowToc: true
 TocOpen: false
-weight: -7
+weight: -6
 cover:
   image: "images/global-secure-access-series/private-access-profile-cover.webp"
   alt: "Global Secure Access Connect Traffic forwarding Private access profile στο Microsoft Entra admin center"
