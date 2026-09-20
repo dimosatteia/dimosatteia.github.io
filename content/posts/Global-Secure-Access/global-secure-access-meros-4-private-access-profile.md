@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN"
 date: 2026-09-20T18:00:00+03:00
-lastmod: 2026-09-20T18:20:00+03:00
+lastmod: 2026-09-20T18:35:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Private Access
@@ -43,7 +43,7 @@ ShowReadingTime: true
 ShowWordCount: true
 ---
 
-Φτάσαμε στο τέταρτο μέρος αυτής της σειράς. Στο [Μέρος 1](/posts/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [Μέρος 2](/posts/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [Μέρος 3](/posts/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Συνεχίζω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.
+Φτάσαμε στο τέταρτο μέρος αυτής της σειράς. Στο [1ο μέρος](/posts/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [2ο μέρος](/posts/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [3ο μέρος](/posts/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Συνεχίζω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.
 
 ## Το πρόβλημα που λύνει: πρόσβαση σε resource, όχι σε δίκτυο
 
