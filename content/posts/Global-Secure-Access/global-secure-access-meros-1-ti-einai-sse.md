@@ -31,7 +31,7 @@ categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access
 series: ["Global Secure Access"]
 ShowToc: true
 TocOpen: false
-weight: -5
+weight: -6
 cover:
   image: "images/global-secure-access-series/global-secure-access-overview-cover.webp"
   alt: "Global Secure Access στο Microsoft Entra admin center, αρχική σελίδα dashboard"
