@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365"
 date: 2026-08-31T10:00:00+03:00
-lastmod: 2026-09-19T10:40:00+03:00
+lastmod: 2026-09-26T11:30:00+03:00
 draft: false
 keywords:
   - Microsoft traffic profile
@@ -42,7 +42,7 @@ ShowReadingTime: true
 ShowWordCount: true
 ---
 
-Στο [πρώτο μέρος αυτής της σειράς](/posts/global-secure-access-meros-1-ti-einai-sse/) έμεινα στη θεωρία: τι είναι το SSE ως κατηγορία, γιατί η Microsoft το έχτισε πάνω στο Entra ID, και ποια είναι η σχέση Global Secure Access, Entra Internet Access και Entra Private Access. Από εδώ και πέρα μπαίνουμε στην πράξη, ένα traffic forwarding profile τη φορά. Ξεκινάω σκόπιμα από το **Microsoft traffic profile**, γιατί είναι αυτό που η ίδια η Microsoft θεωρεί θεμέλιο, το πρώτο profile που αξιολογείται όταν περνάει κίνηση μέσα από το Global Secure Access, πριν καν φτάσει στο Private ή στο Internet access profile.
+Στο [πρώτο μέρος αυτής της σειράς](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) έμεινα στη θεωρία: τι είναι το SSE ως κατηγορία, γιατί η Microsoft το έχτισε πάνω στο Entra ID, και ποια είναι η σχέση Global Secure Access, Entra Internet Access και Entra Private Access. Από εδώ και πέρα μπαίνουμε στην πράξη, ένα traffic forwarding profile τη φορά. Ξεκινάω σκόπιμα από το **Microsoft traffic profile**, γιατί είναι αυτό που η ίδια η Microsoft θεωρεί θεμέλιο, το πρώτο profile που αξιολογείται όταν περνάει κίνηση μέσα από το Global Secure Access, πριν καν φτάσει στο Private ή στο Internet access profile.
 
 ## Πού ζει μέσα στη σειρά αξιολόγησης
 
@@ -79,7 +79,7 @@ ShowWordCount: true
 
 ## Το «αόρατο» τέταρτο profile
 
-Αξίζει να θυμηθούμε εδώ κάτι που ανέφερα στο πρώτο μέρος: πέρα από τα τρία profiles που ρυθμίζεις εσύ, Microsoft, Private, Internet, υπάρχει και ένα τέταρτο, το **Microsoft Entra traffic profile**, που καλύπτει αποκλειστικά κίνηση αυθεντικοποίησης και ταυτότητας, sign-in, Graph API, επικύρωση πιστοποιητικών. Αυτό είναι system-managed, ενεργοποιείται αυτόματα μόλις ενεργοποιήσεις οποιοδήποτε άλλο profile, δεν φαίνεται καν στο portal, και έχει την υψηλότερη προτεραιότητα επεξεργασίας από όλα. Δεν χρειάζεται να το ρυθμίσεις, αλλά είναι χρήσιμο να ξέρεις ότι υπάρχει, ειδικά αν κάποια στιγμή βλέπεις στα logs κίνηση προς Entra endpoints που δεν αντιστοιχεί σε κανένα από τα profiles που έχεις ενεργοποιήσει εσύ.
+Αξίζει να αναφέρω εδώ κάτι που δεν φαίνεται με την πρώτη ματιά: πέρα από τα τρία profiles που ρυθμίζεις εσύ, Microsoft, Private, Internet, υπάρχει και ένα τέταρτο, το **Microsoft Entra traffic profile**, που καλύπτει αποκλειστικά κίνηση αυθεντικοποίησης και ταυτότητας, sign-in, Graph API, επικύρωση πιστοποιητικών. Αυτό είναι system-managed, ενεργοποιείται αυτόματα μόλις ενεργοποιήσεις οποιοδήποτε άλλο profile, δεν φαίνεται καν στο portal, και έχει την υψηλότερη προτεραιότητα επεξεργασίας από όλα. Δεν χρειάζεται να το ρυθμίσεις, αλλά είναι χρήσιμο να ξέρεις ότι υπάρχει, ειδικά αν κάποια στιγμή βλέπεις στα logs κίνηση προς Entra endpoints που δεν αντιστοιχεί σε κανένα από τα profiles που έχεις ενεργοποιήσει εσύ.
 
 ## Πώς συνδέεται με το Conditional Access
 

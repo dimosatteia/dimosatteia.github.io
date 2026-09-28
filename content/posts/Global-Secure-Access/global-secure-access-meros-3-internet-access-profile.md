@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway"
 date: 2026-09-07T09:00:00+03:00
-lastmod: 2026-09-20T18:30:00+03:00
+lastmod: 2026-09-26T11:30:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Internet Access
@@ -43,7 +43,7 @@ ShowReadingTime: true
 ShowWordCount: true
 ---
 
-Στο [1ο μέρος](/posts/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία πίσω από το SSE και το Global Secure Access γενικότερα, και στο [2ο μέρος](/posts/global-secure-access-meros-2-microsoft-traffic-profile/) μπήκαμε στο Microsoft traffic profile, το θεμέλιο που φροντίζει για τη βέλτιστη δρομολόγηση της κίνησης προς Microsoft 365. Σε αυτό το τρίτο μέρος περνάμε σε αυτό που, ας είμαστε ειλικρινείς, τραβάει τη μεγαλύτερη προσοχή όταν κάποιος βλέπει το Global Secure Access για πρώτη φορά: το **Internet access profile**, το κομμάτι που λειτουργεί ως πλήρες Secure Web Gateway για ό,τι δεν καλύπτεται ήδη από το Microsoft traffic profile.
+Στο [1ο μέρος](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία πίσω από το SSE και το Global Secure Access γενικότερα, και στο [2ο μέρος](/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/) μπήκαμε στο Microsoft traffic profile, το θεμέλιο που φροντίζει για τη βέλτιστη δρομολόγηση της κίνησης προς Microsoft 365. Σε αυτό το τρίτο μέρος περνάμε σε αυτό που, ας είμαστε ειλικρινείς, τραβάει τη μεγαλύτερη προσοχή όταν κάποιος βλέπει το Global Secure Access για πρώτη φορά: το **Internet access profile**, το κομμάτι που λειτουργεί ως πλήρες Secure Web Gateway για ό,τι δεν καλύπτεται ήδη από το Microsoft traffic profile.
 
 ## Τι ακριβώς προστατεύει, και τι δεν προστατεύει
 
@@ -112,6 +112,6 @@ ShowWordCount: true
 
 ## Τι έπεται
 
-Στο τελευταίο μέρος της σειράς περνάμε στο **Private access profile**, τη λύση της Microsoft για αντικατάσταση του κλασικού VPN σε εσωτερικές, on-premises εφαρμογές, μέσα από Quick Access και private network connectors. Και επειδή το Conditional Access είναι το νήμα που συνδέει όλα τα profiles μεταξύ τους, ένα ξεχωριστό, πέμπτο μέρος θα μείνει αποκλειστικά σε αυτό, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile που είδαμε εδώ.
+Στο επόμενο μέρος της σειράς περνάμε στο **Private access profile**, τη λύση της Microsoft για αντικατάσταση του κλασικού VPN σε εσωτερικές, on-premises εφαρμογές, μέσα από Quick Access και private network connectors. Και επειδή το Conditional Access είναι το νήμα που συνδέει όλα τα profiles μεταξύ τους, ένα ξεχωριστό, [5ο μέρος](/posts/global-secure-access/global-secure-access-meros-5-conditional-access/) θα μείνει αποκλειστικά σε αυτό, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile που είδαμε εδώ.
 
 Αν τρέχεις ή σχεδιάζεις κάτι ανάλογο στον δικό σου οργανισμό και βλέπεις τη σχέση δικτύου και ταυτότητας διαφορετικά, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.

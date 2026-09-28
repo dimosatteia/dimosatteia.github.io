@@ -1,7 +1,7 @@
 ---
 title: "Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN"
 date: 2026-09-20T18:00:00+03:00
-lastmod: 2026-09-20T18:35:00+03:00
+lastmod: 2026-09-26T11:30:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Private Access
@@ -27,7 +27,7 @@ tags:
   - SSE
 author: "Dimosthenis Atteia"
 description: "Τέταρτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Private access profile, Quick Access, private network connectors και per-app access, με έμφαση σε NIS2 και ISO 27001."
-summary: "Κλείνουμε τη σειρά με το κομμάτι που έχει τη μεγαλύτερη πρακτική αξία για όσους ακόμα τρέχουν VPN: το Private access profile. Δεν είναι απλώς μια νέα μέθοδος σύνδεσης, είναι μια διαφορετική φιλοσοφία πρόσβασης, από 'σε βάζω μέσα στο δίκτυο' σε 'σου δίνω πρόσβαση σε αυτό το συγκεκριμένο resource, και μόνο σε αυτό'."
+summary: "Κλείνουμε τη βασική εικόνα των traffic profiles με το κομμάτι που έχει τη μεγαλύτερη πρακτική αξία για όσους ακόμα τρέχουν VPN: το Private access profile. Δεν είναι απλώς μια νέα μέθοδος σύνδεσης, είναι μια διαφορετική φιλοσοφία πρόσβασης, από 'σε βάζω μέσα στο δίκτυο' σε 'σου δίνω πρόσβαση σε αυτό το συγκεκριμένο resource, και μόνο σε αυτό'."
 categories: ["Microsoft 365 Security", "Network Security", "Global Secure Access"]
 series: ["Global Secure Access"]
 slug: "global-secure-access-meros-4-private-access-profile"
@@ -43,7 +43,7 @@ ShowReadingTime: true
 ShowWordCount: true
 ---
 
-Φτάσαμε στο τέταρτο μέρος αυτής της σειράς. Στο [1ο μέρος](/posts/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [2ο μέρος](/posts/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [3ο μέρος](/posts/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Συνεχίζω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.
+Φτάσαμε στο τέταρτο μέρος αυτής της σειράς. Στο [1ο μέρος](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [2ο μέρος](/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [3ο μέρος](/posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Συνεχίζω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.
 
 ## Το πρόβλημα που λύνει: πρόσβαση σε resource, όχι σε δίκτυο
 
@@ -109,6 +109,6 @@ ShowWordCount: true
 
 Με αυτό το τέταρτο μέρος κλείνει η βασική εικόνα των τριών traffic profiles του Global Secure Access: η φιλοσοφία SSE στο Μέρος 1, το θεμέλιο του Microsoft traffic profile στο Μέρος 2, το Secure Web Gateway του Internet access profile στο Μέρος 3, και τώρα η αντικατάσταση του VPN μέσω του Private access profile. Τα τρία profiles δεν λειτουργούν απομονωμένα το ένα από το άλλο, όπως είδαμε, μοιράζονται το ίδιο σημείο διαχείρισης, την ίδια ενσωμάτωση με το Conditional Access, και την ίδια θεμελιώδη φιλοσοφία: η απόφαση πρόσβασης βασίζεται σε ταυτότητα, όχι σε φυσική θέση δικτύου.
 
-Μένει ένα ακόμα, πέμπτο μέρος, αφιερωμένο αμιγώς στο πώς το Conditional Access δένει όλα αυτά μαζί σε πράξη, με συγκεκριμένα παραδείγματα πολιτικών που μπορείς να αντιγράψεις κατευθείαν στο δικό σου tenant.
+Μένει ένα ακόμα, [5ο μέρος](/posts/global-secure-access/global-secure-access-meros-5-conditional-access/), αφιερωμένο αμιγώς στο πώς το Conditional Access δένει όλα αυτά μαζί σε πράξη, με συγκεκριμένα παραδείγματα πολιτικών που μπορείς να αντιγράψεις κατευθείαν στο δικό σου tenant.
 
 Αν έχεις ήδη ξεκινήσει κάποιο κομμάτι αυτής της μετάβασης στον οργανισμό σου, ή αν σκέφτεσαι από πού να ξεκινήσεις, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
