@@ -1,195 +1,197 @@
 ---
-title: "Microsoft Defender for Endpoint, Up Close Part 1a — What It Is, What It Does, and How to Actually Roll It Out"
-date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-04-22T10:00:00+03:00
+title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
+date: 2026-09-28T09:11:00+03:00
+lastmod: 2026-09-28T18:45:00+03:00
 draft: true
 keywords:
-  - how to read a Microsoft Secure Score recommendation
-  - Microsoft Secure Score recommendation fields explained
-  - Microsoft Secure Score implementation status meaning
-  - Microsoft Secure Score To address Planned Risk accepted
-  - Microsoft Secure Score score impact vs percentage
-  - Microsoft Secure Score user impact field
-  - Microsoft Secure Score Implementation tab guide
-  - Microsoft Secure Score for junior administrators
-  - Microsoft Secure Score for SOC analysts
+  - Microsoft Defender for Endpoint
+  - Microsoft Defender for Endpoint οδηγός
+  - Defender for Endpoint Plan 1 vs Plan 2
+  - Διαφορές Defender for Endpoint Plan 1 και Plan 2
+  - Onboarding συσκευών στο Microsoft Defender for Endpoint
+  - Defender for Endpoint Intune integration
+  - Attack Surface Reduction rules Audit mode
+  - Tamper protection Microsoft Defender
+  - Automated Investigation and Remediation Defender for Endpoint
+  - EDR Microsoft 365 E5
 tags:
-  - Microsoft Secure Score
+  - Microsoft Defender for Endpoint
   - Microsoft Defender XDR
-  - Microsoft 365
-  - Security Recommendations
+  - Endpoint Security
+  - EDR
+  - Attack Surface Reduction
+  - Microsoft Intune
   - Microsoft 365 Security
-  - Microsoft Entra ID
-  - Cyber GRC
-  - Security Posture Management
-  - Junior Administrator
-  - SOC Analyst
-  - ISO 27001
-  - NIS2
 author: "Dimosthenis Atteia"
-description: "A practical, friendly deep dive into Microsoft Defender for Endpoint — Plan 1 vs Plan 2, what each tier actually gives you, how to onboard devices, and the configuration settings that matter most in the first week."
-summary: "Microsoft Defender for Endpoint explained the way a working professional needs it. Plan 1 and Plan 2 side by side, what each one does, how onboarding actually works for Windows, macOS, Linux, iOS, and Android, and the Defender portal configuration settings to check in your first week."
+description: "Πρακτικός οδηγός για το Microsoft Defender for Endpoint: Plan 1 vs Plan 2, onboarding συσκευών και οι ρυθμίσεις που μετράνε την πρώτη εβδομάδα."
+summary: "Το Microsoft Defender for Endpoint όπως το χρειάζεται ένας επαγγελματίας στην πράξη. Plan 1 και Plan 2 δίπλα-δίπλα, τι κάνει το καθένα, πώς λειτουργεί το onboarding σε Windows, macOS, Linux, iOS και Android, και οι ρυθμίσεις του Defender portal που πρέπει να ελέγξετε την πρώτη εβδομάδα."
 categories: ["Microsoft Defender", "Endpoint Security"]
 series: ["Microsoft Defender Up Close"]
+slug: 
 ShowToc: true
 TocOpen: false
-weight: 1
+weight: -6
 cover:
   image: "/images/MDE/MDE.png"
-  alt: "Microsoft Defender for Endpoint — deep dive"
+  alt: "Microsoft Defender for Endpoint, αναλυτικός οδηγός"
   caption: "Microsoft Defender Up Close"
+  relative: true
+ShowReadingTime: true
+ShowWordCount: true
 ---
 
-## Who this post is for
+## Σε ποιον απευθύνεται αυτό το άρθρο
 
-If you read **[Part 2 of the Defender Demystified series](/posts/defender-demystified-part-2-four-workloads/)**, you know what Microsoft Defender for Endpoint is at a high level — it's the workload in the Microsoft Defender family that watches the devices your users actually do work on.
+Αν διαβάσατε το **[2ο μέρος της σειράς Defender Demystified](/posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads/)**, γνωρίζετε ήδη σε υψηλό επίπεδο τι είναι το Microsoft Defender for Endpoint. Είναι το workload της οικογένειας Microsoft Defender που παρακολουθεί τις συσκευές στις οποίες οι χρήστες σας κάνουν πραγματικά τη δουλειά τους.
 
-This post is the follow-up for the professional who now has to do something with it: pick a plan, onboard devices, and configure the first set of settings that actually matter. Straightforward, hands-on, and no pretence that you'll absorb everything on day one. You won't. Nobody does.
+Αυτό το άρθρο είναι η συνέχεια για τον επαγγελματία που τώρα πρέπει να κάνει κάτι με αυτό: να επιλέξει plan, να κάνει onboarding τις συσκευές και να ρυθμίσει το πρώτο σύνολο ρυθμίσεων που έχουν πραγματική σημασία. Απλό, πρακτικό, χωρίς την ψευδαίσθηση ότι θα τα αφομοιώσετε όλα από την πρώτη μέρα. Δεν θα γίνει. Σε κανέναν δεν γίνεται.
 
-## What Microsoft Defender for Endpoint actually does
+## Τι κάνει πραγματικά το Microsoft Defender for Endpoint
 
-**[Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** is an enterprise endpoint security platform that combines several capabilities most organisations used to buy from different vendors:
+Το **[Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** είναι μια enterprise πλατφόρμα προστασίας τερματικών που συνδυάζει δυνατότητες τις οποίες οι περισσότεροι οργανισμοί αγόραζαν παλαιότερα από διαφορετικούς κατασκευαστές:
 
-- **Next-generation antivirus** — real-time protection that catches what signature-based AV doesn't
-- **Endpoint Detection and Response (EDR)** — behavioural monitoring that picks up on attacks in progress, not just known bad files
-- **Attack Surface Reduction (ASR)** — rules that block common attack patterns (malicious macros, credential theft, suspicious scripts)
-- **Automated Investigation and Remediation (AIR)** — the platform does the first 15 minutes of SOC triage for you
-- **Threat and Vulnerability Management (TVM)** — CVE tracking, software inventory, and remediation prioritisation across your fleet
-- **Attack Simulation** (limited, in the Defender portal generally — Attack Simulation Training is more robust in Defender for Office 365)
+- **Next-generation antivirus**: προστασία σε πραγματικό χρόνο που πιάνει ό,τι ξεφεύγει από το antivirus βασισμένο σε signatures
+- **Endpoint Detection and Response (EDR)**: συμπεριφορική παρακολούθηση που εντοπίζει επιθέσεις ενώ βρίσκονται σε εξέλιξη, όχι μόνο γνωστά κακόβουλα αρχεία
+- **Attack Surface Reduction (ASR)**: κανόνες που μπλοκάρουν συνηθισμένα μοτίβα επίθεσης (κακόβουλα macros, κλοπή διαπιστευτηρίων, ύποπτα scripts)
+- **Automated Investigation and Remediation (AIR)**: η πλατφόρμα αναλαμβάνει για λογαριασμό σας το πρώτο κομμάτι του SOC triage
+- **Microsoft Defender Vulnerability Management (MDVM)**: παρακολούθηση CVE, απογραφή λογισμικού και ιεράρχηση αποκατάστασης σε όλο τον στόλο συσκευών
 
-All of this runs on the same agent that's already built into every modern Windows device — **Microsoft Defender Antivirus**. Defender for Endpoint is the brain; the antivirus is the body.
+Όλα αυτά τρέχουν πάνω στον ίδιο agent που είναι ήδη ενσωματωμένος σε κάθε σύγχρονη συσκευή Windows, το **Microsoft Defender Antivirus**. Το Defender for Endpoint είναι ο εγκέφαλος, το antivirus είναι το σώμα.
 
-## Plan 1 vs Plan 2 — the one decision that matters most
+## Plan 1 vs Plan 2, η απόφαση που μετράει περισσότερο
 
-Microsoft sells Defender for Endpoint in two tiers, and the difference between them is where most of the cost-benefit conversation lives.
+Η Microsoft πουλάει το Defender for Endpoint σε δύο επίπεδα, και η διαφορά μεταξύ τους είναι εκεί που κρίνεται το μεγαλύτερο μέρος της συζήτησης κόστους-οφέλους.
 
-**[Microsoft Defender for Endpoint Plan 1](https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1)** is the **preventive** tier. You get:
+Το **[Microsoft Defender for Endpoint Plan 1](https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1)** είναι το **προληπτικό** επίπεδο. Περιλαμβάνει:
 
 - Next-generation antivirus
 - Attack surface reduction rules
-- Device-based Conditional Access signals
-- Manual response actions (isolate device, run antivirus scan)
-- Basic reports
+- Σήματα συσκευής για Conditional Access
+- Χειροκίνητες ενέργειες απόκρισης (απομόνωση συσκευής, εκτέλεση σάρωσης antivirus)
+- Βασικές αναφορές
 
-Plan 1 is included in **Microsoft 365 E3** and can be bought standalone.
+Το Plan 1 περιλαμβάνεται στο **Microsoft 365 E3** και διατίθεται και αυτόνομα.
 
-**[Microsoft Defender for Endpoint Plan 2](https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1-2)** is the **detection and response** tier. You get everything in Plan 1, plus:
+Το **[Microsoft Defender for Endpoint Plan 2](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** είναι το επίπεδο **ανίχνευσης και απόκρισης**. Περιλαμβάνει όλα όσα έχει το Plan 1, και επιπλέον:
 
-- Full Endpoint Detection and Response (EDR) with behavioural analytics
+- Πλήρες Endpoint Detection and Response (EDR) με behavioural analytics
 - Automated Investigation and Remediation
-- Advanced hunting with KQL
-- **Microsoft Defender Vulnerability Management** bundled in
-- Threat analytics reports mapped to your tenant
-- Microsoft Threat Experts (targeted attack notifications)
+- Advanced hunting με KQL
+- Ενσωματωμένο **Microsoft Defender Vulnerability Management**
+- Αναφορές Threat analytics αντιστοιχισμένες στο tenant σας
+- **Endpoint Attack Notifications** (ειδοποιήσεις για στοχευμένες επιθέσεις, το παλαιότερο Microsoft Threat Experts)
 
-Plan 2 is what you want for any real security function, and it's included in **Microsoft 365 E5** or as part of the **Microsoft Defender Suite** add-on.
+Το Plan 2 είναι αυτό που χρειάζεστε για οποιαδήποτε πραγματική λειτουργία ασφάλειας, και περιλαμβάνεται στο **Microsoft 365 E5** ή ως μέρος του add-on **Microsoft Defender Suite**.
 
-The honest version: if your role includes "detect and respond to attacks", you need Plan 2. Plan 1 is fine for smaller organisations whose approach is "prevent and hope for the best", but anyone with a meaningful risk register outgrows it fast.
+Η ειλικρινής εκδοχή: αν ο ρόλος σας περιλαμβάνει το «ανιχνεύω και αποκρίνομαι σε επιθέσεις», χρειάζεστε Plan 2. Το Plan 1 αρκεί για μικρότερους οργανισμούς με προσέγγιση «προλαμβάνω και ελπίζω για το καλύτερο», αλλά όποιος έχει ένα ουσιαστικό μητρώο κινδύνων (risk register) το ξεπερνά γρήγορα.
 
-## Which devices it protects
+## Ποιες συσκευές προστατεύει
 
-Microsoft Defender for Endpoint works across:
+Το Microsoft Defender for Endpoint λειτουργεί σε:
 
-- **Windows** 10, 11, Server 2012 R2 through Server 2025
-- **macOS** (current and previous major versions)
-- **Linux** — Red Hat, Ubuntu, CentOS, SUSE, Debian, Oracle, Amazon Linux
-- **iOS** (through the Microsoft Defender mobile app)
-- **Android** (through the Microsoft Defender mobile app)
+- **Windows**: 10, 11, Server 2012 R2 έως Server 2025
+- **macOS**: τρέχουσα και προηγούμενη major έκδοση
+- **Linux**: Red Hat, Ubuntu, CentOS, SUSE, Debian, Oracle, Amazon Linux
+- **iOS**: μέσω της εφαρμογής Microsoft Defender για κινητά
+- **Android**: μέσω της εφαρμογής Microsoft Defender για κινητά
 
-Windows and Windows Server support is the most mature. Linux and macOS support is solid and has improved dramatically over the last two years. Mobile support is a different experience entirely — it's more about network-level threat protection and jailbreak/root detection than full EDR.
+Η υποστήριξη για Windows και Windows Server είναι η πιο ώριμη. Η υποστήριξη για Linux και macOS είναι σταθερή και έχει βελτιωθεί θεαματικά τα τελευταία δύο χρόνια. Στα κινητά η εμπειρία είναι εντελώς διαφορετική, αφορά περισσότερο την προστασία σε επίπεδο δικτύου και τον εντοπισμό jailbreak/root παρά πλήρες EDR.
 
-## How to actually onboard your devices
+## Πώς να κάνετε onboarding τις συσκευές σας στην πράξη
 
-Onboarding is where most new deployments stall, so let's make it concrete.
+Το onboarding είναι το σημείο όπου κολλάνε οι περισσότερες νέες υλοποιήσεις, οπότε ας το κάνουμε συγκεκριμένο.
 
-**For Windows devices managed by Microsoft Intune:**
+**Για συσκευές Windows που διαχειρίζεται το Microsoft Intune:**
 
-> 📷 **Image 1 — Intune connector configuration in the Defender portal.**
-> *Capture from: Defender portal → Settings → Endpoints → Advanced features. Scroll to "Microsoft Intune connection" and capture the toggle. This is the one-click integration that makes everything downstream work.*
+[![Ο διακόπτης Microsoft Intune connection στο Defender portal](/images/Microsoft-Defender/01-intune-connection-advanced-features.webp)](/images/Microsoft-Defender/01-intune-connection-advanced-features.webp)
+📷 **Εικόνα 1**: Ρύθμιση του Intune connector στο Defender portal. Defender portal → Settings → Endpoints → Optional features.
 
-1. In the **Microsoft Defender portal** (`security.microsoft.com`), go to **Settings → Endpoints → Advanced features** and turn on **Microsoft Intune connection**.
-2. In the **Microsoft Intune admin center**, go to **Endpoint security → Microsoft Defender for Endpoint** and enable the connection.
-3. Create an **Endpoint Detection and Response policy** in Intune and assign it to your device groups.
+1. Στο **Microsoft Defender portal** (`security.microsoft.com`), μεταβείτε στο **Settings → Endpoints → Optional features** και ενεργοποιήστε το **Microsoft Intune connection**.
+2. Στο **Microsoft Intune admin center**, μεταβείτε στο **Endpoint security → Microsoft Defender for Endpoint** και ενεργοποιήστε τη σύνδεση.
+3. Δημιουργήστε μια **Endpoint Detection and Response policy** στο Intune και αναθέστε τη στις ομάδες συσκευών σας.
 
-Devices auto-onboard within a few hours. No scripts, no offline packages, no manual deployment runs.
+Οι συσκευές κάνουν αυτόματα onboarding μέσα σε λίγες ώρες. Χωρίς scripts, χωρίς offline πακέτα, χωρίς χειροκίνητες εκτελέσεις.
 
-**For Windows devices managed by Configuration Manager (SCCM):**
+**Για συσκευές Windows που διαχειρίζεται το Configuration Manager (SCCM):**
 
-A different flow using the co-management setup. Microsoft's [onboarding guide for Configuration Manager](https://learn.microsoft.com/en-us/defender-endpoint/configure-endpoints-sccm) is the canonical reference.
+Διαφορετική ροή, μέσω του co-management setup. Ο [οδηγός onboarding για Configuration Manager](https://learn.microsoft.com/en-us/defender-endpoint/configure-endpoints-sccm) της Microsoft είναι η επίσημη αναφορά.
 
-**For unmanaged Windows devices:**
+**Για μη διαχειριζόμενες συσκευές Windows:**
 
-Download the onboarding script from **Settings → Endpoints → Onboarding**, run it as admin on each device. Fine for small numbers, painful at scale.
+Κατεβάστε το onboarding script από το **Settings → Endpoints → Onboarding** και εκτελέστε το ως διαχειριστής σε κάθε συσκευή. Εντάξει για λίγες συσκευές, επώδυνο σε κλίμακα.
 
-**For macOS and Linux:**
+**Για macOS και Linux:**
 
-Install the Microsoft Defender for Endpoint agent via your existing management tool (Jamf for macOS, Ansible/Puppet/Chef for Linux are all supported). Microsoft publishes the packages and the configuration JSON.
+Εγκαταστήστε τον agent του Microsoft Defender for Endpoint μέσω του εργαλείου διαχείρισης που ήδη χρησιμοποιείτε (Jamf για macOS, ενώ για Linux υποστηρίζονται τα Ansible, Puppet και Chef). Η Microsoft δημοσιεύει τα πακέτα και το configuration JSON.
 
-**For iOS and Android:**
+**Για iOS και Android:**
 
-Users install the **Microsoft Defender app** from the respective app store and sign in with their work account. Intune app protection policies can enforce installation.
+Οι χρήστες εγκαθιστούν την εφαρμογή **Microsoft Defender** από το αντίστοιχο app store και συνδέονται με τον εταιρικό τους λογαριασμό. Οι Intune app protection policies μπορούν να επιβάλουν την εγκατάσταση.
 
-> 📷 **Image 2 — Device inventory after onboarding.**
-> *Capture from: Defender portal → Assets → Devices. Show a populated device inventory with OS mix, risk levels, and exposure scores. Redact device names. This is what "it's working" looks like.*
+[![Απογραφή συσκευών στο Microsoft Defender portal μετά το onboarding](/images/Microsoft-Defender/02-device-inventory.webp)](/images/Microsoft-Defender/02-device-inventory.webp)
+📷 **Εικόνα 2**: Απογραφή συσκευών μετά το onboarding. Defender portal → Assets → Devices.
 
-## What to configure in your first week
 
-Don't try to configure everything. Focus on these:
+## Τι να ρυθμίσετε την πρώτη εβδομάδα
 
-**1. Baseline security policies**
+Μην προσπαθήσετε να ρυθμίσετε τα πάντα. Εστιάστε σε αυτά:
 
-> 📷 **Image 3 — Security baselines in Intune.**
-> *Capture from: Intune admin center → Endpoint security → Security baselines → Microsoft Defender for Endpoint baseline. Show the profiles list.*
+**1. Βασικές πολιτικές ασφάλειας (security baselines)**
 
-Microsoft ships an opinionated security baseline for Defender for Endpoint. Deploy it to a pilot group first. Review what it changes. Expand.
+[![Το Microsoft Defender for Endpoint security baseline στο Intune](/images/Microsoft-Defender/03-intune-security-baselines.webp)](/images/Microsoft-Defender/03-intune-security-baselines.webp)
+📷 **Εικόνα 3**: Security baselines στο Intune. Intune admin center → Endpoint security → Security baselines → Microsoft Defender for Endpoint baseline.
+
+
+Η Microsoft παρέχει ένα security baseline με σαφείς επιλογές για το Defender for Endpoint. Αναπτύξτε το πρώτα σε μια πιλοτική ομάδα. Ελέγξτε τι αλλάζει. Επεκτείνετε.
 
 **2. Attack Surface Reduction rules**
 
-ASR rules block common attack patterns — things like "don't let Office apps launch child processes" and "don't let scripts load downloaded content". There are around 16 rules. Don't turn them all on at once in Enforce mode — start in **Audit mode** for two weeks, review what would have been blocked, then flip the ones that don't break legitimate work to Enforce.
+Οι κανόνες ASR μπλοκάρουν συνηθισμένα μοτίβα επίθεσης, πράγματα όπως «μην επιτρέπεις στις εφαρμογές Office να εκκινούν child processes» και «μην επιτρέπεις σε scripts να φορτώνουν περιεχόμενο που έχει ληφθεί από το διαδίκτυο». Σήμερα υπάρχουν 19 κανόνες, από τους οποίους τρεις ανήκουν στην ομάδα **Standard protection** που η Microsoft προτείνει να ενεργοποιηθεί πρώτη. Μην τους ενεργοποιήσετε όλους μαζί σε Block mode. Ξεκινήστε σε **Audit mode** για δύο εβδομάδες, εξετάστε τι θα είχε μπλοκαριστεί και μετά περάστε σε Block όσους δεν σπάνε νόμιμες εργασίες.
 
-> 📷 **Image 4 — Attack Surface Reduction rules in the Defender portal.**
-> *Capture from: Defender portal → Endpoints → Vulnerability management → Security recommendations, then filter for "Turn on attack surface reduction rules". Or alternatively from the ASR rules report.*
+[![Αναφορά Attack Surface Reduction rules σε Audit mode](/images/Microsoft-Defender/04-asr-rules-report.webp)](/images/Microsoft-Defender/04-asr-rules-report.webp)
+📷 **Εικόνα 4**: Αναφορά Attack Surface Reduction rules στο Defender portal. Defender portal → ASR rules report.
+
 
 **3. Web content filtering**
 
-Block categories your acceptable-use policy says you don't allow (gambling, adult content, malware domains, newly registered domains). Five minutes of configuration, immediate risk reduction.
+Μπλοκάρετε τις κατηγορίες που η πολιτική αποδεκτής χρήσης (acceptable-use policy) δεν επιτρέπει (τυχερά παιχνίδια, περιεχόμενο ενηλίκων, malware domains, πρόσφατα καταχωρημένα domains). Πέντε λεπτά ρύθμισης, άμεση μείωση κινδύνου.
 
 **4. Tamper protection**
 
-> 📷 **Image 5 — Tamper protection setting.**
-> *Capture from: Defender portal → Settings → Endpoints → Advanced features → Tamper protection toggle.*
+[![Ο διακόπτης Tamper protection στο Defender portal](/images/Microsoft-Defender/05-tamper-protection.webp)](/images/Microsoft-Defender/05-tamper-protection.webp)
+📷 **Εικόνα 5**: Ρύθμιση Tamper protection. Defender portal → Settings → Endpoints → Optional features → διακόπτης Tamper protection.
 
-Turn this on. It prevents attackers (and helpful users) from disabling Microsoft Defender Antivirus via registry, PowerShell, or Group Policy. No reason not to enable it.
+
+Ενεργοποιήστε το. Εμποδίζει τους επιτιθέμενους (και τους «εξυπηρετικούς» χρήστες) από το να απενεργοποιήσουν το Microsoft Defender Antivirus μέσω registry, PowerShell ή Group Policy. Δεν υπάρχει κανένας λόγος να μην το ενεργοποιήσετε.
 
 **5. Automated investigation**
 
-In Plan 2, **Automated Investigation and Remediation (AIR)** can be configured to auto-remediate in the Defender portal's **Settings → Endpoints → Automation levels**. Start with "Semi — require approval for any remediation" for two weeks, then graduate to "Full — remediate threats automatically" once you trust the platform's judgement.
+Στο Plan 2, το **Automated Investigation and Remediation (AIR)** μπορεί να ρυθμιστεί ώστε να κάνει αυτόματη αποκατάσταση από το **Settings → Endpoints → Automation levels** του Defender portal. Ξεκινήστε με «Semi - require approval for any remediation» για δύο εβδομάδες και μετά περάστε σε «Full - remediate threats automatically» μόλις εμπιστευτείτε την κρίση της πλατφόρμας.
 
-## A reasonable first-month plan
+## Ένα ρεαλιστικό πλάνο για τον πρώτο μήνα
 
-- **Week 1** — Onboard a pilot group (10–20 devices), deploy security baseline, turn on tamper protection and web content filtering.
-- **Week 2** — Enable ASR rules in Audit mode. Start reading the resulting events.
-- **Week 3** — Onboard the rest of the fleet in waves. Move the first ASR rules into Enforce.
-- **Week 4** — Run a Threat Analytics review, configure Automated Investigation to Semi mode, schedule a monthly review.
+- **Εβδομάδα 1**: Onboarding μιας πιλοτικής ομάδας (10–20 συσκευές), ανάπτυξη του security baseline, ενεργοποίηση tamper protection και web content filtering.
+- **Εβδομάδα 2**: Ενεργοποίηση των κανόνων ASR σε Audit mode. Αρχίστε να διαβάζετε τα events που προκύπτουν.
+- **Εβδομάδα 3**: Onboarding του υπόλοιπου στόλου σε κύματα. Μεταφορά των πρώτων κανόνων ASR σε Block.
+- **Εβδομάδα 4**: Ανασκόπηση Threat Analytics, ρύθμιση του Automated Investigation σε Semi mode, προγραμματισμός μηνιαίας ανασκόπησης.
 
-By end of month one you have a functioning Microsoft Defender for Endpoint deployment with telemetry flowing into the Microsoft Defender portal, onto which everything else in your security stack can now build.
+Στο τέλος του πρώτου μήνα έχετε μια λειτουργική υλοποίηση του Microsoft Defender for Endpoint, με telemetry να ρέει στο Microsoft Defender portal, τη βάση δηλαδή πάνω στην οποία μπορεί πλέον να χτιστεί όλη η υπόλοιπη στοίβα ασφάλειάς σας.
 
-## Where to go from here
+## Πού να συνεχίσετε από εδώ
 
-> 🔗 **Read the rest of the Microsoft Defender Up Close series** for the sibling workloads: **[Microsoft Defender for Office 365](/posts/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)**.
+> 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close** για τα «αδελφά» workloads: **[Microsoft Defender for Office 365](/posts/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)**.
 
-> 🔗 **Want to see how all of this feeds into compliance evidencing?** Read **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Θέλετε να δείτε πώς όλα αυτά τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Microsoft Learn resources
+## Πηγές Microsoft Learn
 
-- [Microsoft Defender for Endpoint overview](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
-- [Microsoft Defender for Endpoint Plan 1 vs Plan 2](https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1-2)
-- [Onboard devices to Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/onboard-configure)
-- [Attack surface reduction rules reference](https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference)
+- [Microsoft Defender for Endpoint, επισκόπηση](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
+- [Onboarding συσκευών στο Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/onboard-configure)
+- [Attack surface reduction rules (αναφορά)](https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference)
 - [Microsoft Defender Vulnerability Management](https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management)
-- [Security baselines for Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/configure-machines-security-baseline)
+- [Security baselines για το Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/configure-machines-security-baseline)
 
 ---
 
@@ -198,7 +200,7 @@ IMAGE NOTES
 Image 1: Defender portal → Settings → Endpoints → Advanced features → Microsoft Intune connection toggle
 Image 2: Defender portal → Assets → Devices (populated inventory, redact names)
 Image 3: Intune admin center → Endpoint security → Security baselines → MDE baseline
-Image 4: Defender portal → Endpoints → ASR rules report
+Image 4: Defender portal → ASR rules report
 Image 5: Defender portal → Settings → Endpoints → Advanced features → Tamper protection
 Save to /static/images/posts/microsoft-defender-for-endpoint-deep-dive/
 -->

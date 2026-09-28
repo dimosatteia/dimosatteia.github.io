@@ -1,194 +1,198 @@
 ---
-title: "Enterprise Mobility + Security Explained — E3 and E5, and When You'd Actually Buy It"
-date: 2026-04-23T10:00:00+03:00
-lastmod: 2026-04-23T10:06:00+03:00
+title: "Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσετε"
+date: 2026-09-28T10:00:00+03:00
+lastmod: 2026-09-28T18:45:00+03:00
 draft: true
 keywords:
-  - how to read a Microsoft Secure Score recommendation
-  - Microsoft Secure Score recommendation fields explained
-  - Microsoft Secure Score implementation status meaning
-  - Microsoft Secure Score To address Planned Risk accepted
-  - Microsoft Secure Score score impact vs percentage
-  - Microsoft Secure Score user impact field
-  - Microsoft Secure Score Implementation tab guide
-  - Microsoft Secure Score for junior administrators
-  - Microsoft Secure Score for SOC analysts
+  - Enterprise Mobility + Security
+  - EMS E3 vs EMS E5
+  - Διαφορές EMS E3 και EMS E5
+  - Microsoft EMS αδειοδότηση
+  - EMS vs Microsoft 365 E3 E5 E7
+  - Πότε να αγοράσω EMS
+  - EMS με Google Workspace
+  - Microsoft Entra ID P1 P2 Intune EMS
+  - Microsoft licensing οδηγός
+  - Microsoft 365 Business Premium vs EMS
 tags:
-  - Microsoft Secure Score
-  - Microsoft Defender XDR
-  - Microsoft 365
-  - Security Recommendations
-  - Microsoft 365 Security
+  - Enterprise Mobility + Security
+  - Microsoft Licensing
   - Microsoft Entra ID
-  - Cyber GRC
-  - Security Posture Management
-  - Junior Administrator
-  - SOC Analyst
-  - ISO 27001
-  - NIS2
+  - Microsoft Intune
+  - Microsoft Purview
+  - Microsoft 365 Security
 author: "Dimosthenis Atteia"
-description: "Enterprise Mobility + Security (EMS) is Microsoft's identity, management, and protection bundle that predates Microsoft 365 E3/E5 — and it's still actively sold. A practical walkthrough of EMS E3 ($10.60/user) and EMS E5 ($16.40/user), what's in each, and when it's the right purchase instead of (or alongside) Microsoft 365."
-summary: "Enterprise Mobility + Security explained in plain language. EMS E3 and EMS E5 side by side — identity and access management, endpoint management, information protection, identity-driven security. When the EMS bundle is the right choice versus Microsoft 365 E3 or E5."
-categories: ["Microsoft Licensing", "Microsoft Security"]
+description: "Enterprise Mobility + Security με απλά λόγια: τι περιέχουν τα EMS E3 και E5, πώς σχετίζονται με το Microsoft 365 και πότε αξίζει πραγματικά να τα αγοράσετε."
+summary: "Το Enterprise Mobility + Security με απλά λόγια. EMS E3 και EMS E5 δίπλα-δίπλα: διαχείριση ταυτοτήτων και πρόσβασης, διαχείριση τερματικών, προστασία πληροφοριών, ασφάλεια με βάση την ταυτότητα. Πότε το πακέτο EMS είναι η σωστή επιλογή σε σύγκριση με το Microsoft 365 E3, E5 ή E7."
+categories: ["Microsoft Defender", "Microsoft Licensing", "Microsoft Security"]
 series: ["Microsoft Defender Up Close"]
+slug: 
 ShowToc: true
 TocOpen: false
-weight: 5
+weight: -6
 cover:
   image: "/images/MDE/EMS.png"
-  alt: "Enterprise Mobility + Security — E3 and E5 explained"
+  alt: "Enterprise Mobility + Security, E3 και E5"
   caption: "Microsoft Defender Up Close"
+  relative: true
+ShowReadingTime: true
+ShowWordCount: true
 ---
 
-> ⚠️ **Pricing note:** Prices quoted below are USD list prices from the [official Microsoft Enterprise Mobility + Security pricing page](https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing) as verified in mid-2026. Local pricing varies by region. Always double-check current pricing with your licensing partner before committing.
+> ⚠️ **Σημείωση για τις τιμές:** Οι τιμές που αναφέρονται παρακάτω είναι τιμές καταλόγου σε USD, με ετήσια δέσμευση, από τις επίσημες σελίδες τιμών της Microsoft για το [Enterprise Mobility + Security](https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing) και το [Microsoft 365 Enterprise](https://www.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-plans-and-pricing), όπως επαληθεύτηκαν τον Σεπτέμβριο του 2026. Οι τοπικές τιμές διαφέρουν ανά περιοχή. Επιβεβαιώνετε πάντα τις τρέχουσες τιμές με τον licensing partner σας πριν δεσμευτείτε.
 
-## Why this post exists
+## Γιατί γράφτηκε αυτό το άρθρο
 
-If you've been around Microsoft licensing for any length of time, you've seen the phrase **Enterprise Mobility + Security (EMS)** in proposals, quotes, or old contracts. It confuses people. Is it the same as Microsoft 365 E3? Is it a subset? A superset? Did Microsoft rename it to something else? Do I still need it if I have Microsoft 365 E5?
+Αν ασχολείστε με την αδειοδότηση της Microsoft έστω και για λίγο, έχετε δει τη φράση **Enterprise Mobility + Security (EMS)** σε προτάσεις, προσφορές ή παλιά συμβόλαια. Μπερδεύει τον κόσμο. Είναι το ίδιο με το Microsoft 365 E3; Είναι υποσύνολό του; Υπερσύνολο; Το μετονόμασε η Microsoft σε κάτι άλλο; Το χρειάζομαι αν έχω ήδη Microsoft 365 E5;
 
-Short answers: it's different from Microsoft 365, it's still sold, nobody renamed it, and whether you need it depends on what you already own. This post is the clear walkthrough I wish someone had handed me the first time a quote landed on my desk with "EMS E5" as a line item.
+Οι σύντομες απαντήσεις: είναι διαφορετικό από το Microsoft 365, εξακολουθεί να πωλείται, κανείς δεν το μετονόμασε, και το αν το χρειάζεστε εξαρτάται από το τι έχετε ήδη. Αυτό το άρθρο είναι ο ξεκάθαρος οδηγός που θα ήθελα να μου είχε δώσει κάποιος την πρώτη φορά που προσγειώθηκε στο γραφείο μου μια προσφορά με γραμμή «EMS E5».
 
-## What EMS actually is
+## Τι είναι πραγματικά το EMS
 
-**[Enterprise Mobility + Security](https://www.microsoft.com/en-us/security/business/microsoft-enterprise-mobility-security)** is Microsoft's **identity + management + protection** bundle. It predates the Microsoft 365 suite and is still actively sold because it solves a specific problem: organisations that already have productivity tooling they don't want to change (Google Workspace, or their existing Office licensing), but do want Microsoft's best-in-class identity, mobile management, and information protection on top.
+Το **[Enterprise Mobility + Security](https://www.microsoft.com/en-us/licensing/product-licensing/enterprise-mobility-security)** είναι το πακέτο **ταυτότητας + διαχείρισης + προστασίας** της Microsoft. Προηγήθηκε της σουίτας Microsoft 365 και εξακολουθεί να πωλείται ενεργά, επειδή λύνει ένα συγκεκριμένο πρόβλημα: οργανισμούς που έχουν ήδη εργαλεία παραγωγικότητας τα οποία δεν θέλουν να αλλάξουν (Google Workspace ή την υπάρχουσα αδειοδότηση Office), αλλά θέλουν από πάνω την ταυτότητα, τη διαχείριση συσκευών και την προστασία πληροφοριών της Microsoft.
 
-In other words: EMS is for organisations that want **the security layer of Microsoft 365 without the Microsoft 365 productivity apps**.
+Με άλλα λόγια: το EMS απευθύνεται σε οργανισμούς που θέλουν **το επίπεδο ασφάλειας και διαχείρισης του Microsoft 365 χωρίς τις εφαρμογές παραγωγικότητας του Microsoft 365**.
 
-The bundle comes in two tiers — E3 and E5 — mirroring the Microsoft 365 structure. Pricing as of this writing is **EMS E3 at $10.60/user/month** and **EMS E5 at $16.40/user/month**. Both are meaningfully cheaper than their Microsoft 365 counterparts (E3 at $39, E5 at $60), because you're not paying for Word, Excel, Teams, or SharePoint.
+Το πακέτο διατίθεται σε δύο επίπεδα, E3 και E5, κατ' αντιστοιχία με τη δομή του Microsoft 365. Οι τιμές τη στιγμή που γράφονται αυτές οι γραμμές είναι **EMS E3 στα $12.00/χρήστη/μήνα** και **EMS E5 στα $18.00/χρήστη/μήνα**. Και τα δύο είναι σημαντικά φθηνότερα από τα αντίστοιχα Microsoft 365 (E3 στα $39, E5 στα $60), επειδή δεν πληρώνετε για Word, Excel, Teams ή SharePoint.
 
-## What's in EMS E3
+## Τι περιλαμβάνει το EMS E3
 
-EMS E3 covers four capability areas:
+Το EMS E3 καλύπτει τέσσερις τομείς δυνατοτήτων:
 
-### Identity and access management
+### Διαχείριση ταυτοτήτων και πρόσβασης (Identity and access management)
 
-- **Microsoft Entra ID P1** — the identity foundation
-- **Simplified access management and security** — self-service password reset, group-based access
-- **Multifactor authentication** — MFA enforcement across cloud apps
-- **Conditional Access** — context-aware access policies
-- **Advanced security reporting** — identity-related sign-in and audit logs
-- **Windows Server CAL** — the Client Access License coverage for on-premises Windows Server access
+- **Microsoft Entra ID P1**: η βάση της ταυτότητας
+- **Απλοποιημένη διαχείριση πρόσβασης και ασφάλεια**: self-service password reset, πρόσβαση βάσει ομάδων
+- **Multifactor authentication**: επιβολή MFA σε όλες τις cloud εφαρμογές
+- **Conditional Access**: πολιτικές πρόσβασης βάσει πλαισίου
+- **Advanced security reporting**: sign-in και audit logs σχετικά με ταυτότητες
+- **Windows Server CAL**: κάλυψη Client Access License για πρόσβαση σε on-premises Windows Server
 
-### Endpoint management
+### Διαχείριση τερματικών (Endpoint management)
 
-- **Microsoft Intune Plan 1** — mobile device management and mobile application management across Windows, iOS, Android, macOS
-- **Mobile application management** — protection of corporate data in apps without full device enrolment
-- **Advanced Microsoft 365 data protection**
-- **Integrated PC management**
-- **Integrated on-premises management** (co-management scenarios with Configuration Manager)
+- **Microsoft Intune Plan 1**: διαχείριση κινητών συσκευών (MDM) και εφαρμογών (MAM) σε Windows, iOS, Android, macOS
+- **Microsoft Intune Plan 2**: Microsoft Tunnel για MAM, διαχείριση εξειδικευμένων συσκευών (specialty devices) και firmware-over-the-air updates
+- **Remote Help**: ασφαλείς συνεδρίες helpdesk προς τους χρήστες
+- **Advanced Analytics**: προληπτικός εντοπισμός προβλημάτων στις συσκευές
+- **Mobile application management**: προστασία εταιρικών δεδομένων μέσα στις εφαρμογές χωρίς πλήρη εγγραφή της συσκευής
+- **Integrated PC management** και **integrated on-premises management** (σενάρια co-management με το Configuration Manager)
 
-### Information protection (partial)
+Τα Intune Plan 2, Remote Help και Advanced Analytics περιλαμβάνονται στα EMS E3 και E5 χωρίς επιπλέον κόστος από την **1η Ιουλίου 2026**. Οι πιο προχωρημένες δυνατότητες του Microsoft Intune Suite (Endpoint Privilege Management, Cloud PKI, Enterprise App Management) **δεν** περιλαμβάνονται στο EMS και διατίθενται ως add-ons.
 
-- **Persistent data protection** — Microsoft Purview Information Protection at the classification and labelling level
+### Προστασία πληροφοριών (μερική)
+
+- **Persistent data protection**: Microsoft Purview Information Protection σε επίπεδο ταξινόμησης και ετικετών
 - **Document tracking and revocation**
-- **Encryption key management** per regulatory needs
+- **Διαχείριση κλειδιών κρυπτογράφησης** ανάλογα με τις κανονιστικές απαιτήσεις
 
-### Identity-driven security (partial)
+### Ασφάλεια με βάση την ταυτότητα (μερική)
 
-- **Microsoft Advanced Threat Analytics** (ATA — legacy on-premises product, extended support through January 2026)
+- **Microsoft Advanced Threat Analytics (ATA)**: παλαιό on-premises προϊόν. Η εκτεταμένη υποστήριξή του έληξε τον Ιανουάριο του 2026, οπότε μην το βάλετε σε νέο σχεδιασμό. Ο σύγχρονος αντικαταστάτης του είναι το Microsoft Defender for Identity, που περιλαμβάνεται στο E5.
 
-> 📷 **Image 1 — EMS pricing page comparison table.**
-> *Capture from https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing — screenshot the side-by-side comparison table showing E3 vs E5 feature differences.*
+[![Πίνακας σύγκρισης EMS E3 και EMS E5](/images/Microsoft-Defender/ems-01-pricing-comparison.webp)](/images/Microsoft-Defender/ems-01-pricing-comparison.webp)
+📷 **Εικόνα 1**: Πίνακας σύγκρισης στη σελίδα τιμών του EMS. Σελίδα τιμών Enterprise Mobility + Security της Microsoft.
 
-## What E5 adds on top
+## Τι προσθέτει το E5
 
-EMS E5 includes everything in E3, plus meaningful upgrades across three areas:
+Το EMS E5 περιλαμβάνει όλα όσα έχει το E3, και επιπλέον ουσιαστικές αναβαθμίσεις σε τρεις τομείς:
 
-### Identity and access management — E5 upgrades
+### Διαχείριση ταυτοτήτων και πρόσβασης: αναβαθμίσεις E5
 
-- **Microsoft Entra ID P2** — the full identity feature set, not just P1
-- **Risk-based Conditional Access** — the policy engine can now factor in sign-in risk and user risk scores
-- **Privileged Identity Management (PIM)** — just-in-time elevation for admin roles, with approval workflows and audit trails
+- **Microsoft Entra ID P2**: το πλήρες σύνολο δυνατοτήτων ταυτότητας, όχι μόνο το P1
+- **Risk-based Conditional Access**: η μηχανή πολιτικών μπορεί πλέον να λαμβάνει υπόψη το sign-in risk και το user risk
+- **Privileged Identity Management (PIM)**: just-in-time αναβάθμιση δικαιωμάτων για ρόλους διαχειριστή, με ροές έγκρισης και audit trails
 
-### Information protection — E5 upgrades
+### Προστασία πληροφοριών: αναβαθμίσεις E5
 
-- **Intelligent data classification and labelling** — the automatic sensitivity label recommendations driven by Microsoft Purview's content scanning
+- **Intelligent data classification and labelling**: αυτόματες προτάσεις sensitivity labels βάσει της σάρωσης περιεχομένου του Microsoft Purview
 
-### Identity-driven security — E5 upgrades
+### Ασφάλεια με βάση την ταυτότητα: αναβαθμίσεις E5
 
-- **Microsoft Defender for Cloud Apps** — the full CASB, as we covered in the [Microsoft Defender for Cloud Apps deep dive](/posts/microsoft-defender-for-cloud-apps-deep-dive/)
-- **Microsoft Defender for Identity** — the identity threat detection product, as we covered in the [Microsoft Defender for Identity deep dive](/posts/microsoft-defender-for-identity-deep-dive/)
+- **Microsoft Defender for Cloud Apps**: το πλήρες CASB, όπως το καλύψαμε στον [αναλυτικό οδηγό για το Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)
+- **Microsoft Defender for Identity**: το προϊόν ανίχνευσης απειλών ταυτότητας, όπως το καλύψαμε στον [αναλυτικό οδηγό για το Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)
 
-The jump from EMS E3 to EMS E5 is the jump from *"we manage identities and devices"* to *"we manage identities and devices **and** we have identity threat detection, SaaS security, and risk-aware policies"*.
+Το πέρασμα από το EMS E3 στο EMS E5 είναι το πέρασμα από το *«διαχειριζόμαστε ταυτότητες και συσκευές»* στο *«διαχειριζόμαστε ταυτότητες και συσκευές **και** έχουμε ανίχνευση απειλών ταυτότητας, ασφάλεια SaaS και πολιτικές που λαμβάνουν υπόψη τον κίνδυνο»*.
 
-## Where EMS sits relative to Microsoft 365
+Να σημειωθεί ότι το EMS E5 **δεν** περιλαμβάνει Microsoft Defender for Endpoint ούτε Microsoft Defender for Office 365. Αυτά έρχονται με τα Microsoft 365 E3/E5 ή ως ξεχωριστά προϊόντα.
 
-This is the part that trips most people up. Here's the relationship:
+## Πού τοποθετείται το EMS σε σχέση με το Microsoft 365
 
-- **Microsoft 365 E3** = Microsoft productivity apps + Windows 11 Enterprise + **EMS E3** + basic Defender (MDE P1, MDO P1)
-- **Microsoft 365 E5** = Microsoft productivity apps + Windows 11 Enterprise + **EMS E5** + full Defender stack + Microsoft Sentinel integration + Security Copilot + Power BI Pro + advanced Microsoft Purview
+Αυτό είναι το σημείο που μπερδεύει τους περισσότερους. Η σχέση είναι η εξής:
 
-In other words, Microsoft 365 bundles EMS inside itself. If you buy Microsoft 365 E5, you already have EMS E5 — you don't need to buy it again. Don't let anyone sell you both.
+- **Microsoft 365 E3** ($39) = εφαρμογές παραγωγικότητας της Microsoft + Windows 11 Enterprise + **το επίπεδο του EMS E3** + βασικό Defender (MDE Plan 1, MDO Plan 1)
+- **Microsoft 365 E5** ($60) = εφαρμογές παραγωγικότητας της Microsoft + Windows 11 Enterprise + **το επίπεδο του EMS E5** + πλήρης στοίβα Defender (MDE Plan 2, MDO Plan 2, Defender for Identity, Defender for Cloud Apps) + Security Copilot + Power BI Pro + προχωρημένο Microsoft Purview
+- **Microsoft 365 E7** ($99) = όλο το Microsoft 365 E5 + Microsoft 365 Copilot + Agent 365 + Microsoft Entra Suite
 
-> 📷 **Image 2 — The Microsoft 365 Admin Center licenses page showing assigned licenses.**
-> *Capture from: admin.microsoft.com → Billing → Licenses. Show your assigned licenses — this is how you verify what you actually own. Redact counts if sensitive.*
+Με άλλα λόγια, το Microsoft 365 περιέχει ήδη μέσα του τις δυνατότητες του EMS. Αν αγοράσετε Microsoft 365 E5 ή E7, έχετε ήδη ό,τι δίνει το EMS E5 και δεν χρειάζεται να το αγοράσετε ξανά. Μην αφήσετε κανέναν να σας πουλήσει και τα δύο.
 
-## When EMS is the right buy
+[![Οι ανατεθειμένες άδειες στο Microsoft 365 admin center](/images/Microsoft-Defender/ems-02-m365-licenses.webp)](/images/Microsoft-Defender/ems-02-m365-licenses.webp)
+📷 **Εικόνα 2**: Η σελίδα αδειών στο Microsoft 365 Admin Center με τις ανατεθειμένες άδειες. Microsoft 365 admin center → Billing → Licenses.
 
-Three legitimate scenarios:
+## Πότε το EMS είναι η σωστή αγορά
 
-### Scenario 1 — You already use a non-Microsoft productivity suite
+Τρία νόμιμα σενάρια:
 
-Your organisation runs on Google Workspace for email, docs, and collaboration. Your CIO isn't changing that. But you need enterprise-grade identity, mobile device management, and information protection, and you don't want three different vendors for those.
+### Σενάριο 1: Χρησιμοποιείτε ήδη σουίτα παραγωγικότητας άλλου κατασκευαστή
 
-**Buy EMS E3 or E5.** You get the security and management layer of Microsoft 365 without paying for productivity apps you won't use. This is the most common legitimate EMS-standalone scenario.
+Ο οργανισμός σας δουλεύει με Google Workspace για email, έγγραφα και συνεργασία. Ο CIO σας δεν πρόκειται να το αλλάξει. Χρειάζεστε όμως ταυτότητα, διαχείριση κινητών συσκευών και προστασία πληροφοριών εταιρικού επιπέδου, και δεν θέλετε τρεις διαφορετικούς κατασκευαστές γι' αυτά.
 
-### Scenario 2 — You have existing Office licensing you're not ready to replace
+**Αγοράστε EMS E3 ή E5.** Αποκτάτε το επίπεδο ασφάλειας και διαχείρισης του Microsoft 365 χωρίς να πληρώνετε για εφαρμογές παραγωγικότητας που δεν θα χρησιμοποιήσετε. Αυτό είναι το πιο συνηθισμένο νόμιμο σενάριο για αυτόνομο EMS.
 
-You bought volume-licensed Office Professional Plus years ago for perpetual use, and you're not yet ready to migrate to subscription-based Microsoft 365 Apps. You still want modern identity and security, though.
+### Σενάριο 2: Έχετε υπάρχουσα αδειοδότηση Office που δεν είστε έτοιμοι να αντικαταστήσετε
 
-**Buy EMS E3 or E5** as the add-on layer. This is slightly less common in 2026 than it was five years ago — most organisations have migrated to subscription — but the scenario still exists, especially in public sector and regulated industries.
+Αγοράσατε πριν από χρόνια Office Professional Plus με volume licensing για μόνιμη χρήση (perpetual), και δεν είστε ακόμη έτοιμοι να περάσετε στο συνδρομητικό Microsoft 365 Apps. Θέλετε όμως σύγχρονη ταυτότητα και ασφάλεια.
 
-### Scenario 3 — You're adding security to a partial Microsoft 365 deployment
+**Αγοράστε EMS E3 ή E5** ως επιπλέον επίπεδο (add-on). Αυτό είναι λιγότερο συνηθισμένο το 2026 απ' ό,τι πριν από πέντε χρόνια, αφού οι περισσότεροι οργανισμοί έχουν περάσει σε συνδρομή, αλλά το σενάριο υπάρχει ακόμη, ιδίως στον δημόσιο τομέα και σε ρυθμιζόμενους κλάδους.
 
-You have some users on Microsoft 365 Business Standard (productivity only, no security/management) and want to add the security layer without upgrading everyone to Business Premium.
+### Σενάριο 3: Προσθέτετε ασφάλεια σε μερική ανάπτυξη Microsoft 365
 
-Technically, Business Standard + EMS is a valid combination, but in practice Business Premium is usually a better value. Check with a licensing partner before committing.
+Έχετε κάποιους χρήστες σε Microsoft 365 Business Standard (μόνο παραγωγικότητα, χωρίς ασφάλεια/διαχείριση) και θέλετε να προσθέσετε το επίπεδο ασφάλειας χωρίς να αναβαθμίσετε όλους σε Business Premium.
 
-## When EMS is *not* the right buy
+Τεχνικά, ο συνδυασμός Business Standard + EMS είναι έγκυρος, αλλά στην πράξη το Business Premium είναι συνήθως καλύτερη αξία. Συμβουλευτείτε έναν licensing partner πριν δεσμευτείτε.
 
-**You already have Microsoft 365 E3 or E5.** You already own EMS. Don't pay twice.
+## Πότε το EMS *δεν* είναι η σωστή αγορά
 
-**You need only one or two EMS components.** If you specifically need just Microsoft Entra ID P1 or just Microsoft Intune, those are available as standalone products at lower per-user cost. The EMS bundle pays off when you'd buy at least three of its components anyway.
+**Έχετε ήδη Microsoft 365 E3, E5 ή E7.** Έχετε ήδη τις δυνατότητες του EMS. Μην πληρώνετε δύο φορές.
 
-**You're under 300 users and mostly on Microsoft productivity tools.** Microsoft 365 Business Premium at $22/user is almost certainly a better fit — you get EMS-equivalent security plus the full productivity suite.
+**Χρειάζεστε μόνο ένα ή δύο στοιχεία του EMS.** Αν χρειάζεστε συγκεκριμένα μόνο Microsoft Entra ID P1 ή μόνο Microsoft Intune, αυτά διατίθενται ως αυτόνομα προϊόντα. Το πακέτο EMS συνήθως αποσβένεται όταν θα αγοράζατε έτσι κι αλλιώς τουλάχιστον τρία από τα στοιχεία του.
 
-## A decision checklist
+**Είστε έως 300 χρήστες και χρησιμοποιείτε κυρίως εργαλεία παραγωγικότητας της Microsoft.** Το Microsoft 365 Business Premium είναι σχεδόν σίγουρα καλύτερη επιλογή, αφού παίρνετε ταυτότητα, διαχείριση συσκευών και προστασία από απειλές μαζί με την πλήρη σουίτα παραγωγικότητας. Τα πακέτα Business καλύπτουν έως 300 χρήστες.
 
-- ☐ **Do you already own Microsoft 365 E3 or E5?** → You already have EMS. Stop here.
-- ☐ **Are you under 300 users on Microsoft productivity tools?** → Microsoft 365 Business Premium. Stop here.
-- ☐ **Do you use a non-Microsoft productivity suite (Google Workspace, etc.)?** → EMS is likely the right call. E3 if basic, E5 if you need Defender for Identity + Defender for Cloud Apps + PIM.
-- ☐ **Do you have perpetual-license Office you're not replacing?** → EMS as an add-on works. Evaluate E3 vs E5 by the identity-threat-detection and CASB question.
-- ☐ **Do you need only one or two components?** → Standalone SKUs (Microsoft Entra ID P1/P2, Microsoft Intune Plan 1/2) may be cheaper.
+## Λίστα ελέγχου για την απόφαση
 
-> 📷 **Image 3 — Standalone EMS-component SKUs page.**
-> *Capture from: the Microsoft licensing page showing Microsoft Entra ID pricing and Microsoft Intune pricing. Or from admin.microsoft.com → Billing → Purchase services, searching for "Entra ID" or "Intune". This is the page that shows the à-la-carte alternative.*
+- ☐ **Έχετε ήδη Microsoft 365 E3, E5 ή E7;** → Έχετε ήδη τις δυνατότητες του EMS. Σταματήστε εδώ.
+- ☐ **Είστε έως 300 χρήστες σε εργαλεία παραγωγικότητας της Microsoft;** → Microsoft 365 Business Premium. Σταματήστε εδώ.
+- ☐ **Χρησιμοποιείτε σουίτα παραγωγικότητας άλλου κατασκευαστή (Google Workspace κ.λπ.);** → Το EMS είναι πιθανότατα η σωστή επιλογή. E3 για τα βασικά, E5 αν χρειάζεστε Defender for Identity + Defender for Cloud Apps + PIM.
+- ☐ **Έχετε Office με μόνιμη άδεια που δεν αντικαθιστάτε;** → Το EMS ως add-on λειτουργεί. Επιλέξτε ανάμεσα σε E3 και E5 με κριτήριο την ανίχνευση απειλών ταυτότητας και το CASB.
+- ☐ **Χρειάζεστε μόνο ένα ή δύο στοιχεία;** → Τα αυτόνομα SKUs (Microsoft Entra ID P1/P2, Microsoft Intune) μπορεί να είναι φθηνότερα.
 
-## Where to go from here
+[![Αυτόνομα SKUs Microsoft Entra ID και Microsoft Intune](/images/Microsoft-Defender/ems-03-standalone-skus.webp)](/images/Microsoft-Defender/ems-03-standalone-skus.webp)
+📷 **Εικόνα 3**: Σελίδα με τα αυτόνομα SKUs των στοιχείων του EMS. Microsoft 365 admin center → Billing → Purchase services.
 
-> 🔗 **Read the Microsoft Defender Up Close series** for practical walkthroughs of the workloads inside EMS E5: **[Microsoft Defender for Endpoint](/posts/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)**.
+## Πού να συνεχίσετε από εδώ
 
-> 🔗 **Curious how to turn any of these into measurable compliance?** Read **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Διαβάστε τη σειρά Microsoft Defender Up Close**: τα **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)** και **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)** περιλαμβάνονται στο EMS E5, ενώ τα **[Microsoft Defender for Endpoint](/posts/microsoft-defender-for-endpoint-deep-dive/)** και **[Microsoft Defender for Office 365](/posts/microsoft-defender-for-office-365-deep-dive/)** συμπληρώνουν τη στοίβα μέσω του Microsoft 365.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+> 🔗 **Θέλετε να δείτε πώς μετατρέπετε οποιοδήποτε από αυτά σε μετρήσιμη συμμόρφωση;** Διαβάστε το **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
 
-## Microsoft Learn and pricing resources
+Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-- [Enterprise Mobility + Security pricing and plans](https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing)
-- [Enterprise Mobility + Security licensing details](https://www.microsoft.com/en-us/licensing/product-licensing/enterprise-mobility-security)
-- [Microsoft Security products hub](https://www.microsoft.com/en-us/security/)
-- [Microsoft Entra ID P1 vs P2](https://learn.microsoft.com/en-us/entra/fundamentals/licensing)
-- [Microsoft Intune plans](https://learn.microsoft.com/en-us/mem/intune/fundamentals/licenses)
+## Πηγές Microsoft Learn και τιμών
+
+- [Enterprise Mobility + Security: τιμές και πακέτα](https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing)
+- [Microsoft 365 Enterprise: τιμές και πακέτα (E3, E5, E7)](https://www.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-plans-and-pricing)
+- [Enterprise Mobility + Security: λεπτομέρειες αδειοδότησης](https://www.microsoft.com/en-us/licensing/product-licensing/enterprise-mobility-security)
+- [Microsoft Security: κεντρική σελίδα προϊόντων](https://www.microsoft.com/en-us/security/)
+- [Αδειοδότηση Microsoft Entra: P1 vs P2](https://learn.microsoft.com/en-us/entra/fundamentals/licensing)
+- [Πακέτα Microsoft Intune](https://learn.microsoft.com/en-us/intune/fundamentals/licensing)
 - [Microsoft Purview Information Protection](https://learn.microsoft.com/en-us/purview/information-protection)
 
 ---
 
 <!--
 IMAGE NOTES
-Image 1: Screenshot the EMS comparison table at
-  https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing
-Image 2: admin.microsoft.com → Billing → Licenses (redact counts if sensitive)
-Image 3: Licensing page showing standalone Entra ID / Intune SKUs, or
-  admin.microsoft.com → Billing → Purchase services (search "Entra" or "Intune")
-Save to /static/images/posts/enterprise-mobility-security-explained/
+Image 1: ems-01-pricing-comparison.webp  (Σελίδα τιμών Enterprise Mobility + Security της Microsoft.)
+Image 2: ems-02-m365-licenses.webp  (Microsoft 365 admin center → Billing → Licenses.)
+Image 3: ems-03-standalone-skus.webp  (Microsoft 365 admin center → Billing → Purchase services.)
+Save to /static/images/Microsoft-Defender/
 -->

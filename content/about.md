@@ -7,7 +7,7 @@ keywords:
   - Dimosthenis Atteia
   - CIO/CISO
   - Microsoft 365 Security
-  - Microsoft Security MVP
+  - Microsoft Security
   - Cloud Security Architect
   - Microsoft Defender
   - Security Copilot
@@ -69,8 +69,8 @@ and what you actually face in production.
 
 ## Expertise areas
 
-- **Category:** Microsoft 365
-- **Expertise area:** Microsoft 365, Microsoft 365 Security
+- **Category:** Security, M365
+- **Technology area:** Microsoft 365, Microsoft Security
 
 ---
 
@@ -94,6 +94,13 @@ and what you actually face in production.
 
 ---
 
+## Community recognition
+
+In 2026 I was featured in the **ISC2 Hellenic Chapter Member Spotlight**, where I have been a member since July 2022. The chapter has been a genuine accelerator for my professional development, giving me access to a strong peer network, shared knowledge, and leadership opportunities within the Greek cybersecurity community. The spotlight reflects the journey that shapes this blog: from IT technician to CIO/CISO in the same organization, built on hands-on work across IT infrastructure, cloud projects, SOC partnerships, and compliance audits. What drives me remains the same, turning risk into resilience, protecting people and data, and enabling the business to innovate safely. As I like to say, *prevention is the only cure*.
+
+![ISC2 Hellenic Chapter Member Spotlight – Dimosthenis Atteia](/images/isc2-hellenic-spotlight.webp)
+
+---
 ## Get in touch
 
 - 🐙 GitHub: dimosatteia (https://github.com/dimosatteia)

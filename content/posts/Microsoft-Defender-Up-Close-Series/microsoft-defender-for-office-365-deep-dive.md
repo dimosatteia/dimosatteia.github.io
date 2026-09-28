@@ -1,194 +1,199 @@
 ---
-title: "Microsoft Defender for Office 365, Up Close Part 1b — From Preset Policies to Advanced Configuration"
-date: 2026-04-23T10:00:00+03:00
-lastmod: 2026-04-23T10:00:00+03:00
+title: "Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση"
+date: 2026-09-28T10:00:00+03:00
+lastmod: 2026-09-28T18:45:00+03:00
 draft: true
 keywords:
-  - how to read a Microsoft Secure Score recommendation
-  - Microsoft Secure Score recommendation fields explained
-  - Microsoft Secure Score implementation status meaning
-  - Microsoft Secure Score To address Planned Risk accepted
-  - Microsoft Secure Score score impact vs percentage
-  - Microsoft Secure Score user impact field
-  - Microsoft Secure Score Implementation tab guide
-  - Microsoft Secure Score for junior administrators
-  - Microsoft Secure Score for SOC analysts
+  - Microsoft Defender for Office 365
+  - Microsoft Defender for Office 365 οδηγός
+  - Defender for Office 365 Plan 1 vs Plan 2
+  - Διαφορές Defender for Office 365 Plan 1 και Plan 2
+  - Preset security policies Standard Strict
+  - Safe Links ρυθμίσεις
+  - Safe Attachments Block Dynamic Delivery
+  - Anti-phishing impersonation protection
+  - Threat Explorer Defender for Office 365
+  - Attack Simulation Training
 tags:
-  - Microsoft Secure Score
+  - Microsoft Defender for Office 365
   - Microsoft Defender XDR
-  - Microsoft 365
-  - Security Recommendations
+  - Email Security
+  - Phishing
+  - Safe Links
+  - Safe Attachments
   - Microsoft 365 Security
-  - Microsoft Entra ID
-  - Cyber GRC
-  - Security Posture Management
-  - Junior Administrator
-  - SOC Analyst
-  - ISO 27001
-  - NIS2
 author: "Dimosthenis Atteia"
-description: "A hands-on walk through Microsoft Defender for Office 365 — Plan 1 vs Plan 2 differences, the preset security policies that give you 80% of the value in 10 minutes, and the custom policy configuration that matters for the remaining 20%."
-summary: "Microsoft Defender for Office 365 explained in practical terms. Plan 1 vs Plan 2, how preset security policies take the friction out of day-one deployment, and the specific settings for Safe Links, Safe Attachments, and anti-phishing that matter most."
+description: "Πρακτικός οδηγός για το Microsoft Defender for Office 365: Plan 1 vs Plan 2, preset policies, Safe Links, Safe Attachments και anti-phishing."
+summary: "Το Microsoft Defender for Office 365 με πρακτικούς όρους. Plan 1 vs Plan 2, πώς οι preset security policies απλοποιούν την ανάπτυξη από την πρώτη μέρα, και οι συγκεκριμένες ρυθμίσεις για Safe Links, Safe Attachments και anti-phishing που μετράνε περισσότερο."
 categories: ["Microsoft Defender", "Email Security"]
 series: ["Microsoft Defender Up Close"]
+slug: 
 ShowToc: true
 TocOpen: false
-weight: 2
+weight: -6
 cover:
   image: "/images/MDE/MDO.png"
-  alt: "Microsoft Defender for Office 365 — deep dive"
+  alt: "Microsoft Defender for Office 365, αναλυτικός οδηγός"
   caption: "Microsoft Defender Up Close"
+  relative: true
+ShowReadingTime: true
+ShowWordCount: true
 ---
 
-## Why this one matters more than most
+## Γιατί αυτό μετράει περισσότερο από τα περισσότερα
 
-Email is where the vast majority of real attacks start. Every SOC team will tell you the same thing: if you ask where their high-fidelity alerts come from, email is in the top three nine times out of ten. That's the job **[Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)** does — protecting the productivity surface your users spend most of their day in.
+Το email είναι το σημείο όπου ξεκινά η συντριπτική πλειονότητα των πραγματικών επιθέσεων. Από την εμπειρία μου, αν ρωτήσετε μια ομάδα SOC από πού προέρχονται τα υψηλής αξιοπιστίας alerts της, το email θα βρίσκεται σχεδόν πάντα στις τρεις πρώτες θέσεις. Αυτή είναι η δουλειά του **[Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)**: να προστατεύει την επιφάνεια παραγωγικότητας στην οποία οι χρήστες σας περνούν το μεγαλύτερο μέρος της ημέρας τους.
 
-This post is the practical follow-up to **[Part 2 of the Defender Demystified series](/posts/defender-demystified-part-2-four-workloads/)**. We'll cover the Plan 1 vs Plan 2 difference, the preset security policies that make day-one deployment almost painless, and the specific settings that are worth your configuration time.
+Αυτό το άρθρο είναι η πρακτική συνέχεια του **[2ου μέρους της σειράς Defender Demystified](/posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads/)**. Θα καλύψουμε τη διαφορά Plan 1 και Plan 2, τις preset security policies που κάνουν την ανάπτυξη της πρώτης μέρας σχεδόν ανώδυνη, και τις συγκεκριμένες ρυθμίσεις που αξίζουν τον χρόνο σας.
 
-## What Microsoft Defender for Office 365 protects
+## Τι προστατεύει το Microsoft Defender for Office 365
 
-The product secures four surfaces inside the Microsoft 365 productivity stack:
+Το προϊόν ασφαλίζει τέσσερις επιφάνειες μέσα στη στοίβα παραγωγικότητας του Microsoft 365:
 
-- **Email** (Exchange Online inbound, outbound, and internal)
-- **Microsoft Teams** (chat messages, channels, files shared in Teams)
-- **SharePoint Online** (files and sharing)
-- **OneDrive for Business** (files and sharing)
+- **Email**: Exchange Online, εισερχόμενα, εξερχόμενα και εσωτερικά
+- **Microsoft Teams**: μηνύματα chat, channels, αρχεία που διαμοιράζονται στο Teams
+- **SharePoint Online**: αρχεία και διαμοιρασμός
+- **OneDrive for Business**: αρχεία και διαμοιρασμός
 
-If a link lives in Teams chat or an attachment lives in a OneDrive shared folder, it gets the same treatment as something that arrived via email. That uniformity matters a lot — attackers know email is well-defended and have been shifting to Teams and SharePoint-based phishing for exactly this reason.
+Ένα link σε chat του Teams ή ένα συνημμένο σε κοινόχρηστο φάκελο του OneDrive ελέγχεται κι αυτό, όχι μόνο ό,τι φτάνει μέσω email. Αυτό μετράει πολύ, γιατί οι επιτιθέμενοι γνωρίζουν ότι το email είναι καλά προστατευμένο και στρέφονται σε phishing μέσω Teams και SharePoint ακριβώς για αυτόν τον λόγο.
 
 ## Plan 1 vs Plan 2
 
-Like Microsoft Defender for Endpoint, Microsoft Defender for Office 365 sells in two tiers.
+Όπως και το Microsoft Defender for Endpoint, έτσι και το Microsoft Defender for Office 365 πωλείται σε δύο επίπεδα.
 
-**[Plan 1](https://learn.microsoft.com/en-us/defender-office-365/mdo-security-comparison)** is the **preventive** tier:
+Το **[Plan 1](https://learn.microsoft.com/en-us/defender-office-365/mdo-about#defender-for-office-365-plan-1-vs-plan-2-cheat-sheet)** είναι το **προληπτικό** επίπεδο:
 
 - Safe Links
 - Safe Attachments
-- Anti-phishing policies with impersonation protection
-- Anti-spam and anti-malware policies
-- Real-time detection reports
+- Anti-phishing policies με impersonation protection
+- Anti-spam και anti-malware policies
+- Αναφορές ανίχνευσης σε πραγματικό χρόνο (Real-time detections)
 
-Plan 1 is now included in **Microsoft 365 E3** after the July 2026 packaging update, and in Microsoft 365 Business Premium.
+Το Plan 1 περιλαμβάνεται πλέον στο **Microsoft 365 E3** μετά την αναδιάρθρωση πακέτων του Ιουλίου 2026, καθώς και στο Microsoft 365 Business Premium.
 
-**Plan 2** adds the **investigation and training** capabilities:
+Το **Plan 2** προσθέτει τις δυνατότητες **διερεύνησης και εκπαίδευσης**:
 
-- **Threat Explorer** — searchable timeline of all email-borne threats
-- **Attack Simulation Training** — run realistic phishing campaigns against your own users
-- **Automated Investigation and Response (AIR)** for email incidents
-- Threat Trackers and Campaign Views
-- Advanced hunting on email data
+- **Threat Explorer**: αναζητήσιμο χρονολόγιο όλων των απειλών που έφτασαν μέσω email
+- **Attack Simulation Training**: ρεαλιστικές καμπάνιες phishing προς τους δικούς σας χρήστες
+- **Automated Investigation and Response (AIR)** για περιστατικά email
+- Threat Trackers και Campaign Views
+- Advanced hunting στα δεδομένα email
 
-Plan 2 is included in **Microsoft 365 E5** or as part of the Microsoft Defender Suite add-on.
+Το Plan 2 περιλαμβάνεται στο **Microsoft 365 E5** ή ως μέρος του add-on Microsoft Defender Suite.
 
-If your organisation has any security awareness programme, Plan 2 Attack Simulation Training alone tends to justify the upgrade — running believable simulated phishing against your users and tracking improvement over time is a genuinely effective control.
+Αν ο οργανισμός σας έχει οποιοδήποτε πρόγραμμα ευαισθητοποίησης σε θέματα ασφάλειας, το Attack Simulation Training του Plan 2 από μόνο του συνήθως δικαιολογεί την αναβάθμιση. Η εκτέλεση πειστικών προσομοιώσεων phishing προς τους χρήστες σας και η παρακολούθηση της βελτίωσης με τον χρόνο είναι ένα πραγματικά αποτελεσματικό μέτρο ελέγχου.
 
-## The fastest way to get value — preset security policies
+## Ο γρηγορότερος τρόπος να πάρετε αξία: preset security policies
 
-Microsoft knows configuring anti-phishing, anti-spam, and anti-malware policies from scratch is tedious. So they ship **[preset security policies](https://learn.microsoft.com/en-us/defender-office-365/preset-security-policies)** — pre-configured bundles in two strictness levels that you just turn on for the users or groups you want.
+Η Microsoft γνωρίζει ότι η ρύθμιση anti-phishing, anti-spam και anti-malware policies από το μηδέν είναι κουραστική. Γι' αυτό παρέχει **[preset security policies](https://learn.microsoft.com/en-us/defender-office-365/preset-security-policies)**, δηλαδή προρυθμισμένα πακέτα που απλώς ενεργοποιείτε για τους χρήστες ή τις ομάδες που θέλετε.
 
-> 📷 **Image 1 — Preset security policies in the Defender portal.**
-> *Capture from: Defender portal → Email & collaboration → Policies & rules → Threat policies → Preset security policies. Show the Standard and Strict toggles with their assignment status.*
+[![Οι preset security policies Standard και Strict στο Defender portal](/images/Microsoft-Defender/mdo-01-preset-security-policies.webp)](/images/Microsoft-Defender/mdo-01-preset-security-policies.webp)
+📷 **Εικόνα 1**: Preset security policies στο Defender portal. Defender portal → Email & collaboration → Policies & rules → Threat policies → Preset security policies.
 
-Two levels:
+Υπάρχουν τρία preset policies:
 
-- **Standard protection** — recommended for most users. Reasonable defaults, low false-positive rate.
-- **Strict protection** — recommended for high-risk users (executives, finance, legal, IT admins). Tighter controls, slightly higher false-positive rate.
+- **Built-in protection**: εφαρμόζεται αυτόματα σε όλους τους χρήστες που δεν καλύπτονται από άλλη policy, και δίνει βασική προστασία Safe Links και Safe Attachments. Είναι το «δίχτυ ασφαλείας» και δεν χρειάζεται ενέργεια από εσάς.
+- **Standard protection**: προτείνεται για τους περισσότερους χρήστες. Λογικές προεπιλογές, χαμηλό ποσοστό false positives.
+- **Strict protection**: προτείνεται για χρήστες υψηλού κινδύνου (διοίκηση, οικονομικό τμήμα, νομικό τμήμα, IT admins). Αυστηρότεροι έλεγχοι, ελαφρώς υψηλότερο ποσοστό false positives.
 
-Assign **Standard protection** to all users. Assign **Strict protection** to a group containing your high-value targets. That's a ten-minute configuration that delivers roughly 80% of the value of Microsoft Defender for Office 365.
+Αναθέστε το **Standard protection** σε όλους τους χρήστες. Αναθέστε το **Strict protection** σε μια ομάδα που περιέχει τους στόχους υψηλής αξίας. Από την εμπειρία μου, αυτή η ρύθμιση των δέκα λεπτών αποδίδει το μεγαλύτερο μέρος της αξίας του Microsoft Defender for Office 365.
 
-The preset policies evolve with the threat landscape — Microsoft updates the underlying rules as attack techniques change, so you benefit without having to manage policy drift yourself.
+Οι preset policies εξελίσσονται μαζί με το τοπίο απειλών. Η Microsoft ενημερώνει τις υποκείμενες ρυθμίσεις καθώς αλλάζουν οι τεχνικές επίθεσης, οπότε επωφελείστε χωρίς να χρειάζεται να διαχειρίζεστε εσείς την απόκλιση των πολιτικών (policy drift).
 
-## The configuration worth doing yourself
+## Η παραμετροποίηση που αξίζει να κάνετε μόνοι σας
 
-The remaining 20% of value sits in settings Microsoft leaves to you because they depend on your environment. Here are the ones worth the time.
+Η υπόλοιπη αξία βρίσκεται σε ρυθμίσεις που η Microsoft αφήνει σε εσάς, επειδή εξαρτώνται από το περιβάλλον σας. Αυτές είναι όσες αξίζουν τον χρόνο.
 
 ### Safe Links policies
 
-**[Safe Links](https://learn.microsoft.com/en-us/defender-office-365/safe-links-about)** rewrites every URL in inbound email (and in Teams chat) so clicks are checked at click-time, not just at delivery. The default presets cover most cases, but for custom policies check:
+Το **[Safe Links](https://learn.microsoft.com/en-us/defender-office-365/safe-links-about)** σαρώνει τα URLs στα εισερχόμενα email πριν από την παράδοση και τα ξαναγράφει (wrap), ώστε κάθε κλικ να ελέγχεται και τη στιγμή του κλικ. Στο Teams και στις εφαρμογές Office τα URLs δεν ξαναγράφονται, αλλά ελέγχονται επίσης τη στιγμή του κλικ. Τα links προς SharePoint και OneDrive δεν γίνονται πλέον wrap, εξακολουθούν όμως να ελέγχονται από την υπηρεσία.
 
-- **Real-time URL scanning** — enabled by default, don't turn off
-- **Wait for URL scanning to complete before delivery** — slower delivery but safer; enable for high-risk groups
-- **Apply Safe Links to email messages sent within the organisation** — catches internal lateral phishing (where an attacker has already compromised one account)
-- **Do not track user clicks** — leave this off unless legal specifically asks; you want the click telemetry
+Οι προεπιλογές των presets καλύπτουν τις περισσότερες περιπτώσεις, αλλά στις custom policies ελέγξτε:
 
-> 📷 **Image 2 — Safe Links policy configuration.**
-> *Capture from: Defender portal → Email & collaboration → Policies & rules → Threat policies → Safe Links. Open or create a policy and capture the configuration pane.*
+- **Apply real-time URL scanning for suspicious links and links that point to files**: ενεργοποιημένο, μην το απενεργοποιήσετε
+- **Wait for URL scanning to complete before delivering the message**: η Microsoft το προτείνει ενεργό για όλους, τόσο στο Standard όσο και στο Strict
+- **Apply Safe Links to email messages sent within the organization**: πιάνει το εσωτερικό lateral phishing (όταν ένας επιτιθέμενος έχει ήδη παραβιάσει έναν λογαριασμό)
+- **Track user clicks**: αφήστε το ενεργοποιημένο, γιατί θέλετε το telemetry των κλικ. Απενεργοποιήστε το μόνο αν το ζητήσει ρητά το νομικό τμήμα
+- **Let users click through to the original URL**: αφήστε το απενεργοποιημένο
+
+[![Ρυθμίσεις Safe Links policy στο Defender portal](/images/Microsoft-Defender/mdo-02-safe-links-policy.webp)](/images/Microsoft-Defender/mdo-02-safe-links-policy.webp)
+📷 **Εικόνα 2**: Παραμετροποίηση Safe Links policy. Defender portal → Email & collaboration → Policies & rules → Threat policies → Safe Links.
 
 ### Safe Attachments policies
 
-**[Safe Attachments](https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about)** detonates attachments in a sandbox before delivery. The main decision:
+Το **[Safe Attachments](https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about)** εκτελεί (detonation) τα συνημμένα σε εικονικό περιβάλλον πριν από την παράδοση. Η βασική απόφαση είναι η ρύθμιση **Safe Attachments unknown malware response**, με τέσσερις επιλογές:
 
-- **Block** — don't deliver the message if the attachment is malicious (recommended)
-- **Replace** — strip the attachment, deliver the message with a placeholder notice (legacy option, now rarely used)
-- **Dynamic Delivery** — deliver the message body immediately and the attachment only after scanning completes (useful when delivery latency matters)
+- **Off**: τα συνημμένα δεν σαρώνονται από το Safe Attachments (μόνο από το anti-malware). Δεν προτείνεται, παρά μόνο για παραλήπτες που δέχονται μηνύματα αποκλειστικά από έμπιστους αποστολείς
+- **Monitor**: τα μηνύματα παραδίδονται και καταγράφεται τι συμβαίνει με τις απειλές που ανιχνεύονται
+- **Block**: τα μηνύματα με κακόβουλα συνημμένα δεν παραδίδονται αλλά μπαίνουν σε καραντίνα, και μπλοκάρονται αυτόματα μελλοντικές εμφανίσεις τους (προεπιλογή και προτεινόμενη τιμή)
+- **Dynamic Delivery**: παραδίδεται αμέσως το σώμα του μηνύματος με placeholder στη θέση κάθε συνημμένου, το οποίο γίνεται διαθέσιμο μόλις ολοκληρωθεί η σάρωση (χρήσιμο όταν η καθυστέρηση παράδοσης έχει σημασία)
 
-For most organisations, **Block** is the right choice. The average sandbox scan completes in under a minute; genuine delivery urgency is rarer than you think.
+Για τους περισσότερους οργανισμούς, το **Block** είναι η σωστή επιλογή και είναι αυτό που εφαρμόζουν και οι Standard και Strict preset policies. Η σάρωση συνήθως ολοκληρώνεται μέσα σε 15 λεπτά, οπότε αν η καθυστέρηση παράδοσης είναι πραγματικό πρόβλημα για κάποιες ομάδες χρηστών, το **Dynamic Delivery** είναι η σωστή εναλλακτική.
 
 ### Anti-phishing impersonation protection
 
-This is where the real magic lives. In the anti-phishing policy, configure:
+Εδώ βρίσκεται η πραγματική «μαγεία». Στην anti-phishing policy ρυθμίστε:
 
-- **User impersonation protection** — add your executives, finance leadership, and IT admins as protected users
-- **Domain impersonation protection** — add your primary domains and (importantly) lookalike domains Microsoft's own analysis would flag
-- **Mailbox intelligence** — leave enabled; it learns each user's typical correspondents
+- **User impersonation protection**: προσθέστε τα στελέχη της διοίκησης, την οικονομική διεύθυνση και τους IT admins ως προστατευόμενους χρήστες
+- **Domain impersonation protection**: τα domains που σας ανήκουν προστατεύονται ήδη αυτόματα στα presets, οπότε προσθέστε τα domains των βασικών συνεργατών και προμηθευτών σας
+- **Mailbox intelligence**: αφήστε το ενεργοποιημένο, γιατί μαθαίνει τους συνήθεις συνομιλητές κάθε χρήστη
 
-> 📷 **Image 3 — Anti-phishing policy impersonation settings.**
-> *Capture from: Defender portal → Email & collaboration → Policies & rules → Threat policies → Anti-phishing. Open a policy and capture the impersonation settings pane.*
+[![Ρυθμίσεις impersonation protection στην anti-phishing policy](/images/Microsoft-Defender/mdo-03-anti-phishing-impersonation.webp)](/images/Microsoft-Defender/mdo-03-anti-phishing-impersonation.webp)
+📷 **Εικόνα 3**: Ρυθμίσεις impersonation στην anti-phishing policy. Defender portal → Email & collaboration → Policies & rules → Threat policies → Anti-phishing.
 
-I've seen this single piece of configuration block business email compromise attempts that would otherwise have cost six figures. Don't skip it.
+Στην εμπειρία μου, αυτή η ρύθμιση έχει μπλοκάρει απόπειρες business email compromise (BEC) που διαφορετικά θα είχαν σοβαρό οικονομικό κόστος. Μην την παραλείψετε.
 
-## Plan 2 specifics worth calling out
+## Ιδιαιτερότητες του Plan 2 που αξίζει να αναφερθούν
 
 ### Threat Explorer
 
-> 📷 **Image 4 — Threat Explorer timeline view.**
-> *Capture from: Defender portal → Email & collaboration → Explorer. Show a recent detection timeline. Redact subject lines and recipient names.*
+[![Χρονολόγιο ανιχνεύσεων στο Threat Explorer](/images/Microsoft-Defender/mdo-04-threat-explorer.webp)](/images/Microsoft-Defender/mdo-04-threat-explorer.webp)
+📷 **Εικόνα 4**: Χρονολόγιο στο Threat Explorer. Defender portal → Email & collaboration → Explorer.
 
-**[Threat Explorer](https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-about)** is a live, queryable timeline of email-borne threats in your tenant. Use it to investigate specific incidents, see the spread of a campaign, and confirm that quarantine and remediation worked. Schedule 30 minutes in Threat Explorer weekly — you'll notice patterns no dashboard will surface on its own.
+Το **[Threat Explorer](https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-real-time-detections-about)** είναι ένα ζωντανό, αναζητήσιμο χρονολόγιο των απειλών που φτάνουν μέσω email στο tenant σας. Χρησιμοποιήστε το για να διερευνάτε συγκεκριμένα περιστατικά, να βλέπετε την εξάπλωση μιας καμπάνιας και να επιβεβαιώνετε ότι η καραντίνα και η αποκατάσταση λειτούργησαν. Αφιερώστε 30 λεπτά στο Threat Explorer κάθε εβδομάδα, γιατί θα εντοπίσετε μοτίβα που κανένα dashboard δεν θα αναδείξει από μόνο του.
 
 ### Attack Simulation Training
 
-> 📷 **Image 5 — Attack Simulation Training overview.**
-> *Capture from: Defender portal → Email & collaboration → Attack simulation training. Show the overview with recent simulations or simulation creation wizard.*
+[![Επισκόπηση του Attack Simulation Training](/images/Microsoft-Defender/mdo-05-attack-simulation-training.webp)](/images/Microsoft-Defender/mdo-05-attack-simulation-training.webp)
+📷 **Εικόνα 5**: Επισκόπηση Attack Simulation Training. Defender portal → Email & collaboration → Attack simulation training.
 
-**[Attack Simulation Training](https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-simulations)** lets you run simulated phishing campaigns against your own users, with realistic templates from actual threat intelligence. Results feed into automatic training assignments for users who fall for the simulation.
+Το **[Attack Simulation Training](https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-simulations)** σας επιτρέπει να εκτελείτε προσομοιωμένες καμπάνιες phishing προς τους δικούς σας χρήστες, με ρεαλιστικά templates βασισμένα σε πραγματικό threat intelligence. Τα αποτελέσματα οδηγούν σε αυτόματες αναθέσεις εκπαίδευσης για τους χρήστες που «τσίμπησαν» στην προσομοίωση.
 
-My suggestion: start small. Run one simulation per quarter to a pilot group, measure click rate, expand. Make it a learning exercise, not a punitive one — public-naming simulation failures is how you get users angry at security, not educated.
+Η πρότασή μου: ξεκινήστε μικρά. Μία προσομοίωση ανά τρίμηνο σε μια πιλοτική ομάδα, μετρήστε το ποσοστό κλικ, επεκτείνετε. Κάντε το μαθησιακή εμπειρία και όχι τιμωρία. Η δημόσια κατονομασία όσων «απέτυχαν» είναι ο τρόπος να θυμώσουν οι χρήστες με την ασφάλεια, όχι να εκπαιδευτούν.
 
-## A reasonable first-month plan
+## Ένα ρεαλιστικό πλάνο για τον πρώτο μήνα
 
-- **Week 1** — Assign preset security policies (Standard to everyone, Strict to high-risk groups). Confirm email continues to flow normally.
-- **Week 2** — Review the **Threat Policies** page and enable or tune custom Safe Links, Safe Attachments, and Anti-phishing policies where needed.
-- **Week 3** — Add user and domain impersonation protection for executives, finance, and IT. Verify from a test mailbox.
-- **Week 4** — (Plan 2) Run your first Attack Simulation Training campaign to a pilot group. Review the results; don't name anyone publicly.
+- **Εβδομάδα 1**: Ανάθεση των preset security policies (Standard σε όλους, Strict στις ομάδες υψηλού κινδύνου). Επιβεβαιώστε ότι η ροή email συνεχίζει κανονικά.
+- **Εβδομάδα 2**: Ανασκόπηση της σελίδας **Threat Policies** και ενεργοποίηση ή προσαρμογή custom Safe Links, Safe Attachments και Anti-phishing policies όπου χρειάζεται.
+- **Εβδομάδα 3**: Προσθήκη user και domain impersonation protection για διοίκηση, οικονομικό τμήμα και IT. Επαλήθευση από δοκιμαστικό mailbox.
+- **Εβδομάδα 4**: (Plan 2) Εκτέλεση της πρώτης καμπάνιας Attack Simulation Training σε πιλοτική ομάδα. Ανασκόπηση των αποτελεσμάτων, χωρίς δημόσια κατονομασία κανενός.
 
-## Where to go from here
+## Πού να συνεχίσετε από εδώ
 
-> 🔗 **Read the rest of the Microsoft Defender Up Close series:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)**.
+> 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)**.
 
-> 🔗 **Curious how Microsoft Defender for Office 365 configuration maps to ISO 27001 and NIS2 controls?** See **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Θέλετε να δείτε πώς η παραμετροποίηση του Microsoft Defender for Office 365 αντιστοιχίζεται σε controls του ISO 27001 και του NIS2;** Διαβάστε το **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Microsoft Learn resources
+## Πηγές Microsoft Learn
 
-- [Microsoft Defender for Office 365 overview](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
-- [Microsoft Defender for Office 365 Plan 1 vs Plan 2](https://learn.microsoft.com/en-us/defender-office-365/mdo-security-comparison)
+- [Microsoft Defender for Office 365, επισκόπηση](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
+- [Microsoft Defender for Office 365 Plan 1 vs Plan 2](https://learn.microsoft.com/en-us/defender-office-365/mdo-about#defender-for-office-365-plan-1-vs-plan-2-cheat-sheet)
 - [Preset security policies](https://learn.microsoft.com/en-us/defender-office-365/preset-security-policies)
-- [Safe Links configuration](https://learn.microsoft.com/en-us/defender-office-365/safe-links-about)
-- [Safe Attachments configuration](https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about)
+- [Safe Links](https://learn.microsoft.com/en-us/defender-office-365/safe-links-about)
+- [Safe Attachments](https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about)
 - [Attack Simulation Training](https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-simulations)
-- [Threat Explorer](https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-about)
+- [Threat Explorer και Real-time detections](https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-real-time-detections-about)
 
 ---
 
 <!--
 IMAGE NOTES
-Image 1: Defender portal → Email & collaboration → Policies & rules → Threat policies → Preset security policies
-Image 2: Same path → Safe Links → open a policy
-Image 3: Same path → Anti-phishing → open a policy → impersonation settings
-Image 4: Defender portal → Email & collaboration → Explorer (redact subjects/recipients)
-Image 5: Defender portal → Email & collaboration → Attack simulation training
-Save to /static/images/posts/microsoft-defender-for-office-365-deep-dive/
+Image 1: mdo-01-preset-security-policies.webp  (Defender portal → Email & collaboration → Policies & rules → Threat policies → Preset security policies.)
+Image 2: mdo-02-safe-links-policy.webp  (Defender portal → Email & collaboration → Policies & rules → Threat policies → Safe Links.)
+Image 3: mdo-03-anti-phishing-impersonation.webp  (Defender portal → Email & collaboration → Policies & rules → Threat policies → Anti-phishing.)
+Image 4: mdo-04-threat-explorer.webp  (Defender portal → Email & collaboration → Explorer.)
+Image 5: mdo-05-attack-simulation-training.webp  (Defender portal → Email & collaboration → Attack simulation training.)
+Save to /static/images/Microsoft-Defender/
 -->
