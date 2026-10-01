@@ -143,7 +143,7 @@ params:
 
   # Standard homepage banner
   homeInfoParams:
-    Title: "Γειά σου 👋, είμαι ο Δημοσθένης και δεν είμαι bot..."
+    Title: "Γεια σου 👋, είμαι ο Δημοσθένης και δεν είμαι bot..."
     Content: |
       <img src="/images/Dimos_BannerNew.webp" alt="Dimosthenis" width="774" height="192" fetchpriority="high" style="max-width:100%;height:auto;">
       
