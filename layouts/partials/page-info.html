@@ -23,5 +23,7 @@
   {{- $title = .Params.seoTitle | default .Title -}}
 {{- else -}}
   {{- $title = printf "%s%s | %s" .Title $suffix site.Title -}}
+  {{- /* Αν ξεπερνά τους 65 χαρακτήρες, παραλείπεται η κατάληξη με το όνομα του site */ -}}
+  {{- if gt (strings.RuneCount $title) 65 }}{{ $title = printf "%s%s" .Title $suffix }}{{ end -}}
 {{- end -}}
 {{- return (dict "num" $num "url" $url "title" $title) -}}
