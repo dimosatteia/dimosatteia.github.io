@@ -1,0 +1,79 @@
+{{- /*
+  SEO meta για όλες τις σελίδες (αντικαθιστά ό,τι παρήγαγε το head.html του PaperMod).
+  Περιλαμβάνει: description, keywords, author, canonical, robots, Open Graph,
+  Twitter Card και Google Analytics (μόνο σε production build).
+*/ -}}
+{{- $desc := "" -}}
+{{- with .Description -}}
+  {{- $desc = . -}}
+{{- else -}}
+  {{- if .IsPage -}}
+    {{- $desc = .Summary | plainify | truncate 160 -}}
+  {{- else -}}
+    {{- $desc = site.Params.description -}}
+  {{- end -}}
+{{- end -}}
+{{- $desc = $desc | plainify | htmlUnescape | chomp -}}
+
+{{- $canonical := .Permalink -}}
+{{- with .Params.canonicalURL }}{{ $canonical = trim . " " }}{{ end -}}
+
+{{- $image := "" -}}
+{{- with .Params.cover.image -}}
+  {{- $image = . | absURL -}}
+{{- else -}}
+  {{- $image = "images/Dimos_BannerNew.webp" | absURL -}}
+{{- end -}}
+
+{{- $title := site.Title -}}
+{{- if not .IsHome }}{{ $title = printf "%s | %s" .Title site.Title }}{{ end -}}
+
+<meta name="description" content="{{ $desc }}">
+{{- if .IsHome }}
+{{- with site.Params.keywords }}
+<meta name="keywords" content="{{ delimit . ", " }}">
+{{- end }}
+{{- else }}
+{{- with (.Params.keywords | default .Params.tags) }}
+<meta name="keywords" content="{{ delimit . ", " }}">
+{{- end }}
+{{- end }}
+<meta name="author" content="{{ site.Params.author }}">
+<link rel="canonical" href="{{ $canonical }}">
+{{- if and (eq site.Params.env "production") (ne .Params.robotsNoIndex true) }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+{{- /* Open Graph */}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ $canonical }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:locale" content="{{ replace site.Language.Locale "-" "_" }}">
+<meta property="og:image" content="{{ $image }}">
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+
+{{- /* Twitter / X */}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $image }}">
+
+{{- /* Google Analytics (GA4) — ID από το googleAnalytics του hugo.yaml */}}
+{{- with site.Config.Services.GoogleAnalytics.ID }}
+{{- if hugo.IsProduction }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ . }}');
+</script>
+{{- end }}
+{{- end }}
