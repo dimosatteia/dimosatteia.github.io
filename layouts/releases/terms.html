@@ -1,58 +1,91 @@
-{{- define "main" }}
+{{ define "main" }}
+<main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
 
-<header class="page-header">
-  <h1>{{ .Title }}</h1>
-  {{- if .Params.description }}
-  <div class="post-description">{{ .Params.description }}</div>
-  {{- end }}
-</header>
+    <!-- Header Section -->
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold tracking-tight text-slate-100 mb-2">{{ .Title }}</h1>
+        {{ if .Params.description }}
+        <p class="text-sm text-slate-400 max-w-2xl leading-relaxed">{{ .Params.description }}</p>
+        {{ end }}
+    </header>
 
-{{- if .Content }}
-<div class="post-content">
-  {{ .Content }}
-</div>
-{{- end }}
+    {{ if .Content }}
+    <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300 mb-8">
+        {{ .Content }}
+    </div>
+    {{ end }}
 
-{{- /* Preview Section */ -}}
-{{- $previewPage := site.GetPage "/releases/new-features" }}
-{{- if $previewPage }}
-<h2>🆕 New Features ({{ len $previewPage.Pages }})</h2>
-<ul class="terms-tags">
-  {{- range $previewPage.Pages }}
-  <li>
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
-  </li>
-  {{- end }}
-</ul>
-{{- end }}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- New Features Section -->
+        {{ $newFeaturesPage := site.GetPage "/releases/new-features" }}
+        {{ if $newFeaturesPage }}
+        <div class="glass-card rounded-xl p-5 border-t-2 border-t-blue-500 flex flex-col h-full">
+            <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4 flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                    <span>🆕</span> New Features
+                </span>
+                <span class="text-[10px] font-mono bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">{{ len $newFeaturesPage.Pages }}</span>
+            </h2>
+            <ul class="flex-grow flex flex-col gap-3">
+                {{ range $newFeaturesPage.Pages }}
+                <li>
+                    <a href="{{ .Permalink }}" class="group block p-3 rounded-lg bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-blue-500/50 transition-colors">
+                        <span class="block text-sm font-medium text-slate-300 group-hover:text-blue-400 transition-colors mb-1 line-clamp-2">{{ .Title }}</span>
+                        <span class="text-[10px] font-mono text-slate-500">{{ .Date.Format "Jan 2, 2006" }}</span>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
 
-{{- /* Preview Section */ -}}
-{{- $previewPage := site.GetPage "/releases/preview" }}
-{{- if $previewPage }}
-<h2>🚧 Preview Features ({{ len $previewPage.Pages }})</h2>
-<ul class="terms-tags">
-  {{- range $previewPage.Pages }}
-  <li>
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
-  </li>
-  {{- end }}
-</ul>
-{{- end }}
+        <!-- Preview Section -->
+        {{ $previewPage := site.GetPage "/releases/preview" }}
+        {{ if $previewPage }}
+        <div class="glass-card rounded-xl p-5 border-t-2 border-t-orange-500 flex flex-col h-full">
+            <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4 flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                    <span>🚧</span> Preview Features
+                </span>
+                <span class="text-[10px] font-mono bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">{{ len $previewPage.Pages }}</span>
+            </h2>
+            <ul class="flex-grow flex flex-col gap-3">
+                {{ range $previewPage.Pages }}
+                <li>
+                    <a href="{{ .Permalink }}" class="group block p-3 rounded-lg bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-orange-500/50 transition-colors">
+                        <span class="block text-sm font-medium text-slate-300 group-hover:text-orange-400 transition-colors mb-1 line-clamp-2">{{ .Title }}</span>
+                        <span class="text-[10px] font-mono text-slate-500">{{ .Date.Format "Jan 2, 2006" }}</span>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
 
-{{- /* Generally Available Section */ -}}
-{{- $gaPage := site.GetPage "/releases/generally-available" }}
-{{- if $gaPage }}
-<h2>✅ Generally Available Features ({{ len $gaPage.Pages }})</h2>
-<ul class="terms-tags">
-  {{- range $gaPage.Pages }}
-  <li>
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
-  </li>
-  {{- end }}
-</ul>
-{{- end }}
-
-{{- end }}{{/* end main */}}
+        <!-- Generally Available Section -->
+        {{ $gaPage := site.GetPage "/releases/generally-available" }}
+        {{ if $gaPage }}
+        <div class="glass-card rounded-xl p-5 border-t-2 border-t-emerald-500 flex flex-col h-full">
+            <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4 flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                    <span>✅</span> Generally Available
+                </span>
+                <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">{{ len $gaPage.Pages }}</span>
+            </h2>
+            <ul class="flex-grow flex flex-col gap-3">
+                {{ range $gaPage.Pages }}
+                <li>
+                    <a href="{{ .Permalink }}" class="group block p-3 rounded-lg bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 transition-colors">
+                        <span class="block text-sm font-medium text-slate-300 group-hover:text-emerald-400 transition-colors mb-1 line-clamp-2">{{ .Title }}</span>
+                        <span class="text-[10px] font-mono text-slate-500">{{ .Date.Format "Jan 2, 2006" }}</span>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
+        
+    </div>
+</main>
+{{ end }}

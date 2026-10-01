@@ -1,0 +1,8 @@
+{{ define "main" }}
+<main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+    <div class="glass-card p-8 rounded-xl flex flex-col gap-6 prose prose-invert prose-slate max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-blue-400 hover:prose-a:text-blue-300">
+        <h1 class="text-3xl font-bold tracking-tight text-slate-100 m-0">{{ .Title }}</h1>
+        {{ .Content }}
+    </div>
+</main>
+{{ end }}

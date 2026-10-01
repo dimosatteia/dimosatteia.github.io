@@ -1,0 +1,82 @@
+{{ partial "header.html" . }}
+
+<main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+    <h1 class="text-3xl font-bold text-slate-100 mb-6">Search Results</h1>
+    
+    <div class="mb-8">
+        <input 
+            type="text" 
+            id="customSearchInput" 
+            placeholder="Search IOCs, Posts, Keywords..." 
+            class="w-full max-w-2xl bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg py-3 px-4 text-base text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            autofocus
+        >
+    </div>
+
+    <div id="searchResults" class="space-y-4 max-w-4xl">
+        <p class="text-slate-400 text-sm">Πληκτρολογήστε έναν όρο παραπάνω (π.χ. MC1422060)...</p>
+    </div>
+</main>
+
+{{ partial "footer.html" . }}
+
+<script>
+    let searchData = [];
+
+    // Φόρτωση του index.json στη μνήμη κατά την είσοδο στη σελίδα
+    fetch('/index.json')
+        .then(response => response.json())
+        .then(data => {
+            searchData = data;
+            // Έλεγχος αν υπάρχει ήδη όρος στο URL (π.χ. από την πάνω μπάρα)
+            const urlParams = new URLSearchParams(window.location.search);
+            const q = urlParams.get('q');
+            if (q) {
+                document.getElementById('customSearchInput').value = q;
+                performSearch(q);
+            }
+        });
+
+    const input = document.getElementById('customSearchInput');
+    const resultsContainer = document.getElementById('searchResults');
+
+    input.addEventListener('input', function(e) {
+        performSearch(e.target.value);
+    });
+
+    function performSearch(query) {
+        resultsContainer.innerHTML = '';
+        if (!query || query.trim() === '') {
+            resultsContainer.innerHTML = '<p class="text-slate-400 text-sm">Πληκτρολογήστε έναν όρο παραπάνω...</p>';
+            return;
+        }
+
+        const term = query.toLowerCase();
+        const filtered = searchData.filter(item => 
+            (item.title && item.title.toLowerCase().includes(term)) ||
+            (item.contents && item.contents.toLowerCase().includes(term)) ||
+            (item.summary && item.summary.toLowerCase().includes(term))
+        );
+
+        if (filtered.length === 0) {
+            resultsContainer.innerHTML = '<p class="text-slate-400">Δεν βρέθηκαν αποτελέσματα για "' + query + '".</p>';
+            return;
+        }
+
+        filtered.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'glass-card p-5 rounded-lg border border-slate-800 hover:border-blue-500/50 transition-colors bg-slate-900/60 backdrop-blur-md';
+            card.innerHTML = `
+                <div class="flex items-center gap-4 text-xs text-slate-400 mb-2">
+                    <span>📅 ${item.date || ''}</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-100 mb-2">
+                    <a href="${item.permalink}" class="hover:text-blue-400 transition-colors">${item.title}</a>
+                </h2>
+                <p class="text-slate-300 text-sm mb-3">${item.summary || ''}</p>
+                <a href="${item.permalink}" class="text-blue-400 text-sm font-medium hover:underline">Διαβάστε περισσότερα →</a>
+            `;
+            resultsContainer.appendChild(card);
+        });
+    }
+</script>

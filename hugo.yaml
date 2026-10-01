@@ -5,12 +5,12 @@
 # -----------------------------------------------------------------------------
 
 baseURL: "https://thecybersec.gr/"   # <-- change after creating the GitHub repo
-languageCode: "en-us"
+locale: "en-us"
 title: "Microsoft 365 Security Insights"
-theme: "PaperMod"
+# theme: "PaperMod"
 defaultContentLanguage: "en"
 description: "Practical, hands-on content on Microsoft 365 and Microsoft Security Copilot from a Senior Cloud Architect."
-enableGitInfo: true
+enableGitInfo: false
 googleAnalytics: G-XL1JKVTRG9
 
 # Pagination & build
@@ -114,10 +114,10 @@ params:
     isCaseSensitive: false
     shouldSort: true
     location: 0
-    distance: 1000unsafe
+    distance: 1000
     threshold: 0.4
     minMatchCharLength: 0
-    keys: ["title", "permalink", "summary"]
+    keys: ["title", "contents", "summary", "permalink"]
 
   # Profile-style homepage (use this OR homeInfoParams below, not both)
   # ---------------------------------------------------------------------------
@@ -136,24 +136,19 @@ params:
 
   # Standard homepage banner
   homeInfoParams:
-    Title: "Hi 👋, I'm Dimosthenis"
-    Content: >
-      <img src="/images/Dimos_Banner.webp" alt="Dimosthenis" width="774" height="192" fetchpriority="high" style="max-width:100%;height:auto;">
+    Title: "Γειά σας 👋, Είμαι ο Δημοσθένης και δεν είμαι bot..."
+    Content: |
+      <img src="/images/Dimos_BannerNew.webp" alt="Dimosthenis" width="774" height="192" fetchpriority="high" style="max-width:100%;height:auto;">
       
-      
-      I'm a **Microsoft 365 Security** community contributor and **CIO/CISO** at Greece's second-largest flour milling and food manufacturing organization, where I apply **Microsoft Defender, Entra ID, Intune, Azure security services** and **Purview** to secure a real-world, high-impact production environment. This dual role lets me test what I write about against the pressures of an actual enterprise, not just a lab.
+      Είμαι **CIO/CISO** στον δεύτερο μεγαλύτερο όμιλο αλευροβιομηχανίας και παραγωγής τροφίμων στην Ελλάδα. Σχεδιάζω και υλοποιώ τη στρατηγική ασφάλειας του οργανισμού πάνω στο **Microsoft Security** stack, με **Microsoft Defender XDR**, **Entra ID**, **Intune**, **Azure security services** και **Purview**, προστατεύοντας ένα πραγματικό IT/OT περιβάλλον παραγωγής υψηλής κρισιμότητας.<br>
 
+      Γράφω τεχνικό περιεχόμενο σε βάθος, δοκιμασμένο σε production, για security architects, IT professionals και administrators που διαχειρίζονται αυτές τις πλατφόρμες καθημερινά. Περιλαμβάνει hardening guides, αναλυτικές οδηγίες παραμετροποίησης, real-world detections και τα διδάγματα που φαίνονται μόνο όταν κάτι βγει σε παραγωγή. Στόχος μου είναι να μετατρέπω όσα μαθαίνω προστατεύοντας ένα πραγματικό περιβάλλον σε πρακτική, επαναχρησιμοποιήσιμη γνώση για την ευρύτερη **Ελληνική** κοινότητα **Microsoft Security** και μέσα από αναλυτικά άρθρα, hands-on walkthroughs και ανοιχτό διάλογο με συναδέλφους που αντιμετωπίζουν τις ίδιες προκλήσεις.<br>
 
+      **🆕 New:** Admin Center Portal Status<br>
 
-      I write in-depth, production-tested content for the security architects, IT professionals, and administrators who run these platforms every day, hardening guides, configuration deep-dives, real-world detections, and the lessons that only show up once something is live. My focus is turning what I learn securing a real environment into practical, reusable knowledge for the broader **Microsoft security community**, through detailed articles, hands-on walkthroughs, and open discussion with peers facing the same challenges.
+      **🆕 New Features** vs **🚧 Preview** vs **✅ Generally Available**. Δείτε με μια ματιά ποια features είναι ασφαλή για deployment σε περιβάλλοντα με κανονιστικές απαιτήσεις συμμόρφωσης.<br>
 
-
-      **🆕 New:** Admin Center Portal Status
-
-
-      **🆕 New Features** vs **🚧 Preview** vs **✅ Generally Available**. Know at a glance which features are safe to deploy in compliance-regulated environments.
-
-      Pick a topic from the menu above, or start with the latest posts below.
+      Επιλέξτε θέμα από το παραπάνω μενού ή ξεκινήστε από τα πιο πρόσφατα άρθρα παρακάτω.<br>
 
   # Social links — show as icons in the header
   socialIcons:

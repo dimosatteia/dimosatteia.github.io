@@ -1,7 +1,7 @@
 ---
-title: "Release Status"
-description: "Track Microsoft 365 Security features by their release stage: New Feature vs Preview vs Generally Available"
-summary: "Understanding the difference between Preview and Generally Available features helps security architects make informed deployment decisions in enterprise environments."
+title: "Κατάσταση Κυκλοφορίας (Release Status)"
+description: "Παρακολουθήστε τα χαρακτηριστικά ασφαλείας του Microsoft 365 βάσει της φάσης κυκλοφορίας τους: Νέο Χαρακτηριστικό (New Features), Δημόσια Προεπισκόπιση (Puvlic Preview) και Γενικά Διαθέσιμο (Generally Available)"
+summary: "Η κατανόηση της διαφοράς μεταξύ των λειτουργιών Preview και των Γενικά Διαθέσιμων (GA) βοηθά τους αρχιτέκτονες ασφαλείας να λαμβάνουν τεκμηριωμένες αποφάσεις ανάπτυξης σε εταιρικά περιβάλλοντα."
 date: 2026-05-22T11:00:00+03:00
 lastmod: 2026-08-04T11:00:00+03:00
 draft: false
@@ -30,93 +30,93 @@ ShowWordCount: false
 ShowRssButtonInSectionTermList: true
 ---
 
-Microsoft 365 features roll out in multiple phases, and understanding where a feature sits in its lifecycle is critical for making informed deployment decisions in enterprise environments.
+Τα χαρακτηριστικά του Microsoft 365 κυκλοφορούν σε πολλαπλές φάσεις. Η κατανόηση του σταδίου κύκλου ζωής στο οποίο βρίσκεται μια λειτουργία είναι κρίσιμη για τη λήψη τεκμηριωμένων αποφάσεων υλοποίησης (deployment) σε εταιρικά περιβάλλοντα.
 
 <details>
-<summary><h2 style="display:inline">🆕 New Features (Announced / In Development)</h2></summary>
+<summary><h2 style="display:inline">🆕 Νέα Χαρακτηριστικά (New Features)</h2></summary>
 
-Features that have been **announced on the Microsoft 365 Roadmap** but are **not yet available** for testing or use in any tenant.
+Λειτουργίες που έχουν **ανακοινωθεί στο Microsoft 365 Roadmap** αλλά **δεν είναι ακόμη διαθέσιμες** για δοκιμή ή χρήση σε κανένα tenant.
 
-**Typical roadmap status:**
-- **In development:** Microsoft has committed to building the feature; no confirmed release date
-- **Rolling out:** feature is being progressively enabled tenant-by-tenant, ahead of formal Preview or GA availability
+**Τυπική κατάσταση στο roadmap:**
+- **Υπό ανάπτυξη (In development):** Η Microsoft έχει δεσμευτεί να δημιουργήσει το χαρακτηριστικό· δεν υπάρχει επιβεβαιωμένη ημερομηνία κυκλοφορίας
+- **Σε φάση διάθεσης (Rolling out):** Η λειτουργία ενεργοποιείται σταδιακά ανά tenant, πριν από την επίσημη διαθεσιμότητα σε Preview ή GA
 
-⚠️ **Important considerations:**
-- **No availability yet:** cannot be tested, piloted, or evaluated against your security stack until it reaches Preview
-- **No timeline guarantee:** Microsoft can delay, redesign, or cancel roadmap items without prior notice
-- **Not audit-relevant:** cannot be cited as a compensating or planned control in ISO 27001 / NIS2 documentation until it is at least in Preview
-- **Useful for:** early risk and licensing forecasting, vendor-management conversations, and flagging upcoming changes to stakeholders
-- Track via the **Microsoft 365 Roadmap ID** for change-management traceability once the feature is announced
+⚠️ **Σημαντικά σημεία προσοχής:**
+- **Καμία διαθεσιμότητα ακόμα:** Δεν μπορεί να δοκιμαστεί, να εφαρμοστεί πιλοτικά ή να αξιολογηθεί σε σχέση με την υπάρχουσα αρχιτεκτονική ασφαλείας σας μέχρι να φτάσει σε φάση Preview
+- **Καμία εγγύηση χρονοδιαγράμματος:** Η Microsoft μπορεί να καθυστερήσει, να επανασχεδιάσει ή να ακυρώσει στοιχεία του roadmap χωρίς προηγούμενη ειδοποίηση
+- **Μη ελέγξιμο (Not audit-relevant):** Δεν μπορεί να αναφερθεί ως αντισταθμιστικός ή προγραμματισμένος έλεγχος σε τεκμηρίωση ISO 27001 / NIS2 (ΚΥΑ 1689/2025) μέχρι να μπει τουλάχιστον σε φάση Preview
+- **Χρήσιμο για:** Πρόβλεψη κινδύνων και αναγκών αδειοδότησης από νωρίς, συζητήσεις διαχείρισης προμηθευτών και ενημέρωση των stakeholders για επερχόμενες αλλαγές
+- Παρακολουθήστε το μέσω του **Microsoft 365 Roadmap ID** για ιχνηλασιμότητα στη διαχείριση αλλαγών (change management) από τη στιγμή που θα ανακοινωθεί η λειτουργία
 
 </details>
 
 <details>
-<summary><h2 style="display:inline">🚧 Preview (Public Preview)</h2></summary>
+<summary><h2 style="display:inline">🚧 Δημόσια Προεπισκόπιση (Public Preview)</h2></summary>
 
-Features that are **available for testing** but **not recommended for production** environments.
+Λειτουργίες που είναι **διαθέσιμες για δοκιμή**, αλλά **δεν συνιστώνται για περιβάλλοντα παραγωγής (production)**.
 
-**Ideal for:**
-- Lab and PoC environments where breaking changes are acceptable
-- Early adopters who want to evaluate upcoming capabilities
-- Providing feedback to Microsoft product teams during feature development
-- Testing compatibility with your existing security stack
+**Ιδανικό για:**
+- Περιβάλλοντα Lab και PoC (Proof of Concept) όπου οι μη αναμενόμενες διακοπές (breaking changes) είναι αποδεκτές
+- Early adopters που θέλουν να αξιολογήσουν επερχόμενες δυνατότητες
+- Παροχή feedback στις ομάδες προϊόντων της Microsoft κατά την ανάπτυξη της λειτουργίας
+- Δοκιμή συμβατότητας με το υπάρχον security stack σας
 
-⚠️ **Important considerations:**
-- Preview features may change significantly before GA
-- **No SLA coverage:** Microsoft explicitly states Preview features are provided "as-is" without service level agreements
-- Features can be deprecated or retired without prior notice
-- Limited or evolving documentation
-- **Not suitable for compliance-regulated workloads** or production environments
-- May require separate tenant or opt-in enrollment
+⚠️️ **Σημαντικά σημεία προσοχής:**
+- Οι λειτουργίες Preview ενδέχεται να αλλάξουν σημαντικά πριν από το GA
+- **Καμία κάλυψη SLA:** Η Microsoft δηλώνει ρητά ότι οι λειτουργίες Preview παρέχονται "ως έχουν" (as-is) χωρίς συμφωνίες επιπέδου υπηρεσιών
+- Οι λειτουργίες μπορούν να καταργηθούν (deprecated/retired) χωρίς προηγούμενη ειδοποίηση
+- Περιορισμένη ή διαρκώς μεταβαλλόμενη τεκμηρίωση
+- **Ακατάλληλο για φόρτους εργασίας που υπόκεινται σε κανονισμούς συμμόρφωσης (compliance-regulated workloads)** ή για περιβάλλοντα παραγωγής
+- Μπορεί να απαιτεί ξεχωριστό tenant ή ρητή δήλωση συμμετοχής (opt-in enrollment)
 
 </details>
 
 <details>
-<summary><h2 style="display:inline">✅ Generally Available (GA)</h2></summary>
+<summary><h2 style="display:inline">✅ Γενικά Διαθέσιμο (Generally Available)</h2></summary>
 
-Features that are **production-ready** and officially supported by Microsoft with full SLA coverage.
+Λειτουργίες που είναι **έτοιμες για παραγωγή (production-ready)** και υποστηρίζονται επίσημα από τη Microsoft με πλήρη κάλυψη SLA.
 
-**Suitable for:**
-- Enterprise production environments
-- Compliance-driven infrastructures (NIS2, ISO 27001, SOC 2)
-- Mission-critical workloads requiring stability and support
-- Organizations with strict change control processes
+**Κατάλληλο για:**
+- Εταιρικά περιβάλλοντα παραγωγής
+- Υποδομές που απαιτούν κανονιστική συμμόρφωση (NIS2 - ΚΥΑ 1689/2025, ISO 27001, SOC 2)
+- Κρίσιμους φόρτους εργασίας (Mission-critical workloads) που απαιτούν σταθερότητα και υποστήριξη
+- Οργανισμούς με αυστηρές διαδικασίες ελέγχου αλλαγών (change control)
 
-**What GA means in practice:**
-- Features have completed extensive testing cycles
-- Full documentation and official support channels available
-- **Covered by Microsoft's service level agreements (SLAs)**
-- Stable feature set with predictable update cadence
-- Integration points are documented and supported
-- **Included in standard licensing** (unless specified as premium add-on)
+**Τι σημαίνει το GA στην πράξη:**
+- Οι λειτουργίες έχουν ολοκληρώσει εκτενείς κύκλους δοκιμών
+- Υπάρχει πλήρης τεκμηρίωση και επίσημα κανάλια υποστήριξης
+- **Καλύπτεται από τις συμφωνίες επιπέδου υπηρεσιών (SLA) της Microsoft**
+- Σταθερό σύνολο δυνατοτήτων με προβλέψιμο ρυθμό ενημερώσεων
+- Τα σημεία ενσωμάτωσης (integration points) είναι τεκμηριωμένα και υποστηρίζονται
+- **Περιλαμβάνεται στις τυπικές άδειες χρήσης (standard licensing)** (εκτός αν ορίζεται ως premium add-on)
 
 </details>
 
-## Additional Release Stages You May Encounter
+## Πρόσθετα Στάδια Κυκλοφορίας που Μπορεί να Συναντήσετε
 
-Microsoft also uses these intermediate stages:
+Η Microsoft χρησιμοποιεί επίσης αυτά τα ενδιάμεσα στάδια:
 
-- **Private Preview:** Invitation-only, NDA-protected early access
-- **Targeted Release:** First Release in production for select customers (Office 365)
-- **Standard Release:** Same as Generally Available
+- **Private Preview:** Πρώιμη πρόσβαση μόνο με πρόσκληση, προστατευμένη με συμφωνητικό εμπιστευτικότητας (NDA)
+- **Targeted Release:** Πρώτη κυκλοφορία στην παραγωγή για επιλεγμένους πελάτες (Office 365)
+- **Standard Release:** Το ίδιο με το Γενικά Διαθέσιμο (Generally Available)
 
-## Why This Classification Matters
+## Γιατί Έχει Σημασία Αυτή η Κατηγοριοποίηση
 
-As a CISO or Security Architect operating real-world production environments, you need clear signals about feature maturity:
+Ως CISO ή Αρχιτέκτονας Ασφαλείας που διαχειρίζεται πραγματικά περιβάλλοντα παραγωγής, χρειάζεστε σαφή σήματα σχετικά με την ωριμότητα των λειτουργιών:
 
-- **Risk management:** Preview features introduce unknown variables into your security posture
-- **Compliance alignment:** Auditors and regulators expect production-grade controls with vendor support and SLAs
-- **Operational stability:** GA features won't change behavior unexpectedly during incident response
-- **Resource planning:** You can commit training and runbook development to stable capabilities
-- **Licensing considerations:** Some Preview features become paid add-ons at GA
+- **Διαχείριση Κινδύνου (Risk management):** Τα χαρακτηριστικά Preview εισάγουν άγνωστες μεταβλητές στο security posture σας
+- **Ευθυγράμμιση Συμμόρφωσης (Compliance alignment):** Οι ελεγκτές και οι ρυθμιστικές αρχές αναμένουν ελέγχους επιπέδου παραγωγής (production-grade controls) με υποστήριξη προμηθευτή και SLAs
+- **Λειτουργική σταθερότητα (Operational stability):** Τα χαρακτηριστικά GA δεν θα αλλάξουν απροσδόκητα συμπεριφορά κατά τη διάρκεια της απόκρισης σε περιστατικά (incident response)
+- **Προγραμματισμός Πόρων (Resource planning):** Μπορείτε να δεσμεύσετε πόρους για εκπαίδευση και δημιουργία runbooks σε σταθερές δυνατότητες
+- **Ζητήματα Αδειοδότησης (Licensing considerations):** Ορισμένες λειτουργίες Preview μετατρέπονται σε επί πληρωμή πρόσθετα (paid add-ons) μόλις περάσουν σε GA
 
-This taxonomy helps you separate "what's possible in the lab" from "what's deployable in production", saving you from costly rollbacks and compliance headaches.
+Αυτή η ταξινομία σας βοηθά να διαχωρίσετε "τι είναι εφικτό στο εργαστήριο" από "τι είναι υλοποιήσιμο στην παραγωγή", γλιτώνοντάς σας από δαπανηρά rollbacks και πονοκεφάλους συμμόρφωσης.
 
 ---
 
-**Important:** Features are categorized based on their status at the time of writing. Microsoft can change release stages without notice. Always verify current release status in the [Microsoft 365 Roadmap](https://www.microsoft.com/en-us/microsoft-365/roadmap) and official [Microsoft 365 Message Center](https://admin.microsoft.com/Adminportal/Home#/MessageCenter) before production deployment.
+**Σημαντικό:** Οι λειτουργίες κατηγοριοποιούνται με βάση την κατάστασή τους τη στιγμή της συγγραφής. Η Microsoft μπορεί να αλλάξει τα στάδια κυκλοφορίας χωρίς προειδοποίηση. Πάντα να επαληθεύετε την τρέχουσα κατάσταση κυκλοφορίας στο [Microsoft 365 Roadmap](https://www.microsoft.com/en-us/microsoft-365/roadmap) και στο επίσημο [Microsoft 365 Message Center](https://admin.microsoft.com/Adminportal/Home#/MessageCenter) πριν από την υλοποίηση στην παραγωγή.
 
-**Learn more:**
+**Μάθετε περισσότερα:**
 - [Microsoft 365 Public Roadmap](https://www.microsoft.com/en-us/microsoft-365/roadmap)
 - [Microsoft Product Lifecycle](https://learn.microsoft.com/en-us/lifecycle/products/)
 - [Service Level Agreements (SLA) for Online Services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)

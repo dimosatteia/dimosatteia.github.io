@@ -1,10 +1,11 @@
 ---
-title: "About"
+title: "Σχετικά"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-08-23T22:00:00+03:00
+lastmod: 2026-10-01T14:00:00+03:00
 draft: false
 keywords:
   - Dimosthenis Atteia
+  - Δημοσθένης Αττέια
   - CIO/CISO
   - Microsoft 365 Security
   - Microsoft Security
@@ -15,6 +16,7 @@ keywords:
   - Microsoft Sentinel
   - ISO 27001
   - Cybersecurity Greece
+  - Κυβερνοασφάλεια Ελλάδα
   - Microsoft 365 blog
   - KQL hunting
   - Conditional Access
@@ -25,7 +27,7 @@ tags:
   - Microsoft 365 Security
 author: "Dimosthenis Atteia"
 description: 
-summary: "About the author"
+summary: "Σχετικά με τον συγγραφέα"
 categories:
 series: 
 url: "/about/"
@@ -36,45 +38,38 @@ ShowBreadCrumbs: false
 hideMeta: true
 ---
 
-## About me
+## Σχετικά με εμένα
 
-Hi, I'm **Dimosthenis**.
+Γεια σας, είμαι ο **Δημοσθένης**.
 
-![Dimosthenis Atteia](https://thecybersec.gr/images/DimosthenisAtteia.png)
+![Δημοσθένης Αττέια](https://thecybersec.gr/images/DimosthenisAtteia.png)
 
-I'm a **Microsoft 365 Security** community contributor and **CIO/CISO** at Greece's second-largest flour milling and food manufacturing organization, where I apply **Microsoft Defender**, **Entra ID**, **Intune**, **Azure security services**, and **Purview** to secure a real-world, high-impact production environment. This dual role lets me test what I write about against the pressures of an actual enterprise, not just a lab.
+Είμαι **CIO/CISO** στον δεύτερο μεγαλύτερο όμιλο αλευροβιομηχανίας και παραγωγής τροφίμων στην Ελλάδα. Σχεδιάζω και υλοποιώ τη στρατηγική ασφάλειας του οργανισμού πάνω στο Microsoft Security stack, με **Microsoft Defender XDR**, **Entra ID**, **Intune**, **Azure security services** και **Purview**, προστατεύοντας ένα πραγματικό IT/OT περιβάλλον παραγωγής υψηλής κρισιμότητας. Αυτό μου επιτρέπει να δοκιμάζω όσα γράφω υπό τις πιέσεις μιας πραγματικής επιχείρησης, όχι απλώς σε ένα lab.
 
-I write in-depth, production-tested content for the security architects, IT professionals, and administrators who run these platforms every day, hardening guides, configuration deep-dives, real-world detections, and the lessons that only show up once something is live. My focus is turning what I learn securing a real environment into practical, reusable knowledge for the broader Microsoft security community, through detailed articles, hands-on walkthroughs, and open discussion with peers facing the same challenges.
+Γράφω τεχνικό περιεχόμενο σε βάθος, δοκιμασμένο σε production, για security architects, IT professionals και administrators που διαχειρίζονται αυτές τις πλατφόρμες καθημερινά. Περιλαμβάνει hardening guides, αναλυτικές οδηγίες παραμετροποίησης, real-world detections και τα διδάγματα που φαίνονται μόνο όταν κάτι βγει σε παραγωγή. Στόχος μου είναι να μετατρέπω όσα μαθαίνω προστατεύοντας ένα πραγματικό περιβάλλον σε πρακτική, επαναχρησιμοποιήσιμη γνώση για την ευρύτερη ελληνική κοινότητα Microsoft Security, μέσα από αναλυτικά άρθρα, hands-on walkthroughs και ανοιχτό διάλογο με συναδέλφους που αντιμετωπίζουν τις ίδιες προκλήσεις.
 
-This blog is **practical, hands-on, and opinionated**. It's not a copy of
-Microsoft Learn. The goal is to fill the gap between official documentation
-and what you actually face in production.
+Αυτό το blog είναι **πρακτικό, hands-on και με άποψη**. Δεν είναι αντίγραφο του Microsoft Learn. Στόχος του είναι να καλύψει το κενό ανάμεσα στην επίσημη τεκμηρίωση και σε όσα πραγματικά αντιμετωπίζετε σε production.
 
 ---
 
-## What you'll find here
+## Τι θα βρείτε εδώ
 
-- **Microsoft Security Copilot**, Prompts, plugins, integration patterns, cost
-  optimisation, and security guardrails.
-- **Microsoft 365 hardening**, Conditional Access, attack-surface reduction,
-  Defender configuration, baseline architectures.
-- **Identity & access**, Entra ID, hybrid identity, Kerberos trust, privileged
-  access, and zero-trust building blocks.
-- **Detection & response**, KQL hunting queries, custom analytics, automation
-  with Logic Apps, incident playbooks.
-- **Architecture deep dives**, Multi-tenant patterns, cross-cloud integrations,
-  and design decisions for regulated industries.
+- **Microsoft Security Copilot**: prompts, plugins, integration patterns, βελτιστοποίηση κόστους και security guardrails.
+- **Microsoft 365 hardening**: Conditional Access, attack surface reduction, παραμετροποίηση του Defender, baseline architectures.
+- **Identity & access**: Entra ID, hybrid identity, Kerberos trust, privileged access και τα δομικά στοιχεία του Zero Trust.
+- **Detection & response**: KQL hunting queries, custom analytics, αυτοματοποίηση με Logic Apps, incident playbooks.
+- **Architecture deep dives**: multi-tenant patterns, cross-cloud integrations και σχεδιαστικές αποφάσεις για κανονιστικά ρυθμιζόμενους κλάδους.
 
 ---
 
-## Expertise areas
+## Τομείς εξειδίκευσης
 
-- **Category:** Security, M365
-- **Technology area:** Microsoft 365, Microsoft Security
+- **Κατηγορία:** Security, M365
+- **Τεχνολογική περιοχή:** Microsoft 365, Microsoft Security
 
 ---
 
-## Education, Certifications and Credentials
+## Σπουδές, πιστοποιήσεις και διακρίσεις
 
 - **MSc Cybersecurity**, University of Derby
 - ISC2 Certified in Cybersecurity (CC)
@@ -84,7 +79,7 @@ and what you actually face in production.
 - Proofpoint Email Security Specialist
 - [Europe’s Top 10 Dynamic IT Leaders 2025](https://ciolookmedia.com/dimosthenis-atteia-leading-the-digital-frontier-of-food-security-and-cyber-defense/)
 - [CISO 50 Powerlist 2025](https://netweek.gr/ciso-50-powerlist-2025/#powerlist)
-- [Cyber Security Awards 2026 Winner](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)
+- [Βράβευση στα Cyber Security Awards 2026](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)
 - [Certified NIST CSF v2.0 + AI RMF Specialist](https://www.credly.com/badges/58d1d3c4-c45b-46f0-848d-82dcedd0c939/linked_in_profile)
 - [Certified Network Security Specialist](https://www.credly.com/badges/581c3e1f-5564-4118-9c52-ba6a227d02fe/linked_in_profile)
 - [Proofpoint Certified AI Data Security Specialist 2025](https://www.credly.com/badges/be010b72-4b82-4468-9300-dc040d5c45fa/linked_in_profile)
@@ -94,14 +89,14 @@ and what you actually face in production.
 
 ---
 
-## Community recognition
+## Αναγνώριση από την κοινότητα
 
-In 2026 I was featured in the **ISC2 Hellenic Chapter Member Spotlight**, where I have been a member since July 2022. The chapter has been a genuine accelerator for my professional development, giving me access to a strong peer network, shared knowledge, and leadership opportunities within the Greek cybersecurity community. The spotlight reflects the journey that shapes this blog: from IT technician to CIO/CISO in the same organization, built on hands-on work across IT infrastructure, cloud projects, SOC partnerships, and compliance audits. What drives me remains the same, turning risk into resilience, protecting people and data, and enabling the business to innovate safely. As I like to say, *prevention is the only cure*.
+Το 2026 φιλοξενήθηκα στο **ISC2 Hellenic Chapter Member Spotlight**, το chapter του οποίου είμαι μέλος από τον Ιούλιο του 2022. Το chapter αποτέλεσε ουσιαστικό επιταχυντή για την επαγγελματική μου εξέλιξη, δίνοντάς μου πρόσβαση σε ένα ισχυρό δίκτυο συναδέλφων, σε κοινή γνώση και σε ευκαιρίες ανάληψης ηγετικών ρόλων μέσα στην ελληνική κοινότητα κυβερνοασφάλειας. Το spotlight αποτυπώνει τη διαδρομή που διαμορφώνει και αυτό το blog: από IT technician σε CIO/CISO στον ίδιο οργανισμό, χτισμένη πάνω σε hands-on δουλειά σε IT υποδομές, cloud projects, συνεργασίες με SOC και ελέγχους συμμόρφωσης. Αυτό που με κινητοποιεί παραμένει το ίδιο: να μετατρέπω τον κίνδυνο σε ανθεκτικότητα, να προστατεύω ανθρώπους και δεδομένα και να επιτρέπω στην επιχείρηση να καινοτομεί με ασφάλεια. Όπως λέω συχνά, *η πρόληψη είναι η μόνη θεραπεία*.
 
-![ISC2 Hellenic Chapter Member Spotlight – Dimosthenis Atteia](/images/isc2-hellenic-spotlight.webp)
+![ISC2 Hellenic Chapter Member Spotlight – Δημοσθένης Αττέια](/images/isc2-hellenic-spotlight.webp)
 
 ---
-## Get in touch
+## Επικοινωνία
 
 - 🐙 GitHub: dimosatteia (https://github.com/dimosatteia)
 - 💼 LinkedIn: dimosthenisatteia (https://www.linkedin.com/in/dimosthenisatteia/)
@@ -109,7 +104,7 @@ In 2026 I was featured in the **ISC2 Hellenic Chapter Member Spotlight**, where 
 
 ---
 
-> **Disclaimer:** All views expressed here are my own and do not represent the
-> views of my employer or any organisation I work with. Code samples and
-> guidance are provided as-is. Always validate in a non-production environment
-> before applying to live systems.
+> **Αποποίηση ευθύνης:** Όλες οι απόψεις που εκφράζονται εδώ είναι προσωπικές
+> και δεν εκφράζουν τον εργοδότη μου ή οποιονδήποτε οργανισμό με τον οποίο
+> συνεργάζομαι. Τα δείγματα κώδικα και οι οδηγίες παρέχονται ως έχουν. Ελέγχετε
+> πάντα σε μη παραγωγικό περιβάλλον πριν τα εφαρμόσετε σε live συστήματα.

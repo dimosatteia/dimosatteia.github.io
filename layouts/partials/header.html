@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}" class="dark antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+    
+    {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
+    {{ with .Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+    
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                        },
+                        fluent: {
+                            bg: '#020617',
+                            panel: '#0f172a',
+                            border: '#1e293b',
+                            hover: '#1e293b',
+                            textPrimary: '#f8fafc',
+                            textSecondary: '#94a3b8',
+                            blue: '#3b82f6',
+                            green: '#10b981',
+                            purple: '#a855f7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020617; color: #cbd5e1; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+        .bg-tech-grid {
+            background-image: 
+                linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid #1e293b;
+        }
+    </style>
+
+    <!-- Include custom CSS files from assets/css/extended -->
+    {{ $customCSS := resources.Match "css/extended/*.css" }}
+    {{ range $customCSS }}
+        {{ $style := . | resources.Minify | resources.Fingerprint }}
+        <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
+    {{ end }}
+    
+    <!-- RSS and Favicons -->
+    {{- range .AlternativeOutputFormats -}}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
+    {{ end -}}
+    
+    <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
+    <link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+    
+    <!-- Extend Head & SEO -->
+    {{ partial "extend_head.html" . }}
+    {{ partial "schema-person.html" . }}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.pathname.includes("/search")) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get("q");
+            
+            if (query) {
+                const searchInput = document.getElementById("searchInput") || document.querySelector("#search input") || document.querySelector("input[type='search']");
+                
+                if (searchInput) {
+                    searchInput.value = query;
+                    searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            }
+        }
+    });
+</script>
+
+</head>
+<body class="relative min-h-screen flex flex-col font-sans selection:bg-blue-500/30 selection:text-white bg-[#020617] text-[#cbd5e1]">
+
+    <div class="fixed inset-0 bg-tech-grid pointer-events-none -z-10"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] bg-blue-600/10 rounded-[100%] blur-[80px] pointer-events-none -z-10"></div>
+
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800 shadow-md">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            
+            <!-- Platform Brand -->
+            <a href="{{ site.BaseURL }}" class="flex items-center gap-3 group">
+                <div class="flex items-center justify-center text-blue-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="font-bold text-sm tracking-widest text-slate-100 uppercase">{{ site.Title }}</span>
+                    <span class="text-[10px] font-mono text-slate-400">Security Research Platform</span>
+                </div>
+            </a>
+
+            <!-- Core Nav -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300 h-full">
+                {{ $currentPage := . }}
+                {{ range site.Menus.main }}
+                    <a href="{{ .URL }}" class="flex items-center h-full hover:text-white transition-colors {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}border-b-2 border-blue-500 text-white{{ end }}">
+                        {{ .Name }}
+                    </a>
+                {{ end }}
+            </nav>
+
+            <!-- Search / Action -->
+            <div class="flex items-center gap-3">
+                <form action="/search/" method="GET" class="hidden sm:flex items-center relative w-64">
+                    <svg class="w-4 h-4 text-slate-500 absolute left-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input 
+                        type="text" 
+                        name="q"
+                        id="siteSearch"
+                        placeholder="Search IOCs, Posts..." 
+                        class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-md py-1.5 pl-9 pr-3 text-sm text-slate-200 transition-colors placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500 z-50 relative"
+                        autocomplete="off"
+                        required
+                    >
+                </form>
+            </div>
+        </div>
+    </header>

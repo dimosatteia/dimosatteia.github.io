@@ -1,0 +1,11 @@
+{{- $index := slice -}}
+{{- range where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+  
+  {{- $tagsList := delimit (.Params.tags | default slice) ", " -}}
+  {{- $keywordsList := delimit (.Params.keywords | default slice) ", " -}}
+  {{- $fullContents := printf "%s | Tags: %s | Keywords: %s" .Plain $tagsList $keywordsList -}}
+  
+  {{- $page := dict "title" .Title "contents" $fullContents "permalink" .Permalink "summary" .Summary "date" (.Date.Format "2006-01-02") "tags" (.Params.tags | default slice) -}}
+  {{- $index = $index | append $page -}}
+{{- end -}}
+{{- $index | jsonify -}}
