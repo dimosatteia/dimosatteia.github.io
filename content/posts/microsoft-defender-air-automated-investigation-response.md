@@ -188,7 +188,7 @@ cover:
 
 ## Πού να πας από εδώ
 
-> 🔗 **Συνέχισε με τη σειρά Microsoft Defender Demystified.** Αν θέλεις πρώτα να δεις πού ζει το AIR μέσα στην πλατφόρμα, το **[Part 5: A Walk Through the Microsoft Defender Portal](/posts/defender-demystified-part-5-portal-tour/)** σε ξεναγεί στο `security.microsoft.com` και στο Investigation & response, εκεί ακριβώς όπου συναντάς τις έρευνες του AIR στην καθημερινότητά σου.
+> 🔗 **Συνέχισε με τη σειρά Microsoft Defender Demystified.** Αν θέλεις πρώτα να δεις πού ζει το AIR μέσα στην πλατφόρμα, το **[Part 5: A Walk Through the Microsoft Defender Portal](/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/)** σε ξεναγεί στο `security.microsoft.com` και στο Investigation & response, εκεί ακριβώς όπου συναντάς τις έρευνες του AIR στην καθημερινότητά σου.
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
