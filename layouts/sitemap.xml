@@ -1,7 +1,9 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>" | safeHTML -}}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {{- range .Site.RegularPages -}}
-    {{- if not (in (slice "/search/" "/404/") .RelPermalink) -}}
+  {{- /* Όλες οι σελίδες (αρχική, άρθρα, κατηγορίες, series, releases),
+         εκτός από tags, search, 404 και σελίδες με robotsNoIndex */ -}}
+  {{- range .Site.Pages -}}
+    {{- if and (not (in (slice "/search/" "/404/") .RelPermalink)) (ne .Type "tags") (ne .Params.robotsNoIndex true) -}}
       <url>
         <loc>{{ .Permalink }}</loc>
         {{- if not .Lastmod.IsZero -}}
