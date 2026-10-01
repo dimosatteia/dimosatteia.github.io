@@ -161,7 +161,7 @@
             <div class="flex flex-col gap-2">
                 {{ $feed := partial "feed-pages.html" . }}
                 {{ $paginator := .Paginate $feed }}
-                {{ range $paginator.Pages }}
+                {{ range $i, $p := $paginator.Pages }}
                 
                 <!-- Use categories to determine border color based on mapping -->
                 {{ $borderColor := "border-l-transparent" }}
@@ -193,7 +193,7 @@
                                 <!-- Μικρογραφία που δείχνει ΟΛΟΚΛΗΡΗ την εικόνα (object-contain) -->
                                 {{ with .Params.cover.image }}
                                 <div class="shrink-0 w-full sm:w-56 h-48 sm:h-32 relative z-10 bg-slate-900 rounded-md border border-slate-700/50">
-                                    <img src="{{ . | absURL }}" alt="Cover" class="absolute inset-0 w-full h-full object-contain p-1 transform transition-all duration-300 ease-in-out hover:scale-105 sm:hover:scale-[2.2] hover:z-50 hover:shadow-[0_0_30px_rgba(0,0,0,0.8)] sm:origin-left cursor-zoom-in">
+                                    <img src="{{ . | absURL }}" alt="Cover"{{ if gt $i 0 }} loading="lazy"{{ end }} decoding="async" class="absolute inset-0 w-full h-full object-contain p-1 transform transition-all duration-300 ease-in-out hover:scale-105 sm:hover:scale-[2.2] hover:z-50 hover:shadow-[0_0_30px_rgba(0,0,0,0.8)] sm:origin-left cursor-zoom-in">
                                 </div>
                                 {{ end }}
                                 
