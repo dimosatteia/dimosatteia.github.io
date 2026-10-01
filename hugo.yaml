@@ -5,7 +5,7 @@
 # -----------------------------------------------------------------------------
 
 baseURL: "https://thecybersec.gr/"   # <-- change after creating the GitHub repo
-locale: "en-us"
+locale: "el-gr"
 title: "Microsoft 365 Security Insights"
 # theme: "PaperMod"
 defaultContentLanguage: "en"
