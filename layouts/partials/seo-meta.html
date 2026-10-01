@@ -26,7 +26,8 @@
 {{- end -}}
 
 {{- $title := site.Title -}}
-{{- if not .IsHome }}{{ $title = printf "%s | %s" .Title site.Title }}{{ end -}}
+{{- if and .IsPage (eq .Section "posts") }}{{ $title = .Title }}
+{{- else if not .IsHome }}{{ $title = printf "%s | %s" .Title site.Title }}{{ end -}}
 
 <meta name="description" content="{{ $desc }}">
 {{- if .IsHome }}
