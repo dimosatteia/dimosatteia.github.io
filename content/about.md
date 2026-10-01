@@ -26,7 +26,7 @@ tags:
   - Author
   - Microsoft 365 Security
 author: "Dimosthenis Atteia"
-description: 
+description: "Δημοσθένης Αττέια, CIO/CISO με εξειδίκευση σε Microsoft 365 Security, NIS2 και ISO 27001. Πιστοποιήσεις, ομιλίες και Gold Award στα Cyber Security Awards 2026."
 summary: "Σχετικά με τον συγγραφέα"
 categories:
 series: 
