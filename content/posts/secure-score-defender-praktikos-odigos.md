@@ -30,7 +30,8 @@ author: "Dimosthenis Atteia"
 description: "Microsoft Secure Score για τον Υ.Α.Σ.Π.Ε.: τεχνικά controls NIS2, Νόμος 5160/2024, ιεράρχηση ενεργειών και μετρήσιμη συμμόρφωση Microsoft 365."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε., από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Compliance"]
-series: ["Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ"]
+series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
+seriesCompanion: true
 ShowToc: true
 TocOpen: false
 weight: -5

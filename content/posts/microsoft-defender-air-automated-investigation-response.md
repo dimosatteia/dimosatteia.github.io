@@ -33,7 +33,7 @@ author: "Dimosthenis Atteia"
 description: "Ένας πρακτικός, ανθρώπινος οδηγός για το Automated Investigation & Response (AIR) στο Microsoft Defender: πώς δουλεύει, τι σημαίνουν τα verdicts, ποια είναι τα πέντε automation levels με τη σωστή ορολογία, πώς διαβάζεις τα αποτελέσματα και κυρίως, τι αλλάζει την 1η Σεπτεμβρίου 2026 όταν το AIR παύει να τρέχει ως ξεχωριστή εμπειρία."
 summary: "Το AIR είναι ο ψηφιακός αναλυτής που κάνει το βαρύ triage στη θέση σου. Σε αυτό το άρθρο εξηγώ πώς λειτουργεί το pipeline της αυτόματης έρευνας, τι σημαίνουν τα Malicious / Suspicious / No threats found, πώς δουλεύουν τα πέντε automation levels ανά device group, πώς διαβάζεις σωστά το Action Center και τι σημαίνει η αλλαγή της 1ης Σεπτεμβρίου 2026 για το πώς θα δουλεύεις με το AIR από εδώ και πέρα."
 categories: ["Security Operations & XDR"]
-series: ["Microsoft Defender Deep Dives"]
+series: ["Microsoft Defender Up Close"]
 ShowToc: true
 TocOpen: false
 weight: -5

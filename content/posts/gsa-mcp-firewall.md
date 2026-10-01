@@ -29,7 +29,6 @@ author: "Dimosthenis Atteia"
 description: "Ανάλυση του νέου Global Secure Access MCP firewall της Microsoft, του πρώτου network-based ελέγχου πάνω στο Model Context Protocol, και του γιατί κάθε CISO πρέπει να το βάλει στο radar του πριν οι AI agents στον οργανισμό αρχίσουν να μιλάνε με MCP servers χωρίς κανέναν να το ξέρει."
 summary: "Οι AI agents στον οργανισμό σου ήδη μιλάνε με MCP servers, ό,τι κι αν λέει το Shadow IT policy σου. Το Global Secure Access MCP firewall είναι το πρώτο εργαλείο που σου δίνει πραγματική ορατότητα και έλεγχο πάνω σε αυτή την κίνηση, σε επίπεδο tool, resource και prompt template, όχι απλώς σε επίπεδο URL."
 categories: ["Network & SSE", "AI Security"]
-series: ["Preview Features"]
 releases:
   - "preview"   # ← αυτό το στέλνει στο /releases/preview/
 ShowToc: true

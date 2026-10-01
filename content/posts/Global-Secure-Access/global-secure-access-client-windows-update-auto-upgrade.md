@@ -25,6 +25,7 @@ description: "Από τον Νοέμβριο του 2026 ο Global Secure Access
 summary: "Μια μικρή αλλά ουσιαστική αλλαγή περνάει σχεδόν απαρατήρητη: το GSA client σταματά να είναι αποκλειστικά ευθύνη του Intune σου. Από τον Νοέμβριο το Windows Update μπαίνει στο παιχνίδι, και αυτό έχει άμεση σχέση με το πώς τεκμηριώνεις το patch management σου."
 categories: ["Network & SSE"]
 series: ["Global Secure Access"]
+seriesCompanion: true
 ShowToc: true
 TocOpen: false
 weight: -6
