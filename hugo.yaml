@@ -195,6 +195,21 @@ menu:
       name: Release Status
       url: /releases/
       weight: 25
+    - identifier: releases-new
+      parent: releases
+      name: "🆕 Νέα Χαρακτηριστικά (New Features)"
+      url: /releases/#new-features
+      weight: 1
+    - identifier: releases-preview
+      parent: releases
+      name: "🚧 Δημόσια Προεπισκόπιση (Public Preview)"
+      url: /releases/#public-preview
+      weight: 2
+    - identifier: releases-ga
+      parent: releases
+      name: "✅ Γενικά Διαθέσιμο (Generally Available)"
+      url: /releases/#generally-available
+      weight: 3
     - identifier: categories
       name: Categories
       url: /categories/

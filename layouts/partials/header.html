@@ -128,9 +128,28 @@
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300 h-full">
                 {{ $currentPage := . }}
                 {{ range site.Menus.main }}
-                    <a href="{{ .URL }}" class="flex items-center h-full hover:text-white transition-colors {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}border-b-2 border-blue-500 text-white{{ end }}">
+                    {{ $active := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+                    {{ if .HasChildren }}
+                    <div class="relative group flex items-center h-full">
+                        <a href="{{ .URL }}" class="flex items-center gap-1 h-full hover:text-white transition-colors {{ if $active }}border-b-2 border-blue-500 text-white{{ end }}">
+                            {{ .Name }}
+                            <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        <div class="absolute left-0 top-full hidden group-hover:block group-focus-within:block min-w-[320px]">
+                            <div class="bg-slate-950/95 border border-slate-800 rounded-md shadow-lg py-2">
+                                {{ range .Children }}
+                                <a href="{{ .URL }}" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                                    {{ .Name }}
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ else }}
+                    <a href="{{ .URL }}" class="flex items-center h-full hover:text-white transition-colors {{ if $active }}border-b-2 border-blue-500 text-white{{ end }}">
                         {{ .Name }}
                     </a>
+                    {{ end }}
                 {{ end }}
             </nav>
 

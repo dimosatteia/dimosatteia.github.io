@@ -32,7 +32,7 @@ ShowRssButtonInSectionTermList: true
 
 Τα χαρακτηριστικά του Microsoft 365 κυκλοφορούν σε πολλαπλές φάσεις. Η κατανόηση του σταδίου κύκλου ζωής στο οποίο βρίσκεται μια λειτουργία είναι κρίσιμη για τη λήψη τεκμηριωμένων αποφάσεων υλοποίησης (deployment) σε εταιρικά περιβάλλοντα.
 
-<details>
+<details id="new-features">
 <summary><h2 style="display:inline">🆕 Νέα Χαρακτηριστικά (New Features)</h2></summary>
 
 Λειτουργίες που έχουν **ανακοινωθεί στο Microsoft 365 Roadmap** αλλά **δεν είναι ακόμη διαθέσιμες** για δοκιμή ή χρήση σε κανένα tenant.
@@ -50,7 +50,7 @@ ShowRssButtonInSectionTermList: true
 
 </details>
 
-<details>
+<details id="public-preview">
 <summary><h2 style="display:inline">🚧 Δημόσια Προεπισκόπιση (Public Preview)</h2></summary>
 
 Λειτουργίες που είναι **διαθέσιμες για δοκιμή**, αλλά **δεν συνιστώνται για περιβάλλοντα παραγωγής (production)**.
@@ -71,7 +71,7 @@ ShowRssButtonInSectionTermList: true
 
 </details>
 
-<details>
+<details id="generally-available">
 <summary><h2 style="display:inline">✅ Γενικά Διαθέσιμο (Generally Available)</h2></summary>
 
 Λειτουργίες που είναι **έτοιμες για παραγωγή (production-ready)** και υποστηρίζονται επίσημα από τη Microsoft με πλήρη κάλυψη SLA.
@@ -120,3 +120,22 @@ ShowRssButtonInSectionTermList: true
 - [Microsoft 365 Public Roadmap](https://www.microsoft.com/en-us/microsoft-365/roadmap)
 - [Microsoft Product Lifecycle](https://learn.microsoft.com/en-us/lifecycle/products/)
 - [Service Level Agreements (SLA) for Online Services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)
+
+---
+
+<script>
+(function () {
+  var ids = ["new-features", "public-preview", "generally-available"];
+  function openFromHash() {
+    var target = location.hash.slice(1);
+    if (ids.indexOf(target) === -1) return;
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.open = (id === target);
+    });
+    document.getElementById(target).scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  window.addEventListener("DOMContentLoaded", openFromHash);
+  window.addEventListener("hashchange", openFromHash);
+})();
+</script>
