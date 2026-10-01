@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ if .IsHome }}{{ site.Title }}{{ else if and .IsPage (eq .Section "posts") }}{{ .Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+    <title>{{ (partial "page-info.html" .).title }}</title>
     
     {{ partial "seo-meta.html" . }}
     

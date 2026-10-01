@@ -1,0 +1,8 @@
+{{- /*
+  Επιστρέφει τη λίστα άρθρων που σελιδοποιεί το _default/list.html.
+  Κοινή πηγή για list.html και για τα meta (τίτλος/canonical σελίδων 2+),
+  ώστε το .Paginate να καλείται πάντα με τα ίδια ορίσματα.
+*/ -}}
+{{- $feed := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- if eq .Kind "term" }}{{ $feed = .Pages }}{{ end -}}
+{{- return $feed -}}

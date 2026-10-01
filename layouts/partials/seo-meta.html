@@ -15,7 +15,8 @@
 {{- end -}}
 {{- $desc = $desc | plainify | htmlUnescape | chomp -}}
 
-{{- $canonical := .Permalink -}}
+{{- $info := partial "page-info.html" . -}}
+{{- $canonical := $info.url -}}
 {{- with .Params.canonicalURL }}{{ $canonical = trim . " " }}{{ end -}}
 
 {{- $image := "" -}}
@@ -25,9 +26,7 @@
   {{- $image = "images/Dimos_BannerNew.webp" | absURL -}}
 {{- end -}}
 
-{{- $title := site.Title -}}
-{{- if and .IsPage (eq .Section "posts") }}{{ $title = .Title }}
-{{- else if not .IsHome }}{{ $title = printf "%s | %s" .Title site.Title }}{{ end -}}
+{{- $title := $info.title -}}
 
 <meta name="description" content="{{ $desc }}">
 {{- if .IsHome }}

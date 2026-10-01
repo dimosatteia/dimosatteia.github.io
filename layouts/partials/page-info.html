@@ -1,0 +1,26 @@
+{{- /*
+  Επιστρέφει dict με:
+    num   : αριθμός σελίδας pagination (1 όταν δεν υπάρχει)
+    url   : απόλυτο URL της τρέχουσας σελίδας pagination
+    title : τίτλος για <title>, og:title, twitter:title
+  Pagination υπάρχει μόνο σε αρχική και σελίδες όρων (_default/list.html).
+*/ -}}
+{{- $num := 1 -}}
+{{- $url := .Permalink -}}
+{{- if or .IsHome (eq .Kind "term") -}}
+  {{- $pager := .Paginate (partial "feed-pages.html" .) -}}
+  {{- $num = $pager.PageNumber -}}
+  {{- if gt $num 1 }}{{ $url = $pager.URL | absURL }}{{ end -}}
+{{- end -}}
+{{- $suffix := "" -}}
+{{- if gt $num 1 }}{{ $suffix = printf " – Σελίδα %d" $num }}{{ end -}}
+
+{{- $title := "" -}}
+{{- if .IsHome -}}
+  {{- $title = printf "%s%s" site.Title $suffix -}}
+{{- else if and .IsPage (eq .Section "posts") -}}
+  {{- $title = .Title -}}
+{{- else -}}
+  {{- $title = printf "%s%s | %s" .Title $suffix site.Title -}}
+{{- end -}}
+{{- return (dict "num" $num "url" $url "title" $title) -}}

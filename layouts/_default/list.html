@@ -159,7 +159,7 @@
 
             <!-- Structured List of Posts -->
             <div class="flex flex-col gap-2">
-                {{ $feed := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}{{ if eq .Kind "term" }}{{ $feed = .Pages }}{{ end }}
+                {{ $feed := partial "feed-pages.html" . }}
                 {{ $paginator := .Paginate $feed }}
                 {{ range $paginator.Pages }}
                 
