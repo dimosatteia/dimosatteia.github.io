@@ -9,12 +9,12 @@
 {{- end }}
 
 {{- $person := dict
-    "@context" "https://schema.org"
     "@type" "Person"
     "name" "Dimosthenis Atteia"
     "alternateName" "Δημοσθένης Αττέια"
     "jobTitle" "CIO/CISO"
     "url" .Site.BaseURL
+    "image" ("images/DimosthenisAtteia.png" | absURL)
     "worksFor" (dict "@type" "Organization" "name" "Μύλοι Κεπενού Α.Β.Ε.Ε.")
     "hasCredential" $credentials
     "sameAs" (slice
@@ -27,6 +27,19 @@
     "knowsAbout" (slice "Microsoft 365 Security" "Microsoft Defender XDR" "Microsoft Entra ID" "Microsoft Purview" "NIS2" "ISO 27001" "OT/ICS Security")
 }}
 
+{{- /* Στη σελίδα «Σχετικά»: ProfilePage με κύρια οντότητα το Person (Google profile page rich result) */ -}}
+{{- $schema := merge $person (dict "@context" "https://schema.org") -}}
+{{- if eq .RelPermalink "/about/" -}}
+  {{- $schema = dict
+      "@context" "https://schema.org"
+      "@type" "ProfilePage"
+      "url" .Permalink
+      "name" .Title
+      "dateCreated" (.Date.Format "2006-01-02T15:04:05Z07:00")
+      "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+      "mainEntity" $person
+  -}}
+{{- end }}
 <script type="application/ld+json">
-{{ $person | jsonify (dict "indent" "  ") | safeJS }}
+{{ $schema | jsonify (dict "indent" "  ") | safeJS }}
 </script>
