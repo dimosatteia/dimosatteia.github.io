@@ -185,6 +185,13 @@
       e.stopPropagation();
       closePopup();
     });
+    // Κλικ στο "Δες το άρθρο": αποθηκεύεται ότι το είδε, χωρίς να μπλοκάρεται η μετάβαση
+    overlay.querySelectorAll(".announce-cta").forEach(function (link) {
+      link.addEventListener("click", function () {
+        localStorage.setItem(STORAGE_KEY, "1");
+      });
+    });
+
     overlay.addEventListener("click", function (e) {
       if (e.target === overlay) closePopup();
     });
