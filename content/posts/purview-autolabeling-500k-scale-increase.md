@@ -34,7 +34,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/purview-autolabeling-500k/purview-autolabel-scale-increase-cover.png"
+  image: "images/purview-autolabeling-500k/purview-autolabel-scale-increase-cover.webp"
   alt: "Αύξηση ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία ημερησίως"
   caption: "Microsoft Purview Auto-labeling scale increase, από 100K σε 500K files/day, GA Οκτώβριος 2026"
   relative: true
@@ -58,7 +58,7 @@ ShowWordCount: true
 
 Σύμφωνα με την επίσημη τεκμηρίωση της Microsoft, το σημερινό όριο για auto-labeling πάνω σε SharePoint και OneDrive είναι <cite index="2-15">μέγιστο 100.000 αυτόματα επισημασμένα αρχεία στο tenant σου ανά ημέρα</cite>. Το RM567890 στο Message Center Archive περιγράφει την επόμενη κίνηση: <cite index="3-6">αύξηση της μέγιστης χωρητικότητας auto-labeling για SharePoint και OneDrive από 100.000 σε έως 500.000 αρχεία ανά tenant την ημέρα</cite>. Preview τον Σεπτέμβριο, Γενική Διαθεσιμότητα τον Οκτώβριο του 2026.
 
-[![Σύγκριση παλιού και νέου ορίου auto-labeling ανά ημέρα στο Purview](/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.png)](/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.png)
+[![Σύγκριση παλιού και νέου ορίου auto-labeling ανά ημέρα στο Purview](/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.webp)](/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.webp)
 > 📷 **Εικόνα 1: Microsoft Purview portal → Information Protection → Policies → Auto-labeling policies → Overview μιας ενεργής πολιτικής. Το γράφημα «Labeling activity overview» δείχνει την τάση επισημασμένων αρχείων τις τελευταίες 30 ημέρες, τυπικά αρκετές τάξεις μεγέθους κάτω από το σημερινό όριο των 100.000 αρχείων/ημέρα.**
 
 Το επίσημο σκεπτικό της Microsoft είναι απλό και το βρίσκω εύστοχο: <cite index="3-6">η αύξηση βοηθά τους οργανισμούς να επισημαίνουν και να προστατεύουν περισσότερα δεδομένα σε κατάσταση ηρεμίας, ταχύτερα, κλείνοντας τα κενά labeling σε υπάρχον περιεχόμενο</cite>. Και η γραμμή που πραγματικά με ενδιαφέρει ως CISO: <cite index="3-6">με sensitivity labels και ρυθμίσεις προστασίας να εφαρμόζονται σε περισσότερα αρχεία νωρίτερα, οι οργανισμοί μπορούν να προετοιμάσουν καλύτερα το data estate τους για το Microsoft 365 Copilot με μεγαλύτερη εμπιστοσύνη</cite>. Δηλαδή η Microsoft συνδέει ανοιχτά αυτή την αλλαγή με το Copilot readiness, όχι μόνο με compliance hygiene. Αν στον οργανισμό σου υπάρχει ήδη πίεση να ενεργοποιηθεί Copilot γρήγορα, αυτό το νούμερο είναι το πρώτο επιχείρημα που θα ακούσεις από την πλευρά του business.

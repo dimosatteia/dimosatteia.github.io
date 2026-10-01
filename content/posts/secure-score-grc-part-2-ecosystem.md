@@ -35,7 +35,7 @@ ShowToc: true
 TocOpen: false
 weight: -2
 cover:
-  image: "/images/MSS.png"
+  image: "/images/MSS.webp"
   alt: "Microsoft Secure Score in the Microsoft Defender XDR ecosystem — how Entra ID, Defender for Endpoint, Office 365, and Purview feed the score"
   caption: "Secure Score Series — Part 2: The Defender Ecosystem"
   relative: false
@@ -74,7 +74,7 @@ Remember from **[Part 1](/posts/secure-score-grc-part-1-anatomy/)**, the navigat
 
 The important word is **Exposure management**. Microsoft Secure Score moved into that section a while back, and it lives alongside other posture-related features.
 
-[![Microsoft Secure Score location in Defender portal Exposure management navigation](/images/SS_GRC_P2_Ecosystem_image_1.png)](/images/SS_GRC_P2_Ecosystem_image_1.png)
+[![Microsoft Secure Score location in Defender portal Exposure management navigation](/images/SS_GRC_P2_Ecosystem_image_1.webp)](/images/SS_GRC_P2_Ecosystem_image_1.webp)
 > 📷 **Image 1 — The Exposure management section in the left navigation.**
 
 **[Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)** is a newer Microsoft surface that tries to answer *"how exposed are we?"*. It includes:
@@ -90,7 +90,7 @@ Microsoft Secure Score is one of several posture instruments that live here. For
 
 This is the part that usually surprises new professionals. Your Microsoft Secure Score is calculated from configuration data in **many different Microsoft products**. Here's the main list:
 
-[![Microsoft Secure Score Recommended actions showing Identity Data Device Apps source categories](/images/SS_GRC_P2_Ecosystem_image_2.png)](/images/SS_GRC_P2_Ecosystem_image_2.png)
+[![Microsoft Secure Score Recommended actions showing Identity Data Device Apps source categories](/images/SS_GRC_P2_Ecosystem_image_2.webp)](/images/SS_GRC_P2_Ecosystem_image_2.webp)
 > 📷 **Image 2 — The Recommended actions list with the Category column visible.**
 
 ### Microsoft Entra ID (identity)
@@ -158,7 +158,7 @@ Here's a concrete exercise that makes all this click. Open your Microsoft Secure
 
 Example: let's say the recommendation is *"Ensure internal phishing protection for Forms is enabled"*.
 
-[![Tracing a Microsoft Secure Score recommendation back to Microsoft Entra ID source product](/images/SS_GRC_P2_Ecosystem_image_3.png)](/images/SS_GRC_P2_Ecosystem_image_3.png)
+[![Tracing a Microsoft Secure Score recommendation back to Microsoft Entra ID source product](/images/SS_GRC_P2_Ecosystem_image_3.webp)](/images/SS_GRC_P2_Ecosystem_image_3.webp)
 > 📷 **Image 3 — A recommendation's Implementation tab showing which Microsoft product configures it.**
 
 The Implementation tab tells you to go to **Microsoft 365 admin center → Settings → Org Settings → Microsoft Forms** and enable internal phishing 

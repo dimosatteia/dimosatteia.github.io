@@ -37,7 +37,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "/images/M365Strategy2026/Cover-m365-2026-strategy-cover.png"
+  image: "/images/M365Strategy2026/Cover-m365-2026-strategy-cover.webp"
   alt: "Στρατηγική αξιολόγηση τιμολόγησης και πακέτων Microsoft 365 2026 — διαφάνεια τίτλου με την αναδιάρθρωση αδειοδότησης, την ενσωμάτωση ασφάλειας και AI, και τη στρατηγική ανανέωσης ως τρεις συνδεδεμένους πυλώνες"
   caption: "Microsoft 365 2026: Στρατηγική Αξιολόγηση και Οικονομικός Σχεδιασμός"
 ShowReadingTime: true

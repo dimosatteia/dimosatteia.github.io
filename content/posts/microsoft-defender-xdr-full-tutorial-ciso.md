@@ -51,7 +51,7 @@ slug: "microsoft-defender-xdr-full-tutorial-ciso"
 
 Μέσα από τα Assets ανοίξαμε ένα συγκεκριμένο μηχάνημα με Windows 11. Πέρα από το exposure score, το tab Security Recommendations δεν έδειξε μόνο ρυθμίσεις ασφάλειας, έδειξε και ξεπερασμένο λογισμικό, στο παράδειγμά μας μια παλιά έκδοση Foxit PDF Reader και Chrome.
 
-[![Λίστα security recommendations για συγκεκριμένο endpoint στο Microsoft Defender](/images/defender-xdr-tutorial/defender-endpoint-security-recommendations.png)](/images/defender-xdr-tutorial/defender-endpoint-security-recommendations.png)
+[![Λίστα security recommendations για συγκεκριμένο endpoint στο Microsoft Defender](/images/defender-xdr-tutorial/defender-endpoint-security-recommendations.webp)](/images/defender-xdr-tutorial/defender-endpoint-security-recommendations.webp)
 > 📷 **Εικόνα 1: Devices → συγκεκριμένο μηχάνημα → Security recommendations.**
 
 Κάνοντας κλικ σε ένα recommendation, π.χ. «Require LDAP client signing», βλέπετε την εξήγηση, το potential risk, και ακριβώς πώς να το υλοποιήσετε: μέσω Active Directory Group Policy, μέσω registry, ή αν πρόκειται για κάτι σαν «Turn on Defender Credential Guard», ακόμα και μέσω hardware readiness tool. Δεν υπάρχει δικαιολογία «δεν ήξερα πώς να το κάνω», η καθοδήγηση είναι βήμα-βήμα.
@@ -73,7 +73,7 @@ slug: "microsoft-defender-xdr-full-tutorial-ciso"
 
 Αυτό που με εντυπωσίασε περισσότερο στο demo ήταν η λίστα της Microsoft με **37.631 εφαρμογές** βαθμολογημένες ανάλογα με την επικινδυνότητά τους. Ψάξαμε το WinZip, που πήρε βαθμολογία 7 στα 10 συνολικά, στο κόκκινο. Μπαίνοντας στη σελίδα της εφαρμογής, βλέπουμε ότι στο security score πήρε 9, γιατί δεν υποστηρίζει multifactor authentication ως εφαρμογή, στο compliance score πήρε 4, γιατί δεν υποστηρίζει γνωστά regulations όπως το ISO 27001, δηλαδή αν ο οργανισμός σας θέλει πιστοποίηση ISO 27001, αυτή η εφαρμογή δεν επιτρέπεται να είναι εγκατεστημένη πουθενά, και σε ό,τι αφορά το legal score, το κομμάτι που ξεχωρίζει είναι το GDPR.
 
-[![Risk scoring εφαρμογής στο Microsoft Defender for Cloud Apps με sub-scores security, compliance, legal](/images/defender-xdr-tutorial/defender-cloud-apps-risk-score.png)](/images/defender-xdr-tutorial/defender-cloud-apps-risk-score.png)
+[![Risk scoring εφαρμογής στο Microsoft Defender for Cloud Apps με sub-scores security, compliance, legal](/images/defender-xdr-tutorial/defender-cloud-apps-risk-score.webp)](/images/defender-xdr-tutorial/defender-cloud-apps-risk-score.webp)
 > 📷 **Εικόνα 3: Defender for Cloud Apps → Catalog. Κάθε εφαρμογή έχει risk score με ανάλυση σε security, compliance και legal.**
 
 Μέσα από το **Cloud Discovery** είδαμε μία πραγματική λίστα: 240 εφαρμογές, 18 διευθύνσεις IP, τέσσερις χρήστες, τρία devices, με πλήρη εικόνα traffic. Ανοίγοντας μια συγκεκριμένη εφαρμογή, π.χ. WordPress με score 7, βλέπετε ποιος τη χρησιμοποιεί, από ποιο μηχάνημα, και τι traffic δημιούργησε.
@@ -82,7 +82,7 @@ slug: "microsoft-defender-xdr-full-tutorial-ciso"
 
 Στο δικό μου κομμάτι του demo άνοιξα την ενότητα Incidents, όπου φαίνεται τι έχει συμβεί το τελευταίο εξάμηνο στον οργανισμό. Σταθήκαμε σε ένα συγκεκριμένο incident με τίτλο **Network mapping reconnaissance (DNS)**, μια προσπάθεια χαρτογράφησης του εσωτερικού δικτύου μέσω ερωτημάτων DNS, κλασική πρώτη κίνηση ενός επιτιθέμενου πριν προχωρήσει σε lateral movement. Το σύστημα το έπιασε αμέσως και μου έδειξε γραφικά ποιος χρήστης, ποιο μηχάνημα, και ποιες διεργασίες εμπλέκονταν.
 
-[![XDR incident attack story graph με Network mapping reconnaissance DNS](/images/defender-xdr-tutorial/defender-xdr-incident-DNS-reconnaissance.png)](/images/defender-xdr-tutorial/defender-xdr-incident-DNS-reconnaissance.png)
+[![XDR incident attack story graph με Network mapping reconnaissance DNS](/images/defender-xdr-tutorial/defender-xdr-incident-DNS-reconnaissance.webp)](/images/defender-xdr-tutorial/defender-xdr-incident-DNS-reconnaissance.webp)
 > 📷 **Εικόνα 4: Incidents → Attack story. Το γράφημα, τα impacted assets και το evidence & response για ένα incident τύπου network reconnaissance μέσω DNS.**
 
 Το incident είχε αντίστοιχο alert, με ακριβή ημερομηνία και ώρα, ποια assets επηρεάστηκαν, ποιος χρήστης και ποια συσκευή, και ένα evidence & response tab που εξηγούσε γιατί η συγκεκριμένη ακολουθία ερωτημάτων DNS θεωρήθηκε ύποπτη. Δείξαμε επίσης το device management σε πράξη: μπαίνοντας σε ένα συγκεκριμένο μηχάνημα, μπορείτε να τρέξετε remote antivirus scan, ή να ανοίξετε ένα **Live Response session**, ένα απομακρυσμένο command console, όχι πλήρες command prompt, με περιορισμένες αλλά χρήσιμες εντολές (run, scan, status, processes) για να δείτε τι τρέχει σε πραγματικό χρόνο ή να σταματήσετε μια διεργασία. Η δυνατότητα υπάρχει και για servers, όχι μόνο για client μηχανήματα.

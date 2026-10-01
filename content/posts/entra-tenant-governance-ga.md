@@ -35,7 +35,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/entra-tenant-governance/tenant-governance-infographic-cover.png"
+  image: "images/entra-tenant-governance/tenant-governance-infographic-cover.webp"
   alt: "Infographic Microsoft Entra Tenant Governance: από το χάος πολλαπλών tenants στον κεντρικό έλεγχο"
   caption: "Microsoft Entra Tenant Governance: οι 3 πυλώνες και τα βήματα υλοποίησης"
   relative: true
@@ -61,7 +61,7 @@ ShowWordCount: true
 
 Τέσσερις πυλώνες καλύπτουν αυτά τα ερωτήματα: **Related tenants**, **Governance relationships**, **Configuration management** και **Secure tenant creation**. Ας τους δούμε έναν έναν, γιατί η αξία και οι περιορισμοί διαφέρουν σημαντικά μεταξύ τους.
 
-[![Microsoft Entra admin center, σελίδα Tenant governance Overview με τους τρεις πυλώνες Discover, Govern, Monitor](/images/entra-tenant-governance/entra-admin-center-tenant-governance-overview.png)](/images/entra-tenant-governance/entra-admin-center-tenant-governance-overview.png)
+[![Microsoft Entra admin center, σελίδα Tenant governance Overview με τους τρεις πυλώνες Discover, Govern, Monitor](/images/entra-tenant-governance/entra-admin-center-tenant-governance-overview.webp)](/images/entra-tenant-governance/entra-admin-center-tenant-governance-overview.webp)
 > 📷 **Εικόνα 1: Entra admin center → Identity governance → Tenant governance → Overview. Η αρχική σελίδα με τα τρία βασικά flows (Discover, Govern, Monitor) και τα αντίστοιχα κουμπιά setup.**
 
 ## Related tenants: βλέπεις αυτό που μέχρι τώρα δεν έβλεπες

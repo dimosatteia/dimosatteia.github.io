@@ -88,7 +88,7 @@ Set-CrossTenantRecallConfiguration -AllowedSenderTenantIds @{Remove="tenantId1",
 
 Στο ενδοεταιρικό recall, ο έλεγχος είναι διπλός εξ ορισμού: ο αποστολέας ζητά την ανάκληση, αλλά η ενέργεια συμβαίνει μέσα στα δικά μου δεδομένα, με τη δική μου Unified Audit Log καταγραφή, μέσα στη δική μου security boundary. Στο cross-tenant μοντέλο, η απόφαση «αυτό το μήνυμα πρέπει να φύγει» παίρνεται από **χρήστη άλλου οργανισμού**, ο οποίος ενεργεί μέσα στη δική του υποδομή, με τα δικά του access controls, τη δική του πολιτική για ποιος μπορεί να κάνει recall, και το αποτέλεσμα εκτελείται πάνω σε mailbox που ανήκει σε μένα. Ο έλεγχος πρόσβασης που πραγματικά μετράει, ποιος χρήστης στον εξωτερικό tenant επιτρέπεται να πατήσει «Recall», δεν είναι κάτι που βλέπω, ούτε κάτι που μπορώ να ελέγξω. Εμπιστεύομαι έναν ολόκληρο tenant ID, όχι ένα άτομο ή μια πολιτική.
 
-[![Two-tenant trust diagram για cross-tenant message recall](/images/cross-tenant-message-recall-exchange-online/cross-tenant-trust-boundary-diagram.png)](/images/cross-tenant-message-recall-exchange-online/cross-tenant-trust-boundary-diagram.png)
+[![Two-tenant trust diagram για cross-tenant message recall](/images/cross-tenant-message-recall-exchange-online/cross-tenant-trust-boundary-diagram.webp)](/images/cross-tenant-message-recall-exchange-online/cross-tenant-trust-boundary-diagram.webp)
 > 📷 **Εικόνα 2: Εννοιολογικό διάγραμμα. Ο εξωτερικός tenant αποφασίζει το recall, η ενέργεια εκτελείται πάνω σε mailbox του δικού μου tenant.**
 
 Υπάρχει και ένα δεύτερο, πιο λεπτό ζήτημα: το allow list λειτουργεί σε επίπεδο **tenant**, όχι σε επίπεδο χρήστη ή domain. Αν κάποιος λογαριασμός μέσα στον allow-listed εξωτερικό tenant παραβιαστεί, ο επιτιθέμενος αποκτά αυτόματα τη δυνατότητα recall πάνω στους δικούς μου χρήστες, χωρίς να χρειαστεί να παραβιάσει τίποτα δικό μου. Αυτό δεν είναι λόγος να μην ενεργοποιήσεις ποτέ το feature, είναι λόγος να το αντιμετωπίσεις ως ό,τι πραγματικά είναι: μια επέκταση της δικής σου attack surface μέσω τρίτου, όχι απλώς μια βολική λειτουργικότητα του Outlook.
@@ -115,7 +115,7 @@ Set-CrossTenantRecallConfiguration -AllowedSenderTenantIds @{Remove="tenantId1",
 - **Επιβεβαίωση στο δικό σου tenant** πώς συμπεριφέρεται το recall πάνω σε mailboxes με retention policy ή litigation hold, πριν εμπιστευτείς οποιονδήποτε εξωτερικό tenant.
 - **Ενημέρωση helpdesk και χρηστών**, ώστε ένα cross-tenant recall να μην ερμηνευτεί ως ύποπτη δραστηριότητα ή bug όταν εμφανιστεί για πρώτη φορά.
 
-[![Πίνακας allow list τεκμηρίωσης εξωτερικών tenants για cross-tenant recall](/images/cross-tenant-message-recall-exchange-online/allowed-tenant-governance-register.png)](/images/cross-tenant-message-recall-exchange-online/allowed-tenant-governance-register.png)
+[![Πίνακας allow list τεκμηρίωσης εξωτερικών tenants για cross-tenant recall](/images/cross-tenant-message-recall-exchange-online/allowed-tenant-governance-register.webp)](/images/cross-tenant-message-recall-exchange-online/allowed-tenant-governance-register.webp)
 > 📷 **Εικόνα 3: Παράδειγμα εσωτερικού governance register για καταχωρήσεις στο AllowedSenderTenantIds, με πεδία αιτιολόγησης, εγκριτή και ημερομηνίας επανεξέτασης.**
 
 ## Το συμπέρασμα

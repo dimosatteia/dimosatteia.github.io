@@ -32,7 +32,7 @@ slug: "microsoft-secure-score-grc-programma-ciso"
 
 Πριν λίγο καιρό ήμουν καλεσμένος στο live webinar του Χρήστου Σπανουγάκη, **[Chris Spanougakis MVP](https://www.youtube.com/@Chris_OnTechnology)**, γνωστού σε πολλούς από εσάς και από το κανάλι του στο YouTube. Ο Χρήστος με κάλεσε να μιλήσω για κάτι που μέχρι τότε το είχα μοιραστεί μόνο σε κομμάτια, μέσα από άρθρα εδώ στο blog: το πώς ένα GRC πρόγραμμα που χτίσαμε πάνω στο Microsoft Secure Score κέρδισε τελικά χρυσό βραβείο στα Cyber Security Awards του 2026, στην κατηγορία Governance, Risk & Compliance. Το βίντεο της συζήτησης το βρίσκετε ολόκληρο εδώ, [Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers](https://www.youtube.com/watch?v=ouciH--n2KI&t=276s), και σας προτείνω ανεπιφύλακτα να κάνετε εγγραφή στο [κανάλι του Χρήστου](https://www.youtube.com/@Chris_OnTechnology), γιατί ανεβάζει σταθερά πολύ πρακτικό υλικό γύρω από το οικοσύστημα της Microsoft καθώς και να επισκεφτείτε το [Personal Webiste & Blog του](https://spanougakis.com/).
 
-[![How I Built a Gold-Award GRC Programme on Microsoft 365 with Microsoft Secure Score, YouTube thumbnail με Dimosthenis Atteia και Chris Spanougakis](/images/secure-score-grc-award/secure-score-youtube-thumbnail.png)](https://www.youtube.com/watch?v=ouciH--n2KI&t=276s)
+[![How I Built a Gold-Award GRC Programme on Microsoft 365 with Microsoft Secure Score, YouTube thumbnail με Dimosthenis Atteia και Chris Spanougakis](/images/secure-score-grc-award/secure-score-youtube-thumbnail.webp)](https://www.youtube.com/watch?v=ouciH--n2KI&t=276s)
 > 🎥 **Δείτε ολόκληρο το webinar στο YouTube: [How I Built a Gold-Award GRC Programme on Microsoft 365 with Microsoft Secure Score](https://www.youtube.com/watch?v=ouciH--n2KI&t=276s)**
 
 Αυτό το άρθρο δεν είναι η γραπτή απομαγνητοφώνηση της κουβέντας. Το πλήρες breakdown βήμα-βήμα για το πώς χτίστηκε το πρόγραμμα, η χαρτογράφηση σε ISO 27001 και NIS2, τα τέσσερα building blocks, και το Power BI report, το έχω ήδη καταγράψει αναλυτικά στη σειρά **[Microsoft Secure Score as a Cyber GRC Instrument](/posts/secure-score-grc-part-0-intro/)**. Αν θέλετε τη μεθοδολογία, ξεκινήστε από εκεί. Εδώ κρατάω μόνο ό,τι δεν είχα ξαναγράψει πουθενά: πώς παρουσιάστηκε η ιδέα στο board, τι θα έκανα διαφορετικά αν ξεκινούσα σήμερα, και ένα live demo που δείξαμε αποκλειστικά στο webinar.
@@ -66,7 +66,7 @@ slug: "microsoft-secure-score-grc-programma-ciso"
 
 Κάτι που δεν είχα αναφέρει πριν σε άρθρο, και το έδειξα ζωντανά στο webinar, είναι το Power BI dashboard που χτίσαμε πάνω στα δεδομένα του Secure Score και του Intune. Κάθε μέρα, ανοίγοντας απλά ένα site, βλέπετε δυναμικά τι completed, ποιο score impact έχει το καθένα, ποια devices και users έχουν θέματα, ακόμα και έναν χάρτη με το από πού γίνονται sign-ins. Σε μία περίπτωση είδαμε ζωντανά μια αποτυχημένη προσπάθεια σύνδεσης από τις ΗΠΑ, κλασική περίπτωση που σταματάει το MFA πριν προλάβει να γίνει πρόβλημα.
 
-[![Power BI dashboard με δεδομένα Secure Score και Intune ανά πυλώνα](/images/secure-score-grc-award/secure-score-powerbi-dashboard.png)](/images/secure-score-grc-award/secure-score-powerbi-dashboard.png)
+[![Power BI dashboard με δεδομένα Secure Score και Intune ανά πυλώνα](/images/secure-score-grc-award/secure-score-powerbi-dashboard.webp)](/images/secure-score-grc-award/secure-score-powerbi-dashboard.webp)
 > 📷 **Εικόνα 1: Power BI dashboard πάνω σε δεδομένα Secure Score και Intune, με ανάλυση ανά πυλώνα, completed recommendations και sign-in δεδομένα.**
 
 ## Τι άλλαξε μετά το βραβείο

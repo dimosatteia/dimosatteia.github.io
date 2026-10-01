@@ -39,7 +39,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "/images/ProjectPerception/project-perception-cover.png"
+  image: "/images/ProjectPerception/project-perception-cover.webp"
   alt: "Project Perception: το agentic security system της Microsoft με red, blue και green AI agents"
   caption: "Microsoft Project Perception, an Agentic Security System (Preview)"
 ---
@@ -50,7 +50,7 @@ cover:
 
 Η απάντηση της Microsoft λέγεται **Project Perception**: ένα σύστημα που, αντί να σου πετάει κι άλλα alerts, υπόσχεται να **αντιλαμβάνεται, να σκέφτεται και να δρα** στην ίδια ταχύτητα με τις απειλές. Ανακοινώθηκε στις 27 Ιουλίου 2026 και μπαίνει σε **public preview στις 3 Αυγούστου 2026**, μέσα στο Microsoft Defender. Επειδή Ελληνικό υλικό που να το εξηγεί καθαρά δεν θα βρεις εύκολα, ας το δούμε μαζί.
 
-[![Project Perception: το agentic security system της Microsoft με red, blue και green AI agents](/images/ProjectPerception/project-perception-cover.png)](/images/ProjectPerception/project-perception-cover.png)
+[![Project Perception: το agentic security system της Microsoft με red, blue και green AI agents](/images/ProjectPerception/project-perception-cover.webp)](/images/ProjectPerception/project-perception-cover.webp)
 > 📷 **Εικόνα 1: Τρεις ομάδες agents, ένας συνεχής βρόχος, ο άνθρωπος στον τελικό έλεγχο. Αυτή είναι η ιδέα σε μία εικόνα.**
 
 ## Τι είναι το Project Perception, σε μία ανάσα
@@ -63,7 +63,7 @@ cover:
 
 Εδώ είναι η καρδιά του συστήματος. Η Microsoft οργάνωσε τη δουλειά σε τρεις τύπους agents που καλύπτουν όλο τον κύκλο ζωής μιας επίθεσης και **παραδίδουν σκυτάλη ο ένας στον άλλο αυτόματα**.
 
-[![Οι τρεις agents του Project Perception: red που βρίσκει, blue που αξιολογεί, green που διορθώνει](/images/ProjectPerception/project-perception-red-blue-green-agents.png)](/images/ProjectPerception/project-perception-red-blue-green-agents.png)
+[![Οι τρεις agents του Project Perception: red που βρίσκει, blue που αξιολογεί, green που διορθώνει](/images/ProjectPerception/project-perception-red-blue-green-agents.webp)](/images/ProjectPerception/project-perception-red-blue-green-agents.webp)
 > 📷 **Εικόνα 2: Red βρίσκει, blue αξιολογεί, green διορθώνει, και ο κύκλος δεν σταματά ποτέ.**
 
 Ο **red agent** σκέφτεται σαν επιτιθέμενος. Ψάχνει τα μονοπάτια που θα ακολουθούσε ένας πραγματικός hacker (paths to compromise), κάνει reconnaissance και vulnerability scanning, δηλαδή ουσιαστικά τρέχει «επίθεση» στα δικά σου συστήματα πριν το κάνει αληθινά κάποιος άλλος.
@@ -78,7 +78,7 @@ cover:
 
 Η Microsoft περιγράφει το Project Perception ως ένα νέο **«Cyber Stack»** με έξι δομικά στοιχεία που, μαζί, δίνουν αυτόνομη άμυνα χωρίς να χάνεις τον έλεγχο.
 
-[![Τα έξι δομικά στοιχεία του Project Perception: signals, context, models, agents, harness, actuators](/images/ProjectPerception/project-perception-cyber-stack.png)](/images/ProjectPerception/project-perception-cyber-stack.png)
+[![Τα έξι δομικά στοιχεία του Project Perception: signals, context, models, agents, harness, actuators](/images/ProjectPerception/project-perception-cyber-stack.webp)](/images/ProjectPerception/project-perception-cyber-stack.webp)
 > 📷 **Εικόνα 3: Από τα signals στη δράση. Κάθε επίπεδο τροφοδοτεί το επόμενο.**
 
 Στη βάση βρίσκονται τα **signals & sensors**, που δίνουν ορατότητα σε endpoints, identities, clouds και apps ώστε καμία απειλή να μην περνά απαρατήρητη. Πάνω τους κάθεται το **context**, threat intelligence, σήματα και γνώση του ίδιου του οργανισμού σε πραγματικό χρόνο, ώστε η δουλειά να ξεκινά από insight, όχι από συλλογή δεδομένων. Ακολουθούν τα **models** (θα τα δούμε αμέσως), οι **agents** (red/blue/green), το **harness** που τα ενορχηστρώνει αξιόπιστα, και στην κορυφή οι **actuators**, ο μηχανισμός που μετατρέπει μια απόφαση σε **πραγματική ενέργεια**, όχι απλή σύσταση.
@@ -95,7 +95,7 @@ cover:
 
 Είναι η πρώτη ερώτηση που θα σου κάνουν οι συνάδελφοι, οπότε ας την ξεκαθαρίσουμε.
 
-[![Διαφορά ανάμεσα στο Project Perception που δρα και στο Security Copilot που βοηθά](/images/ProjectPerception/project-perception-vs-copilot.png)](/images/ProjectPerception/project-perception-vs-copilot.png)
+[![Διαφορά ανάμεσα στο Project Perception που δρα και στο Security Copilot που βοηθά](/images/ProjectPerception/project-perception-vs-copilot.webp)](/images/ProjectPerception/project-perception-vs-copilot.webp)
 > 📷 **Εικόνα 4: Το ένα δρα, το άλλο βοηθά. Και τα δύο μαζί.**
 
 Με τα πιο απλά λόγια: το **Project Perception είναι AI που ΔΡΑ**, είναι ένα agentic system που εκτελεί ενέργειες. Το **Security Copilot είναι AI που ΒΟΗΘΑ** όπως ένα generative AI chat interface όπου ρωτάς και παίρνεις απαντήσεις, συνόψεις, εξηγήσεις. Δεν είναι ανταγωνιστικά, ούτε πρέπει να διαλέξεις. **Δουλεύουν μαζί**: το Copilot ενισχύει τον αναλυτή, το Perception αναλαμβάνει την εκτέλεση.
@@ -124,7 +124,7 @@ cover:
 
 Εδώ έρχεται το κομμάτι που, ως GRC άνθρωπος, με ενδιαφέρει περισσότερο. Η αυτόνομη δράση είναι υπέροχη μέχρι τη στιγμή που πρέπει να **λογοδοτήσεις** για μια ενέργεια που πήρε ένας agent. Σε ένα πλαίσιο όπως το **NIS2** ή ένα **ISMS κατά ISO 27001**, το ερώτημα του auditor θα είναι απλό και ανελέητο: «ποιος ή τι πήρε αυτή την απόφαση, με ποια εξουσιοδότηση, και μπορείς να μου το δείξεις;». Η καλή είδηση είναι ότι η Microsoft φαίνεται να το έχει σκεφτεί και μιλά για διακυβέρνηση μέσα από το **Agent 365** και για αποφάσεις που είναι **scoped, traceable και replayable**. Η δική σου δουλειά είναι να το μετατρέψεις σε **γραπτή πολιτική**: ποια είναι τα guardrails, πώς τεκμηριώνεται κάθε αυτόνομη ενέργεια, πώς γίνεται το review. Το «ο agent το έκανε μόνος του» δεν είναι απάντηση που περνά σε έναν έλεγχο.
 
-[![Τα βασικά στοιχεία του Project Perception με μια ματιά: preview, μοντέλο, benchmark, κόστος και ανθρώπινος έλεγχος](/images/ProjectPerception/project-perception-key-facts.png)](/images/ProjectPerception/project-perception-key-facts.png)
+[![Τα βασικά στοιχεία του Project Perception με μια ματιά: preview, μοντέλο, benchmark, κόστος και ανθρώπινος έλεγχος](/images/ProjectPerception/project-perception-key-facts.webp)](/images/ProjectPerception/project-perception-key-facts.webp)
 > 📷 **Εικόνα 5: Κράτησε αυτή την εικόνα γιατί τα έχει όλα όσα θα σε ρωτήσουν σε ένα meeting.**
 
 ## Το takeaway

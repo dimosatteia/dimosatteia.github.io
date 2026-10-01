@@ -36,7 +36,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/defender-identity-network-traffic-alert/mdi-sensor-health-cover.png"
+  image: "images/defender-identity-network-traffic-alert/mdi-sensor-health-cover.webp"
   alt: "Microsoft Defender portal, ενότητα Identity Security Health issues"
   caption: "Defender portal → Settings → Identities → Health issues → Sensors health issues"
   relative: true
@@ -54,7 +54,7 @@ ShowWordCount: true
 
 Μετά το rollout, το alert εμφανίζεται στο **Sensors health issues** tab, αλλά και στη γενική εμπειρία **Health issues**, μέσα στο Defender portal, όταν το Defender for Identity δεν λαμβάνει την αναμενόμενη δικτυακή δραστηριότητα από κάποιον domain controller.
 
-[![Sensor health issues tab στο Microsoft Defender portal, χωρίς κανένα καταγεγραμμένο issue (healthy baseline)](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.png)](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.png)
+[![Sensor health issues tab στο Microsoft Defender portal, χωρίς κανένα καταγεγραμμένο issue (healthy baseline)](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.webp)](/images/defender-identity-network-traffic-alert/mdi-sensor-health-alert-detail.webp)
 > 📷 **Εικόνα 1: Settings → Identities → Deployment → Health issues → Sensor health issues tab. Το rollout του MC1455017 έχει ήδη φτάσει στο tenant μας (επιβεβαιωμένο μέσω Message center), και δεν καταγράφεται κανένα ανοιχτό ή ιστορικό instance, το υγιές baseline.**
 
 Καμία ενέργεια δεν απαιτείται πριν το rollout, το feature είναι ήδη διαθέσιμο, και δεν υπάρχει καμία επίπτωση σε τελικούς χρήστες ή σε compliance ρυθμίσεις από μόνη της η ενεργοποίηση του alert. Αυτό όμως δεν σημαίνει ότι το θέμα είναι αδιάφορο, σημαίνει απλώς ότι η δουλειά ξεκινάει *αν* και *όταν* το alert ενεργοποιηθεί στο δικό σου περιβάλλον.

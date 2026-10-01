@@ -65,7 +65,7 @@ ShowWordCount: true
 
 Το βασικό σημείο που μου άρεσε περισσότερο είναι ότι όλο αυτό γίνεται χωρίς καμία αλλαγή στο ίδιο το MCP client, host ή server. Δεν χρειάζεται να πείσεις κανέναν vendor να ενσωματώσει κάτι, το control κάθεται στο network layer, με την ταυτότητα του χρήστη και της συσκευής να καθορίζουν τι επιτρέπεται.
 
-[![MCP protocol version rule στο Global Secure Access MCP policy](/images/gsa-mcp-firewall/gsa-mcp-protocol-version-rule.png)](/images/gsa-mcp-firewall/gsa-mcp-protocol-version-rule.png)
+[![MCP protocol version rule στο Global Secure Access MCP policy](/images/gsa-mcp-firewall/gsa-mcp-protocol-version-rule.webp)](/images/gsa-mcp-firewall/gsa-mcp-protocol-version-rule.webp)
 > 📷 **Εικόνα 1: Global Secure Access → Secure → MCP policies. Κανόνας που ελέγχει την έκδοση του MCP πρωτοκόλλου ανά rule.**
 
 ## Γιατί το «βλέπω URLs» δεν αρκεί πια
@@ -74,7 +74,7 @@ ShowWordCount: true
 
 Εδώ μπαίνει η έννοια του **discovery**. Μέσα από το **Generative AI Insights** της Global Secure Access, ο οργανισμός μπορεί να δει ποιοι MCP servers χρησιμοποιούνται ήδη στο περιβάλλον, ποια tools εκθέτουν, και να χτίσει πολιτική πάνω σε πραγματική, καταγεγραμμένη δραστηριότητα αντί να μαντεύει. Στην πράξη, αυτό σημαίνει ότι μπορείς να ξεκινήσεις ένα MCP policy όχι με ένα κενό φύλλο, αλλά επιλέγοντας μέσα από «suggested MCP servers from recent activity», κάτι που θα εκτιμήσει ιδιαίτερα όποιος έχει προσπαθήσει ποτέ να χτίσει allow-list πολιτική χωρίς να ξέρει τι πραγματικά τρέχει στο περιβάλλον του.
 
-[![Discovered tools σε MCP server μέσα από Global Secure Access](/images/gsa-mcp-firewall/gsa-mcp-discovered-tools.png)](/images/gsa-mcp-firewall/gsa-mcp-discovered-tools.png)
+[![Discovered tools σε MCP server μέσα από Global Secure Access](/images/gsa-mcp-firewall/gsa-mcp-discovered-tools.webp)](/images/gsa-mcp-firewall/gsa-mcp-discovered-tools.webp)
 > 📷 **Εικόνα 2: Discovery ενός MCP server, όπου τα tools που εκθέτει εμφανίζονται αυτόματα και μπορούν να επιλεγούν ένα προς ένα για scoping του κανόνα.**
 
 ## Τα πρακτικά προαπαιτούμενα, και το ένα που θα σε σταματήσει αν δεν το έχεις

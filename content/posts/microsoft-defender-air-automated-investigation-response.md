@@ -38,7 +38,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "/images/DefenderAIR/air-cover-evolution.png"
+  image: "/images/DefenderAIR/air-cover-evolution.webp"
   alt: "Η εξέλιξη του Automated Investigation & Response στο Microsoft Defender, από το χειροκίνητο triage στην αυτόνομη απόκριση"
   caption: "Microsoft Defender AIR — Automated Investigation & Response"
 ---
@@ -49,7 +49,7 @@ cover:
 
 Εδώ ακριβώς μπαίνει το **Automated Investigation and Response (AIR)** του Microsoft Defender. Δεν είναι ακόμα ένα buzzword. Είναι το κομμάτι της πλατφόρμας που αναλαμβάνει το επαναλαμβανόμενο, μηχανικό κομμάτι της έρευνας, αυτό δηλαδή που κάνει έναν αναλυτή να νιώθει σαν διεκπεραιωτής, και σου αφήνει χρόνο για τη δουλειά που πραγματικά χρειάζεται ανθρώπινη κρίση.
 
-[![Η εικόνα του προβλήματος του alert fatigue: γιατί οι ομάδες ασφάλειας πνίγονται στον όγκο των alerts και γιατί χρειάζεται αυτοματοποίηση](/images/DefenderAIR/air-alert-fatigue-problem.png)](/images/DefenderAIR/air-alert-fatigue-problem.png)
+[![Η εικόνα του προβλήματος του alert fatigue: γιατί οι ομάδες ασφάλειας πνίγονται στον όγκο των alerts και γιατί χρειάζεται αυτοματοποίηση](/images/DefenderAIR/air-alert-fatigue-problem.webp)](/images/DefenderAIR/air-alert-fatigue-problem.webp)
 > 📷 **Εικόνα 1: Το alert fatigue δεν είναι θέμα προσπάθειας αλλά είναι θέμα όγκου. Καμία ομάδα δεν κλιμακώνεται όσο τα alerts.**
 
 Ένα νούμερο που αξίζει να κρατήσεις, γιατί έρχεται κατευθείαν από τη Microsoft και όχι από κάποιο marketing slide: οι οργανισμοί που τρέχουν **full automation** είχαν **40% περισσότερα high-confidence malware samples** απομακρυσμένα σε σχέση με όσους δούλευαν σε χαμηλότερα επίπεδα αυτοματισμού. Κράτα το στο μυαλό σου και θα επιστρέψουμε σε αυτό όταν φτάσουμε στα automation levels.
@@ -60,7 +60,7 @@ cover:
 
 Το αποτέλεσμα είναι διπλό: **μειώνεται δραστικά ο όγκος των alerts** που φτάνουν σε ανθρώπινο μάτι, και η ομάδα ασφάλειας μπορεί να επικεντρωθεί σε πιο σύνθετες απειλές και πιο στρατηγικές πρωτοβουλίες.
 
-[![Το AIR ως ψηφιακός αναλυτής SOC που εξετάζει αυτόματα τα alerts και δρα άμεσα για την αντιμετώπιση παραβιάσεων](/images/DefenderAIR/air-what-is-air-digital-analyst.png)](/images/DefenderAIR/air-what-is-air-digital-analyst.png)
+[![Το AIR ως ψηφιακός αναλυτής SOC που εξετάζει αυτόματα τα alerts και δρα άμεσα για την αντιμετώπιση παραβιάσεων](/images/DefenderAIR/air-what-is-air-digital-analyst.webp)](/images/DefenderAIR/air-what-is-air-digital-analyst.webp)
 > 📷 **Εικόνα 2: Σκέψου το AIR σαν έναν ακούραστο junior analyst που κάνει το πρώτο πέρασμα σε κάθε alert, 24/7, χωρίς να κουράζεται ποτέ.**
 
 Δύο προϋποθέσεις πριν πούμε οτιδήποτε άλλο, γιατί τις βλέπω να ξεχνιούνται συνέχεια:
@@ -78,7 +78,7 @@ cover:
 
 Μόλις ξεκινήσει, η έρευνα **επεκτείνει το εύρος της** μόνη της. Αν κατά τη διάρκειά της εμφανιστούν νέα alerts από την ίδια συσκευή, προστίθενται στην τρέχουσα έρευνα. Κι αν η ίδια απειλή εντοπιστεί σε άλλη συσκευή, τότε και εκείνη η συσκευή μπαίνει στην έρευνα και ξεκινά ένα γενικό security playbook πάνω της. Υπάρχει όμως ένα δικλείδα ασφαλείας που μου αρέσει ιδιαίτερα: **αν η επέκταση αγγίξει 10 ή περισσότερες συσκευές** από την ίδια οντότητα, τότε αυτή η ενέργεια **απαιτεί έγκριση** και εμφανίζεται στην καρτέλα *Pending actions*. Δηλαδή το σύστημα ξέρει πότε το πράγμα μεγαλώνει αρκετά ώστε να θέλει ανθρώπινο μάτι.
 
-[![Το pipeline της αυτόματης έρευνας AIR: από το alert στη συλλογή evidence, στο verdict και στο remediation](/images/DefenderAIR/air-investigation-pipeline.png)](/images/DefenderAIR/air-investigation-pipeline.png)
+[![Το pipeline της αυτόματης έρευνας AIR: από το alert στη συλλογή evidence, στο verdict και στο remediation](/images/DefenderAIR/air-investigation-pipeline.webp)](/images/DefenderAIR/air-investigation-pipeline.webp)
 > 📷 **Εικόνα 3: Alert → έρευνα → συλλογή evidence → verdict → remediation. Η ίδια λογική που θα ακολουθούσες κι εσύ, απλά αυτοματοποιημένη.**
 
 ## Το σύστημα των verdicts
@@ -91,7 +91,7 @@ cover:
 
 Αυτό ισχύει τόσο σε επίπεδο evidence όσο και σε επίπεδο entity: κάθε οντότητα που αναλύεται (file, process, service, driver κ.λπ.) παίρνει το δικό της verdict. Έτσι, όταν ανοίξεις μια έρευνα, δεν βλέπεις ένα αδιαφανές «κακό/καλό» αλλά βλέπεις ξεκάθαρα ποιο ακριβώς artifact κρίθηκε τι.
 
-[![Τα τρία verdicts του AIR: Malicious, Suspicious και No threats found, ένα για κάθε οντότητα που αναλύεται](/images/DefenderAIR/air-verdicts-malicious-suspicious-clean.png)](/images/DefenderAIR/air-verdicts-malicious-suspicious-clean.png)
+[![Τα τρία verdicts του AIR: Malicious, Suspicious και No threats found, ένα για κάθε οντότητα που αναλύεται](/images/DefenderAIR/air-verdicts-malicious-suspicious-clean.webp)](/images/DefenderAIR/air-verdicts-malicious-suspicious-clean.webp)
 > 📷 **Εικόνα 4: Τρία verdicts, τίποτα παραπάνω. Η απλότητα εδώ είναι feature, όχι έλλειψη.**
 
 ## Τι κάνει το AIR όταν βρει κάτι, τα remediation actions
@@ -100,7 +100,7 @@ cover:
 
 Το αν αυτές οι ενέργειες γίνονται **αυτόματα** ή **μόνο μετά από έγκριση** εξαρτάται από το automation level σου και από άλλες ρυθμίσεις ασφάλειας, π.χ. την προστασία από **potentially unwanted applications (PUA)**. Και το πιο σημαντικό για την ψυχική σου ηρεμία: **κάθε ενέργεια, pending ή ολοκληρωμένη, καταγράφεται στο Action Center**, και αν χρειαστεί μπορείς να την **αναιρέσεις (undo)**. Δεν υπάρχει «μαύρο κουτί», υπάρχει πλήρες ίχνος.
 
-[![Παραδείγματα remediation actions του AIR: quarantine file, stop service, remove scheduled task, καθάρισμα persistence](/images/DefenderAIR/air-remediation-actions.png)](/images/DefenderAIR/air-remediation-actions.png)
+[![Παραδείγματα remediation actions του AIR: quarantine file, stop service, remove scheduled task, καθάρισμα persistence](/images/DefenderAIR/air-remediation-actions.webp)](/images/DefenderAIR/air-remediation-actions.webp)
 > 📷 **Εικόνα 5: Οι ενέργειες είναι συγκεκριμένες και αναστρέψιμες. Αυτό είναι που κάνει το full automation λιγότερο τρομακτικό απ' όσο ακούγεται.**
 
 ## Τα πέντε automation levels και εδώ αποφασίζεις ποιος έχει τον έλεγχο
@@ -113,12 +113,12 @@ cover:
 - **Semi - require approval for non-temp folders remediation:** Έγκριση χρειάζεται για ό,τι **δεν** βρίσκεται σε **temporary folders**. Στους προσωρινούς φακέλους το remediation προχωρά αυτόματα.
 - **No automated response** *(no automation)*: Η αυτόματη έρευνα **δεν τρέχει** καθόλου. **Δεν συνιστάται**, γιατί υποβαθμίζει το security posture του οργανισμού σου.
 
-[![Ανάλυση των πέντε automation levels του AIR στο Microsoft Defender for Endpoint με τη σωστή ορολογία](/images/DefenderAIR/air-automation-levels-explained.png)](/images/DefenderAIR/air-automation-levels-explained.png)
+[![Ανάλυση των πέντε automation levels του AIR στο Microsoft Defender for Endpoint με τη σωστή ορολογία](/images/DefenderAIR/air-automation-levels-explained.webp)](/images/DefenderAIR/air-automation-levels-explained.webp)
 > 📷 **Εικόνα 6: Τα πέντε επίπεδα, από πλήρη αυτονομία μέχρι μηδενική. Το «σωστό» για εσένα εξαρτάται από την ωριμότητα του SOC, αλλά η Microsoft προτείνει ξεκάθαρα το Full.**
 
 Εδώ κλείνει ο κύκλος με το 40% που ανέφερα στην αρχή. Ο λόγος που η Microsoft πιέζει προς το **full automation** δεν είναι εμπορικός, είναι στατιστικός. Το full automation έχει αποδειχθεί αξιόπιστο, αποδοτικό και ασφαλές, και ελευθερώνει τους πραγματικά κρίσιμους πόρους σου. Η αγωνία «και αν σβήσει κάτι που δεν έπρεπε;» απαντιέται από το γεγονός ότι **κάθε ενέργεια είναι αναστρέψιμη** μέσα από το Action Center.
 
-[![Σύγκριση των automation levels: τι γίνεται αυτόματα και τι απαιτεί έγκριση σε κάθε επίπεδο](/images/DefenderAIR/air-automation-levels-compared.png)](/images/DefenderAIR/air-automation-levels-compared.png)
+[![Σύγκριση των automation levels: τι γίνεται αυτόματα και τι απαιτεί έγκριση σε κάθε επίπεδο](/images/DefenderAIR/air-automation-levels-compared.webp)](/images/DefenderAIR/air-automation-levels-compared.webp)
 > 📷 **Εικόνα 7: Η ίδια πληροφορία σε μορφή σύγκρισης, χρήσιμο όταν πρέπει να δικαιολογήσεις την επιλογή σου σε ένα risk committee.**
 
 ## Device groups: γιατί δεν χρειάζεται να διαλέξεις ένα level για όλους
@@ -127,7 +127,7 @@ cover:
 
 Αυτή η ευελιξία είναι που κάνει το full automation ρεαλιστικό ακόμα και για συντηρητικούς οργανισμούς: δεν είναι απόφαση «όλα ή τίποτα». Είναι απόφαση ανά ζώνη ρίσκου. Και αν η ομάδα σου έχει ήδη ορίσει device groups με συγκεκριμένο automation level, οι default ρυθμίσεις που ρολάρει η Microsoft **δεν** τα αλλάζουν αλλά μένουν όπως τα έχεις.
 
-[![Ρύθμιση automation level ανά device group στο Microsoft Defender, με διαφορετικά επίπεδα για workstations και servers](/images/DefenderAIR/air-device-groups-automation.png)](/images/DefenderAIR/air-device-groups-automation.png)
+[![Ρύθμιση automation level ανά device group στο Microsoft Defender, με διαφορετικά επίπεδα για workstations και servers](/images/DefenderAIR/air-device-groups-automation.webp)](/images/DefenderAIR/air-device-groups-automation.webp)
 > 📷 **Εικόνα 8: Full automation στα endpoints των χρηστών, semi στους κρίσιμους servers. Το AIR σε αφήνει να χαράξεις τη γραμμή εκεί που βγάζει νόημα για σένα.**
 
 ## Πώς διαβάζεις τα αποτελέσματα μιας έρευνας
@@ -144,12 +144,12 @@ cover:
 - **Log:** χρονολογική, αναλυτική καταγραφή όλων των ενεργειών μετά το alert.
 - **Pending actions:** ό,τι περιμένει την έγκρισή σου.
 
-[![Ανάγνωση αποτελεσμάτων αυτόματης έρευνας AIR μέσα από το Action Center και το investigation graph](/images/DefenderAIR/air-reading-investigation-results.png)](/images/DefenderAIR/air-reading-investigation-results.png)
+[![Ανάγνωση αποτελεσμάτων αυτόματης έρευνας AIR μέσα από το Action Center και το investigation graph](/images/DefenderAIR/air-reading-investigation-results.webp)](/images/DefenderAIR/air-reading-investigation-results.webp)
 > 📷 **Εικόνα 9: Το Action Center είναι το control tower σου. Εδώ ζεις τη μέρα σου με το AIR.**
 
 Καλό είναι επίσης να ξέρεις τι σημαίνουν τα **investigation states**, γιατί χωρίς αυτά η ουρά μοιάζει με κινέζικα. Τα βασικά που ορίζει το Defender for Endpoint είναι: **Benign** (ερευνήθηκε, δεν βρέθηκε απειλή), **PendingResource** (η έρευνα παγώνει γιατί περιμένει έγκριση ή η συσκευή είναι προσωρινά μη διαθέσιμη), **UnsupportedAlertType** (το AIR δεν καλύπτει αυτόν τον τύπο alert, προχωράς με advanced hunting), **Failed** (κάποιος analyzer δεν μπόρεσε να ολοκληρώσει) και **Successfully remediated** (ολοκληρώθηκε, όλες οι ενέργειες έγιναν ή εγκρίθηκαν). Στο ενοποιημένο περιβάλλον του Microsoft Defender XDR θα συναντήσεις και πιο αναλυτικά states (π.χ. *Partially investigated*, *Partially remediated*, *Terminated by system*), αλλά η παραπάνω πεντάδα είναι ο πυρήνας που πρέπει να αναγνωρίζεις με το μάτι.
 
-[![Τα investigation states του AIR: Benign, PendingResource, UnsupportedAlertType, Failed, Successfully remediated](/images/DefenderAIR/air-investigation-states.png)](/images/DefenderAIR/air-investigation-states.png)
+[![Τα investigation states του AIR: Benign, PendingResource, UnsupportedAlertType, Failed, Successfully remediated](/images/DefenderAIR/air-investigation-states.webp)](/images/DefenderAIR/air-investigation-states.webp)
 > 📷 **Εικόνα 10: Μάθε αυτά τα states και η ουρά των ερευνών σταματά να είναι θόρυβος και γίνεται πληροφορία.**
 
 ## Η μεγάλη αλλαγή: τι γίνεται από την 1η Σεπτεμβρίου 2026
@@ -174,14 +174,14 @@ cover:
 
 Και η παγίδα που θέλω να ξεκαθαρίσω, γιατί κυκλοφορούν παλιοί οδηγοί: **ο διακόπτης «Automated Investigation» στα Advanced features ΔΕΝ υπάρχει πλέον**. Έχει αφαιρεθεί. Η αυτόματη έρευνα είναι πλέον **enabled by default**. Αν βρεις οδηγό που σου λέει «πήγαινε στα Advanced features και άναψέ το», ο οδηγός είναι ξεπερασμένος, μη χάνεις χρόνο να ψάχνεις ένα toggle που δεν είναι εκεί.
 
-[![Configuration best practices για το AIR: προϋποθέσεις, device groups, automation levels και τακτικός έλεγχος του Action Center](/images/DefenderAIR/air-configuration-best-practices.png)](/images/DefenderAIR/air-configuration-best-practices.png)
+[![Configuration best practices για το AIR: προϋποθέσεις, device groups, automation levels και τακτικός έλεγχος του Action Center](/images/DefenderAIR/air-configuration-best-practices.webp)](/images/DefenderAIR/air-configuration-best-practices.webp)
 > 📷 **Εικόνα 11: Οι πρακτικές παραμένουν, device groups, σωστό automation level, τακτικός έλεγχος του Action Center. Αλλάζει μόνο το πού «κατοικεί» το feature.**
 
 ## Ο άνθρωπος και το AI, όχι ο άνθρωπος εναντίον του AI
 
 Θα κλείσω με αυτό που πιστεύω πραγματικά, όχι με ένα slide. Το AIR δεν ήρθε να αντικαταστήσει τον αναλυτή. Ήρθε να αναλάβει τον **όγκο** (τα χιλιάδες μηχανικά βήματα που κανένας άνθρωπος δεν μπορεί να κάνει με συνέπεια στις τρεις τα ξημερώματα) και να αφήσει στον άνθρωπο αυτό που κάνει καλά ο άνθρωπος: την **κρίση**. Το context. Την απόφαση που θέλει να ξέρεις ότι «αυτός ο server είναι το ERP της παραγωγής, μην τον αγγίξεις πριν με πάρεις τηλέφωνο».
 
-[![Η συνεργασία ανθρώπου και AI στο σύγχρονο SOC: το AIR αναλαμβάνει τον όγκο, ο άνθρωπος την κρίση](/images/DefenderAIR/air-human-ai-partnership.png)](/images/DefenderAIR/air-human-ai-partnership.png)
+[![Η συνεργασία ανθρώπου και AI στο σύγχρονο SOC: το AIR αναλαμβάνει τον όγκο, ο άνθρωπος την κρίση](/images/DefenderAIR/air-human-ai-partnership.webp)](/images/DefenderAIR/air-human-ai-partnership.webp)
 > 📷 **Εικόνα 12: Το AIR κάνει τη δουλειά της κλίμακας. Εσύ κάνεις τη δουλειά της κρίσης. Αυτός είναι ο σωστός καταμερισμός.**
 
 Αν είσαι στην αρχή, το πιο σημαντικό βήμα σου αυτή τη βδομάδα είναι απλό: **έλεγξε σε ποιο automation level τρέχουν τα device groups σου** και ρώτησε τον εαυτό σου αν υπάρχει καλός λόγος να μην είναι στο Full εκεί που έχει νόημα. Αν είσαι πιο έμπειρος, το επόμενο βήμα είναι να **ξαναδείς τα runbooks σου υπό το πρίσμα της αλλαγής του Σεπτεμβρίου**, γιατί από εκεί και πέρα, το AIR δεν είναι κάτι που «τρέχεις», είναι κάτι που «είναι πάντα εκεί».

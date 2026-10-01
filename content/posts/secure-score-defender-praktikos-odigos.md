@@ -36,7 +36,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "/images/MSS-NIS2.png"
+  image: "/images/MSS-NIS2.webp"
   alt: "Microsoft Secure Score για τον Έλληνα ΥΑΣΠΕ (NIS2"
   caption: "Πρακτικός οδηγός — Microsoft Secure Score & Defender"
   relative: false
@@ -73,7 +73,7 @@ cover:
 
 Δεν είναι όμως εγγύηση ότι δεν θα παραβιαστούμε...και αυτό είναι κρίσιμο να εμπεδώσει κάθε junior μηχανικός. Το score αντικατοπτρίζει το **πόσο χρησιμοποιούμε τα διαθέσιμα controls**, όχι την πραγματική πιθανότητα παραβίασης.
 
-[![Microsoft Secure Score overview page στο Microsoft Defender portal για τον Έλληνα Υ.Α.Σ.Π.Ε. και NIS2 συμμόρφωση](/images/secure-score-defender-praktikos-odigos/01-overview.png)](/images/secure-score-defender-praktikos-odigos/01-overview.png)
+[![Microsoft Secure Score overview page στο Microsoft Defender portal για τον Έλληνα Υ.Α.Σ.Π.Ε. και NIS2 συμμόρφωση](/images/secure-score-defender-praktikos-odigos/01-overview.webp)](/images/secure-score-defender-praktikos-odigos/01-overview.webp)
 > 📷 **Image 1 — Το Microsoft Secure Score overview page.**
 > *Microsoft Defender portal → Exposure management → Microsoft Secure Score.*
 
@@ -86,7 +86,7 @@ cover:
 - Υπάρχει **partial credit**. Αν προστατεύουμε 50 από τους 100 χρήστες μας με MFA, παίρνουμε τους μισούς πόντους. Δεν είναι all-or-nothing, οπότε ξεκινάμε από κάπου, όσο μικρό κι αν φαίνεται.
 - Κάθε recommendation έχει **status** που μπορούμε να ορίσουμε: *To address*, *Planned*, *Risk accepted*, *Resolved through third party*, *Resolved through alternate mitigation*, *Completed*. Είναι πολύτιμο όταν χρησιμοποιούμε ένα control που η Microsoft δεν «βλέπει» άμεσα, π.χ. ένα third-party MFA solution. Δηλώνουμε χειροκίνητα την ισοδύναμη αντιμετώπιση και κερδίζουμε τους πόντους χωρίς να αλλοιώνεται η εικόνα της θέσης μας.
 
-[![Microsoft Secure Score Status dropdown με επιλογές Resolved through alternate mitigation για third-party controls](/images/secure-score-defender-praktikos-odigos/03-overview.png)](/images/secure-score-defender-praktikos-odigos/03-overview.png)
+[![Microsoft Secure Score Status dropdown με επιλογές Resolved through alternate mitigation για third-party controls](/images/secure-score-defender-praktikos-odigos/03-overview.webp)](/images/secure-score-defender-praktikos-odigos/03-overview.webp)
 > 📷 **Image 2 — Status dropdown σε recommendation.**
 > *Οι επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.*
 
@@ -134,7 +134,7 @@ Sensitivity labels για ταξινόμηση και κρυπτογράφηση
 
 Αν αύριο μπούμε για πρώτη φορά στο Defender portal, μια λογική σειρά ενεργειών είναι:
 
-[![Microsoft Secure Score Recommended actions ταξινομημένα κατά Score impact για NIS2 προτεραιοποίηση κινδύνου](/images/secure-score-defender-praktikos-odigos/02-overview.png)](/images/secure-score-defender-praktikos-odigos/02-overview.png)
+[![Microsoft Secure Score Recommended actions ταξινομημένα κατά Score impact για NIS2 προτεραιοποίηση κινδύνου](/images/secure-score-defender-praktikos-odigos/02-overview.webp)](/images/secure-score-defender-praktikos-odigos/02-overview.webp)
 > 📷 **Image 3 — Recommended actions ταξινομημένα κατά Score impact.**
 > *Microsoft Secure Score → Recommended actions tab.*
 

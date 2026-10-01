@@ -71,7 +71,7 @@ cover:
 
 **Τι είναι:** Η **enterprise πλατφόρμα ασφάλειας endpoint** της Microsoft. Βοηθά τους οργανισμούς να προλαμβάνουν, ανιχνεύουν, διερευνούν και αποκρίνονται σε προηγμένες απειλές σε laptops, mobile συσκευές, tablets, PCs, αλλά και σε access points, routers και firewalls.
 
-[![Microsoft Defender for Endpoint (MDE) — ο πυλώνας ασφάλειας endpoint: πρόληψη, ανίχνευση και απόκριση σε κάθε συσκευή](/images/microsoft-defender-oikogeneia-praktikos-odigos/02-mde-overview.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/02-mde-overview.png)
+[![Microsoft Defender for Endpoint (MDE) — ο πυλώνας ασφάλειας endpoint: πρόληψη, ανίχνευση και απόκριση σε κάθε συσκευή](/images/microsoft-defender-oikogeneia-praktikos-odigos/02-mde-overview.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/02-mde-overview.webp)
 > 📷 **Εικόνα 2: Microsoft Defender for Endpoint (MDE).** *Τι είναι και τι προστατεύει.*
 
 **Τι προστατεύει:**
@@ -83,7 +83,7 @@ cover:
 
 Ένα σημείο που εκπλήσσει τους νέους αναλυτές: το MDE **δεν έχει agent** σε συσκευές δικτύου όπως firewalls της Cisco/Fortinet, routers MikroTik ή access points Aruba/Ubiquiti. Παρ' όλα αυτά, μέσω **Device Discovery** (passive network monitoring, DHCP/ARP/traffic observation) μπορεί να τα ανακαλύψει στο δίκτυο και να δώσει ορατότητα σε **unmanaged assets** — κρίσιμο για κάθε οργανισμό που θέλει πλήρες inventory.
 
-[![MDE βασικές δυνατότητες: next-generation protection, EDR, Attack Surface Reduction, autonomous protection, vulnerability management, APIs](/images/microsoft-defender-oikogeneia-praktikos-odigos/03-mde-capabilities.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/03-mde-capabilities.png)
+[![MDE βασικές δυνατότητες: next-generation protection, EDR, Attack Surface Reduction, autonomous protection, vulnerability management, APIs](/images/microsoft-defender-oikogeneia-praktikos-odigos/03-mde-capabilities.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/03-mde-capabilities.webp)
 > 📷 **Εικόνα 3: MDE, βασικές δυνατότητες.** *Και αδειοδότηση: Plan 1, Plan 2, Defender for Business.*
 
 **Βασικές δυνατότητες:** next-generation protection με πρόληψη ransomware, **EDR** (Endpoint Detection & Response), **Attack Surface Reduction**, autonomous protection με automatic attack disruption, **Defender Vulnerability Management**, καθώς και APIs για integrations με τα δικά σας workflows.
@@ -96,7 +96,7 @@ cover:
 
 **Τι είναι:** Η κύρια **cloud-based υπηρεσία φιλτραρίσματος email** της Microsoft και το πρώτο επίπεδο άμυνας απέναντι στις περισσότερες κυβερνοεπιθέσεις, αφού το email παραμένει η μεγαλύτερη πηγή επιθέσεων σήμερα.
 
-[![Microsoft Defender for Office 365 (MDO) — προστασία email και collaboration από phishing, malware και κακόβουλα URLs](/images/microsoft-defender-oikogeneia-praktikos-odigos/04-mdo-overview.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/04-mdo-overview.png)
+[![Microsoft Defender for Office 365 (MDO) — προστασία email και collaboration από phishing, malware και κακόβουλα URLs](/images/microsoft-defender-oikogeneia-praktikos-odigos/04-mdo-overview.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/04-mdo-overview.webp)
 > 📷 **Εικόνα 4: Microsoft Defender for Office 365 (MDO).** *Τι είναι και τι προστατεύει.*
 
 **Τι προστατεύει:**
@@ -106,7 +106,7 @@ cover:
 - **SharePoint, OneDrive, Teams** — protection και Safe Attachments στο Teams
 - **Εσωτερικό mail** — advanced protection ακόμη και για εσωτερική αλληλογραφία
 
-[![MDO βασικές δυνατότητες: Safe Attachments, Safe Links, anti-phishing policies, threat investigation, Automated Investigation, Attack Simulation Training](/images/microsoft-defender-oikogeneia-praktikos-odigos/05-mdo-capabilities.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/05-mdo-capabilities.png)
+[![MDO βασικές δυνατότητες: Safe Attachments, Safe Links, anti-phishing policies, threat investigation, Automated Investigation, Attack Simulation Training](/images/microsoft-defender-oikogeneia-praktikos-odigos/05-mdo-capabilities.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/05-mdo-capabilities.webp)
 > 📷 **Εικόνα 5: MDO, βασικές δυνατότητες.** *Και αδειοδότηση: Plan 1, Plan 2.*
 
 **Βασικές δυνατότητες:** **Safe Attachments** (ανοίγει συνημμένα σε ασφαλές sandbox περιβάλλον πριν φτάσουν στον χρήστη), **Safe Links** (επανελέγχει τον σύνδεσμο τη στιγμή του click, ακόμη κι αν ήταν ασφαλής όταν στάλθηκε), **anti-phishing policies** με προστασία από user/domain impersonation (διαθέσιμο και στο Plan 1), **Automated Investigation and Response (AIR)** και **Attack Simulation Training** για ρεαλιστικά σενάρια εκπαίδευσης χρηστών.
@@ -119,7 +119,7 @@ cover:
 
 **Τι είναι:** Βοηθά τους οργανισμούς να ανιχνεύουν, διερευνούν και αποκρίνονται σε **επιθέσεις βασισμένες στην ταυτότητα**, σε on-premises, cloud και hybrid περιβάλλοντα. Οι επιτιθέμενοι στοχεύουν όλο και περισσότερο users, service accounts και εφαρμογές αντί για συσκευές, για πρόσβαση, κλιμάκωση δικαιωμάτων και persistence.
 
-[![Microsoft Defender for Identity (MDI) — ανίχνευση επιθέσεων ταυτότητας σε on-prem, cloud και hybrid περιβάλλοντα](/images/microsoft-defender-oikogeneia-praktikos-odigos/06-mdi-overview.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/06-mdi-overview.png)
+[![Microsoft Defender for Identity (MDI) — ανίχνευση επιθέσεων ταυτότητας σε on-prem, cloud και hybrid περιβάλλοντα](/images/microsoft-defender-oikogeneia-praktikos-odigos/06-mdi-overview.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/06-mdi-overview.webp)
 > 📷 **Εικόνα 6: Microsoft Defender for Identity (MDI).** *Τι είναι και τι προστατεύει.*
 
 **Τι προστατεύει:**
@@ -128,7 +128,7 @@ cover:
 - **Ταυτότητες & credentials** — users, service accounts, non-human identities
 - **Hybrid identity** — συσχέτιση με Entra ID και άλλα IAM συστήματα (π.χ. Okta) μέσω API connectors
 
-[![MDI βασικές δυνατότητες: posture assessments, behavioral analytics, ανίχνευση επιθέσεων, Lateral Movement Paths, investigation context, response actions](/images/microsoft-defender-oikogeneia-praktikos-odigos/07-mdi-capabilities.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/07-mdi-capabilities.png)
+[![MDI βασικές δυνατότητες: posture assessments, behavioral analytics, ανίχνευση επιθέσεων, Lateral Movement Paths, investigation context, response actions](/images/microsoft-defender-oikogeneia-praktikos-odigos/07-mdi-capabilities.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/07-mdi-capabilities.webp)
 > 📷 **Εικόνα 7: MDI, βασικές δυνατότητες.** *Και αρχιτεκτονική: sensors, API connectors.*
 
 **Βασικές δυνατότητες:** **posture assessments** μέσω Microsoft Secure Score για μείωση του identity attack surface, **behavioral analytics** για ανίχνευση αποκλίσεων στη συμπεριφορά χρηστών, ανίχνευση επιθέσεων όπως reconnaissance, credential theft, lateral movement, DCShadow και Golden Ticket, καθώς και **Lateral Movement Paths** που αποκαλύπτουν οπτικά πώς ένας επιτιθέμενος μπορεί να φτάσει σε privileged accounts.
@@ -141,7 +141,7 @@ cover:
 
 **Τι είναι:** Ο **CASB (Cloud Access Security Broker) της Microsoft**. Δίνει visibility σε **Shadow IT**, ελέγχει τη χρήση cloud εφαρμογών και προστατεύει τα δεδομένα τους, πηγαίνοντας πέρα από το παραδοσιακό εύρος ενός CASB.
 
-[![Microsoft Defender for Cloud Apps (MDA) — ο CASB της Microsoft: visibility και control για τις SaaS εφαρμογές](/images/microsoft-defender-oikogeneia-praktikos-odigos/08-mda-overview.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/08-mda-overview.png)
+[![Microsoft Defender for Cloud Apps (MDA) — ο CASB της Microsoft: visibility και control για τις SaaS εφαρμογές](/images/microsoft-defender-oikogeneia-praktikos-odigos/08-mda-overview.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/08-mda-overview.webp)
 > 📷 **Εικόνα 8: Microsoft Defender for Cloud Apps (MDA).** *Τι είναι και τι προστατεύει.*
 
 **Τι προστατεύει:**
@@ -151,7 +151,7 @@ cover:
 - **Advanced threat protection:** Συσχέτιση σε όλο το kill chain, ως μέρος του Defender XDR
 - **App-to-app protection:** Για OAuth-enabled εφαρμογές με πρόσβαση σε κρίσιμα δεδομένα
 
-[![MDA βασικές δυνατότητες: Cloud Discovery, anomaly detection, adaptive access control, information protection, app governance, XDR correlation](/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.png)
+[![MDA βασικές δυνατότητες: Cloud Discovery, anomaly detection, adaptive access control, information protection, app governance, XDR correlation](/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/09-mda-capabilities.webp)
 > 📷 **Εικόνα 9: MDA, βασικές δυνατότητες.** *Και ενσωμάτωση με Purview και Defender XDR.*
 
 **Βασικές δυνατότητες:** **Cloud Discovery** (εντοπισμός cloud services με risk ranking και 90+ δείκτες κινδύνου), **anomaly detection**, **adaptive access control** και UEBA, **information protection** με DLP και sensitivity labels που μπορούν να μπλοκάρουν download σε unmanaged device, **app governance** για παρακολούθηση OAuth apps και credentials, και φυσικά **XDR correlation** για incident-level ανίχνευση.
@@ -162,7 +162,7 @@ cover:
 
 **Τι είναι:** Η ολοκληρωμένη πλατφόρμα **CNAPP** (Cloud-Native Application Protection Platform) της Microsoft, πλέον βαθιά ενσωματωμένη στο Defender portal. Η threat protection ήταν ήδη εκεί η ενσωμάτωση προσθέτει **posture management** σε μία ενιαία εμπειρία χωρίς σιλό, υποστηρίζοντας Azure, AWS, GCP και άλλες πλατφόρμες.
 
-[![Microsoft Defender for Cloud (MDC) — CNAPP: ενοποιημένο posture management και threat protection σε multicloud/hybrid](/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.png)
+[![Microsoft Defender for Cloud (MDC) — CNAPP: ενοποιημένο posture management και threat protection σε multicloud/hybrid](/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/10-mdc-overview.webp)
 > 📷 **Εικόνα 10: Microsoft Defender for Cloud (MDC).** *Τι είναι και τι προστατεύει.*
 
 **Τι προστατεύει:**
@@ -171,7 +171,7 @@ cover:
 - **Threat detection & response:** Ιncidents, alerts, response actions, advanced hunting
 - **Multicloud & hybrid:** Azure, AWS, GCP και άλλες πλατφόρμες, σε cloud, hybrid και code
 
-[![MDC βασικές δυνατότητες: Cloud Secure Score, recommendations, attack paths, cloud asset inventory, incidents & alerts, Cloud Scopes & RBAC](/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.png)
+[![MDC βασικές δυνατότητες: Cloud Secure Score, recommendations, attack paths, cloud asset inventory, incidents & alerts, Cloud Scopes & RBAC](/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/11-mdc-capabilities.webp)
 > 📷 **Εικόνα 11: MDC, βασικές δυνατότητες.** *Και πώς ξεκινάς: Cloud Overview dashboard.*
 
 **Βασικές δυνατότητες:** **Cloud Secure Score** με μετρήσιμο posture και prioritized ενέργειες βελτίωσης, **recommendations** για μείωση ρίσκου, **attack paths** και cloud vulnerabilities στο posture, πλήρες **cloud asset inventory** ανά workload και criticality, ενοποιημένα **incidents & alerts** μέσα στο Defender portal, και **Cloud Scopes & RBAC** για granular access ανά business unit ή region.
@@ -184,7 +184,7 @@ cover:
 
 Φτάνουμε στην καρδιά της οικογένειας. Το **Microsoft Defender XDR** δεν αντικαθιστά τα προηγούμενα πέντε προϊόντα — τα **ενοποιεί**. Είναι μια ενοποιημένη **pre-breach και post-breach σουίτα άμυνας** που συντονίζει εγγενώς detection, prevention, investigation και response σε endpoints, ταυτότητες, email και εφαρμογές.
 
-[![Microsoft Defender XDR — το ενοποιημένο XDR που συσχετίζει σήματα και δένει όλα τα προϊόντα μαζί](/images/microsoft-defender-oikogeneia-praktikos-odigos/12-xdr-overview.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/12-xdr-overview.png)
+[![Microsoft Defender XDR — το ενοποιημένο XDR που συσχετίζει σήματα και δένει όλα τα προϊόντα μαζί](/images/microsoft-defender-oikogeneia-praktikos-odigos/12-xdr-overview.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/12-xdr-overview.webp)
 > 📷 **Εικόνα 12: Microsoft Defender XDR.** *Τι είναι και τι προστατεύει.*
 
 Συσχετίζει τα σήματα από **MDE, MDO, MDI και MDA** σε ένα ενιαίο incident, δείχνοντας πώς μπήκε η επίθεση, τι επηρέασε και πώς εξελίσσεται. Και δεν σταματά εκεί: λαμβάνει **αυτόματες ενέργειες** και κάνει **self-heal** σε mailboxes, endpoints και ταυτότητες.
@@ -217,12 +217,12 @@ cover:
 
 Αυτό είναι το πραγματικό πλεονέκτημα της ενοποίησης: αντί για δεκάδες απομονωμένα alerts, έχουμε **μία ολοκληρωμένη ιστορία επίθεσης**.
 
-[![Παράδειγμα ενοποίησης σημάτων στο Microsoft Defender XDR από endpoint, email και identity σε ένα incident](/images/microsoft-defender-oikogeneia-praktikos-odigos/13-xdr-integration.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/13-xdr-integration.png)
+[![Παράδειγμα ενοποίησης σημάτων στο Microsoft Defender XDR από endpoint, email και identity σε ένα incident](/images/microsoft-defender-oikogeneia-praktikos-odigos/13-xdr-integration.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/13-xdr-integration.webp)
 > 📷 **Εικόνα 13: Πώς δένουν όλα μαζί στο Defender XDR.** *Combined incidents queue, automatic response, self-healing, cross-product hunting.*
 
 **Πώς ξεκινάτε:** Το Defender XDR συσχετίζει μόνο licensed και provisioned προϊόντα. Η ενεργοποίηση γίνεται στο **security.microsoft.com**.
 
-[![Η οικογένεια Microsoft Defender με μια ματιά — έξι προϊόντα, ένα portal, μία ενοποιημένη άμυνα](/images/microsoft-defender-oikogeneia-praktikos-odigos/14-summary.png)](/images/microsoft-defender-oikogeneia-praktikos-odigos/14-summary.png)
+[![Η οικογένεια Microsoft Defender με μια ματιά — έξι προϊόντα, ένα portal, μία ενοποιημένη άμυνα](/images/microsoft-defender-oikogeneia-praktikos-odigos/14-summary.webp)](/images/microsoft-defender-oikogeneia-praktikos-odigos/14-summary.webp)
 > 📷 **Εικόνα 14: Η οικογένεια Microsoft Defender με μια ματιά.** *Έξι προϊόντα, ένα portal, μία ενοποιημένη άμυνα.*
 
 ## Τρία πράγματα που αξίζει να θυμάστε

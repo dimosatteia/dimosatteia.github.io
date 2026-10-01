@@ -33,7 +33,7 @@ ShowToc: true
 TocOpen: false
 weight: -4
 cover:
-  image: "/images/CyberGRCGoldAward.png"
+  image: "/images/CyberGRCGoldAward.webp"
   alt: "Microsoft Secure Score dashboard used as GRC engine for ISO 27001:2022 and NIS2 Article 21 compliance, Gold Award winner"
   caption: "Series introduction — built on Microsoft 365"
   relative: false
@@ -52,7 +52,7 @@ Most teams answer this by buying a dedicated GRC platform or by hiring more anal
 
 We were already licensed for **Microsoft 365 E5**. We already used **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)** every day. And right there, in the Microsoft Defender portal, was something most teams treat as a vanity dashboard: **[Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)**.
 
-[![Microsoft Secure Score dashboard powering an ISO 27001 and NIS2 GRC programme on Microsoft 365](/images/Overall.png)](/images/Overall.png)
+[![Microsoft Secure Score dashboard powering an ISO 27001 and NIS2 GRC programme on Microsoft 365](/images/Overall.webp)](/images/Overall.webp)
 > 📷 **Image 1 — The Microsoft Secure Score dashboard.**
 
 Looking at it with fresh eyes, we realised Microsoft had already done most of the heavy GRC lifting:
@@ -65,13 +65,13 @@ The gap we had to bridge was small: connect Microsoft's data to our compliance f
 
 ## The Gold Award at Cyber Security Awards 2026 (Built on Microsoft Secure Score)
 
-[![Cyber Security Awards 2026 Gold Award for GRC programme built on Microsoft Secure Score](/images/CyberGRCGoldAward.png)](/images/CyberGRCGoldAward.png)
+[![Cyber Security Awards 2026 Gold Award for GRC programme built on Microsoft Secure Score](/images/CyberGRCGoldAward.webp)](/images/CyberGRCGoldAward.webp)
 > 📷 **Image 2 — The Gold Award Logo.**
 
-[![Gold Award plate Cyber Security Awards 2026 Governance Risk and Compliance category](/images/CyberGRCGoldAwardPlate.png)](/images/CyberGRCGoldAwardPlate.png)
+[![Gold Award plate Cyber Security Awards 2026 Governance Risk and Compliance category](/images/CyberGRCGoldAwardPlate.webp)](/images/CyberGRCGoldAwardPlate.webp)
 > 📷 **Image 3 — The Gold Award Plate.**
 
-[![Cyber Security Awards 2026 ceremony Gold Award for Microsoft Secure Score GRC programme](/images/CSAward2026_1.png)](/images/CSAward2026_1.png)
+[![Cyber Security Awards 2026 ceremony Gold Award for Microsoft Secure Score GRC programme](/images/CSAward2026_1.webp)](/images/CSAward2026_1.webp)
 > 📷 **Image 4 — The Gold Award Ceremony with colleagues.**
 
 The programme we built on this foundation received the **Gold Award in Governance, Risk & Compliance at the [Cyber Security Awards 2026 — Honoring Cyber Excellence](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)**, under the title *"From theory to measurable compliance: Microsoft Secure Score as a Cyber GRC tool"*.
@@ -84,7 +84,7 @@ The full implementation is unpacked, with screenshots and worked examples, acros
 
 ### Building block 1: Microsoft Secure Score as the single source of truth
 
-[![Microsoft Secure Score recommendation for phishing-resistant MFA strength for administrators expanded view](/images/PrMFA0.png)](/images/PrMFA0.png)
+[![Microsoft Secure Score recommendation for phishing-resistant MFA strength for administrators expanded view](/images/PrMFA0.webp)](/images/PrMFA0.webp)
 > 📷 **Image 5 — A Secure Score recommendation about "Ensure 'Phishing-resistant MFA strength' is required for Administrators", expanded.**
 
 [![Microsoft Secure Score general action description for MFA control with Microsoft engineering implementation guidance](/images/PrMFA1.png)](/images/PrMFA1.png)
@@ -114,7 +114,7 @@ Roughly **60–70%** of the technical controls in ISO 27001:2022 Annex A and NIS
 
 Using the **Microsoft Graph Security API**, we pull Secure Score telemetry into a Power BI workspace daily. The output is a live evidence dashboard that auditors can be given read-only access to, with full timestamped history. No more screenshot-scrambles before the next surveillance audit.
 
-[![Power BI dashboard with live Microsoft Secure Score audit evidence via Microsoft Graph Security API](/images/PBI_Def.png)](/images/PBI_Def.png)
+[![Power BI dashboard with live Microsoft Secure Score audit evidence via Microsoft Graph Security API](/images/PBI_Def.webp)](/images/PBI_Def.webp)
 > 📷 **Image 9 — Microsoft PowerBi for live audit evidence.**
 
 This is pure Microsoft stack: no scripts running outside the tenant, no data leaving Microsoft 365, no extra licensing.

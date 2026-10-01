@@ -34,7 +34,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/agent/allowed-agent-types-context.png"
+  image: "images/agent/allowed-agent-types-context.webp"
   alt: "Allowed Agent Types ρύθμιση στο Microsoft 365 admin center με επιλεγμένο Only certified external publishers"
   caption: "Allowed Agent Types — Copilot Control System, Microsoft 365 admin center"
   relative: true
@@ -58,7 +58,7 @@ ShowWordCount: true
 
 Το τρίτο σκέλος είναι αυτό που έχει «ζουμί», γιατί ανοίγει αμέσως μια δεύτερη απόφαση: αν επιτρέψεις εξωτερικούς publishers, θέλεις *όλους* ή μόνο όσους έχουν περάσει από κάποιο φίλτρο της Microsoft;
 
-[![Agent settings και το Allowed Agent Types panel στο Microsoft 365 admin center](/images/agent/allowed-agent-types-context.png)](/images/agent/allowed-agent-types-context.png)
+[![Agent settings και το Allowed Agent Types panel στο Microsoft 365 admin center](/images/agent/allowed-agent-types-context.webp)](/images/agent/allowed-agent-types-context.webp)
 > 📷 **Εικόνα 1: Microsoft 365 admin center → Agent → Settings → Allowed Agent Types**
 
 Αν απενεργοποιήσεις μια κατηγορία, οι χρήστες απλά δεν τη βλέπουν πλέον στο store. Αυτό όμως δεν σημαίνει ότι διαγράφονται agents που ήδη τρέχουν, οπότε αυτό είναι ένα προληπτικό, όχι αναδρομικό, control.

@@ -35,7 +35,7 @@ ShowToc: true
 TocOpen: false
 weight: 5
 cover:
-  image: "/images/DefenderDemystified/MSDef.png"
+  image: "/images/DefenderDemystified/MSDef.webp"
   alt: "A guided walkthrough of the Microsoft Defender portal navigation at security.microsoft.com"
   caption: "Microsoft Defender Demystified — Part 5"
 ---
@@ -51,7 +51,7 @@ Over four posts we've built up the full picture of the Microsoft Defender family
 
 Time to open the platform itself. This final post is a **hands-on walk through the unified Microsoft Defender portal at `security.microsoft.com`**, the single console where everything we've covered lives. Open the portal in another tab and read along. By the end, you'll know where everything is and what to click first.
 
-[![The Microsoft Defender portal home page at security.microsoft.com, showing the left navigation expanded alongside dashboard cards for active incidents, Microsoft Secure Score trend, and threat analytics](/images/DefenderDemystified/defender-portal-home-dashboard.png)](/images/DefenderDemystified/defender-portal-home-dashboard.png)
+[![The Microsoft Defender portal home page at security.microsoft.com, showing the left navigation expanded alongside dashboard cards for active incidents, Microsoft Secure Score trend, and threat analytics](/images/DefenderDemystified/defender-portal-home-dashboard.webp)](/images/DefenderDemystified/defender-portal-home-dashboard.webp)
 > 📷 **Image 1: The Microsoft Defender portal home page, your dashboard for incidents, Microsoft Secure Score, and threat analytics.**
 
 ## The portal in one sentence
@@ -86,7 +86,7 @@ This is the section most people overlook because the branding is relatively new 
 
 If you've read **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**, this section is where that entire programme lives. The Microsoft Secure Score data feed that powers the compliance pipeline comes straight from this page.
 
-[![The Microsoft Secure Score page inside Exposure management in the Microsoft Defender portal, showing the overall score, the score history graph, and the top improvement recommendations panel](/images/DefenderDemystified/defender-portal-secure-score-exposure-management.png)](/images/DefenderDemystified/defender-portal-secure-score-exposure-management.png)
+[![The Microsoft Secure Score page inside Exposure management in the Microsoft Defender portal, showing the overall score, the score history graph, and the top improvement recommendations panel](/images/DefenderDemystified/defender-portal-secure-score-exposure-management.webp)](/images/DefenderDemystified/defender-portal-secure-score-exposure-management.webp)
 > 📷 **Image 3: Microsoft Secure Score now lives under Exposure management, score, trend, and prioritised recommendations in one page.**
 
 ### Investigation & response — the SOC heart of the portal
@@ -97,7 +97,7 @@ This is where SOC analysts live. Three subsections:
 - **Hunting:** proactive search across your telemetry. The flagship feature is **Advanced hunting** using **Kusto Query Language (KQL)**.
 - **Threat analytics:** Microsoft-curated threat reports joined to your tenant data, so the second a new threat actor's TTPs are published you can see whether anything in your environment matches.
 
-[![The unified Incidents queue in the Microsoft Defender portal, showing incident rows with severity, the Service sources column identifying which Defender workload raised each alert, and investigation status](/images/DefenderDemystified/defender-portal-unified-incidents-queue.png)](/images/DefenderDemystified/defender-portal-unified-incidents-queue.png)
+[![The unified Incidents queue in the Microsoft Defender portal, showing incident rows with severity, the Service sources column identifying which Defender workload raised each alert, and investigation status](/images/DefenderDemystified/defender-portal-unified-incidents-queue.webp)](/images/DefenderDemystified/defender-portal-unified-incidents-queue.webp)
 > 📷 **Image 4: One queue for every workload, the Service sources column shows which Defender product raised each incident.**
 
 A simple KQL query to try as your first run in **Advanced hunting**, this lists sign-ins from the last 24 hours, grouped by country:
@@ -119,7 +119,7 @@ DeviceInfo
 | order by DeviceCount desc
 ```
 
-[![Advanced hunting in the Microsoft Defender portal, showing a KQL query against the DeviceInfo table in the query editor with the results table below breaking down device count by OS platform, OS version, and device type](/images/DefenderDemystified/defender-portal-advanced-hunting-kql-query.png)](/images/DefenderDemystified/defender-portal-advanced-hunting-kql-query.png)
+[![Advanced hunting in the Microsoft Defender portal, showing a KQL query against the DeviceInfo table in the query editor with the results table below breaking down device count by OS platform, OS version, and device type](/images/DefenderDemystified/defender-portal-advanced-hunting-kql-query.webp)](/images/DefenderDemystified/defender-portal-advanced-hunting-kql-query.webp)
 > 📷 **Image 5: Advanced hunting with a KQL query loaded, a full device inventory in five lines, using Defender for Endpoint data alone.**
 
 ### Threat intelligence
@@ -166,7 +166,7 @@ Pre-built reports across every workload. Useful for monthly leadership packs wit
 
 ### Settings & permissions, the section to set up first
 
-[![The Permissions and roles page under Settings, Microsoft Defender XDR in the Microsoft Defender portal, showing the get started prompt for activating the Microsoft Defender XDR Unified RBAC permissions model](/images/DefenderDemystified/defender-portal-permissions-roles.png)](/images/DefenderDemystified/defender-portal-permissions-roles.png)
+[![The Permissions and roles page under Settings, Microsoft Defender XDR in the Microsoft Defender portal, showing the get started prompt for activating the Microsoft Defender XDR Unified RBAC permissions model](/images/DefenderDemystified/defender-portal-permissions-roles.webp)](/images/DefenderDemystified/defender-portal-permissions-roles.webp)
 > 📷 **Image 6: The Permissions and roles page. If Microsoft Defender XDR Unified RBAC hasn't been activated in your tenant yet, this is what you'll see — a starting point, not an error.**
 
 In 2026, Microsoft consolidated permissions into **Microsoft Defender XDR Unified RBAC**. Three RBAC models now coexist in the portal, and this is genuinely worth understanding before you hand anyone the URL:

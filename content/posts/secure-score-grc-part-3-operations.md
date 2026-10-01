@@ -36,7 +36,7 @@ ShowToc: true
 TocOpen: false
 weight: -1
 cover:
-  image: "/images/MSS.png"
+  image: "/images/MSS.webp"
   alt: "Microsoft Secure Score operational workflow — prioritization, change management, and compliance mapping for ISO 27001 and NIS2"
   caption: "Secure Score Series — Part 3: Daily Operations"
   relative: false
@@ -69,7 +69,7 @@ We evaluate every Microsoft Secure Score recommendation against three dimensions
 2. **Implementation effort** (how hard is this to configure?)
 3. **Regulatory alignment** (*optional but nice to have*, does this satisfy ISO 27001, NIS2, or other frameworks we're audited against?)
 
-[![Microsoft Secure Score prioritization matrix risk reduction versus implementation effort with regulatory alignment overlay](/images/SecureScoreRecommendationTriage.png)](/images/SecureScoreRecommendationTriage.png)
+[![Microsoft Secure Score prioritization matrix risk reduction versus implementation effort with regulatory alignment overlay](/images/SecureScoreRecommendationTriage.webp)](/images/SecureScoreRecommendationTriage.webp)
 > 📷 **Image 1 — The three-axis prioritization matrix used for triage.**
 
 #### Axis 1: Risk reduction
@@ -184,7 +184,7 @@ Between each phase, we check the Microsoft Entra ID **Sign-in logs** and **Micro
 
 Only after Phase 3 is stable do we mark the recommendation as *Completed* in Microsoft Secure Score. This updates the score, locks in the evidence timestamp (important for audits), and moves the recommendation out of the *To address* list.
 
-[![Microsoft Secure Score recommendation status options Completed Planned Risk accepted Third party Resolved through alternate mitigation](/images/SecureScoreRecommendationStatus.png)](/images/SecureScoreRecommendationStatus.png)
+[![Microsoft Secure Score recommendation status options Completed Planned Risk accepted Third party Resolved through alternate mitigation](/images/SecureScoreRecommendationStatus.webp)](/images/SecureScoreRecommendationStatus.webp)
 > 📷 **Image 3 — Status options for a Microsoft Secure Score recommendation.**
 
 ### What if you can't implement a recommendation?
@@ -214,7 +214,7 @@ The magic is that many of these Improvement Actions are **directly linked to Mic
 3. Click **Assessments** at the top
 4. Select **ISO/IEC 27001:2022** or **NIS 2 Directive** (or create a custom assessment if you don't see your framework)
 
-[![Microsoft Purview Compliance Manager ISO 27001:2022 assessment showing Improvement Actions linked to Microsoft Secure Score recommendations](/images/Purview_Compliance_Manager_ISO27001.png)](/images/Purview_Compliance_Manager_ISO27001.png)
+[![Microsoft Purview Compliance Manager ISO 27001:2022 assessment showing Improvement Actions linked to Microsoft Secure Score recommendations](/images/Purview_Compliance_Manager_ISO27001.webp)](/images/Purview_Compliance_Manager_ISO27001.webp)
 > 📷 **Image 4 — The ISO 27001:2022 assessment in Microsoft Purview Compliance Manager.**
 
 ### Example mapping: Ensure 'Phishing-resistant MFA strength' is required for Administrators

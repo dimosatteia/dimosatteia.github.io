@@ -26,7 +26,7 @@ ShowToc: true
 TocOpen: false
 weight: -6
 cover:
-  image: "/images/welcome-cover.png"
+  image: "/images/welcome-cover.webp"
   alt: "Microsoft 365 Security Insights blog — Microsoft 365 security and Defender content for IT Pros"
   caption: "Welcome to Microsoft 365 Security Insights"
   relative: false

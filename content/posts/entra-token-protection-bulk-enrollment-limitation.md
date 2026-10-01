@@ -34,7 +34,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/entra-token-protection/token-protection-session-control-cover.png"
+  image: "images/entra-token-protection/token-protection-session-control-cover.webp"
   alt: "Session control Require token protection for sign-in sessions στο Microsoft Entra Conditional Access"
   caption: "Conditional Access → Session → Require token protection for sign-in sessions"
   relative: true
@@ -65,7 +65,7 @@ ShowWordCount: true
 - Προστατευμένη με BitLocker
 - Onboarded σε Defender for Endpoint
 
-[![Entra device overview με Join type, MDM και Compliance status](/images/entra-token-protection/entra-device-overview-compliant-status.png)](/images/entra-token-protection/entra-device-overview-compliant-status.png)
+[![Entra device overview με Join type, MDM και Compliance status](/images/entra-token-protection/entra-device-overview-compliant-status.webp)](/images/entra-token-protection/entra-device-overview-compliant-status.webp)
 > 📷 **Εικόνα 1: Entra ID → Devices → All devices → Overview. Όλα τα βασικά πεδία «πράσινα», χωρίς καμία ένδειξη για τη μέθοδο εγγραφής της συσκευής.**
 
 ...και να αποτύχει στο Token Protection. Το compliance status απαντά στο ερώτημα «ακολουθεί η συσκευή τις πολιτικές μου». Το Token Protection απαντά σε ένα εντελώς διαφορετικό ερώτημα: «δημιουργήθηκε η ταυτότητα αυτής της συσκευής με τρόπο που υποστηρίζει device-bound token flow». Δύο ερωτήματα, δύο απαντήσεις, και το ένα δεν προϋποθέτει το άλλο.
@@ -118,7 +118,7 @@ ShowWordCount: true
 
 Η πρώτη γραμμή άμυνας είναι να μην αφήσεις τις bulk-enrolled συσκευές να μπλοκάρουν χρήστες χωρίς σχέδιο. Η προτεινόμενη προσέγγιση είναι να τις εξαιρέσεις προσωρινά από την Conditional Access πολιτική μέσω ενός device filter πάνω σε extension attribute (π.χ. `extensionAttribute1 -eq "TP-BulkEnrollment-Exception"`), όχι με ένα γενικό exclusion όλων των migrated χρηστών.
 
-[![Conditional Access device filter με expression σε extensionAttribute1](/images/entra-token-protection/ca-policy-device-filter-exclusion.png)](/images/entra-token-protection/ca-policy-device-filter-exclusion.png)
+[![Conditional Access device filter με expression σε extensionAttribute1](/images/entra-token-protection/ca-policy-device-filter-exclusion.webp)](/images/entra-token-protection/ca-policy-device-filter-exclusion.webp)
 > 📷 **Εικόνα 3: Conditional Access policy → Conditions → Filter for devices. Το exclusion rule πάνω στο extensionAttribute1, περιορισμένο μόνο σε τεκμηριωμένες εξαιρέσεις.**
 
 Αυτό όμως δεν είναι λύση, είναι παράταση. Κάθε εξαίρεση πρέπει να συνοδεύεται από compensating controls, compliant device requirement, Defender for Endpoint, phishing-resistant authentication, risk-based sign-in πολιτικές, να είναι χρονικά περιορισμένη, και να αφαιρείται μόλις η συσκευή περάσει από supported enrollment path. Η μόνιμη λύση παραμένει η δημιουργία της device identity μέσω υποστηριζόμενης μεθόδου: user-driven Entra Join, Windows Autopilot user-driven ή Device Preparation, ή interactive join με φρέσκα credentials χρήστη, όχι bulk token.

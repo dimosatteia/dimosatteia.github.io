@@ -100,12 +100,12 @@ ShowWordCount: true
 
 Δεν χρειάζεται καμία ενέργεια για να ενεργοποιηθεί, το feature έρχεται by design στο default template. Αυτό όμως δεν σημαίνει ότι δεν αξίζει μια γρήγορη επίσκεψη στις ρυθμίσεις σου πριν ολοκληρωθεί το rollout.
 
-[![User reported settings στο Microsoft Defender portal με notification options](/images/mdo-mark-and-notify-localization/mdo-user-reported-settings.png)](/images/mdo-mark-and-notify-localization/mdo-user-reported-settings.png)
+[![User reported settings στο Microsoft Defender portal με notification options](/images/mdo-mark-and-notify-localization/mdo-user-reported-settings.webp)](/images/mdo-mark-and-notify-localization/mdo-user-reported-settings.webp)
 > 📷 **Εικόνα 4: Microsoft Defender portal → Settings → Email & collaboration → User reported settings. Εδώ βλέπεις αν χρησιμοποιείς default ή custom notification template.**
 
 Πήγαινε στο **security.microsoft.com** → **Settings** → **Email & collaboration** → **User reported settings**, και δες αν χρησιμοποιείς το default template (θα επηρεαστεί από την τοπικοποίηση) ή δικό σου custom template (δεν επηρεάζεται). Αν έχεις custom template γραμμένο μόνο στα Αγγλικά ή μόνο στα Ελληνικά, αυτό είναι ίσως η καλύτερη στιγμή να αναρωτηθείς αν αξίζει να το ξανασκεφτείς, τώρα που η ίδια η Microsoft δείχνει τον δρόμο προς πολυγλωσσική επικοινωνία στο συγκεκριμένο σημείο του incident response κύκλου.
 
-[![Mark as and notify action στο Submissions User reported tab](/images/mdo-mark-and-notify-localization/mdo-mark-and-notify-action.png)](/images/mdo-mark-and-notify-localization/mdo-mark-and-notify-action.png)
+[![Mark as and notify action στο Submissions User reported tab](/images/mdo-mark-and-notify-localization/mdo-mark-and-notify-action.webp)](/images/mdo-mark-and-notify-localization/mdo-mark-and-notify-action.webp)
 > 📷 **Εικόνα 5: Submissions → User reported → επιλογή μηνύματος → Mark as and notify. Από εδώ ο admin δίνει verdict και ενεργοποιεί το notification στον χρήστη.**
 
 ## Η οπτική NIS2 και ISO 27001

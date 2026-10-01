@@ -34,7 +34,7 @@ ShowToc: true
 TocOpen: false
 weight: 4
 cover:
-  image: "/images/DefenderDemystified/MSDef.png"
+  image: "/images/DefenderDemystified/MSDef.webp"
   alt: "Which Microsoft Defender products come with Business Premium, E3, E5, and E7"
   caption: "Microsoft Defender Demystified — Part 4"
 ---

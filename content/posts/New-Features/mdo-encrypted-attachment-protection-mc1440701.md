@@ -39,7 +39,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png"
+  image: "/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.webp"
   alt: "Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει (MC1440701)"
   caption: "MDO — Encrypted Attachment Protection: MC1440701"
 ---
@@ -52,7 +52,7 @@ cover:
 
 Με το **MC1440701**, η Microsoft κλείνει αυτό ακριβώς το κενό. Και επειδή Ελληνικό, κατανοητό υλικό πάνω στα Message Center posts δεν βρίσκεις εύκολα, ας το δούμε μαζί, απλά, χωρίς να χρειάζεται να είσαι ήδη ειδικός στο MDO.
 
-[![Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει](/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png)](/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.png)
+[![Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει](/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.webp)](/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.webp)
 > 📷 **Εικόνα 1: Ό,τι δεν μπορεί να ελεγχθεί, δεν παραδίδεται στα τυφλά. Αυτή είναι όλη η ιδέα.**
 
 ## Τι ανακοίνωσε η Microsoft, σε δύο γραμμές
@@ -65,7 +65,7 @@ cover:
 
 Για να καταλάβεις πού «κουμπώνει» η νέα ρύθμιση, ας δούμε τη διαδρομή ενός τέτοιου μηνύματος.
 
-[![Πώς λειτουργεί η προστασία κρυπτογραφημένων συνημμένων στο MDO, από το εισερχόμενο email μέχρι την ελεγχόμενη αποδέσμευση](/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.png)](/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.png)
+[![Πώς λειτουργεί η προστασία κρυπτογραφημένων συνημμένων στο MDO, από το εισερχόμενο email μέχρι την ελεγχόμενη αποδέσμευση](/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.webp)](/images/MDO-EncryptedAttachments/mdo-how-it-works-flow.webp)
 > 📷 **Εικόνα 2: Το κρίσιμο σημείο είναι το τρίτο βήμα, εκεί που χωρίς password, η ανάλυση μένει μισή.**
 
 Έρχεται ένα **email με κρυπτογραφημένο συνημμένο**. Το **Safe Attachments** προσπαθεί, όπως πάντα, να το σαρώσει και να το εκτελέσει ελεγχόμενα σε απομονωμένο περιβάλλον για να δει τι κάνει. Αν το αρχείο είναι κλειδωμένο και ο κωδικός δεν είναι διαθέσιμος, η **ανάλυση δεν ολοκληρώνεται**, το MDO ουσιαστικά «τυφλώνεται». Εδώ μπαίνει η νέα λογική: αντί να παραδοθεί ένα μήνυμα που δεν ελέγχθηκε ποτέ, αυτό μπαίνει σε **quarantine** (εφόσον έχεις ενεργοποιήσει τη ρύθμιση). Και από εκεί, ακολουθεί μια **ελεγχόμενη αποδέσμευση**, που είναι και το πιο ενδιαφέρον κομμάτι.
@@ -76,7 +76,7 @@ cover:
 
 Εδώ η Microsoft έκανε κάτι έξυπνο: δεν κλειδώνει το μήνυμα και «καλή τύχη». Δίνει δύο μονοπάτια, ανάλογα με το ποιος χειρίζεται την υπόθεση.
 
-[![Οι δύο δρόμοι αποδέσμευσης από την καραντίνα: ο χρήστης με το password του συνημμένου και ο διαχειριστής χωρίς αυτό](/images/MDO-EncryptedAttachments/mdo-release-paths.png)](/images/MDO-EncryptedAttachments/mdo-release-paths.png)
+[![Οι δύο δρόμοι αποδέσμευσης από την καραντίνα: ο χρήστης με το password του συνημμένου και ο διαχειριστής χωρίς αυτό](/images/MDO-EncryptedAttachments/mdo-release-paths.webp)](/images/MDO-EncryptedAttachments/mdo-release-paths.webp)
 > 📷 **Εικόνα 3: Ο χρήστης ξεκλειδώνει με τον κωδικό του αρχείου ο admin αποδεσμεύει χωρίς αυτόν. Δύο ρόλοι, δύο διαφορετικές ανάγκες.**
 
 Ο **χρήστης** μπορεί να κάνει **self-release** ενός επιλέξιμου μηνύματος δίνοντας τον κωδικό του συνημμένου. Και προσοχή στη λεπτομέρεια που δείχνει ότι το πράγμα είναι καλοσχεδιασμένο: πριν αποδεσμευτεί το μήνυμα, γίνεται **just-in-time detonation**, δηλαδή τώρα πια που υπάρχει ο κωδικός, το MDO ανοίγει και ελέγχει το αρχείο *πριν* φτάσει στα χέρια του χρήστη. Δεν αποδεσμεύεται στα τυφλά αποδεσμεύεται αφού ελεγχθεί.
@@ -89,7 +89,7 @@ cover:
 
 Σκέψου τι εκπαιδεύεις τον χρήστη να κάνει: «όταν δεις ένα μπλοκαρισμένο email με κλειδωμένο αρχείο, βάλε έναν κωδικό για να το ξεκλειδώσεις». Αυτό, αν δεν το πλαισιώσεις σωστά, είναι **ακριβώς το μοτίβο που χρησιμοποιεί το phishing**, «βάλε τον κωδικό σου εδώ για να δεις το μήνυμα». Η ίδια η Microsoft το προβλέπει και βάζει ρητές προειδοποιήσεις. Πέρασέ τες στην ομάδα σου σαν κανόνα, όχι σαν υποσημείωση.
 
-[![Οι κανόνες ασφάλειας για τους χρήστες κατά την αποδέσμευση: μόνο ο κωδικός του συνημμένου, ποτέ account ή banking credentials](/images/MDO-EncryptedAttachments/mdo-security-dos-donts.png)](/images/MDO-EncryptedAttachments/mdo-security-dos-donts.png)
+[![Οι κανόνες ασφάλειας για τους χρήστες κατά την αποδέσμευση: μόνο ο κωδικός του συνημμένου, ποτέ account ή banking credentials](/images/MDO-EncryptedAttachments/mdo-security-dos-donts.webp)](/images/MDO-EncryptedAttachments/mdo-security-dos-donts.webp)
 > 📷 **Εικόνα 4: Ο χρυσός κανόνας: ο μόνος κωδικός που μπαίνει ποτέ εκεί είναι ο κωδικός του ίδιου του αρχείου και τίποτε άλλο.**
 
 Με απλά λόγια, το μήνυμα προς τους χρήστες είναι: βάζεις **μόνο** τον κωδικό του συγκεκριμένου συνημμένου, **ποτέ** κωδικό λογαριασμού, e-banking ή οποιονδήποτε άσχετο κωδικό. Αποδεσμεύεις **μόνο** μηνύματα που **περίμενες**, από αποστολείς που **αναγνωρίζεις**. Και οτιδήποτε προστατευμένο έρχεται **απρόσμενα**, δεν το «ξεκλειδώνεις από περιέργεια», το **κλιμακώνεις στο SecOps**. Αυτές οι τρεις προτάσεις, αν τις κάνεις κουλτούρα, μετατρέπουν ένα πιθανό attack surface σε πλεονέκτημα.

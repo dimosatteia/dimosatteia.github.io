@@ -34,7 +34,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/azure-entra-fundamentals/azure-entra-blueprint-cover.png"
+  image: "images/azure-entra-fundamentals/azure-entra-blueprint-cover.webp"
   alt: "Αποκωδικοποιώντας το Microsoft Cloud: Azure, Entra, M365, Defender και πώς συνδέονται στο σύγχρονο ψηφιακό οικοσύστημα"
   caption: "Azure, Entra, M365, Defender: πώς συνδέονται στο σύγχρονο ψηφιακό οικοσύστημα"
   relative: true
@@ -50,7 +50,7 @@ ShowWordCount: true
 
 Για να καταλάβουμε γιατί υπάρχει αυτή η σύγχυση, χρειάζεται μια μικρή αναδρομή. Ο παλιός μας κόσμος βασιζόταν σε φυσικά σύνορα: ένα datacenter, ένα firewall στην είσοδο, ένα τοπικό δίκτυο που θεωρούσαμε «έμπιστο» επειδή απλά βρισκόταν μέσα στο κτίριο. Η ασφάλεια ήταν συνώνυμο της περιμετρικής άμυνας, και η διαχείριση γινόταν εργαλείο-εργαλείο, ξεχωριστά και αποσπασματικά.
 
-[![Ο Νέος σας Ρόλος: Από τον Διακομιστή στην Αρχιτεκτονική Cloud - σύγκριση παλιού perimeter μοντέλου με σύγχρονο cloud μοντέλο](/images/azure-entra-fundamentals/azure-entra-role-architect-vs-installer.png)](/images/azure-entra-fundamentals/azure-entra-role-architect-vs-installer.png)
+[![Ο Νέος σας Ρόλος: Από τον Διακομιστή στην Αρχιτεκτονική Cloud - σύγκριση παλιού perimeter μοντέλου με σύγχρονο cloud μοντέλο](/images/azure-entra-fundamentals/azure-entra-role-architect-vs-installer.webp)](/images/azure-entra-fundamentals/azure-entra-role-architect-vs-installer.webp)
 > 📷 **Εικόνα 1: Το παλιό μοντέλο perimeter security απέναντι στο σύγχρονο cloud, όπου η ταυτότητα γίνεται το νέο firewall.**
 
 Στο σύγχρονο cloud, τα φυσικά σύνορα ουσιαστικά καταργούνται. Οι χρήστες δουλεύουν από παντού, σε οποιαδήποτε συσκευή, μέσα από οποιοδήποτε δίκτυο. Αυτό που παίρνει τη θέση του firewall δεν είναι πια ένα κουτί στην είσοδο του κτιρίου, είναι η ταυτότητα του χρήστη και της συσκευής. Και αυτή η μετατόπιση, από «προστάτεψε το κτίριο» σε «προστάτεψε την ταυτότητα», είναι ακριβώς το σημείο όπου μπερδεύονται οι ρόλοι του Azure και του Entra, γιατί πολύς κόσμος συνεχίζει να σκέφτεται με όρους παλιάς υποδομής ενώ η αρχιτεκτονική έχει αλλάξει ριζικά από κάτω.
@@ -59,7 +59,7 @@ ShowWordCount: true
 
 Το πιο εύκολο τρόπο που έχω βρει να εξηγήσω αυτή τη σχέση, τόσο σε juniors όσο και σε senior στελέχη σε ένα board meeting, είναι μέσα από την αναλογία ενός σύγχρονου ψηφιακού κτιρίου.
 
-[![Η Αρχιτεκτονική ενός Σύγχρονου Ψηφιακού Κτιρίου - Azure ως θεμέλιο, Entra ως πύλη και έλεγχος, M365 ως χώρος εργασίας, Defender ως ομάδα ασφαλείας](/images/azure-entra-fundamentals/azure-entra-digital-building-analogy.png)](/images/azure-entra-fundamentals/azure-entra-digital-building-analogy.png)
+[![Η Αρχιτεκτονική ενός Σύγχρονου Ψηφιακού Κτιρίου - Azure ως θεμέλιο, Entra ως πύλη και έλεγχος, M365 ως χώρος εργασίας, Defender ως ομάδα ασφαλείας](/images/azure-entra-fundamentals/azure-entra-digital-building-analogy.webp)](/images/azure-entra-fundamentals/azure-entra-digital-building-analogy.webp)
 > 📷 **Εικόνα 2: Azure το οικόπεδο και το θεμέλιο, Entra η πύλη και ο έλεγχος, M365 ο χώρος εργασίας, Defender η ομάδα ασφαλείας.**
 
 Σκεφτείτε το έτσι:
@@ -75,12 +75,12 @@ ShowWordCount: true
 
 Ας ξεκινήσουμε από τη βάση. Το Azure είναι η cloud computing πλατφόρμα της Microsoft: υπολογιστική ισχύς, αποθήκευση, δίκτυο, AI infrastructure. Είναι η «γη και τα τούβλα» πάνω στα οποία χτίζονται εφαρμογές, βάσεις δεδομένων, ολόκληρα συστήματα.
 
-[![Microsoft Azure: Η Ραχοκοκαλιά και το Θεμέλιο - παγκόσμια κλίμακα datacenters, υπολογιστική ισχύς, εμπιστοσύνη Fortune 500](/images/azure-entra-fundamentals/microsoft-azure-backbone-themelio.png)](/images/azure-entra-fundamentals/microsoft-azure-backbone-themelio.png)
+[![Microsoft Azure: Η Ραχοκοκαλιά και το Θεμέλιο - παγκόσμια κλίμακα datacenters, υπολογιστική ισχύς, εμπιστοσύνη Fortune 500](/images/azure-entra-fundamentals/microsoft-azure-backbone-themelio.webp)](/images/azure-entra-fundamentals/microsoft-azure-backbone-themelio.webp)
 > 📷 **Εικόνα 3: Παγκόσμια κλίμακα, υπολογιστική ισχύς και enterprise εμπιστοσύνη πάνω στην υποδομή του Azure.**
 
 Δεν χρειάζεται να αποστηθίσουμε αριθμούς datacenter για να καταλάβουμε τη λογική. Αυτό που έχει σημασία είναι το εξής: το Azure είναι το επίπεδο υποδομής. Και σε αυτό το επίπεδο, η Microsoft προσφέρει τρία διαφορετικά μοντέλα παροχής υπηρεσιών, με διαφορετική κατανομή ευθύνης ανάμεσα στον πελάτη και τη Microsoft.
 
-[![Τα Μοντέλα Παροχής Υπηρεσιών IaaS PaaS SaaS - ποιος διαχειρίζεται τι, ευθύνη πελάτη και ευθύνη Microsoft](/images/azure-entra-fundamentals/azure-service-models-iaas-paas-saas.png)](/images/azure-entra-fundamentals/azure-service-models-iaas-paas-saas.png)
+[![Τα Μοντέλα Παροχής Υπηρεσιών IaaS PaaS SaaS - ποιος διαχειρίζεται τι, ευθύνη πελάτη και ευθύνη Microsoft](/images/azure-entra-fundamentals/azure-service-models-iaas-paas-saas.webp)](/images/azure-entra-fundamentals/azure-service-models-iaas-paas-saas.webp)
 > 📷 **Εικόνα 4: IaaS, PaaS και SaaS: πού σταματάει η ευθύνη του πελάτη και πού ξεκινάει αυτή της Microsoft.**
 
 Σε **IaaS** (Infrastructure as a Service), όπως μια εικονική μηχανή στο Azure, ο πελάτης ελέγχει το λειτουργικό σύστημα και τις εφαρμογές, η Microsoft το φυσικό υλικό και το δίκτυο. Σε **PaaS** (Platform as a Service), όπως μια Azure SQL Database ή ένα App Service, ο πελάτης εστιάζει μόνο στον κώδικα και τα δεδομένα του. Σε **SaaS** (Software as a Service), όπου ανήκει και το Microsoft 365 όπως θα δούμε παρακάτω, ο πελάτης ελέγχει ουσιαστικά μόνο την πρόσβαση και τα δεδομένα, όλα τα υπόλοιπα τα διαχειρίζεται η Microsoft. Αυτή η κατανομή ευθύνης δεν είναι ακαδημαϊκή λεπτομέρεια, είναι κάτι που θα σας ζητήσει να τεκμηριώσετε ο κάθε auditor που θα δει ένα shared responsibility μοντέλο σε ένα ISO 27001 ή NIS2 πλαίσιο.
@@ -89,7 +89,7 @@ ShowWordCount: true
 
 Αν το Azure είναι το «πού», το Entra είναι το «ποιος». Το Microsoft Entra δεν είναι απλά «το Active Directory στο cloud», είναι η ολοκληρωμένη οικογένεια προϊόντων ταυτότητας και πρόσβασης της Microsoft, χτισμένη γύρω από τις αρχές του Zero Trust.
 
-[![Microsoft Entra: Η Νέα Πύλη και το Zero Trust - οι τρεις αρχές Verify Explicitly, Least Privilege, Assume Breach](/images/azure-entra-fundamentals/microsoft-entra-zero-trust-gateway.png)](/images/azure-entra-fundamentals/microsoft-entra-zero-trust-gateway.png)
+[![Microsoft Entra: Η Νέα Πύλη και το Zero Trust - οι τρεις αρχές Verify Explicitly, Least Privilege, Assume Breach](/images/azure-entra-fundamentals/microsoft-entra-zero-trust-gateway.webp)](/images/azure-entra-fundamentals/microsoft-entra-zero-trust-gateway.webp)
 > 📷 **Εικόνα 5: Οι τρεις αρχές του Zero Trust όπως εφαρμόζονται μέσα από το Entra: Verify Explicitly, Least Privilege, Assume Breach.**
 
 Τρεις αρχές διέπουν όλη τη λογική:
@@ -100,7 +100,7 @@ ShowWordCount: true
 
 Και το Entra ID, που είναι το πιο γνωστό κομμάτι αυτής της οικογένειας, είναι πολύ περισσότερο από ένα απλό directory.
 
-[![Entra ID: Περισσότερα από ένα Απλό Directory - Verified ID, Entra ID Governance, Private Internet Access, Entra ID Protection](/images/azure-entra-fundamentals/entra-id-more-than-directory.png)](/images/azure-entra-fundamentals/entra-id-more-than-directory.png)
+[![Entra ID: Περισσότερα από ένα Απλό Directory - Verified ID, Entra ID Governance, Private Internet Access, Entra ID Protection](/images/azure-entra-fundamentals/entra-id-more-than-directory.webp)](/images/azure-entra-fundamentals/entra-id-more-than-directory.webp)
 > 📷 **Εικόνα 6: Το Entra ID ως κεντρικός κατάλογος, αλλά με governance, protection και secure access ενσωματωμένα.**
 
 Γύρω από τον κεντρικό κατάλογο ταυτοτήτων βρίσκουμε το **Entra ID Governance** (ποιος έχει πρόσβαση, πού και για πόσο, με αυτοματοποίηση κύκλου ζωής), το **Entra ID Protection** (εντοπισμός ρίσκου σε πραγματικό χρόνο μέσω AI, π.χ. leaked credentials ή risky sign-ins), το **Verified ID** (αποκεντρωμένη ταυτοποίηση χωρίς συγκεντρωτική αποθήκευση προσωπικών δεδομένων), και το **Private & Internet Access** (ασφαλής πρόσβαση σε εσωτερικές εφαρμογές και στο internet μέσω Secure Service Edge). Το Entra δεν «ζει μέσα» στο Azure ως ένα ακόμα resource. Είναι το επίπεδο ταυτότητας που ελέγχει την πρόσβαση σε όλα τα υπόλοιπα επίπεδα, Azure resources, M365 workloads, ακόμα και εφαρμογές τρίτων.
@@ -109,7 +109,7 @@ ShowWordCount: true
 
 Εδώ φτάνουμε στο σημείο που μπερδεύει τους περισσότερους, γιατί πολλοί χρήστες γνωρίζουν το Microsoft 365 (πρώην Office 365) πολύ καλύτερα από όσο γνωρίζουν το Azure ή το Entra, αφού είναι αυτό που ανοίγουν κάθε πρωί.
 
-[![Microsoft 365: Ο Χώρος Εργασίας SaaS - η κρίσιμη σύνδεση με το Entra ID ως αποκλειστική πύλη εισόδου](/images/azure-entra-fundamentals/microsoft-365-workspace-saas.png)](/images/azure-entra-fundamentals/microsoft-365-workspace-saas.png)
+[![Microsoft 365: Ο Χώρος Εργασίας SaaS - η κρίσιμη σύνδεση με το Entra ID ως αποκλειστική πύλη εισόδου](/images/azure-entra-fundamentals/microsoft-365-workspace-saas.webp)](/images/azure-entra-fundamentals/microsoft-365-workspace-saas.webp)
 > 📷 **Εικόνα 7: Το Microsoft 365 δεν έχει δικό του σύστημα κωδικών, η αποκλειστική πύλη εισόδου είναι το Entra ID.**
 
 Το Microsoft 365 είναι η σουίτα παραγωγικότητας και συνεργασίας, Word, Outlook, Teams, SharePoint και τα υπόλοιπα, και είναι στην ουσία του ένα SaaS προϊόν χτισμένο πάνω στην υποδομή του Azure. Αυτό όμως που έχει πραγματική σημασία είναι η κρίσιμη σύνδεση: **το Microsoft 365 δεν έχει δικό του, ανεξάρτητο σύστημα κωδικών**. Δεν λειτουργεί ως αυτόνομος Identity Provider. Η αποκλειστική πύλη εισόδου του είναι το Entra ID. Χωρίς μια ταυτότητα καταχωρημένη και επαληθευμένη στο Entra ID, δεν υπάρχει καμία πρόσβαση στο M365, ανεξάρτητα από το πόσο ισχυρό password θα έβαζε κάποιος σε ένα υποθετικό δικό του σύστημα.
@@ -120,12 +120,12 @@ ShowWordCount: true
 
 Αν το Azure είναι το θεμέλιο, το Entra η πύλη και το M365 ο χώρος εργασίας, το Defender είναι η ομάδα ασφαλείας που παρακολουθεί ολόκληρο το κτίριο, όχι μόνο μια πόρτα.
 
-[![Microsoft Defender: Ο Ενεργός Φρουρός XDR - Extended Detection and Response, σύνδεση των τελειών, αυτόματη αντίδραση](/images/azure-entra-fundamentals/microsoft-defender-xdr-active-guard.png)](/images/azure-entra-fundamentals/microsoft-defender-xdr-active-guard.png)
+[![Microsoft Defender: Ο Ενεργός Φρουρός XDR - Extended Detection and Response, σύνδεση των τελειών, αυτόματη αντίδραση](/images/azure-entra-fundamentals/microsoft-defender-xdr-active-guard.webp)](/images/azure-entra-fundamentals/microsoft-defender-xdr-active-guard.webp)
 > 📷 **Εικόνα 8: Extended Detection and Response: το Defender συλλέγει σήματα από ολόκληρο το ψηφιακό οικοσύστημα, όχι μόνο από ένα antivirus.**
 
 Το Defender δεν είναι απλά antivirus, είναι **Extended Detection and Response (XDR)**: συλλέγει σήματα από ολόκληρο το ψηφιακό οικοσύστημα, τα συνθέτει σε πλήρη περιστατικά αντί για μεμονωμένα alerts, και διαθέτει δυνατότητες αυτόματης αντίδρασης όπως το Attack Disruption. Και επειδή είναι ένα ομπρέλα προϊόν, χωρίζεται σε συγκεκριμένα workloads ανάλογα με το τι προστατεύει το καθένα.
 
-[![Χαρτογραφώντας την Προστασία Defender - Endpoint, Office 365, Identity, Cloud](/images/azure-entra-fundamentals/microsoft-defender-protection-map.png)](/images/azure-entra-fundamentals/microsoft-defender-protection-map.png)
+[![Χαρτογραφώντας την Προστασία Defender - Endpoint, Office 365, Identity, Cloud](/images/azure-entra-fundamentals/microsoft-defender-protection-map.webp)](/images/azure-entra-fundamentals/microsoft-defender-protection-map.webp)
 > 📷 **Εικόνα 9: Τέσσερα διαφορετικά workloads του Defender, το καθένα με το δικό του πεδίο προστασίας.**
 
 Το **Defender for Endpoint** προστατεύει συσκευές, laptops, servers, mobile. Το **Defender for Office 365** προστατεύει το M365, phishing emails, κακόβουλα αρχεία σε Teams ή SharePoint. Το **Defender for Identity** προστατεύει το on-premise Active Directory, εντοπίζοντας κινήσεις hacking στο τοπικό ή υβριδικό δίκτυο. Και το **Defender for Cloud** προστατεύει Azure και multicloud workloads, τις υποδομές IaaS και PaaS που είδαμε παραπάνω. Παρατηρήστε κάτι σημαντικό: το Defender δεν αντικαθιστά ούτε το Azure, ούτε το Entra, ούτε το M365. Επικάθεται πάνω τους, παρακολουθώντας τι συμβαίνει σε κάθε επίπεδο ταυτόχρονα.
@@ -134,7 +134,7 @@ ShowWordCount: true
 
 Αν χρειαστεί να το εξηγήσετε σε τριάντα δευτερόλεπτα σε κάποιον, αυτό είναι το slide που θα χρησιμοποιούσα.
 
-[![Η Μεγάλη Εικόνα: Η Αρχιτεκτονική του Οικοσυστήματος - Azure το πού, Entra το ποιος, M365 το τι, Defender το πώς](/images/azure-entra-fundamentals/azure-entra-m365-defender-ecosystem.png)](/images/azure-entra-fundamentals/azure-entra-m365-defender-ecosystem.png)
+[![Η Μεγάλη Εικόνα: Η Αρχιτεκτονική του Οικοσυστήματος - Azure το πού, Entra το ποιος, M365 το τι, Defender το πώς](/images/azure-entra-fundamentals/azure-entra-m365-defender-ecosystem.webp)](/images/azure-entra-fundamentals/azure-entra-m365-defender-ecosystem.webp)
 > 📷 **Εικόνα 10: Azure το «πού», Entra το «ποιος», M365 το «τι», Defender το «πώς».**
 
 - **Azure = Το «Πού».** Η υποδομή, ο ψηφιακός χώρος που φιλοξενεί και τρέχει τα συστήματα.
@@ -150,14 +150,14 @@ ShowWordCount: true
 
 **Σενάριο 1: Ένα απλό αίτημα πρόσβασης.**
 
-[![Σενάριο 1: Προστατεύοντας το M365 μέσω Entra - αίτημα, αναχαίτιση, Conditional Access, MFA, αποτέλεσμα](/images/azure-entra-fundamentals/scenario-protect-m365-with-entra.png)](/images/azure-entra-fundamentals/scenario-protect-m365-with-entra.png)
+[![Σενάριο 1: Προστατεύοντας το M365 μέσω Entra - αίτημα, αναχαίτιση, Conditional Access, MFA, αποτέλεσμα](/images/azure-entra-fundamentals/scenario-protect-m365-with-entra.webp)](/images/azure-entra-fundamentals/scenario-protect-m365-with-entra.webp)
 > 📷 **Εικόνα 11: Πώς ένα απλό sign-in στο Office 365 περνάει πάντα μέσα από το Entra πριν φτάσει στα δεδομένα.**
 
 Ένας χρήστης προσπαθεί να ανοίξει το Office 365 από άγνωστο Wi-Fi, εκτός γραφείου. Το M365 δεν αποφασίζει μόνο του, προωθεί το αίτημα στο Entra ID. Εκεί, το Conditional Access αξιολογεί το σήμα, τοποθεσία, κατάσταση συσκευής, ρίσκο χρήστη, και επειδή κάτι δεν ταιριάζει με τα συνηθισμένα, απαιτεί MFA. Ο χρήστης εγκρίνει την ειδοποίηση στο κινητό, και μόνο τότε η πύλη του M365 ανοίγει με ασφάλεια. Πέντε βήματα, ένα ενιαίο ταξίδι, δύο προϊόντα που συνεργάζονται χωρίς να το βλέπει καν ο χρήστης.
 
 **Σενάριο 2: Αυτόματη διακοπή επίθεσης.**
 
-[![Σενάριο 2: Automatic Attack Disruption με Defender και Entra - ανίχνευση, σήμα, απομόνωση, αποτέλεσμα](/images/azure-entra-fundamentals/scenario-automatic-attack-disruption.png)](/images/azure-entra-fundamentals/scenario-automatic-attack-disruption.png)
+[![Σενάριο 2: Automatic Attack Disruption με Defender και Entra - ανίχνευση, σήμα, απομόνωση, αποτέλεσμα](/images/azure-entra-fundamentals/scenario-automatic-attack-disruption.webp)](/images/azure-entra-fundamentals/scenario-automatic-attack-disruption.webp)
 > 📷 **Εικόνα 12: Πώς το Defender και το Entra συνεργάζονται αυτόματα, χωρίς ανθρώπινη παρέμβαση, για να σταματήσουν μια επίθεση σε εξέλιξη.**
 
 Το Defender for Endpoint εντοπίζει διεργασία ransomware σε laptop ενός χρήστη. Στέλνει άμεσα σήμα κρίσιμου «User Risk» στο Entra ID. Το Entra ID αντιδρά αυτόματα, ανακαλώντας τα session tokens του χρήστη, το γνωστό Attack Disruption, χωρίς να χρειαστεί κανείς να πατήσει κουμπί. Ο hacker χάνει ακαριαία την πρόσβαση στο M365 και στο Azure. Η εξάπλωση σταματά πριν προλάβει να γίνει incident μεγάλης κλίμακας.
@@ -166,7 +166,7 @@ ShowWordCount: true
 
 ## Το mindset που πρέπει να έχει κάθε σύγχρονος μηχανικός
 
-[![Το Mindset του Σύγχρονου Cloud Engineer - λύσεις όχι προϊόντα, identity is king, επένδυση στην αυτοματοποίηση](/images/azure-entra-fundamentals/cloud-engineer-mindset-summary.png)](/images/azure-entra-fundamentals/cloud-engineer-mindset-summary.png)
+[![Το Mindset του Σύγχρονου Cloud Engineer - λύσεις όχι προϊόντα, identity is king, επένδυση στην αυτοματοποίηση](/images/azure-entra-fundamentals/cloud-engineer-mindset-summary.webp)](/images/azure-entra-fundamentals/cloud-engineer-mindset-summary.webp)
 > 📷 **Εικόνα 13: Τρεις αρχές που αλλάζουν τον τρόπο που βλέπουμε το Microsoft ecosystem.**
 
 Αν κρατήσετε κάτι από όλο αυτό, ας είναι τα εξής τρία:

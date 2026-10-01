@@ -34,7 +34,7 @@ ShowToc: true
 TocOpen: false
 weight: -3
 cover:
-  image: "/images/MSS.png"
+  image: "/images/MSS.webp"
   alt: "Microsoft Secure Score recommendation details pane in the Microsoft Defender portal — fields explained for junior administrators"
   caption: "Secure Score Series — Part 1: Anatomy"
   relative: false
@@ -66,7 +66,7 @@ First, regarding navigation: since the site was recently moved, links in older b
 2. In the left navigation, expand **Exposure management**
 3. Click **Microsoft Secure Score**
 
-[![Microsoft Secure Score overview page in Defender portal showing score circle trend graph and top actions](/images/SS_GRC_P1_Anatomy_image_1.png)](/images/SS_GRC_P1_Anatomy_image_1.png)
+[![Microsoft Secure Score overview page in Defender portal showing score circle trend graph and top actions](/images/SS_GRC_P1_Anatomy_image_1.webp)](/images/SS_GRC_P1_Anatomy_image_1.webp)
 > 📷 **Image 1 — The Microsoft Secure Score overview page.**
 
 What you'll see on the overview page, from left to right:
@@ -82,7 +82,7 @@ Don't worry about the overall number yet. We're going to click into a single rec
 
 Click the **Recommended actions** tab at the top of the page. You'll get a list of every Microsoft Secure Score recommendation, usually somewhere between 100 and 250 of them, depending on what products you're licensed for.
 
-[![Microsoft Secure Score Recommended actions list with Rank Score impact Status and Category columns](/images/SS_GRC_P1_Anatomy_image_2.png)](/images/SS_GRC_P1_Anatomy_image_2.png)
+[![Microsoft Secure Score Recommended actions list with Rank Score impact Status and Category columns](/images/SS_GRC_P1_Anatomy_image_2.webp)](/images/SS_GRC_P1_Anatomy_image_2.webp)
 > 📷 **Image 2 — The Recommended actions list.**
 
 For this walkthrough, pick a recommendation that sounds familiar. Good starting choices:
@@ -96,7 +96,7 @@ Click on any one of them. A details pane opens on the right side of the screen. 
 
 ## Every field on the recommendation details pane, explained
 
-[![Microsoft Secure Score recommendation details pane showing all fields title description implementation status and score impact](/images/SS_GRC_P1_Anatomy_image_3.png)](/images/SS_GRC_P1_Anatomy_image_3.png)
+[![Microsoft Secure Score recommendation details pane showing all fields title description implementation status and score impact](/images/SS_GRC_P1_Anatomy_image_3.webp)](/images/SS_GRC_P1_Anatomy_image_3.webp)
 > 📷 **Image 3 — A single recommendation details pane, fully expanded.**
 
 Let's go through everything you see, top to bottom.
@@ -171,7 +171,7 @@ Small labels Microsoft applies to the recommendation, things like *GDPR*, *NIST*
 
 Below the summary, there's usually a tab with **step-by-step implementation instructions**. For most recommendations, Microsoft has written a short, numbered guide that tells you exactly where to click to configure the control.
 
-[![Microsoft Secure Score Implementation tab with step-by-step remediation instructions](/images/SS_GRC_P1_Anatomy_image_4.png)](/images/SS_GRC_P1_Anatomy_image_4.png)
+[![Microsoft Secure Score Implementation tab with step-by-step remediation instructions](/images/SS_GRC_P1_Anatomy_image_4.webp)](/images/SS_GRC_P1_Anatomy_image_4.webp)
 > 📷 **Image 4 — The Implementation tab contents.**
 
 **This is the single most useful thing in Microsoft Secure Score for someone new to the platform.** Microsoft has essentially written the remediation documentation for you. Read it. Follow it. In many cases you'll be able to implement the recommendation in 10 minutes without needing any other resource.
@@ -192,7 +192,7 @@ The title alone is often ambiguous. Two recommendations might have similar-sound
 
 Instead of scrolling through 200 recommendations, filter by one category (Identity, for example) and prioritise within that group. Most security improvements cluster by category, fixing three or four Identity recommendations together is more efficient than hopping between areas.
 
-[![Filtering Microsoft Secure Score Recommended actions by Identity category for focused prioritisation](/images/SS_GRC_P1_Anatomy_image_5.png)](/images/SS_GRC_P1_Anatomy_image_5.png)
+[![Filtering Microsoft Secure Score Recommended actions by Identity category for focused prioritisation](/images/SS_GRC_P1_Anatomy_image_5.webp)](/images/SS_GRC_P1_Anatomy_image_5.webp)
 > 📷 **Image 5 — The category filter applied to the Recommended actions list.**
 
 ### Habit 3: Sort by score impact, not by status

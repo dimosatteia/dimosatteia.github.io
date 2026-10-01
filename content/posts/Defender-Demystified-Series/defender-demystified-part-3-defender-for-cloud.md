@@ -36,7 +36,7 @@ ShowToc: true
 TocOpen: false
 weight: 3
 cover:
-  image: "/images/DefenderDemystified/MSDef.png"
+  image: "/images/DefenderDemystified/MSDef.webp"
   alt: "Microsoft Defender for Cloud — protecting Azure and multicloud workloads"
   caption: "Microsoft Defender Demystified — Part 3"
 ---
@@ -52,8 +52,8 @@ Every Microsoft security professional will have this conversation at some point,
 ## Microsoft Defender for Cloud vs Microsoft Defender XDR: what's different
 
 {{< figure
-    src="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.png"
-    link="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.png"
+    src="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.webp"
+    link="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.webp"
     target="_blank"
     alt="Microsoft Defender for Cloud overview dashboard in the Azure portal showing secure score, recommendations and security alerts"
     caption="📷 **Image 1: The Microsoft Defender for Cloud overview in the Azure portal. A different portal from Microsoft Defender XDR at security.microsoft.com.**"
@@ -93,8 +93,8 @@ This alone is worth turning on. It's free, it takes minutes, and within a few ho
 If your company has any presence in Azure, AWS, or GCP (even a single subscription someone spun up for a side project that nobody remembers) turn on Foundational CSPM today. It will tell you things you didn't know and cost you nothing.
 
 {{< figure
-    src="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.png"
-    link="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.png"
+    src="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.webp"
+    link="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.webp"
     target="_blank"
     alt="Microsoft Defender for Cloud security recommendations based on the Microsoft Cloud Security Benchmark with risk levels"
     caption="📷 **Image 2: The Microsoft Cloud Security Benchmark recommendations view.**"
@@ -134,8 +134,8 @@ Workload protection isn't one plan, it's **separate plans per resource type**, e
 - **Microsoft Defender for AI Services**: Azure OpenAI and Azure AI Services workloads (this one is newer and will only get more important)
 
 {{< figure
-    src="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.png"
-    link="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.png"
+    src="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.webp"
+    link="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.webp"
     target="_blank"
     alt="Defender for Cloud environment settings showing Defender CSPM and workload protection plans with per-resource pricing toggles"
     caption="📷 **Image 3: The Environment settings page showing enabled plans.**"
@@ -153,8 +153,8 @@ Once connected, Foundational CSPM runs immediately across the multicloud estate.
 This matters more every year, because most organisations don't actually live on a single cloud, even when they think they do. Run a quick inventory. You'll find AWS accounts in a subsidiary, a GCP project someone set up for a data science experiment in 2023, maybe a Digital Ocean instance running a marketing landing page. **NIS2** and **DORA** reporting obligations don't care which cloud the workload runs on, they care that the workload is monitored and that incidents are reported on time.
 
 {{< figure
-    src="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.png"
-    link="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.png"
+    src="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.webp"
+    link="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.webp"
     target="_blank"
     alt="Adding AWS and GCP environments to Microsoft Defender for Cloud through native multicloud connectors"
     caption="📷 **Image 4: Multicloud environment view in Microsoft Defender for Cloud.**"
@@ -174,8 +174,8 @@ Practically, this means an attack that starts with a phishing email (**Microsoft
 The CNAPP vision Microsoft has been talking about for years is finally a single operational experience. It's taken a while, but it's here.
 
 {{< figure
-    src="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.png"
-    link="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.png"
+    src="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.webp"
+    link="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.webp"
     target="_blank"
     alt="Microsoft Defender for Cloud incident displayed in the unified Microsoft Defender portal incident queue at security.microsoft.com"
     caption="📷 **Image 5: A Defender for Cloud incident inside the unified Defender portal.**"

@@ -36,7 +36,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "images/defender-identity-health-issue-missing-events/defender-identity-health-issue-cover.png"
+  image: "images/defender-identity-health-issue-missing-events/defender-identity-health-issue-cover.webp"
   alt: "Microsoft Defender XDR On-premises Sensors tab με τη λίστα sensors και τη στήλη Health issues"
   caption: "Defender XDR → Settings → Identities → On-premises → Sensors"
   relative: true
@@ -52,7 +52,7 @@ ShowWordCount: true
 
 Σύμφωνα με το Message Center, το Defender for Identity αποκτά ένα νέο sensor health issue που εμφανίζεται όταν ο sensor δεν λαμβάνει τα αναμενόμενα Windows events από έναν Domain Controller. Θα το βρεις στο tenant σου κάτω από **Settings → Identities → Deployment → On-premises → Sensors** (η στήλη **Health issues** στον πίνακα δείχνει τον αριθμό ανοιχτών issues ανά sensor), ή στη λεπτομερή προβολή **Settings → Identities → Deployment → Health issues**, όπου το health center χωρίζεται σε δύο tabs, **Global health issues** και **Sensor health issues** (το νέο issue είναι per-sensor, οπότε θα εμφανιστεί στο δεύτερο). Το rollout είναι ήδη ενεργό, δεν απαιτείται καμία ενέργεια πριν την ενεργοποίηση, και η σύσταση της Microsoft, αν το δεις να εμφανίζεται, είναι να ελέγξεις τον συγκεκριμένο Domain Controller και τη διαμόρφωση συλλογής events, ενώ αν χρειαστεί, να ανοίξεις ticket στο Microsoft Support.
 
-[![Defender XDR On-premises Sensors tab με τη λίστα sensors, health status και αριθμό health issues ανά sensor](/images/defender-identity-health-issue-missing-events/defender-identity-health-issue-cover.png)](/images/defender-identity-health-issue-missing-events/defender-identity-health-issue-cover.png)
+[![Defender XDR On-premises Sensors tab με τη λίστα sensors, health status και αριθμό health issues ανά sensor](/images/defender-identity-health-issue-missing-events/defender-identity-health-issue-cover.webp)](/images/defender-identity-health-issue-missing-events/defender-identity-health-issue-cover.webp)
 > 📷 **Εικόνα 1: Settings → Identities → On-premises → Sensors. Ο πίνακας με όλους τους sensors, τον τύπο (Domain controller), το Health status και τη στήλη Health issues, εδώ θα εμφανιστεί ο μετρητής αν κάποιος DC έχει το νέο issue ανοιχτό.**
 
 Στο επίπεδο του announcement δεν υπάρχει κάτι δραματικό. Αυτό που έχει ενδιαφέρον είναι το «γιατί» πίσω από αυτό, και γιατί μέχρι τώρα δεν το ήξερες.
@@ -76,7 +76,7 @@ ShowWordCount: true
 
 Το Defender for Identity έχει ήδη μια οικογένεια health issues γύρω από το audit configuration, όχι ένα. Στο δικό μου tenant, για παράδειγμα, το **Global health issues** tab δείχνει αυτή τη στιγμή δύο ανοιχτά issues με τίτλο **«Auditing on the Configuration container is not enabled as required»**, severity Medium, ένα για κάθε Domain Controller sensor.
 
-[![Defender XDR Global health issues tab με δύο ανοιχτά issues Auditing on the Configuration container is not enabled as required](/images/defender-identity-health-issue-missing-events/defender-xdr-sensors-health-issues-tab.png)](/images/defender-identity-health-issue-missing-events/defender-xdr-sensors-health-issues-tab.png)
+[![Defender XDR Global health issues tab με δύο ανοιχτά issues Auditing on the Configuration container is not enabled as required](/images/defender-identity-health-issue-missing-events/defender-xdr-sensors-health-issues-tab.webp)](/images/defender-identity-health-issue-missing-events/defender-xdr-sensors-health-issues-tab.webp)
 > 📷 **Εικόνα 2: Settings → Identities → Health issues → Global health issues (2). Δύο ανοιχτά issues «Auditing on the Configuration container is not enabled as required», Medium severity, ένα ανά Domain Controller. Παράδειγμα ήδη υπαρκτού, σχετικού αλλά διαφορετικού audit-configuration issue.**
 
 Αυτό είναι σκόπιμα διαφορετικό issue από το νέο **«No Windows events received from domain controller»**, και η διαφορά τους είναι ακριβώς το σημείο που θέλω να τονίσω. Το «Auditing on the Configuration container» (όπως και το ευρύτερα γνωστό «Directory Services Advanced Auditing is not enabled as required») είναι, ουσιαστικά, ένα configuration check, κοιτάει τη ρύθμιση, όχι το αποτέλεσμα. Το νέο health issue είναι πιο κοντά στην πράξη, κοιτάει το outcome: «ανεξάρτητα από το τι λέει η ρύθμιση, ο sensor δεν λαμβάνει events». Αυτό σημαίνει ότι μπορεί να δεις το νέο issue να ενεργοποιείται ακόμα και όταν όλα τα audit configuration issues φαίνονται καθαρά, γιατί η αιτία μπορεί να είναι κάπου αλλού, log rotation, service issue, τοπική παρέκκλιση από την πολιτική, ή κάτι στο pipeline συλλογής που δεν εντοπίζεται από έναν απλό έλεγχο ρύθμισης.

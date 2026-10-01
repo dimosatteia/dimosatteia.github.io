@@ -38,7 +38,7 @@ ShowToc: true
 TocOpen: false
 weight: -5
 cover:
-  image: "/images/CaptiveCrunch/captivecrunch-cover.png"
+  image: "/images/CaptiveCrunch/captivecrunch-cover.webp"
   alt: "CaptiveCrunch: ρωσική επίθεση σε ταξιδιώτες μέσα από το Wi-Fi ξενοδοχείων και συνεδρίων"
   caption: "CaptiveCrunch — Midnight Blizzard / Storm-2945"
 ---
@@ -49,7 +49,7 @@ cover:
 
 Αυτό δεν είναι υποθετικό. Είναι η επιχείρηση **CaptiveCrunch**, που αποκάλυψε η Microsoft Threat Intelligence στα τέλη Ιουλίου 2026. Επειδή αφορά ακριβώς όσους από εμάς ταξιδεύουν για δουλειά (και επειδή Eλληνικό υλικό πάνω της δεν θα βρεις εύκολα) αξίζει να το δούμε με απλά λόγια: τι γίνεται, πώς, και τι κάνεις γι' αυτό.
 
-[![CaptiveCrunch: επισκόπηση της επίθεσης σε ταξιδιώτες μέσω του Wi-Fi ξενοδοχείων](/images/CaptiveCrunch/captivecrunch-cover.png)](/images/CaptiveCrunch/captivecrunch-cover.png)
+[![CaptiveCrunch: επισκόπηση της επίθεσης σε ταξιδιώτες μέσω του Wi-Fi ξενοδοχείων](/images/CaptiveCrunch/captivecrunch-cover.webp)](/images/CaptiveCrunch/captivecrunch-cover.webp)
 > 📷 **Εικόνα 1: Η παγίδα στήνεται εκεί που δεν το περιμένεις...στο «αθώο» captive portal του ξενοδοχείου.**
 
 ## Ποιος είναι από πίσω
@@ -62,7 +62,7 @@ cover:
 
 Το έξυπνο κομμάτι είναι ότι εκμεταλλεύονται κάτι που όλοι θεωρούμε δεδομένο: το **captive portal**, τη σελίδα σύνδεσης των δημόσιων δικτύων.
 
-[![Η αλυσίδα της επίθεσης CaptiveCrunch σε πέντε βήματα, από την παραβίαση του δικτύου μέχρι την κλοπή credentials](/images/CaptiveCrunch/captivecrunch-attack-flow.png)](/images/CaptiveCrunch/captivecrunch-attack-flow.png)
+[![Η αλυσίδα της επίθεσης CaptiveCrunch σε πέντε βήματα, από την παραβίαση του δικτύου μέχρι την κλοπή credentials](/images/CaptiveCrunch/captivecrunch-attack-flow.webp)](/images/CaptiveCrunch/captivecrunch-attack-flow.webp)
 > 📷 **Εικόνα 2: Πέντε βήματα. Το κρίσιμο είναι το τρίτο — εκεί που εσύ, με το χέρι σου, τρέχεις το κακόβουλο.**
 
 Ας τα δούμε:
@@ -82,7 +82,7 @@ cover:
 
 Δεν χρειάζεται να τα αποστηθίσεις, αλλά βοηθά να ξέρεις τι κάνει το καθένα, γιατί δείχνει το εύρος της ζημιάς.
 
-[![Τα τρία εργαλεία της επίθεσης: CornFlake RAT, ChocoShell infostealer και FruitStone C2 panel](/images/CaptiveCrunch/captivecrunch-tools.png)](/images/CaptiveCrunch/captivecrunch-tools.png)
+[![Τα τρία εργαλεία της επίθεσης: CornFlake RAT, ChocoShell infostealer και FruitStone C2 panel](/images/CaptiveCrunch/captivecrunch-tools.webp)](/images/CaptiveCrunch/captivecrunch-tools.webp)
 > 📷 **Εικόνα 4: Ένα για τον έλεγχο, ένα για την κλοπή, ένα για τη διαχείριση. Μια ολόκληρη «γραμμή παραγωγής».**
 
 Το **CornFlake** είναι το «αγκίστρι» που καρφώνεται στο μηχάνημα, ένα RAT (remote access trojan). Μόλις μπει, δείχνει ένα ψεύτικο παραθυράκι (π.χ. «Windows Update, μην κλείσετε τον υπολογιστή») για να σε απασχολήσει, ενώ στήνει τους μηχανισμούς επιμονής και μεταμφιέζεται σε νόμιμη υπηρεσία με το όνομα «Cloud Sync Service». Δίνει στον επιτιθέμενο keylogging, screenshots, πρόσβαση σε κάμερα και μικρόφωνο, κλοπή αρχείων και remote shell και ουσιαστικά, πλήρη έλεγχο.
@@ -116,7 +116,7 @@ cover:
 
 Η καλή είδηση είναι ότι η άμυνα δεν είναι περίπλοκη. Είναι θέμα συνήθειας και μερικών σωστών ρυθμίσεων.
 
-[![Λίστα προστασίας για ταξιδιώτες: τι να αποφεύγεις και τι να κάνεις για να μην πέσεις θύμα CaptiveCrunch](/images/CaptiveCrunch/captivecrunch-defense-checklist.png)](/images/CaptiveCrunch/captivecrunch-defense-checklist.png)
+[![Λίστα προστασίας για ταξιδιώτες: τι να αποφεύγεις και τι να κάνεις για να μην πέσεις θύμα CaptiveCrunch](/images/CaptiveCrunch/captivecrunch-defense-checklist.webp)](/images/CaptiveCrunch/captivecrunch-defense-checklist.webp)
 > 📷 **Εικόνα 6: Τέσσερα «μη» και τέσσερα «κάνε». Αν περάσεις αυτά στην ομάδα σου, έκοψες το μεγαλύτερο μέρος του ρίσκου.**
 
 Σε επίπεδο **συνήθειας**, το πιο ισχυρό μέτρο είναι νοοτροπίας: αντιμετώπισε κάθε ξενοδοχειακό ή συνεδριακό Wi-Fi ως μη έμπιστο. Όπου γίνεται, προτίμησε **mobile hotspot ή eSIM** αντί για το δωρεάν δίκτυο. Και βάλε έναν απόλυτο κανόνα που δεν σπάει ποτέ: **κανένα update, certificate ή «εργαλείο» δεν κατεβαίνει από captive portal ή popup**. Τα updates γίνονται μόνο μέσα από το ίδιο το λειτουργικό σύστημα. Αν μια σελίδα σού ζητά να κάνεις copy-paste μια εντολή σε PowerShell, είναι επίθεση, τελεία και πάυλα.
