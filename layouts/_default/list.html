@@ -39,22 +39,22 @@
                 {{- if .IsHome }}
                 <h2 class="text-lg font-bold text-slate-200 flex items-center gap-2">
                     {{ $feedIcon }}
-                    Latest Intelligence Feed
+                    Πρόσφατα Άρθρα
                 </h2>
                 {{- else }}
                 {{- /* Σελίδες λίστας: ο τίτλος είναι το H1 της σελίδας, το "Feed" μένει εκτός H1 με ίδια εμφάνιση */}}
                 <div class="text-lg font-bold text-slate-200 flex items-center gap-2">
                     {{ $feedIcon }}
-                    <div><h1 class="inline text-lg font-bold text-slate-200">{{ .Title }}</h1> Feed</div>
+                    <div><h1 class="inline text-lg font-bold text-slate-200">{{ .Title }}</h1> · Άρθρα</div>
                 </div>
                 {{- end }}
                 
                 <!-- Mega Dropdown Menu (Categories, Series & Tag Search) -->
                 <div class="flex items-center gap-2 relative group z-20">
-                    <span class="text-xs text-slate-500 font-mono">View by:</span>
+                    <span class="text-xs text-slate-500 font-mono">Προβολή:</span>
                     
                     <button class="text-xs text-slate-300 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800 flex items-center gap-1.5 hover:border-blue-500 hover:text-white transition-colors cursor-pointer shadow-sm">
-                        Date (Latest)
+                        Ημερομηνία (νεότερα)
                         <svg class="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     
@@ -63,7 +63,7 @@
                         
                         <a href="/" class="flex items-center gap-2 px-3 py-2.5 text-xs font-mono text-blue-400 bg-slate-800/60 border-b border-slate-700/50 shrink-0">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            Date (Latest)
+                            Ημερομηνία (νεότερα)
                         </a>
                         
                         <!-- Main Scroll Area for the whole dropdown menu -->
@@ -72,7 +72,7 @@
                             <!-- Ενότητα: Categories (Sort By Count, Max 5 items visible) -->
                             {{ if .Site.Taxonomies.categories }}
                             <div class="px-3 py-1.5 bg-slate-950/90 border-b border-slate-700/50 sticky top-0 z-10 backdrop-blur-sm">
-                                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Categories</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Κατηγορίες</span>
                             </div>
                             <div class="max-h-[165px] overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
                                 {{ range .Site.Taxonomies.categories.ByCount }}
@@ -87,7 +87,7 @@
                             <!-- Ενότητα: Series (Sort By Count, Max 5 items visible) -->
                             {{ if .Site.Taxonomies.series }}
                             <div class="px-3 py-1.5 bg-slate-950/90 border-y border-slate-700/50 sticky top-0 z-10 backdrop-blur-sm mt-1">
-                                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Series</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Σειρές</span>
                             </div>
                             <div class="max-h-[165px] overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
                                 {{ range .Site.Taxonomies.series.ByCount }}
@@ -104,7 +104,7 @@
                             <div class="px-3 py-2 bg-slate-950/90 border-y border-slate-700/50 sticky top-0 z-10 backdrop-blur-sm mt-1 shadow-sm">
                                 <div class="flex items-center gap-2">
                                     <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                    <input type="text" id="tagSearchInput" placeholder="Search Tags..." class="w-full bg-slate-900/50 text-xs text-slate-300 font-mono px-2 py-1 rounded border border-slate-700 focus:outline-none focus:border-blue-500 transition-colors placeholder-slate-600">
+                                    <input type="text" id="tagSearchInput" placeholder="Αναζήτηση tags..." class="w-full bg-slate-900/50 text-xs text-slate-300 font-mono px-2 py-1 rounded border border-slate-700 focus:outline-none focus:border-blue-500 transition-colors placeholder-slate-600">
                                 </div>
                             </div>
                             <div id="tagListContainer" class="max-h-[165px] overflow-y-auto overscroll-contain flex flex-col pb-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">

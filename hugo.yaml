@@ -195,7 +195,7 @@ menu:
       url: /posts/
       weight: 10
     - identifier: series
-      name: Series
+      name: Σειρές
       url: /series/
       weight: 20
     - identifier: releases
@@ -218,7 +218,7 @@ menu:
       url: /releases/#generally-available
       weight: 3
     - identifier: categories
-      name: Categories
+      name: Κατηγορίες
       url: /categories/
       weight: 30
     - identifier: tags
@@ -226,7 +226,7 @@ menu:
       url: /tags/
       weight: 40
     - identifier: about
-      name: About
+      name: Σχετικά
       url: /about/
       weight: 50
     - identifier: search
