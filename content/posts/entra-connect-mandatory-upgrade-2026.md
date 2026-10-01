@@ -29,7 +29,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Ανάλυση της mandatory προθεσμίας 30/9/2026 για το Microsoft Entra Connect: ποιες εκδόσεις χρειάζεσαι, τι αλλάζει στο 2.6.84.0, γιατί το Download Center δεν είναι πια ο δρόμος λήψης, και πώς το τεκμηριώνεις σε NIS2 και ISO 27001 audit."
 summary: "Το Entra Connect δεν στέλνει απλώς ένα ακόμα security advisory. Στις 30 Σεπτεμβρίου 2026 κλείνει ένα παράθυρο, και αν το tenant σου δεν είναι πάνω από την έκδοση 2.5.79.0, δεν μιλάμε για έκθεση σε ρίσκο, μιλάμε για πλήρη διακοπή του synchronization. Ένα ζήτημα που ανήκει εξίσου στο patch management και στο risk register σου."
-categories: ["Microsoft 365 Security", "Identity Security"]
+categories: ["Identity & Access"]
 series:
 ShowToc: true
 TocOpen: false

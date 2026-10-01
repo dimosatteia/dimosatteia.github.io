@@ -21,8 +21,6 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Hands-on Microsoft 365 Security content for IT Pros — Defender walkthroughs, hardening guides, and compliance lessons from production environments."
 summary: "An intro to the blog, the topics I'll cover, and the first series planned for 2026."
-categories:
-  - "Meta"
 series:
 ShowToc: true
 TocOpen: false

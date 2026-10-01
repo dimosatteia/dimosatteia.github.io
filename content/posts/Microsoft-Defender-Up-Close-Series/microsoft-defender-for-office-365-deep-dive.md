@@ -25,7 +25,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Πρακτικός οδηγός για το Microsoft Defender for Office 365: Plan 1 vs Plan 2, preset policies, Safe Links, Safe Attachments και anti-phishing."
 summary: "Το Microsoft Defender for Office 365 με πρακτικούς όρους. Plan 1 vs Plan 2, πώς οι preset security policies απλοποιούν την ανάπτυξη από την πρώτη μέρα, και οι συγκεκριμένες ρυθμίσεις για Safe Links, Safe Attachments και anti-phishing που μετράνε περισσότερο."
-categories: ["Microsoft Defender", "Email Security"]
+categories: ["Email & Collaboration"]
 series: ["Microsoft Defender Up Close"]
 slug: 
 ShowToc: true

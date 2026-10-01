@@ -19,8 +19,6 @@ keywords:
   - Security feature lifecycle
   - Microsoft 365 roadmap
 author: "Dimosthenis Atteia"
-categories:
-  - "Microsoft 365"
 ShowToc: true
 TocOpen: false
 ShowReadingTime: true

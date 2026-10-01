@@ -29,7 +29,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "The final post in the Microsoft Defender Demystified series. A friendly, hands-on walk through the Microsoft Defender portal at security.microsoft.com, every major section explained, where Microsoft Secure Score now lives, the unified Microsoft Sentinel experience, and a practical 'first hour' agenda any professional can follow today."
 summary: "Part 5 closes the series. A guided walk through the unified Microsoft Defender portal, every major navigation section explained, where Microsoft Secure Score now lives inside Exposure Management, how to set up the right roles, a simple KQL hunting query to try, and a 60-minute first-time agenda."
-categories: ["Azure Security", "Microsoft Defender", "Microsoft 365"]
+categories: ["Security Operations & XDR"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false

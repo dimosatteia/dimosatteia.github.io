@@ -33,7 +33,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Η Microsoft αποκάλυψε την επιχείρηση CaptiveCrunch: μια ρωσική ομάδα κατασκοπείας που χτυπά ταξιδιώτες μέσα από το Wi-Fi ξενοδοχείων και συνεδρίων, ρίχνοντας malware και κλέβοντας credentials και Microsoft 365 tokens. Εξηγώ με απλά λόγια τι συμβαίνει, πώς δουλεύει η επίθεση, ποια εργαλεία χρησιμοποιούν και τι να κάνεις για να προστατέψεις εσένα και την ομάδα σου."
 summary: "Μια ρωσική κρατική ομάδα (Midnight Blizzard / Storm-2945) παραβιάζει το Wi-Fi ξενοδοχείων και συνεδρίων για να χτυπήσει εταιρικούς ταξιδιώτες. Σου δείχνω βήμα-βήμα πώς στήνεται η παγίδα με ψεύτικα updates και ClickFix, τι κάνουν τα εργαλεία CornFlake / ChocoShell / FruitStone, γιατί η κλοπή token είναι το πραγματικό πρόβλημα, και έναν πρακτικό οδηγό προστασίας για όποιον ταξιδεύει για δουλειά."
-categories: ["Threat Intelligence", "Microsoft Defender", "Microsoft 365 Security"]
+categories: ["Security Operations & XDR"]
 series: ["Threat Watch"]
 ShowToc: true
 TocOpen: false

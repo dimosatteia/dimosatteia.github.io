@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Every field on a Microsoft Secure Score recommendation explained for Junior M365 Admins and Tier 1 SOC Analysts. No theory, just the screen."
 summary: "Part 1 of the Secure Score series. A beginner-friendly walk through a single Microsoft Secure Score recommendation. Every field on the screen, what each one means, and the small observations that help new professionals start extracting value in under an hour."
-categories: ["GRC & Frameworks", "Microsoft 365"]
+categories: ["GRC & Compliance"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
 TocOpen: false

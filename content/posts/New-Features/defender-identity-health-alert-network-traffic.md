@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του νέου health alert του Microsoft Defender for Identity για απούσα δικτυακή κίνηση domain controller (MC1455017), με έμφαση στο πώς ένα κενό ορατότητας στο sensor monitoring μπορεί να μείνει αόρατο για μήνες, και τι σημαίνει αυτό για NIS2 και ISO 27001."
 summary: "Ένα Defender for Identity sensor μπορεί να δείχνει healthy και ταυτόχρονα να μη βλέπει καθόλου την κίνηση του domain controller που υποτίθεται ότι παρακολουθεί. Το νέο health alert έρχεται να καλύψει ακριβώς αυτό το τυφλό σημείο, και αξίζει να καταλάβεις γιατί υπήρχε τόσο καιρό."
-categories: ["Microsoft 365 Security", "Identity Security"]
+categories: ["Identity & Access"]
 series:
 releases:
   - "new-features"

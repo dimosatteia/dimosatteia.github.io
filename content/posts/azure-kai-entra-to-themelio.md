@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Πριν μιλήσουμε ξανά για το επόμενο New Feauture, το νέο Public Preview ή το Generally Available, ας ξεκαθαρίσουμε τι είναι στην πραγματικότητα το Azure, τι είναι το Entra, πού κάθεται το Microsoft 365, πού μπαίνει το Defender, και γιατί αυτή η διάκριση είναι το θεμέλιο κάθε compliance συζήτησης που κάνουμε μετά."
 summary: "Έχω γράψει δεκάδες φορές για νέα features, GA ανακοινώσεις και Public Preview capabilities του Microsoft ecosystem, αλλά σχεδόν ποτέ δεν στάθηκα στο πιο βασικό ερώτημα: τι ακριβώς είναι το Azure, τι είναι το Entra, και γιατί η σύγχυση μεταξύ τους δημιουργεί πραγματικό ρίσκο σε ένα compliance πρόγραμμα. Αυτό το άρθρο είναι το θεμέλιο που έπρεπε να έχω γράψει πρώτο."
-categories: ["Cloud Security", "Identity Security"]
+categories: ["Cloud Security", "Identity & Access"]
 series:
 ShowToc: true
 TocOpen: false

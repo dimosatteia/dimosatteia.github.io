@@ -5,8 +5,7 @@ draft: true
 author: "Dimosthenis"
 description: "A practical, opinionated baseline for hardening a new Microsoft 365 tenant in 2026. Every setting, every reason, every trade-off."
 summary: "Series intro: what we're hardening, why a baseline matters, and how this series differs from CIS / Microsoft Secure Score guidance."
-categories:
-  - "Microsoft 365"
+categories: ["GRC & Compliance"]
 tags:
   - "Hardening"
   - "Conditional Access"

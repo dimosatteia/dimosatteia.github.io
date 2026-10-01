@@ -19,7 +19,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Το Microsoft Defender αποκτά ενσωματωμένη ασφάλεια για AI agents μέσω του Microsoft Agent 365: discovery, security posture, real-time protection και investigation, πλέον Generally Available."
 summary: "Οι AI agents στον οργανισμό σου γίνονται ένα ακόμα asset που χρειάζεται προστασία. Δες πώς το Microsoft Defender, μέσω του Microsoft Agent 365, τους ανακαλύπτει, τους αξιολογεί και τους προστατεύει σε πραγματικό χρόνο."
-categories: ["Microsoft Defender"]
+categories: ["AI Security"]
 series: ["Generally Available Features"]
 releases:
   - "generally-available"       # ← αυτό στο /releases/generally-available/

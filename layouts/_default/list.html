@@ -189,24 +189,25 @@
 
             <!-- Structured List of Posts -->
             <div class="flex flex-col gap-2">
-                {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+                {{ $feed := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}{{ if eq .Kind "term" }}{{ $feed = .Pages }}{{ end }}
+                {{ $paginator := .Paginate $feed }}
                 {{ range $paginator.Pages }}
                 
                 <!-- Use categories to determine border color based on mapping -->
                 {{ $borderColor := "border-l-transparent" }}
-                {{ $iconColor := "text-slate-400" }}
+                {{ $iconColor := "text-blue-400" }}
                 {{ $hoverColor := "hover:border-l-blue-500" }}
                 {{ $titleHover := "group-hover:text-blue-400" }}
                 
-                {{ if in .Params.categories "Microsoft 365 Security" }}
+                {{ if in .Params.categories "Identity & Access" }}
                     {{ $hoverColor = "hover:border-l-blue-500" }}
                     {{ $titleHover = "group-hover:text-blue-400" }}
                     {{ $iconColor = "text-blue-400" }}
-                {{ else if in .Params.categories "Network Security" }}
+                {{ else if in .Params.categories "Network & SSE" }}
                     {{ $hoverColor = "hover:border-l-emerald-500" }}
                     {{ $titleHover = "group-hover:text-emerald-400" }}
                     {{ $iconColor = "text-emerald-400" }}
-                {{ else if in .Params.categories "Compliance" }}
+                {{ else if in .Params.categories "GRC & Compliance" }}
                     {{ $hoverColor = "hover:border-l-purple-500" }}
                     {{ $titleHover = "group-hover:text-purple-400" }}
                     {{ $iconColor = "text-purple-400" }}

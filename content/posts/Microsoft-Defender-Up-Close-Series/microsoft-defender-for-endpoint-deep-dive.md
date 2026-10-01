@@ -25,7 +25,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Πρακτικός οδηγός για το Microsoft Defender for Endpoint: Plan 1 vs Plan 2, onboarding συσκευών και οι ρυθμίσεις που μετράνε την πρώτη εβδομάδα."
 summary: "Το Microsoft Defender for Endpoint όπως το χρειάζεται ένας επαγγελματίας στην πράξη. Plan 1 και Plan 2 δίπλα-δίπλα, τι κάνει το καθένα, πώς λειτουργεί το onboarding σε Windows, macOS, Linux, iOS και Android, και οι ρυθμίσεις του Defender portal που πρέπει να ελέγξετε την πρώτη εβδομάδα."
-categories: ["Microsoft Defender", "Endpoint Security"]
+categories: ["Endpoint & Device"]
 series: ["Microsoft Defender Up Close"]
 slug: 
 ShowToc: true

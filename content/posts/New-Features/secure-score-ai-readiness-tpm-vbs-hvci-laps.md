@@ -31,7 +31,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Η Microsoft προσθέτει τέσσερις νέες συστάσεις AI-Readiness στο Secure Score για TPM 2.0, VBS, HVCI και LAPS. Ανάλυση από την οπτική ενός CISO: τι αλλάζει πρακτικά, γιατί συνδέεται με AI accelerated threats, και πώς το τεκμηριώνεις σε NIS2 και ISO 27001."
 summary: "Όταν είδα τον όρο «AI-Readiness» δίπλα σε TPM, VBS, HVCI και LAPS, η πρώτη μου σκέψη ήταν πως πρόκειται για ακόμα ένα marketing label. Κάνοντας την έρευνα, κατάλαβα ότι είναι κάτι πιο ουσιαστικό: μια υπενθύμιση πως τα foundational device controls, αυτά που πολλοί θεωρούν δεδομένα, είναι ακριβώς αυτά που καθορίζουν αν μια συσκευή αντέχει σε επιθέσεις που πλέον σχεδιάζονται και εκτελούνται με βοήθεια AI."
-categories: ["Microsoft 365 Security", "Endpoint Security"]
+categories: ["Endpoint & Device"]
 series:
 releases:
   - "new-features"

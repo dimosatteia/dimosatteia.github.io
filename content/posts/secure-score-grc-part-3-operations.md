@@ -30,7 +30,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "260+ recommendations, one team. How to prioritize, remediate, map controls to ISO 27001 & NIS2, and collect audit evidence, without burning out."
 summary: "Part 3 of the Secure Score series. How to actually run Microsoft Secure Score day-to-day: prioritizing 260+ recommendations, building a change management process that doesn't break production, mapping controls to ISO 27001 and NIS2, collecting audit evidence, and reporting to the board."
-categories: ["GRC & Frameworks", "Microsoft 365"]
+categories: ["GRC & Compliance"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
 TocOpen: false

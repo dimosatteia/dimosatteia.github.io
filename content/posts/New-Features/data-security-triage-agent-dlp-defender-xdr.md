@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του MC1255406: πώς ο Microsoft Purview Data Security Triage Agent φέρνει AI-generated summaries και categorization για DLP alerts μέσα στο Microsoft Defender XDR, με την οπτική ενός CISO για licensing, permissions, agent identity και επιπτώσεις σε NIS2 και ISO 27001."
 summary: "Το SOC σου βλέπει πλέον DLP alerts μέσα στο Defender XDR, αλλά ο agent που τα αναλύει ζει στο Purview. Αυτό το split ownership δεν είναι απλώς UX λεπτομέρεια, είναι ένα νέο μοτίβο governance που πρέπει να τεκμηριώσεις πριν το ενεργοποιήσεις."
-categories: ["Microsoft 365 Security", "Data Security"]
+categories: ["GRC & Compliance"]
 series:
 releases:
   - "new-features"

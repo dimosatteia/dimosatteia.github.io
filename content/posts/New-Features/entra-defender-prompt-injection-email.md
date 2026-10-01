@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Η Microsoft φέρνει προστασία κατά prompt injection επιθέσεων μέσω email στο Defender for Office 365. Ανάλυση από την οπτική ενός CISO: τι αλλάζει στην πράξη, γιατί η παλιά λογική του phishing δεν αρκεί πια, και πώς το τεκμηριώνεις σε NIS2 και ISO 27001."
 summary: "Έχουμε συνηθίσει να σκεφτόμαστε το phishing σαν κάτι που στοχεύει τον άνθρωπο πίσω από την οθόνη. Το MC1422060 μας θυμίζει κάτι πιο ανησυχητικό: τώρα υπάρχει και ένας δεύτερος αναγνώστης σε κάθε mailbox, το AI assistant, και οι επιτιθέμενοι το ξέρουν ήδη."
-categories: ["Microsoft 365 Security", "AI Security"]
+categories: ["Email & Collaboration", "AI Security"]
 series:
 releases:
   - "new-features"

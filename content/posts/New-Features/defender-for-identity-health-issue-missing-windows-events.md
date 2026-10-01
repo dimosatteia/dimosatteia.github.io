@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του νέου sensor health issue 'No Windows events received from domain controller' στο Microsoft Defender for Identity (MC1455016), με την οπτική ενός CISO που πρέπει να τεκμηριώσει το detection coverage σε NIS2 και ISO 27001 audit."
 summary: "Ένα Defender for Identity sensor μπορεί να δείχνει healthy, connected, licensed, και ταυτόχρονα να μη βλέπει σχεδόν τίποτα από έναν συγκεκριμένο Domain Controller, γιατί τα Windows events απλά δεν φτάνουν ποτέ ως εκεί. Το νέο health issue που ανακοίνωσε η Microsoft με το MC1455016 βάζει επιτέλους όνομα σε αυτό το τυφλό σημείο, και αξίζει να καταλάβεις γιατί υπήρχε πριν καν εμφανιστεί το alert."
-categories: ["Microsoft 365 Security", "Identity Security"]
+categories: ["Identity & Access"]
 series:
 releases:
   - "new-features"

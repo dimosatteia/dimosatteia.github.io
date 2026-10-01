@@ -24,7 +24,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Enterprise Mobility + Security με απλά λόγια: τι περιέχουν τα EMS E3 και E5, πώς σχετίζονται με το Microsoft 365 και πότε αξίζει πραγματικά να τα αγοράσετε."
 summary: "Το Enterprise Mobility + Security με απλά λόγια. EMS E3 και EMS E5 δίπλα-δίπλα: διαχείριση ταυτοτήτων και πρόσβασης, διαχείριση τερματικών, προστασία πληροφοριών, ασφάλεια με βάση την ταυτότητα. Πότε το πακέτο EMS είναι η σωστή επιλογή σε σύγκριση με το Microsoft 365 E3, E5 ή E7."
-categories: ["Microsoft Defender", "Microsoft Licensing", "Microsoft Security"]
+categories: ["GRC & Compliance"]
 series: ["Microsoft Defender Up Close"]
 slug: 
 ShowToc: true

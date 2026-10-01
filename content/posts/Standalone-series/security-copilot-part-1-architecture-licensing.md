@@ -5,9 +5,7 @@ draft: true
 author: "Dimosthenis"
 description: "Before you turn on Microsoft Security Copilot, understand what you're actually buying, how it integrates with the Defender stack, and where it can quietly cost you money."
 summary: "Part 1 of the Security Copilot in Production series. Architecture, SCU pricing model, plugin model, and the governance decisions you should make before pilot."
-categories:
-  - "Microsoft Security Copilot"
-  - "Microsoft 365"
+categories: ["AI Security"]
 tags:
   - "Security Copilot"
   - "Architecture"

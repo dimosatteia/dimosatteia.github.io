@@ -29,7 +29,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται όλα μεταξύ τους."
 summary: "Ένας πρακτικός χάρτης της οικογένειας Microsoft Defender για νέους επαγγελματίες ασφάλειας: Endpoint, Office 365, Identity, Cloud Apps, Cloud και το ενοποιημένο Defender XDR που τα συνδέει όλα σε ένα incident."
-categories: ["Microsoft Defender", "Microsoft 365"]
+categories: ["Security Operations & XDR"]
 ShowToc: true
 TocOpen: false
 cover:

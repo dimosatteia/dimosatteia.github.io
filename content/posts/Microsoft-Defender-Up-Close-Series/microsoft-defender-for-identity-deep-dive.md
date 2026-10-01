@@ -25,7 +25,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Πρακτικός οδηγός για το Microsoft Defender for Identity: sensors v3.x και v2.x, ανάπτυξη σε domain controllers, alerts και βασικές ρυθμίσεις."
 summary: "Το Microsoft Defender for Identity όπως το χρειάζεται ένας επαγγελματίας στην πράξη. Τι είναι οι sensors και πού μπαίνουν, πώς επιλέγετε ανάμεσα σε sensor v3.x και v2.x, η ενιαία προβολή AD και Microsoft Entra ID, και τα alerts που αξίζει να ρυθμίσετε πρώτα."
-categories: ["Microsoft Defender", "Identity Security"]
+categories: ["Identity & Access"]
 series: ["Microsoft Defender Up Close"]
 slug: 
 ShowToc: true

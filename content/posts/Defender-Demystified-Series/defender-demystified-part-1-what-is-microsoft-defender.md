@@ -40,7 +40,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Microsoft has 8 Defender products and most confuse them. A practical map of the full family: XDR, Endpoint, Identity, Office 365, and Cloud Apps."
 summary: "Confused by Microsoft Defender naming? You're not alone. This guide maps the entire Microsoft Defender family, 8 core products, licensing tiers, and when you actually need each one. For CISOs, IT managers, and security teams implementing Microsoft 365 E5 or EMS E5."
-categories: ["Azure Security", "Microsoft Defender", "Microsoft 365"]
+categories: ["Security Operations & XDR"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false

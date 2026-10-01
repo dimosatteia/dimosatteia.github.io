@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του MC1461704: το Microsoft Defender XDR ενοποιεί τις ενέργειες απόκρισης (disable, revoke session, force password change) σε όλους τους συνδεδεμένους λογαριασμούς μιας ταυτότητας, σε Active Directory, Entra ID, Okta, CyberArk, SailPoint και SaaS εφαρμογές, με την οπτική ενός CISO που σχεδιάζει incident response runbooks."
 summary: "Μέχρι σήμερα, το να απενεργοποιήσεις έναν compromised χρήστη σήμαινε να ανοίξεις τρία ή τέσσερα διαφορετικά console, ένα για το AD, ένα για το Entra, ένα για το SaaS app, και να ελπίζεις ότι δεν ξέχασες κανένα. Το MC1461704 φέρνει αυτές τις ενέργειες σε ένα ενιαίο workflow μέσα από το Identity page, και αυτό αλλάζει άμεσα το πώς πρέπει να γράφονται τα playbooks απόκρισης."
-categories: ["Microsoft 365 Security", "Identity Security"]
+categories: ["Security Operations & XDR", "Identity & Access"]
 series:
 releases:
   - "new-features"

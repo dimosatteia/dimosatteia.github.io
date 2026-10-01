@@ -29,7 +29,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Where does Microsoft Secure Score come from? Which Defender products feed it and how? Learn to trace any score point back to its source."
 summary: "Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it."
-categories: ["GRC & Frameworks", "Microsoft 365"]
+categories: ["GRC & Compliance"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
 TocOpen: false

@@ -25,7 +25,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Πρακτικός οδηγός για το Microsoft Defender for Cloud Apps: Shadow IT discovery, OAuth app governance, Conditional Access App Control και activity policies."
 summary: "Το Microsoft Defender for Cloud Apps όπως το χρειάζεται ένας επαγγελματίας στην πράξη. Shadow IT discovery μέσω του cloud app catalog, OAuth app governance, session policies του Conditional Access App Control, activity policies, και η μετάβαση των file policies στο Microsoft Purview."
-categories: ["Microsoft Defender", "SaaS Security"]
+categories: ["Cloud Security"]
 series: ["Microsoft Defender Up Close"]
 slug: 
 ShowToc: true

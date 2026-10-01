@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{- /* Tags: ευρετήριο A–Z με φίλτρο */ -}}
+{{- $groups := dict -}}
+{{- range .Data.Terms.Alphabetical -}}
+  {{- $l := upper (substr .Page.LinkTitle 0 1) -}}
+  {{- if not (findRE `^[\p{L}]` $l) }}{{ $l = "#" }}{{ end -}}
+  {{- $groups = merge $groups (dict $l ((index $groups $l | default slice) | append .)) -}}
+{{- end -}}
+{{- $letters := slice -}}{{- range $k, $_ := $groups }}{{ $letters = $letters | append $k }}{{ end -}}
+<main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+
+  <header class="pb-4 border-b border-slate-800">
+    <h1 class="text-2xl md:text-3xl font-bold text-slate-100 flex items-center gap-3">
+      <span class="text-blue-500 font-mono">#</span>{{ .Title }}
+    </h1>
+    {{ with .Description }}<p class="text-sm text-slate-400 mt-2 max-w-3xl">{{ . }}</p>{{ end }}
+    <p class="text-xs font-mono text-slate-500 mt-3">{{ len .Data.Terms }} tags · <a href="/categories/" class="text-blue-400 hover:text-blue-300">Δείτε τους θεματικούς πυλώνες →</a></p>
+  </header>
+
+  <div class="sticky top-14 z-30 -mx-4 px-4 sm:mx-0 sm:px-0 py-3 bg-[#020617]/90 backdrop-blur flex flex-col gap-3">
+    <div class="relative max-w-md">
+      <svg class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      <input id="tagFilter" type="search" placeholder="Φιλτράρισμα tags..." autocomplete="off"
+        class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-md py-2 pl-9 pr-3 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+    </div>
+    <nav class="flex flex-wrap gap-1" aria-label="Γράμματα">
+      {{ range $letters }}
+      <a href="#letter-{{ . | urlize }}" class="letter-link w-7 h-7 flex items-center justify-center text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800 rounded hover:border-blue-500 hover:text-white" data-letter="{{ . }}">{{ . }}</a>
+      {{ end }}
+    </nav>
+  </div>
+
+  <div class="flex flex-col gap-6">
+    {{ range $letters }}
+    {{ $l := . }}
+    <section id="letter-{{ $l | urlize }}" class="tag-group scroll-mt-40" data-letter="{{ $l }}">
+      <h2 class="text-sm font-mono font-bold text-blue-400 border-b border-slate-800 pb-1 mb-3">{{ $l }}</h2>
+      <div class="flex flex-wrap gap-2">
+        {{ range index $groups $l }}
+        <a href="{{ .Page.RelPermalink }}" class="tag-chip flex items-center gap-1.5 px-2.5 py-1 bg-slate-900 border border-slate-800 hover:border-blue-500 rounded text-xs text-slate-300 hover:text-white transition-colors" data-name="{{ lower .Page.LinkTitle }}">
+          <span class="font-mono text-slate-500">#</span>{{ .Page.LinkTitle }}
+          <span class="text-[10px] font-mono text-slate-500 bg-slate-950 px-1 rounded">{{ .Count }}</span>
+        </a>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+    <p id="noTags" class="hidden text-sm font-mono text-slate-500">Δεν βρέθηκαν tags με αυτό το όνομα.</p>
+  </div>
+</main>
+<script>
+(function () {
+  var input = document.getElementById("tagFilter");
+  if (!input) return;
+  input.addEventListener("input", function () {
+    var q = input.value.toLowerCase().trim(), any = false;
+    document.querySelectorAll(".tag-group").forEach(function (g) {
+      var shown = 0;
+      g.querySelectorAll(".tag-chip").forEach(function (c) {
+        var ok = c.getAttribute("data-name").indexOf(q) !== -1;
+        c.style.display = ok ? "" : "none"; if (ok) shown++;
+      });
+      g.style.display = shown ? "" : "none";
+      var link = document.querySelector('.letter-link[data-letter="' + g.getAttribute("data-letter") + '"]');
+      if (link) link.style.opacity = shown ? "1" : "0.3";
+      if (shown) any = true;
+    });
+    document.getElementById("noTags").style.display = any ? "none" : "block";
+  });
+})();
+</script>
+{{ end }}

@@ -28,7 +28,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Ανάλυση της αύξησης του ορίου auto-labeling στο Microsoft Purview από 100.000 σε 500.000 αρχεία την ημέρα για SharePoint και OneDrive, με την οπτική ενός CISO που πρέπει να ξαναδεί το labeling roadmap του πριν το GA του Οκτωβρίου."
 summary: "Ένα νούμερο που έμενε σταθερό τόσο καιρό που το είχαμε ενσωματώσει σαν δεδομένο στον σχεδιασμό μας, αλλάζει. Το πενταπλάσιο όριο auto-labeling δεν είναι απλώς ένα technical bump, είναι ευκαιρία να ξανακοιτάξεις το labeling backlog σου και να το συνδέσεις με το πώς τεκμηριώνεις classification στο ISO 27001 και στο NIS2."
-categories: ["Microsoft Purview", "Information Protection"]
+categories: ["GRC & Compliance"]
 series:
 ShowToc: true
 TocOpen: false

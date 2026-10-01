@@ -22,7 +22,7 @@ tags:
 author: "Dimosthenis Atteia"
 description: "Το AD group enforcement κλειδώνει τα synced groups του Active Directory ώστε να αλλάζουν μόνο μέσω του Entra provisioning service. Αναλυτικός οδηγός για το Public Preview: προϋποθέσεις, SOA-Policies, Enforced vs Audit mode και περιορισμοί."
 summary: "Το Microsoft Entra Cloud Sync αποκτά τη δυνατότητα να κλειδώνει synced AD groups, ώστε καμία αλλαγή να μην γίνεται τοπικά στο Active Directory παρά μόνο μέσω του provisioning service. Τι σημαίνει αυτό στην πράξη και τι χρειάζεται για να το δοκιμάσεις."
-categories: ["Microsoft 365"]
+categories: ["Identity & Access"]
 series: ["Preview Features"]
 releases:
   - "preview"   # ← αυτό το στέλνει στο /releases/preview/
