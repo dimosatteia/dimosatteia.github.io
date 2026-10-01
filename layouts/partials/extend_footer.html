@@ -12,12 +12,9 @@
 </div>
 {{ end }}
 
-<div class="floating-widgets-stack">
-  {{ partial "m365-status-banner.html" . }}
-  {{ partial "community-spotlight.html" . }}
-</div>
+{{/* M365 status και Community Spotlight μεταφέρθηκαν στην κάρτα Platform Profile (partials/platform-profile.html) */}}
 
-{{ partial "disclaimer-ip.html" . }}
+{{/* Disclaimer + IP μεταφέρθηκαν στο footer.html */}}
 
 {{ if .IsHome }}
 <!-- Announcement popup: Global Secure Access series -->

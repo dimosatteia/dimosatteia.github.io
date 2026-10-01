@@ -1,0 +1,86 @@
+{{- /*
+  layouts/partials/platform-profile.html
+  Κάρτα "Platform Profile" της αρχικής: ταυτότητα, Gold Award,
+  M365 Admin Center status (data/m365status.json), social links
+  και Community Spotlight (data/community.yaml).
+*/ -}}
+{{- $raw := site.Data.m365status.status | default "Unknown" -}}
+{{- $label := $raw -}}{{- $dot := "bg-slate-500" -}}{{- $txt := "text-slate-400" -}}{{- $box := "bg-slate-500/10 border-slate-500/20" -}}
+{{- if eq $raw "Available" }}{{ $label = "Operational" }}{{ $dot = "bg-emerald-500" }}{{ $txt = "text-emerald-400" }}{{ $box = "bg-emerald-500/10 border-emerald-500/20" }}
+{{- else if eq $raw "Degraded" }}{{ $dot = "bg-amber-500" }}{{ $txt = "text-amber-400" }}{{ $box = "bg-amber-500/10 border-amber-500/20" }}
+{{- else if eq $raw "Unavailable" }}{{ $label = "Outage" }}{{ $dot = "bg-red-500" }}{{ $txt = "text-red-400" }}{{ $box = "bg-red-500/10 border-red-500/20" }}{{ end -}}
+<div class="glass-card rounded-xl p-5 flex flex-col gap-4">
+
+  <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg>
+    Platform Profile
+  </h2>
+
+  <!-- Ταυτότητα + social -->
+  <div class="flex items-start gap-3">
+    <div class="w-11 h-11 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
+      <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+    </div>
+    <div class="min-w-0 flex-1">
+      <h3 class="text-sm font-bold text-slate-100">{{ site.Params.author }}</h3>
+      <p class="text-xs text-slate-400">{{ site.Params.authorJobTitle }}</p>
+      <p class="text-[11px] font-mono text-slate-500 mt-0.5">Microsoft 365 Security · NIS2 · ISO 27001</p>
+    </div>
+    <div class="flex gap-1.5 shrink-0">
+      {{ range site.Params.socialIcons }}
+      {{ $n := lower .name }}
+      <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}" aria-label="{{ .name }}" class="w-8 h-8 flex items-center justify-center bg-slate-900 border border-slate-700 rounded hover:border-blue-500 text-slate-400 hover:text-white transition-colors">
+        {{ if eq $n "linkedin" }}<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        {{ else if eq $n "github" }}<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 00-3.8 23.38c.6.12.83-.26.83-.57v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .3"/></svg>
+        {{ else }}<span class="text-[10px] font-mono">{{ .name }}</span>{{ end }}
+      </a>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- Gold Award -->
+  <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-lg p-3 bg-amber-500/10 border border-amber-500/25 hover:border-amber-400/60 transition-colors">
+    <span class="text-2xl leading-none" aria-hidden="true">🏆</span>
+    <span class="min-w-0">
+      <span class="block text-xs font-bold text-amber-300">Gold Award · Cyber Security Awards 2026</span>
+      <span class="block text-[11px] text-slate-400">Microsoft Secure Score ως πρόγραμμα Cyber GRC</span>
+    </span>
+  </a>
+
+  <!-- M365 Admin Center status -->
+  <a href="https://status.cloud.microsoft" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between gap-3 rounded-lg p-3 bg-slate-950/50 border border-slate-800 hover:border-slate-600 transition-colors">
+    <span class="min-w-0">
+      <span class="block text-xs text-slate-300 font-mono">M365 Admin Center</span>
+      {{ with site.Data.m365status.updated }}<span class="block text-[10px] text-slate-500 font-mono truncate">{{ . }}</span>{{ end }}
+    </span>
+    <span class="flex items-center gap-2 px-2.5 py-1 rounded-full border shrink-0 {{ $box }}">
+      <span class="relative flex h-2 w-2">
+        {{ if eq $raw "Available" }}<span class="animate-ping absolute inline-flex h-full w-full rounded-full {{ $dot }} opacity-60"></span>{{ end }}
+        <span class="relative inline-flex rounded-full h-2 w-2 {{ $dot }}"></span>
+      </span>
+      <span class="text-xs font-mono font-medium {{ $txt }}">{{ $label }}</span>
+    </span>
+  </a>
+
+  <!-- Community Spotlight -->
+  {{ with site.Data.community }}
+  <div class="border-t border-slate-800 pt-3">
+    <h3 class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2">🌐 Community Spotlight</h3>
+    <ul class="flex flex-col gap-2">
+      {{ range . }}
+      {{ $li := "" }}{{ $mvp := "" }}
+      {{ range .links }}{{ if eq (lower .type) "linkedin" }}{{ $li = .url }}{{ else if in (lower .type) "mvp" }}{{ $mvp = .url }}{{ end }}{{ end }}
+      <li class="flex items-center gap-3">
+        {{ with .avatar }}<img src="{{ . }}" alt="" loading="lazy" class="w-9 h-9 rounded-full object-cover border border-slate-700 shrink-0">{{ end }}
+        <div class="min-w-0 flex-1">
+          {{ if $li }}<a href="{{ $li }}" target="_blank" rel="noopener noreferrer" class="block text-xs font-semibold text-slate-200 hover:text-white truncate">{{ .name }}</a>
+          {{ else }}<span class="block text-xs font-semibold text-slate-200 truncate">{{ .name }}</span>{{ end }}
+          {{ with .role }}<span class="block text-[10px] text-slate-500 truncate" title="{{ . }}">{{ . }}</span>{{ end }}
+        </div>
+        {{ if $mvp }}<a href="{{ $mvp }}" target="_blank" rel="noopener noreferrer" class="shrink-0 text-[9px] font-mono font-bold text-sky-300 bg-sky-500/10 border border-sky-500/30 px-1.5 py-0.5 rounded hover:bg-sky-500/20" title="Microsoft MVP Community Profile">MVP</a>{{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+</div>

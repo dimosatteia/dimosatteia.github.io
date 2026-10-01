@@ -1,21 +1,54 @@
 <footer class="mt-auto border-t border-slate-800 bg-slate-950">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
-                <p class="text-xs text-slate-500 font-mono">
-                    SEC_RES_NODE_01 :: SYSTEM_ONLINE :: © {{ now.Format "2006" }} {{ site.Title }}
+
+        <!-- 1. Certifications (+ announcement popup στην αρχική) -->
+        {{ partial "extend_footer.html" . }}
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center gap-5 pb-6">
+
+            <!-- 2. Αποποίηση ευθύνης + IP επισκέπτη (client-side μέσω ipify.org) -->
+            <div class="w-full border-t border-slate-800/60 pt-5 flex flex-col items-center gap-2">
+                <p class="text-[11px] leading-relaxed text-slate-500">
+                    <strong class="text-slate-400">Αποποίηση ευθύνης:</strong> Αυτά τα εργαλεία και scripts παρέχονται «ως έχουν», χωρίς καμία εγγύηση. Δεν φέρουμε ευθύνη για τυχόν ζημιά ή απώλεια δεδομένων που προκύψει από τη χρήση τους. Δοκιμάστε πάντα πρώτα σε περιβάλλον μη παραγωγής.
+                </p>
+                <p class="text-[11px] font-mono text-slate-500 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
+                    <span>Η IP ΣΑΣ: <span id="visitor-ip" class="text-slate-300 bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5">φόρτωση…</span></span>
+                    <span class="text-slate-600">*Η IP ανακτάται μέσω του δημόσιου <a href="https://www.ipify.org" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-slate-300">ipify.org</a>.</span>
                 </p>
             </div>
-            
-            <div class="flex items-center gap-4 text-xs font-mono text-slate-500">
-                <a href="{{ "index.xml" | absURL }}" class="hover:text-slate-300 transition-colors">RSS Feed</a>
-                <span>|</span>
-                <a href="{{ site.Params.editPost.URL | default "https://github.com" }}" class="hover:text-slate-300 transition-colors">GitHub Repository</a>
+
+            <!-- 3. Transparency / Award statement -->
+            <p class="w-full border-t border-slate-800/60 pt-5 text-[11px] leading-relaxed text-slate-500 italic">
+                Το blog αυτό αποτυπώνει πρακτική εμπειρία με τα προϊόντα Microsoft 365 Security σε πραγματικά περιβάλλοντα παραγωγής. Το περιεχόμενο συντάσσεται με τη βοήθεια AI (M365 Copilot) για ταχύτερη τεκμηρίωση, όμως κάθε τεχνική καθοδήγηση βασίζεται σε υλοποιήσεις σε παραγωγή. 🏆 Η μεθοδολογία πίσω από αυτή τη δουλειά απέσπασε Χρυσό Βραβείο (Gold Award) στα
+                <a href="https://cybersecurityawards.boussiasevents.gr/winners_2026-45/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white underline underline-offset-2">Cyber Security Awards 2026</a>
+                της <a href="https://www.boussiasevents.gr/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white underline underline-offset-2">©Boussias</a>.
+            </p>
+        </div>
+
+        <!-- 4. Copyright / RSS / GitHub -->
+        <div class="border-t border-slate-800">
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col items-center gap-2 text-center">
+                <p class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] shrink-0"></span>
+                    SEC_RES_NODE_01 :: SYSTEM_ONLINE :: © {{ now.Format "2006" }} {{ site.Title }}
+                </p>
+                <p class="flex items-center gap-4 text-xs font-mono text-slate-500">
+                    <a href="{{ "index.xml" | absURL }}" class="hover:text-slate-300 transition-colors">RSS Feed</a>
+                    <span>|</span>
+                    <a href="{{ site.Params.editPost.URL | default "https://github.com" }}" class="hover:text-slate-300 transition-colors">GitHub Repository</a>
+                </p>
             </div>
         </div>
-        
-        <!-- Extend Footer -->
-        {{ partial "extend_footer.html" . }}
+
+        <script>
+        (function () {
+            var el = document.getElementById("visitor-ip");
+            if (!el) return;
+            fetch("https://api.ipify.org?format=json")
+                .then(function (r) { return r.json(); })
+                .then(function (d) { el.textContent = d.ip; })
+                .catch(function () { el.textContent = "μη διαθέσιμη"; });
+        })();
+        </script>
     </footer>
 </body>
 </html>
