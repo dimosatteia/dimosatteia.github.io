@@ -78,6 +78,9 @@ ShowWordCount: true
     alt="Διάγραμμα primary replica και secondary replicas στο Microsoft Entra ID, το datacenter με το primary replica δέχεται όλα τα writes, ενώ πολλαπλά datacenters με secondary replicas εξυπηρετούν τα reads, με replication ανάμεσά τους"
     caption="📷 **Το primary replica δέχεται όλα τα writes του partition και τα αντιγράφει άμεσα σε ένα secondary replica σε άλλο datacenter πριν επιστρέψει επιτυχία, εξασφαλίζοντας geo-redundant durability. Όλα τα reads (π.χ. αιτήματα αυθεντικοποίησης) εξυπηρετούνται από secondary replicas κοντά στον χρήστη, με ασύγχρονο replication σε πολλαπλά datacenters για κλιμάκωση των reads.**"
     loading="lazy"
+    width="417"
+    height="346"
+    rel="noopener noreferrer"
 >}}
 
 ### Γιατί αυτό έχει σημασία στην πράξη

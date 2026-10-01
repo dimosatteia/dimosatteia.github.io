@@ -1,3 +1,3 @@
 {{- /* Εικόνες μέσα στα άρθρα (Markdown): ίδιο HTML με το προεπιλεγμένο, συν lazy loading */ -}}
-<img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{ $d := partial "img-dims.html" .Destination }}<img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ with $d.w }} width="{{ . }}" height="{{ $d.h }}"{{ end }} loading="lazy" decoding="async">
 {{- /* */ -}}

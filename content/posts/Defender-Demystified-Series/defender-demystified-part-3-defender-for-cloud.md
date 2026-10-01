@@ -58,6 +58,9 @@ Every Microsoft security professional will have this conversation at some point,
     alt="Microsoft Defender for Cloud overview dashboard in the Azure portal showing secure score, recommendations and security alerts"
     caption="📷 **Image 1: The Microsoft Defender for Cloud overview in the Azure portal. A different portal from Microsoft Defender XDR at security.microsoft.com.**"
     loading="lazy"
+    width="1600"
+    height="800"
+    rel="noopener noreferrer"
 >}}
 
 Everything in **Part 2** lived at `security.microsoft.com` and was licensed **per user** as part of a **Microsoft 365** plan. Microsoft Defender for Cloud lives in the **Azure portal** at `portal.azure.com` and is licensed **per resource** (per VM, per storage account, per database) as part of your **Azure consumption**.
@@ -99,6 +102,9 @@ If your company has any presence in Azure, AWS, or GCP (even a single subscripti
     alt="Microsoft Defender for Cloud security recommendations based on the Microsoft Cloud Security Benchmark with risk levels"
     caption="📷 **Image 2: The Microsoft Cloud Security Benchmark recommendations view.**"
     loading="lazy"
+    width="1600"
+    height="802"
+    rel="noopener noreferrer"
 >}}
 
 ### Defender CSPM: The paid tier
@@ -140,6 +146,9 @@ Workload protection isn't one plan, it's **separate plans per resource type**, e
     alt="Defender for Cloud environment settings showing Defender CSPM and workload protection plans with per-resource pricing toggles"
     caption="📷 **Image 3: The Environment settings page showing enabled plans.**"
     loading="lazy"
+    width="1600"
+    height="765"
+    rel="noopener noreferrer"
 >}}
 
 Each plan turns on additional Microsoft-curated detections specific to that resource type. You enable only what you need. A startup with 10 VMs and a storage account might enable just **Microsoft Defender for Servers** Plan 2 and **Microsoft Defender for Storage**. A large bank running hundreds of databases and a Kubernetes platform will enable nearly everything.
@@ -159,6 +168,9 @@ This matters more every year, because most organisations don't actually live on 
     alt="Adding AWS and GCP environments to Microsoft Defender for Cloud through native multicloud connectors"
     caption="📷 **Image 4: Multicloud environment view in Microsoft Defender for Cloud.**"
     loading="lazy"
+    width="1600"
+    height="783"
+    rel="noopener noreferrer"
 >}}
 
 ## How this flows back into the unified Microsoft Defender portal
@@ -180,6 +192,9 @@ The CNAPP vision Microsoft has been talking about for years is finally a single 
     alt="Microsoft Defender for Cloud incident displayed in the unified Microsoft Defender portal incident queue at security.microsoft.com"
     caption="📷 **Image 5: A Defender for Cloud incident inside the unified Defender portal.**"
     loading="lazy"
+    width="1600"
+    height="803"
+    rel="noopener noreferrer"
 >}}
 
 ## Do I need Microsoft Defender for Cloud? A quick checklist

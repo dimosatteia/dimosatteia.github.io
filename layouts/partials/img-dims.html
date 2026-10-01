@@ -1,0 +1,21 @@
+{{- /*
+  Δέχεται το src μιας εικόνας και επιστρέφει dict(w, h) από το αρχείο
+  στο content/images/. Για εξωτερικές ή άγνωστες εικόνες επιστρέφει κενό dict.
+  Χρήση: {{ $d := partial "img-dims.html" $src }}{{ with $d.w }} width="{{ . }}" height="{{ $d.h }}"{{ end }}
+*/ -}}
+{{- $out := dict -}}
+{{- $src := . | string -}}
+{{- $src = replace $src "https://thecybersec.gr/" "/" -}}
+{{- if not (or (hasPrefix $src "http://") (hasPrefix $src "https://") (hasPrefix $src "//")) -}}
+  {{- $path := index (split $src "?") 0 -}}
+  {{- $path = strings.TrimPrefix "/" $path -}}
+  {{- if hasPrefix $path "images/" -}}
+    {{- $file := printf "content/%s" $path -}}
+    {{- if and (fileExists $file) (not (hasSuffix (lower $file) ".svg")) -}}
+      {{- with images.Config $file -}}
+        {{- $out = dict "w" .Width "h" .Height -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

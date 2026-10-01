@@ -4,7 +4,7 @@
   <div class="cert-badges">
     {{ range .Site.Data.certifications }}
     <a href="{{ .verify }}" target="_blank" rel="noopener noreferrer" title="{{ .title }}" class="cert-badge">
-      <img src="{{ .badge }}" alt="{{ .name }} - {{ .title }}" loading="lazy" />
+      {{ $d := partial "img-dims.html" .badge }}<img src="{{ .badge }}" alt="{{ .name }} - {{ .title }}"{{ with $d.w }} width="{{ . }}" height="{{ $d.h }}"{{ end }} loading="lazy" />
       <span>{{ .name }}</span>
     </a>
     {{ end }}
