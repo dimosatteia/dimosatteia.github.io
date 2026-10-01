@@ -60,6 +60,7 @@
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid #1e293b;
         }
+        html, body { overflow-x: clip; }
     </style>
 
     <!-- Include custom CSS files from assets/css/extended -->
@@ -105,7 +106,7 @@
 <body class="relative min-h-screen flex flex-col font-sans selection:bg-blue-500/30 selection:text-white bg-[#020617] text-[#cbd5e1]">
 
     <div class="fixed inset-0 bg-tech-grid pointer-events-none -z-10"></div>
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] bg-blue-600/10 rounded-[100%] blur-[80px] pointer-events-none -z-10"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[min(800px,100vw)] h-[200px] bg-blue-600/10 rounded-[100%] blur-[80px] pointer-events-none -z-10"></div>
 
     <header class="sticky top-0 z-50 glass-card border-b border-slate-800 shadow-md">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
