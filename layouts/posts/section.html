@@ -1,0 +1,90 @@
+{{ define "main" }}
+{{- /* Blog: αρχείο άρθρων ανά μήνα, με φίλτρα πυλώνων */ -}}
+{{- $months := dict "January" "Ιανουάριος" "February" "Φεβρουάριος" "March" "Μάρτιος" "April" "Απρίλιος" "May" "Μάιος" "June" "Ιούνιος" "July" "Ιούλιος" "August" "Αύγουστος" "September" "Σεπτέμβριος" "October" "Οκτώβριος" "November" "Νοέμβριος" "December" "Δεκέμβριος" -}}
+{{- $colors := dict "blue" "text-blue-400" "cyan" "text-cyan-400" "sky" "text-sky-400" "emerald" "text-emerald-400" "indigo" "text-indigo-400" "amber" "text-amber-400" "fuchsia" "text-fuchsia-400" "purple" "text-purple-400" -}}
+{{- $posts := .RegularPagesRecursive.ByDate.Reverse -}}
+{{- $oldest := index $posts.Reverse 0 -}}
+<main class="flex-grow max-w-[1100px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+
+  <header class="pb-4 border-b border-slate-800">
+    <h1 class="text-2xl md:text-3xl font-bold text-slate-100 flex items-center gap-3">
+      <svg class="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+      {{ .Title }}
+    </h1>
+    {{ with .Description }}<p class="text-sm text-slate-400 mt-2 max-w-3xl">{{ . }}</p>{{ end }}
+    <div class="flex flex-wrap gap-3 mt-4">
+      <div class="glass-card rounded-lg px-4 py-2"><span class="block text-xl font-bold text-slate-100">{{ len $posts }}</span><span class="text-[11px] font-mono text-slate-500">άρθρα</span></div>
+      <div class="glass-card rounded-lg px-4 py-2"><span class="block text-xl font-bold text-slate-100">{{ len site.Taxonomies.series }}</span><span class="text-[11px] font-mono text-slate-500">σειρές</span></div>
+      <div class="glass-card rounded-lg px-4 py-2"><span class="block text-xl font-bold text-slate-100">{{ len site.Taxonomies.categories }}</span><span class="text-[11px] font-mono text-slate-500">πυλώνες</span></div>
+      {{ with $oldest }}<div class="glass-card rounded-lg px-4 py-2"><span class="block text-xl font-bold text-slate-100">{{ index $months (.Date.Format "January") }} {{ .Date.Year }}</span><span class="text-[11px] font-mono text-slate-500">από τότε που ξεκίνησε</span></div>{{ end }}
+    </div>
+  </header>
+
+  <nav class="sticky top-14 z-30 -mx-4 px-4 sm:mx-0 sm:px-0 py-3 bg-[#020617]/90 backdrop-blur flex flex-wrap gap-2" aria-label="Φίλτρο πυλώνα">
+    <button type="button" class="cat-filter is-active px-3 py-1 rounded-full text-xs font-mono border border-slate-700 text-slate-300 hover:text-white" data-cat="">Όλα <span class="text-slate-500">{{ len $posts }}</span></button>
+    {{ range site.Taxonomies.categories.ByCount }}
+    <button type="button" class="cat-filter px-3 py-1 rounded-full text-xs font-mono border border-slate-700 text-slate-300 hover:text-white" data-cat="{{ .Page.Title | urlize }}">{{ .Page.Params.icon }} {{ .Page.Title }} <span class="text-slate-500">{{ .Count }}</span></button>
+    {{ end }}
+  </nav>
+
+  <div class="flex flex-col gap-8">
+    {{ range $posts.GroupByDate "2006-01" }}
+    {{ $d := (index .Pages 0).Date }}
+    <section class="month-group">
+      <h2 class="flex items-baseline gap-3 text-sm font-bold text-slate-200 border-b border-slate-800 pb-1 mb-2">
+        {{ index $months ($d.Format "January") }} {{ $d.Year }}
+        <span class="month-count text-[11px] font-mono text-slate-500">{{ len .Pages }}</span>
+      </h2>
+      <ul class="flex flex-col">
+        {{ range .Pages }}
+        {{ $terms := .GetTerms "categories" }}
+        {{ $cats := slice }}{{ range $terms }}{{ $cats = $cats | append (.Title | urlize) }}{{ end }}
+        <li class="post-row" data-cats="{{ delimit $cats " " }}">
+          <a href="{{ .RelPermalink }}" class="group grid grid-cols-[3.5rem_1fr] sm:grid-cols-[3.5rem_1fr_auto] items-baseline gap-x-3 gap-y-0.5 px-2 py-2 rounded hover:bg-slate-800/40 transition-colors">
+            <span class="text-[11px] font-mono text-slate-500">{{ .Date.Format "02/01" }}</span>
+            <span class="text-sm text-slate-300 group-hover:text-white leading-snug">
+              {{ .Title }}
+              {{ with .Params.series }}<span class="ml-1 text-[10px] font-mono text-slate-500 whitespace-nowrap">· {{ index . 0 }}</span>{{ end }}
+            </span>
+            <span class="col-start-2 sm:col-start-auto flex flex-wrap gap-2 sm:justify-end">
+              {{ range $terms }}
+              <span class="text-[10px] font-mono whitespace-nowrap {{ index $colors (.Params.color | default "blue") | default "text-blue-400" }}">{{ .Params.icon }} {{ .Title }}</span>
+              {{ end }}
+            </span>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+    {{ end }}
+    <p id="noPosts" class="hidden text-sm font-mono text-slate-500">Δεν υπάρχουν άρθρα σε αυτόν τον πυλώνα.</p>
+  </div>
+</main>
+<style>
+  .cat-filter.is-active { background: rgba(59,130,246,.15); border-color: #3b82f6; color: #fff; }
+</style>
+<script>
+(function () {
+  var buttons = document.querySelectorAll(".cat-filter");
+  function apply(cat) {
+    buttons.forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-cat") === cat); });
+    var any = false;
+    document.querySelectorAll(".month-group").forEach(function (g) {
+      var shown = 0;
+      g.querySelectorAll(".post-row").forEach(function (r) {
+        var ok = !cat || (" " + r.getAttribute("data-cats") + " ").indexOf(" " + cat + " ") !== -1;
+        r.style.display = ok ? "" : "none"; if (ok) shown++;
+      });
+      g.style.display = shown ? "" : "none";
+      g.querySelector(".month-count").textContent = shown;
+      if (shown) any = true;
+    });
+    document.getElementById("noPosts").style.display = any ? "none" : "block";
+    history.replaceState(null, "", cat ? "#" + cat : location.pathname);
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { apply(b.getAttribute("data-cat")); }); });
+  var h = location.hash.slice(1);
+  if (h && document.querySelector('.cat-filter[data-cat="' + h + '"]')) apply(h);
+})();
+</script>
+{{ end }}
