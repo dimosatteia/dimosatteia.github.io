@@ -32,6 +32,7 @@ tags:
   - Cyber GRC
 author: "Dimosthenis Atteia"
 description: "Η Microsoft ανακοίνωσε το Project Perception, ένα agentic security system με red, blue και green AI agents που βρίσκουν, αξιολογούν και διορθώνουν κινδύνους συνεχώς, με τον άνθρωπο στον έλεγχο. Εξηγώ με απλά λόγια τι είναι, πώς δουλεύει ο βρόχος των agents, το μοντέλο MAI-Cyber-1-Flash, τη διαφορά από το Security Copilot, το κόστος σε SCUs και τι πρέπει να κάνει το SOC σου για να προετοιμαστεί."
+seoDescription: "Το Project Perception της Microsoft με red, blue και green AI agents: πώς δουλεύει, το MAI-Cyber-1-Flash, η διαφορά από το Security Copilot και τι κάνει το SOC σου."
 summary: "Το Project Perception μπαίνει σε public preview (3 Αυγούστου 2026) μέσα στο Microsoft Defender. Δες πώς συνεργάζονται red/blue/green agents σε συνεχή βρόχο, τι είναι το «Cyber Stack» και το μοντέλο MAI-Cyber-1-Flash, γιατί δεν είναι το ίδιο με το Security Copilot, πώς χρεώνεται σε Security Compute Units, και μια ειλικρινή, GRC-ματιά για το τι σημαίνει αυτόνομη άμυνα όταν πρέπει να λογοδοτείς."
 categories: ["AI Security", "Security Operations & XDR"]
 releases:

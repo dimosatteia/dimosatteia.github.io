@@ -28,6 +28,7 @@ tags:
   - Cybersecurity
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του MC1423106 και του νέου Cross-Tenant Message Recall στο Exchange Online: πώς λειτουργεί, γιατί αλλάζει το trust boundary ανάμεσα σε tenants, και τι πρέπει να προσέξει ένας CISO πριν ενεργοποιήσει το allow list, με τη ματιά της τεκμηρίωσης NIS2 και ISO 27001."
+seoDescription: "Το Cross-Tenant Message Recall στο Exchange Online (MC1423106): πώς λειτουργεί, πώς αλλάζει το trust boundary και τι να προσέξεις πριν ενεργοποιήσεις το allow list."
 summary: "Το Message Recall σταματούσε πάντα στα σύνορα του tenant. Τώρα η Microsoft ανοίγει αυτό το σύνορο, επιτρέποντας σε επιλεγμένους εξωτερικούς tenants να διαγράφουν μηνύματα από τα mailbox των δικών σου χρηστών. Είναι μια δυνατότητα που λύνει πραγματικό πρόβλημα, αλλά μετατοπίζει την ευθύνη ελέγχου σε ένα σημείο που πολλά GRC προγράμματα δεν έχουν ακόμα καλύψει."
 categories: ["Email & Collaboration"]
 series:

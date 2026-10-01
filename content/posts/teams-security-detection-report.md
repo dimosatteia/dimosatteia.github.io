@@ -28,6 +28,7 @@ tags:
   - Zero Trust
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του νέου Security Detection Report στο Teams admin center (Microsoft 365 Roadmap ID 560702), με την οπτική ενός CISO που το αξιολογεί ως compensating control για messaging-based απειλές και ως τεκμηρίωση για NIS2 και ISO 27001."
+seoDescription: "Το νέο Security Detection Report στο Teams admin center (Roadmap ID 560702) ως compensating control για messaging απειλές και τεκμηρίωση NIS2 και ISO 27001."
 summary: "Το Teams έχει γίνει εδώ και καιρό κανάλι επίθεσης εξίσου σοβαρό με το email, αλλά μέχρι σήμερα δεν υπήρχε ένα native, κεντρικό σημείο για να το βλέπεις αυτό. Το Security Detection Report που έρχεται με το Roadmap ID 560702 δεν είναι απλώς ένα ακόμα dashboard, είναι το κομμάτι που έλειπε από το evidence trail σου όταν έρχεται ο auditor να ρωτήσει πώς παρακολουθείς messaging απειλές."
 categories: ["Email & Collaboration"]
 series:

@@ -28,6 +28,7 @@ tags:
   - Zero Trust
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του Microsoft Entra Token Protection και του γιατί οι συσκευές που μεταναστεύουν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός προστασίας, με την οπτική ενός CISO που πρέπει να το τεκμηριώσει σε NIS2 και ISO 27001 audit."
+seoDescription: "Γιατί οι συσκευές που περνούν από Hybrid σε Entra Join μέσω bulk enrollment PPKG μένουν εκτός Token Protection, και πώς το τεκμηριώνεις για NIS2 και ISO 27001."
 summary: "Ένα migration project μπορεί να δείχνει 100% επιτυχημένο σε κάθε dashboard, Entra joined, Intune enrolled, compliant, και ταυτόχρονα να είναι εντελώς εκτεθειμένο σε token replay. Το Token Protection δεν ελέγχει compliance, ελέγχει πώς δημιουργήθηκε η ταυτότητα της συσκευής, και αυτό αλλάζει τελείως το πώς πρέπει να σχεδιάζεις ένα migration."
 categories: ["Identity & Access"]
 series:

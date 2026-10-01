@@ -19,6 +19,7 @@ tags:
   - Identity Security
 author: "Dimosthenis Atteia"
 description: "Το Microsoft Defender for Identity ενοποιεί πλέον σε ένα σημείο την υγεία, τις πολιτικές ασφαλείας και τα trust relationships ενός Active Directory domain. Δες τι αλλάζει στην καθημερινή investigation."
+seoDescription: "Το Defender for Identity ενοποιεί σε μία σελίδα την υγεία, τις πολιτικές ασφαλείας και τα trust relationships ενός Active Directory domain."
 summary: "Η σελίδα Active Directory Domain στο Microsoft Defender συγκεντρώνει σε ένα ενιαίο σημείο ό,τι χρειάζεται ένας αναλυτής για να αξιολογήσει την υγεία και την έκθεση ενός domain."
 categories: ["Identity & Access"]
 releases:

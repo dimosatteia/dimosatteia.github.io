@@ -30,6 +30,7 @@ tags:
   - Microsoft Sentinel
 author: "Dimosthenis Atteia"
 description: "Ένας πρακτικός οδηγός για νέους IT επαγγελματίες στο Microsoft 365: πώς λειτουργεί η αρχιτεκτονική του Microsoft Entra ID (primary/secondary replicas, scalability, availability) και πώς συνδέεται με το Microsoft Defender για ουσιαστική άμυνα ταυτότητας."
+seoDescription: "Πρακτικός οδηγός για την αρχιτεκτονική του Microsoft Entra ID, replicas, scalability και availability, και πώς συνδέεται με το Microsoft Defender."
 summary: "Κατανόησε την αρχιτεκτονική του Microsoft Entra ID (partitions, replicas, availability, consistency) και δες γιατί η σωστή γνώση της είναι το θεμέλιο για να χρησιμοποιήσεις σωστά το Microsoft Defender στην καθημερινή σου δουλειά."
 categories: ["Identity & Access"]
 series:

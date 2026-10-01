@@ -23,6 +23,7 @@ tags:
   - Cybersecurity
 author: "Dimosthenis Atteia"
 description: "Αναφορά συμμετοχής στο δεύτερο live webinar του Chris Spanougakis MVP: τα live demo και τα περιστατικά που δείξαμε πάνω στο Microsoft Defender XDR, χωρίς να επαναλαμβάνει το συστηματικό reference guide που έρχεται στη σειρά Microsoft Defender Demystified."
+seoDescription: "Από το δεύτερο live webinar του Chris Spanougakis MVP: live demo και περιστατικά πάνω στο Microsoft Defender XDR, σε 60 λεπτά."
 summary: "Για δεύτερη φορά καλεσμένος στο live του Χρήστου Σπανουγάκη, αυτή τη φορά για ζωντανά demo πάνω στη σουίτα Microsoft Defender. Αυτό το άρθρο κρατάει τα συγκεκριμένα περιστατικά που δείξαμε, όχι έναν συστηματικό οδηγό ανά προϊόν, ο οποίος έρχεται σε ξεχωριστή σειρά."
 categories: ["Security Operations & XDR"]
 series:

@@ -15,6 +15,7 @@ keywords:
   - YouTube live Microsoft 365 Security
 author: "Dimosthenis Atteia"
 description: "Αναφορά συμμετοχής στο live webinar του Chris Spanougakis MVP: τι δεν είχα ξαναγράψει για το Gold Award GRC πρόγραμμα πάνω στο Microsoft Secure Score, η παρουσίαση στο board σε τρία slides, λάθη που θα απέφευγα, και ένα live Power BI demo."
+seoDescription: "Από το live webinar του Chris Spanougakis MVP: το Gold Award GRC πρόγραμμα πάνω στο Microsoft Secure Score, η παρουσίαση στο board και τα λάθη που θα απέφευγα."
 summary: "Ήμουν καλεσμένος στο live του Χρήστου Σπανουγάκη για να μιλήσω για το Gold Award GRC πρόγραμμα πάνω στο Microsoft Secure Score. Αυτό το άρθρο δεν επαναλαμβάνει τη σειρά, κρατάει μόνο ό,τι ειπώθηκε εκεί για πρώτη φορά: το board pitch σε τρία slides, τι θα έκανα διαφορετικά, και ένα bonus live demo στο Power BI."
 categories: ["GRC & Compliance"]
 series:

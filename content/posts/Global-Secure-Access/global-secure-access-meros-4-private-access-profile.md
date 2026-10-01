@@ -28,6 +28,7 @@ tags:
   - SSE
 author: "Dimosthenis Atteia"
 description: "Τέταρτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Private access profile, Quick Access, private network connectors και per-app access, με έμφαση σε NIS2 και ISO 27001."
+seoDescription: "Μέρος 4 της σειράς Global Secure Access: Private access profile, Quick Access, private network connectors και per-app access ως αντικαταστάτης του VPN."
 summary: "Κλείνουμε τη βασική εικόνα των traffic profiles με το κομμάτι που έχει τη μεγαλύτερη πρακτική αξία για όσους ακόμα τρέχουν VPN: το Private access profile. Δεν είναι απλώς μια νέα μέθοδος σύνδεσης, είναι μια διαφορετική φιλοσοφία πρόσβασης, από 'σε βάζω μέσα στο δίκτυο' σε 'σου δίνω πρόσβαση σε αυτό το συγκεκριμένο resource, και μόνο σε αυτό'."
 categories: ["Network & SSE"]
 series: ["Global Secure Access"]

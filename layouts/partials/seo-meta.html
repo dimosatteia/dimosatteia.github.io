@@ -4,7 +4,10 @@
   Twitter Card και Google Analytics (μόνο σε production build).
 */ -}}
 {{- $desc := "" -}}
-{{- with .Description -}}
+{{- /* Προαιρετικό seoDescription: σύντομο κείμενο μόνο για Google/κάρτες, ο υπότιτλος του άρθρου μένει το description */ -}}
+{{- with .Params.seoDescription -}}
+  {{- $desc = . -}}
+{{- else with .Description -}}
   {{- $desc = . -}}
 {{- else -}}
   {{- if .IsPage -}}

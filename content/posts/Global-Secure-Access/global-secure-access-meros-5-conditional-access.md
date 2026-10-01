@@ -28,6 +28,7 @@ tags:
   - SSE
 author: "Dimosthenis Atteia"
 description: "Πέμπτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Τρία πρακτικά παραδείγματα πολιτικών Conditional Access πάνω στο Internet access profile: block χωρίς client, απαίτηση compliant device, και web content filtering μέσω security profile, με έμφαση σε NIS2 και ISO 27001."
+seoDescription: "Μέρος 5 της σειράς Global Secure Access: τρεις πολιτικές Conditional Access, block χωρίς client, compliant device και web content filtering, για NIS2 και ISO 27001."
 summary: "Στα προηγούμενα τέσσερα μέρη είδαμε τι κάνει κάθε traffic profile ξεχωριστά. Σε αυτό το πέμπτο και συμπληρωματικό μέρος μένω αποκλειστικά στο κομμάτι που τα ενώνει όλα: το Conditional Access. Τρία παραδείγματα πολιτικών, βήμα-βήμα, όπως τα περιγράφει η ίδια η Microsoft, με το σκεπτικό πίσω από κάθε ρύθμιση."
 categories: ["Network & SSE", "Identity & Access"]
 series: ["Global Secure Access"]

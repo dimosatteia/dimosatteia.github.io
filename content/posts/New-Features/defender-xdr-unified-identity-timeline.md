@@ -28,6 +28,7 @@ tags:
   - Message Center
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του MC1461705: το Timeline tab στη σελίδα Identity του Microsoft Defender ενοποιεί sign-ins, Graph audit events, SaaS activity και device logons σε μία χρονολογική ροή, με νέα πεδία όπως Session ID και Unique token identifier, με την οπτική ενός CISO που χτίζει investigation runbooks."
+seoDescription: "Το MC1461705 ενοποιεί sign-ins, audit events, SaaS activity και device logons στο Identity Timeline του Defender, με Session ID και Unique token identifier."
 summary: "Μέχρι σήμερα, η ανασύνθεση μιας χρονολογικής ακολουθίας γύρω από μια ύποπτη ταυτότητα σήμαινε pivoting ανάμεσα σε sign-in logs, audit logs και advanced hunting tables. Το MC1461705 φέρνει όλα αυτά σε ένα timeline, με πεδία σαν το Session ID και το Unique token identifier να μπαίνουν επιτέλους στο investigation view, όχι μόνο στο raw log."
 categories: ["Security Operations & XDR", "Identity & Access"]
 series:

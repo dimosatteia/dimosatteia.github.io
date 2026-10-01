@@ -23,6 +23,7 @@ tags:
   - Cybersecurity
 author: "Dimosthenis Atteia"
 description: "Από τον Νοέμβριο του 2026 ο Global Secure Access client για Windows x64 θα ενημερώνεται αυτόματα μέσω Windows Update. Τι αλλάζει στο patch management μοντέλο, ποια είναι η ελάχιστη έκδοση, και πώς κάνεις opt-out αν το χρειάζεσαι."
+seoDescription: "Από τον Νοέμβριο 2026 ο Global Secure Access client για Windows ενημερώνεται μέσω Windows Update. Τι αλλάζει στο patch management και πώς κάνεις opt-out."
 summary: "Μια μικρή αλλά ουσιαστική αλλαγή περνάει σχεδόν απαρατήρητη: το GSA client σταματά να είναι αποκλειστικά ευθύνη του Intune σου. Από τον Νοέμβριο το Windows Update μπαίνει στο παιχνίδι, και αυτό έχει άμεση σχέση με το πώς τεκμηριώνεις το patch management σου."
 categories: ["Network & SSE"]
 series: ["Global Secure Access"]

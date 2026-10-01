@@ -28,6 +28,7 @@ tags:
   - Zero Trust
 author: "Dimosthenis Atteia"
 description: "Δεύτερο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Microsoft traffic profile, του προεπιλεγμένου traffic forwarding profile που δρομολογεί την πρόσβαση σε Exchange Online, SharePoint Online και Teams, με έμφαση σε NIS2 και ISO 27001."
+seoDescription: "Μέρος 2 της σειράς Global Secure Access: το Microsoft traffic profile για Exchange Online, SharePoint Online και Teams, με έμφαση σε NIS2 και ISO 27001."
 summary: "Πριν μπούμε στο πιο εντυπωσιακό κομμάτι, το web filtering του Internet Access, αξίζει να σταθούμε σε αυτό που ενεργοποιείται πρώτο και συνήθως χωρίς να το προσέξει κανείς: το Microsoft traffic profile. Είναι το θεμέλιο πάνω στο οποίο χτίζονται τα άλλα δύο profiles, και έχει τους δικούς του κανόνες που αξίζει να καταλάβεις πριν αγγίξεις οτιδήποτε άλλο."
 categories: ["Network & SSE"]
 series: ["Global Secure Access"]

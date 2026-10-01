@@ -28,6 +28,7 @@ tags:
   - Zero Trust
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του Microsoft Entra Tenant Governance μετά τη γενική διαθεσιμότητα, τι είναι πραγματικά GA και τι παραμένει preview, και τι σημαίνει αυτό για οργανισμούς που πρέπει να τεκμηριώσουν τη διακυβέρνηση πολλαπλών tenants σε NIS2 και ISO 27001 audit."
+seoDescription: "Τι είναι πραγματικά GA και τι παραμένει preview στο Microsoft Entra Tenant Governance, και τι σημαίνει για την τεκμηρίωση multi-tenant σε NIS2 και ISO 27001."
 summary: "Η ανακοίνωση λέει «Generally Available», αλλά όποιος διαβάσει προσεκτικά θα δει ότι μόνο ένα κομμάτι είναι πραγματικά GA. Για έναν οργανισμό με δεκάδες tenants, shadow IT και config drift, αυτή η διάκριση δεν είναι ακαδημαϊκή, καθορίζει τι μπορείς να βασίσεις σε production και τι όχι ακόμα."
 categories: ["Identity & Access", "GRC & Compliance"]
 releases:

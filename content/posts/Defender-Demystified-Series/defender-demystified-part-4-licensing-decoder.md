@@ -27,6 +27,7 @@ tags:
   - ISO 27001
 author: "Dimosthenis Atteia"
 description: "The most practical post in the Microsoft Defender Demystified series. Which Microsoft 365 plan includes which Defender? When does Business Premium beat E3? When is E5 worth the jump? Three realistic scenarios, verified 2026 prices, a decision flow you can actually use."
+seoDescription: "Which Microsoft 365 plan includes which Defender? Business Premium vs E3 vs E5, three realistic scenarios, verified 2026 prices and a practical decision flow."
 summary: "Part 4 of the Microsoft Defender Demystified series. A licensing decoder across the 2026 Microsoft 365 lineup, including the new Defender Suite add-ons, the July 2026 pricing update, and three real-world scenarios (small business, mid-market, enterprise) for sizing the right purchase."
 categories: ["GRC & Compliance"]
 series: ["Microsoft Defender Demystified"]

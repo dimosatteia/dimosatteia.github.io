@@ -28,6 +28,7 @@ tags:
   - Publisher Certification
 author: "Dimosthenis Atteia"
 description: "Ρύθμισα το Allowed Agent Types στο δικό μου Microsoft 365 tenant σε «Only certified external publishers». Αναλύω τι σημαίνει στην πράξη, γιατί μετράει για NIS2 και ISO 27001, και πώς να το κάνεις κι εσύ σήμερα."
+seoDescription: "Γιατί ρύθμισα το Allowed Agent Types του Microsoft 365 σε «Only certified external publishers», τι σημαίνει για NIS2 και ISO 27001 και πώς το κάνεις κι εσύ."
 summary: "Ένα radio button μέσα στο Copilot Control System είναι η διαφορά ανάμεσα σε ελεγμένο agent ecosystem και σε Shadow AI χωρίς φρένο. Δες γιατί το «Only certified external publishers» είναι η ρύθμιση που θα διάλεγα ξανά, με screenshots από το δικό μου tenant."
 categories: ["AI Security", "GRC & Compliance"]
 series:

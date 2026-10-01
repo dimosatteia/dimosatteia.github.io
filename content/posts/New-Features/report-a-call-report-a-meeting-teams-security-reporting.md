@@ -28,6 +28,7 @@ tags:
   - Microsoft Defender XDR
 author: "Dimosthenis Atteia"
 description: "Τα Report a call και Report a meeting φέρνουν εγγενή αναφορά ασφαλείας στο Microsoft Teams. Τι φτάνει στο Teams Admin Center και στο Defender, τι δείχνει το licensing matrix, και πώς ετοιμάζεις το SOC σου πριν τη Γενική Διαθεσιμότητα τον Οκτώβριο 2026."
+seoDescription: "Τα Report a call και Report a meeting στο Microsoft Teams: τι φτάνει σε Teams Admin Center και Defender, licensing και προετοιμασία SOC πριν το GA του Οκτωβρίου."
 summary: "Δύο νέα κουμπιά reporting στο Teams (Report a call, Report a meeting) μετατρέπουν τον χρήστη σε αισθητήρα ασφαλείας. Δες πώς δουλεύουν, τι φτάνει στο Defender, τι θέλει ποιο license, και τι πρέπει να ετοιμάσει το SOC σου πριν την GA τον Οκτώβριο 2026."
 categories: ["Email & Collaboration", "Security Operations & XDR"]
 series:

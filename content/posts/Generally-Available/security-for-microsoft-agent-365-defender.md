@@ -19,6 +19,7 @@ tags:
   - Copilot Studio
 author: "Dimosthenis Atteia"
 description: "Το Microsoft Defender αποκτά ενσωματωμένη ασφάλεια για AI agents μέσω του Microsoft Agent 365: discovery, security posture, real-time protection και investigation, πλέον Generally Available."
+seoDescription: "Το Microsoft Defender προσφέρει πλέον Generally Available ασφάλεια για AI agents μέσω του Microsoft Agent 365: discovery, posture, protection και investigation."
 summary: "Οι AI agents στον οργανισμό σου γίνονται ένα ακόμα asset που χρειάζεται προστασία. Δες πώς το Microsoft Defender, μέσω του Microsoft Agent 365, τους ανακαλύπτει, τους αξιολογεί και τους προστατεύει σε πραγματικό χρόνο."
 categories: ["AI Security"]
 releases:

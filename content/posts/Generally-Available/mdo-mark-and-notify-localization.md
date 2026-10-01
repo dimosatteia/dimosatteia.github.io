@@ -28,6 +28,7 @@ tags:
   - Localization
 author: "Dimosthenis Atteia"
 description: "Ανάλυση του MC1387578: το Microsoft Defender for Office 365 τοπικοποιεί το default 'Mark and notify' email template για τα user-reported μηνύματα, με βάση τη γλώσσα του Outlook. Τι αλλάζει στην πράξη και γιατί έχει σημασία για NIS2 και ISO 27001 security awareness."
+seoDescription: "Το MC1387578 τοπικοποιεί το Mark and notify email του Defender for Office 365 στη γλώσσα του Outlook. Γιατί μετράει για το security awareness σε NIS2 και ISO 27001."
 summary: "Ένα notification email που φτάνει στον χρήστη στα Αγγλικά ενώ αυτός δουλεύει σε Ελληνικό Outlook δεν είναι απλώς αισθητικό ζήτημα. Είναι ένα μικρό, αλλά υπαρκτό, ρήγμα στην αλυσίδα security awareness. Το MC1387578 έρχεται να το κλείσει, και αξίζει να δούμε γιατί δεν είναι απλώς ένα cosmetic feature."
 categories: ["Email & Collaboration", "GRC & Compliance"]
 series:

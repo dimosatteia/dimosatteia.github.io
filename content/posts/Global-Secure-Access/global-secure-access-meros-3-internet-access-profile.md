@@ -28,6 +28,7 @@ tags:
   - SSE
 author: "Dimosthenis Atteia"
 description: "Τρίτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Internet access profile ως Secure Web Gateway, web content filtering, security profiles και priority logic, με έμφαση σε NIS2 και ISO 27001."
+seoDescription: "Μέρος 3 της σειράς Global Secure Access: το Internet access profile ως Secure Web Gateway, web content filtering, security profiles και priority logic."
 summary: "Αν το Microsoft traffic profile είναι το θεμέλιο, το Internet access profile είναι αυτό που κάνει το Global Secure Access να μοιάζει με πραγματικό Secure Web Gateway. Εδώ μπαίνει το web content filtering, τα security profiles, και η δυνατότητα να αποκλείσεις πρόσβαση σε cloud apps από οπουδήποτε εκτός του δικού σου δικτύου."
 categories: ["Network & SSE"]
 series: ["Global Secure Access"]
