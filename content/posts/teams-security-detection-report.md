@@ -1,5 +1,6 @@
 ---
 title: "Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging"
+seoTitle: "Security Detection Report στο Teams Admin Center"
 date: 2026-08-10T11:00:00+03:00
 lastmod: 2026-08-10T11:30:00+03:00
 draft: false

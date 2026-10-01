@@ -1,5 +1,6 @@
 ---
 title: "Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές"
+seoTitle: "Report a Call & Report a Meeting στο Microsoft Teams"
 date: 2026-08-07T11:00:00+03:00
 lastmod: 2026-08-24T10:00:00+03:00
 draft: false

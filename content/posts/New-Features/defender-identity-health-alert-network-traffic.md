@@ -1,5 +1,6 @@
 ---
 title: "Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις"
+seoTitle: "Defender for Identity: alert για απούσα κίνηση DC"
 date: 2026-08-21T10:00:00+03:00
 lastmod: 2026-08-21T10:20:00+03:00
 draft: false

@@ -1,5 +1,6 @@
 ---
 title: "Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750"
+seoTitle: "Secure Score AI-Readiness: TPM, VBS, HVCI, LAPS (MC1466750)"
 date: 2026-09-09T10:00:00+03:00
 lastmod: 2026-09-09T10:05:00+03:00
 draft: false

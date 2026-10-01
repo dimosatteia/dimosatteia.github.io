@@ -1,5 +1,6 @@
 ---
 title: "Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν"
+seoTitle: "GSA Μέρος 5: Conditional Access, 3 πολιτικές που δουλεύουν"
 date: 2026-09-28T09:00:00+03:00
 lastmod: 2026-09-28T17:00:00+03:00
 draft: false

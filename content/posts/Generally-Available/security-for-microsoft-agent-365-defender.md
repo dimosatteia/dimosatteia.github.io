@@ -1,5 +1,6 @@
 ---
 title: "Generally Available: Security for Microsoft Agent 365 with Defender"
+seoTitle: "GA: Security for Microsoft Agent 365 with Defender"
 date: 2026-07-14T11:00:00+03:00
 lastmod: 2026-07-14T11:38:00+03:00
 draft: false

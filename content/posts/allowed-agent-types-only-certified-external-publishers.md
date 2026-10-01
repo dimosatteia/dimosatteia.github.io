@@ -1,5 +1,6 @@
 ---
 title: "Allowed Agent Types στο Microsoft 365: Γιατί το «Only Certified External Publishers» είναι η μόνη λογική επιλογή"
+seoTitle: "Allowed Agent Types στο Microsoft 365: Certified Publishers"
 date: 2026-08-07T09:00:00+03:00
 lastmod: 2026-08-07T09:30:00+03:00
 draft: false

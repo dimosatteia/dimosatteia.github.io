@@ -1,5 +1,6 @@
 ---
 title: "Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)"
+seoTitle: "Cross-Tenant Message Recall: ρίσκο και έλεγχος (MC1423106)"
 date: 2026-08-26T09:00:00+03:00
 lastmod: 2026-08-26T09:05:00+03:00
 draft: false

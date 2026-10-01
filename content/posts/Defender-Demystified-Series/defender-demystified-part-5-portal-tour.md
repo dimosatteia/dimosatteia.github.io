@@ -1,5 +1,6 @@
 ---
 title: "Microsoft Defender Part 5: A Walk Through the Microsoft Defender Portal"
+seoTitle: "Microsoft Defender Part 5: Defender Portal Walkthrough"
 date: 2026-07-27T09:00:00+03:00
 lastmod: 2026-08-14T09:39:00+03:00
 draft: false

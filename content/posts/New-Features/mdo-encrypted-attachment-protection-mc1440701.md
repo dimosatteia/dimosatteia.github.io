@@ -1,5 +1,6 @@
 ---
 title: "Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)"
+seoTitle: "Defender for Office 365: κρυπτογραφημένα συνημμένα"
 date: 2026-08-05T09:00:00+03:00
 lastmod: 2026-08-24T10:00:00+03:00
 draft: false

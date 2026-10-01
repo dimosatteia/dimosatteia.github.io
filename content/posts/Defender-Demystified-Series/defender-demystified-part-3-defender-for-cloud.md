@@ -1,5 +1,6 @@
 ---
 title: "Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
+seoTitle: "Microsoft Defender Part 3: Defender for Cloud"
 date: 2026-07-10T10:51:00+03:00
 lastmod: 2026-07-27T11:00:00+03:00
 draft: false

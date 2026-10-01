@@ -1,5 +1,6 @@
 ---
 title: "Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID"
+seoTitle: "Τέλος στα SMS/Voice MFA: Passkeys default στο Entra ID"
 date: 2026-07-16T10:00:00+03:00
 lastmod: 2026-08-30T21:05:00+03:00
 draft: false

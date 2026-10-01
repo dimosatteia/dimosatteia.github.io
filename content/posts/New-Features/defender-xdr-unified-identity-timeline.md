@@ -1,5 +1,6 @@
 ---
 title: "Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705"
+seoTitle: "Defender XDR: ενιαίο Identity Timeline (MC1461705)"
 date: 2026-08-27T08:00:00+03:00
 lastmod: 2026-08-30T20:50:00+03:00
 draft: false

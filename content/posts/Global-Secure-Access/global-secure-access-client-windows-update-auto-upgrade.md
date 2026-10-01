@@ -1,5 +1,6 @@
 ---
 title: "Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades"
+seoTitle: "GSA client: τα upgrades μέσω Windows Update"
 date: 2026-08-24T09:00:00+03:00
 lastmod: 2026-09-19T10:40:00+03:00
 draft: false

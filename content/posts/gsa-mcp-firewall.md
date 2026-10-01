@@ -1,5 +1,6 @@
 ---
 title: "Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες"
+seoTitle: "Global Secure Access MCP Firewall: Zero Trust για MCP"
 date: 2026-08-11T09:00:00+03:00
 lastmod: 2026-08-11T09:30:00+03:00
 draft: false

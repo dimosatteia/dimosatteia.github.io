@@ -1,5 +1,6 @@
 ---
 title: "Defender for Identity: Το νέο health issue που σου λέει πότε 'τυφλώνεσαι' σε έναν Domain Controller"
+seoTitle: "Defender for Identity: όταν «τυφλώνεσαι» σε έναν DC"
 date: 2026-08-18T09:00:00+03:00
 lastmod: 2026-08-18T09:30:00+03:00
 draft: false

@@ -1,5 +1,6 @@
 ---
 title: "Defender XDR: Μία ενέργεια, όλοι οι λογαριασμοί, το unified response actions για ταυτότητες έρχεται τον Οκτώβριο, τι φέρνει το MC1461704"
+seoTitle: "Defender XDR: unified response actions για ταυτότητες"
 date: 2026-08-28T09:00:00+03:00
 lastmod: 2026-08-30T20:50:00+03:00
 draft: false

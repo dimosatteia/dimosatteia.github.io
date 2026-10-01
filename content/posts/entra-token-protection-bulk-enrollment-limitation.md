@@ -1,5 +1,6 @@
 ---
 title: "Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει"
+seoTitle: "Entra Token Protection & Bulk Enrollment: το κρυφό κενό"
 date: 2026-08-10T09:00:00+03:00
 lastmod: 2026-08-10T09:30:00+03:00
 draft: false

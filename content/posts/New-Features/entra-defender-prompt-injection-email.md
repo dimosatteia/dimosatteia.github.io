@@ -1,5 +1,6 @@
 ---
 title: "Prompt Injection μέσω email: Το Defender for Office 365 μπαίνει σε έναν πόλεμο που δεν ξέραμε ότι ξεκίνησε, τι φέρνει το MC1422060"
+seoTitle: "Prompt Injection μέσω email στο Defender for Office 365"
 date: 2026-09-08T09:30:00+03:00
 lastmod: 2026-09-08T10:10:00+03:00
 draft: false

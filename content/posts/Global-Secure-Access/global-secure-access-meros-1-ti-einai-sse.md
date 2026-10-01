@@ -1,5 +1,6 @@
 ---
 title: "Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft"
+seoTitle: "GSA Μέρος 1: Τι είναι το Security Service Edge"
 date: 2026-08-25T09:10:00+03:00
 lastmod: 2026-09-26T11:30:00+03:00
 draft: false

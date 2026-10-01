@@ -1,5 +1,6 @@
 ---
 title: "Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου"
+seoTitle: "Αύξηση τιμών Microsoft 365 2026: στρατηγική για CISOs"
 date: 2026-07-30T20:00:00+03:00
 lastmod: 2026-07-30T20:45:00+03:00
 draft: false

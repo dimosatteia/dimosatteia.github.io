@@ -19,7 +19,8 @@
 {{- if .IsHome -}}
   {{- $title = printf "%s%s" site.Title $suffix -}}
 {{- else if and .IsPage (eq .Section "posts") -}}
-  {{- $title = .Title -}}
+  {{- /* Προαιρετικό seoTitle στο front matter: σύντομος τίτλος για Google/κάρτες, το H1 μένει ο πλήρης τίτλος */ -}}
+  {{- $title = .Params.seoTitle | default .Title -}}
 {{- else -}}
   {{- $title = printf "%s%s | %s" .Title $suffix site.Title -}}
 {{- end -}}

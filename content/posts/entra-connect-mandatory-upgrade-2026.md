@@ -1,5 +1,6 @@
 ---
 title: "Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory"
+seoTitle: "Entra Connect: η προθεσμία της 30ής Σεπτεμβρίου 2026"
 date: 2026-08-29T09:00:00+03:00
 lastmod: 2026-08-29T10:20:00+03:00
 draft: false

@@ -1,5 +1,6 @@
 ---
 title: "Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου."
+seoTitle: "Project Perception: το Agentic Security System της Microsoft"
 date: 2026-08-06T09:00:00+03:00
 lastmod: 2026-08-06T10:00:00+03:00
 draft: false

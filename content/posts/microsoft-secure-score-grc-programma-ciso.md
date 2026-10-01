@@ -1,5 +1,6 @@
 ---
 title: "Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers"
+seoTitle: "Τι κάνουν οι CISOs με το Microsoft Secure Score"
 date: 2026-08-25T09:00:00+03:00
 lastmod: 2026-08-30T21:10:00+03:00
 draft: false

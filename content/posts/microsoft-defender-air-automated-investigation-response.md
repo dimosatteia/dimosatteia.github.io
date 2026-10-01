@@ -1,5 +1,6 @@
 ---
 title: "Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)"
+seoTitle: "Microsoft Defender AIR: πώς αλλάζει το SOC το 2026"
 date: 2026-08-04T09:00:00+03:00
 lastmod: 2026-08-04T09:00:00+03:00
 draft: false
