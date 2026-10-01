@@ -40,10 +40,13 @@
 {{- end }}
 <meta name="author" content="{{ site.Params.author }}">
 <link rel="canonical" href="{{ $canonical }}">
-{{- if and (eq site.Params.env "production") (ne .Params.robotsNoIndex true) }}
-<meta name="robots" content="index, follow">
-{{- else }}
+{{- if ne site.Params.env "production" }}
 <meta name="robots" content="noindex, nofollow">
+{{- else if or (eq .Type "tags") (eq .Params.robotsNoIndex true) }}
+{{- /* Σελίδες tags: εκτός ευρετηρίου (thin content), αλλά τα links τους ακολουθούνται */}}
+<meta name="robots" content="noindex, follow">
+{{- else }}
+<meta name="robots" content="index, follow">
 {{- end }}
 
 {{- /* Open Graph */}}
