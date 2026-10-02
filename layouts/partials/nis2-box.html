@@ -1,5 +1,5 @@
 {{- /*
-  Πλαίσιο «Οδηγός NIS2» στο τέλος ενός άρθρου.
+  Πλαίσιο «Οδηγός ΚΥΑ 1689/2025» στο τέλος ενός άρθρου.
   Δείχνει τις απαιτήσεις της ΚΥΑ 1689/2025 στις οποίες αναφέρεται το άρθρο (από το data/nis2.yaml).
   Αν το άρθρο έχει tag NIS2 αλλά δεν αναφέρεται σε καμία, δείχνει απλή παραπομπή στον οδηγό.
 */ -}}
@@ -14,8 +14,8 @@
 {{- $isNis2 := false -}}
 {{- range .Params.tags }}{{ if eq (lower .) "nis2" }}{{ $isNis2 = true }}{{ end }}{{ end -}}
 {{- if or $hits $isNis2 }}
-<aside class="not-prose mt-10 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" aria-label="Οδηγός NIS2">
-    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Οδηγός NIS2 · ΚΥΑ 1689/2025</p>
+<aside class="not-prose mt-10 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" aria-label="Οδηγός ΚΥΑ 1689/2025">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Οδηγός · ΚΥΑ 1689/2025</p>
     {{- if $hits }}
     <p class="text-sm text-slate-300 leading-relaxed mb-3">Αυτό το άρθρο αντιστοιχεί σε {{ len $hits }} {{ if eq (len $hits) 1 }}απαίτηση{{ else }}απαιτήσεις{{ end }} της ΚΥΑ 1689/2025:</p>
     <ul class="flex flex-wrap gap-2 mb-3">
@@ -26,6 +26,6 @@
     {{- else }}
     <p class="text-sm text-slate-300 leading-relaxed mb-3">Δείτε πώς οι ρυθμίσεις του Microsoft 365 αντιστοιχίζονται, μία προς μία, στις απαιτήσεις της ΚΥΑ 1689/2025.</p>
     {{- end }}
-    <a href="{{ "nis2/" | relURL }}" class="text-sm font-semibold text-blue-400 hover:text-blue-300 underline">NIS2 στην Ελλάδα με Microsoft 365: όλες οι απαιτήσεις και το checklist →</a>
+    <a href="{{ "nis2/" | relURL }}" class="text-sm font-semibold text-blue-400 hover:text-blue-300 underline">ΚΥΑ 1689/2025 με Microsoft 365: όλες οι απαιτήσεις και το checklist →</a>
 </aside>
 {{- end }}

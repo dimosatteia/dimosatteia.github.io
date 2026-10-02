@@ -203,7 +203,7 @@ menu:
       url: /releases/
       weight: 25
     - identifier: nis2
-      name: NIS2
+      name: "ΚΥΑ 1689/2025"
       url: /nis2/
       weight: 27
     - identifier: releases-new
