@@ -1,0 +1,6 @@
+{{- /* Λίστα σειρών με αριθμό άρθρων, από το taxonomy series. Ενημερώνεται μόνη της. */ -}}
+<ul>
+{{- range site.Taxonomies.series.ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}"><strong>{{ .Page.Title }}</strong></a>: {{ .Count }} {{ if eq .Count 1 }}άρθρο{{ else }}άρθρα{{ end }}{{ with .Page.Description }}. {{ . }}{{ end }}</li>
+{{- end }}
+</ul>

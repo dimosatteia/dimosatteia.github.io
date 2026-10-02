@@ -1,0 +1,23 @@
+{{- /* Αριθμοί της σελίδας «Ομιλίες και συνεισφορές». Υπολογίζονται σε κάθε build, δεν γράφονται με το χέρι. */ -}}
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $reqs := 0 -}}
+{{- range slice "nis2" "nis2directive" }}{{ with index site.Data . }}{{ range .articles }}{{ $reqs = add $reqs (len .requirements) }}{{ end }}{{ end }}{{ end -}}
+{{- $first := index ($posts.ByDate) 0 -}}
+<div class="not-prose grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+    <div class="glass-card rounded-xl p-4 border-t-2 border-t-blue-500">
+        <div class="text-2xl font-bold text-slate-100">{{ len $posts }}</div>
+        <div class="text-xs text-slate-400 mt-1">άρθρα στα ελληνικά{{ with $first }}, από τον {{ index (slice "Ιανουάριο" "Φεβρουάριο" "Μάρτιο" "Απρίλιο" "Μάιο" "Ιούνιο" "Ιούλιο" "Αύγουστο" "Σεπτέμβριο" "Οκτώβριο" "Νοέμβριο" "Δεκέμβριο") (sub (int (.Date.Format "1")) 1) }} του {{ .Date.Format "2006" }}{{ end }}</div>
+    </div>
+    <div class="glass-card rounded-xl p-4 border-t-2 border-t-emerald-500">
+        <div class="text-2xl font-bold text-slate-100">{{ len site.Taxonomies.series }}</div>
+        <div class="text-xs text-slate-400 mt-1">σειρές άρθρων</div>
+    </div>
+    <div class="glass-card rounded-xl p-4 border-t-2 border-t-amber-500">
+        <div class="text-2xl font-bold text-slate-100">{{ $reqs }}</div>
+        <div class="text-xs text-slate-400 mt-1">απαιτήσεις της ΚΥΑ 1689/2025 και της Οδηγίας NIS2 αντιστοιχισμένες με τεχνολογίες Microsoft</div>
+    </div>
+    <div class="glass-card rounded-xl p-4 border-t-2 border-t-slate-500">
+        <div class="text-2xl font-bold text-slate-100">2</div>
+        <div class="text-xs text-slate-400 mt-1">ομιλίες σε live webinars, διαθέσιμες στο YouTube</div>
+    </div>
+</div>
