@@ -11,7 +11,7 @@ menu:
   main:
     identifier: nis2directive
     parent: compliance
-    name: "Οδηγία NIS2 (ΕΕ) 2022/2555 με Microsoft 365"
+    name: "📜 Οδηγία NIS2 (ΕΕ) 2022/2555 με Microsoft 365"
     weight: 2
 description: "Τα άρθρα 20, 21, 23, 24 και 25 της Οδηγίας NIS2: ποια τεχνολογία της Microsoft τα υποστηρίζει, πού είναι το τεκμήριο και ποιο άρθρο της ΚΥΑ 1689/2025 ισχύει."
 keywords:

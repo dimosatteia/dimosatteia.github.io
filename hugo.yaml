@@ -209,7 +209,7 @@ menu:
       weight: 27
     - identifier: nis2
       parent: compliance
-      name: "ΚΥΑ 1689/2025 με Microsoft 365"
+      name: "⚖️ ΚΥΑ 1689/2025 με Microsoft 365"
       url: /kya-1689-2025/
       weight: 1
     - identifier: releases-new
