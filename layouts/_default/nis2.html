@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{- /*
   Σελίδα-οδηγός NIS2: ΚΥΑ 1689/2025 ανά απαίτηση, με αντιστοίχιση σε Microsoft 365 και άρθρα του blog.
-  Όλα τα δεδομένα έρχονται από το data/nis2.yaml. Χωρίς JavaScript η σελίδα δείχνει τα πάντα· το script προσθέτει μόνο φίλτρα.
+  Όλα τα δεδομένα έρχονται από το data/nis2.yaml. Χωρίς JavaScript η σελίδα δείχνει τα πάντα το script προσθέτει μόνο φίλτρα.
 */ -}}
 {{- $d := site.Data.nis2 -}}
 {{- $total := 0 -}}{{- $tech := 0 -}}{{- $mixed := 0 -}}{{- $org := 0 -}}{{- $withPosts := 0 -}}
@@ -66,7 +66,7 @@
         </div>
         <div class="glass-card rounded-xl p-5 lg:col-span-2 border-l-4 border-l-amber-500">
             <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Πώς να το διαβάσετε</h2>
-            <p class="text-sm text-slate-400 leading-relaxed">Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες παραφράσεις· για το ακριβές κείμενο ισχύει το <a href="{{ $d.source.url }}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">{{ $d.source.fek }}</a>.</p>
+            <p class="text-sm text-slate-400 leading-relaxed">Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες παραφράσεις για το ακριβές κείμενο ισχύει το <a href="{{ $d.source.url }}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">{{ $d.source.fek }}</a>.</p>
             <p class="text-xs text-slate-500 mt-3 font-mono">Τελευταία ενημέρωση: {{ (time $d.updated).Format "02/01/2006" }}</p>
         </div>
     </section>
