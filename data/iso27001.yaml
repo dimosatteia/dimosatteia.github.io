@@ -100,14 +100,15 @@ articles:
     type: org
     control: 'Δεν καλύπτεται από ρύθμιση. Πηγές ενημέρωσης από τη Microsoft: Message center, Threat analytics, Microsoft Tech Community.'
     evidence: Συμμετοχές σε φορείς και κοινότητες, συνδρομές ενημέρωσης.
+    license: Microsoft Defender for Endpoint Plan 2 ή Microsoft 365 E5 (Threat analytics)
   - code: A.5.7
     scope: Νέο στην έκδοση 2022
     requirement: Threat intelligence
     desc: Συλλογή και ανάλυση πληροφοριών για απειλές.
     type: tech
-    control: Threat analytics στο Microsoft Defender XDR, με το ποια assets του οργανισμού εκθέτει κάθε απειλή. Threat context στο Defender Vulnerability Management. Microsoft Defender Threat Intelligence για έρευνα σε βάθος.
+    control: Threat analytics στο Microsoft Defender XDR, με το ποια assets του οργανισμού εκθέτει κάθε απειλή. Threat context στο Defender Vulnerability Management. Intel explorer στο Defender portal για έρευνα σε βάθος.
     evidence: 'Threat analytics: αναφορές με εκτεθειμένα assets και ενέργειες. Καταγραφή του πώς αξιοποιήθηκαν.'
-    license: Microsoft Defender Threat Intelligence (premium)
+    license: Microsoft Defender for Endpoint Plan 2 ή Microsoft 365 E5 (Threat analytics, Defender Vulnerability Management)
     kya:
     - 17
     posts:
@@ -132,7 +133,7 @@ articles:
     type: mixed
     control: Device inventory στο Microsoft Defender for Endpoint και στο Intune. Software inventory στο Defender Vulnerability Management. Cloud Discovery στο Defender for Cloud Apps. Content explorer στο Purview για το πού βρίσκονται οι ευαίσθητες πληροφορίες.
     evidence: Εξαγωγές device και software inventory. Μητρώο αγαθών με ιδιοκτήτη.
-    license: Microsoft Defender for IoT (για τα αγαθά OT)
+    license: Microsoft Defender for Endpoint Plan 2 (software inventory), Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery), Microsoft 365 E5 ή Microsoft Purview Suite (Content explorer), Microsoft Defender for IoT (για τα αγαθά OT)
     comment: Ο ορισμός ιδιοκτήτη ανά αγαθό δεν καλύπτεται από προϊόντα Microsoft. Τα αγαθά OT δεν καλύπτονται από το Microsoft 365.
     kya:
     - 11
@@ -189,7 +190,7 @@ articles:
     type: tech
     control: Sensitivity labels με content marking (κεφαλίδα, υποσέλιδο, υδατογράφημα), default label και υποχρεωτική σήμανση. Auto-labeling για αυτόματη εφαρμογή.
     evidence: 'Purview: label policies και Activity explorer με τη χρήση των labels.'
-    license: Microsoft 365 E5 ή Microsoft Purview Information Protection (auto-labeling)
+    license: Microsoft 365 E5, Microsoft Purview Suite ή Microsoft 365 E5 Information Protection and Governance (auto-labeling). Microsoft 365 E5 ή Microsoft Purview Suite (Activity explorer)
     kya:
     - 11
     posts:
@@ -287,6 +288,7 @@ articles:
     type: mixed
     control: Cloud Discovery στο Defender for Cloud Apps για το ποιοι cloud πάροχοι χρησιμοποιούνται. Cross-tenant access settings και guest accounts με access reviews στο Entra ID.
     evidence: 'Μητρώο προμηθευτών. Defender for Cloud Apps: κατάλογος εφαρμογών σε χρήση.'
+    license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery). Microsoft Entra ID P2 ή Microsoft Entra ID Governance (access reviews)
     comment: Η αξιολόγηση των προμηθευτών είναι οργανωτικό μέτρο.
     kya:
     - 12
@@ -315,6 +317,7 @@ articles:
     type: mixed
     control: Risk score ανά cloud εφαρμογή στο Defender for Cloud Apps. Admin consent workflow και app governance για εφαρμογές τρίτων με πρόσβαση στο tenant. Ρύθμιση Allowed Agent Types.
     evidence: 'Defender for Cloud Apps: risk score και κατάσταση sanctioned ή unsanctioned. Entra ID: enterprise applications και consent.'
+    license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery)
     kya:
     - 12
     posts:
@@ -333,7 +336,7 @@ articles:
     type: mixed
     control: Service health και Message center για τις αλλαγές της ίδιας της Microsoft. Συνεχής παρακολούθηση του risk score στο Defender for Cloud Apps. Access reviews για guest accounts προμηθευτών.
     evidence: 'Message center: ιστορικό αλλαγών. Αποτελέσματα access reviews. Πρακτικά ανασκόπησης προμηθευτών.'
-    license: Microsoft Entra ID P2 ή Microsoft Entra ID Governance (access reviews)
+    license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery). Microsoft Entra ID P2 ή Microsoft Entra ID Governance (access reviews)
     kya:
     - 12
     posts:
@@ -350,7 +353,7 @@ articles:
     type: mixed
     control: Cloud Discovery και sanctioned ή unsanctioned apps στο Defender for Cloud Apps. Secure Score για τη στάση ασφάλειας του Microsoft 365. Microsoft Defender for Cloud για Azure και άλλα clouds.
     evidence: 'Πολιτική χρήσης cloud. Defender for Cloud Apps: discovered apps. Secure Score.'
-    license: Microsoft Defender for Cloud (για Azure και multicloud)
+    license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery). Microsoft Defender for Cloud (για Azure και multicloud)
     comment: Η στρατηγική εξόδου από έναν πάροχο είναι οργανωτικό έγγραφο.
     kya:
     - 12
@@ -384,6 +387,7 @@ articles:
     type: tech
     control: Συσχέτιση alerts σε incidents, severity και classification (true positive, false positive) στο Defender XDR. Automated investigation and response.
     evidence: 'Defender XDR: ιστορικό incidents με classification και determination.'
+    license: Microsoft 365 E5 ή Microsoft Defender Suite (automated investigation and response)
     kya:
     - 24
     posts:
@@ -403,6 +407,7 @@ articles:
     type: tech
     control: 'Response actions στο Defender XDR: απομόνωση συσκευής, απενεργοποίηση χρήστη, διαγραφή κακόβουλων email. Automated investigation and response και Action center.'
     evidence: 'Action center: ιστορικό ενεργειών αποκατάστασης με χρόνο και υπεύθυνο.'
+    license: Microsoft 365 E5 ή Microsoft Defender Suite (automated investigation and response, ενέργειες σε email με Defender for Office 365 Plan 2). Η απομόνωση συσκευής υπάρχει και στο Defender for Endpoint Plan 1.
     kya:
     - 24
     posts:
@@ -416,6 +421,7 @@ articles:
     type: mixed
     control: Στατιστικά incidents ανά κατηγορία στο Defender XDR. Νέα custom detection rules και recommendations του Secure Score ως διορθωτικές ενέργειες.
     evidence: Εκθέσεις post-incident review. Αλλαγές σε detection rules ή πολιτικές που προέκυψαν.
+    license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
     comment: Η ανασκόπηση μετά το περιστατικό είναι οργανωτική διαδικασία.
     kya:
     - 24
@@ -430,7 +436,7 @@ articles:
     type: mixed
     control: Microsoft Purview Audit, eDiscovery με holds, investigation package και live response στο Defender for Endpoint, εξαγωγές advanced hunting.
     evidence: 'Εξαγωγές audit log και advanced hunting. eDiscovery: cases και holds.'
-    license: Microsoft 365 E5 (Purview Audit Premium, eDiscovery Premium)
+    license: Microsoft Defender for Endpoint Plan 2 (investigation package, live response, advanced hunting). Microsoft 365 E5 μόνο αν χρειάζονται Purview Audit Premium ή eDiscovery Premium.
     comment: Ελέγξτε τη διατήρηση των logs πριν τη χρειαστείτε.
     kya:
     - 24
@@ -472,7 +478,7 @@ articles:
     type: mixed
     control: Regulatory templates στο Microsoft Purview Compliance Manager (π.χ. NIS 2 Directive, ISO/IEC 27001, GDPR) ως μητρώο απαιτήσεων και προόδου.
     evidence: 'Μητρώο νομικών απαιτήσεων. Compliance Manager: assessments και βαθμολογία.'
-    license: Compliance Manager premium assessments (ανάλογα με το template και την άδεια)
+    license: Τα templates NIS2 Directive, ISO/IEC 27001:2022 και EU GDPR είναι premium. Το Microsoft 365 E5 περιλαμβάνει τρία premium templates χωρίς χρέωση. Με Microsoft 365 E3 αγοράζονται χωριστά.
     kya:
     - 9
     posts:
@@ -487,6 +493,7 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση. Το software inventory του Defender Vulnerability Management βοηθά να εντοπιστεί λογισμικό χωρίς άδεια.
     evidence: Μητρώο αδειών λογισμικού. Εξαγωγή software inventory.
+    license: Microsoft Defender for Endpoint Plan 2 (software inventory)
   - code: A.5.33
     scope: ''
     requirement: Protection of records
@@ -507,7 +514,7 @@ articles:
     type: mixed
     control: Sensitive information types και Data Loss Prevention στο Purview για τον εντοπισμό και την προστασία προσωπικών δεδομένων. Microsoft Priva για αιτήματα υποκειμένων και κινδύνους ιδιωτικότητας.
     evidence: 'Purview: Content explorer και DLP policies για προσωπικά δεδομένα. Αρχείο δραστηριοτήτων επεξεργασίας.'
-    license: Microsoft Priva (ξεχωριστό προϊόν)
+    license: Microsoft Priva (ξεχωριστό προϊόν). Microsoft 365 E5 ή Microsoft Purview Suite (Content explorer)
     comment: Η συμμόρφωση με τον GDPR είναι κυρίως οργανωτική και νομική.
     posts:
     - *id001
@@ -892,6 +899,7 @@ articles:
     type: tech
     control: Microsoft Defender Antivirus και Microsoft Defender for Endpoint (cloud-delivered protection, EDR). Safe Attachments και Safe Links στο Microsoft Defender for Office 365.
     evidence: 'Defender portal: device health και κατάσταση antivirus. Πολιτικές Safe Attachments και Safe Links.'
+    license: Microsoft Defender for Endpoint Plan 2 (EDR)
     kya:
     - 20
     posts:
@@ -907,6 +915,7 @@ articles:
     type: tech
     control: Microsoft Defender Vulnerability Management με remediation requests προς το Intune. Update rings και Windows Autopatch για τις ενημερώσεις.
     evidence: 'Defender Vulnerability Management: exposure score, Weaknesses, κατάσταση remediation.'
+    license: Microsoft Defender for Endpoint Plan 2 ή Microsoft Defender Vulnerability Management Standalone
     kya:
     - 17
     posts:
@@ -935,6 +944,7 @@ articles:
     type: tech
     control: Retention policies και retention labels με αυτόματη διαγραφή στο Microsoft Purview Data Lifecycle Management. Wipe στο Intune για τις συσκευές.
     evidence: 'Purview: retention policies με ενέργεια διαγραφής, disposition reviews.'
+    license: Microsoft 365 E5 (disposition review)
     kya:
     - 11
     posts:
@@ -954,7 +964,7 @@ articles:
     type: tech
     control: Microsoft Purview Data Loss Prevention για Exchange, SharePoint, OneDrive και Teams. Endpoint DLP για τις συσκευές. Network Data Security μέσω Global Secure Access.
     evidence: 'Purview: DLP policies, alerts και Activity explorer.'
-    license: Microsoft 365 E5 (Endpoint DLP, Teams DLP), Microsoft Entra Internet Access (Network Data Security)
+    license: Microsoft 365 E5 (Endpoint DLP, Teams DLP, Network Data Security), Microsoft Entra Internet Access (Network Data Security)
     kya:
     - 11
     posts:
@@ -988,7 +998,7 @@ articles:
     type: tech
     control: Microsoft Purview Audit (unified audit log). Sign-in και audit logs του Entra ID. Advanced hunting στο Defender XDR. Microsoft Sentinel για πηγές εκτός Microsoft και μεγαλύτερη διατήρηση.
     evidence: 'Purview: audit log search και audit retention policies. Entra ID: diagnostic settings.'
-    license: Microsoft 365 E5 (Purview Audit Premium), Microsoft Sentinel
+    license: Microsoft 365 E5 (Purview Audit Premium), Microsoft Sentinel. Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
     comment: Ελέγξτε την προεπιλεγμένη διατήρηση κάθε πηγής.
     kya:
     - 24
@@ -1003,7 +1013,7 @@ articles:
     type: tech
     control: Alerts και incidents με συσχέτιση στο Microsoft Defender XDR. Custom detection rules. Microsoft Entra ID Protection για επικίνδυνα sign-ins. Microsoft Sentinel για τις υπόλοιπες πηγές.
     evidence: 'Defender XDR: incidents και custom detection rules. Entra ID Protection: risk detections.'
-    license: Microsoft Entra ID P2 (ID Protection), Microsoft Sentinel
+    license: Microsoft Entra ID P2 (ID Protection), Microsoft Sentinel. Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
     kya:
     - 24
     posts:
@@ -1024,7 +1034,7 @@ articles:
     type: tech
     control: App Control for Business και attack surface reduction rules μέσω Intune. Endpoint Privilege Management για ελεγχόμενη ανύψωση δικαιωμάτων χωρίς τοπικούς διαχειριστές.
     evidence: 'Intune: πολιτικές App Control και ASR. Αναφορές ανύψωσης δικαιωμάτων.'
-    license: Intune Endpoint Privilege Management (πρόσθετο του Intune)
+    license: Intune Endpoint Privilege Management (περιλαμβάνεται στο Microsoft 365 E5 ή αγοράζεται ως πρόσθετο του Intune)
     kya:
     - 13
     - 14
@@ -1052,7 +1062,7 @@ articles:
     type: mixed
     control: Ο δικτυακός εξοπλισμός είναι εκτός Microsoft 365. Το Microsoft 365 συμπληρώνει με Windows Firewall μέσω Intune και με Global Secure Access.
     evidence: 'Ρυθμίσεις firewall. Intune: πολιτικές Windows Firewall.'
-    license: Azure Firewall (μόνο για workloads σε Azure)
+    license: Microsoft Entra Internet Access, Microsoft Entra Private Access
     kya:
     - 19
     posts:
@@ -1110,9 +1120,9 @@ articles:
     requirement: Use of cryptography
     desc: Κανόνες για την αποτελεσματική χρήση κρυπτογραφίας και τη διαχείριση κλειδιών.
     type: tech
-    control: BitLocker μέσω Intune. Sensitivity labels με κρυπτογράφηση και Message Encryption στο Purview. TLS στις υπηρεσίες του Microsoft 365. Customer Key για δικά σας κλειδιά.
+    control: BitLocker μέσω Intune. Sensitivity labels με κρυπτογράφηση και Message Encryption στο Purview. TLS στις υπηρεσίες του Microsoft 365. Customer Key για δικά σας κλειδιά. Microsoft Cloud PKI για την έκδοση πιστοποιητικών σε συσκευές.
     evidence: 'Πολιτική κρυπτογραφίας. Intune: encryption report. Purview: labels με encryption.'
-    license: Microsoft 365 E5 (Customer Key), Microsoft Cloud PKI
+    license: Microsoft 365 E5 (Customer Key, Microsoft Cloud PKI). Το Microsoft Cloud PKI διατίθεται και ως πρόσθετο του Intune.
     comment: Οι διακομιστές και οι βάσεις άλλων κατασκευαστών δεν καλύπτονται από προϊόντα Microsoft.
     kya:
     - 22
