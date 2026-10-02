@@ -3,7 +3,8 @@
   Σελίδα-οδηγός: ΚΥΑ 1689/2025 ανά απαίτηση, με αντιστοίχιση σε Microsoft 365 και άρθρα του blog.
   Όλα τα δεδομένα έρχονται από το data/nis2.yaml. Χωρίς JavaScript η σελίδα δείχνει τα πάντα το script προσθέτει μόνο φίλτρα.
 */ -}}
-{{- $d := site.Data.nis2 -}}
+{{- /* dataKey στο front matter: ποιο αρχείο του data/ διαβάζει η σελίδα (προεπιλογή: nis2 = ΚΥΑ 1689/2025) */ -}}
+{{- $d := index site.Data (.Params.dataKey | default "nis2") -}}
 {{- $total := 0 -}}{{- $tech := 0 -}}{{- $mixed := 0 -}}{{- $org := 0 -}}{{- $withPosts := 0 -}}
 {{- range $d.articles -}}
   {{- range .requirements -}}
@@ -37,7 +38,7 @@
     <section aria-label="Σύνολα" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="glass-card rounded-xl p-4 border-t-2 border-t-slate-500">
             <div class="text-2xl font-bold text-slate-100">{{ $total }}</div>
-            <div class="text-xs text-slate-400 mt-1">απαιτήσεις σε {{ len $d.articles }} άρθρα της ΚΥΑ</div>
+            <div class="text-xs text-slate-400 mt-1">απαιτήσεις σε {{ len $d.articles }} άρθρα {{ $d.source.of | default "της ΚΥΑ" }}</div>
         </div>
         <div class="glass-card rounded-xl p-4 border-t-2 border-t-emerald-500">
             <div class="text-2xl font-bold text-slate-100">{{ $tech }}</div>
@@ -55,6 +56,7 @@
 
     <!-- Checklist + αποποίηση -->
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {{ if .Params.checklist }}
         <div class="glass-card rounded-xl p-5 lg:col-span-1 flex flex-col gap-3">
             <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider">Checklist για τον οργανισμό σας</h2>
             <p class="text-sm text-slate-400 leading-relaxed">Οι ίδιες {{ $total }} απαιτήσεις σε Excel, με στήλες για κατάσταση, υπεύθυνο, τεκμήριο και ημερομηνία ελέγχου.</p>
@@ -64,7 +66,8 @@
             </a>
             {{ end }}
         </div>
-        <div class="glass-card rounded-xl p-5 lg:col-span-2 border-l-4 border-l-amber-500">
+        {{ end }}
+        <div class="glass-card rounded-xl p-5 {{ if .Params.checklist }}lg:col-span-2{{ else }}lg:col-span-3{{ end }} border-l-4 border-l-amber-500">
             <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Πώς να το διαβάσετε</h2>
             <p class="text-sm text-slate-400 leading-relaxed">Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες παραφράσεις για το ακριβές κείμενο ισχύει το <a href="{{ $d.source.url }}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">{{ $d.source.fek }}</a>.</p>
             <p class="text-xs text-slate-500 mt-3 font-mono">Τελευταία ενημέρωση: {{ (time $d.updated).Format "02/01/2006" }}</p>
@@ -128,6 +131,12 @@
                         {{ with .comment }}
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-amber-400 md:pt-0.5">Προσοχή</dt>
                         <dd class="text-slate-300 leading-relaxed">{{ . }}</dd>
+                        {{ end }}
+                        {{ with .kya }}
+                        <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">ΚΥΑ 1689/2025</dt>
+                        <dd class="flex flex-wrap gap-2">
+                            {{ range . }}<a href="{{ "nis2/" | relURL }}#arthro-{{ . }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">Άρθρο {{ . }}</a>{{ end }}
+                        </dd>
                         {{ end }}
                         {{ if or .posts .planned }}
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Άρθρα</dt>
