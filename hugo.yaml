@@ -163,6 +163,8 @@ params:
       url: "https://www.linkedin.com/in/dimosthenisatteia/"
     - name: github
       url: "https://github.com/dimosatteia"
+    - name: Microsoft Tech Community
+      url: "https://techcommunity.microsoft.com/users/dimosatteia/1679672"
 
   # Edit on GitHub (great for community contributions)
   editPost:
