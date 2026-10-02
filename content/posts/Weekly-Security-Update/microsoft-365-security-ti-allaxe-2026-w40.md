@@ -113,20 +113,32 @@ weight: -6
 
 **Defender for Identity.** Από τις πέντε αλλαγές του τεύχους, «ρολόι» έχει η πρώτη. Αν είσαι υπάρχων πελάτης του Defender for Identity και δεν κάνεις τίποτα, μετά τη λήξη της ειδοποίησης το portal θα ενεργοποιήσει μόνο του τον sensor v3.x και το Windows auditing στους κατάλληλους servers. Σύμφωνα με την ανακοίνωση MC1484018 της 30ής Σεπτεμβρίου 2026, η αυτόματη ενεργοποίηση ξεκινά σταδιακά στα τέλη Οκτωβρίου 2026 και η διάθεση κρατά έως τα τέλη Νοεμβρίου. Το banner με την επιλογή opt out εμφανίζεται πριν ξεκινήσει η ενεργοποίηση, για περιορισμένο διάστημα. Αν χάσεις την περίοδο του opt out, δεν κλειδώνεσαι: μετά την έναρξη μπορείς να αλλάξεις τις δύο ρυθμίσεις με το χέρι, όποτε θέλεις, στο Settings → Identities → Advanced features. Η Microsoft συνιστά επίσης να ενημερώσεις τις εσωτερικές σου οδηγίες, αν περιγράφουν χειροκίνητη ενεργοποίηση του sensor ή χειροκίνητη ρύθμιση του auditing. Οι ημερομηνίες μπορεί να διαφέρουν ανά tenant, οπότε δες την ανακοίνωση στο δικό σου Message Center.
 
-**SharePoint One-Time Passcode.** Υπάρχει και μία απόσυρση που πέφτει μέσα στον Οκτώβριο. Σύμφωνα με την ανακοίνωση MC1243549, το SharePoint One-Time Passcode αποσύρεται και η πρόσβαση εξωτερικών χρηστών σε SharePoint και OneDrive περνά στο Microsoft Entra B2B. Η απόσυρση ξεκινά τον Οκτώβριο 2026 και αναμένεται να ολοκληρωθεί στις 31 Οκτωβρίου 2026. Εξωτερικοί χρήστες χωρίς guest account θα βλέπουν «access denied» σε παλιά links τύπου specific people. Δες τις πολιτικές external sharing και το Conditional Access για guests, βεβαιώσου ότι το Entra επιτρέπει προσκλήσεις guests και ότι το email one-time passcode δεν είναι απενεργοποιημένο στο Entra External ID, και ενημέρωσε τους χρήστες ότι μια νέα κοινή χρήση του αρχείου επαναφέρει την πρόσβαση. Οι ημερομηνίες διαφέρουν ανά tenant, οπότε επιβεβαίωσέ τες στο δικό σου Message Center.
+**SharePoint One-Time Passcode: απόσυρση από τα μέσα Οκτωβρίου.** Σύμφωνα με την ανακοίνωση MC1243549, όπως ενημερώθηκε την 1η Οκτωβρίου 2026, το SharePoint One-Time Passcode (SPO OTP) αποσύρεται και η πρόσβαση εξωτερικών χρηστών σε SharePoint και OneDrive περνά στο Microsoft Entra B2B. Η πρώτη φάση (Entra B2B για κάθε νέα κοινή χρήση) έχει ολοκληρωθεί στα Production περιβάλλοντα. Η δεύτερη φάση, η ίδια η απόσυρση, μετατέθηκε: ξεκινά στα μέσα Οκτωβρίου 2026 και αναμένεται να ολοκληρωθεί έως τα τέλη Νοεμβρίου 2026.
 
-**Πηγή:** [Message Center MC1243549 (αρχείο mc.merill.net)](https://mc.merill.net/message/MC1243549)
+Μετά την απόσυρση, εξωτερικοί χρήστες χωρίς guest account θα βλέπουν «access denied» σε links τύπου specific people που είχαν κοινοποιηθεί πριν από την αλλαγή. Όσοι έχουν ήδη guest account δεν επηρεάζονται. Η πρόσβαση επανέρχεται με δύο τρόπους: ο διαχειριστής δημιουργεί guest account για τον εξωτερικό χρήστη, ή ένας εσωτερικός χρήστης με δικαιώματα μοιράζεται ξανά μαζί του έστω ένα αρχείο, φάκελο ή site, οπότε το guest account δημιουργείται αυτόματα και επανέρχεται η πρόσβαση σε όλο το παλιό περιεχόμενο.
+
+Τι να κάνεις πριν από τα μέσα Οκτωβρίου:
+
+- Δες τις πολιτικές external sharing και το Conditional Access για guests, στο SharePoint admin center και στο Entra admin center. Μετά την απόσυρση όλοι οι εξωτερικοί χρήστες υπόκεινται στο Conditional Access.
+- Βεβαιώσου ότι το Entra επιτρέπει προσκλήσεις guests στους σωστούς χρήστες, για παράδειγμα με τον ρόλο Guest Inviter.
+- Αν βασίζεσαι στο email one-time passcode του Entra, έλεγξε ότι δεν είναι απενεργοποιημένο στις ρυθμίσεις του Entra External ID.
+- Προαιρετικά, βρες από τα external sharing reports τους εξωτερικούς συνεργάτες χωρίς guest account και δημιούργησέ τους προληπτικά.
+- Ενημέρωσε τους χρήστες για το μήνυμα «access denied» και για το ότι μια νέα κοινή χρήση το λύνει.
+
+Για όποιον κρατά τεκμήρια: οι αυθεντικοποιήσεις των εξωτερικών χρηστών και οι ενέργειες στα guest accounts θα καταγράφονται πλέον στα audit logs του Entra, όχι στα logs του SPO OTP. Τα περιβάλλοντα GCC, GCC High και DoD εξαιρούνται προς το παρόν.
+
+**Πηγή:** Message Center MC1243549 (δημοσιεύθηκε στις 4 Μαρτίου 2026, ενημερώθηκε την 1η Οκτωβρίου 2026)
 
 ## Σύνδεση με την ΚΥΑ 1689/2025
 
 - **[24.γ](/kya-1689-2025/#24-γ) και [24.ε](/kya-1689-2025/#24-ε), καταγραφή και έλεγχος καταγραφών:** το αυτόματο Windows auditing του Defender for Identity κλείνει κενά καταγραφής στους Domain Controllers. Κράτησε στο αρχείο σου την απόφαση (ενεργοποίηση ή opt out) και το σκεπτικό της.
 - **[11.γ](/kya-1689-2025/#11-γ), ορθή χρήση αγαθών και δεδομένων:** το Purview Network Data Security δίνει τεχνική επιβολή της πολιτικής ορθής χρήσης και για τα εργαλεία generative AI.
-- **[12.2.α](/kya-1689-2025/#12-2-α), πρόσβαση τρίτων:** η μετάβαση των εξωτερικών χρηστών του SharePoint στο Microsoft Entra B2B φέρνει την πρόσβασή τους κάτω από το Conditional Access για external users.
+- **[12.2.α](/kya-1689-2025/#12-2-α), πρόσβαση τρίτων:** η μετάβαση των εξωτερικών χρηστών του SharePoint στο Microsoft Entra B2B φέρνει την πρόσβασή τους κάτω από το Conditional Access για external users, και τις καταγραφές της στα audit logs του Entra.
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
 
 ## Πηγές
 
-Για αυτό το τεύχος ελέγχθηκαν οι σελίδες «What's new» των Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Microsoft Intune, Microsoft Purview και Microsoft Entra, και για κάθε αλλαγή η σελίδα λεπτομερειών της στο Microsoft Learn. Οι σελίδες του Defender for Cloud Apps και του Entra δεν είχαν νέες καταχωρίσεις για την περίοδο όταν διαβάστηκαν. Οι ανακοινώσεις Message Center (MC1243549, MC1419797, MC1478970, MC1447673) διαβάστηκαν στο αρχείο mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft. Οι MC1484018 και MC1485116 προέρχονται από το Message Center του Microsoft 365 admin center. Για το AI agent runtime protection και το ISOC δεν βρέθηκε ανακοίνωση Message Center. Οι ανακοινώσεις και οι ημερομηνίες τους διαφέρουν ανά tenant.
+Για αυτό το τεύχος ελέγχθηκαν οι σελίδες «What's new» των Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Microsoft Intune, Microsoft Purview και Microsoft Entra, και για κάθε αλλαγή η σελίδα λεπτομερειών της στο Microsoft Learn. Οι σελίδες του Defender for Cloud Apps και του Entra δεν είχαν νέες καταχωρίσεις για την περίοδο όταν διαβάστηκαν. Οι ανακοινώσεις MC1243549, MC1484018 και MC1485116 προέρχονται από το Message Center του Microsoft 365 admin center. Οι MC1419797, MC1478970 και MC1447673 διαβάστηκαν στο αρχείο mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft. Για το AI agent runtime protection και το ISOC δεν βρέθηκε ανακοίνωση Message Center. Οι ανακοινώσεις και οι ημερομηνίες τους διαφέρουν ανά tenant.
 
 Τελευταίος έλεγχος αδειών και στοιχείων: 2 Οκτωβρίου 2026.
