@@ -26,6 +26,7 @@ summary: "Το Security Copilot δεν αγοράζεται πια ξεχωρι�
 categories: ["AI Security"]
 ShowToc: true
 TocOpen: false
+weight: -6
 cover:
   image: "/images/M365Strategy2026/m365-2026-e5-security-copilot-scu-model.webp"
   alt: "Το μοντέλο SCU του Security Copilot στο Microsoft 365 E5: 400 Security Compute Units τον μήνα ανά 1.000 άδειες, με ανώτατο όριο 10.000"

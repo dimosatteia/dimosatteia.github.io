@@ -23,6 +23,7 @@ categories: ["Security Operations & XDR"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
+weight: -6
 ---
 
 ## Με μια ματιά
