@@ -1,7 +1,7 @@
 ---
-title: "Microsoft 365 Security Blog: Hands-On Guides for IT Pros"
+title: "Microsoft 365 Security Blog: Πρακτικοί οδηγοί για IT Pros"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-05-23T19:30:00+03:00
+lastmod: 2026-10-02T09:55:00+03:00
 draft: false
 keywords:
   - "Microsoft Security blog"
@@ -19,62 +19,61 @@ tags:
   - "Cybersecurity"
   - "GRC"
 author: "Dimosthenis Atteia"
-description: "Hands-on Microsoft 365 Security content for IT Pros — Defender walkthroughs, hardening guides, and compliance lessons from production environments."
-summary: "An intro to the blog, the topics I'll cover, and the first series planned for 2026."
+description: "Πρακτικό περιεχόμενο Microsoft 365 Security για IT Pros: walkthroughs του Defender, οδηγοί hardening και μαθήματα compliance από περιβάλλοντα παραγωγής."
+summary: "Μια εισαγωγή στο blog, στα θέματα που θα καλύψω και στην πρώτη σειρά που σχεδιάζω για το 2026."
 series:
 ShowToc: true
 TocOpen: false
 weight: -6
 cover:
   image: "/images/welcome-cover.webp"
-  alt: "Microsoft 365 Security Insights blog — Microsoft 365 security and Defender content for IT Pros"
-  caption: "Welcome to Microsoft 365 Security Insights"
+  alt: "Microsoft 365 Security Insights blog, περιεχόμενο για Microsoft 365 security και Defender για IT Pros"
+  caption: "Καλώς ήρθες στο Microsoft 365 Security Insights"
   relative: false
   hidden: true
 ---
 
-If you're here, you probably manage, secure, or architect Microsoft 365
-environments and you've hit the same wall I keep hitting: **the official docs
-tell you the *what* but rarely the *why* or the *what-if*.**
+Αν βρίσκεσαι εδώ, μάλλον διαχειρίζεσαι, ασφαλίζεις ή σχεδιάζεις περιβάλλοντα
+Microsoft 365 και έχεις πέσει στον ίδιο τοίχο που πέφτω κι εγώ ξανά και ξανά:
+**η επίσημη τεκμηρίωση σου λέει το *τι*, αλλά σπάνια το *γιατί* ή το *τι γίνεται αν*.**
 
-That's the gap this blog tries to fill.
+Αυτό το κενό προσπαθεί να καλύψει αυτό το blog.
 
-## What you'll get
+## Τι θα βρεις εδώ
 
-Every post here is built on three rules:
+Κάθε άρθρο εδώ στηρίζεται σε τρεις κανόνες:
 
-1. **Hands-on.** No theory dumps. If I cover a feature, I configure it,
-   break it, and tell you what happened.
-2. **Production-realistic.** I write from the perspective of someone who
-   has to live with the configuration on Monday morning, not just demo it
-   in a lab.
-3. **No vendor cheerleading.** Microsoft does some things brilliantly. It
-   also ships features that aren't ready. I'll tell you which is which.
+1. **Πρακτικό (hands-on).** Χωρίς ξερή θεωρία. Αν καλύπτω ένα feature, το
+   ρυθμίζω, το σπάω και σου λέω τι έγινε.
+2. **Ρεαλιστικό για production.** Γράφω από τη θέση κάποιου που πρέπει να
+   ζήσει με τη ρύθμιση τη Δευτέρα το πρωί, όχι απλώς να τη δείξει σε ένα lab.
+3. **Χωρίς διαφήμιση του vendor.** Η Microsoft κάνει κάποια πράγματα
+   εξαιρετικά. Βγάζει όμως και features που δεν είναι έτοιμα. Θα σου λέω
+   ποιο είναι ποιο.
 
-## What's coming first
+## Τι έρχεται πρώτο
 
-The first series I'm planning for 2026:
+Η πρώτη σειρά που σχεδιάζω για το 2026:
 
-- **[Microsoft Secure Score as a Cyber GRC Instrument](/posts/secure-score-grc-part-0-intro/)** 
-— A 2 to 4 parts series on turning Secure Score into a board-level governance tool.
- 
-## A note on the format
+- **[Microsoft Secure Score as a Cyber GRC Instrument](/posts/secure-score-grc-part-0-intro/)**
+— Μια σειρά 2 έως 4 μερών για το πώς το Secure Score γίνεται εργαλείο διακυβέρνησης σε επίπεδο board.
 
-Posts will often be long. Some will run 15–20 minutes of reading time.
-That's intentional short posts on these topics tend to leave the most
-important questions unanswered. There's a table of contents on every
-long post, and a search box in the menu. Use them.
+## Μια σημείωση για τη μορφή
 
-If a post is part of a series, you'll see a **Series** badge in the
-header and links to the other parts at the bottom.
+Τα άρθρα θα είναι συχνά μεγάλα. Κάποια θα φτάνουν τα 15–20 λεπτά ανάγνωσης.
+Αυτό είναι σκόπιμο: τα σύντομα άρθρα σε αυτά τα θέματα συνήθως αφήνουν
+αναπάντητες τις πιο σημαντικές ερωτήσεις. Κάθε μεγάλο άρθρο έχει πίνακα
+περιεχομένων και στο μενού υπάρχει πεδίο αναζήτησης. Χρησιμοποίησέ τα.
 
-## Get in touch
+Αν ένα άρθρο ανήκει σε σειρά, θα δεις την ένδειξη **Series** στην κεφαλίδα
+και links προς τα υπόλοιπα μέρη στο τέλος.
 
-If you spot a mistake, have a better way to do something, or want to
-suggest a topic, ping me on
+## Επικοινωνία
+
+Αν εντοπίσεις λάθος, έχεις καλύτερο τρόπο να γίνει κάτι ή θέλεις να
+προτείνεις θέμα, στείλε μου μήνυμα στο
 [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/).
 
-Related technical notes, implementation details, and supporting references are maintained here: [Github](https://github.com/dimosatteia/dimosatteia.github.io)
+Σχετικές τεχνικές σημειώσεις, λεπτομέρειες υλοποίησης και υποστηρικτικές αναφορές διατηρούνται εδώ: [GitHub](https://github.com/dimosatteia/dimosatteia.github.io)
 
-Thanks for reading. The next post drops soon.
----
+Ευχαριστώ που διάβασες. Το επόμενο άρθρο έρχεται σύντομα.
