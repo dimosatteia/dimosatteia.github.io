@@ -5,6 +5,10 @@
 */ -}}
 {{- /* dataKey στο front matter: ποιο αρχείο του data/ διαβάζει η σελίδα (προεπιλογή: nis2 = ΚΥΑ 1689/2025) */ -}}
 {{- $d := index site.Data (.Params.dataKey | default "nis2") -}}
+{{- /* Λέξεις που αλλάζουν ανά σελίδα (π.χ. «controls» στο ISO 27001). Προεπιλογή: απαιτήσεις και άρθρα. */ -}}
+{{- $items := $d.source.items | default "απαιτήσεις" -}}
+{{- $item := $d.source.item | default "απαίτηση" -}}
+{{- $groups := $d.source.groups | default "άρθρα" -}}
 {{- $total := 0 -}}{{- $tech := 0 -}}{{- $mixed := 0 -}}{{- $org := 0 -}}{{- $withPosts := 0 -}}
 {{- range $d.articles -}}
   {{- range .requirements -}}
@@ -38,7 +42,7 @@
     <section aria-label="Σύνολα" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="glass-card rounded-xl p-4 border-t-2 border-t-slate-500">
             <div class="text-2xl font-bold text-slate-100">{{ $total }}</div>
-            <div class="text-xs text-slate-400 mt-1">απαιτήσεις σε {{ len $d.articles }} άρθρα {{ $d.source.of | default "της ΚΥΑ" }}</div>
+            <div class="text-xs text-slate-400 mt-1">{{ $items }} σε {{ len $d.articles }} {{ $groups }} {{ $d.source.of | default "της ΚΥΑ" }}</div>
         </div>
         <div class="glass-card rounded-xl p-4 border-t-2 border-t-emerald-500">
             <div class="text-2xl font-bold text-slate-100">{{ $tech }}</div>
@@ -59,7 +63,7 @@
         {{ if .Params.checklist }}
         <div class="glass-card rounded-xl p-5 lg:col-span-1 flex flex-col gap-3">
             <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider">Checklist για τον οργανισμό σας</h2>
-            <p class="text-sm text-slate-400 leading-relaxed">Οι ίδιες {{ $total }} απαιτήσεις σε Excel, με στήλες για κατάσταση, υπεύθυνο, τεκμήριο και ημερομηνία ελέγχου.</p>
+            <p class="text-sm text-slate-400 leading-relaxed">{{ if eq $items "controls" }}Τα ίδια {{ $total }} controls{{ else }}Οι ίδιες {{ $total }} {{ $items }}{{ end }} σε Excel, με στήλες για κατάσταση, υπεύθυνο, τεκμήριο και ημερομηνία ελέγχου.</p>
             {{ with .Params.checklist }}
             <a href="{{ . | relURL }}" download class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-colors">
                 Κατεβάστε το checklist (.xlsx)
@@ -69,7 +73,7 @@
         {{ end }}
         <div class="glass-card rounded-xl p-5 {{ if .Params.checklist }}lg:col-span-2{{ else }}lg:col-span-3{{ end }} border-l-4 border-l-amber-500">
             <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Πώς να το διαβάσετε</h2>
-            <p class="text-sm text-slate-400 leading-relaxed">Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες παραφράσεις για το ακριβές κείμενο ισχύει το <a href="{{ $d.source.url }}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">{{ $d.source.fek }}</a>.</p>
+            <p class="text-sm text-slate-400 leading-relaxed">{{ with $d.source.disclaimer }}{{ . | markdownify }}{{ else }}Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες παραφράσεις για το ακριβές κείμενο ισχύει το <a href="{{ $d.source.url }}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">{{ $d.source.fek }}</a>.{{ end }}</p>
             <p class="text-xs text-slate-500 mt-3 font-mono">Τελευταία ενημέρωση: {{ (time $d.updated).Format "02/01/2006" }}</p>
         </div>
     </section>
@@ -105,9 +109,9 @@
         <details class="nis2-article group glass-card rounded-xl" id="arthro-{{ .number }}">
             <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex flex-wrap items-center gap-x-3 gap-y-2 hover:bg-slate-800/40 rounded-xl">
                 <span class="shrink-0 text-slate-500 text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
-                <span class="shrink-0 text-xs font-mono font-bold text-blue-400 bg-blue-500/10 border border-blue-500/30 rounded px-2 py-1">Άρθρο {{ .number }}</span>
+                <span class="shrink-0 text-xs font-mono font-bold text-blue-400 bg-blue-500/10 border border-blue-500/30 rounded px-2 py-1">{{ .label | default (printf "Άρθρο %v" .number) }}</span>
                 <h2 class="text-base font-bold text-slate-100 flex-1 min-w-[200px]">{{ .title }}</h2>
-                <span class="text-[11px] font-mono text-slate-400">{{ $n }} {{ if eq $n 1 }}απαίτηση{{ else }}απαιτήσεις{{ end }} · {{ $np }} με άρθρο</span>
+                <span class="text-[11px] font-mono text-slate-400">{{ $n }} {{ if eq $n 1 }}{{ $item }}{{ else }}{{ $items }}{{ end }} · {{ $np }} με άρθρο</span>
             </summary>
             <div class="px-4 pb-4 flex flex-col gap-3">
                 {{ range .requirements }}
@@ -118,7 +122,8 @@
                         <span class="text-[11px] font-mono border rounded px-2 py-0.5 {{ index $badge .type }}">{{ index $labels .type }}</span>
                         <span class="text-[11px] font-mono text-slate-400">{{ .scope }}</span>
                     </div>
-                    <h3 class="text-sm font-semibold text-slate-200 leading-relaxed mb-3">{{ .requirement }}</h3>
+                    <h3 class="text-sm font-semibold text-slate-200 leading-relaxed {{ if .desc }}mb-1{{ else }}mb-3{{ end }}">{{ .requirement }}</h3>
+                    {{ with .desc }}<p class="text-sm text-slate-400 leading-relaxed mb-3">{{ . }}</p>{{ end }}
                     <dl class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-x-4 gap-y-2 text-sm">
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Microsoft</dt>
                         <dd class="text-slate-300 leading-relaxed">{{ .control }}</dd>
@@ -155,7 +160,7 @@
             </div>
         </details>
         {{ end }}
-        <p id="nis2Empty" class="hidden text-sm font-mono text-slate-500 p-4">Καμία απαίτηση δεν ταιριάζει με τα φίλτρα.</p>
+        <p id="nis2Empty" class="hidden text-sm font-mono text-slate-500 p-4">{{ if eq $items "controls" }}Κανένα control{{ else }}Καμία {{ $item }}{{ end }} δεν ταιριάζει με τα φίλτρα.</p>
     </section>
 </main>
 
@@ -236,7 +241,7 @@
             if (filtering && any) a.open = true;
         });
         empty.classList.toggle('hidden', shown > 0);
-        count.textContent = filtering ? ('Εμφανίζονται ' + shown + ' από ' + reqs.length + ' απαιτήσεις') : '';
+        count.textContent = filtering ? ('Εμφανίζονται ' + shown + ' από ' + reqs.length + ' {{ $items }}') : '';
     }
     typeBtns.forEach(function (b) {
         b.addEventListener('click', function () {

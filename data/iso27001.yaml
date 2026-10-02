@@ -1,0 +1,1236 @@
+# Αντιστοίχιση ISO/IEC 27001:2022 Annex A (93 controls) -> Microsoft -> ΚΥΑ 1689/2025 -> άρθρα thecybersec.gr
+# Παράγεται από script. Η σελίδα /iso-27001/ διαβάζει αυτό το αρχείο. requirement: επίσημος τίτλος του Table A.1. desc: δική μας περιγραφή.
+source:
+  act: ISO/IEC 27001:2022
+  title: Information security management systems — Requirements
+  fek: Annex A, Table A.1
+  url: https://www.iso.org/standard/27001
+  of: του Annex A
+  items: controls
+  item: control
+  groups: ενότητες
+  disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία. Μια ρύθμιση υποστηρίζει ένα control, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι τίτλοι είναι οι επίσημοι του προτύπου και οι περιγραφές είναι δικές μας· το κείμενο των controls δεν αναπαράγεται. Για τη διατύπωση κάθε control ισχύει το [ISO/IEC 27001:2022](https://www.iso.org/standard/27001).
+updated: '2026-10-02'
+types:
+- key: tech
+  label: Τεχνικό
+  hint: Υλοποιείται κυρίως με ρύθμιση
+- key: mixed
+  label: Μικτό
+  hint: Έγγραφο ή διαδικασία, με τεχνική επιβολή ή τεκμήριο από τη Microsoft
+- key: org
+  label: Οργανωτικό ή εκτός Microsoft 365
+  hint: Δεν υπάρχει ρύθμιση που να το καλύπτει
+articles:
+- number: 5
+  label: A.5
+  title: Organizational controls
+  requirements:
+  - code: A.5.1
+    scope: ''
+    requirement: Policies for information security
+    desc: Εγκεκριμένες πολιτικές ασφάλειας πληροφοριών, που κοινοποιούνται και αναθεωρούνται.
+    type: mixed
+    control: Οι πολιτικές είναι έγγραφα. Το Microsoft Purview Compliance Manager τις συνδέει με improvement actions και κρατά τα τεκμήρια έγκρισης και αναθεώρησης.
+    evidence: 'Εγκεκριμένες πολιτικές με ημερομηνία αναθεώρησης. Compliance Manager: improvement actions με συνημμένα.'
+    kya:
+    - 6
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
+      url: /posts/microsoft-secure-score-grc-programma-ciso/
+  - code: A.5.2
+    scope: ''
+    requirement: Information security roles and responsibilities
+    desc: Ορισμός και ανάθεση ρόλων και αρμοδιοτήτων ασφάλειας.
+    type: mixed
+    control: Ρόλοι και administrative units στο Microsoft Entra ID, role groups στο Microsoft Purview και στο Defender XDR, ως τεχνική αποτύπωση των αρμοδιοτήτων.
+    evidence: 'Οργανόγραμμα ρόλων ασφάλειας. Entra ID: εξαγωγή role assignments.'
+    kya:
+    - 7
+    posts:
+    - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
+      url: /posts/secure-score-defender-praktikos-odigos/
+  - code: A.5.3
+    scope: ''
+    requirement: Segregation of duties
+    desc: Διαχωρισμός καθηκόντων που συγκρούονται μεταξύ τους.
+    type: mixed
+    control: Ξεχωριστοί ρόλοι διαχείρισης στο Entra ID αντί για Global Administrator. Privileged Identity Management με έγκριση από δεύτερο πρόσωπο. Multi admin approval στο Intune.
+    evidence: 'Entra ID: role assignments και ρυθμίσεις έγκρισης στο PIM. Πίνακας ασυμβίβαστων καθηκόντων.'
+    license: Microsoft Entra ID P2 (Privileged Identity Management)
+    kya:
+    - 7
+    - 13
+    posts:
+    - &id005
+      title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - &id025
+      title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+      url: /posts/secure-score-grc-part-1-anatomy/
+  - code: A.5.4
+    scope: ''
+    requirement: Management responsibilities
+    desc: Η διοίκηση απαιτεί από όλο το προσωπικό να εφαρμόζει τις πολιτικές ασφάλειας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Το Secure Score και το Compliance Manager δίνουν τα στοιχεία για την αναφορά προς τη διοίκηση.
+    evidence: Πρακτικά διοίκησης, εγκεκριμένοι στόχοι ασφάλειας.
+    kya:
+    - 4
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
+      url: /posts/microsoft-secure-score-grc-programma-ciso/
+  - code: A.5.5
+    scope: ''
+    requirement: Contact with authorities
+    desc: Καθορισμένες επαφές με τις αρμόδιες αρχές.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Κατάλογος επαφών με αρχές και CSIRT, με υπεύθυνο επικοινωνίας.
+    kya:
+    - 24
+  - code: A.5.6
+    scope: ''
+    requirement: Contact with special interest groups
+    desc: Συμμετοχή σε επαγγελματικές ομάδες και φόρουμ ασφάλειας.
+    type: org
+    control: 'Δεν καλύπτεται από ρύθμιση. Πηγές ενημέρωσης από τη Microsoft: Message center, Threat analytics, Microsoft Tech Community.'
+    evidence: Συμμετοχές σε φορείς και κοινότητες, συνδρομές ενημέρωσης.
+  - code: A.5.7
+    scope: Νέο στην έκδοση 2022
+    requirement: Threat intelligence
+    desc: Συλλογή και ανάλυση πληροφοριών για απειλές.
+    type: tech
+    control: Threat analytics στο Microsoft Defender XDR, με το ποια assets του οργανισμού εκθέτει κάθε απειλή. Threat context στο Defender Vulnerability Management. Microsoft Defender Threat Intelligence για έρευνα σε βάθος.
+    evidence: 'Threat analytics: αναφορές με εκτεθειμένα assets και ενέργειες. Καταγραφή του πώς αξιοποιήθηκαν.'
+    license: Microsoft Defender Threat Intelligence (premium)
+    kya:
+    - 17
+    posts:
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+    - &id029
+      title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+  - code: A.5.8
+    scope: ''
+    requirement: Information security in project management
+    desc: Η ασφάλεια ενσωματώνεται στη διαχείριση των έργων.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Μεθοδολογία έργων με σημεία ελέγχου ασφάλειας, αξιολογήσεις κινδύνου ανά έργο.
+    kya:
+    - 15
+  - code: A.5.9
+    scope: ''
+    requirement: Inventory of information and other associated assets
+    desc: Κατάλογος πληροφοριών και λοιπών αγαθών, με ιδιοκτήτη.
+    type: mixed
+    control: Device inventory στο Microsoft Defender for Endpoint και στο Intune. Software inventory στο Defender Vulnerability Management. Cloud Discovery στο Defender for Cloud Apps. Content explorer στο Purview για το πού βρίσκονται οι ευαίσθητες πληροφορίες.
+    evidence: Εξαγωγές device και software inventory. Μητρώο αγαθών με ιδιοκτήτη.
+    license: Microsoft Defender for IoT (για τα αγαθά OT)
+    comment: Ο ορισμός ιδιοκτήτη ανά αγαθό δεν καλύπτεται από προϊόντα Microsoft. Τα αγαθά OT δεν καλύπτονται από το Microsoft 365.
+    kya:
+    - 11
+    posts:
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
+      url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+  - code: A.5.10
+    scope: ''
+    requirement: Acceptable use of information and other associated assets
+    desc: Κανόνες αποδεκτής χρήσης πληροφοριών και αγαθών.
+    type: mixed
+    control: Terms of use στο Conditional Access για την αποδοχή της πολιτικής από τον χρήστη. Microsoft Purview Data Loss Prevention για την τεχνική επιβολή.
+    evidence: 'Εγκεκριμένη πολιτική αποδεκτής χρήσης. Entra ID: αναφορά αποδοχής των Terms of use.'
+    kya:
+    - 11
+    posts:
+    - &id001
+      title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: A.5.11
+    scope: ''
+    requirement: Return of assets
+    desc: Επιστροφή των αγαθών κατά τη λήξη της απασχόλησης ή της σύμβασης.
+    type: mixed
+    control: Retire και Wipe στο Intune, Autopilot reset για την επαναχρησιμοποίηση της συσκευής. Αφαίρεση αδειών και πρόσβασης στο Entra ID.
+    evidence: 'Έντυπο παράδοσης εξοπλισμού. Intune: ιστορικό ενεργειών συσκευής.'
+    kya:
+    - 10
+    - 11
+    posts:
+    - &id022
+      title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: A.5.12
+    scope: ''
+    requirement: Classification of information
+    desc: Διαβάθμιση των πληροφοριών ανάλογα με τις ανάγκες προστασίας τους.
+    type: mixed
+    control: Sensitivity labels στο Microsoft Purview Information Protection ως το σχήμα διαβάθμισης.
+    evidence: 'Εγκεκριμένο σχήμα διαβάθμισης. Purview: λίστα labels και label policies.'
+    comment: Το σχήμα διαβάθμισης το ορίζει ο οργανισμός. Τα labels το υλοποιούν.
+    kya:
+    - 11
+    posts:
+    - *id001
+  - code: A.5.13
+    scope: ''
+    requirement: Labelling of information
+    desc: Σήμανση των πληροφοριών σύμφωνα με το σχήμα διαβάθμισης.
+    type: tech
+    control: Sensitivity labels με content marking (κεφαλίδα, υποσέλιδο, υδατογράφημα), default label και υποχρεωτική σήμανση. Auto-labeling για αυτόματη εφαρμογή.
+    evidence: 'Purview: label policies και Activity explorer με τη χρήση των labels.'
+    license: Microsoft 365 E5 ή Microsoft Purview Information Protection (auto-labeling)
+    kya:
+    - 11
+    posts:
+    - *id001
+  - code: A.5.14
+    scope: ''
+    requirement: Information transfer
+    desc: Κανόνες για τη μεταφορά πληροφοριών εντός και εκτός οργανισμού.
+    type: mixed
+    control: Microsoft Purview Data Loss Prevention, Message Encryption για email, ρυθμίσεις external sharing σε SharePoint και OneDrive, external access στο Teams.
+    evidence: 'Πολιτική μεταφοράς πληροφοριών. Purview: DLP policies. SharePoint admin center: ρυθμίσεις sharing.'
+    kya:
+    - 22
+    posts:
+    - &id035
+      title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
+      url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+  - code: A.5.15
+    scope: ''
+    requirement: Access control
+    desc: Κανόνες ελέγχου φυσικής και λογικής πρόσβασης.
+    type: mixed
+    control: Conditional Access ως ο κεντρικός μηχανισμός επιβολής της πολιτικής λογικής πρόσβασης. Ρόλοι και ομάδες στο Entra ID.
+    evidence: 'Εγκεκριμένη πολιτική ελέγχου πρόσβασης. Entra ID: εξαγωγή πολιτικών Conditional Access.'
+    comment: Η φυσική πρόσβαση είναι εκτός Microsoft 365.
+    kya:
+    - 13
+    posts:
+    - &id002
+      title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - &id003
+      title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
+      url: /posts/passkeys-by-default-telos-sms-voice-mfa/
+    - &id004
+      title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+  - code: A.5.16
+    scope: ''
+    requirement: Identity management
+    desc: Διαχείριση ολόκληρου του κύκλου ζωής των ταυτοτήτων.
+    type: tech
+    control: Microsoft Entra ID ως ενιαίος κατάλογος ταυτοτήτων, με Entra Connect ή Cloud Sync για το Active Directory. Lifecycle workflows για joiner, mover, leaver.
+    evidence: 'Entra ID: audit logs δημιουργίας και απενεργοποίησης λογαριασμών, ιστορικό lifecycle workflows.'
+    license: Microsoft Entra ID Governance (lifecycle workflows)
+    kya:
+    - 13
+    posts:
+    - *id002
+    - &id015
+      title: 'Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)'
+      url: /posts/microsoft-entra-architecture-guide-defender/
+    - &id016
+      title: 'Azure και Entra: Τι πραγματικά είναι, τι τα ενώνει και τι τα διαφοροποιεί (το θεμέλιο που παραλείπουμε)'
+      url: /posts/azure-kai-entra-to-themelio/
+  - code: A.5.17
+    scope: ''
+    requirement: Authentication information
+    desc: Διαχείριση των στοιχείων ελέγχου ταυτότητας (κωδικοί, κλειδιά).
+    type: tech
+    control: Authentication methods policy, passkeys, Temporary Access Pass, password protection (banned passwords) και self-service password reset στο Entra ID. Windows LAPS για τους τοπικούς λογαριασμούς διαχειριστή.
+    evidence: 'Entra ID: Authentication methods policy και activity. Intune: πολιτική Windows LAPS.'
+    kya:
+    - 13
+    posts:
+    - *id003
+    - &id017
+      title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - *id004
+  - code: A.5.18
+    scope: ''
+    requirement: Access rights
+    desc: Απόδοση, αναθεώρηση, τροποποίηση και αφαίρεση δικαιωμάτων πρόσβασης.
+    type: mixed
+    control: Access reviews και entitlement management (access packages) στο Entra ID. Ανάθεση μέσω ομάδων αντί για μεμονωμένους χρήστες.
+    evidence: 'Entra ID: αποτελέσματα access reviews, ιστορικό αιτημάτων access packages.'
+    license: Microsoft Entra ID P2 ή Microsoft Entra ID Governance
+    kya:
+    - 13
+    posts:
+    - &id026
+      title: 'Preview: AD Group Enforcement στο Entra Cloud Sync'
+      url: /posts/previews/ad-group-enforcement-cloud-sync/
+    - &id027
+      title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+    - *id005
+  - code: A.5.19
+    scope: ''
+    requirement: Information security in supplier relationships
+    desc: Διαχείριση των κινδύνων από τη χρήση προϊόντων και υπηρεσιών προμηθευτών.
+    type: mixed
+    control: Cloud Discovery στο Defender for Cloud Apps για το ποιοι cloud πάροχοι χρησιμοποιούνται. Cross-tenant access settings και guest accounts με access reviews στο Entra ID.
+    evidence: 'Μητρώο προμηθευτών. Defender for Cloud Apps: κατάλογος εφαρμογών σε χρήση.'
+    comment: Η αξιολόγηση των προμηθευτών είναι οργανωτικό μέτρο.
+    kya:
+    - 12
+    posts:
+    - &id006
+      title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+  - code: A.5.20
+    scope: ''
+    requirement: Addressing information security within supplier agreements
+    desc: Απαιτήσεις ασφάλειας μέσα στις συμβάσεις με τους προμηθευτές.
+    type: org
+    control: 'Δεν καλύπτεται από ρύθμιση. Για τη Microsoft ως προμηθευτή: Product Terms και Data Protection Addendum, διαθέσιμα στο Service Trust Portal.'
+    evidence: Συμβάσεις με ρήτρες ασφάλειας. Οι όροι της Microsoft ως τεκμήριο για τη δική της υπηρεσία.
+    kya:
+    - 12
+    posts:
+    - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
+      url: /posts/generally-available/cross-tenant-message-recall-exchange-online/
+    - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+  - code: A.5.21
+    scope: ''
+    requirement: Managing information security in the information and communication technology (ICT) supply chain
+    desc: Διαχείριση των κινδύνων ασφάλειας στην αλυσίδα εφοδιασμού ΤΠΕ.
+    type: mixed
+    control: Risk score ανά cloud εφαρμογή στο Defender for Cloud Apps. Admin consent workflow και app governance για εφαρμογές τρίτων με πρόσβαση στο tenant. Ρύθμιση Allowed Agent Types.
+    evidence: 'Defender for Cloud Apps: risk score και κατάσταση sanctioned ή unsanctioned. Entra ID: enterprise applications και consent.'
+    kya:
+    - 12
+    posts:
+    - &id007
+      title: 'Allowed Agent Types στο Microsoft 365: Γιατί το «Only Certified External Publishers» είναι η μόνη λογική επιλογή'
+      url: /posts/allowed-agent-types-only-certified-external-publishers/
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - &id008
+      title: 'Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες'
+      url: /posts/gsa-mcp-firewall/
+  - code: A.5.22
+    scope: ''
+    requirement: Monitoring, review and change management of supplier services
+    desc: Παρακολούθηση και αναθεώρηση των υπηρεσιών των προμηθευτών.
+    type: mixed
+    control: Service health και Message center για τις αλλαγές της ίδιας της Microsoft. Συνεχής παρακολούθηση του risk score στο Defender for Cloud Apps. Access reviews για guest accounts προμηθευτών.
+    evidence: 'Message center: ιστορικό αλλαγών. Αποτελέσματα access reviews. Πρακτικά ανασκόπησης προμηθευτών.'
+    license: Microsoft Entra ID P2 ή Microsoft Entra ID Governance (access reviews)
+    kya:
+    - 12
+    posts:
+    - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
+      url: /posts/generally-available/cross-tenant-message-recall-exchange-online/
+    - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+  - code: A.5.23
+    scope: Νέο στην έκδοση 2022
+    requirement: Information security for use of cloud services
+    desc: Διαδικασίες για την απόκτηση, χρήση, διαχείριση και έξοδο από υπηρεσίες cloud.
+    type: mixed
+    control: Cloud Discovery και sanctioned ή unsanctioned apps στο Defender for Cloud Apps. Secure Score για τη στάση ασφάλειας του Microsoft 365. Microsoft Defender for Cloud για Azure και άλλα clouds.
+    evidence: 'Πολιτική χρήσης cloud. Defender for Cloud Apps: discovered apps. Secure Score.'
+    license: Microsoft Defender for Cloud (για Azure και multicloud)
+    comment: Η στρατηγική εξόδου από έναν πάροχο είναι οργανωτικό έγγραφο.
+    kya:
+    - 12
+    posts:
+    - *id006
+    - *id007
+    - *id008
+  - code: A.5.24
+    scope: ''
+    requirement: Information security incident management planning and preparation
+    desc: Σχεδιασμός και προετοιμασία για τη διαχείριση περιστατικών.
+    type: mixed
+    control: Incidents queue του Microsoft Defender XDR ως το επιχειρησιακό εργαλείο του πλάνου, με ανάθεση και ειδοποιήσεις. Ρόλοι SOC στο Defender XDR.
+    evidence: 'Εγκεκριμένο πλάνο αντιμετώπισης περιστατικών. Defender XDR: ρυθμίσεις ειδοποιήσεων και ρόλων.'
+    kya:
+    - 24
+    posts:
+    - &id009
+      title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
+      url: /posts/microsoft-defender-air-automated-investigation-response/
+    - &id010
+      title: 'Defender XDR: Μία ενέργεια, όλοι οι λογαριασμοί, το unified response actions για ταυτότητες έρχεται τον Οκτώβριο, τι φέρνει το MC1461704'
+      url: /posts/new-features/defender-xdr-unified-response-actions-identity-accounts/
+    - &id011
+      title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+  - code: A.5.25
+    scope: ''
+    requirement: Assessment and decision on information security events
+    desc: Αξιολόγηση των συμβάντων και απόφαση για το αν είναι περιστατικά.
+    type: tech
+    control: Συσχέτιση alerts σε incidents, severity και classification (true positive, false positive) στο Defender XDR. Automated investigation and response.
+    evidence: 'Defender XDR: ιστορικό incidents με classification και determination.'
+    kya:
+    - 24
+    posts:
+    - &id012
+      title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
+      url: /posts/microsoft-defender-air-automated-investigation-response/
+    - &id013
+      title: 'Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705'
+      url: /posts/new-features/defender-xdr-unified-identity-timeline/
+    - &id014
+      title: 'Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging'
+      url: /posts/teams-security-detection-report/
+  - code: A.5.26
+    scope: ''
+    requirement: Response to information security incidents
+    desc: Αντιμετώπιση των περιστατικών σύμφωνα με τις τεκμηριωμένες διαδικασίες.
+    type: tech
+    control: 'Response actions στο Defender XDR: απομόνωση συσκευής, απενεργοποίηση χρήστη, διαγραφή κακόβουλων email. Automated investigation and response και Action center.'
+    evidence: 'Action center: ιστορικό ενεργειών αποκατάστασης με χρόνο και υπεύθυνο.'
+    kya:
+    - 24
+    posts:
+    - *id009
+    - *id010
+    - *id011
+  - code: A.5.27
+    scope: ''
+    requirement: Learning from information security incidents
+    desc: Αξιοποίηση της γνώσης από τα περιστατικά για τη βελτίωση των μέτρων.
+    type: mixed
+    control: Στατιστικά incidents ανά κατηγορία στο Defender XDR. Νέα custom detection rules και recommendations του Secure Score ως διορθωτικές ενέργειες.
+    evidence: Εκθέσεις post-incident review. Αλλαγές σε detection rules ή πολιτικές που προέκυψαν.
+    comment: Η ανασκόπηση μετά το περιστατικό είναι οργανωτική διαδικασία.
+    kya:
+    - 24
+    posts:
+    - *id012
+    - *id013
+    - *id014
+  - code: A.5.28
+    scope: ''
+    requirement: Collection of evidence
+    desc: Διαδικασίες για τον εντοπισμό, τη συλλογή και τη διαφύλαξη τεκμηρίων.
+    type: mixed
+    control: Microsoft Purview Audit, eDiscovery με holds, investigation package και live response στο Defender for Endpoint, εξαγωγές advanced hunting.
+    evidence: 'Εξαγωγές audit log και advanced hunting. eDiscovery: cases και holds.'
+    license: Microsoft 365 E5 (Purview Audit Premium, eDiscovery Premium)
+    comment: Ελέγξτε τη διατήρηση των logs πριν τη χρειαστείτε.
+    kya:
+    - 24
+    posts:
+    - &id030
+      title: 'Defender for Identity: Το νέο health issue που σου λέει πότε ''τυφλώνεσαι'' σε έναν Domain Controller'
+      url: /posts/new-features/defender-for-identity-health-issue-missing-windows-events/
+    - &id031
+      title: 'Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις'
+      url: /posts/new-features/defender-identity-health-alert-network-traffic/
+    - &id032
+      title: 'Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705'
+      url: /posts/new-features/defender-xdr-unified-identity-timeline/
+  - code: A.5.29
+    scope: ''
+    requirement: Information security during disruption
+    desc: Διατήρηση της ασφάλειας πληροφοριών κατά τη διάρκεια διατάραξης.
+    type: mixed
+    control: Emergency access (break-glass) accounts στο Entra ID, εκτός Conditional Access και με παρακολούθηση της χρήσης τους.
+    evidence: 'Σχέδιο επιχειρησιακής συνέχειας. Entra ID: λογαριασμοί έκτακτης ανάγκης και alert για τη χρήση τους.'
+    comment: Το σχέδιο συνέχειας είναι οργανωτικό έγγραφο.
+    kya:
+    - 25
+  - code: A.5.30
+    scope: Νέο στην έκδοση 2022
+    requirement: ICT readiness for business continuity
+    desc: Ετοιμότητα των ΤΠΕ με βάση τους στόχους επιχειρησιακής συνέχειας.
+    type: mixed
+    control: Microsoft 365 Backup για Exchange Online, SharePoint και OneDrive. Azure Backup και Azure Site Recovery για διακομιστές. Service health για την κατάσταση των υπηρεσιών.
+    evidence: Αναφορές backup και δοκιμών επαναφοράς. Στόχοι RTO και RPO.
+    license: Microsoft 365 Backup (χρέωση με βάση τη χρήση), Azure Backup, Azure Site Recovery
+    comment: Το retention και το versioning δεν αποτελούν αντίγραφο ασφαλείας.
+    kya:
+    - 25
+  - code: A.5.31
+    scope: ''
+    requirement: Legal, statutory, regulatory and contractual requirements
+    desc: Εντοπισμός και τήρηση των νομικών, κανονιστικών και συμβατικών απαιτήσεων.
+    type: mixed
+    control: Regulatory templates στο Microsoft Purview Compliance Manager (π.χ. NIS 2 Directive, ISO/IEC 27001, GDPR) ως μητρώο απαιτήσεων και προόδου.
+    evidence: 'Μητρώο νομικών απαιτήσεων. Compliance Manager: assessments και βαθμολογία.'
+    license: Compliance Manager premium assessments (ανάλογα με το template και την άδεια)
+    kya:
+    - 9
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: A.5.32
+    scope: ''
+    requirement: Intellectual property rights
+    desc: Προστασία των δικαιωμάτων πνευματικής ιδιοκτησίας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Το software inventory του Defender Vulnerability Management βοηθά να εντοπιστεί λογισμικό χωρίς άδεια.
+    evidence: Μητρώο αδειών λογισμικού. Εξαγωγή software inventory.
+  - code: A.5.33
+    scope: ''
+    requirement: Protection of records
+    desc: Προστασία των αρχείων από απώλεια, καταστροφή, παραποίηση και μη εξουσιοδοτημένη πρόσβαση.
+    type: tech
+    control: Retention policies και retention labels στο Microsoft Purview Data Lifecycle Management. Records management με σήμανση record και Preservation Lock.
+    evidence: 'Purview: retention policies, retention labels και disposition reviews.'
+    license: Microsoft 365 E5 (Purview Records Management)
+    kya:
+    - 24
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: A.5.34
+    scope: ''
+    requirement: Privacy and protection of personal identifiable information (PII)
+    desc: Τήρηση των απαιτήσεων για την ιδιωτικότητα και την προστασία των προσωπικών δεδομένων.
+    type: mixed
+    control: Sensitive information types και Data Loss Prevention στο Purview για τον εντοπισμό και την προστασία προσωπικών δεδομένων. Microsoft Priva για αιτήματα υποκειμένων και κινδύνους ιδιωτικότητας.
+    evidence: 'Purview: Content explorer και DLP policies για προσωπικά δεδομένα. Αρχείο δραστηριοτήτων επεξεργασίας.'
+    license: Microsoft Priva (ξεχωριστό προϊόν)
+    comment: Η συμμόρφωση με τον GDPR είναι κυρίως οργανωτική και νομική.
+    posts:
+    - *id001
+  - code: A.5.35
+    scope: ''
+    requirement: Independent review of information security
+    desc: Ανεξάρτητη ανασκόπηση της ασφάλειας πληροφοριών σε προγραμματισμένα διαστήματα.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Στον ελεγκτή δίνεται πρόσβαση μόνο για ανάγνωση (Global Reader, Security Reader).
+    evidence: 'Εκθέσεις ανεξάρτητου ελέγχου. Entra ID: ανάθεση ρόλων ανάγνωσης στον ελεγκτή.'
+    kya:
+    - 8
+    posts:
+    - &id037
+      title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - &id038
+      title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: A.5.36
+    scope: ''
+    requirement: Compliance with policies, rules and standards for information security
+    desc: Τακτικός έλεγχος της συμμόρφωσης με τις πολιτικές και τα πρότυπα.
+    type: mixed
+    control: Microsoft Secure Score και Compliance Manager ως συνεχής μέτρηση. Compliance policies στο Intune για τις συσκευές.
+    evidence: 'Secure Score: History. Compliance Manager: κατάσταση improvement actions. Intune: αναφορές συμμόρφωσης.'
+    kya:
+    - 9
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: A.5.37
+    scope: ''
+    requirement: Documented operating procedures
+    desc: Τεκμηριωμένες διαδικασίες λειτουργίας, διαθέσιμες σε όσους τις χρειάζονται.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Το SharePoint χρησιμεύει ως αποθετήριο με έλεγχο εκδόσεων και δικαιώματα πρόσβασης.
+    evidence: Διαδικασίες λειτουργίας με έκδοση, υπεύθυνο και ημερομηνία.
+    kya:
+    - 6
+- number: 6
+  label: A.6
+  title: People controls
+  requirements:
+  - code: A.6.1
+    scope: ''
+    requirement: Screening
+    desc: Έλεγχος ιστορικού των υποψηφίων πριν από την πρόσληψη.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Διαδικασία και αρχεία ελέγχου πριν από την πρόσληψη.
+    kya:
+    - 10
+  - code: A.6.2
+    scope: ''
+    requirement: Terms and conditions of employment
+    desc: Οι συμβάσεις εργασίας αναφέρουν τις ευθύνες για την ασφάλεια πληροφοριών.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Τα Terms of use στο Entra ID μπορούν να καταγράψουν την αποδοχή πολιτικών.
+    evidence: Υπογεγραμμένες συμβάσεις με ρήτρες ασφάλειας.
+    kya:
+    - 10
+  - code: A.6.3
+    scope: ''
+    requirement: Information security awareness, education and training
+    desc: Ευαισθητοποίηση, εκπαίδευση και κατάρτιση του προσωπικού.
+    type: mixed
+    control: 'Attack simulation training στο Microsoft Defender for Office 365 Plan 2: προσομοιώσεις phishing και εκπαιδευτικές ενότητες.'
+    evidence: Αναφορές ολοκλήρωσης εκπαίδευσης και αποτελεσμάτων προσομοιώσεων.
+    license: Microsoft Defender for Office 365 Plan 2
+    comment: Δεν καλύπτει όλη τη θεματολογία ενός προγράμματος εκπαίδευσης.
+    kya:
+    - 21
+    posts:
+    - &id018
+      title: 'Localized Mark and Notify στο Microsoft Defender for Office 365: Γιατί ένα notification email στη σωστή γλώσσα είναι θέμα Security Awareness (MC1387578)'
+      url: /posts/generally-available/mdo-mark-and-notify-localization/
+    - &id019
+      title: 'Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές'
+      url: /posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/
+  - code: A.6.4
+    scope: ''
+    requirement: Disciplinary process
+    desc: Πειθαρχική διαδικασία για παραβιάσεις της πολιτικής ασφάλειας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένη πειθαρχική διαδικασία.
+    kya:
+    - 10
+  - code: A.6.5
+    scope: ''
+    requirement: Responsibilities after termination or change of employment
+    desc: Ευθύνες που παραμένουν μετά τη λήξη ή την αλλαγή της απασχόλησης.
+    type: mixed
+    control: Απενεργοποίηση λογαριασμού και ανάκληση sessions στο Entra ID. Lifecycle workflows για την αποχώρηση. Αφαίρεση εταιρικών δεδομένων από συσκευές μέσω Intune.
+    evidence: 'Entra ID: audit logs απενεργοποίησης. Έντυπο αποχώρησης.'
+    license: Microsoft Entra ID Governance (lifecycle workflows)
+    comment: Οι ρήτρες εμπιστευτικότητας μετά την αποχώρηση είναι συμβατικό ζήτημα.
+    kya:
+    - 10
+    - 13
+    posts:
+    - *id015
+    - *id016
+    - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+  - code: A.6.6
+    scope: ''
+    requirement: Confidentiality or non-disclosure agreements
+    desc: Συμφωνίες εμπιστευτικότητας για προσωπικό και τρίτους.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Υπογεγραμμένες συμφωνίες εμπιστευτικότητας.
+    kya:
+    - 10
+    - 12
+  - code: A.6.7
+    scope: ''
+    requirement: Remote working
+    desc: Μέτρα ασφάλειας για την εργασία εκτός των εγκαταστάσεων.
+    type: tech
+    control: Conditional Access με απαίτηση compliant device και MFA. Compliance policies και app protection policies στο Intune. Microsoft Entra Private Access για πρόσβαση ανά εφαρμογή αντί για VPN.
+    evidence: 'Entra ID: πολιτικές Conditional Access. Intune: αναφορές συμμόρφωσης συσκευών.'
+    license: Microsoft Entra Private Access
+    kya:
+    - 13
+    - 19
+    posts:
+    - &id034
+      title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+    - *id003
+    - *id017
+  - code: A.6.8
+    scope: ''
+    requirement: Information security event reporting
+    desc: Μηχανισμός για την αναφορά συμβάντων ασφάλειας από το προσωπικό.
+    type: mixed
+    control: Κουμπί Report στο Outlook και αναφορά μηνυμάτων, κλήσεων και συσκέψεων στο Teams, με user reported settings στο Microsoft Defender for Office 365.
+    evidence: 'Defender portal: Submissions με τις αναφορές χρηστών. Οδηγία προς το προσωπικό.'
+    comment: Για συμβάντα εκτός email και Teams χρειάζεται ξεχωριστό κανάλι αναφοράς.
+    kya:
+    - 21
+    - 24
+    posts:
+    - *id018
+    - *id019
+- number: 7
+  label: A.7
+  title: Physical controls
+  requirements:
+  - code: A.7.1
+    scope: ''
+    requirement: Physical security perimeters
+    desc: Περίμετροι ασφάλειας για τους χώρους με πληροφορίες και συστήματα.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Σχέδια χώρων και ζώνες ασφάλειας.
+    kya:
+    - 23
+  - code: A.7.2
+    scope: ''
+    requirement: Physical entry
+    desc: Έλεγχοι εισόδου στους ασφαλείς χώρους.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Αρχεία εισόδου και κατάλογος εξουσιοδοτημένων.
+    kya:
+    - 23
+  - code: A.7.3
+    scope: ''
+    requirement: Securing offices, rooms and facilities
+    desc: Φυσική ασφάλεια γραφείων, αιθουσών και εγκαταστάσεων.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Μέτρα φυσικής ασφάλειας ανά χώρο.
+    kya:
+    - 23
+  - code: A.7.4
+    scope: Νέο στην έκδοση 2022
+    requirement: Physical security monitoring
+    desc: Συνεχής παρακολούθηση των χώρων για μη εξουσιοδοτημένη φυσική πρόσβαση.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Συστήματα συναγερμού και CCTV, αρχεία παρακολούθησης.
+    kya:
+    - 23
+  - code: A.7.5
+    scope: ''
+    requirement: Protecting against physical and environmental threats
+    desc: Προστασία από φυσικές και περιβαλλοντικές απειλές.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Μελέτη κινδύνων, πυρανίχνευση, πυρόσβεση.
+    kya:
+    - 23
+  - code: A.7.6
+    scope: ''
+    requirement: Working in secure areas
+    desc: Κανόνες για την εργασία σε ασφαλείς χώρους.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Διαδικασία εργασίας σε ασφαλείς χώρους.
+    kya:
+    - 23
+  - code: A.7.7
+    scope: ''
+    requirement: Clear desk and clear screen
+    desc: Κανόνες καθαρού γραφείου και καθαρής οθόνης.
+    type: mixed
+    control: Αυτόματο κλείδωμα οθόνης μετά από αδράνεια, μέσω configuration profiles και compliance policies στο Intune.
+    evidence: 'Intune: ρύθμιση κλειδώματος οθόνης. Πολιτική καθαρού γραφείου.'
+    comment: Το καθαρό γραφείο είναι οργανωτικό μέτρο.
+    kya:
+    - 23
+    posts:
+    - &id023
+      title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+    - &id024
+      title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+  - code: A.7.8
+    scope: ''
+    requirement: Equipment siting and protection
+    desc: Ασφαλής τοποθέτηση και προστασία του εξοπλισμού.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Προδιαγραφές χώρων εξοπλισμού.
+    kya:
+    - 23
+  - code: A.7.9
+    scope: ''
+    requirement: Security of assets off-premises
+    desc: Προστασία των αγαθών που βρίσκονται εκτός εγκαταστάσεων.
+    type: tech
+    control: BitLocker μέσω Intune, compliance policies, απομακρυσμένο Wipe και εντοπισμός συσκευής. Conditional Access που απαιτεί compliant device.
+    evidence: 'Intune: encryption report και αναφορές συμμόρφωσης.'
+    kya:
+    - 11
+    - 22
+    posts:
+    - &id020
+      title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+    - &id021
+      title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: A.7.10
+    scope: ''
+    requirement: Storage media
+    desc: Διαχείριση των μέσων αποθήκευσης σε όλο τον κύκλο ζωής τους.
+    type: tech
+    control: Device control (removable storage access control) στο Defender for Endpoint. BitLocker To Go για τα αφαιρούμενα μέσα. Endpoint DLP για την αντιγραφή σε USB.
+    evidence: 'Intune: πολιτικές device control. Purview: Endpoint DLP policies.'
+    license: Microsoft 365 E5 (Endpoint DLP)
+    comment: Η φυσική καταστροφή των μέσων είναι οργανωτικό μέτρο.
+    kya:
+    - 11
+    posts:
+    - *id020
+    - *id021
+  - code: A.7.11
+    scope: ''
+    requirement: Supporting utilities
+    desc: Προστασία από διακοπές ρεύματος και λοιπών υποστηρικτικών παροχών.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: UPS, γεννήτριες, αρχεία συντήρησης.
+    kya:
+    - 23
+  - code: A.7.12
+    scope: ''
+    requirement: Cabling security
+    desc: Προστασία των καλωδιώσεων ρεύματος και δεδομένων.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Σχέδια καλωδίωσης και μέτρα προστασίας.
+    kya:
+    - 23
+  - code: A.7.13
+    scope: ''
+    requirement: Equipment maintenance
+    desc: Σωστή συντήρηση του εξοπλισμού.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Πρόγραμμα και αρχεία συντήρησης.
+    kya:
+    - 23
+  - code: A.7.14
+    scope: ''
+    requirement: Secure disposal or re-use of equipment
+    desc: Διαγραφή των δεδομένων πριν από την απόσυρση ή την επαναχρησιμοποίηση εξοπλισμού.
+    type: mixed
+    control: Wipe στο Intune και Autopilot reset για συσκευές που επαναχρησιμοποιούνται. Η κρυπτογράφηση με BitLocker μειώνει τον κίνδυνο από μέσα που αποσύρονται.
+    evidence: 'Intune: ιστορικό Wipe. Πιστοποιητικά καταστροφής μέσων.'
+    comment: Η φυσική καταστροφή δίσκων είναι οργανωτικό μέτρο.
+    kya:
+    - 11
+    posts:
+    - *id022
+- number: 8
+  label: A.8
+  title: Technological controls
+  requirements:
+  - code: A.8.1
+    scope: ''
+    requirement: User end point devices
+    desc: Προστασία των πληροφοριών στις συσκευές των χρηστών.
+    type: tech
+    control: 'Microsoft Intune: compliance policies, configuration profiles, security baselines. Microsoft Defender for Endpoint. App protection policies για προσωπικές συσκευές.'
+    evidence: 'Intune: αναφορές συμμόρφωσης. Defender for Endpoint: device inventory με κατάσταση onboarding.'
+    kya:
+    - 14
+    - 20
+    posts:
+    - *id023
+    - *id024
+    - &id028
+      title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
+      url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+  - code: A.8.2
+    scope: ''
+    requirement: Privileged access rights
+    desc: Περιορισμός και διαχείριση των προνομιακών δικαιωμάτων πρόσβασης.
+    type: tech
+    control: Privileged Identity Management με just-in-time ενεργοποίηση και έγκριση. Περιορισμός των Global Administrators. Phishing-resistant MFA για τους διαχειριστές.
+    evidence: 'Entra ID: PIM assignments και ιστορικό ενεργοποιήσεων.'
+    license: Microsoft Entra ID P2 (Privileged Identity Management)
+    kya:
+    - 13
+    posts:
+    - *id005
+    - *id025
+  - code: A.8.3
+    scope: ''
+    requirement: Information access restriction
+    desc: Περιορισμός της πρόσβασης σε πληροφορίες σύμφωνα με την πολιτική.
+    type: tech
+    control: Δικαιώματα σε SharePoint, OneDrive και Teams. Sensitivity labels με κρυπτογράφηση και δικαιώματα χρήσης. Conditional Access ανά εφαρμογή.
+    evidence: 'SharePoint: αναφορές sharing και δικαιωμάτων. Purview: labels με encryption.'
+    kya:
+    - 13
+    posts:
+    - *id026
+    - *id027
+  - code: A.8.4
+    scope: ''
+    requirement: Access to source code
+    desc: Έλεγχος της πρόσβασης σε πηγαίο κώδικα και εργαλεία ανάπτυξης.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: δικαιώματα σε GitHub ή Azure DevOps, με single sign-on και Conditional Access από το Entra ID.'
+    evidence: Δικαιώματα repositories και audit log.
+    license: GitHub Enterprise ή Azure DevOps
+    kya:
+    - 15
+  - code: A.8.5
+    scope: ''
+    requirement: Secure authentication
+    desc: Ασφαλείς τεχνολογίες και διαδικασίες ελέγχου ταυτότητας.
+    type: tech
+    control: Conditional Access με «Require authentication strength», passkeys και Windows Hello for Business. Αποκλεισμός του legacy authentication.
+    evidence: 'Entra ID: πολιτικές Conditional Access, Authentication methods activity, sign-in logs.'
+    kya:
+    - 13
+    posts:
+    - *id003
+    - *id017
+    - *id004
+  - code: A.8.6
+    scope: ''
+    requirement: Capacity management
+    desc: Παρακολούθηση και προσαρμογή της χρήσης των πόρων.
+    type: org
+    control: Η χωρητικότητα του Microsoft 365 είναι ευθύνη της Microsoft. Usage reports στο Microsoft 365 admin center για αποθηκευτικό χώρο και άδειες. Azure Monitor για workloads σε Azure.
+    evidence: Αναφορές χρήσης και προβλέψεις χωρητικότητας για τις δικές σας υποδομές.
+    comment: Οι δικές σας υποδομές (διακομιστές, δίκτυο, αποθήκευση) είναι εκτός Microsoft 365.
+  - code: A.8.7
+    scope: ''
+    requirement: Protection against malware
+    desc: Προστασία από κακόβουλο λογισμικό, με υποστήριξη από την ευαισθητοποίηση των χρηστών.
+    type: tech
+    control: Microsoft Defender Antivirus και Microsoft Defender for Endpoint (cloud-delivered protection, EDR). Safe Attachments και Safe Links στο Microsoft Defender for Office 365.
+    evidence: 'Defender portal: device health και κατάσταση antivirus. Πολιτικές Safe Attachments και Safe Links.'
+    kya:
+    - 20
+    posts:
+    - *id028
+    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+    - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
+      url: /posts/microsoft-defender-air-automated-investigation-response/
+  - code: A.8.8
+    scope: ''
+    requirement: Management of technical vulnerabilities
+    desc: Εντοπισμός, αξιολόγηση και αντιμετώπιση των τεχνικών ευπαθειών.
+    type: tech
+    control: Microsoft Defender Vulnerability Management με remediation requests προς το Intune. Update rings και Windows Autopatch για τις ενημερώσεις.
+    evidence: 'Defender Vulnerability Management: exposure score, Weaknesses, κατάσταση remediation.'
+    kya:
+    - 17
+    posts:
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+    - *id029
+  - code: A.8.9
+    scope: Νέο στην έκδοση 2022
+    requirement: Configuration management
+    desc: Καθορισμός, τεκμηρίωση, παρακολούθηση και αναθεώρηση των ρυθμίσεων.
+    type: tech
+    control: Security baselines και configuration profiles στο Intune. Recommendations του Secure Score. Security baselines assessment στο Defender Vulnerability Management.
+    evidence: 'Intune: κατάσταση εφαρμογής profiles. Secure Score: recommendations και History.'
+    license: Microsoft Defender Vulnerability Management add-on (security baselines assessment)
+    kya:
+    - 14
+    posts:
+    - *id023
+    - *id024
+    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+      url: /posts/secure-score-grc-part-1-anatomy/
+  - code: A.8.10
+    scope: Νέο στην έκδοση 2022
+    requirement: Information deletion
+    desc: Διαγραφή των πληροφοριών όταν δεν χρειάζονται πλέον.
+    type: tech
+    control: Retention policies και retention labels με αυτόματη διαγραφή στο Microsoft Purview Data Lifecycle Management. Wipe στο Intune για τις συσκευές.
+    evidence: 'Purview: retention policies με ενέργεια διαγραφής, disposition reviews.'
+    kya:
+    - 11
+    posts:
+    - *id001
+  - code: A.8.11
+    scope: Νέο στην έκδοση 2022
+    requirement: Data masking
+    desc: Απόκρυψη δεδομένων σύμφωνα με την πολιτική πρόσβασης και τις νομικές απαιτήσεις.
+    type: org
+    control: 'Το Microsoft 365 δεν έχει γενική δυνατότητα data masking. Για βάσεις δεδομένων: Dynamic Data Masking στον SQL Server και στο Azure SQL.'
+    evidence: Ρυθμίσεις masking στις βάσεις δεδομένων. Πολιτική ψευδωνυμοποίησης.
+    license: SQL Server ή Azure SQL
+  - code: A.8.12
+    scope: Νέο στην έκδοση 2022
+    requirement: Data leakage prevention
+    desc: Μέτρα αποτροπής διαρροής δεδομένων σε συστήματα, δίκτυα και συσκευές.
+    type: tech
+    control: Microsoft Purview Data Loss Prevention για Exchange, SharePoint, OneDrive και Teams. Endpoint DLP για τις συσκευές. Network Data Security μέσω Global Secure Access.
+    evidence: 'Purview: DLP policies, alerts και Activity explorer.'
+    license: Microsoft 365 E5 (Endpoint DLP, Teams DLP), Microsoft Entra Internet Access (Network Data Security)
+    kya:
+    - 11
+    posts:
+    - *id001
+  - code: A.8.13
+    scope: ''
+    requirement: Information backup
+    desc: Αντίγραφα ασφαλείας πληροφοριών, λογισμικού και συστημάτων, με τακτικές δοκιμές.
+    type: mixed
+    control: Microsoft 365 Backup για Exchange Online, SharePoint και OneDrive. Azure Backup για διακομιστές.
+    evidence: Αναφορές επιτυχών backup και δοκιμών επαναφοράς. Πολιτική backup.
+    license: Microsoft 365 Backup (χρέωση με βάση τη χρήση), Azure Backup
+    comment: Το retention και το versioning δεν αποτελούν αντίγραφο ασφαλείας.
+    kya:
+    - 25
+  - code: A.8.14
+    scope: ''
+    requirement: Redundancy of information processing facilities
+    desc: Επαρκής εφεδρεία στις εγκαταστάσεις επεξεργασίας πληροφοριών.
+    type: org
+    control: 'Η εφεδρεία του Microsoft 365 είναι ευθύνη της Microsoft και τεκμηριώνεται στο Service Trust Portal. Για Azure: availability zones και Azure Site Recovery.'
+    evidence: Εκθέσεις ελέγχου της Microsoft από το Service Trust Portal. Σχεδιασμός εφεδρείας των δικών σας υποδομών.
+    license: Συνδρομή Azure
+    comment: Οι δικές σας υποδομές είναι εκτός Microsoft 365.
+    kya:
+    - 25
+  - code: A.8.15
+    scope: ''
+    requirement: Logging
+    desc: Παραγωγή, αποθήκευση, προστασία και ανάλυση αρχείων καταγραφής.
+    type: tech
+    control: Microsoft Purview Audit (unified audit log). Sign-in και audit logs του Entra ID. Advanced hunting στο Defender XDR. Microsoft Sentinel για πηγές εκτός Microsoft και μεγαλύτερη διατήρηση.
+    evidence: 'Purview: audit log search και audit retention policies. Entra ID: diagnostic settings.'
+    license: Microsoft 365 E5 (Purview Audit Premium), Microsoft Sentinel
+    comment: Ελέγξτε την προεπιλεγμένη διατήρηση κάθε πηγής.
+    kya:
+    - 24
+    posts:
+    - *id030
+    - *id031
+    - *id032
+  - code: A.8.16
+    scope: Νέο στην έκδοση 2022
+    requirement: Monitoring activities
+    desc: Παρακολούθηση δικτύων, συστημάτων και εφαρμογών για ανώμαλη συμπεριφορά.
+    type: tech
+    control: Alerts και incidents με συσχέτιση στο Microsoft Defender XDR. Custom detection rules. Microsoft Entra ID Protection για επικίνδυνα sign-ins. Microsoft Sentinel για τις υπόλοιπες πηγές.
+    evidence: 'Defender XDR: incidents και custom detection rules. Entra ID Protection: risk detections.'
+    license: Microsoft Entra ID P2 (ID Protection), Microsoft Sentinel
+    kya:
+    - 24
+    posts:
+    - *id012
+    - *id013
+    - *id014
+  - code: A.8.17
+    scope: ''
+    requirement: Clock synchronization
+    desc: Συγχρονισμός των ρολογιών με εγκεκριμένες πηγές ώρας.
+    type: org
+    control: 'Οι υπηρεσίες του Microsoft 365 καταγράφουν σε UTC και ο συγχρονισμός τους είναι ευθύνη της Microsoft. Για τις δικές σας υποδομές: Windows Time service με ιεραρχία domain και εξωτερική πηγή NTP.'
+    evidence: Ρύθμιση NTP στους domain controllers και στον δικτυακό εξοπλισμό.
+  - code: A.8.18
+    scope: ''
+    requirement: Use of privileged utility programs
+    desc: Περιορισμός των προγραμμάτων που μπορούν να παρακάμψουν ελέγχους συστήματος.
+    type: tech
+    control: App Control for Business και attack surface reduction rules μέσω Intune. Endpoint Privilege Management για ελεγχόμενη ανύψωση δικαιωμάτων χωρίς τοπικούς διαχειριστές.
+    evidence: 'Intune: πολιτικές App Control και ASR. Αναφορές ανύψωσης δικαιωμάτων.'
+    license: Intune Endpoint Privilege Management (πρόσθετο του Intune)
+    kya:
+    - 13
+    - 14
+    posts:
+    - &id033
+      title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+  - code: A.8.19
+    scope: ''
+    requirement: Installation of software on operational systems
+    desc: Ελεγχόμενη εγκατάσταση λογισμικού στα συστήματα παραγωγής.
+    type: tech
+    control: Διανομή εφαρμογών από το Intune και το Company Portal. App Control for Business. Αφαίρεση δικαιωμάτων τοπικού διαχειριστή από τους χρήστες.
+    evidence: 'Intune: λίστα εφαρμογών και κατάσταση εγκατάστασης. Software inventory.'
+    kya:
+    - 14
+    posts:
+    - *id033
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: A.8.20
+    scope: ''
+    requirement: Networks security
+    desc: Ασφάλεια και διαχείριση των δικτύων και των δικτυακών συσκευών.
+    type: mixed
+    control: Ο δικτυακός εξοπλισμός είναι εκτός Microsoft 365. Το Microsoft 365 συμπληρώνει με Windows Firewall μέσω Intune και με Global Secure Access.
+    evidence: 'Ρυθμίσεις firewall. Intune: πολιτικές Windows Firewall.'
+    license: Azure Firewall (μόνο για workloads σε Azure)
+    kya:
+    - 19
+    posts:
+    - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
+      url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
+    - title: 'Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft'
+      url: /posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/
+  - code: A.8.21
+    scope: ''
+    requirement: Security of network services
+    desc: Μηχανισμοί ασφάλειας και επίπεδα εξυπηρέτησης των δικτυακών υπηρεσιών.
+    type: mixed
+    control: Οι συμβάσεις με τους παρόχους δικτύου είναι οργανωτικό μέτρο. Το Global Secure Access δίνει κρυπτογραφημένη πρόσβαση με πολιτικές ανά χρήστη και συσκευή.
+    evidence: 'Συμβάσεις και SLA δικτυακών υπηρεσιών. Global Secure Access: traffic forwarding profiles.'
+    license: Microsoft Entra Internet Access, Microsoft Entra Private Access
+    kya:
+    - 19
+    posts:
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+  - code: A.8.22
+    scope: ''
+    requirement: Segregation of networks
+    desc: Διαχωρισμός ομάδων υπηρεσιών, χρηστών και συστημάτων στα δίκτυα.
+    type: mixed
+    control: Το segmentation είναι θέμα δικτυακής υποδομής, εκτός Microsoft 365. Το Microsoft Entra Private Access δίνει πρόσβαση ανά εφαρμογή αντί για πρόσβαση σε ολόκληρο το δίκτυο.
+    evidence: 'Διάγραμμα δικτύου με ζώνες. Private Access: application segments.'
+    license: Microsoft Entra Private Access
+    kya:
+    - 19
+    posts:
+    - *id034
+  - code: A.8.23
+    scope: Νέο στην έκδοση 2022
+    requirement: Web filtering
+    desc: Διαχείριση της πρόσβασης σε εξωτερικούς ιστοτόπους.
+    type: tech
+    control: Web content filtering και network protection στο Microsoft Defender for Endpoint. Microsoft Defender SmartScreen. Web content filtering στο Microsoft Entra Internet Access.
+    evidence: 'Defender portal: web content filtering policies και web protection report.'
+    license: Microsoft Entra Internet Access
+    kya:
+    - 19
+    - 20
+    posts:
+    - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
+      url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
+      url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
+  - code: A.8.24
+    scope: ''
+    requirement: Use of cryptography
+    desc: Κανόνες για την αποτελεσματική χρήση κρυπτογραφίας και τη διαχείριση κλειδιών.
+    type: tech
+    control: BitLocker μέσω Intune. Sensitivity labels με κρυπτογράφηση και Message Encryption στο Purview. TLS στις υπηρεσίες του Microsoft 365. Customer Key για δικά σας κλειδιά.
+    evidence: 'Πολιτική κρυπτογραφίας. Intune: encryption report. Purview: labels με encryption.'
+    license: Microsoft 365 E5 (Customer Key), Microsoft Cloud PKI
+    comment: Οι διακομιστές και οι βάσεις άλλων κατασκευαστών δεν καλύπτονται από προϊόντα Microsoft.
+    kya:
+    - 22
+    posts:
+    - *id020
+    - *id021
+    - *id035
+  - code: A.8.25
+    scope: ''
+    requirement: Secure development life cycle
+    desc: Κανόνες για την ασφαλή ανάπτυξη λογισμικού και συστημάτων.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: DevOps security στο Microsoft Defender for Cloud και GitHub Advanced Security.'
+    evidence: Πολιτική ασφαλούς ανάπτυξης.
+    license: Microsoft Defender for Cloud, GitHub Advanced Security
+    kya:
+    - 15
+    posts:
+    - &id036
+      title: 'Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That''s Actually Different)'
+      url: /posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/
+  - code: A.8.26
+    scope: ''
+    requirement: Application security requirements
+    desc: Καθορισμός και έγκριση απαιτήσεων ασφάλειας για τις εφαρμογές.
+    type: org
+    control: Δεν καλύπτεται από το Microsoft 365.
+    evidence: Προδιαγραφές ασφάλειας ανά εφαρμογή.
+    kya:
+    - 15
+  - code: A.8.27
+    scope: ''
+    requirement: Secure system architecture and engineering principles
+    desc: Αρχές ασφαλούς αρχιτεκτονικής και σχεδιασμού συστημάτων.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Οι αρχές Zero Trust της Microsoft χρησιμεύουν ως αρχιτεκτονικό πλαίσιο αναφοράς.
+    evidence: Τεκμηριωμένες αρχές αρχιτεκτονικής.
+    kya:
+    - 15
+  - code: A.8.28
+    scope: Νέο στην έκδοση 2022
+    requirement: Secure coding
+    desc: Εφαρμογή αρχών ασφαλούς κώδικα στην ανάπτυξη λογισμικού.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: code scanning, secret scanning και dependency review στο GitHub Advanced Security.'
+    evidence: Κανόνες ασφαλούς κώδικα, αποτελέσματα code scanning.
+    license: GitHub Advanced Security
+    kya:
+    - 15
+    posts:
+    - *id036
+  - code: A.8.29
+    scope: ''
+    requirement: Security testing in development and acceptance
+    desc: Έλεγχοι ασφάλειας κατά την ανάπτυξη και την αποδοχή.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: GitHub Advanced Security και Microsoft Defender for Cloud.'
+    evidence: Αποτελέσματα ελέγχων ασφάλειας πριν από την παραγωγή.
+    license: GitHub Advanced Security, Microsoft Defender for Cloud
+    kya:
+    - 15
+    - 18
+  - code: A.8.30
+    scope: ''
+    requirement: Outsourced development
+    desc: Εποπτεία και έλεγχος της ανάπτυξης που ανατίθεται σε τρίτους.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Συμβάσεις ανάπτυξης με απαιτήσεις ασφάλειας, αποτελέσματα ελέγχων αποδοχής.
+    kya:
+    - 12
+    - 15
+  - code: A.8.31
+    scope: ''
+    requirement: Separation of development, test and production environments
+    desc: Διαχωρισμός των περιβαλλόντων ανάπτυξης, δοκιμών και παραγωγής.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Σε Azure: ξεχωριστά subscriptions ή resource groups ανά περιβάλλον. Για δοκιμές ρυθμίσεων Microsoft 365: ξεχωριστό test tenant.'
+    evidence: Διάγραμμα περιβαλλόντων και δικαιώματα ανά περιβάλλον.
+    license: Συνδρομή Azure
+    kya:
+    - 15
+  - code: A.8.32
+    scope: ''
+    requirement: Change management
+    desc: Οι αλλαγές σε συστήματα και εγκαταστάσεις ακολουθούν διαδικασία διαχείρισης αλλαγών.
+    type: mixed
+    control: Audit logs του Entra ID και του Intune καταγράφουν ποιος άλλαξε τι. Multi admin approval στο Intune. Message center για τις αλλαγές που φέρνει η Microsoft.
+    evidence: Αιτήματα αλλαγών με έγκριση. Εξαγωγές audit logs που τα επιβεβαιώνουν.
+    comment: Η διαδικασία έγκρισης αλλαγών είναι οργανωτική.
+    kya:
+    - 16
+    posts:
+    - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
+      url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
+    - title: 'Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει'
+      url: /posts/entra-token-protection-bulk-enrollment-limitation/
+    - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+  - code: A.8.33
+    scope: ''
+    requirement: Test information
+    desc: Κατάλληλη επιλογή, προστασία και διαχείριση των δεδομένων δοκιμών.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Διαδικασία για τα δεδομένα δοκιμών (συνθετικά ή ανωνυμοποιημένα).
+    kya:
+    - 15
+  - code: A.8.34
+    scope: ''
+    requirement: Protection of information systems during audit testing
+    desc: Οι έλεγχοι σχεδιάζονται ώστε να μη διαταράσσουν τα συστήματα παραγωγής.
+    type: mixed
+    control: Πρόσβαση μόνο για ανάγνωση στον ελεγκτή (Global Reader, Security Reader), με χρονικό όριο μέσω Privileged Identity Management.
+    evidence: 'Πλάνο ελέγχου. Entra ID: ανάθεση και λήξη των ρόλων του ελεγκτή.'
+    license: Microsoft Entra ID P2 (Privileged Identity Management)
+    kya:
+    - 8
+    posts:
+    - *id037
+    - *id038
