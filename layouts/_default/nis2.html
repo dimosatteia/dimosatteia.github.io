@@ -165,8 +165,49 @@
     var empty = document.getElementById('nis2Empty');
     var type = 'all';
     // αναζήτηση χωρίς τόνους και χωρίς διάκριση πεζών/κεφαλαίων
-    function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+    function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ς/g, 'σ'); }
     reqs.forEach(function (r) { r._text = norm(r.textContent); });
+
+    // Επισήμανση του όρου αναζήτησης μέσα στο κείμενο των απαιτήσεων που εμφανίζονται
+    var MARK_CLASS = 'nis2-mark bg-amber-400/30 text-amber-100 rounded px-0.5';
+    function clearMarks(root) {
+        var marks = root.querySelectorAll('mark.nis2-mark');
+        for (var i = 0; i < marks.length; i++) {
+            var mk = marks[i], parent = mk.parentNode;
+            parent.replaceChild(document.createTextNode(mk.textContent), mk);
+            parent.normalize();
+        }
+    }
+    function markNode(node, q) {
+        var text = node.nodeValue, flat = '', map = [];
+        // κανονικοποίηση ανά χαρακτήρα, με αντιστοίχιση στη θέση του αρχικού κειμένου
+        for (var i = 0; i < text.length; i++) {
+            var n = norm(text.charAt(i));
+            for (var j = 0; j < n.length; j++) { flat += n.charAt(j); map.push(i); }
+        }
+        var hits = [], from = 0, at;
+        while ((at = flat.indexOf(q, from)) !== -1) {
+            hits.push([map[at], map[at + q.length - 1] + 1]);
+            from = at + q.length;
+        }
+        if (!hits.length) return;
+        var frag = document.createDocumentFragment(), pos = 0;
+        hits.forEach(function (h) {
+            if (h[0] > pos) frag.appendChild(document.createTextNode(text.slice(pos, h[0])));
+            var mk = document.createElement('mark');
+            mk.className = MARK_CLASS;
+            mk.textContent = text.slice(h[0], h[1]);
+            frag.appendChild(mk);
+            pos = h[1];
+        });
+        if (pos < text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
+        node.parentNode.replaceChild(frag, node);
+    }
+    function highlight(root, q) {
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), nodes = [], nd;
+        while ((nd = walker.nextNode())) { if (nd.nodeValue.trim()) nodes.push(nd); }
+        nodes.forEach(function (x) { markNode(x, q); });
+    }
 
     function apply() {
         var q = norm(search.value.trim());
@@ -177,7 +218,8 @@
                      (!onlyPosts.checked || r.dataset.posts === '1') &&
                      (!q || r._text.indexOf(q) !== -1);
             r.classList.toggle('hidden', !ok);
-            if (ok) shown++;
+            clearMarks(r);
+            if (ok) { shown++; if (q.length >= 2) highlight(r, q); }
         });
         arts.forEach(function (a) {
             var any = a.querySelector('.nis2-req:not(.hidden)');
