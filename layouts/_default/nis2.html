@@ -135,7 +135,7 @@
                         {{ with .kya }}
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">ΚΥΑ 1689/2025</dt>
                         <dd class="flex flex-wrap gap-2">
-                            {{ range . }}<a href="{{ "nis2/" | relURL }}#arthro-{{ . }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">Άρθρο {{ . }}</a>{{ end }}
+                            {{ range . }}<a href="{{ "kya-1689-2025/" | relURL }}#arthro-{{ . }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">Άρθρο {{ . }}</a>{{ end }}
                         </dd>
                         {{ end }}
                         {{ if or .posts .planned }}

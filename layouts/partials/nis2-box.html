@@ -20,12 +20,12 @@
     <p class="text-sm text-slate-300 leading-relaxed mb-3">Αυτό το άρθρο αντιστοιχεί σε {{ len $hits }} {{ if eq (len $hits) 1 }}απαίτηση{{ else }}απαιτήσεις{{ end }} της ΚΥΑ 1689/2025:</p>
     <ul class="flex flex-wrap gap-2 mb-3">
         {{- range $hits }}
-        <li><a href="{{ "nis2/" | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-1 no-underline">{{ . }}</a></li>
+        <li><a href="{{ "kya-1689-2025/" | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-1 no-underline">{{ . }}</a></li>
         {{- end }}
     </ul>
     {{- else }}
     <p class="text-sm text-slate-300 leading-relaxed mb-3">Δείτε πώς οι ρυθμίσεις του Microsoft 365 αντιστοιχίζονται, μία προς μία, στις απαιτήσεις της ΚΥΑ 1689/2025.</p>
     {{- end }}
-    <a href="{{ "nis2/" | relURL }}" class="text-sm font-semibold text-blue-400 hover:text-blue-300 underline">ΚΥΑ 1689/2025 με Microsoft 365: όλες οι απαιτήσεις και το checklist →</a>
+    <a href="{{ "kya-1689-2025/" | relURL }}" class="text-sm font-semibold text-blue-400 hover:text-blue-300 underline">ΚΥΑ 1689/2025 με Microsoft 365: όλες οι απαιτήσεις και το checklist →</a>
 </aside>
 {{- end }}

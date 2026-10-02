@@ -204,7 +204,7 @@ menu:
       weight: 25
     - identifier: nis2
       name: "ΚΥΑ 1689/2025"
-      url: /nis2/
+      url: /kya-1689-2025/
       weight: 27
     - identifier: releases-new
       parent: releases
