@@ -1,0 +1,1081 @@
+# Αντιστοίχιση ΚΥΑ 1689/2025 (ΦΕΚ Β΄ 2186/6.5.2025) -> Microsoft 365 -> άρθρα thecybersec.gr
+# Η σελίδα /nis2/ διαβάζει αυτό το αρχείο. Για νέο άρθρο: πρόσθεσε εγγραφή στο 'posts' της απαίτησης.
+# type: tech | mixed | org
+source:
+  act: ΚΥΑ 1689/2025
+  title: Εθνικό Πλαίσιο Απαιτήσεων Κυβερνοασφάλειας Βασικών και Σημαντικών Οντοτήτων
+  fek: ΦΕΚ Β΄ 2186/6.5.2025
+  url: https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf
+updated: '2026-10-02'
+types:
+- key: tech
+  label: Τεχνικό
+  hint: Υλοποιείται κυρίως με ρύθμιση
+- key: mixed
+  label: Μικτό
+  hint: Έγγραφο ή διαδικασία, με τεχνική επιβολή ή τεκμήριο από τη Microsoft
+- key: org
+  label: Οργανωτικό ή εκτός Microsoft 365
+  hint: Δεν υπάρχει ρύθμιση που να το καλύπτει
+articles:
+- number: 4
+  title: Υποχρεώσεις και ευθύνη των ανωτάτων οργάνων διοίκησης
+  requirements:
+  - code: 4.α
+    scope: Βασικές και σημαντικές
+    requirement: Ολοκληρωμένο πρόγραμμα διαχείρισης κινδύνων κυβερνοασφάλειας, με ευθύνη του ανώτατου οργάνου διοίκησης.
+    type: mixed
+    control: Microsoft Purview Compliance Manager (assessment «NIS 2 Directive») ως μητρώο του προγράμματος. Microsoft Secure Score ως μετρήσιμη τεχνική βάση.
+    evidence: 'Απόφαση/πρακτικό ΔΣ για το πρόγραμμα. Compliance Manager: βαθμολογία και κατάσταση improvement actions.'
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
+      url: /posts/microsoft-secure-score-grc-programma-ciso/
+  - code: 4.β
+    scope: Βασικές και σημαντικές
+    requirement: Το ανώτατο όργανο εγκρίνει και επιβλέπει το πρόγραμμα, διαθέτει πόρους, ενημερώνει το προσωπικό, λογοδοτεί και παρακολουθεί εκπαίδευση.
+    type: mixed
+    control: Αναφορά προς το ΔΣ με Secure Score και Compliance Manager. Attack simulation training και για τα μέλη της διοίκησης (περ. βε).
+    evidence: Πρακτικά ΔΣ, εγκεκριμένος προϋπολογισμός, βεβαιώσεις εκπαίδευσης μελών ΔΣ.
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
+      url: /posts/microsoft-secure-score-grc-programma-ciso/
+- number: 5
+  title: Πλαίσιο διαχείρισης κινδύνων
+  requirements:
+  - code: 5.1.α
+    scope: Βασικές και σημαντικές
+    requirement: Πλαίσιο διαχείρισης κινδύνων κυβερνοασφάλειας, ευθυγραμμισμένο με τη διαχείριση επιχειρηματικών κινδύνων, με πρόβλεψη για τρίτα μέρη.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Το Microsoft 365 δίνει μόνο δεδομένα εισόδου (Secure Score, Exposure Management).
+    evidence: Εγκεκριμένη μεθοδολογία διαχείρισης κινδύνων.
+  - code: 5.1.β
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική εκτίμηση κινδύνων (risk assessment) με μεθοδολογία βασισμένη σε διεθνή πρότυπα.
+    type: mixed
+    control: Microsoft Secure Score και Microsoft Defender Vulnerability Management ως τεχνική είσοδος στην εκτίμηση κινδύνων.
+    evidence: 'Μητρώο κινδύνων. Secure Score: History και τάση βαθμολογίας.'
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
+      url: /posts/secure-score-defender-praktikos-odigos/
+  - code: 5.1.γ
+    scope: Βασικές και σημαντικές
+    requirement: Πλάνο αντιμετώπισης κινδύνων (risk treatment plan) με κριτήρια προτεραιοποίησης.
+    type: mixed
+    control: Κατάσταση ανά recommendation στο Secure Score (To address, Planned, Risk accepted, Resolved through third party, Resolved through alternate mitigation) ως το τεχνικό σκέλος του πλάνου.
+    evidence: 'Secure Score: Recommended actions με status και σημειώσεις. Εγκεκριμένο risk treatment plan.'
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+      url: /posts/secure-score-grc-part-1-anatomy/
+  - code: 5.1.δ
+    scope: Βασικές και σημαντικές
+    requirement: Αξιολόγηση και επικαιροποίηση εκτίμησης και πλάνου σε προγραμματισμένα διαστήματα και μετά από σοβαρά περιστατικά ή αλλαγές.
+    type: mixed
+    control: Secure Score History και Compliance Manager για την τεκμηρίωση της περιοδικής επανεξέτασης.
+    evidence: Ημερολόγιο αναθεωρήσεων, εκδόσεις μητρώου κινδύνων.
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: '5.2'
+    scope: Μόνο βασικές
+    requirement: Εμπεριστατωμένη εκτίμηση κινδύνων με cyber threat intelligence και πλήρη αξιολόγηση ευπαθειών.
+    type: mixed
+    control: Threat analytics στο Microsoft Defender XDR για threat intelligence. Microsoft Defender Vulnerability Management για την αξιολόγηση ευπαθειών.
+    evidence: 'Defender portal: Threat analytics, Vulnerability management (Weaknesses, Recommendations).'
+    license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο)
+    posts:
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+    - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
+      url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+- number: 6
+  title: Πολιτικές και διαδικασίες ασφάλειας πληροφοριών
+  requirements:
+  - code: 6.α
+    scope: Βασικές και σημαντικές
+    requirement: Γραπτή γενική πολιτική ασφάλειας πληροφοριών, εγκεκριμένη από το ανώτατο όργανο διοίκησης.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. SharePoint Online για ελεγχόμενη διανομή και ιστορικό εκδόσεων του εγγράφου.
+    evidence: Εγκεκριμένη πολιτική με αριθμό έκδοσης και ημερομηνία.
+  - code: 6.β
+    scope: Βασικές και σημαντικές
+    requirement: Έντεκα ελάχιστες θεματικές πολιτικές (πρόσβαση, αγαθά, ορθή χρήση, αφαιρούμενα μέσα, περιστατικά, εφοδιαστική αλυσίδα, δίκτυα, έλεγχοι, αντίγραφα ασφαλείας, κρυπτογράφηση, φυσική ασφάλεια).
+    type: org
+    control: Οι πολιτικές είναι έγγραφα. Η τεχνική εφαρμογή κάθε πολιτικής αντιστοιχίζεται στα άρθρα 11, 12, 13, 18, 19, 22, 23, 24 και 25 αυτού του πίνακα.
+    evidence: Οι έντεκα εγκεκριμένες θεματικές πολιτικές.
+  - code: 6.γ
+    scope: Βασικές και σημαντικές
+    requirement: Αξιολόγηση και επικαιροποίηση των πολιτικών σε προγραμματισμένα διαστήματα και μετά από σοβαρά περιστατικά ή αλλαγές.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων πολιτικών.
+- number: 7
+  title: Ρόλοι, αρμοδιότητες και εξουσίες
+  requirements:
+  - code: 7.α
+    scope: Βασικές και σημαντικές
+    requirement: Ορισμός αρμοδιοτήτων και εξουσιών κυβερνοασφάλειας σε ρόλους, και ορισμός Υ.Α.Σ.Π.Ε.
+    type: mixed
+    control: Microsoft Entra ID roles (π.χ. Security Administrator, Security Reader, Compliance Administrator) ως τεχνική αποτύπωση των ρόλων.
+    evidence: 'Απόφαση ορισμού Υ.Α.Σ.Π.Ε. Entra admin center: Roles and administrators (assignments).'
+    posts:
+    - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
+      url: /posts/secure-score-defender-praktikos-odigos/
+  - code: 7.β
+    scope: Βασικές και σημαντικές
+    requirement: Ο Υ.Α.Σ.Π.Ε. αναφέρεται απευθείας στο ανώτατο όργανο διοίκησης.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Οργανόγραμμα, γραμμή αναφοράς, αναφορές Υ.Α.Σ.Π.Ε. προς το ΔΣ.
+  - code: 7.γ
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση ρόλων, αρμοδιοτήτων και εξουσιών.
+    type: mixed
+    control: Access reviews για τις αναθέσεις ρόλων (Microsoft Entra ID Governance).
+    evidence: Αποτελέσματα access reviews, πρακτικά αναθεώρησης ρόλων.
+    license: Microsoft Entra ID Governance ή Microsoft Entra ID P2
+- number: 8
+  title: Ανεξάρτητος έλεγχος ασφάλειας πληροφοριών
+  requirements:
+  - code: 8.α
+    scope: Μόνο βασικές
+    requirement: Περιοδικοί ανεξάρτητοι έλεγχοι (independent audits) του προγράμματος ασφάλειας πληροφοριών.
+    type: mixed
+    control: Πρόσβαση μόνο για ανάγνωση στον ελεγκτή (Global Reader, Security Reader) και dashboard τεκμηρίων από Secure Score μέσω Microsoft Graph και Power BI.
+    evidence: Εκθέσεις ελέγχου. Power BI dashboard με ιστορικό Secure Score.
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 8.β
+    scope: Μόνο βασικές
+    requirement: Διασφάλιση αμεροληψίας των ελεγκτών.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Δήλωση ανεξαρτησίας ελεγκτή.
+  - code: 8.γ
+    scope: Μόνο βασικές
+    requirement: Διορθωτικές ενέργειες από το ανώτατο όργανο όταν ο έλεγχος δείξει ανεπάρκεια.
+    type: mixed
+    control: Παρακολούθηση των τεχνικών διορθωτικών ενεργειών ως recommendations στο Secure Score και improvement actions στο Compliance Manager.
+    evidence: Πλάνο διορθωτικών ενεργειών με κατάσταση και ημερομηνίες.
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 8.δ
+    scope: Μόνο βασικές
+    requirement: Έλεγχοι σε προγραμματισμένα διαστήματα και μετά από σοβαρά περιστατικά ή αλλαγές.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Πρόγραμμα ελέγχων.
+- number: 9
+  title: Διαδικασίες παρακολούθησης της συμμόρφωσης
+  requirements:
+  - code: 9.α
+    scope: Βασικές και σημαντικές
+    requirement: Διαδικασίες παρακολούθησης της συμμόρφωσης με τις κανονιστικές υποχρεώσεις και περιοδική αναφορά στο ανώτατο όργανο.
+    type: mixed
+    control: Microsoft Purview Compliance Manager με τα assessments «NIS 2 Directive» και «ISO/IEC 27001:2022», συνδεδεμένα με το Secure Score.
+    evidence: 'Compliance Manager: assessment score και εξαγωγή αναφοράς. Αναφορά προς το ΔΣ.'
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 9.β
+    scope: Βασικές και σημαντικές
+    requirement: Διορθωτικές ενέργειες σε περίπτωση μη συμμόρφωσης.
+    type: mixed
+    control: Ανάθεση improvement actions σε υπευθύνους στο Compliance Manager.
+    evidence: Κατάσταση improvement actions με υπεύθυνο και ημερομηνία.
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 9.γ
+    scope: Βασικές και σημαντικές
+    requirement: Παρακολούθηση σε προγραμματισμένα διαστήματα και όταν αλλάζει το κανονιστικό πλαίσιο ή οι λειτουργίες.
+    type: mixed
+    control: Το Compliance Manager ειδοποιεί όταν η Microsoft αναθεωρεί ένα template, ώστε να ενημερωθεί το assessment.
+    evidence: Ημερολόγιο αναθεωρήσεων συμμόρφωσης.
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+- number: 10
+  title: Ασφάλεια ανθρώπινου δυναμικού
+  requirements:
+  - code: 10.1.α
+    scope: Βασικές και σημαντικές
+    requirement: Έλεγχοι καταλληλότητας του υποψήφιου προσωπικού.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Διαδικασία HR, αρχεία προσλήψεων.
+  - code: 10.1.β
+    scope: Βασικές και σημαντικές
+    requirement: Ευθύνες και καθήκοντα που παραμένουν μετά τη λήξη ή αλλαγή της απασχόλησης.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Όροι σύμβασης, ρήτρες εμπιστευτικότητας.
+  - code: 10.1.γ
+    scope: Βασικές και σημαντικές
+    requirement: Διαδικασίες πειθαρχικού ελέγχου για παραβίαση των πολιτικών ασφάλειας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Πειθαρχική διαδικασία.
+  - code: '10.2'
+    scope: Μόνο βασικές
+    requirement: Επαλήθευση ιστορικού (background checks) για προσωπικό με ρόλους κυβερνοασφάλειας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Αρχεία ελέγχου ιστορικού.
+- number: 11
+  title: Διαχείριση υλικού και λογισμικού
+  requirements:
+  - code: 11.α
+    scope: Βασικές και σημαντικές
+    requirement: Ακριβής και ενημερωμένος κατάλογος αγαθών (υλικό, λογισμικό, συστήματα, δεδομένα, υπηρεσίες, cloud και OT), με ιδιοκτήτη ανά αγαθό.
+    type: mixed
+    control: Device inventory στο Microsoft Defender for Endpoint και στο Microsoft Intune. Software inventory στο Defender Vulnerability Management. Cloud Discovery στο Microsoft Defender for Cloud Apps για τις cloud υπηρεσίες. Τα αγαθά OT δεν καλύπτονται από το Microsoft 365. Καλύπτονται από το Microsoft Defender for IoT, που είναι ξεχωριστό προϊόν.
+    evidence: 'Defender portal: Assets, Devices. Intune: Devices. Εξαγωγές καταλόγου.'
+    license: Microsoft Defender for IoT (για τα αγαθά OT)
+    comment: Ο ορισμός ιδιοκτήτη (owner) ανά αγαθό δεν καλύπτεται από προϊόντα Microsoft. Τηρείται σε ξεχωριστό μητρώο αγαθών.
+    posts:
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
+      url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+  - code: 11.β
+    scope: Βασικές και σημαντικές
+    requirement: Ταξινόμηση δεδομένων και αγαθών σε επίπεδα, με βάση εμπιστευτικότητα, ακεραιότητα και διαθεσιμότητα.
+    type: tech
+    control: Sensitivity labels στο Microsoft Purview Information Protection και auto-labeling. Critical asset management στο Microsoft Security Exposure Management για την κρισιμότητα συσκευών και ταυτοτήτων.
+    evidence: 'Purview portal: Information protection, Labels και Label policies. Content explorer.'
+    posts:
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: 11.γ
+    scope: Βασικές και σημαντικές
+    requirement: Γραπτή πολιτική και οδηγίες ορθής χρήσης αγαθών και δεδομένων σε όλο τον κύκλο ζωής.
+    type: mixed
+    control: Microsoft Purview Data Loss Prevention και retention policies (Data Lifecycle Management) για την τεχνική επιβολή. Retire και Wipe στο Intune για την ασφαλή απομάκρυνση.
+    evidence: 'Εγκεκριμένη πολιτική. Purview: DLP policies και retention policies.'
+    posts:
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: 11.δ
+    scope: Βασικές και σημαντικές
+    requirement: Γραπτή πολιτική για την ασφαλή διαχείριση αφαιρούμενων μέσων αποθήκευσης.
+    type: mixed
+    control: Device control (removable storage access control) στο Defender for Endpoint μέσω Intune. BitLocker To Go για κρυπτογράφηση αφαιρούμενων μέσων.
+    evidence: 'Εγκεκριμένη πολιτική. Intune: Endpoint security, Attack surface reduction, Device control.'
+    planned: 'Άρθρο για το device control: έρχεται.'
+- number: 12
+  title: Διαχείριση κινδύνων από τις σχέσεις με προμηθευτές και παρόχους υπηρεσιών Τ.Π.Ε.
+  requirements:
+  - code: 12.1.α
+    scope: Βασικές και σημαντικές
+    requirement: Πολιτική και διαδικασίες για τις σχέσεις με προμηθευτές και παρόχους υπηρεσιών Τ.Π.Ε.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένη πολιτική ασφάλειας εφοδιαστικής αλυσίδας.
+  - code: 12.1.β
+    scope: Βασικές και σημαντικές
+    requirement: Ενημερωμένος κατάλογος άμεσων προμηθευτών και παρόχων, με σημεία επαφής, προϊόντα/υπηρεσίες και ταξινόμηση κρισιμότητας.
+    type: mixed
+    control: Cloud Discovery και cloud app catalog στο Defender for Cloud Apps για να εντοπιστούν οι cloud πάροχοι που χρησιμοποιούνται πραγματικά. Enterprise applications στο Entra ID για τις εφαρμογές τρίτων με πρόσβαση στο tenant.
+    evidence: 'Μητρώο προμηθευτών. Defender portal: Cloud apps, Cloud discovery, Discovered apps.'
+    posts:
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+  - code: 12.1.γ
+    scope: Βασικές και σημαντικές
+    requirement: 'Διαδικασίες διαχείρισης κινδύνων προμηθευτών σε όλο τον κύκλο ζωής: κριτήρια αξιολόγησης και απαιτήσεις κυβερνοασφάλειας για παρόχους και προϊόντα.'
+    type: mixed
+    control: Risk score ανά cloud εφαρμογή στο Defender for Cloud Apps (πιστοποιήσεις, συμμόρφωση) ως κριτήριο αξιολόγησης. Ρύθμιση Allowed Agent Types «Only certified external publishers». Service Trust Portal για τις εκθέσεις ελέγχου της ίδιας της Microsoft.
+    evidence: 'Αρχεία αξιολόγησης προμηθευτών. Cloud app catalog: risk score. Microsoft 365 admin center: Allowed agent types.'
+    posts:
+    - title: 'Allowed Agent Types στο Microsoft 365: Γιατί το «Only Certified External Publishers» είναι η μόνη λογική επιλογή'
+      url: /posts/allowed-agent-types-only-certified-external-publishers/
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες'
+      url: /posts/gsa-mcp-firewall/
+  - code: 12.1.δ
+    scope: Βασικές και σημαντικές
+    requirement: 'Ελάχιστο περιεχόμενο συμβάσεων: απαιτήσεις ασφάλειας, συστήματα και δεδομένα στα οποία αποκτά πρόσβαση ο προμηθευτής, δικαίωμα ελέγχου, ασφαλής λήξη.'
+    type: mixed
+    control: 'Οι συμβάσεις είναι οργανωτικό μέτρο. Για την πρόσβαση και την ασφαλή λήξη: cross-tenant access settings, guest accounts με access reviews και αφαίρεση δικαιωμάτων στο Entra ID.'
+    evidence: 'Υπογεγραμμένες συμβάσεις. Entra admin center: External Identities, Cross-tenant access settings.'
+    posts:
+    - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
+      url: /posts/generally-available/cross-tenant-message-recall-exchange-online/
+    - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+  - code: 12.1.ε
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση πολιτικών και διαδικασιών προμηθευτών.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων.
+  - code: 12.2.α
+    scope: Μόνο βασικές
+    requirement: Ενισχυμένες απαιτήσεις κυβερνοασφάλειας για τους κρίσιμους προμηθευτές και παρόχους.
+    type: mixed
+    control: Conditional Access για external users (MFA, compliant device) και cross-tenant access settings ανά οργανισμό-προμηθευτή.
+    evidence: Συμβατικές απαιτήσεις. Conditional Access policies με target «Guest or external users».
+    posts:
+    - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
+      url: /posts/generally-available/cross-tenant-message-recall-exchange-online/
+    - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+  - code: 12.2.β
+    scope: Μόνο βασικές
+    requirement: Επέκταση της διαχείρισης κινδύνων σε όλη την εφοδιαστική αλυσίδα, και σε υπεργολάβους.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Συμβατικές ρήτρες για υπεργολάβους.
+- number: 13
+  title: Διαχείριση λογαριασμών και έλεγχος πρόσβασης
+  requirements:
+  - code: 13.α
+    scope: Βασικές και σημαντικές
+    requirement: Πολιτική και διαδικασίες λογικού ελέγχου πρόσβασης, για προσωπικό και για τρίτους.
+    type: mixed
+    control: Conditional Access στο Microsoft Entra ID ως η τεχνική επιβολή της πολιτικής.
+    evidence: 'Εγκεκριμένη πολιτική ελέγχου πρόσβασης. Entra admin center: Conditional Access, Policies.'
+    posts:
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+  - code: 13.β
+    scope: Βασικές και σημαντικές
+    requirement: Μοναδική ταυτότητα για κάθε χρήστη και σύστημα, ώστε να υπάρχει λογοδοσία.
+    type: tech
+    control: Ατομικοί λογαριασμοί στο Microsoft Entra ID, χωρίς κοινόχρηστους λογαριασμούς. Service principals και managed identities για τα συστήματα. Συγχρονισμός από AD με Entra Connect ή Cloud Sync.
+    evidence: 'Entra admin center: Users, Enterprise applications. Sign-in logs ανά ταυτότητα.'
+    posts:
+    - title: 'Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)'
+      url: /posts/microsoft-entra-architecture-guide-defender/
+    - title: 'Azure και Entra: Τι πραγματικά είναι, τι τα ενώνει και τι τα διαφοροποιεί (το θεμέλιο που παραλείπουμε)'
+      url: /posts/azure-kai-entra-to-themelio/
+    - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+  - code: 13.γ
+    scope: Βασικές και σημαντικές
+    requirement: Χορήγηση και ανάκληση δικαιωμάτων με least privilege, need to know και separation of duties.
+    type: tech
+    control: Microsoft Entra ID roles και ανάθεση πρόσβασης μέσω groups. Access reviews και entitlement management (Microsoft Entra ID Governance).
+    evidence: Role assignments, group memberships, αποτελέσματα access reviews.
+    license: Microsoft Entra ID Governance (access reviews και entitlement management)
+    posts:
+    - title: 'Preview: AD Group Enforcement στο Entra Cloud Sync'
+      url: /posts/previews/ad-group-enforcement-cloud-sync/
+    - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+  - code: 13.δ
+    scope: Βασικές και σημαντικές
+    requirement: Περιορισμός των προνομιούχων λογαριασμών και των δικαιωμάτων διαχείρισης στο απολύτως απαραίτητο.
+    type: tech
+    control: Privileged Identity Management (just-in-time ενεργοποίηση ρόλων με έγκριση). Περιορισμός του αριθμού των Global Administrators. Phishing-resistant MFA για τους administrators.
+    evidence: 'PIM: eligible και active assignments, audit history. Secure Score: recommendations για admin roles.'
+    license: Microsoft Entra ID P2 (Privileged Identity Management)
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+      url: /posts/secure-score-grc-part-1-anatomy/
+  - code: 13.ε
+    scope: Βασικές και σημαντικές
+    requirement: Προσαρμογή δικαιωμάτων πρόσβασης όταν αλλάζει ή διακόπτεται η απασχόληση.
+    type: tech
+    control: Lifecycle workflows (joiner, mover, leaver) στο Microsoft Entra ID Governance. Απενεργοποίηση λογαριασμού και revoke sessions.
+    evidence: 'Entra audit logs: account disabled, sessions revoked. Αρχείο αποχωρήσεων HR.'
+    license: Microsoft Entra ID Governance (lifecycle workflows)
+    posts:
+    - title: 'Defender XDR: Μία ενέργεια, όλοι οι λογαριασμοί, το unified response actions για ταυτότητες έρχεται τον Οκτώβριο, τι φέρνει το MC1461704'
+      url: /posts/new-features/defender-xdr-unified-response-actions-identity-accounts/
+  - code: 13.στ
+    scope: Βασικές και σημαντικές
+    requirement: Ισχυρές μέθοδοι ασφαλούς αυθεντικοποίησης, ανάλογες με την κρισιμότητα.
+    type: tech
+    control: 'Authentication methods policy και authentication strengths στο Entra ID: passkeys (FIDO2), Windows Hello for Business, certificate-based authentication. Token Protection. Password protection.'
+    evidence: 'Entra admin center: Authentication methods, Policies και User registration details.'
+    posts:
+    - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
+      url: /posts/passkeys-by-default-telos-sms-voice-mfa/
+    - title: 'Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει'
+      url: /posts/entra-token-protection-bulk-enrollment-limitation/
+  - code: 13.ζ
+    scope: Βασικές και σημαντικές
+    requirement: Πολυπαραγοντική αυθεντικοποίηση (MFA) όπου απαιτείται με βάση την κρισιμότητα.
+    type: tech
+    control: Conditional Access με «Require multifactor authentication» ή «Require authentication strength», ανά εφαρμογή και επίπεδο κινδύνου.
+    evidence: 'Conditional Access policies. Sign-in logs: authentication requirement. Secure Score: MFA recommendations.'
+    posts:
+    - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
+      url: /posts/passkeys-by-default-telos-sms-voice-mfa/
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+  - code: 13.η
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση πολιτικών και διαδικασιών ελέγχου πρόσβασης.
+    type: mixed
+    control: Conditional Access insights and reporting. Access reviews.
+    evidence: Ιστορικό αλλαγών Conditional Access (audit logs), αποτελέσματα access reviews.
+    license: Microsoft Entra ID Governance ή Microsoft Entra ID P2 (access reviews)
+    posts:
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+- number: 14
+  title: Ασφαλής παραμετροποίηση υλικού, λογισμικού, υπηρεσιών και δικτύων
+  requirements:
+  - code: 14.α
+    scope: Βασικές και σημαντικές
+    requirement: Διαδικασίες και εργαλεία για την επιβολή ρυθμίσεων και παραμετροποιήσεων σε υλικό, λογισμικό, υπηρεσίες και δίκτυο.
+    type: tech
+    control: 'Microsoft Intune: configuration profiles, compliance policies, security baselines. Tenant configuration management στο Microsoft Entra για τις ρυθμίσεις του tenant.'
+    evidence: 'Intune: Devices, Configuration και Compliance, per-policy device status.'
+    posts:
+    - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+    - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+  - code: 14.β
+    scope: Βασικές και σημαντικές
+    requirement: Ασφαλής παραμετροποίηση (secure configuration) με πρότυπα κατασκευαστών ή ανεξάρτητων οργανισμών, και αρχές least functionality και least privilege.
+    type: tech
+    control: Security baselines στο Intune. Recommendations του Microsoft Secure Score. Security baselines assessment (π.χ. CIS) στο Defender Vulnerability Management. Attack surface reduction rules.
+    evidence: 'Secure Score: βαθμολογία και recommendations. Intune: Security baselines, status ανά profile.'
+    license: Microsoft Defender Vulnerability Management (add-on ή standalone) για το security baselines assessment
+    posts:
+    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+      url: /posts/secure-score-grc-part-1-anatomy/
+    - title: 'Microsoft Secure Score Part 2: Inside the Defender Ecosystem'
+      url: /posts/secure-score-grc-part-2-ecosystem/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+  - code: 14.γ
+    scope: Βασικές και σημαντικές
+    requirement: Αλλαγή των προεπιλεγμένων συνθηματικών (default passwords) κατά την εγκατάσταση.
+    type: mixed
+    control: Windows LAPS για μοναδικό, εναλλασσόμενο κωδικό τοπικού διαχειριστή σε κάθε συσκευή Windows.
+    evidence: 'Intune: Account protection, LAPS policy. Διαδικασία εγκατάστασης για δικτυακές και λοιπές συσκευές.'
+    comment: Το Windows LAPS καλύπτει μόνο τον τοπικό διαχειριστή των Windows. Οι δικτυακές συσκευές, οι εφαρμογές και το OT δεν καλύπτονται από το Microsoft 365.
+    posts:
+    - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+  - code: 14.δ
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση των διαδικασιών ασφαλούς παραμετροποίησης, όταν εμφανίζονται νέες απειλές ή νέες εκδόσεις.
+    type: mixed
+    control: Νέα recommendations στο Secure Score και ανακοινώσεις στο Message center ως έναυσμα αναθεώρησης.
+    evidence: Secure Score History. Αρχείο αναθεωρήσεων baselines.
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+- number: 15
+  title: Αρχές ασφαλούς ανάπτυξης εφαρμογών
+  requirements:
+  - code: 15.α
+    scope: Βασικές και σημαντικές
+    requirement: Απαιτήσεις ασφάλειας για τις εφαρμογές που αποκτά ή αναπτύσσει η οντότητα, από το στάδιο του σχεδιασμού.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Για εφαρμογές τρίτων που συνδέονται στο tenant: user consent settings και app governance στο Microsoft Defender for Cloud Apps.'
+    evidence: Προδιαγραφές ασφάλειας εφαρμογών.
+  - code: 15.β
+    scope: Βασικές και σημαντικές
+    requirement: 'Αρχές ασφαλούς κώδικα και αρχιτεκτονικής: security by design, security by default, least privilege, zero trust.'
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: DevOps security στο Microsoft Defender for Cloud και GitHub Advanced Security.'
+    evidence: Πρότυπα ανάπτυξης, αποτελέσματα code review.
+    license: Microsoft Defender for Cloud, GitHub Advanced Security
+    posts:
+    - title: 'Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That''s Actually Different)'
+      url: /posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/
+  - code: 15.γ
+    scope: Βασικές και σημαντικές
+    requirement: Διαχωρισμός και προστασία των περιβαλλόντων ανάπτυξης, δοκιμών και παραγωγής.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Σε Azure: ξεχωριστά subscriptions ή resource groups ανά περιβάλλον, με ξεχωριστά δικαιώματα.'
+    evidence: Διάγραμμα περιβαλλόντων, δικαιώματα πρόσβασης ανά περιβάλλον.
+    license: Συνδρομή Azure
+  - code: 15.δ
+    scope: Βασικές και σημαντικές
+    requirement: Δοκιμές και τεχνικοί έλεγχοι ασφάλειας στα στάδια ανάπτυξης και πριν από την παραγωγική λειτουργία.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: code scanning στο GitHub Advanced Security.'
+    evidence: Αναφορές δοκιμών ασφάλειας πριν από το go-live.
+    license: GitHub Advanced Security
+- number: 16
+  title: Διαχείριση αλλαγών
+  requirements:
+  - code: 16.α
+    scope: Βασικές και σημαντικές
+    requirement: 'Διαδικασίες διαχείρισης αλλαγών: αξιολόγηση αντικτύπου, κατηγοριοποίηση, πλάνο υλοποίησης, δοκιμές και αποδοχή.'
+    type: mixed
+    control: Σταδιακή εφαρμογή με pilot groups στο Intune. Report-only mode στο Conditional Access. Update rings και Windows Autopatch. Audit logs του Entra ID ως ίχνος των αλλαγών. Message center για τις αλλαγές του παρόχου.
+    evidence: 'Αιτήματα αλλαγής. Entra audit logs. Intune: assignments ανά ring.'
+    posts:
+    - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
+      url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
+    - title: 'Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει'
+      url: /posts/entra-token-protection-bulk-enrollment-limitation/
+    - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+  - code: 16.β
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών διαχείρισης αλλαγών.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων.
+- number: 17
+  title: Διαχείριση και γνωστοποίηση ευπαθειών
+  requirements:
+  - code: 17.α
+    scope: Βασικές και σημαντικές
+    requirement: Διαδικασίες και ρόλοι για εντοπισμό, αξιολόγηση και αντιμετώπιση τεχνικών ευπαθειών.
+    type: mixed
+    control: Microsoft Defender Vulnerability Management με remediation requests προς το Intune.
+    evidence: 'Διαδικασία διαχείρισης ευπαθειών. Defender portal: Vulnerability management, Remediation.'
+    posts:
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+  - code: 17.β
+    scope: Βασικές και σημαντικές
+    requirement: Τακτική λήψη και επεξεργασία πληροφοριών για ευπάθειες από κατάλληλες πηγές (αρχές, προμηθευτές, CSIRTs).
+    type: tech
+    control: Defender Vulnerability Management (Weaknesses, με CVE και threat context) και Threat analytics. Message center για ανακοινώσεις της Microsoft.
+    evidence: 'Defender portal: Weaknesses, Threat analytics. Αρχείο ενημερώσεων από CSIRT.'
+    posts:
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+    - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+  - code: 17.γ
+    scope: Βασικές και σημαντικές
+    requirement: Εγκατάσταση ενημερώσεων ασφάλειας σε εύλογο χρόνο. Τεκμηριωμένες εξαιρέσεις με αντισταθμιστικά μέτρα.
+    type: tech
+    control: Update rings και Windows Autopatch στο Intune. Exceptions με αιτιολόγηση στο Defender Vulnerability Management.
+    evidence: 'Intune: Windows update reports. Defender portal: Remediation, Exceptions.'
+    posts:
+    - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
+      url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
+    - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+  - code: 17.δ
+    scope: Βασικές και σημαντικές
+    requirement: Δοκιμή των ενημερώσεων σε ελεγχόμενο περιβάλλον πριν από την παραγωγή, όπου απαιτείται.
+    type: tech
+    control: Pilot ring πριν από το broad ring, στα update rings του Intune ή στο Windows Autopatch.
+    evidence: 'Intune: assignments ανά ring και deferral periods.'
+    posts:
+    - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
+      url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
+  - code: 17.ε
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδικές σαρώσεις ευπαθειών με αυτοματοποιημένα εργαλεία και αναλυτική αναφορά.
+    type: tech
+    control: 'Συνεχής αξιολόγηση ευπαθειών από το Defender Vulnerability Management στις συσκευές που έχουν γίνει onboarding. Για την εξωτερική επιφάνεια: Microsoft Defender External Attack Surface Management. Για OT: Microsoft Defender for IoT.'
+    evidence: 'Defender portal: Vulnerability management dashboard και εξαγωγή αναφοράς.'
+    license: Microsoft Defender External Attack Surface Management, Microsoft Defender for IoT
+    comment: Το Defender Vulnerability Management καλύπτει τις συσκευές που έχουν γίνει onboarding. Ο δικτυακός εξοπλισμός χρειάζεται άλλο εργαλείο σάρωσης.
+    posts:
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+  - code: 17.στ
+    scope: Βασικές και σημαντικές
+    requirement: Αποκατάσταση ευπαθειών σε εύλογο χρόνο με πλάνο προτεραιοποίησης. Τεκμηρίωση όσων δεν αποκαθίστανται.
+    type: tech
+    control: Security recommendations με προτεραιοποίηση (exposure score) και remediation tracking στο Defender Vulnerability Management. Exceptions με αιτιολόγηση.
+    evidence: 'Defender portal: Recommendations, Remediation, Exceptions.'
+    posts:
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 17.ζ
+    scope: Βασικές και σημαντικές
+    requirement: Διαδικασία γνωστοποίησης μη δημόσια γνωστών ευπαθειών στο αρμόδιο CSIRT.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Διαδικασία γνωστοποίησης, αρχείο αναφορών προς CSIRT.
+- number: 18
+  title: Αξιολόγηση της αποτελεσματικότητας των μέτρων διαχείρισης κινδύνων κυβερνοασφάλειας
+  requirements:
+  - code: 18.1.α
+    scope: Βασικές και σημαντικές
+    requirement: Πολιτική και διαδικασίες για τη διενέργεια ελέγχων κυβερνοασφάλειας (πεδίο, συχνότητα, είδος).
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένη πολιτική διενέργειας ελέγχων.
+  - code: 18.1.β
+    scope: Βασικές και σημαντικές
+    requirement: Εξωτερικοί έλεγχοι παρείσδυσης (external penetration tests) τουλάχιστον ετησίως ή μετά από σοβαρό περιστατικό.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Διενεργείται από εξειδικευμένο ελεγκτή.
+    evidence: Αναφορά penetration test.
+  - code: 18.1.γ
+    scope: Βασικές και σημαντικές
+    requirement: Αποκατάσταση των ευρημάτων των εξωτερικών ελέγχων και επικύρωση των διορθωτικών μέτρων.
+    type: mixed
+    control: Όσα ευρήματα αφορούν ρυθμίσεις του Microsoft 365 παρακολουθούνται ως recommendations στο Secure Score ή στο Defender Vulnerability Management.
+    evidence: Πλάνο αποκατάστασης και αναφορά επανελέγχου.
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 18.1.δ
+    scope: Βασικές και σημαντικές
+    requirement: Ετήσια αυτοαξιολόγηση με τον Οδηγό της Εθνικής Αρχής Κυβερνοασφάλειας και αποστολή αποτελεσμάτων με πλάνο διορθωτικών ενεργειών.
+    type: mixed
+    control: Εξαγωγές από Secure Score και Compliance Manager ως τεκμήρια για τις απαντήσεις της αυτοαξιολόγησης.
+    evidence: Υποβληθείσα αυτοαξιολόγηση και πλάνο διορθωτικών ενεργειών.
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 18.2.α
+    scope: Μόνο βασικές
+    requirement: Εσωτερικοί έλεγχοι παρείσδυσης (internal penetration tests) τουλάχιστον ετησίως ή μετά από σοβαρό περιστατικό.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση. Διενεργείται από εξειδικευμένο ελεγκτή.
+    evidence: Αναφορά internal penetration test.
+  - code: 18.2.β
+    scope: Μόνο βασικές
+    requirement: Αποκατάσταση των ευρημάτων των εσωτερικών ελέγχων και επικύρωση των διορθωτικών μέτρων.
+    type: mixed
+    control: Όσα ευρήματα αφορούν το Active Directory και τις ταυτότητες παρακολουθούνται στα security posture assessments του Microsoft Defender for Identity και στο Secure Score.
+    evidence: Πλάνο αποκατάστασης και αναφορά επανελέγχου.
+    posts:
+    - title: 'Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity'
+      url: /posts/generally-available/investigate-ad-domain-defender-identity/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+- number: 19
+  title: Ασφάλεια δικτύων
+  requirements:
+  - code: 19.α
+    scope: Βασικές και σημαντικές
+    requirement: Γραπτή πολιτική και διαδικασίες για την προστασία δικτύων και δικτυακών συσκευών.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένη πολιτική ασφάλειας δικτύων.
+  - code: 19.β
+    scope: Βασικές και σημαντικές
+    requirement: Τείχη προστασίας (firewalls) και, ανάλογα με την κρισιμότητα, IDS/IPS ή WAF.
+    type: mixed
+    control: 'Τα περιμετρικά firewalls είναι εκτός Microsoft 365. Το Microsoft 365 συμπληρώνει με Windows Firewall μέσω Intune και με Microsoft Entra Internet Access (web content filtering) ως Secure Web Gateway. Για workloads σε Azure: Azure Firewall και Azure Web Application Firewall.'
+    evidence: 'Ρυθμίσεις firewall. Intune: Endpoint security, Firewall. Global Secure Access: security profiles.'
+    license: Azure Firewall, Azure WAF (μόνο για workloads σε Azure)
+    posts:
+    - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
+      url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
+    - title: 'Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft'
+      url: /posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/
+  - code: 19.γ
+    scope: Βασικές και σημαντικές
+    requirement: Κανόνες ασφαλούς σύνδεσης, αυθεντικοποίησης και εξουσιοδότησης για την πρόσβαση στο δίκτυο και στις δικτυακές υπηρεσίες.
+    type: tech
+    control: Global Secure Access με Conditional Access (compliant network check) και per-app πρόσβαση με Microsoft Entra Private Access.
+    evidence: Conditional Access policies με Global Secure Access. Traffic logs.
+    posts:
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+  - code: 19.δ
+    scope: Βασικές και σημαντικές
+    requirement: Αποτροπή σύνδεσης μη εξουσιοδοτημένων συσκευών στο εσωτερικό δίκτυο.
+    type: mixed
+    control: Το Network Access Control (802.1X) δεν καλύπτεται από προϊόντα Microsoft. Το Intune δίνει device compliance και πιστοποιητικά συσκευών για το 802.1X. Conditional Access με «Require compliant device» για τους πόρους.
+    evidence: 'Ρυθμίσεις NAC. Intune: compliance policies. Conditional Access policies.'
+    posts:
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+  - code: 19.ε
+    scope: Βασικές και σημαντικές
+    requirement: Διαχωρισμός του δικτύου σε υποδίκτυα ή ζώνες (network segmentation) με βάση την κρισιμότητα.
+    type: mixed
+    control: Το segmentation είναι θέμα δικτυακής υποδομής, εκτός Microsoft 365. Το Microsoft Entra Private Access δίνει per-app πρόσβαση αντί για πρόσβαση σε ολόκληρο το δίκτυο.
+    evidence: 'Διάγραμμα δικτύου με ζώνες. Private Access: application segments.'
+    posts:
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+  - code: 19.στ
+    scope: Βασικές και σημαντικές
+    requirement: Φιλτράρισμα της κίνησης μεταξύ των υποδικτύων, με βάση τις απαιτήσεις κάθε ζώνης.
+    type: org
+    control: Εκτός Microsoft 365 (firewall rules μεταξύ ζωνών). Συμπληρωματικά, Windows Firewall rules μέσω Intune στα endpoints.
+    evidence: Κανόνες firewall μεταξύ ζωνών.
+  - code: 19.ζ
+    scope: Βασικές και σημαντικές
+    requirement: Ισχυρός έλεγχος πρόσβασης και αυθεντικοποίηση για τις απομακρυσμένες συνδέσεις, και για προμηθευτές.
+    type: tech
+    control: Microsoft Entra Private Access με Conditional Access (MFA, compliant device) ως αντικαταστάτης του VPN. Conditional Access για external users.
+    evidence: 'Conditional Access policies για remote access. Global Secure Access: traffic logs.'
+    posts:
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft'
+      url: /posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/
+  - code: 19.η
+    scope: Βασικές και σημαντικές
+    requirement: Περιορισμός ανοικτών θυρών, πρωτοκόλλων και δικτυακών υπηρεσιών στο απολύτως απαραίτητο.
+    type: mixed
+    control: Windows Firewall rules μέσω Intune. Recommendations του Secure Score για παλαιά πρωτόκολλα (π.χ. block legacy authentication). Εντοπισμός internet-facing συσκευών στο Defender for Endpoint.
+    evidence: 'Αποτελέσματα port scanning. Secure Score recommendations. Intune: Firewall policies.'
+    comment: Οι ανοικτές θύρες στον δικτυακό εξοπλισμό δεν καλύπτονται από το Microsoft 365.
+    posts:
+    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+      url: /posts/secure-score-grc-part-1-anatomy/
+  - code: 19.θ
+    scope: Βασικές και σημαντικές
+    requirement: Βέλτιστες πρακτικές για την ασφάλεια του DNS και την ασφαλή δρομολόγηση.
+    type: mixed
+    control: Network protection στο Defender for Endpoint και FQDN/web content filtering στο Microsoft Entra Internet Access. SPF, DKIM και DMARC για τα email domains. DNSSEC και ασφάλεια δρομολόγησης είναι εκτός Microsoft 365.
+    evidence: 'DNS records (SPF, DKIM, DMARC). Global Secure Access: filtering policies.'
+    posts:
+    - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
+      url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
+    - title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
+      url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
+  - code: 19.ι
+    scope: Βασικές και σημαντικές
+    requirement: Προστασία της διαθεσιμότητας των κρίσιμων υπηρεσιών.
+    type: org
+    control: 'Δεν καλύπτεται από το Microsoft 365 για τις δικές σας υπηρεσίες. Για υπηρεσίες σε Azure: Azure DDoS Protection. Για τις υπηρεσίες του Microsoft 365 ισχύουν τα SLA της Microsoft.'
+    evidence: Μέτρα προστασίας DDoS, SLA παρόχων.
+    license: Azure DDoS Protection (μόνο για υπηρεσίες σε Azure)
+  - code: 19.ια
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση πολιτικών και διαδικασιών ασφάλειας δικτύων.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων.
+- number: 20
+  title: Προστασία από κακόβουλο λογισμικό
+  requirements:
+  - code: 20.α
+    scope: Βασικές και σημαντικές
+    requirement: Τεχνολογίες ανίχνευσης και εξουδετέρωσης κακόβουλου λογισμικού σε σταθμούς εργασίας, διακομιστές και δικτυακές συσκευές, με αυτόματες ενημερώσεις.
+    type: tech
+    control: Microsoft Defender Antivirus και Microsoft Defender for Endpoint (cloud-delivered protection, αυτόματα security intelligence updates, tamper protection).
+    evidence: 'Defender portal: Device health, Microsoft Defender Antivirus health report.'
+    comment: Οι δικτυακές συσκευές δεν καλύπτονται από το Microsoft Defender for Endpoint.
+    posts:
+    - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
+      url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+    - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
+      url: /posts/microsoft-defender-air-automated-investigation-response/
+  - code: 20.β
+    scope: Βασικές και σημαντικές
+    requirement: Έλεγχος της εκτέλεσης εφαρμογών και ανίχνευση μη εξουσιοδοτημένου λογισμικού.
+    type: tech
+    control: App Control for Business (πρώην WDAC) μέσω Intune και attack surface reduction rules. Software inventory και block vulnerable applications στο Defender Vulnerability Management.
+    evidence: 'Intune: App Control policies, ASR rules report. Defender portal: Software inventory.'
+    license: Microsoft Defender Vulnerability Management (add-on ή standalone) για το block vulnerable applications
+    planned: 'Άρθρο «Microsoft Defender for Endpoint» της σειράς Defender Up Close (ASR rules): 5 Οκτωβρίου 2026.'
+  - code: 20.γ
+    scope: Βασικές και σημαντικές
+    requirement: Φιλτράρισμα και έλεγχος των μηνυμάτων ηλεκτρονικού ταχυδρομείου για κακόβουλα ή ανεπιθύμητα μηνύματα.
+    type: tech
+    control: 'Exchange Online Protection και Microsoft Defender for Office 365: preset security policies, anti-phishing, Safe Links, Safe Attachments.'
+    evidence: 'Defender portal: Email & collaboration, Threat policies. Threat protection status report.'
+    posts:
+    - title: 'Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)'
+      url: /posts/new-features/mdo-encrypted-attachment-protection-mc1440701/
+    - title: 'Prompt Injection μέσω email: Το Defender for Office 365 μπαίνει σε έναν πόλεμο που δεν ξέραμε ότι ξεκίνησε, τι φέρνει το MC1422060'
+      url: /posts/new-features/prompt-injection-protection-defender-office-365/
+    - title: 'Localized Mark and Notify στο Microsoft Defender for Office 365: Γιατί ένα notification email στη σωστή γλώσσα είναι θέμα Security Awareness (MC1387578)'
+      url: /posts/generally-available/mdo-mark-and-notify-localization/
+    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+  - code: 20.δ
+    scope: Βασικές και σημαντικές
+    requirement: Χρήση μόνο υποστηριζόμενων browsers, τακτική ενημέρωσή τους και περιορισμός των επεκτάσεων τρίτων.
+    type: tech
+    control: Πολιτικές Microsoft Edge μέσω Intune (ενημερώσεις, allow list και block list επεκτάσεων). Browser extensions assessment στο Defender Vulnerability Management.
+    evidence: 'Intune: Settings catalog, Microsoft Edge policies. Defender portal: Browser extensions.'
+    license: Microsoft Defender Vulnerability Management (add-on ή standalone) για το browser extensions assessment
+    planned: 'Άρθρο για τη διαχείριση browsers και επεκτάσεων: έρχεται.'
+  - code: 20.ε
+    scope: Βασικές και σημαντικές
+    requirement: Φιλτράρισμα που εμποδίζει τη σύνδεση με γνωστά κακόβουλα domains και ιστοτόπους.
+    type: tech
+    control: Network protection, web content filtering και SmartScreen στο Defender for Endpoint. Web content filtering στο Microsoft Entra Internet Access.
+    evidence: 'Defender portal: Web protection report. Global Secure Access: traffic logs.'
+    posts:
+    - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
+      url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+- number: 21
+  title: Εκπαίδευση και ευαισθητοποίηση σε θέματα κυβερνοασφάλειας
+  requirements:
+  - code: 21.α
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδικά προγράμματα εκπαίδευσης και ευαισθητοποίησης για όλο το προσωπικό και τη διοίκηση, με συγκεκριμένη ελάχιστη θεματολογία.
+    type: mixed
+    control: Attack simulation training στο Microsoft Defender for Office 365 Plan 2 (προσομοιώσεις phishing και εκπαιδευτικές ενότητες). Κουμπί αναφοράς ύποπτων μηνυμάτων και αναφορά από το Teams.
+    evidence: 'Defender portal: Attack simulation training, Reports (training completion). Βεβαιώσεις εκπαίδευσης.'
+    license: Microsoft Defender for Office 365 Plan 2
+    comment: Το Attack simulation training δεν καλύπτει όλη τη θεματολογία της περίπτωσης α (π.χ. ασφάλεια οικιακού δικτύου, αντίγραφα ασφαλείας). Τα υπόλοιπα θέματα θέλουν ξεχωριστό εκπαιδευτικό υλικό.
+    posts:
+    - title: 'Localized Mark and Notify στο Microsoft Defender for Office 365: Γιατί ένα notification email στη σωστή γλώσσα είναι θέμα Security Awareness (MC1387578)'
+      url: /posts/generally-available/mdo-mark-and-notify-localization/
+    - title: 'Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές'
+      url: /posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/
+  - code: 21.β
+    scope: Βασικές και σημαντικές
+    requirement: Εξειδικευμένη εκπαίδευση για το τεχνικό προσωπικό, ανάλογα με τον ρόλο του.
+    type: org
+    control: 'Δεν καλύπτεται από ρύθμιση. Πηγές: Microsoft Learn και πιστοποιήσεις ασφάλειας.'
+    evidence: Πλάνο εκπαίδευσης τεχνικού προσωπικού, πιστοποιητικά.
+  - code: 21.γ
+    scope: Βασικές και σημαντικές
+    requirement: Αξιολόγηση και επικαιροποίηση των προγραμμάτων εκπαίδευσης.
+    type: mixed
+    control: Μετρικές του Attack simulation training (compromise rate, repeat offenders) ως βάση για την αναθεώρηση.
+    evidence: Αναφορές προσομοιώσεων ανά περίοδο.
+    license: Microsoft Defender for Office 365 Plan 2
+- number: 22
+  title: Χρήση κρυπτογραφίας
+  requirements:
+  - code: 22.α
+    scope: Βασικές και σημαντικές
+    requirement: Γραπτή πολιτική και διαδικασίες κρυπτογραφίας, σύμφωνες με το σχήμα ταξινόμησης.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένη πολιτική κρυπτογράφησης δεδομένων και επικοινωνιών.
+  - code: 22.β
+    scope: Βασικές και σημαντικές
+    requirement: 'Κρυπτογράφηση των δεδομένων αυξημένης κρισιμότητας σε αποθήκευση (encryption at rest): τερματικά, διακομιστές, αφαιρούμενα μέσα, εφαρμογές, βάσεις δεδομένων.'
+    type: tech
+    control: 'BitLocker μέσω Intune στα endpoints και BitLocker To Go στα αφαιρούμενα μέσα. Sensitivity labels με κρυπτογράφηση στο Microsoft Purview. Service encryption στο Microsoft 365. Για Windows Servers: BitLocker. Για SQL Server: Transparent Data Encryption.'
+    evidence: 'Intune: Encryption report. Purview: labels με encryption settings.'
+    comment: Οι διακομιστές και οι βάσεις δεδομένων άλλων κατασκευαστών δεν καλύπτονται από προϊόντα Microsoft.
+    posts:
+    - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: 22.γ
+    scope: Βασικές και σημαντικές
+    requirement: Κρυπτογράφηση των δεδομένων αυξημένης κρισιμότητας κατά τη μεταφορά (encryption in transit).
+    type: tech
+    control: TLS στις υπηρεσίες του Microsoft 365. Microsoft Purview Message Encryption για email. Κρυπτογραφημένα tunnels στο Global Secure Access.
+    evidence: Ρυθμίσεις connectors στο Exchange Online. Mail flow rules για κρυπτογράφηση.
+    posts:
+    - title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
+      url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+  - code: 22.δ
+    scope: Βασικές και σημαντικές
+    requirement: Διαδικασίες για αλγορίθμους, πρωτόκολλα και διαχείριση κρυπτογραφικών κλειδιών και πιστοποιητικών.
+    type: mixed
+    control: Certificate profiles στο Intune. Microsoft Cloud PKI για την έκδοση πιστοποιητικών. Customer Key στο Microsoft Purview για όσους διαχειρίζονται δικά τους κλειδιά.
+    evidence: 'Διαδικασία διαχείρισης κλειδιών. Intune: certificate profiles.'
+    license: Microsoft Cloud PKI (πρόσθετο του Intune), Customer Key (Microsoft 365 E5)
+  - code: 22.ε
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών κρυπτογραφίας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων.
+- number: 23
+  title: Φυσική και περιβαλλοντική ασφάλεια
+  requirements:
+  - code: 23.α
+    scope: Βασικές και σημαντικές
+    requirement: Γραπτή πολιτική και διαδικασίες φυσικού ελέγχου πρόσβασης και προστασίας από φυσικούς και περιβαλλοντικούς κινδύνους.
+    type: org
+    control: Εκτός Microsoft 365. Για τα δεδομένα που φιλοξενούνται στο Microsoft 365, οι εκθέσεις ελέγχου των datacenters της Microsoft βρίσκονται στο Service Trust Portal.
+    evidence: Εγκεκριμένη πολιτική φυσικής και περιβαλλοντικής ασφάλειας.
+  - code: 23.β
+    scope: Βασικές και σημαντικές
+    requirement: Μέτρα φυσικής ασφάλειας και επίβλεψης στην περίμετρο και εσωτερικές ζώνες προστασίας.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Σχέδιο ζωνών, συστήματα επιτήρησης.
+  - code: 23.γ
+    scope: Βασικές και σημαντικές
+    requirement: Περιορισμός της φυσικής πρόσβασης στους χώρους κρίσιμων συστημάτων σε εξουσιοδοτημένο προσωπικό, με ταυτοποίηση και καταγραφή.
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Αρχεία πρόσβασης στο computer room.
+  - code: 23.δ
+    scope: Βασικές και σημαντικές
+    requirement: Προστασία από φυσικούς και περιβαλλοντικούς κινδύνους (πυρκαγιά, πλημμύρα, εγκληματική δραστηριότητα).
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: Πυρανίχνευση, πυρόσβεση, συναγερμός.
+  - code: 23.ε
+    scope: Βασικές και σημαντικές
+    requirement: Προστασία και επίβλεψη των μέσων υποστήριξης (ηλεκτρισμός, νερό, εξαερισμός, κλιματισμός).
+    type: org
+    control: Εκτός Microsoft 365.
+    evidence: UPS, γεννήτρια, αρχεία συντήρησης.
+  - code: 23.στ
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών φυσικής ασφάλειας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων.
+- number: 24
+  title: Διαχείριση περιστατικών κυβερνοασφάλειας
+  requirements:
+  - code: 24.α
+    scope: Βασικές και σημαντικές
+    requirement: 'Γραπτή πολιτική διαχείρισης περιστατικών: ρόλοι και διαδικασίες αναφοράς στις αρχές, και πλάνο ανίχνευσης, ανάλυσης, απόκρισης και ανάκαμψης.'
+    type: mixed
+    control: Incidents queue του Microsoft Defender XDR ως το επιχειρησιακό εργαλείο του πλάνου. Automated investigation and response. Unified response actions για ταυτότητες.
+    evidence: 'Εγκεκριμένη πολιτική και πλάνο. Defender portal: Incidents, Action center.'
+    posts:
+    - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
+      url: /posts/microsoft-defender-air-automated-investigation-response/
+    - title: 'Defender XDR: Μία ενέργεια, όλοι οι λογαριασμοί, το unified response actions για ταυτότητες έρχεται τον Οκτώβριο, τι φέρνει το MC1461704'
+      url: /posts/new-features/defender-xdr-unified-response-actions-identity-accounts/
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+  - code: 24.β
+    scope: Βασικές και σημαντικές
+    requirement: Ορισμός τουλάχιστον ενός υπαλλήλου που συντονίζει (ή επιβλέπει, αν υπάρχει εξωτερικός ανάδοχος) την απόκριση σε περιστατικά.
+    type: mixed
+    control: Ανάθεση incidents σε συγκεκριμένο χρήστη στο Defender XDR.
+    evidence: 'Απόφαση ορισμού. Defender portal: πεδίο «Assigned to» στα incidents.'
+    posts:
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+  - code: 24.γ
+    scope: Βασικές και σημαντικές
+    requirement: Καταγραφή δραστηριοτήτων (event logging) σε διακομιστές, δικτυακές συσκευές, συσκευές χρηστών, συστήματα και εφαρμογές, ιδίως για ευαίσθητα δεδομένα και προνομιούχους λογαριασμούς.
+    type: tech
+    control: Microsoft Purview Audit (unified audit log). Sign-in και audit logs του Entra ID. Telemetry του Defender for Endpoint. Sensors του Defender for Identity στους domain controllers. Audit history του PIM.
+    evidence: 'Purview: Audit. Entra: Sign-in logs, Audit logs. Defender for Identity: sensor health.'
+    license: Microsoft Sentinel (για logs εκτός Microsoft 365)
+    comment: Οι δικτυακές συσκευές χρειάζονται συλλογή logs εκτός Microsoft 365, π.χ. με Microsoft Sentinel ή άλλο SIEM.
+    posts:
+    - title: 'Defender for Identity: Το νέο health issue που σου λέει πότε ''τυφλώνεσαι'' σε έναν Domain Controller'
+      url: /posts/new-features/defender-for-identity-health-issue-missing-windows-events/
+    - title: 'Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις'
+      url: /posts/new-features/defender-identity-health-alert-network-traffic/
+    - title: 'Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705'
+      url: /posts/new-features/defender-xdr-unified-identity-timeline/
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 24.δ
+    scope: Βασικές και σημαντικές
+    requirement: Συλλογή και τήρηση των καταγραφών για προκαθορισμένο χρόνο, με προστασία από μη εξουσιοδοτημένη πρόσβαση και παραποίηση.
+    type: tech
+    control: Audit log retention policies στο Microsoft Purview Audit. Microsoft Sentinel ή Log Analytics για μακρύτερη διατήρηση. Πρόσβαση στα logs μόνο με ρόλους.
+    evidence: 'Purview: Audit retention policies. Ρυθμίσεις retention στο workspace.'
+    license: Microsoft Purview Audit (Premium) ή Microsoft Sentinel για μακρύτερη διατήρηση
+    comment: 'Ο χρόνος διατήρησης των logs εξαρτάται από τις άδειες και από την πολιτική κάθε οργανισμού. Η ΚΥΑ ζητά «προκαθορισμένη χρονική περίοδο»: ορίστε τη ρητά στην πολιτική σας και ρυθμίστε αντίστοιχα το audit log retention policy.'
+    posts:
+    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+  - code: 24.ε
+    scope: Βασικές και σημαντικές
+    requirement: Τακτικός έλεγχος των καταγραφών για ύποπτη δραστηριότητα. Κατάλληλα όρια και συνθήκες ειδοποίησης όταν ο έλεγχος είναι αυτοματοποιημένος.
+    type: tech
+    control: Alerts και incidents με συσχέτιση στο Defender XDR. Custom detection rules με advanced hunting (KQL). Anomaly detection policies στο Defender for Cloud Apps. Health alerts του Defender for Identity.
+    evidence: 'Defender portal: Incidents, Custom detection rules, Alert tuning.'
+    posts:
+    - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
+      url: /posts/microsoft-defender-air-automated-investigation-response/
+    - title: 'Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705'
+      url: /posts/new-features/defender-xdr-unified-identity-timeline/
+    - title: 'Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging'
+      url: /posts/teams-security-detection-report/
+    - title: 'Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις'
+      url: /posts/new-features/defender-identity-health-alert-network-traffic/
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+  - code: 24.στ
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών απόκρισης.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων, lessons learned.
+- number: 25
+  title: Επιχειρησιακή συνέχεια και διαχείριση κρίσεων
+  requirements:
+  - code: 25.1.α
+    scope: Βασικές και σημαντικές
+    requirement: Λεπτομερές πλάνο επιχειρησιακής συνέχειας και ανάκαμψης από καταστροφή, με ελάχιστο περιεχόμενο.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένο BCP και DRP.
+  - code: 25.1.β
+    scope: Βασικές και σημαντικές
+    requirement: Ανάλυση επιχειρηματικών επιπτώσεων (business impact analysis) και απαιτήσεις συνέχειας για τα συστήματα.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Έκθεση BIA με RTO και RPO.
+  - code: 25.1.γ
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση του πλάνου.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων, αποτελέσματα ασκήσεων.
+  - code: 25.1.δ
+    scope: Βασικές και σημαντικές
+    requirement: Γραπτή πολιτική και διαδικασίες για τη λήψη και ασφαλή διαχείριση αντιγράφων ασφαλείας.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένη πολιτική αντιγράφων ασφαλείας.
+  - code: 25.1.ε
+    scope: Βασικές και σημαντικές
+    requirement: Αυτοματοποιημένη λήψη και τήρηση αντιγράφων ασφαλείας συστημάτων, εφαρμογών και δεδομένων, ανάλογα με την κρισιμότητα.
+    type: mixed
+    control: Microsoft 365 Backup για Exchange Online, SharePoint και OneDrive. Azure Backup για διακομιστές. Το retention και το versioning δεν αποτελούν αντίγραφο ασφαλείας.
+    evidence: Backup policies και αναφορές επιτυχίας.
+    license: Microsoft 365 Backup (χρέωση με βάση τη χρήση), Azure Backup
+    planned: 'Άρθρο για το backup στο Microsoft 365: έρχεται.'
+  - code: 25.1.στ
+    scope: Βασικές και σημαντικές
+    requirement: Έλεγχος φυσικής και λογικής πρόσβασης στα αντίγραφα ασφαλείας.
+    type: mixed
+    control: Ξεχωριστοί ρόλοι διαχείρισης backup στο Entra ID, με PIM και MFA.
+    evidence: Role assignments για το backup, audit logs.
+    license: Microsoft Entra ID P2 (Privileged Identity Management)
+    comment: Η υλοποίηση εξαρτάται από τη λύση backup που χρησιμοποιείται.
+  - code: 25.1.ζ
+    scope: Βασικές και σημαντικές
+    requirement: Περιοδική δοκιμή επαναφοράς (restoration) δείγματος των αντιγράφων ασφαλείας.
+    type: org
+    control: Οργανωτική διαδικασία, με το εργαλείο backup που χρησιμοποιείται.
+    evidence: Πρακτικά δοκιμών επαναφοράς.
+  - code: 25.2.α
+    scope: Μόνο βασικές
+    requirement: Διαδικασίες διαχείρισης κρίσεων για ιδιαίτερα σοβαρά περιστατικά (ρόλοι, κανάλια επικοινωνίας με αρχές και κοινό, διατήρηση ασφάλειας).
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Εγκεκριμένες διαδικασίες διαχείρισης κρίσεων.
+  - code: 25.2.β
+    scope: Μόνο βασικές
+    requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών διαχείρισης κρίσεων.
+    type: org
+    control: Δεν καλύπτεται από ρύθμιση.
+    evidence: Ιστορικό αναθεωρήσεων.
