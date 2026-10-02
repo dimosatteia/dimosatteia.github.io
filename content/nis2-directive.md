@@ -6,6 +6,12 @@ draft: true
 layout: "nis2"
 dataKey: "nis2directive"
 url: "/nis2/"
+# Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
+menu:
+  main:
+    identifier: nis2directive
+    name: "NIS2"
+    weight: 28
 description: "Τα άρθρα 20, 21, 23, 24 και 25 της Οδηγίας NIS2: ποια τεχνολογία της Microsoft τα υποστηρίζει, πού είναι το τεκμήριο και ποιο άρθρο της ΚΥΑ 1689/2025 ισχύει."
 keywords:
   - Οδηγία NIS2

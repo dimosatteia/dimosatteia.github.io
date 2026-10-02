@@ -26,6 +26,9 @@
                         {{- end -}}
                         {{- with site.GetPage "/nis2" -}}
                           {{- $hl = printf "%s**🆕 Νέο:** [%s](%s)<br>" $hl .Title .RelPermalink -}}
+                        {{- end -}}
+                        {{- with site.GetPage "/nis2-directive" -}}
+                          {{- $hl = printf "%s\n\n**🆕 Νέο:** [%s](%s)<br>" $hl .Title .RelPermalink -}}
                         {{- end }}
                         {{ replace .Site.Params.homeInfoParams.Content "%%HIGHLIGHTS%%" $hl | markdownify }}
                     </div>
