@@ -202,10 +202,16 @@ menu:
       name: Release Status
       url: /releases/
       weight: 25
-    - identifier: nis2
-      name: "ΚΥΑ 1689/2025"
+    # Ομάδα «Συμμόρφωση»: ΚΥΑ εδώ, NIS2 και ISO 27001 ορίζονται στο front matter των σελίδων τους (εμφανίζονται όταν δημοσιευτούν)
+    - identifier: compliance
+      name: Συμμόρφωση
       url: /kya-1689-2025/
       weight: 27
+    - identifier: nis2
+      parent: compliance
+      name: "ΚΥΑ 1689/2025 με Microsoft 365"
+      url: /kya-1689-2025/
+      weight: 1
     - identifier: releases-new
       parent: releases
       name: "🆕 Νέα Χαρακτηριστικά (New Features)"
