@@ -1,4 +1,4 @@
-# Αντιστοίχιση Οδηγίας (ΕΕ) 2022/2555 (NIS2), άρθρα 20, 21 και 23 -> Microsoft -> ΚΥΑ 1689/2025 -> άρθρα thecybersec.gr
+# Αντιστοίχιση Οδηγίας (ΕΕ) 2022/2555 (NIS2), άρθρα 20, 21, 23, 24 και 25 -> Microsoft -> ΚΥΑ 1689/2025 -> άρθρα thecybersec.gr
 # Παράγεται από script. Η σελίδα /nis2/ διαβάζει αυτό το αρχείο. kya: άρθρα της ΚΥΑ 1689/2025 που εξειδικεύουν την απαίτηση.
 source:
   act: Οδηγία (ΕΕ) 2022/2555 (NIS2)
@@ -31,9 +31,11 @@ articles:
     kya:
     - 4
     posts:
-    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+    - &id016
+      title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
-    - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
+    - &id017
+      title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
       url: /posts/microsoft-secure-score-grc-programma-ciso/
   - code: '20.2'
     scope: Βασικές και σημαντικές
@@ -248,7 +250,8 @@ articles:
     - 12
     posts:
     - *id006
-    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+    - &id015
+      title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - *id007
   - code: '21.4'
@@ -263,7 +266,8 @@ articles:
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
-    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+    - &id018
+      title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
 - number: 23
   title: Υποχρεώσεις αναφοράς περιστατικών
@@ -362,3 +366,35 @@ articles:
     - 24
     posts:
     - *id014
+- number: 24
+  title: Χρήση των ευρωπαϊκών συστημάτων πιστοποίησης της κυβερνοασφάλειας
+  requirements:
+  - code: '24.1'
+    scope: Βασικές και σημαντικές
+    requirement: Για την απόδειξη της συμμόρφωσης με το άρθρο 21, τα κράτη μέλη μπορούν να απαιτούν τη χρήση προϊόντων, υπηρεσιών και διαδικασιών ΤΠΕ που έχουν πιστοποιηθεί στο πλαίσιο ευρωπαϊκών συστημάτων πιστοποίησης κυβερνοασφάλειας του κανονισμού (ΕΕ) 2019/881. Ενθαρρύνεται επίσης η χρήση αναγνωρισμένων υπηρεσιών εμπιστοσύνης.
+    type: org
+    control: Service Trust Portal για τα πιστοποιητικά και τις εκθέσεις ελέγχου των υπηρεσιών της Microsoft. Το Microsoft Purview Compliance Manager δείχνει ποια controls καλύπτει η Microsoft ως πάροχος (Microsoft managed controls).
+    evidence: 'Πιστοποιητικά και εκθέσεις ελέγχου της Microsoft από το Service Trust Portal. Compliance Manager: κατάλογος Microsoft managed controls.'
+    comment: Το άρθρο αφορά προϊόντα και υπηρεσίες πιστοποιημένα με ευρωπαϊκά συστήματα του κανονισμού (ΕΕ) 2019/881. Το Compliance Manager είναι αυτοαξιολόγηση και δεν αποτελεί πιστοποίηση. Η υποχρέωση ισχύει μόνο αν την επιβάλει το κράτος μέλος ή κατ' εξουσιοδότηση πράξη της Επιτροπής.
+    posts:
+    - *id006
+    - *id015
+    - *id007
+- number: 25
+  title: Τυποποίηση
+  requirements:
+  - code: '25.1'
+    scope: Βασικές και σημαντικές
+    requirement: Για τη συγκλίνουσα εφαρμογή του άρθρου 21, ενθαρρύνεται η χρήση ευρωπαϊκών και διεθνώς αποδεκτών προτύπων και τεχνικών προδιαγραφών σχετικών με την ασφάλεια συστημάτων δικτύου και πληροφοριών, χωρίς να επιβάλλεται ή να ευνοείται συγκεκριμένο είδος τεχνολογίας.
+    type: mixed
+    control: Microsoft Purview Compliance Manager με έτοιμα assessments για διεθνή πρότυπα (π.χ. ISO/IEC 27001, NIST CSF), που αντιστοιχίζουν τις ρυθμίσεις του tenant στα controls κάθε προτύπου. Microsoft Secure Score ως μετρήσιμη εικόνα της εφαρμογής των τεχνικών ρυθμίσεων που αντιστοιχούν σε αυτά τα controls.
+    evidence: 'Compliance Manager: βαθμολογία ανά assessment και κατάσταση improvement actions ανά control του προτύπου. Secure Score: βαθμολογία και History.'
+    license: Microsoft Purview Compliance Manager premium assessments (ανάλογα με το πρότυπο και την άδεια)
+    comment: Το Secure Score δεν είναι πρότυπο και η βαθμολογία του δεν αποδεικνύει συμμόρφωση με κανένα πρότυπο. Το Compliance Manager δείχνει πρόοδο σε αυτοαξιολόγηση. Η πιστοποίηση κατά ISO/IEC 27001 δίνεται μόνο από διαπιστευμένο φορέα.
+    kya:
+    - 5
+    - 9
+    posts:
+    - *id016
+    - *id017
+    - *id018
