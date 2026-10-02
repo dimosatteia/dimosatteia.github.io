@@ -237,7 +237,7 @@ articles:
     type: tech
     control: Microsoft Entra ID ως ενιαίος κατάλογος ταυτοτήτων, με Entra Connect ή Cloud Sync για το Active Directory. Lifecycle workflows για joiner, mover, leaver.
     evidence: 'Entra ID: audit logs δημιουργίας και απενεργοποίησης λογαριασμών, ιστορικό lifecycle workflows.'
-    license: Microsoft Entra ID Governance (lifecycle workflows)
+    license: Microsoft Entra ID Governance (lifecycle workflows· πρόσθετο, περιλαμβάνεται στο Microsoft 365 E7)
     kya:
     - 13
     posts:
@@ -611,7 +611,7 @@ articles:
     type: mixed
     control: Απενεργοποίηση λογαριασμού και ανάκληση sessions στο Entra ID. Lifecycle workflows για την αποχώρηση. Αφαίρεση εταιρικών δεδομένων από συσκευές μέσω Intune.
     evidence: 'Entra ID: audit logs απενεργοποίησης. Έντυπο αποχώρησης.'
-    license: Microsoft Entra ID Governance (lifecycle workflows)
+    license: Microsoft Entra ID Governance (lifecycle workflows· πρόσθετο, περιλαμβάνεται στο Microsoft 365 E7)
     comment: Οι ρήτρες εμπιστευτικότητας μετά την αποχώρηση είναι συμβατικό ζήτημα.
     kya:
     - 10
@@ -638,7 +638,7 @@ articles:
     type: tech
     control: Conditional Access με απαίτηση compliant device και MFA. Compliance policies και app protection policies στο Intune. Microsoft Entra Private Access για πρόσβαση ανά εφαρμογή αντί για VPN.
     evidence: 'Entra ID: πολιτικές Conditional Access. Intune: αναφορές συμμόρφωσης συσκευών.'
-    license: Microsoft Entra Private Access
+    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     kya:
     - 13
     - 19
@@ -827,6 +827,7 @@ articles:
     type: tech
     control: 'Microsoft Intune: compliance policies, configuration profiles, security baselines. Microsoft Defender for Endpoint. App protection policies για προσωπικές συσκευές.'
     evidence: 'Intune: αναφορές συμμόρφωσης. Defender for Endpoint: device inventory με κατάσταση onboarding.'
+    license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το device inventory
     kya:
     - 14
     - 20
@@ -964,7 +965,7 @@ articles:
     type: tech
     control: Microsoft Purview Data Loss Prevention για Exchange, SharePoint, OneDrive και Teams. Endpoint DLP για τις συσκευές. Network Data Security μέσω Global Secure Access.
     evidence: 'Purview: DLP policies, alerts και Activity explorer.'
-    license: Microsoft 365 E5 (Endpoint DLP, Teams DLP, Network Data Security), Microsoft Entra Internet Access (Network Data Security)
+    license: Microsoft 365 E5 (Endpoint DLP, Teams DLP, Network Data Security), Microsoft Entra Internet Access (Network Data Security· Microsoft Entra Suite, standalone ή Microsoft 365 E7)
     kya:
     - 11
     posts:
@@ -1062,7 +1063,7 @@ articles:
     type: mixed
     control: Ο δικτυακός εξοπλισμός είναι εκτός Microsoft 365. Το Microsoft 365 συμπληρώνει με Windows Firewall μέσω Intune και με Global Secure Access.
     evidence: 'Ρυθμίσεις firewall. Intune: πολιτικές Windows Firewall.'
-    license: Microsoft Entra Internet Access, Microsoft Entra Private Access
+    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7), Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     kya:
     - 19
     posts:
@@ -1077,7 +1078,7 @@ articles:
     type: mixed
     control: Οι συμβάσεις με τους παρόχους δικτύου είναι οργανωτικό μέτρο. Το Global Secure Access δίνει κρυπτογραφημένη πρόσβαση με πολιτικές ανά χρήστη και συσκευή.
     evidence: 'Συμβάσεις και SLA δικτυακών υπηρεσιών. Global Secure Access: traffic forwarding profiles.'
-    license: Microsoft Entra Internet Access, Microsoft Entra Private Access
+    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7), Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     kya:
     - 19
     posts:
@@ -1092,7 +1093,7 @@ articles:
     type: mixed
     control: Το segmentation είναι θέμα δικτυακής υποδομής, εκτός Microsoft 365. Το Microsoft Entra Private Access δίνει πρόσβαση ανά εφαρμογή αντί για πρόσβαση σε ολόκληρο το δίκτυο.
     evidence: 'Διάγραμμα δικτύου με ζώνες. Private Access: application segments.'
-    license: Microsoft Entra Private Access
+    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     kya:
     - 19
     posts:
@@ -1104,7 +1105,7 @@ articles:
     type: tech
     control: Web content filtering και network protection στο Microsoft Defender for Endpoint. Microsoft Defender SmartScreen. Web content filtering στο Microsoft Entra Internet Access.
     evidence: 'Defender portal: web content filtering policies και web protection report.'
-    license: Microsoft Entra Internet Access
+    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     kya:
     - 19
     - 20

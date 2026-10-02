@@ -407,7 +407,7 @@ articles:
     type: tech
     control: Lifecycle workflows (joiner, mover, leaver) στο Microsoft Entra ID Governance. Απενεργοποίηση λογαριασμού και revoke sessions.
     evidence: 'Entra audit logs: account disabled, sessions revoked. Αρχείο αποχωρήσεων HR.'
-    license: Microsoft Entra ID Governance (lifecycle workflows)
+    license: Microsoft Entra ID Governance (lifecycle workflows· πρόσθετο, περιλαμβάνεται στο Microsoft 365 E7)
   - code: 13.στ
     scope: Βασικές και σημαντικές
     requirement: Ισχυρές μέθοδοι ασφαλούς αυθεντικοποίησης, ανάλογες με την κρισιμότητα.
@@ -695,7 +695,7 @@ articles:
     type: mixed
     control: 'Τα περιμετρικά firewalls είναι εκτός Microsoft 365. Το Microsoft 365 συμπληρώνει με Windows Firewall μέσω Intune και με Microsoft Entra Internet Access (web content filtering) ως Secure Web Gateway. Για workloads σε Azure: Azure Firewall και Azure Web Application Firewall.'
     evidence: 'Ρυθμίσεις firewall. Intune: Endpoint security, Firewall. Global Secure Access: security profiles.'
-    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone). Azure Firewall, Azure WAF (μόνο για workloads σε Azure)
+    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7). Azure Firewall, Azure WAF (μόνο για workloads σε Azure)
     posts:
     - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
       url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
@@ -707,7 +707,7 @@ articles:
     type: tech
     control: Global Secure Access με Conditional Access (compliant network check) και per-app πρόσβαση με Microsoft Entra Private Access.
     evidence: Conditional Access policies με Global Secure Access. Traffic logs.
-    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone)
+    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
@@ -728,7 +728,7 @@ articles:
     type: mixed
     control: Το segmentation είναι θέμα δικτυακής υποδομής, εκτός Microsoft 365. Το Microsoft Entra Private Access δίνει per-app πρόσβαση αντί για πρόσβαση σε ολόκληρο το δίκτυο.
     evidence: 'Διάγραμμα δικτύου με ζώνες. Private Access: application segments.'
-    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone)
+    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
       url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
@@ -744,7 +744,7 @@ articles:
     type: tech
     control: Microsoft Entra Private Access με Conditional Access (MFA, compliant device) ως αντικαταστάτης του VPN. Conditional Access για external users.
     evidence: 'Conditional Access policies για remote access. Global Secure Access: traffic logs.'
-    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone)
+    license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
       url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
@@ -769,7 +769,7 @@ articles:
     type: mixed
     control: Network protection στο Defender for Endpoint και FQDN/web content filtering στο Microsoft Entra Internet Access. SPF, DKIM και DMARC για τα email domains. DNSSEC και ασφάλεια δρομολόγησης είναι εκτός Microsoft 365.
     evidence: 'DNS records (SPF, DKIM, DMARC). Global Secure Access: filtering policies.'
-    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone)
+    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
       url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
@@ -842,7 +842,7 @@ articles:
     type: tech
     control: Network protection, web content filtering και SmartScreen στο Defender for Endpoint. Web content filtering στο Microsoft Entra Internet Access.
     evidence: 'Defender portal: Web protection report. Global Secure Access: traffic logs.'
-    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone)
+    license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
       url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
@@ -904,7 +904,7 @@ articles:
     type: tech
     control: TLS στις υπηρεσίες του Microsoft 365. Microsoft Purview Message Encryption για email. Κρυπτογραφημένα tunnels στο Global Secure Access.
     evidence: Ρυθμίσεις connectors στο Exchange Online. Mail flow rules για κρυπτογράφηση.
-    license: Microsoft Entra Internet Access ή Microsoft Entra Private Access (Microsoft Entra Suite ή standalone)
+    license: Microsoft Entra Internet Access ή Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
       url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
