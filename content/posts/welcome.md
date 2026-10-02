@@ -20,7 +20,7 @@ tags:
   - "GRC"
 author: "Dimosthenis Atteia"
 description: "Πρακτικό περιεχόμενο Microsoft 365 Security για IT Pros: walkthroughs του Defender, οδηγοί hardening και μαθήματα compliance από περιβάλλοντα παραγωγής."
-summary: "Μια εισαγωγή στο blog, στα θέματα που θα καλύψω και στην πρώτη σειρά που σχεδιάζω για το 2026."
+summary: "Μια εισαγωγή στο blog, στους κανόνες πίσω από κάθε άρθρο και στις σειρές άρθρων που μπορείς να διαβάσεις."
 series:
 ShowToc: true
 TocOpen: false
@@ -51,12 +51,16 @@ Microsoft 365 και έχεις πέσει στον ίδιο τοίχο που �
    εξαιρετικά. Βγάζει όμως και features που δεν είναι έτοιμα. Θα σου λέω
    ποιο είναι ποιο.
 
-## Τι έρχεται πρώτο
+## Οι σειρές του blog
 
-Η πρώτη σειρά που σχεδιάζω για το 2026:
+Τα περισσότερα άρθρα οργανώνονται σε [σειρές](/series/), ώστε να διαβάζεις ένα θέμα από την αρχή ως το τέλος:
 
-- **[Microsoft Secure Score as a Cyber GRC Instrument](/posts/secure-score-grc-part-0-intro/)**
-— Μια σειρά 2 έως 4 μερών για το πώς το Secure Score γίνεται εργαλείο διακυβέρνησης σε επίπεδο board.
+- **[Microsoft Secure Score as a Cyber GRC Instrument](/series/microsoft-secure-score-as-a-cyber-grc-instrument/)**: πώς το Secure Score γίνεται εργαλείο διακυβέρνησης σε επίπεδο board. Ξεκίνα από την [εισαγωγή](/posts/secure-score-grc-part-0-intro/).
+- **[Microsoft Defender Demystified](/series/microsoft-defender-demystified/)**: η οικογένεια του Microsoft Defender από την αρχή, με τα προϊόντα, τα workloads, το licensing και το portal.
+- **[Microsoft Defender Up Close](/series/microsoft-defender-up-close/)**: κάθε προϊόν του Defender από κοντά, με πρακτική παραμετροποίηση.
+- **[Global Secure Access](/series/global-secure-access/)**: το Security Service Edge της Microsoft, από τα traffic profiles μέχρι το Conditional Access.
+
+Εκτός από τις σειρές, στο [Release Status](/releases/) βρίσκεις τα νέα features ανά φάση κυκλοφορίας: New Features, Public Preview και Generally Available.
 
 ## Μια σημείωση για τη μορφή
 
@@ -65,8 +69,8 @@ Microsoft 365 και έχεις πέσει στον ίδιο τοίχο που �
 αναπάντητες τις πιο σημαντικές ερωτήσεις. Κάθε μεγάλο άρθρο έχει πίνακα
 περιεχομένων και στο μενού υπάρχει πεδίο αναζήτησης. Χρησιμοποίησέ τα.
 
-Αν ένα άρθρο ανήκει σε σειρά, θα δεις την ένδειξη **Series** στην κεφαλίδα
-και links προς τα υπόλοιπα μέρη στο τέλος.
+Αν ένα άρθρο ανήκει σε σειρά, στο τέλος του θα βρεις links προς το
+προηγούμενο και το επόμενο μέρος.
 
 ## Επικοινωνία
 
@@ -76,4 +80,4 @@ Microsoft 365 και έχεις πέσει στον ίδιο τοίχο που �
 
 Σχετικές τεχνικές σημειώσεις, λεπτομέρειες υλοποίησης και υποστηρικτικές αναφορές διατηρούνται εδώ: [GitHub](https://github.com/dimosatteia/dimosatteia.github.io)
 
-Ευχαριστώ που διάβασες. Το επόμενο άρθρο έρχεται σύντομα.
+Ευχαριστώ που διάβασες. Τα πιο πρόσφατα άρθρα θα τα βρεις πάντα στην [αρχική σελίδα](/).
