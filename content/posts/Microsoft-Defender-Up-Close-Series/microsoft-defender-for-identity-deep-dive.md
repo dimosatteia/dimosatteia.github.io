@@ -1,8 +1,9 @@
 ---
 title: "Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση"
-date: 2026-09-28T10:00:00+03:00
-lastmod: 2026-09-28T18:45:00+03:00
-draft: true
+seoTitle: "Microsoft Defender for Identity: sensors, alerts, ρυθμίσεις"
+date: 2026-10-19T07:00:00+03:00
+lastmod: 2026-10-19T07:00:00+03:00
+draft: false
 keywords:
   - Microsoft Defender for Identity
   - Microsoft Defender for Identity οδηγός
@@ -27,7 +28,6 @@ description: "Πρακτικός οδηγός για το Microsoft Defender for
 summary: "Το Microsoft Defender for Identity όπως το χρειάζεται ένας επαγγελματίας στην πράξη. Τι είναι οι sensors και πού μπαίνουν, πώς επιλέγετε ανάμεσα σε sensor v3.x και v2.x, η ενιαία προβολή AD και Microsoft Entra ID, και τα alerts που αξίζει να ρυθμίσετε πρώτα."
 categories: ["Identity & Access"]
 series: ["Microsoft Defender Up Close"]
-slug: 
 ShowToc: true
 TocOpen: false
 weight: -6
@@ -35,14 +35,14 @@ cover:
   image: "/images/MDE/MDI.png"
   alt: "Microsoft Defender for Identity, αναλυτικός οδηγός"
   caption: "Microsoft Defender Up Close"
-  relative: true
+  relative: false
 ShowReadingTime: true
 ShowWordCount: true
 ---
 
 ## Γιατί αυτό είναι το αγαπημένο μου
 
-Στο **[2ο μέρος της σειράς Defender Demystified](/posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads/)** είπα ότι το Microsoft Defender for Identity είναι το workload που βρίσκω πιο ενδιαφέρον. Ο λόγος είναι ότι πιάνει αυτό που τα άλλα τρία δεν μπορούν: **τι κάνει ένας επιτιθέμενος αφού έχει ήδη έγκυρα διαπιστευτήρια**.
+Στο **[2ο μέρος της σειράς Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)** είπα ότι το Microsoft Defender for Identity είναι το workload που βρίσκω πιο ενδιαφέρον. Ο λόγος είναι ότι πιάνει αυτό που τα άλλα τρία δεν μπορούν: **τι κάνει ένας επιτιθέμενος αφού έχει ήδη έγκυρα διαπιστευτήρια**.
 
 Ένας επιτιθέμενος που κάνει phishing σε έναν κωδικό, τον αγοράζει από κάποιο infostealer marketplace ή τον εξάγει από ένα παραβιασμένο laptop, κατέχει πλέον μια έγκυρη ταυτότητα. Από εκείνο το σημείο, τα εργαλεία endpoint και email έχουν πολύ λίγα να πουν, αφού ο επιτιθέμενος συμπεριφέρεται ως νόμιμος χρήστης. Το **[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** είναι το workload που το αντιλαμβάνεται.
 
@@ -54,7 +54,7 @@ ShowWordCount: true
 
 - **On-premises Active Directory**: κίνηση αυθεντικοποίησης, LDAP queries, αλλαγές σε ευαίσθητες ομάδες, δραστηριότητα Kerberos
 - **Υποδομή ταυτότητας γύρω από το AD**: Active Directory Federation Services (AD FS), Active Directory Certificate Services (AD CS) και Microsoft Entra Connect, όπου υπάρχουν
-- **Microsoft Entra ID**: σήματα cloud και υβριδικής ταυτότητας, καθώς και άλλοι παρόχοι ταυτότητας (π.χ. Okta) μέσω API connectors
+- **Microsoft Entra ID**: σήματα cloud και υβριδικής ταυτότητας, καθώς και άλλοι πάροχοι ταυτότητας (π.χ. Okta) μέσω API connectors
 
 Το Microsoft Defender for Identity συσχετίζει όλα αυτά σε μια ενιαία προβολή ανά χρήστη, με κέντρο την ταυτότητα: *«αυτά είναι όλα όσα συμβαίνουν με αυτόν τον λογαριασμό, σε on-prem και cloud»*. Αυτή η δυνατότητα της ενιαίας προβολής είναι ο λόγος ύπαρξης του προϊόντος.
 
@@ -76,7 +76,7 @@ ShowWordCount: true
 ## Η ροή ανάπτυξης, σε υψηλό επίπεδο
 
 [![Η καρτέλα Sensor management στο Defender portal](/images/Microsoft-Defender/mdi-01-sensor-management.webp)](/images/Microsoft-Defender/mdi-01-sensor-management.webp)
-📷 **Εικόνα 1**: Καρτέλα Sensor management στο Defender portal. Defender portal → Settings → Identities → Sensor management.
+> 📷 **Εικόνα 1:** Καρτέλα Sensor management στο Defender portal. Defender portal → Settings → Identities → Sensor management.
 
 **Για sensor v3.x (Windows Server 2019+):**
 
@@ -96,14 +96,14 @@ ShowWordCount: true
 Ξεκινήστε με έναν πιλοτικό DC, επιβεβαιώστε ότι ρέει το telemetry και μετά επεκτείνετε.
 
 [![Υγιείς sensors του Microsoft Defender for Identity](/images/Microsoft-Defender/mdi-02-sensor-health.webp)](/images/Microsoft-Defender/mdi-02-sensor-health.webp)
-📷 **Εικόνα 2**: Υγιείς sensors μετά την ανάπτυξη. Defender portal → Settings → Identities → Sensor management.
+> 📷 **Εικόνα 2:** Υγιείς sensors μετά την ανάπτυξη. Defender portal → Settings → Identities → Sensor management.
 
 ## Η ενιαία προβολή AD και Microsoft Entra ID
 
 Το Microsoft Defender for Identity τροφοδοτεί με σήματα ταυτότητας το Microsoft Defender portal, όπου συσχετίζονται με δεδομένα από endpoints, email, SaaS εφαρμογές και άλλες πηγές. Το **Identity inventory** συγκεντρώνει σε ένα σημείο τους λογαριασμούς από το Active Directory και το Microsoft Entra ID.
 
 [![Ενιαία προβολή ταυτότητας AD και Microsoft Entra ID](/images/Microsoft-Defender/mdi-03-unified-identity-view.webp)](/images/Microsoft-Defender/mdi-03-unified-identity-view.webp)
-📷 **Εικόνα 3**: Ενιαία προβολή ταυτότητας στο Defender portal. Defender portal → Assets → Identities.
+> 📷 **Εικόνα 3:** Ενιαία προβολή ταυτότητας στο Defender portal. Defender portal → Assets → Identities.
 
 Το αποτέλεσμα: αποκτάτε **μία προβολή ανά χρήστη** που καλύπτει τόσο την on-prem όσο και την cloud ταυτότητα. Αυτό είναι πραγματικά χρήσιμο. Παλαιότερα, οι αναλυτές έπρεπε να μετακινούνται μεταξύ του Defender for Identity (για τα on-prem σήματα) και του Microsoft Entra ID Protection (για τα cloud σήματα). Τώρα ένα μόνο incident συσχετίζει και τις δύο επιφάνειες.
 
@@ -137,7 +137,7 @@ ShowWordCount: true
 Να ξέρετε ότι η Microsoft βρίσκεται σε μετάβαση προς ενιαία μορφή alerts. Γι' αυτό τα alerts του MDI εμφανίζονται σε δύο μορφές, classic και Defender-format, και κάποιες ανιχνεύσεις μπορεί να εμφανίζονται με διαφορετικό όνομα. Το πεδίο **Detection source** σας λέει ποια μορφή βλέπετε.
 
 [![Alerts ταυτότητας στο Microsoft Defender portal](/images/Microsoft-Defender/mdi-04-identity-alerts.webp)](/images/Microsoft-Defender/mdi-04-identity-alerts.webp)
-📷 **Εικόνα 4**: Ενεργά alerts ταυτότητας. Defender portal → Incidents & alerts → Alerts.
+> 📷 **Εικόνα 4:** Ενεργά alerts ταυτότητας. Defender portal → Incidents & alerts → Alerts.
 
 Η ειλικρινής καθοδήγηση: περιμένετε μερικά alerts χαμηλής βεβαιότητας την πρώτη εβδομάδα, τα περισσότερα αθώα. Πράγματα όπως penetration testers σε προγραμματισμένη αξιολόγηση, νόμιμα εργαλεία διαχείρισης που μοιάζουν με reconnaissance, και service accounts που κάνουν LDAP queries που φαίνονται περίεργα εκτός πλαισίου. **Ρυθμίστε τις εξαιρέσεις**, μην απενεργοποιείτε τα alerts. Για τα classic alerts οι εξαιρέσεις ορίζονται στο **Settings → Identities → Excluded entities**, ενώ για τα Defender-format alerts χρησιμοποιείτε τα **alert tuning rules** του Microsoft Defender.
 
@@ -148,7 +148,7 @@ ShowWordCount: true
 **Ευαίσθητοι λογαριασμοί (Entity tags)**: στο **Settings → Identities**, στην ετικέτα **Sensitive**, ορίστε ποιοι χρήστες, συσκευές και ομάδες πρέπει να αντιμετωπίζονται ως ιδιαίτερα πολύτιμοι. Ομάδες όπως οι Domain Admins, Enterprise Admins και Schema Admins θεωρούνται ευαίσθητες από προεπιλογή. Προσθέστε τους Tier 0 service accounts σας και όποιες custom ομάδες διαχειριστών διατηρείτε. Κάποιες ανιχνεύσεις, όπως οι αλλαγές σε ευαίσθητες ομάδες, βασίζονται σε αυτή την ετικέτα για να λειτουργήσουν σωστά.
 
 [![Η ετικέτα Sensitive στα entity tags του Microsoft Defender for Identity](/images/Microsoft-Defender/mdi-05-entity-tags-sensitive.webp)](/images/Microsoft-Defender/mdi-05-entity-tags-sensitive.webp)
-📷 **Εικόνα 5**: Entity tags, ετικέτα Sensitive. Defender portal → Settings → Identities → Sensitive.
+> 📷 **Εικόνα 5:** Entity tags, ετικέτα Sensitive. Defender portal → Settings → Identities → Sensitive.
 
 **Honeytoken accounts**: από το ίδιο σημείο, με την ετικέτα **Honeytoken**, ορίζετε λογαριασμούς-δολώματα (decoy) που δεν πρέπει ποτέ να χρησιμοποιηθούν. Οποιαδήποτε σύνδεση από αυτούς προκαλεί alert. Μου αρέσουν, γιατί είναι πραγματικά χρήσιμα σήματα και το κόστος ρύθμισης είναι ελάχιστο.
 
@@ -163,9 +163,9 @@ ShowWordCount: true
 
 ## Πού να συνεχίσετε από εδώ
 
-> 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)**.
+> 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**. Ακολουθεί το **Microsoft Defender for Cloud Apps**, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
-> 🔗 **Θέλετε να δείτε πώς τα σήματα ταυτότητας τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Θέλετε να δείτε πώς τα σήματα ταυτότητας τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
@@ -187,5 +187,5 @@ Image 2: mdi-02-sensor-health.webp  (Defender portal → Settings → Identities
 Image 3: mdi-03-unified-identity-view.webp  (Defender portal → Assets → Identities.)
 Image 4: mdi-04-identity-alerts.webp  (Defender portal → Incidents & alerts → Alerts.)
 Image 5: mdi-05-entity-tags-sensitive.webp  (Defender portal → Settings → Identities → Sensitive.)
-Save to /static/images/Microsoft-Defender/
+Save to content/images/Microsoft-Defender/
 -->

@@ -1,8 +1,9 @@
 ---
 title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
-date: 2026-09-28T09:11:00+03:00
-lastmod: 2026-09-28T18:45:00+03:00
-draft: true
+seoTitle: "Microsoft Defender for Endpoint: πρακτικός οδηγός ανάπτυξης"
+date: 2026-10-05T07:00:00+03:00
+lastmod: 2026-10-05T07:00:00+03:00
+draft: false
 keywords:
   - Microsoft Defender for Endpoint
   - Microsoft Defender for Endpoint οδηγός
@@ -27,7 +28,6 @@ description: "Πρακτικός οδηγός για το Microsoft Defender for
 summary: "Το Microsoft Defender for Endpoint όπως το χρειάζεται ένας επαγγελματίας στην πράξη. Plan 1 και Plan 2 δίπλα-δίπλα, τι κάνει το καθένα, πώς λειτουργεί το onboarding σε Windows, macOS, Linux, iOS και Android, και οι ρυθμίσεις του Defender portal που πρέπει να ελέγξετε την πρώτη εβδομάδα."
 categories: ["Endpoint & Device"]
 series: ["Microsoft Defender Up Close"]
-slug: 
 ShowToc: true
 TocOpen: false
 weight: -6
@@ -35,14 +35,14 @@ cover:
   image: "/images/MDE/MDE.png"
   alt: "Microsoft Defender for Endpoint, αναλυτικός οδηγός"
   caption: "Microsoft Defender Up Close"
-  relative: true
+  relative: false
 ShowReadingTime: true
 ShowWordCount: true
 ---
 
 ## Σε ποιον απευθύνεται αυτό το άρθρο
 
-Αν διαβάσατε το **[2ο μέρος της σειράς Defender Demystified](/posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads/)**, γνωρίζετε ήδη σε υψηλό επίπεδο τι είναι το Microsoft Defender for Endpoint. Είναι το workload της οικογένειας Microsoft Defender που παρακολουθεί τις συσκευές στις οποίες οι χρήστες σας κάνουν πραγματικά τη δουλειά τους.
+Αν διαβάσατε το **[2ο μέρος της σειράς Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)**, γνωρίζετε ήδη σε υψηλό επίπεδο τι είναι το Microsoft Defender for Endpoint. Είναι το workload της οικογένειας Microsoft Defender που παρακολουθεί τις συσκευές στις οποίες οι χρήστες σας κάνουν πραγματικά τη δουλειά τους.
 
 Αυτό το άρθρο είναι η συνέχεια για τον επαγγελματία που τώρα πρέπει να κάνει κάτι με αυτό: να επιλέξει plan, να κάνει onboarding τις συσκευές και να ρυθμίσει το πρώτο σύνολο ρυθμίσεων που έχουν πραγματική σημασία. Απλό, πρακτικό, χωρίς την ψευδαίσθηση ότι θα τα αφομοιώσετε όλα από την πρώτη μέρα. Δεν θα γίνει. Σε κανέναν δεν γίνεται.
 
@@ -104,7 +104,7 @@ ShowWordCount: true
 **Για συσκευές Windows που διαχειρίζεται το Microsoft Intune:**
 
 [![Ο διακόπτης Microsoft Intune connection στο Defender portal](/images/Microsoft-Defender/01-intune-connection-advanced-features.webp)](/images/Microsoft-Defender/01-intune-connection-advanced-features.webp)
-📷 **Εικόνα 1**: Ρύθμιση του Intune connector στο Defender portal. Defender portal → Settings → Endpoints → Optional features.
+> 📷 **Εικόνα 1:** Ρύθμιση του Intune connector στο Defender portal. Defender portal → Settings → Endpoints → Optional features.
 
 1. Στο **Microsoft Defender portal** (`security.microsoft.com`), μεταβείτε στο **Settings → Endpoints → Optional features** και ενεργοποιήστε το **Microsoft Intune connection**.
 2. Στο **Microsoft Intune admin center**, μεταβείτε στο **Endpoint security → Microsoft Defender for Endpoint** και ενεργοποιήστε τη σύνδεση.
@@ -129,8 +129,7 @@ ShowWordCount: true
 Οι χρήστες εγκαθιστούν την εφαρμογή **Microsoft Defender** από το αντίστοιχο app store και συνδέονται με τον εταιρικό τους λογαριασμό. Οι Intune app protection policies μπορούν να επιβάλουν την εγκατάσταση.
 
 [![Απογραφή συσκευών στο Microsoft Defender portal μετά το onboarding](/images/Microsoft-Defender/02-device-inventory.webp)](/images/Microsoft-Defender/02-device-inventory.webp)
-📷 **Εικόνα 2**: Απογραφή συσκευών μετά το onboarding. Defender portal → Assets → Devices.
-
+> 📷 **Εικόνα 2:** Απογραφή συσκευών μετά το onboarding. Defender portal → Assets → Devices.
 
 ## Τι να ρυθμίσετε την πρώτη εβδομάδα
 
@@ -139,8 +138,7 @@ ShowWordCount: true
 **1. Βασικές πολιτικές ασφάλειας (security baselines)**
 
 [![Το Microsoft Defender for Endpoint security baseline στο Intune](/images/Microsoft-Defender/03-intune-security-baselines.webp)](/images/Microsoft-Defender/03-intune-security-baselines.webp)
-📷 **Εικόνα 3**: Security baselines στο Intune. Intune admin center → Endpoint security → Security baselines → Microsoft Defender for Endpoint baseline.
-
+> 📷 **Εικόνα 3:** Security baselines στο Intune. Intune admin center → Endpoint security → Security baselines → Microsoft Defender for Endpoint baseline.
 
 Η Microsoft παρέχει ένα security baseline με σαφείς επιλογές για το Defender for Endpoint. Αναπτύξτε το πρώτα σε μια πιλοτική ομάδα. Ελέγξτε τι αλλάζει. Επεκτείνετε.
 
@@ -149,8 +147,7 @@ ShowWordCount: true
 Οι κανόνες ASR μπλοκάρουν συνηθισμένα μοτίβα επίθεσης, πράγματα όπως «μην επιτρέπεις στις εφαρμογές Office να εκκινούν child processes» και «μην επιτρέπεις σε scripts να φορτώνουν περιεχόμενο που έχει ληφθεί από το διαδίκτυο». Σήμερα υπάρχουν 19 κανόνες, από τους οποίους τρεις ανήκουν στην ομάδα **Standard protection** που η Microsoft προτείνει να ενεργοποιηθεί πρώτη. Μην τους ενεργοποιήσετε όλους μαζί σε Block mode. Ξεκινήστε σε **Audit mode** για δύο εβδομάδες, εξετάστε τι θα είχε μπλοκαριστεί και μετά περάστε σε Block όσους δεν σπάνε νόμιμες εργασίες.
 
 [![Αναφορά Attack Surface Reduction rules σε Audit mode](/images/Microsoft-Defender/04-asr-rules-report.webp)](/images/Microsoft-Defender/04-asr-rules-report.webp)
-📷 **Εικόνα 4**: Αναφορά Attack Surface Reduction rules στο Defender portal. Defender portal → ASR rules report.
-
+> 📷 **Εικόνα 4:** Αναφορά Attack Surface Reduction rules στο Defender portal. Defender portal → ASR rules report.
 
 **3. Web content filtering**
 
@@ -159,8 +156,7 @@ ShowWordCount: true
 **4. Tamper protection**
 
 [![Ο διακόπτης Tamper protection στο Defender portal](/images/Microsoft-Defender/05-tamper-protection.webp)](/images/Microsoft-Defender/05-tamper-protection.webp)
-📷 **Εικόνα 5**: Ρύθμιση Tamper protection. Defender portal → Settings → Endpoints → Optional features → διακόπτης Tamper protection.
-
+> 📷 **Εικόνα 5:** Ρύθμιση Tamper protection. Defender portal → Settings → Endpoints → Optional features → διακόπτης Tamper protection.
 
 Ενεργοποιήστε το. Εμποδίζει τους επιτιθέμενους (και τους «εξυπηρετικούς» χρήστες) από το να απενεργοποιήσουν το Microsoft Defender Antivirus μέσω registry, PowerShell ή Group Policy. Δεν υπάρχει κανένας λόγος να μην το ενεργοποιήσετε.
 
@@ -179,16 +175,16 @@ ShowWordCount: true
 
 ## Πού να συνεχίσετε από εδώ
 
-> 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close** για τα «αδελφά» workloads: **[Microsoft Defender for Office 365](/posts/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-for-cloud-apps-deep-dive/)**.
+> 🔗 **Η σειρά Microsoft Defender Up Close συνεχίζεται** με τα «αδελφά» workloads: **Microsoft Defender for Office 365**, **Microsoft Defender for Identity** και **Microsoft Defender for Cloud Apps**. Θα τα βρείτε, μόλις δημοσιευτούν, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
-> 🔗 **Θέλετε να δείτε πώς όλα αυτά τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Θέλετε να δείτε πώς όλα αυτά τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
 ## Πηγές Microsoft Learn
 
 - [Microsoft Defender for Endpoint, επισκόπηση](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
-- [Onboarding συσκευών στο Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/onboard-configure)
+- [Onboarding συσκευών στο Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/onboarding)
 - [Attack surface reduction rules (αναφορά)](https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference)
 - [Microsoft Defender Vulnerability Management](https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management)
 - [Security baselines για το Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/configure-machines-security-baseline)
@@ -197,10 +193,10 @@ ShowWordCount: true
 
 <!--
 IMAGE NOTES
-Image 1: Defender portal → Settings → Endpoints → Advanced features → Microsoft Intune connection toggle
-Image 2: Defender portal → Assets → Devices (populated inventory, redact names)
-Image 3: Intune admin center → Endpoint security → Security baselines → MDE baseline
-Image 4: Defender portal → ASR rules report
-Image 5: Defender portal → Settings → Endpoints → Advanced features → Tamper protection
-Save to /static/images/posts/microsoft-defender-for-endpoint-deep-dive/
+Image 1: 01-intune-connection-advanced-features.webp  (Defender portal → Settings → Endpoints → Optional features.)
+Image 2: 02-device-inventory.webp  (Defender portal → Assets → Devices.)
+Image 3: 03-intune-security-baselines.webp  (Intune admin center → Endpoint security → Security baselines.)
+Image 4: 04-asr-rules-report.webp  (Defender portal → ASR rules report.)
+Image 5: 05-tamper-protection.webp  (Defender portal → Settings → Endpoints → Optional features.)
+Save to content/images/Microsoft-Defender/
 -->

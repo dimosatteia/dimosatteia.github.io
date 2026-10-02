@@ -1,8 +1,9 @@
 ---
 title: "Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB"
-date: 2026-09-28T10:00:00+03:00
-lastmod: 2026-09-28T18:45:00+03:00
-draft: true
+seoTitle: "Microsoft Defender for Cloud Apps: πρακτικός οδηγός CASB"
+date: 2026-10-26T07:00:00+02:00
+lastmod: 2026-10-26T07:00:00+02:00
+draft: false
 keywords:
   - Microsoft Defender for Cloud Apps
   - Microsoft Defender for Cloud Apps οδηγός
@@ -27,7 +28,6 @@ description: "Πρακτικός οδηγός για το Microsoft Defender for
 summary: "Το Microsoft Defender for Cloud Apps όπως το χρειάζεται ένας επαγγελματίας στην πράξη. Shadow IT discovery μέσω του cloud app catalog, OAuth app governance, session policies του Conditional Access App Control, activity policies, και η μετάβαση των file policies στο Microsoft Purview."
 categories: ["Cloud Security"]
 series: ["Microsoft Defender Up Close"]
-slug: 
 ShowToc: true
 TocOpen: false
 weight: -6
@@ -35,7 +35,7 @@ cover:
   image: "/images/MDE/MDCA.png"
   alt: "Microsoft Defender for Cloud Apps, αναλυτικός οδηγός"
   caption: "Microsoft Defender Up Close"
-  relative: true
+  relative: false
 ShowReadingTime: true
 ShowWordCount: true
 ---
@@ -46,14 +46,14 @@ ShowWordCount: true
 
 Το **[Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)** είναι η απάντηση της Microsoft σε αυτό το πρόβλημα. Σας δίνει **ορατότητα** στο ποιες cloud εφαρμογές χρησιμοποιούν πραγματικά οι χρήστες σας, **έλεγχο (governance)** στις OAuth συναινέσεις και στη χρήση αυτών των εφαρμογών, και **προστασία από απειλές** απέναντι στην ανώμαλη συμπεριφορά χρηστών που υποδηλώνει παραβιασμένο λογαριασμό.
 
-Αυτό το άρθρο είναι η πρακτική συνέχεια του **[2ου μέρους της σειράς Defender Demystified](/posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads/)**. Τέσσερις βασικές δυνατότητες, μία κάθε φορά.
+Αυτό το άρθρο είναι η πρακτική συνέχεια του **[2ου μέρους της σειράς Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)**. Τέσσερις βασικές δυνατότητες, μία κάθε φορά.
 
 ## Δυνατότητα 1: Shadow IT discovery
 
 Η δυνατότητα που ανοίγει περισσότερο τα μάτια όταν ενεργοποιείτε για πρώτη φορά το Microsoft Defender for Cloud Apps είναι το **Shadow IT discovery**. Το προϊόν λαμβάνει logs από το όριο του δικτύου σας (firewalls, web proxies) ή από το Microsoft Defender for Endpoint (που ήδη βλέπει τη web κίνηση των συσκευών σας), τα συσχετίζει με έναν κατάλογο **άνω των 31.000 cloud εφαρμογών** και παράγει ένα dashboard με το τι χρησιμοποιούν πραγματικά οι χρήστες σας.
 
 [![Εντοπισμένες cloud εφαρμογές στο Cloud Discovery](/images/Microsoft-Defender/mdca-01-discovered-apps.webp)](/images/Microsoft-Defender/mdca-01-discovered-apps.webp)
-📷 **Εικόνα 1**: Cloud app catalog / dashboard εντοπισμένων εφαρμογών. Defender portal → Cloud apps → Cloud Discovery → Discovered apps.
+> 📷 **Εικόνα 1:** Cloud app catalog / dashboard εντοπισμένων εφαρμογών. Defender portal → Cloud apps → Cloud Discovery → Discovered apps.
 
 Από την εμπειρία μου, αυτό που θα βρείτε σχεδόν πάντα είναι:
 
@@ -66,7 +66,7 @@ ShowWordCount: true
 **Ο ευκολότερος τρόπος να ενεργοποιήσετε το discovery** είναι μέσω της ενσωμάτωσης με το Microsoft Defender for Endpoint. Δεν απαιτεί καμία αλλαγή στο δίκτυο, αλλά έχει προαπαιτούμενα: **Microsoft Defender for Endpoint Plan 2** (ή Microsoft Defender for Business) και συσκευές που έχουν γίνει onboarding. Την ενεργοποιείτε στο Defender portal, στο **Settings → Endpoints → Optional features**, με τον διακόπτη **Microsoft Defender for Cloud Apps**. Τα δεδομένα εμφανίζονται μέσα σε περίπου δύο ώρες.
 
 [![Ο διακόπτης Microsoft Defender for Cloud Apps στο Defender portal](/images/Microsoft-Defender/mdca-02-cloud-apps-optional-feature.webp)](/images/Microsoft-Defender/mdca-02-cloud-apps-optional-feature.webp)
-📷 **Εικόνα 2**: Διακόπτης ενσωμάτωσης Microsoft Defender for Cloud Apps. Defender portal → Settings → Endpoints → Optional features.
+> 📷 **Εικόνα 2:** Διακόπτης ενσωμάτωσης Microsoft Defender for Cloud Apps. Defender portal → Settings → Endpoints → Optional features.
 
 **Τι να κάνετε με τα αποτελέσματα του discovery:** δουλέψτε τις 20 πρώτες μη εγκεκριμένες εφαρμογές με βάση τη χρήση και αποφασίστε ποιες θα **εγκρίνετε (sanction)**, ποιες θα **απορρίψετε (unsanction)** και ποιες θα **διερευνήσετε περαιτέρω**. Για να μπλοκάρεται πραγματικά η πρόσβαση στις απορριφθείσες εφαρμογές μέσω του Defender for Endpoint, πρέπει το **network protection** να είναι ενεργοποιημένο σε **block mode**. Είναι συνεχής διαδικασία, όχι εφάπαξ «καθάρισμα».
 
@@ -77,7 +77,7 @@ ShowWordCount: true
 Το **[App governance στο Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/app-governance-manage-app-governance)** σας δίνει ορατότητα και έλεγχο στις OAuth εφαρμογές που είναι καταχωρημένες στο Microsoft Entra ID, στο Google και στο Salesforce.
 
 [![Επισκόπηση OAuth apps στο app governance](/images/Microsoft-Defender/mdca-03-oauth-apps.webp)](/images/Microsoft-Defender/mdca-03-oauth-apps.webp)
-📷 **Εικόνα 3**: Επισκόπηση OAuth apps. Defender portal → Cloud apps → OAuth apps.
+> 📷 **Εικόνα 3:** Επισκόπηση OAuth apps. Defender portal → Cloud apps → OAuth apps.
 
 Τι να αναζητήσετε:
 
@@ -90,7 +90,7 @@ ShowWordCount: true
 
 ## Δυνατότητα 3: Conditional Access App Control
 
-Το **[Conditional Access App Control](https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad)** είναι η μηχανή πολιτικών σε επίπεδο session. Ενσωματώνεται με το Conditional Access του Microsoft Entra ID για να εφαρμόζει **ελέγχους σε πραγματικό χρόνο** σε sessions μέσω browser. Όχι απλώς «μπλοκάρισμα ή επιτρέπω» κατά τη σύνδεση, αλλά «επιτρέπω, με περιορισμούς στο τι μπορεί να κάνει ο χρήστης μόλις μπει». Οι χρήστες του Microsoft Edge προστατεύονται απευθείας μέσα στον browser, ενώ οι υπόλοιποι browsers δρομολογούνται μέσω reverse proxy.
+Το **[Conditional Access App Control](https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad)** είναι η μηχανή πολιτικών σε επίπεδο session. Ενσωματώνεται με το Conditional Access του Microsoft Entra ID για να εφαρμόζει **ελέγχους σε πραγματικό χρόνο** σε sessions μέσω browser. Όχι απλώς «μπλοκάρω ή επιτρέπω» κατά τη σύνδεση, αλλά «επιτρέπω, με περιορισμούς στο τι μπορεί να κάνει ο χρήστης μόλις μπει». Οι χρήστες του Microsoft Edge προστατεύονται απευθείας μέσα στον browser, ενώ οι υπόλοιποι browsers δρομολογούνται μέσω reverse proxy.
 
 Παραδείγματα policies που μπορείτε να φτιάξετε:
 
@@ -99,7 +99,7 @@ ShowWordCount: true
 - *«Οι χρήστες που έχουν επισημανθεί ως υψηλού κινδύνου μπορούν να αυθεντικοποιηθούν στο Microsoft 365, αλλά κάθε δραστηριότητα στο session καταγράφεται για ανασκόπηση»*
 
 [![Δημιουργία session policy στο Conditional Access App Control](/images/Microsoft-Defender/mdca-04-session-policy.webp)](/images/Microsoft-Defender/mdca-04-session-policy.webp)
-📷 **Εικόνα 4**: Ρύθμιση session policy στο Conditional Access App Control. Defender portal → Cloud apps → Policies → Policy management → Conditional Access → Create policy → Session policy.
+> 📷 **Εικόνα 4:** Ρύθμιση session policy στο Conditional Access App Control. Defender portal → Cloud apps → Policies → Policy management → Conditional Access → Create policy → Session policy.
 
 Η ρύθμιση απαιτεί κάποιον σχεδιασμό. Χρειάζεστε τη σωστή Conditional Access policy στο Microsoft Entra ID που δρομολογεί την κίνηση μέσω του Microsoft Defender for Cloud Apps, και επιπλέον το session policy στο ίδιο το Defender for Cloud Apps. Ο [οδηγός της Microsoft για τα session policies](https://learn.microsoft.com/en-us/defender-cloud-apps/session-policy-aad) καλύπτει ολόκληρη τη ροή. Προσοχή: τα session controls ισχύουν μόνο για πρόσβαση μέσω browser. Για να μην παρακάμπτονται, μπλοκάρετε με access policy την πρόσβαση από native clients (για παράδειγμα, την εφαρμογή Teams για desktop) στους χρήστες που καλύπτονται.
 
@@ -119,9 +119,9 @@ ShowWordCount: true
 - Δραστηριότητα διαχειριστή από λογαριασμό που δεν αναμένεται να την κάνει
 
 [![Διαχείριση policies στο Microsoft Defender for Cloud Apps](/images/Microsoft-Defender/mdca-05-policy-management.webp)](/images/Microsoft-Defender/mdca-05-policy-management.webp)
-📷 **Εικόνα 5**: Σελίδα επισκόπησης policies. Defender portal → Cloud apps → Policies → Policy management.
+> 📷 **Εικόνα 5:** Σελίδα επισκόπησης policies. Defender portal → Cloud apps → Policies → Policy management.
 
-**Σημαντική αλλαγή για τα file policies.** Τα **[file policies](https://learn.microsoft.com/en-us/defender-cloud-apps/data-protection-policies)** του Defender for Cloud Apps, δηλαδή οι κανόνες που εντοπίζουν ευαίσθητο περιεχόμενο ή επικίνδυνο διαμοιρασμό αρχείων, **αποσύρονται στις 6 Ιανουαρίου 2027**. Η Microsoft ζητά [μετάβαση σε Microsoft Purview DLP ή auto-labeling policies](https://learn.microsoft.com/en-us/defender-cloud-apps/migrate-file-policies-to-purview). Αν ξεκινάτε τώρα, μην φτιάξετε νέα file policies. Υλοποιήστε το ίδιο σενάριο απευθείας στο Microsoft Purview. Για παράδειγμα: *«κάθε αρχείο με ετικέτα Confidential που διαμοιράζεται εξωτερικά προκαλεί alert»*. Αν έχετε ήδη file policies, βάλτε τη μετάβασή τους στο πλάνο σας πριν από την προθεσμία.
+**Σημαντική αλλαγή για τα file policies.** Τα **[file policies](https://learn.microsoft.com/en-us/defender-cloud-apps/data-protection-policies)** του Defender for Cloud Apps, δηλαδή οι κανόνες που εντοπίζουν ευαίσθητο περιεχόμενο ή επικίνδυνο διαμοιρασμό αρχείων, **αποσύρονται στις 6 Ιανουαρίου 2027**. Η Microsoft ζητά [μετάβαση σε Microsoft Purview DLP ή auto-labeling policies](https://learn.microsoft.com/en-us/defender-cloud-apps/migrate-file-policies-to-purview). Αν ξεκινάτε τώρα, μη φτιάξετε νέα file policies. Υλοποιήστε το ίδιο σενάριο απευθείας στο Microsoft Purview. Για παράδειγμα: *«κάθε αρχείο με ετικέτα Confidential που διαμοιράζεται εξωτερικά προκαλεί alert»*. Αν έχετε ήδη file policies, βάλτε τη μετάβασή τους στο πλάνο σας πριν από την προθεσμία.
 
 ## Ένα ρεαλιστικό πλάνο για τον πρώτο μήνα
 
@@ -134,9 +134,9 @@ ShowWordCount: true
 
 ## Πού να συνεχίσετε από εδώ
 
-> 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-for-identity-deep-dive/)**.
+> 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)** και **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)**.
 
-> 🔗 **Θέλετε να δείτε πώς τα σήματα των cloud εφαρμογών τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Θέλετε να δείτε πώς τα σήματα των cloud εφαρμογών τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
@@ -161,5 +161,5 @@ Image 2: mdca-02-cloud-apps-optional-feature.webp  (Defender portal → Settings
 Image 3: mdca-03-oauth-apps.webp  (Defender portal → Cloud apps → OAuth apps.)
 Image 4: mdca-04-session-policy.webp  (Defender portal → Cloud apps → Policies → Policy management → Conditional Access → Create policy → Session policy.)
 Image 5: mdca-05-policy-management.webp  (Defender portal → Cloud apps → Policies → Policy management.)
-Save to /static/images/Microsoft-Defender/
+Save to content/images/Microsoft-Defender/
 -->
