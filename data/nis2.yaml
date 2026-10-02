@@ -401,9 +401,6 @@ articles:
     control: Lifecycle workflows (joiner, mover, leaver) στο Microsoft Entra ID Governance. Απενεργοποίηση λογαριασμού και revoke sessions.
     evidence: 'Entra audit logs: account disabled, sessions revoked. Αρχείο αποχωρήσεων HR.'
     license: Microsoft Entra ID Governance (lifecycle workflows)
-    posts:
-    - title: 'Defender XDR: Μία ενέργεια, όλοι οι λογαριασμοί, το unified response actions για ταυτότητες έρχεται τον Οκτώβριο, τι φέρνει το MC1461704'
-      url: /posts/new-features/defender-xdr-unified-response-actions-identity-accounts/
   - code: 13.στ
     scope: Βασικές και σημαντικές
     requirement: Ισχυρές μέθοδοι ασφαλούς αυθεντικοποίησης, ανάλογες με την κρισιμότητα.
