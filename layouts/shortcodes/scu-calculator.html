@@ -1,0 +1,41 @@
+{{- /* Υπολογιστής SCU για το Security Copilot σε Microsoft 365 E5 και E7.
+       Τύπος της Microsoft: 400 SCU τον μήνα ανά 1.000 άδειες, ανώτατο όριο 10.000. Χρήση: {{< scu-calculator >}} */ -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="scuCalc">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-3">Υπολογιστής SCU</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <label class="flex flex-col gap-1 text-sm text-slate-300">
+            Άδειες Microsoft 365 E5
+            <input type="number" id="scuE5" min="0" step="1" value="10" inputmode="numeric"
+                   class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono focus:outline-none focus:border-blue-500">
+        </label>
+        <label class="flex flex-col gap-1 text-sm text-slate-300">
+            Άδειες Microsoft 365 E7
+            <input type="number" id="scuE7" min="0" step="1" value="3" inputmode="numeric"
+                   class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono focus:outline-none focus:border-blue-500">
+        </label>
+    </div>
+    <div class="mt-4 rounded-lg border border-slate-800 bg-slate-900/60 p-4" aria-live="polite">
+        <div class="text-3xl font-bold text-slate-100"><span id="scuResult">5,2</span> <span class="text-base font-semibold text-slate-400">SCU τον μήνα</span></div>
+        <div class="text-xs font-mono text-slate-400 mt-2" id="scuFormula">(10 + 3) × 400 ÷ 1.000 = 5,2</div>
+        <div class="text-sm text-amber-400 mt-2 hidden" id="scuCap">Έφτασες το ανώτατο όριο των 10.000 SCU. Οι επιπλέον άδειες δεν προσθέτουν χωρητικότητα.</div>
+    </div>
+    <p class="text-xs text-slate-400 leading-relaxed mt-3">Ο υπολογισμός εφαρμόζει τον τύπο της Microsoft και αθροίζει τις άδειες E5 και E7. Η Microsoft δεν δίνει παράδειγμα για μικτό tenant ούτε για το πώς στρογγυλοποιείται το αποτέλεσμα. Το πραγματικό σου όριο φαίνεται στο usage dashboard του Security Copilot.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Ο υπολογιστής χρειάζεται JavaScript. Τύπος: άδειες × 400 ÷ 1.000, με ανώτατο όριο 10.000.</p></noscript>
+</div>
+<script>
+(function () {
+    var e5 = document.getElementById('scuE5'), e7 = document.getElementById('scuE7');
+    if (!e5 || !e7) return;
+    var out = document.getElementById('scuResult'), formula = document.getElementById('scuFormula'), cap = document.getElementById('scuCap');
+    var RATE = 400, PER = 1000, MAX = 10000;
+    function num(el) { var n = Math.floor(Number(el.value)); return isFinite(n) && n > 0 ? n : 0; }
+    function fmt(n, d) { return n.toLocaleString('el-GR', { minimumFractionDigits: 0, maximumFractionDigits: d }); }
+    function calc() {
+        var a = num(e5), b = num(e7), raw = (a + b) * RATE / PER, scu = Math.min(raw, MAX);
+        out.textContent = fmt(scu, 1);
+        formula.textContent = '(' + fmt(a, 0) + ' + ' + fmt(b, 0) + ') × 400 ÷ 1.000 = ' + fmt(raw, 1);
+        cap.classList.toggle('hidden', raw <= MAX);
+    }
+    e5.addEventListener('input', calc); e7.addEventListener('input', calc); calc();
+})();
+</script>
