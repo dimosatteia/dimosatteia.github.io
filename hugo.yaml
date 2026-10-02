@@ -204,6 +204,10 @@ menu:
       name: Release Status
       url: /releases/
       weight: 25
+    - identifier: nis2
+      name: NIS2
+      url: /nis2/
+      weight: 27
     - identifier: releases-new
       parent: releases
       name: "🆕 Νέα Χαρακτηριστικά (New Features)"
