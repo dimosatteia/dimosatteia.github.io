@@ -17,33 +17,32 @@
 {{/* Disclaimer + IP μεταφέρθηκαν στο footer.html */}}
 
 {{ if .IsHome }}
-<!-- Announcement popup: Global Secure Access series -->
+<!-- Announcement popup: τα δύο πιο πρόσφατα άρθρα, το νεότερο πρώτο. Σε κάθε αλλαγή αυξάνεται ο αριθμός στο STORAGE_KEY -->
 <div id="announce-overlay" class="announce-overlay" hidden>
   <div class="announce-modal" role="dialog" aria-modal="true" aria-labelledby="announce-title">
     <button class="announce-close" id="announce-close" aria-label="Κλείσιμο">&times;</button>
     <div class="announce-badge">Νέα Άρθρα</div>
 
       <div class="announce-item">
-    <h3>Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750</h3>
+    <h3>Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις, πόσα SCU και πότε πληρώνεις</h3>
     <p>
-      Η Microsoft προσθέτει τέσσερις νέες συστάσεις AI-Readiness στο Secure Score 
-      για TPM 2.0, VBS, HVCI και LAPS. Ανάλυση από την οπτική ενός CISO: 
-      τι αλλάζει πρακτικά, γιατί συνδέεται με AI accelerated threats, 
-      και πώς το τεκμηριώνεις σε NIS2 και ISO 27001.
+      Το Security Copilot περιλαμβάνεται πλέον στο Microsoft 365 E5 και E7.
+      Πόσα SCU σου αναλογούν, τι μένει εκτός, και τρεις αποφάσεις
+      για την πρόσβαση, τα δεδομένα και την κατανάλωση πριν το ανοίξεις
+      στην ομάδα σου.
     </p>
-    <a href="https://thecybersec.gr/posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/" class="announce-cta">Δες το άρθρο →</a>
+    <a href="https://thecybersec.gr/posts/security-copilot-sto-microsoft-365-e5-scu/" class="announce-cta">Δες το άρθρο →</a>
     </div>
 
       <div class="announce-item">
-    <h3 id="announce-title">Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν</h3>
+    <h3 id="announce-title">Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)</h3>
     <p>
-      Το 5ο μέρος της σειράς άρθρων για το Microsoft Global Secure Access. 
-      Τρία πρακτικά παραδείγματα πολιτικών Conditional Access πάνω στο 
-      Internet access profile: block χωρίς client, απαίτηση compliant 
-      device, και web content filtering μέσω security profile, με έμφαση 
-      σε NIS2 και ISO 27001.
+      Η νέα εβδομαδιαία σύνοψη: αυτόματη ενεργοποίηση sensor στο
+      Defender for Identity, Purview DLP στο επίπεδο του δικτύου μέσω
+      Global Secure Access, προστασία AI agents από το Intune, και τι
+      πρέπει να κάνεις για το καθένα.
     </p>
-    <a href="https://thecybersec.gr/posts/global-secure-access/global-secure-access-meros-5-conditional-access/" class="announce-cta">Δες το άρθρο →</a>
+    <a href="https://thecybersec.gr/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/" class="announce-cta">Δες το άρθρο →</a>
     </div>
 
 
@@ -159,7 +158,7 @@
 
 <script>
   (function () {
-    var STORAGE_KEY = "announce_two_articles_10_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
+    var STORAGE_KEY = "announce_two_articles_11_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
 
     var overlay = document.getElementById("announce-overlay");
     var closeBtn = document.getElementById("announce-close");
