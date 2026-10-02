@@ -2,7 +2,7 @@
 title: "Ομιλίες και συνεισφορές"
 date: 2026-10-02T21:00:00+03:00
 lastmod: 2026-10-02T21:00:00+03:00
-draft: true
+draft: false
 url: "/contributions/"
 author: "Dimosthenis Atteia"
 description: "Ομιλίες, άρθρα, οδηγοί και εργαλεία του Δημοσθένη Αττέια για την ελληνική κοινότητα του Microsoft 365 Security: webinars, σειρές, ΚΥΑ 1689/2025 και NIS2."
