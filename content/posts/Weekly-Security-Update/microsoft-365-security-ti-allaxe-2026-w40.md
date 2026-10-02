@@ -2,7 +2,7 @@
 title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)"
 date: 2026-10-02T08:00:00+03:00
 lastmod: 2026-10-02T08:00:00+03:00
-draft: true
+draft: false
 keywords:
   - Microsoft 365 Security νέα
   - τι άλλαξε Microsoft Defender
