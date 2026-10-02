@@ -44,17 +44,17 @@ weight: -6
 
 **Τι να κάνεις.** Άνοιξε τις ρυθμίσεις Identities του Defender portal και, στη σελίδα **On-premises**, την καρτέλα **Sensor management**. Εκεί εμφανίζεται η ειδοποίηση. Όσο εμφανίζεται, έχεις δύο επιλογές: **Go to Advanced features** για να το ενεργοποιήσεις εσύ, ή **Opt out** για να μη γίνει αυτόματα. Οι δύο ρυθμίσεις βρίσκονται στο Settings → Identities → Advanced features και λέγονται **Automatic sensor v3.x activation** και **Automatic Windows auditing configuration**. Αν έχεις διαδικασία διαχείρισης αλλαγών για τους Domain Controllers, πέρασέ το από εκεί πριν λήξει η ειδοποίηση.
 
-**Πηγή:** [What's new in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/whats-new) · [Activate the Defender for Identity sensor v3.x](https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor#control-automatic-activation) · [Configure Windows event auditing](https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection#control-automatic-windows-auditing)
+**Πηγή:** [What's new in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/whats-new) · [Activate the Defender for Identity sensor v3.x](https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor#control-automatic-activation) · [Configure Windows event auditing](https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection#control-automatic-windows-auditing) · Message Center MC1484018 ([αντίγραφο της ανακοίνωσης](https://pupuweb.com/mc1484018-microsoft-defender-for-identity-auto-activation-and-auto-auditing-automatic-enablement/))
 
 ### 2. Purview: Network Data Security με Global Secure Access
 
-**Φάση:** GA · **Άδεια:** Microsoft 365 E7, ή Purview E5 μαζί με Microsoft Entra Internet Access. Το Microsoft Entra Internet Access δεν περιλαμβάνεται στο Microsoft 365 E5.
+**Φάση:** GA, με διάθεση από τα τέλη Σεπτεμβρίου έως τα τέλη Οκτωβρίου 2026 · **Άδεια:** Microsoft 365 E7, ή Purview E5 μαζί με Microsoft Entra Internet Access. Το Microsoft Entra Internet Access δεν περιλαμβάνεται στο Microsoft 365 E5.
 
-**Τι αλλάζει.** Το Microsoft Entra Global Secure Access συνδέεται με το Purview και εφαρμόζει πολιτικές DLP στο επίπεδο του δικτύου: σε κείμενο, αρχεία και αλληλεπιδράσεις με AI. Η προστασία καλύπτει browsers, εφαρμογές, APIs και add-ins, άρα και την αποστολή ευαίσθητων δεδομένων σε πλατφόρμες generative AI, social media και εργαλεία συνεργασίας που δεν εμπιστεύεσαι. Η ίδια σύνδεση τροφοδοτεί το Insider Risk Management με ενδείξεις επικίνδυνης δραστηριότητας.
+**Τι αλλάζει.** Το Microsoft Entra Global Secure Access συνδέεται με το Purview και εφαρμόζει πολιτικές DLP στο επίπεδο του δικτύου: σε κείμενο, αρχεία και αλληλεπιδράσεις με AI. Η προστασία καλύπτει browsers, εφαρμογές, APIs και add-ins, άρα και την αποστολή ευαίσθητων δεδομένων σε πλατφόρμες generative AI, social media και εργαλεία συνεργασίας που δεν εμπιστεύεσαι. Η ίδια σύνδεση τροφοδοτεί το Insider Risk Management με ενδείξεις επικίνδυνης δραστηριότητας. Με το Global Secure Access οι πολιτικές δημιουργούνται πλέον χωρίς ρύθμιση pay-as-you-go, που εξακολουθεί να απαιτείται μόνο για λύσεις SASE τρίτων. Επειδή η διάθεση ολοκληρώνεται στα τέλη Οκτωβρίου, μπορεί να μην το βλέπεις ακόμα στο tenant σου.
 
 **Τι να κάνεις.** Αν έχεις ήδη το Internet Access profile του Global Secure Access, αυτό είναι το επόμενο λογικό βήμα: ξεκίνα με μία πολιτική με ενέργεια **Audit only** για τις πλατφόρμες generative AI και δες τι πραγματικά φεύγει από τον οργανισμό πριν περάσεις σε **Block**. Το πώς στήνεται το profile το έχω περιγράψει στο [Global Secure Access, Μέρος 3: Internet Access profile](/posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/).
 
-**Πηγή:** [What's new in Microsoft Purview](https://learn.microsoft.com/en-us/purview/whats-new) · [Learn about Microsoft Purview Network Data Security](https://learn.microsoft.com/en-us/purview/dlp-network-data-security-learn)
+**Πηγή:** [What's new in Microsoft Purview](https://learn.microsoft.com/en-us/purview/whats-new) · [Learn about Microsoft Purview Network Data Security](https://learn.microsoft.com/en-us/purview/dlp-network-data-security-learn) · Message Center [MC1419797](https://mc.merill.net/message/MC1419797) και [MC1478970](https://mc.merill.net/message/MC1478970) (αρχείο mc.merill.net)
 
 ### 3. Intune: ρυθμίσεις AI agent runtime protection του Defender for Endpoint
 
@@ -78,17 +78,17 @@ weight: -6
 
 ### 5. Defender for Office 365: αναφορά ομαδικών κλήσεων στο Teams
 
-**Φάση:** διαθέσιμο · **Άδεια:** Microsoft Defender for Office 365 Plan 1 ή Plan 2. Το Plan 1 περιλαμβάνεται πλέον στο Microsoft 365 E3.
+**Φάση:** GA παγκοσμίως από τις αρχές Οκτωβρίου 2026, σύμφωνα με την ανακοίνωση · **Άδεια:** για την έρευνα των αναφορών στο Defender portal, Microsoft Defender for Office 365 Plan 1 ή Plan 2. Το Plan 1 περιλαμβάνεται πλέον στο Microsoft 365 E3.
 
-**Τι αλλάζει.** Οι χρήστες μπορούν πλέον να αναφέρουν από το ιστορικό κλήσεων και τις ομαδικές κλήσεις του Teams, ολοκληρωμένες ή αναπάντητες, ως **Scam** ή **Not scam**. Η αναφορά κλήσεων υποστηρίζεται στο Teams desktop και στο Teams web. Οι αναφορές πηγαίνουν στο reporting mailbox, στη Microsoft ή και στα δύο, ανάλογα με τις ρυθμίσεις user reported settings.
+**Τι αλλάζει.** Οι χρήστες μπορούν πλέον να αναφέρουν από το ιστορικό κλήσεων και τις ομαδικές κλήσεις του Teams, ολοκληρωμένες ή αναπάντητες, ως **Scam** ή **Not scam**. Η αναφορά κλήσεων υποστηρίζεται στο Teams desktop και στο Teams web, και η δυνατότητα είναι ενεργή από προεπιλογή στους clients. Οι αναφορές πηγαίνουν στο reporting mailbox, στη Microsoft ή και στα δύο, ανάλογα με τις ρυθμίσεις user reported settings.
 
 **Τι να κάνεις.** Έλεγξε ότι είναι ενεργή η ρύθμιση **Report a call** στο Teams admin center (Calling settings) και ότι οι user reported settings στο Defender portal (Settings → Email & collaboration → User reported settings) στέλνουν τις αναφορές εκεί που τις παρακολουθεί η ομάδα σου, και πρόσθεσε μία γραμμή στην επόμενη ενημέρωση προς τους χρήστες. Το υπόβαθρο της δυνατότητας υπάρχει στο [Report a Call & Report a Meeting στο Microsoft Teams](/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/).
 
-**Πηγή:** [What's new in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/defender-for-office-365-whats-new) · [User reported settings in Teams](https://learn.microsoft.com/en-us/defender-office-365/submissions-teams)
+**Πηγή:** [What's new in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/defender-for-office-365-whats-new) · [User reported settings in Teams](https://learn.microsoft.com/en-us/defender-office-365/submissions-teams) · Message Center [MC1447673](https://mc.merill.net/message/MC1447673) (αρχείο mc.merill.net)
 
 ## Προσοχή αυτή την εβδομάδα
 
-Από τις πέντε αλλαγές, «ρολόι» έχει μόνο η πρώτη. Αν είσαι υπάρχων πελάτης του Defender for Identity και δεν κάνεις τίποτα, μετά τη λήξη της ειδοποίησης το portal θα ενεργοποιήσει μόνο του τον sensor v3.x και το Windows auditing στους κατάλληλους servers. Η Microsoft δεν δίνει μία κοινή ημερομηνία για όλους, οπότε ο μόνος τρόπος να ξέρεις είναι να ανοίξεις την καρτέλα Sensor management.
+Από τις πέντε αλλαγές, «ρολόι» έχει μόνο η πρώτη. Αν είσαι υπάρχων πελάτης του Defender for Identity και δεν κάνεις τίποτα, μετά τη λήξη της ειδοποίησης το portal θα ενεργοποιήσει μόνο του τον sensor v3.x και το Windows auditing στους κατάλληλους servers. Σύμφωνα με την ανακοίνωση MC1484018, η αυτόματη ενεργοποίηση ξεκινά σταδιακά από τα τέλη Οκτωβρίου 2026 (31 Οκτωβρίου), και το banner με την επιλογή opt out εμφανίζεται πριν από αυτό, για περιορισμένο διάστημα. Η ημερομηνία μπορεί να διαφέρει ανά tenant, οπότε άνοιξε την καρτέλα Sensor management και δες το δικό σου Message Center.
 
 Υπάρχει και μία απόσυρση που πέφτει μέσα στον Οκτώβριο. Σύμφωνα με την ανακοίνωση MC1243549, το SharePoint One-Time Passcode αποσύρεται και η πρόσβαση εξωτερικών χρηστών σε SharePoint και OneDrive περνά στο Microsoft Entra B2B. Η απόσυρση ξεκινά τον Οκτώβριο 2026 και αναμένεται να ολοκληρωθεί στις 31 Οκτωβρίου 2026. Εξωτερικοί χρήστες χωρίς guest account θα βλέπουν «access denied» σε παλιά links τύπου specific people. Δες τις πολιτικές external sharing και το Conditional Access για guests, βεβαιώσου ότι το Entra επιτρέπει προσκλήσεις guests και ότι το email one-time passcode δεν είναι απενεργοποιημένο στο Entra External ID, και ενημέρωσε τους χρήστες ότι μια νέα κοινή χρήση του αρχείου επαναφέρει την πρόσβαση. Οι ημερομηνίες διαφέρουν ανά tenant, οπότε επιβεβαίωσέ τες στο δικό σου Message Center.
 
@@ -104,6 +104,6 @@ weight: -6
 
 ## Πηγές
 
-Για αυτό το τεύχος ελέγχθηκαν οι σελίδες «What's new» των Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Microsoft Intune, Microsoft Purview και Microsoft Entra, και για κάθε αλλαγή η σελίδα λεπτομερειών της στο Microsoft Learn. Οι σελίδες του Defender for Cloud Apps και του Entra δεν είχαν νέες καταχωρίσεις για την περίοδο όταν διαβάστηκαν. Η απόσυρση του SharePoint One-Time Passcode προέρχεται από το αρχείο του Message Center στο mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft.
+Για αυτό το τεύχος ελέγχθηκαν οι σελίδες «What's new» των Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Microsoft Intune, Microsoft Purview και Microsoft Entra, και για κάθε αλλαγή η σελίδα λεπτομερειών της στο Microsoft Learn. Οι σελίδες του Defender for Cloud Apps και του Entra δεν είχαν νέες καταχωρίσεις για την περίοδο όταν διαβάστηκαν. Οι ανακοινώσεις Message Center (MC1243549, MC1419797, MC1478970, MC1447673) διαβάστηκαν στο αρχείο mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft. Η MC1484018 διαβάστηκε σε αντίγραφο τρίτου site. Για το AI agent runtime protection και το ISOC δεν βρέθηκε ανακοίνωση Message Center. Οι ανακοινώσεις και οι ημερομηνίες τους διαφέρουν ανά tenant.
 
 Τελευταίος έλεγχος αδειών και στοιχείων: 2 Οκτωβρίου 2026.
