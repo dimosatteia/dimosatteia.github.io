@@ -3,7 +3,7 @@ title: "Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις
 seoTitle: "Security Copilot στο Microsoft 365 E5: SCU, όρια και κόστος"
 date: 2026-10-02T16:30:00+03:00
 lastmod: 2026-10-02T16:30:00+03:00
-draft: true
+draft: false
 keywords:
   - Security Copilot Microsoft 365 E5
   - Security Compute Units SCU
