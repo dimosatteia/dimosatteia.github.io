@@ -5,14 +5,14 @@
 
         <div class="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center gap-5 pb-6">
 
-            <!-- 2. Αποποίηση ευθύνης + IP επισκέπτη (client-side μέσω ipify.org) -->
+            <!-- 2. Αποποίηση ευθύνης + IP επισκέπτη (client-side μέσω ipify.org, μόνο κατόπιν κλικ) -->
             <div class="w-full border-t border-slate-800/60 pt-5 flex flex-col items-center gap-2">
                 <p class="text-[11px] leading-relaxed text-slate-500">
                     <strong class="text-slate-400">Αποποίηση ευθύνης:</strong> Αυτά τα εργαλεία και scripts παρέχονται «ως έχουν», χωρίς καμία εγγύηση. Δεν φέρουμε ευθύνη για τυχόν ζημιά ή απώλεια δεδομένων που προκύψει από τη χρήση τους. Δοκιμάστε πάντα πρώτα σε περιβάλλον μη παραγωγής.
                 </p>
                 <p class="text-[11px] font-mono text-slate-500 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
-                    <span>Η IP ΣΑΣ: <span id="visitor-ip" class="text-slate-300 bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5">φόρτωση…</span></span>
-                    <span class="text-slate-600">*Η IP ανακτάται μέσω του δημόσιου <a href="https://www.ipify.org" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-slate-300">ipify.org</a>.</span>
+                    <span>Η IP ΣΑΣ: <button type="button" id="visitor-ip" class="text-slate-300 bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 hover:border-slate-600 hover:text-white transition-colors cursor-pointer">εμφάνιση</button></span>
+                    <span class="text-slate-600">*Με το πάτημα, η IP ανακτάται μέσω του δημόσιου <a href="https://www.ipify.org" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-slate-300">ipify.org</a>.</span>
                 </p>
             </div>
 
@@ -31,8 +31,12 @@
                     <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] shrink-0"></span>
                     SEC_RES_NODE_01 :: SYSTEM_ONLINE :: © {{ now.Format "2006" }} {{ site.Title }}
                 </p>
-                <p class="flex items-center gap-4 text-xs font-mono text-slate-500">
+                <p class="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-xs font-mono text-slate-500">
                     <a href="{{ "index.xml" | absURL }}" class="hover:text-slate-300 transition-colors">RSS Feed</a>
+                    <span>|</span>
+                    <a href="{{ "privacy/" | relURL }}" class="hover:text-slate-300 transition-colors">Απόρρητο</a>
+                    <span>|</span>
+                    <button type="button" data-consent-open class="hover:text-slate-300 transition-colors cursor-pointer">Ρυθμίσεις cookies</button>
                     <span>|</span>
                     <a href="https://github.com/dimosatteia/dimosatteia.github.io" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">GitHub Repository</a>
                 </p>
@@ -40,15 +44,22 @@
         </div>
 
         <script>
+        /* Η IP ζητείται από το ipify.org μόνο όταν ο επισκέπτης πατήσει το κουμπί. */
         (function () {
             var el = document.getElementById("visitor-ip");
             if (!el) return;
-            fetch("https://api.ipify.org?format=json")
-                .then(function (r) { return r.json(); })
-                .then(function (d) { el.textContent = d.ip; })
-                .catch(function () { el.textContent = "μη διαθέσιμη"; });
+            el.addEventListener("click", function () {
+                el.disabled = true;
+                el.textContent = "φόρτωση…";
+                fetch("https://api.ipify.org?format=json")
+                    .then(function (r) { return r.json(); })
+                    .then(function (d) { el.textContent = d.ip; })
+                    .catch(function () { el.textContent = "μη διαθέσιμη"; el.disabled = false; });
+            }, { once: false });
         })();
         </script>
+
+        {{ partial "consent.html" . }}
     </footer>
 </body>
 </html>

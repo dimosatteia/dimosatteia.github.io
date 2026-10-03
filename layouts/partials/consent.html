@@ -1,0 +1,166 @@
+{{- /*
+  layouts/partials/consent.html
+  ---------------------------------------------------------------------------
+  Banner συγκατάθεσης για cookies ανάλυσης.
+
+  Τι κάνει:
+    - Το Google Analytics (GA4) και το Microsoft Clarity ΔΕΝ φορτώνουν καθόλου
+      μέχρι ο επισκέπτης να πατήσει «Αποδοχή».
+    - Το GoatCounter δεν χρησιμοποιεί cookies και φορτώνει πάντα (extend_head.html).
+    - Η επιλογή αποθηκεύεται στο localStorage (κλειδί: cookie_consent_v1)
+      με τιμή "granted" ή "denied" και ημερομηνία.
+    - Ο σύνδεσμος «Ρυθμίσεις cookies» στο footer (data-consent-open) ξανανοίγει
+      το banner, ώστε η συγκατάθεση να ανακαλείται όσο εύκολα δόθηκε.
+
+  Το GA4 φορτώνει μόνο σε production build (όπως και πριν).
+  Για δοκιμή τοπικά:  hugo server -e production
+
+  Wiring: {{ partial "consent.html" . }} στο τέλος του footer.html
+*/ -}}
+{{- $gaID := "" -}}
+{{- if hugo.IsProduction -}}{{- $gaID = site.Config.Services.GoogleAnalytics.ID -}}{{- end -}}
+{{- $clarityID := site.Params.clarityID | default "wx5s18mpi4" -}}
+
+<div id="consent-banner" class="consent-banner" hidden role="dialog" aria-live="polite" aria-labelledby="consent-title" aria-describedby="consent-text">
+    <div class="consent-box">
+        <h2 id="consent-title">Cookies ανάλυσης</h2>
+        <p id="consent-text">
+            Με τη συγκατάθεσή σου, το site χρησιμοποιεί Google Analytics και Microsoft Clarity για να βλέπω ποια άρθρα διαβάζονται και πώς χρησιμοποιείται η σελίδα. Το Clarity καταγράφει κινήσεις και κλικ. Αν απορρίψεις, δεν φορτώνει κανένα από τα δύο και το site λειτουργεί κανονικά.
+            <a href="{{ "privacy/" | relURL }}">Πολιτική απορρήτου</a>
+        </p>
+        <div class="consent-actions">
+            <button type="button" id="consent-deny">Απόρριψη</button>
+            <button type="button" id="consent-accept">Αποδοχή</button>
+        </div>
+    </div>
+</div>
+
+<style>
+  /* Δικό του CSS (όχι Tailwind), ώστε το banner να εμφανίζεται σωστά ακόμη κι αν το CDN δεν φορτώσει.
+     z-index πάνω από το popup «Νέα Άρθρα» (999999), για να μένει πάντα διαθέσιμο. */
+  .consent-banner {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    z-index: 1000000;
+    padding: 12px;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .consent-banner[hidden] { display: none; }
+  .consent-box {
+    max-width: 760px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 12px;
+    padding: 16px 18px;
+    background: #020617; color: #cbd5e1;
+    border: 1px solid #334155; border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .6);
+  }
+  .consent-box h2 { margin: 0; font-size: 14px; font-weight: 600; color: #f1f5f9; }
+  .consent-box p { margin: 0; font-size: 14px; line-height: 1.6; }
+  .consent-box a { color: #60a5fa; text-decoration: underline; text-underline-offset: 2px; }
+  .consent-box a:hover { color: #93c5fd; }
+  .consent-actions { display: flex; flex-direction: column; gap: 8px; }
+  /* Τα δύο κουμπιά έχουν σκόπιμα ίδια εμφάνιση: καμία επιλογή δεν προβάλλεται έναντι της άλλης. */
+  .consent-actions button {
+    padding: 9px 18px; min-width: 130px;
+    font: inherit; font-size: 14px; font-weight: 600;
+    color: #f1f5f9; background: #1e293b;
+    border: 1px solid #64748b; border-radius: 8px;
+    cursor: pointer;
+  }
+  .consent-actions button:hover { background: #334155; }
+  .consent-actions button:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+  @media (min-width: 640px) {
+    .consent-banner { padding: 16px; }
+    .consent-actions { flex-direction: row; justify-content: flex-end; }
+  }
+</style>
+
+<script>
+(function () {
+    var KEY = "cookie_consent_v1";
+    var GA_ID = {{ $gaID }};
+    var CLARITY_ID = {{ $clarityID }};
+    var banner = document.getElementById("consent-banner");
+    var loaded = false;
+
+    function read() {
+        try {
+            var v = JSON.parse(localStorage.getItem(KEY) || "null");
+            return v && (v.choice === "granted" || v.choice === "denied") ? v.choice : null;
+        } catch (e) { return null; }
+    }
+    function write(choice) {
+        try { localStorage.setItem(KEY, JSON.stringify({ choice: choice, at: new Date().toISOString() })); } catch (e) {}
+    }
+
+    function loadGA() {
+        if (!GA_ID) return;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("consent", "default", {
+            analytics_storage: "granted",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied"
+        });
+        window.gtag("js", new Date());
+        window.gtag("config", GA_ID);
+    }
+    function loadClarity() {
+        if (!CLARITY_ID) return;
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", CLARITY_ID);
+        window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: "granted" });
+    }
+    function loadTrackers() {
+        if (loaded) return;
+        loaded = true;
+        loadGA();
+        loadClarity();
+    }
+
+    /* Σβήνει τα cookies των GA / Clarity όταν ανακαλείται η συγκατάθεση. */
+    function clearCookies() {
+        var host = location.hostname;
+        var domains = ["", host, "." + host, "." + host.split(".").slice(-2).join(".")];
+        document.cookie.split(";").forEach(function (c) {
+            var name = c.split("=")[0].trim();
+            if (/^(_ga|_gid|_gat|_clck|_clsk|CLID|MUID)/.test(name)) {
+                domains.forEach(function (d) {
+                    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + (d ? "; domain=" + d : "");
+                });
+            }
+        });
+    }
+
+    function show() { banner.hidden = false; }
+    function hide() { banner.hidden = true; }
+
+    document.getElementById("consent-accept").addEventListener("click", function () {
+        write("granted");
+        hide();
+        loadTrackers();
+    });
+    document.getElementById("consent-deny").addEventListener("click", function () {
+        var had = loaded;
+        write("denied");
+        hide();
+        clearCookies();
+        /* Αν είχαν ήδη φορτώσει σε αυτή τη σελίδα, ο μόνος τρόπος να σταματήσουν είναι η επαναφόρτωση. */
+        if (had) location.reload();
+    });
+    document.querySelectorAll("[data-consent-open]").forEach(function (el) {
+        el.addEventListener("click", show);
+    });
+
+    var choice = read();
+    if (choice === "granted") loadTrackers();
+    else if (choice === null) show();
+})();
+</script>
