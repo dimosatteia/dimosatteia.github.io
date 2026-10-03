@@ -24,6 +24,12 @@ series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
 weight: -6
+cover:
+  image: "/images/WSUM365.webp"
+  alt: "Weekly Security Update: εβδομαδιαία ενημέρωση για το Microsoft 365 Security"
+  caption: "Microsoft 365 Security: εβδομαδιαία ενημέρωση"
+  relative: false
+  hidden: false
 ---
 
 ## Με μια ματιά
