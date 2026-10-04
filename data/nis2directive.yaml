@@ -6,7 +6,7 @@ source:
   fek: ΕΕ L 333 της 27.12.2022
   url: https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32022L2555
   of: της Οδηγίας
-updated: '2026-10-02'
+updated: '2026-10-04'
 types:
 - key: tech
   label: Τεχνικό
@@ -191,6 +191,8 @@ articles:
     - *id003
     - *id004
     - *id005
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: 21.2.η
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες σχετικά με τη χρήση κρυπτογραφίας και, κατά περίπτωση, κρυπτογράφησης.
@@ -226,6 +228,8 @@ articles:
       url: /posts/secure-score-grc-part-1-anatomy/
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: 21.2.ι
     scope: Βασικές και σημαντικές
     requirement: Χρήση λύσεων πολυπαραγοντικής επαλήθευσης ταυτότητας ή συνεχούς επαλήθευσης ταυτότητας, ασφαλών φωνητικών επικοινωνιών, επικοινωνιών βίντεο και κειμένου και ασφαλών συστημάτων επικοινωνιών έκτακτης ανάγκης εντός της οντότητας, κατά περίπτωση.

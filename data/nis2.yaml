@@ -6,7 +6,7 @@ source:
   title: Εθνικό Πλαίσιο Απαιτήσεων Κυβερνοασφάλειας Βασικών και Σημαντικών Οντοτήτων
   fek: ΦΕΚ Β΄ 2186/6.5.2025
   url: https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf
-updated: '2026-10-02'
+updated: '2026-10-04'
 types:
 - key: tech
   label: Τεχνικό
@@ -258,6 +258,8 @@ articles:
       url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
     - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: 11.β
     scope: Βασικές και σημαντικές
     requirement: Ταξινόμηση δεδομένων και αγαθών σε επίπεδα, με βάση εμπιστευτικότητα, ακεραιότητα και διαθεσιμότητα.
@@ -474,6 +476,8 @@ articles:
       url: /posts/secure-score-grc-part-3-operations/
     - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
       url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: 14.γ
     scope: Βασικές και σημαντικές
     requirement: Αλλαγή των προεπιλεγμένων συνθηματικών (default passwords) κατά την εγκατάσταση.
@@ -805,6 +809,8 @@ articles:
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
     - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
       url: /posts/microsoft-defender-air-automated-investigation-response/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: 20.β
     scope: Βασικές και σημαντικές
     requirement: Έλεγχος της εκτέλεσης εφαρμογών και ανίχνευση μη εξουσιοδοτημένου λογισμικού.
@@ -812,7 +818,9 @@ articles:
     control: App Control for Business (πρώην WDAC) μέσω Intune και attack surface reduction rules. Software inventory και block vulnerable applications στο Defender Vulnerability Management.
     evidence: 'Intune: App Control policies, ASR rules report. Defender portal: Software inventory.'
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το software inventory. Microsoft Defender Vulnerability Management (add-on ή standalone) για το block vulnerable applications
-    planned: 'Άρθρο «Microsoft Defender for Endpoint» της σειράς Defender Up Close (ASR rules): 5 Οκτωβρίου 2026.'
+    posts:
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: 20.γ
     scope: Βασικές και σημαντικές
     requirement: Φιλτράρισμα και έλεγχος των μηνυμάτων ηλεκτρονικού ταχυδρομείου για κακόβουλα ή ανεπιθύμητα μηνύματα.
@@ -848,6 +856,8 @@ articles:
       url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
 - number: 21
   title: Εκπαίδευση και ευαισθητοποίηση σε θέματα κυβερνοασφάλειας
   requirements:

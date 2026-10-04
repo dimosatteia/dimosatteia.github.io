@@ -10,7 +10,7 @@ source:
   item: control
   groups: ενότητες
   disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία. Μια ρύθμιση υποστηρίζει ένα control, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι τίτλοι είναι οι επίσημοι του προτύπου και οι περιγραφές είναι δικές μας· το κείμενο των controls δεν αναπαράγεται. Για τη διατύπωση κάθε control ισχύει το [ISO/IEC 27001:2022](https://www.iso.org/standard/27001).
-updated: '2026-10-02'
+updated: '2026-10-04'
 types:
 - key: tech
   label: Τεχνικό
@@ -144,6 +144,8 @@ articles:
       url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
     - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: A.5.10
     scope: ''
     requirement: Acceptable use of information and other associated assets
@@ -837,6 +839,8 @@ articles:
     - &id028
       title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
       url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: A.8.2
     scope: ''
     requirement: Privileged access rights
@@ -909,6 +913,8 @@ articles:
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
     - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
       url: /posts/microsoft-defender-air-automated-investigation-response/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: A.8.8
     scope: ''
     requirement: Management of technical vulnerabilities
@@ -938,6 +944,8 @@ articles:
     - *id024
     - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: A.8.10
     scope: Νέο στην έκδοση 2022
     requirement: Information deletion
@@ -1043,6 +1051,8 @@ articles:
     - &id033
       title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
       url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: A.8.19
     scope: ''
     requirement: Installation of software on operational systems
@@ -1116,6 +1126,8 @@ articles:
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
     - title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
       url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
   - code: A.8.24
     scope: ''
     requirement: Use of cryptography
