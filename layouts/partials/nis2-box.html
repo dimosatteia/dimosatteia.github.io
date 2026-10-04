@@ -1,31 +1,55 @@
 {{- /*
-  Πλαίσιο «Οδηγός ΚΥΑ 1689/2025» στο τέλος ενός άρθρου.
-  Δείχνει τις απαιτήσεις της ΚΥΑ 1689/2025 στις οποίες αναφέρεται το άρθρο (από το data/nis2.yaml).
-  Αν το άρθρο έχει tag NIS2 αλλά δεν αναφέρεται σε καμία, δείχνει απλή παραπομπή στον οδηγό.
+  Πλαίσιο «Οδηγοί συμμόρφωσης» στο τέλος ενός άρθρου.
+  Δείχνει και τους τρεις οδηγούς (ΚΥΑ 1689/2025, Οδηγία NIS2, ISO/IEC 27001) και, για τον καθένα,
+  τις απαιτήσεις ή τα controls στα οποία αναφέρεται το άρθρο (από τα data/nis2.yaml, nis2directive.yaml, iso27001.yaml).
+  Εμφανίζεται αν το άρθρο αντιστοιχεί σε κάποια απαίτηση ή αν έχει tag NIS2 ή ISO 27001.
 */ -}}
 {{- $rel := .RelPermalink -}}
-{{- $hits := slice -}}
-{{- range site.Data.nis2.articles -}}
-  {{- range .requirements -}}
-    {{- $code := .code -}}
-    {{- range .posts }}{{ if eq .url $rel }}{{ $hits = $hits | append $code }}{{ end }}{{ end -}}
+{{- $guides := slice
+  (dict "label" "ΚΥΑ 1689/2025" "data" "nis2" "path" "kya-1689-2025/" "link" "ΚΥΑ 1689/2025 με Microsoft 365: όλες οι απαιτήσεις και το checklist")
+  (dict "label" "Οδηγία NIS2 (ΕΕ) 2022/2555" "data" "nis2directive" "path" "nis2/" "link" "Οδηγία NIS2 με Microsoft 365: άρθρα 20 έως 25 και το checklist")
+  (dict "label" "ISO/IEC 27001:2022" "data" "iso27001" "path" "iso-27001/" "link" "ISO/IEC 27001:2022 Annex A με Microsoft 365: τα 93 controls και το checklist")
+-}}
+{{- $rows := slice -}}
+{{- $anyHits := false -}}
+{{- range $guides -}}
+  {{- $hits := slice -}}
+  {{- with index site.Data .data -}}
+    {{- range .articles -}}
+      {{- range .requirements -}}
+        {{- $code := .code -}}
+        {{- range .posts }}{{ if eq .url $rel }}{{ $hits = $hits | append $code }}{{ end }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
   {{- end -}}
+  {{- if $hits }}{{ $anyHits = true }}{{ end -}}
+  {{- $rows = $rows | append (merge . (dict "hits" $hits)) -}}
 {{- end -}}
-{{- $isNis2 := false -}}
-{{- range .Params.tags }}{{ if eq (lower .) "nis2" }}{{ $isNis2 = true }}{{ end }}{{ end -}}
-{{- if or $hits $isNis2 }}
-<aside class="not-prose mt-10 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" aria-label="Οδηγός ΚΥΑ 1689/2025">
-    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Οδηγός · ΚΥΑ 1689/2025</p>
-    {{- if $hits }}
-    <p class="text-sm text-slate-300 leading-relaxed mb-3">Αυτό το άρθρο αντιστοιχεί σε {{ len $hits }} {{ if eq (len $hits) 1 }}απαίτηση{{ else }}απαιτήσεις{{ end }} της ΚΥΑ 1689/2025:</p>
-    <ul class="flex flex-wrap gap-2 mb-3">
-        {{- range $hits }}
-        <li><a href="{{ "kya-1689-2025/" | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-1 no-underline">{{ . }}</a></li>
-        {{- end }}
-    </ul>
+{{- $tagged := false -}}
+{{- range .Params.tags }}{{ if in (slice "nis2" "iso 27001") (lower .) }}{{ $tagged = true }}{{ end }}{{ end -}}
+{{- if or $anyHits $tagged }}
+<aside class="not-prose mt-10 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" aria-label="Οδηγοί συμμόρφωσης">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Οδηγοί συμμόρφωσης με Microsoft 365</p>
+    {{- if $anyHits }}
+    <p class="text-sm text-slate-300 leading-relaxed mb-4">Αυτό το άρθρο αντιστοιχεί στις παρακάτω απαιτήσεις και controls:</p>
     {{- else }}
-    <p class="text-sm text-slate-300 leading-relaxed mb-3">Δείτε πώς οι ρυθμίσεις του Microsoft 365 αντιστοιχίζονται, μία προς μία, στις απαιτήσεις της ΚΥΑ 1689/2025.</p>
+    <p class="text-sm text-slate-300 leading-relaxed mb-4">Δείτε πώς οι ρυθμίσεις του Microsoft 365 αντιστοιχίζονται, μία προς μία, στις απαιτήσεις κάθε πλαισίου.</p>
     {{- end }}
-    <a href="{{ "kya-1689-2025/" | relURL }}" class="text-sm font-semibold text-blue-400 hover:text-blue-300 underline">ΚΥΑ 1689/2025 με Microsoft 365: όλες οι απαιτήσεις και το checklist →</a>
+    <div class="flex flex-col gap-4">
+        {{- range $rows }}
+        {{- $path := .path }}
+        <div>
+            <p class="text-xs font-bold text-slate-200 mb-1.5">{{ .label }}</p>
+            {{- with .hits }}
+            <ul class="flex flex-wrap gap-2 mb-2">
+                {{- range . }}
+                <li><a href="{{ $path | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-1 no-underline">{{ . }}</a></li>
+                {{- end }}
+            </ul>
+            {{- end }}
+            <a href="{{ .path | relURL }}" class="text-sm font-semibold text-blue-400 hover:text-blue-300 underline">{{ .link }} →</a>
+        </div>
+        {{- end }}
+    </div>
 </aside>
 {{- end }}
