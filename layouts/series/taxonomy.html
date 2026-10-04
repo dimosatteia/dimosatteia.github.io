@@ -38,7 +38,7 @@
             {{ with $term.Params.icon }}<span class="text-2xl leading-none shrink-0" aria-hidden="true">{{ . }}</span>{{ end }}
             <h2 class="text-base font-bold text-slate-100 group-hover:text-white">{{ $term.Title }}</h2>
           </a>
-          <span class="shrink-0 text-xs font-mono {{ $c.text }} bg-slate-950 px-2 py-0.5 rounded border border-slate-800">{{ $total }} {{ if $ongoing }}τεύχη{{ else }}μέρη{{ end }}</span>
+          <span class="shrink-0 text-xs font-mono {{ $c.text }} bg-slate-950 px-2 py-0.5 rounded border border-slate-800">{{ $total }} {{ if $ongoing }}{{ if eq $total 1 }}τεύχος{{ else }}τεύχη{{ end }}{{ else }}μέρη{{ end }}</span>
         </div>
         {{ with $term.Description }}<p class="text-sm text-slate-400 leading-relaxed">{{ . }}</p>{{ end }}
         <p class="text-[11px] font-mono text-slate-500">{{ $first.Date.Format "2006-01-02" }} → {{ $last.Date.Format "2006-01-02" }}</p>
