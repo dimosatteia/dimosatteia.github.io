@@ -176,7 +176,16 @@
             <div class="flex flex-col gap-2">
                 {{ $feed := partial "feed-pages.html" . }}
                 {{ $paginator := .Paginate $feed }}
+                {{- /* Σελίδα σειράς: ετικέτα «Μέρος N» στα αριθμημένα μέρη, «Συνοδευτικό» στα συνοδευτικά, με επικεφαλίδα πριν από το πρώτο */}}
+                {{ $isSeries := and (eq .Kind "term") (eq .Data.Plural "series") (not .Params.ongoing) }}
+                {{ $seriesParts := slice }}
+                {{ if $isSeries }}{{ $seriesParts = where .Pages.ByDate "Params.seriesCompanion" "!=" true }}{{ end }}
+                {{ $companionShown := false }}
                 {{ range $i, $p := $paginator.Pages }}
+                {{ if and $isSeries $p.Params.seriesCompanion (not $companionShown) }}
+                <h2 class="mt-4 mb-1 text-[11px] font-mono uppercase tracking-wider text-slate-500">Συνοδευτικά άρθρα</h2>
+                {{ $companionShown = true }}
+                {{ end }}
                 
                 <!-- Use categories to determine border color based on mapping -->
                 {{ $borderColor := "border-l-transparent" }}
@@ -216,6 +225,15 @@
                                 <div class="flex-1 min-w-0">
                                     <div class="flex items-center gap-3 mb-1.5">
                                         <span class="text-[11px] font-mono text-slate-400 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">{{ .Date.Format "2006-01-02" }}</span>
+                                        {{ if $isSeries }}
+                                            {{ if $p.Params.seriesCompanion }}
+                                            <span class="text-[11px] font-mono font-bold text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">Συνοδευτικό</span>
+                                            {{ else }}
+                                                {{ range $n, $sp := $seriesParts }}{{ if eq $sp.RelPermalink $p.RelPermalink }}
+                                            <span class="text-[11px] font-mono font-bold text-blue-300 bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/30">Μέρος {{ add $n 1 }}</span>
+                                                {{ end }}{{ end }}
+                                            {{ end }}
+                                        {{ end }}
                                         {{ with .Params.categories }}
                                             <span class="text-[11px] font-mono {{ $iconColor }} flex items-center gap-1">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>

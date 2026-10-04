@@ -5,4 +5,10 @@
 */ -}}
 {{- $feed := where site.RegularPages "Type" "in" site.Params.mainSections -}}
 {{- if eq .Kind "term" }}{{ $feed = .Pages }}{{ end -}}
+{{- /* Σελίδα σειράς (όχι ongoing): πρώτα τα αριθμημένα μέρη με τη σειρά ανάγνωσης, μετά τα συνοδευτικά (seriesCompanion: true) */ -}}
+{{- if and (eq .Kind "term") (eq .Data.Plural "series") (not .Params.ongoing) -}}
+  {{- $parts := where .Pages.ByDate "Params.seriesCompanion" "!=" true -}}
+  {{- $extra := where .Pages.ByDate "Params.seriesCompanion" "==" true -}}
+  {{- $feed = union $parts $extra -}}
+{{- end -}}
 {{- return $feed -}}
