@@ -63,6 +63,7 @@ Live webinar, δεύτερη συμμετοχή στο ίδιο κανάλι. Τ
 ## Διακρίσεις
 
 - **Gold Award στα [Cyber Security Awards 2026](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)**, για το πρόγραμμα GRC πάνω στο Microsoft Secure Score.
+- **Bronze Award στα [BITE Awards 2026](https://businessitawards.boussiasevents.gr/winners_2026-113/)**, στην κατηγορία IT Security / Cyber Security, για το έργο Proofpoint Email Security.
 - **[CISO 50 Powerlist 2025](https://netweek.gr/ciso-50-powerlist-2025/#powerlist)**.
 - **[Europe's Top 10 Dynamic IT Leaders 2025](https://ciolookmedia.com/dimosthenis-atteia-leading-the-digital-frontier-of-food-security-and-cyber-defense/)**.
 - **ISC2 Hellenic Chapter Member Spotlight 2026**.
