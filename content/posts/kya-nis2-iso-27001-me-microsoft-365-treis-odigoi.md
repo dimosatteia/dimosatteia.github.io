@@ -1,9 +1,9 @@
 ---
 title: "ΚΥΑ 1689/2025, Οδηγία NIS2 και ISO/IEC 27001 με Microsoft 365: τρεις οδηγοί, απαίτηση προς απαίτηση"
 seoTitle: "ΚΥΑ 1689/2025, NIS2 και ISO 27001 με Microsoft 365"
-date: 2026-10-04T19:10:00+03:00
-lastmod: 2026-10-04T19:10:00+03:00
-draft: true
+date: 2026-10-04T19:30:00+03:00
+lastmod: 2026-10-04T19:30:00+03:00
+draft: false
 keywords:
   - ΚΥΑ 1689/2025 Microsoft 365
   - NIS2 Microsoft 365
