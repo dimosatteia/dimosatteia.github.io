@@ -205,8 +205,10 @@ menu:
     # Ομάδα «Συμμόρφωση»: ΚΥΑ εδώ, NIS2 και ISO 27001 ορίζονται στο front matter των σελίδων τους (εμφανίζονται όταν δημοσιευτούν)
     - identifier: compliance
       name: Συμμόρφωση
-      url: /kya-1689-2025/
       weight: 27
+      # Χωρίς δικό του link: το κλικ δείχνει μόνο το dropdown, η επιλογή γίνεται από εκεί
+      params:
+        noLink: true
     - identifier: nis2
       parent: compliance
       name: "⚖️ ΚΥΑ 1689/2025 με Microsoft 365"
