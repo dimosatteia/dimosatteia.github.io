@@ -1,8 +1,8 @@
 ---
 title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
 seoTitle: "Microsoft Defender for Endpoint: πρακτικός οδηγός ανάπτυξης"
-date: 2026-10-05T07:00:00+03:00
-lastmod: 2026-10-05T07:00:00+03:00
+date: 2026-10-04T17:15:00+03:00
+lastmod: 2026-10-04T17:15:00+03:00
 draft: false
 keywords:
   - Microsoft Defender for Endpoint
@@ -146,12 +146,12 @@ ShowWordCount: true
 
 Οι κανόνες ASR μπλοκάρουν συνηθισμένα μοτίβα επίθεσης, πράγματα όπως «μην επιτρέπεις στις εφαρμογές Office να εκκινούν child processes» και «μην επιτρέπεις σε scripts να φορτώνουν περιεχόμενο που έχει ληφθεί από το διαδίκτυο». Σήμερα υπάρχουν 19 κανόνες, από τους οποίους τρεις ανήκουν στην ομάδα **Standard protection** που η Microsoft προτείνει να ενεργοποιηθεί πρώτη. Μην τους ενεργοποιήσετε όλους μαζί σε Block mode. Ξεκινήστε σε **Audit mode** για δύο εβδομάδες, εξετάστε τι θα είχε μπλοκαριστεί και μετά περάστε σε Block όσους δεν σπάνε νόμιμες εργασίες.
 
-[![Αναφορά Attack Surface Reduction rules σε Audit mode](/images/Microsoft-Defender/04-asr-rules-report.webp)](/images/Microsoft-Defender/04-asr-rules-report.webp)
+[![Αναφορά Attack Surface Reduction rules στο Defender portal](/images/Microsoft-Defender/04-asr-rules-report.webp)](/images/Microsoft-Defender/04-asr-rules-report.webp)
 > 📷 **Εικόνα 4:** Αναφορά Attack Surface Reduction rules στο Defender portal. Defender portal → ASR rules report.
 
 **3. Web content filtering**
 
-Μπλοκάρετε τις κατηγορίες που η πολιτική αποδεκτής χρήσης (acceptable-use policy) δεν επιτρέπει (τυχερά παιχνίδια, περιεχόμενο ενηλίκων, malware domains, πρόσφατα καταχωρημένα domains). Πέντε λεπτά ρύθμισης, άμεση μείωση κινδύνου.
+Μπλοκάρετε τις κατηγορίες που η πολιτική αποδεκτής χρήσης (acceptable-use policy) δεν επιτρέπει (τυχερά παιχνίδια, περιεχόμενο ενηλίκων, παράνομο λογισμικό, πρόσφατα καταχωρημένα domains). Πέντε λεπτά ρύθμισης, άμεση μείωση κινδύνου.
 
 **4. Tamper protection**
 
@@ -162,14 +162,14 @@ ShowWordCount: true
 
 **5. Automated investigation**
 
-Στο Plan 2, το **Automated Investigation and Remediation (AIR)** μπορεί να ρυθμιστεί ώστε να κάνει αυτόματη αποκατάσταση από το **Settings → Endpoints → Automation levels** του Defender portal. Ξεκινήστε με «Semi - require approval for any remediation» για δύο εβδομάδες και μετά περάστε σε «Full - remediate threats automatically» μόλις εμπιστευτείτε την κρίση της πλατφόρμας.
+Στο Plan 2, το **Automated Investigation and Remediation (AIR)** είναι ενεργό εξ ορισμού. Το επίπεδο αυτοματισμού ορίζεται ανά device group, από το **Settings → Endpoints → Permissions → Device groups** του Defender portal. Η Microsoft προτείνει το «Full - remediate threats automatically». Αν θέλετε πρώτα να δείτε τι θα έκανε η πλατφόρμα, βάλτε την πιλοτική ομάδα σε «Semi - require approval for all folders» για δύο εβδομάδες και μετά περάστε σε Full.
 
 ## Ένα ρεαλιστικό πλάνο για τον πρώτο μήνα
 
-- **Εβδομάδα 1**: Onboarding μιας πιλοτικής ομάδας (10–20 συσκευές), ανάπτυξη του security baseline, ενεργοποίηση tamper protection και web content filtering.
+- **Εβδομάδα 1**: Onboarding μιας πιλοτικής ομάδας (10 έως 20 συσκευές), ανάπτυξη του security baseline, ενεργοποίηση tamper protection και web content filtering.
 - **Εβδομάδα 2**: Ενεργοποίηση των κανόνων ASR σε Audit mode. Αρχίστε να διαβάζετε τα events που προκύπτουν.
 - **Εβδομάδα 3**: Onboarding του υπόλοιπου στόλου σε κύματα. Μεταφορά των πρώτων κανόνων ASR σε Block.
-- **Εβδομάδα 4**: Ανασκόπηση Threat Analytics, ρύθμιση του Automated Investigation σε Semi mode, προγραμματισμός μηνιαίας ανασκόπησης.
+- **Εβδομάδα 4**: Ανασκόπηση Threat Analytics, έλεγχος του automation level στα device groups, προγραμματισμός μηνιαίας ανασκόπησης.
 
 Στο τέλος του πρώτου μήνα έχετε μια λειτουργική υλοποίηση του Microsoft Defender for Endpoint, με telemetry να ρέει στο Microsoft Defender portal, τη βάση δηλαδή πάνω στην οποία μπορεί πλέον να χτιστεί όλη η υπόλοιπη στοίβα ασφάλειάς σας.
 
