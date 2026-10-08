@@ -3,7 +3,8 @@
   Κυκλικοί δείκτες για τις σελίδες-οδηγούς (ΚΥΑ 1689/2025, Οδηγία NIS2, ISO/IEC 27001).
   Δέχεται: dict "d" <δεδομένα από data/*.yaml> "items" <λέξη πληθυντικού, π.χ. controls> "groups" <π.χ. ενότητες>.
   Όλοι οι αριθμοί υπολογίζονται από τα δεδομένα σε κάθε build.
-  Χωρίς JavaScript φαίνονται έτοιμοι· με JavaScript οι δακτύλιοι σχεδιάζονται και οι αριθμοί μετράνε όταν η ενότητα φανεί στην οθόνη.
+  Χωρίς JavaScript φαίνονται έτοιμοι· με JavaScript οι δακτύλιοι σχεδιάζονται και οι αριθμοί μετράνε όταν η ενότητα φανεί στην οθόνη,
+  και ξανά κάθε φορά που ο δείκτης περνά πάνω από έναν δακτύλιο.
 */ -}}
 {{- $d := .d -}}{{- $items := .items -}}{{- $groups := .groups -}}
 {{- $total := 0 -}}{{- $tech := 0 -}}{{- $mixed := 0 -}}{{- $org := 0 -}}
@@ -103,19 +104,41 @@
   var root = document.querySelector("[data-hub-rings]");
   if (!root || !("IntersectionObserver" in window)) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var nums = root.querySelectorAll("[data-count]");
+  var DUR = 1200;
+  function count(nums) {
+    var start = performance.now();
+    (function tick(now) {
+      var k = Math.min(1, (now - start) / DUR), e = 1 - Math.pow(1 - k, 3);
+      nums.forEach(function (n) { n.textContent = Math.round(e * +n.dataset.count); });
+      if (k < 1) requestAnimationFrame(tick);
+    })(start);
+  }
+  var all = root.querySelectorAll("[data-count]");
   root.classList.add("is-armed");
-  nums.forEach(function (n) { n.textContent = "0"; });
+  all.forEach(function (n) { n.textContent = "0"; });
   new IntersectionObserver(function (entries, io) {
     if (!entries[0].isIntersecting) return;
     io.disconnect();
     root.classList.add("is-in");
-    var start = performance.now(), dur = 1200;
-    (function tick(now) {
-      var k = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - k, 3);
-      nums.forEach(function (n) { n.textContent = Math.round(e * +n.dataset.count); });
-      if (k < 1) requestAnimationFrame(tick);
-    })(start);
+    count(all);
   }, { threshold: 0.15 }).observe(root);
+
+  // Επανάληψη της κίνησης όταν ο δείκτης (ή το πληκτρολόγιο) φτάσει σε έναν δακτύλιο.
+  function replayable(el) {
+    var busy = 0;
+    function replay() {
+      var now = performance.now();
+      if (!root.classList.contains("is-in") || now - busy < DUR) return;
+      busy = now;
+      var segs = el.querySelectorAll(".hub-seg");
+      segs.forEach(function (c) { c.style.transition = "none"; c.style.strokeDasharray = "0 100"; });
+      void el.getBoundingClientRect();
+      segs.forEach(function (c) { c.style.transition = ""; c.style.strokeDasharray = ""; });
+      count(el.querySelectorAll("[data-count]"));
+    }
+    el.addEventListener("pointerenter", replay);
+    el.addEventListener("focusin", replay);
+  }
+  root.querySelectorAll(".hub-rings-main, .hub-rings-groups a").forEach(replayable);
 })();
 </script>
