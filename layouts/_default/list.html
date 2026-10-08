@@ -3,9 +3,7 @@
     
     {{ if .IsHome }}
     <!-- Hero / Featured Section (Only on Homepage) -->
-    <section class="hero-network-host grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {{- /* Ζωντανό φόντο δικτύου πίσω από το hero: layouts/partials/hero-network.html */}}
-        {{ partial "hero-network.html" . }}
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <!-- Welcome Message (Spans 2 cols) -->
         <div class="lg:col-span-2 glass-card rounded-xl p-6 relative overflow-hidden group border-l-4 border-l-blue-500">
