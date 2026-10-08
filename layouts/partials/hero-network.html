@@ -1,0 +1,14 @@
+{{- /*
+  layouts/partials/hero-network.html
+  Ζωντανό φόντο δικτύου πίσω από το hero. Μπαίνει ως ΠΡΩΤΟ παιδί ενός στοιχείου με class "hero-network-host".
+  Το canvas απλώνεται σε όλο το πλάτος της οθόνης και σβήνει προς τα κάτω. Δεν δέχεται κλικ.
+  Η κίνηση είναι στο static/js/hero-network/network.js (απλό canvas, χωρίς βιβλιοθήκες).
+*/ -}}
+<canvas class="hero-network" data-hero-network aria-hidden="true"></canvas>
+<style>
+.hero-network-host { position: relative; isolation: isolate; }
+.hero-network-host > :not(.hero-network) { position: relative; z-index: 1; }
+.hero-network { position: absolute; z-index: 0; top: -2rem; left: 50%; width: 100vw; height: calc(100% + 9rem); transform: translateX(-50%); pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 62%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0, #000 62%, transparent 100%); }
+</style>
+<script defer src="{{ "js/hero-network/network.js" | relURL }}"></script>

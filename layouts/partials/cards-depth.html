@@ -1,0 +1,68 @@
+{{- /*
+  layouts/partials/cards-depth.html
+  «Κάρτες με βάθος» για τη λίστα άρθρων:
+  - η κάρτα γέρνει ελαφρά σε 3D προς τον κέρσορα,
+  - μια λάμψη στο χρώμα της κατηγορίας ακολουθεί τον κέρσορα (στο εσωτερικό και στο περίγραμμα),
+  - γυάλινη επιφάνεια πάνω από σκούρο φόντο με χρωματικές κηλίδες.
+  Χρήση: το περιτύλιγμα της λίστας παίρνει class "depth-feed", κάθε <a> κάρτας "depth-wrap"
+  και κάθε <article> "depth-card" με style="--glow: R,G,B".
+  Η κλίση ισχύει μόνο με ποντίκι και όχι σε «μειωμένη κίνηση». Σε αφή μένει μόνο το γυαλί.
+*/ -}}
+<style>
+.depth-feed { position: relative; isolation: isolate; }
+.depth-feed::before { content: ""; position: absolute; z-index: -1; top: -4rem; bottom: -4rem; left: 50%; width: 100vw; transform: translateX(-50%); pointer-events: none;
+  background:
+    radial-gradient(44rem 30rem at 18% 8%, rgba(59,130,246,.20), transparent 62%),
+    radial-gradient(40rem 30rem at 84% 38%, rgba(168,85,247,.15), transparent 62%),
+    radial-gradient(44rem 32rem at 30% 78%, rgba(16,185,129,.11), transparent 62%),
+    radial-gradient(36rem 26rem at 78% 96%, rgba(59,130,246,.12), transparent 62%); }
+
+.depth-wrap { display: block; perspective: 1600px; }
+.depth-card { --glow: 59,130,246; position: relative;
+  background: linear-gradient(135deg, rgba(30,41,59,.50), rgba(15,23,42,.34));
+  -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(148,163,184,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 14px 30px -22px rgba(0,0,0,.9);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .3s, border-color .3s; will-change: transform; }
+.depth-card > * { position: relative; z-index: 1; }
+/* Λάμψη στο εσωτερικό */
+.depth-card::before { content: ""; position: absolute; inset: 0; z-index: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(30rem circle at var(--mx, 50%) var(--my, 50%), rgba(var(--glow), .24), transparent 62%); }
+/* Λάμψη στο περίγραμμα */
+.depth-card::after { content: ""; position: absolute; inset: -1px; z-index: 0; border-radius: inherit; padding: 1px; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(18rem circle at var(--mx, 50%) var(--my, 50%), rgba(var(--glow), .95), transparent 65%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+.depth-wrap:hover .depth-card, .depth-wrap:focus-visible .depth-card { border-color: rgba(var(--glow), .28); box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 26px 44px -26px rgba(var(--glow), .55), 0 18px 36px -24px rgba(0,0,0,.9); }
+.depth-wrap:hover .depth-card::before, .depth-wrap:hover .depth-card::after, .depth-wrap:focus-visible .depth-card::before, .depth-wrap:focus-visible .depth-card::after { opacity: 1; }
+.depth-wrap:focus-visible { outline: 2px solid rgba(96,165,250,.9); outline-offset: 3px; border-radius: .5rem; }
+.depth-card.is-tracking { transition: transform .08s linear, box-shadow .3s, border-color .3s; }
+@media (prefers-reduced-motion: reduce) { .depth-card { transform: none !important; transition: box-shadow .3s, border-color .3s; } }
+</style>
+<script>
+(function () {
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!fine) return;
+  document.querySelectorAll(".depth-wrap").forEach(function (wrap) {
+    var card = wrap.querySelector(".depth-card"), raf = 0, ev = null;
+    if (!card) return;
+    function apply() {
+      raf = 0;
+      var r = wrap.getBoundingClientRect();
+      var px = (ev.clientX - r.left) / r.width, py = (ev.clientY - r.top) / r.height;
+      card.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+      card.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+      if (reduce) return;
+      // Οι κάρτες είναι πολύ φαρδιές: μικρή κλίση αριστερά-δεξιά, λίγο μεγαλύτερη πάνω-κάτω.
+      card.style.setProperty("--rx", ((0.5 - py) * 5).toFixed(2) + "deg");
+      card.style.setProperty("--ry", ((px - 0.5) * 2.2).toFixed(2) + "deg");
+    }
+    wrap.addEventListener("pointermove", function (e) { ev = e; card.classList.add("is-tracking"); if (!raf) raf = requestAnimationFrame(apply); });
+    wrap.addEventListener("pointerleave", function () {
+      card.classList.remove("is-tracking");
+      card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg");
+    });
+  });
+})();
+</script>

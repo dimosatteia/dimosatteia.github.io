@@ -3,7 +3,9 @@
     
     {{ if .IsHome }}
     <!-- Hero / Featured Section (Only on Homepage) -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <section class="hero-network-host grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {{- /* Ζωντανό φόντο δικτύου πίσω από το hero: layouts/partials/hero-network.html */}}
+        {{ partial "hero-network.html" . }}
         
         <!-- Welcome Message (Spans 2 cols) -->
         <div class="lg:col-span-2 glass-card rounded-xl p-6 relative overflow-hidden group border-l-4 border-l-blue-500">
@@ -173,7 +175,7 @@
             </div>
 
             <!-- Structured List of Posts -->
-            <div class="flex flex-col gap-2">
+            <div class="depth-feed flex flex-col gap-3">
                 {{ $feed := partial "feed-pages.html" . }}
                 {{ $paginator := .Paginate $feed }}
                 {{- /* Σελίδα σειράς: ετικέτα «Μέρος N» στα αριθμημένα μέρη, «Συνοδευτικό» στα συνοδευτικά, με επικεφαλίδα πριν από το πρώτο */}}
@@ -192,6 +194,7 @@
                 {{ $iconColor := "text-blue-400" }}
                 {{ $hoverColor := "hover:border-l-blue-500" }}
                 {{ $titleHover := "group-hover:text-blue-400" }}
+                {{ $glow := "59,130,246" }}
                 
                 {{ if in .Params.categories "Identity & Access" }}
                     {{ $hoverColor = "hover:border-l-blue-500" }}
@@ -201,14 +204,16 @@
                     {{ $hoverColor = "hover:border-l-emerald-500" }}
                     {{ $titleHover = "group-hover:text-emerald-400" }}
                     {{ $iconColor = "text-emerald-400" }}
+                    {{ $glow = "16,185,129" }}
                 {{ else if in .Params.categories "GRC & Compliance" }}
                     {{ $hoverColor = "hover:border-l-purple-500" }}
                     {{ $titleHover = "group-hover:text-purple-400" }}
                     {{ $iconColor = "text-purple-400" }}
+                    {{ $glow = "168,85,247" }}
                 {{ end }}
 
-                <a href="{{ .RelPermalink }}" class="block">
-                    <article class="group glass-card rounded-lg p-4 border-l-2 {{ $borderColor }} {{ $hoverColor }} hover:bg-slate-800/40 transition-all duration-200 ease-in-out cursor-pointer hover:-translate-y-0.5 shadow-sm hover:shadow-md">
+                <a href="{{ .RelPermalink }}" class="depth-wrap">
+                    <article class="group depth-card rounded-lg p-4 cursor-pointer" style="--glow: {{ $glow | safeCSS }}">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             
                             <!-- Ενότητα Εικόνας & Κειμένου -->
@@ -264,6 +269,9 @@
             
             <!-- Pagination -->
             {{ partial "pagination.html" . }}
+
+            {{- /* Κάρτες με βάθος (κλίση, λάμψη, γυαλί): layouts/partials/cards-depth.html */}}
+            {{ partial "cards-depth.html" . }}
             
         </div>
     </div>
