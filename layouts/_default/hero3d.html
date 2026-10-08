@@ -1,0 +1,233 @@
+{{- /*
+  Δοκιμαστική σελίδα για το 3D hero.
+  Αντίγραφο της αρχικής (layouts/_default/list.html, 8 Οκτ 2026) με το 3D hero στη θέση του hero:
+  ίδιες κάρτες άρθρων με εξώφυλλα, οι 10 πρώτες όπως στην πρώτη σελίδα της αρχικής (χωρίς σελιδοποίηση).
+*/ -}}
+{{ define "main" }}
+<main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+    
+    <!-- 3D hero στη θέση του hero της αρχικής -->
+    {{ partial "hero-3d.html" . }}
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+        
+        <!-- Main Content (Research Feed) -->
+        <div class="lg:col-span-12 flex flex-col">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+                {{- $feedIcon := `<svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14"></path></svg>` | safeHTML }}
+                {{- if true }}
+                <h2 class="text-lg font-bold text-slate-200 flex items-center gap-2">
+                    {{ $feedIcon }}
+                    Πρόσφατα Άρθρα
+                </h2>
+                {{- else }}
+                {{- /* Σελίδες λίστας: ο τίτλος είναι το H1 της σελίδας, το "Feed" μένει εκτός H1 με ίδια εμφάνιση */}}
+                <div class="text-lg font-bold text-slate-200 flex items-center gap-2">
+                    {{ $feedIcon }}
+                    <div><h1 class="inline text-lg font-bold text-slate-200">{{ .Title }}</h1><span class="ml-1.5">· Άρθρα</span></div>
+                </div>
+                {{- end }}
+                
+                <!-- Mega Dropdown Menu (Categories, Series & Tag Search) -->
+                <div class="flex items-center gap-2 relative group z-20">
+                    <span class="text-xs text-slate-500 font-mono">Προβολή:</span>
+                    
+                    <button class="text-xs text-slate-300 font-mono bg-slate-900 px-2 py-1 rounded border border-slate-800 flex items-center gap-1.5 hover:border-blue-500 hover:text-white transition-colors cursor-pointer shadow-sm">
+                        Ημερομηνία (νεότερα)
+                        <svg class="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    
+                    <!-- Το Dropdown -->
+                    <div class="absolute right-0 top-full mt-1 w-72 bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-md shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible focus-within:opacity-100 focus-within:visible transition-all duration-200 overflow-hidden transform origin-top-right group-hover:scale-100 focus-within:scale-100 scale-95 z-50 flex flex-col">
+                        
+                        <a href="/" class="flex items-center gap-2 px-3 py-2.5 text-xs font-mono text-blue-400 bg-slate-800/60 border-b border-slate-700/50 shrink-0">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            Ημερομηνία (νεότερα)
+                        </a>
+                        
+                        <!-- Main Scroll Area for the whole dropdown menu -->
+                        <div class="max-h-[75vh] overflow-y-auto overscroll-contain flex flex-col [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-700 [&::-webkit-scrollbar-thumb]:rounded-full">
+                            
+                            <!-- Ενότητα: Categories (Sort By Count, Max 5 items visible) -->
+                            {{ if .Site.Taxonomies.categories }}
+                            <div class="px-3 py-1.5 bg-slate-950/90 border-b border-slate-700/50 sticky top-0 z-10 backdrop-blur-sm">
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Κατηγορίες</span>
+                            </div>
+                            <div class="max-h-[165px] overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
+                                {{ range .Site.Taxonomies.categories.ByCount }}
+                                <a href="{{ "/categories/" | relLangURL }}{{ .Name | urlize }}/" class="flex items-center justify-between px-3 py-2 text-xs font-mono text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 border-b border-slate-700/30 transition-colors group/item shrink-0">
+                                    <span class="truncate pr-2 group-hover/item:text-blue-400">{{ .Name | humanize | title }}</span>
+                                    <span class="bg-slate-800 text-[9px] px-1.5 py-0.5 rounded text-slate-400 border border-slate-700">{{ .Count }}</span>
+                                </a>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Ενότητα: Series (Sort By Count, Max 5 items visible) -->
+                            {{ if .Site.Taxonomies.series }}
+                            <div class="px-3 py-1.5 bg-slate-950/90 border-y border-slate-700/50 sticky top-0 z-10 backdrop-blur-sm mt-1">
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Σειρές</span>
+                            </div>
+                            <div class="max-h-[165px] overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
+                                {{ range .Site.Taxonomies.series.ByCount }}
+                                <a href="{{ "/series/" | relLangURL }}{{ .Name | urlize }}/" class="flex items-center justify-between px-3 py-2 text-xs font-mono text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 border-b border-slate-700/30 transition-colors group/item shrink-0">
+                                    <span class="truncate pr-2 group-hover/item:text-blue-400">{{ .Name | humanize | title }}</span>
+                                    <span class="bg-slate-800 text-[9px] px-1.5 py-0.5 rounded text-slate-400 border border-slate-700">{{ .Count }}</span>
+                                </a>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Ενότητα: Tags με Live Search (Sort By Count, Max 5 items visible) -->
+                            {{ if .Site.Taxonomies.tags }}
+                            <div class="px-3 py-2 bg-slate-950/90 border-y border-slate-700/50 sticky top-0 z-10 backdrop-blur-sm mt-1 shadow-sm">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                    <input type="text" id="tagSearchInput" placeholder="Αναζήτηση tags..." class="w-full bg-slate-900/50 text-xs text-slate-300 font-mono px-2 py-1 rounded border border-slate-700 focus:outline-none focus:border-blue-500 transition-colors placeholder-slate-600">
+                                </div>
+                            </div>
+                            <div id="tagListContainer" class="max-h-[165px] overflow-y-auto overscroll-contain flex flex-col pb-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full">
+                                {{ range .Site.Taxonomies.tags.ByCount }}
+                                <a href="{{ "/tags/" | relLangURL }}{{ .Name | urlize }}/" data-tag-name="{{ .Name | lower }}" class="tag-item flex items-center justify-between px-3 py-2 text-xs font-mono text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 border-b border-slate-700/30 transition-colors last:border-0 group/item shrink-0">
+                                    <span class="truncate pr-2 group-hover/item:text-blue-400">#{{ .Name }}</span>
+                                    <span class="bg-slate-800 text-[9px] px-1.5 py-0.5 rounded text-slate-400 border border-slate-700">{{ .Count }}</span>
+                                </a>
+                                {{ end }}
+                                <div id="noTagsFound" class="hidden px-3 py-4 text-xs font-mono text-slate-500 text-center border-t border-slate-700/30">
+                                    Δεν βρέθηκαν tags με αυτό το όνομα.
+                                </div>
+                            </div>
+                            {{ end }}
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Script για το Live Search των Tags -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const searchInput = document.getElementById('tagSearchInput');
+                        const tagItems = document.querySelectorAll('.tag-item');
+                        const noTagsFound = document.getElementById('noTagsFound');
+
+                        if (searchInput) {
+                            searchInput.addEventListener('input', (e) => {
+                                const searchTerm = e.target.value.toLowerCase().trim();
+                                let visibleCount = 0;
+
+                                tagItems.forEach(item => {
+                                    const tagName = item.getAttribute('data-tag-name');
+                                    if (tagName.includes(searchTerm)) {
+                                        item.style.display = 'flex';
+                                        visibleCount++;
+                                    } else {
+                                        item.style.display = 'none';
+                                    }
+                                });
+
+                                if (visibleCount === 0) {
+                                    noTagsFound.style.display = 'block';
+                                } else {
+                                    noTagsFound.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+                </script>
+            </div>
+
+            <!-- Structured List of Posts -->
+            <div class="flex flex-col gap-2">
+                {{ $feed := partial "feed-pages.html" . }}
+                {{- /* Σελίδα σειράς: ετικέτα «Μέρος N» στα αριθμημένα μέρη, «Συνοδευτικό» στα συνοδευτικά, με επικεφαλίδα πριν από το πρώτο */}}
+                {{ $isSeries := and (eq .Kind "term") (eq .Data.Plural "series") (not .Params.ongoing) }}
+                {{ $seriesParts := slice }}
+                {{ if $isSeries }}{{ $seriesParts = where .Pages.ByDate "Params.seriesCompanion" "!=" true }}{{ end }}
+                {{ $companionShown := false }}
+                {{ range $i, $p := first 10 $feed }}
+                {{ if and $isSeries $p.Params.seriesCompanion (not $companionShown) }}
+                <h2 class="mt-4 mb-1 text-[11px] font-mono uppercase tracking-wider text-slate-500">Συνοδευτικά άρθρα</h2>
+                {{ $companionShown = true }}
+                {{ end }}
+                
+                <!-- Use categories to determine border color based on mapping -->
+                {{ $borderColor := "border-l-transparent" }}
+                {{ $iconColor := "text-blue-400" }}
+                {{ $hoverColor := "hover:border-l-blue-500" }}
+                {{ $titleHover := "group-hover:text-blue-400" }}
+                
+                {{ if in .Params.categories "Identity & Access" }}
+                    {{ $hoverColor = "hover:border-l-blue-500" }}
+                    {{ $titleHover = "group-hover:text-blue-400" }}
+                    {{ $iconColor = "text-blue-400" }}
+                {{ else if in .Params.categories "Network & SSE" }}
+                    {{ $hoverColor = "hover:border-l-emerald-500" }}
+                    {{ $titleHover = "group-hover:text-emerald-400" }}
+                    {{ $iconColor = "text-emerald-400" }}
+                {{ else if in .Params.categories "GRC & Compliance" }}
+                    {{ $hoverColor = "hover:border-l-purple-500" }}
+                    {{ $titleHover = "group-hover:text-purple-400" }}
+                    {{ $iconColor = "text-purple-400" }}
+                {{ end }}
+
+                <a href="{{ .RelPermalink }}" class="block">
+                    <article class="group glass-card rounded-lg p-4 border-l-2 {{ $borderColor }} {{ $hoverColor }} hover:bg-slate-800/40 transition-all duration-200 ease-in-out cursor-pointer hover:-translate-y-0.5 shadow-sm hover:shadow-md">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            
+                            <!-- Ενότητα Εικόνας & Κειμένου -->
+                            <div class="flex flex-col sm:flex-row gap-4 flex-1 items-start sm:items-center w-full min-w-0">
+                                
+                                <!-- Μικρογραφία που δείχνει ΟΛΟΚΛΗΡΗ την εικόνα (object-contain) -->
+                                {{ with .Params.cover.image }}
+                                <div class="shrink-0 w-full sm:w-56 h-48 sm:h-32 relative z-10 bg-slate-900 rounded-md border border-slate-700/50">
+                                    {{ $d := partial "img-dims.html" . }}<img src="{{ . | absURL }}" alt="{{ $p.Params.cover.alt | default $p.Title }}"{{ with $d.w }} width="{{ . }}" height="{{ $d.h }}"{{ end }}{{ if gt $i 0 }} loading="lazy"{{ end }} decoding="async" class="absolute inset-0 w-full h-full object-contain p-1 transform transition-all duration-300 ease-in-out hover:scale-105 sm:hover:scale-[2.2] hover:z-50 hover:shadow-[0_0_30px_rgba(0,0,0,0.8)] sm:origin-left cursor-zoom-in">
+                                </div>
+                                {{ end }}
+                                
+                                <!-- Κείμενο (Ημερομηνία, Κατηγορία, Τίτλος, Σύνοψη) -->
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-3 mb-1.5">
+                                        <span class="text-[11px] font-mono text-slate-400 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">{{ .Date.Format "2006-01-02" }}</span>
+                                        {{ if $isSeries }}
+                                            {{ if $p.Params.seriesCompanion }}
+                                            <span class="text-[11px] font-mono font-bold text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">Συνοδευτικό</span>
+                                            {{ else }}
+                                                {{ range $n, $sp := $seriesParts }}{{ if eq $sp.RelPermalink $p.RelPermalink }}
+                                            <span class="text-[11px] font-mono font-bold text-blue-300 bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/30">Μέρος {{ add $n 1 }}</span>
+                                                {{ end }}{{ end }}
+                                            {{ end }}
+                                        {{ end }}
+                                        {{ with .Params.categories }}
+                                            <span class="text-[11px] font-mono {{ $iconColor }} flex items-center gap-1">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                                {{ index . 0 }}
+                                            </span>
+                                        {{ end }}
+                                    </div>
+                                    <h3 class="text-base font-semibold text-slate-200 {{ $titleHover }} transition-colors break-words">
+                                        {{ .Title }}
+                                    </h3>
+                                    <p class="text-sm text-slate-500 mt-1 line-clamp-1">{{ .Summary | plainify }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Tags στα δεξιά -->
+                            <div class="flex flex-wrap sm:flex-col sm:items-end gap-1.5 shrink-0 sm:w-48">
+                                {{ if .Params.tags }}
+                                    {{ range first 3 .Params.tags }}
+                                        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 text-slate-300 text-[10px] font-mono rounded whitespace-nowrap">{{ . }}</span>
+                                    {{ end }}
+                                {{ end }}
+                            </div>
+                        </div>
+                    </article>
+                </a>
+                {{ end }}
+            </div>
+            
+            
+        </div>
+    </div>
+</main>
+{{ end }}

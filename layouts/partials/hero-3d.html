@@ -1,0 +1,145 @@
+{{- /*
+  layouts/partials/hero-3d.html
+  3D hero: το λογότυπο του Microsoft Defender με τους οκτώ πυλώνες σε τροχιά.
+  - Κάθε πυλώνας δείχνει το λογότυπο ενός προϊόντος (πίνακας $logos πιο κάτω, αρχεία στο static/js/hero3d/logos/).
+  - Τα ονόματα, οι περιγραφές, τα χρώματα και ο αριθμός άρθρων έρχονται από τα content/categories/<πυλώνας>/_index.md.
+  - Το 3D (static/js/hero3d/) φορτώνει μόνο σε οθόνες >= 768px με WebGL. Αλλού μένει το στατικό SVG.
+  - Η λίστα των πυλώνων είναι κανονικά links: δουλεύει χωρίς JavaScript, με πληκτρολόγιο και σε κινητό.
+*/ -}}
+{{- $order := slice "identity-&-access" "endpoint-&-device" "email-&-collaboration" "network-&-sse" "cloud-security" "security-operations-&-xdr" "ai-security" "grc-&-compliance" -}}
+{{- $hex := dict "blue" "#3b82f6" "cyan" "#22d3ee" "sky" "#7dd3fc" "emerald" "#10b981" "indigo" "#818cf8" "amber" "#f59e0b" "fuchsia" "#e879f9" "purple" "#a855f7" -}}
+{{- $logos := dict "identity-&-access" "entra" "endpoint-&-device" "intune" "email-&-collaboration" "exchange" "network-&-sse" "gsa" "cloud-security" "defender-cloud" "security-operations-&-xdr" "sentinel" "ai-security" "copilot" "grc-&-compliance" "purview" -}}
+{{- $core := "js/hero3d/logos/defender.webp" | relURL -}}
+{{- $pillars := slice -}}
+{{- $total := 0 -}}
+{{- range $order -}}
+  {{- $logo := printf "js/hero3d/logos/%s.webp" (index $logos .) | relURL -}}
+  {{- with site.GetPage (printf "/categories/%s" .) -}}
+    {{- $n := len .Pages -}}
+    {{- $total = add $total $n -}}
+    {{- $pillars = $pillars | append (dict "name" .Title "desc" (.Params.description | default "") "url" .RelPermalink "count" $n "logo" $logo "color" (index $hex (.Params.color | default "blue") | default "#3b82f6")) -}}
+  {{- end -}}
+{{- end -}}
+{{- $posts := len (where site.RegularPages "Section" "posts") -}}
+
+<section class="h3d" aria-labelledby="h3d-title">
+  <div class="h3d-copy">
+    <h1 id="h3d-title" class="h3d-title">Η ασφάλεια του Microsoft&nbsp;365, πυλώνα προς πυλώνα</h1>
+    <p class="h3d-lede">{{ site.Params.description }}</p>
+
+    <ul class="h3d-pillars">
+      {{- range $i, $p := $pillars }}
+      <li>
+        <a href="{{ $p.url }}" data-h3d-pillar="{{ $i }}" style="--c: {{ $p.color | safeCSS }}">
+          <span class="h3d-dot" aria-hidden="true"></span>
+          <span class="h3d-name">{{ $p.name }}</span>
+          <span class="h3d-count">{{ $p.count }}<span class="h3d-sr"> {{ if eq $p.count 1 }}άρθρο{{ else }}άρθρα{{ end }}</span></span>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+
+  <div class="h3d-stage" data-h3d-stage>
+    {{- /* Στατική εικόνα: φαίνεται μέχρι να φορτώσει το 3D, και μόνιμα όπου το 3D δεν φορτώνει. */}}
+    <svg class="h3d-still" viewBox="0 0 640 520" role="img" aria-label="Το λογότυπο του Microsoft Defender με τους οκτώ πυλώνες ασφάλειας γύρω του">
+      <g fill="none" stroke="#475569" stroke-opacity=".6">
+        <ellipse cx="320" cy="260" rx="165" ry="62" transform="rotate(-9 320 260)"/>
+        <ellipse cx="320" cy="260" rx="212" ry="108" transform="rotate(14 320 260)"/>
+        <ellipse cx="320" cy="260" rx="258" ry="84" transform="rotate(-19 320 260)"/>
+      </g>
+      <image href="{{ $core }}" x="245" y="185" width="150" height="150"/>
+      {{- $spots := slice (slice 160 286) (slice 118 196) (slice 80 330) (slice 468 222) (slice 508 322) (slice 566 188) (slice 300 360) (slice 340 132) }}
+      {{- range $i, $p := $pillars }}{{ $s := index $spots (mod $i 8) }}
+      <circle cx="{{ index $s 0 }}" cy="{{ index $s 1 }}" r="30" fill="{{ $p.color }}" fill-opacity=".14"/>
+      <image href="{{ $p.logo }}" x="{{ sub (index $s 0) 21 }}" y="{{ sub (index $s 1) 21 }}" width="42" height="42"/>
+      {{- end }}
+    </svg>
+
+    <div class="h3d-readout" data-h3d-readout aria-hidden="true">
+      <p class="h3d-readout-name" data-h3d-name>{{ len $pillars }} πυλώνες, {{ $posts }} άρθρα</p>
+      <p class="h3d-readout-desc" data-h3d-desc>Διαλέξτε έναν πυλώνα για να δείτε τι καλύπτει.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.h3d { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: center; padding: 1rem 0 0.5rem; }
+.h3d-title { margin: 0; font-size: clamp(2rem, 0.9rem + 2.1vw, 2.9rem); line-height: 1.08; font-weight: 700; letter-spacing: -0.022em; color: #f8fafc; text-wrap: balance; }
+.h3d-lede { margin: 1.1rem 0 0; max-width: 34rem; font-size: 1rem; line-height: 1.65; color: #94a3b8; }
+
+.h3d-pillars { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 1.75rem; max-width: 36rem; border-top: 1px solid #1e293b; }
+.h3d-pillars a { display: flex; align-items: center; gap: 0.7rem; padding: 0.62rem 0.25rem; border-bottom: 1px solid #1e293b; color: #cbd5e1; font-size: 0.925rem; text-decoration: none; transition: color .15s; }
+.h3d-pillars a:hover, .h3d-pillars a.is-active { color: #fff; }
+.h3d-pillars a:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; border-radius: 4px; }
+.h3d-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--c); flex: none; transition: box-shadow .15s; }
+.h3d-pillars a:hover .h3d-dot, .h3d-pillars a.is-active .h3d-dot { box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 28%, transparent); }
+.h3d-name { flex: 1; min-width: 0; }
+.h3d-count { color: #64748b; font-variant-numeric: tabular-nums; font-size: 0.85rem; }
+.h3d-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.h3d-stage { position: relative; height: 15rem; }
+.h3d-still { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .5s; }
+.h3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; }
+.h3d-stage.is-live .h3d-still { opacity: 0; pointer-events: none; }
+.h3d-readout { display: none; }
+
+.h3d-label { position: absolute; left: 0; top: 0; white-space: nowrap; font-size: 0.75rem; line-height: 1; padding: 0.3rem 0.5rem; border-radius: 999px; color: #cbd5e1; text-decoration: none; will-change: transform; transition: color .15s, background-color .15s, opacity .25s; }
+.h3d-label.is-active { color: #fff; background: color-mix(in srgb, var(--c) 22%, #020617); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 60%, transparent); z-index: 2; }
+.h3d-stage.has-active .h3d-label:not(.is-active) { color: #64748b; }
+
+@media (min-width: 640px) {
+  .h3d-pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .h3d-stage { height: 30rem; }
+  .h3d-canvas, .h3d-still { height: calc(100% - 4.75rem); }
+  .h3d-readout { display: block; position: absolute; left: 0; right: 0; bottom: 0; text-align: center; pointer-events: none; }
+  .h3d-readout-name { margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--c, #e2e8f0); }
+  .h3d-readout-desc { margin: 0.25rem auto 0; max-width: 30rem; font-size: 0.82rem; line-height: 1.5; color: #94a3b8; min-height: 2.5em; }
+}
+@media (min-width: 1024px) {
+  .h3d { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem; min-height: 34rem; }
+  .h3d-stage { height: 100%; min-height: 34rem; }
+}
+</style>
+
+<script type="application/json" id="h3d-data">{{ $pillars | jsonify | safeJS }}</script>
+<script>
+(function () {
+  var stage = document.querySelector("[data-h3d-stage]");
+  if (!stage) return;
+  var pillars = JSON.parse(document.getElementById("h3d-data").textContent);
+  var links = document.querySelectorAll("[data-h3d-pillar]");
+  var readout = stage.querySelector("[data-h3d-readout]");
+  var nameEl = stage.querySelector("[data-h3d-name]"), descEl = stage.querySelector("[data-h3d-desc]");
+  var idle = { name: nameEl.textContent, desc: descEl.textContent };
+  var api = null;
+
+  function show(i) {
+    links.forEach(function (a, k) { a.classList.toggle("is-active", k === i); });
+    var p = pillars[i];
+    nameEl.textContent = p ? p.name + " · " + p.count + (p.count === 1 ? " άρθρο" : " άρθρα") : idle.name;
+    descEl.textContent = p ? p.desc : idle.desc;
+    if (p) readout.style.setProperty("--c", p.color); else readout.style.removeProperty("--c");
+  }
+  links.forEach(function (a, i) {
+    function on() { show(i); if (api) api.setActive(i); }
+    function off() { show(-1); if (api) api.setActive(-1); }
+    a.addEventListener("pointerenter", on); a.addEventListener("focus", on);
+    a.addEventListener("pointerleave", off); a.addEventListener("blur", off);
+  });
+
+  function webgl() {
+    try { var c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch (e) { return false; }
+  }
+  if (!window.matchMedia("(min-width: 768px)").matches || !webgl()) return;
+
+  function start() {
+    import({{ "js/hero3d/scene.js" | relURL }}).then(function (m) {
+      api = m.init(stage, pillars, { onActive: show, core: {{ $core }} });
+    }).catch(function () { /* μένει το στατικό SVG */ });
+  }
+  if ("requestIdleCallback" in window) requestIdleCallback(start, { timeout: 1500 }); else setTimeout(start, 200);
+})();
+</script>
