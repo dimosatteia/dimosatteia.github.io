@@ -126,6 +126,13 @@ cover:
 
 Για αυτό το τεύχος ελέγχθηκαν το αρχείο mc.merill.net (αναρτήσεις Message Center από την 1η έως τις 8 Οκτωβρίου 2026) και οι σελίδες «What's new» των Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Microsoft Intune, Microsoft Purview και Microsoft Entra. Οι σελίδες των Defender XDR, Defender for Endpoint, Defender for Office 365, Purview και Entra δεν είχαν καταχωρίσεις Οκτωβρίου όταν διαβάστηκαν. Η σελίδα του Defender for Identity είχε μία καταχώριση Οκτωβρίου, τη γενική διαθεσιμότητα της ενεργοποίησης του sensor v3.x χωρίς Defender for Endpoint, που δεν μπήκε στις πέντε αλλαγές. Για την αλλαγή στο Defender for Cloud Apps και για το security baseline του Intune δεν βρέθηκε ανακοίνωση Message Center.
 
-Οι ανακοινώσεις MC1488834, MC1490905, MC1470410, MC1488841, MC1490899 και MC1486282 διαβάστηκαν στο αρχείο mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft. Οι ανακοινώσεις και οι ημερομηνίες τους διαφέρουν ανά tenant.
+Οι ανακοινώσεις MC1488834, MC1490905, MC1470410, MC1488841, MC1490899 και MC1486282 διαβάστηκαν στο αρχείο mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft. Δεν διαβάστηκαν σε Message Center κάποιου tenant. Το πόσο επιβεβαιώνονται από τη Microsoft διαφέρει ανά θέμα:
+
+- **Entra MemberOf (MC1488834):** η ημερομηνία της 3ης Νοεμβρίου 2026 και οι συνέπειες επιβεβαιώνονται και από τη σελίδα του Microsoft Learn για το `memberOf`.
+- **QR codes στο Teams (MC1490905, MC1470410):** η αλλαγή και οι ημερομηνίες διάθεσης προέρχονται μόνο από το αρχείο. Από το Microsoft Learn προέρχονται η διαδρομή της ρύθμισης ZAP και οι άδειες.
+- **Αρχεία .msix στο Exchange Online (MC1488841), Targeted Release (MC1490899) και συσκευές Teams (MC1486282):** η αλλαγή και οι ημερομηνίες προέρχονται μόνο από το αρχείο. Οι σελίδες του Microsoft Learn που παρατίθενται καλύπτουν μόνο τις ρυθμίσεις, όχι την ίδια την αλλαγή.
+- **Defender for Cloud Apps και security baseline του Intune:** προέρχονται μόνο από τις σελίδες «What's new» της Microsoft.
+
+Οι ανακοινώσεις και οι ημερομηνίες τους διαφέρουν ανά tenant. Πριν ενεργήσεις, δες την αντίστοιχη ανακοίνωση στο δικό σου Message Center.
 
 Τελευταίος έλεγχος αδειών και στοιχείων: 8 Οκτωβρίου 2026.
