@@ -38,25 +38,8 @@
     </div>
     {{ end }}
 
-    <!-- Σύνολα -->
-    <section aria-label="Σύνολα" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass-card rounded-xl p-4 border-t-2 border-t-slate-500">
-            <div class="text-2xl font-bold text-slate-100">{{ $total }}</div>
-            <div class="text-xs text-slate-400 mt-1">{{ $items }} σε {{ len $d.articles }} {{ $groups }} {{ $d.source.of | default "της ΚΥΑ" }}</div>
-        </div>
-        <div class="glass-card rounded-xl p-4 border-t-2 border-t-emerald-500">
-            <div class="text-2xl font-bold text-slate-100">{{ $tech }}</div>
-            <div class="text-xs text-slate-400 mt-1">τεχνικές, υλοποιούνται κυρίως με ρύθμιση</div>
-        </div>
-        <div class="glass-card rounded-xl p-4 border-t-2 border-t-blue-500">
-            <div class="text-2xl font-bold text-slate-100">{{ $mixed }}</div>
-            <div class="text-xs text-slate-400 mt-1">μικτές, έγγραφο ή διαδικασία με τεχνική υποστήριξη</div>
-        </div>
-        <div class="glass-card rounded-xl p-4 border-t-2 border-t-slate-700">
-            <div class="text-2xl font-bold text-slate-100">{{ $org }}</div>
-            <div class="text-xs text-slate-400 mt-1">οργανωτικές ή εκτός Microsoft 365</div>
-        </div>
-    </section>
+    <!-- Σύνολα: κυκλικοί δείκτες, βλ. layouts/partials/hub-rings.html -->
+    {{ partial "hub-rings.html" (dict "d" $d "items" $items "groups" $groups) }}
 
     <!-- Checklist + αποποίηση -->
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
