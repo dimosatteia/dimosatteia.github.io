@@ -18,21 +18,12 @@
                     </h1>
                     <div class="text-sm text-slate-400 max-w-2xl leading-relaxed mb-6 prose prose-invert prose-p:mb-2 prose-strong:text-slate-200">
                         <!-- We process the markdown from the config here -->
-                        {{- /* Επισημάνσεις: το πιο πρόσφατο τεύχος της εβδομαδιαίας σύνοψης (αλλάζει μόνο του) και ο οδηγός NIS2 */ -}}
+                        {{- /* Επισημάνσεις: το πιο πρόσφατο τεύχος της εβδομαδιαίας σύνοψης (αλλάζει μόνο του) */ -}}
                         {{- $hl := "" -}}
                         {{- $weekly := where (where site.RegularPages "Section" "posts") "Params.series" "intersect" (slice "Microsoft 365 Security Weekly") -}}
                         {{- with index $weekly.ByDate.Reverse 0 -}}
                           {{- $hl = printf "**🗓️ Αυτή την εβδομάδα:** [%s](%s)<br>\n\n" .Title .RelPermalink -}}
                         {{- end -}}
-                        {{- with site.GetPage "/nis2" -}}
-                          {{- $hl = printf "%s**🆕 Νέο:** [%s](%s)<br>" $hl .Title .RelPermalink -}}
-                        {{- end -}}
-                        {{- with site.GetPage "/nis2-directive" -}}
-                          {{- $hl = printf "%s\n\n**🆕 Νέο:** [%s](%s)<br>" $hl .Title .RelPermalink -}}
-                        {{- end -}}
-                        {{- with site.GetPage "/iso27001" -}}
-                          {{- $hl = printf "%s\n\n**🆕 Νέο:** [%s](%s)<br>" $hl .Title .RelPermalink -}}
-                        {{- end }}
                         {{ replace .Site.Params.homeInfoParams.Content "%%HIGHLIGHTS%%" $hl | markdownify }}
                     </div>
                 </div>
