@@ -4,6 +4,8 @@ seoTitle: "Microsoft Defender for Office 365: οι ρυθμίσεις που μ�
 date: 2026-10-11T18:30:00+03:00
 lastmod: 2026-10-11T18:30:00+03:00
 draft: false
+# Εμφανίζεται ως «Νέο άρθρο» στην αρχική, μέχρι να βγει νεότερο τεύχος της εβδομαδιαίας σύνοψης
+homeHighlight: true
 keywords:
   - Microsoft Defender for Office 365
   - Microsoft Defender for Office 365 οδηγός
