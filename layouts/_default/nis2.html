@@ -131,7 +131,10 @@
                         <dd>
                             <ul class="flex flex-col gap-1">
                                 {{ range .posts }}
+                                {{- /* Με πεδίο «page» η εγγραφή εμφανίζεται μόνο αν η σελίδα αυτή είναι δημοσιευμένη (όχι draft). */ -}}
+                                {{ if or (not .page) (site.GetPage .page) }}
                                 <li><a href="{{ .url | relURL }}" class="text-blue-400 hover:text-blue-300 underline leading-relaxed">{{ .title }}</a></li>
+                                {{ end }}
                                 {{ end }}
                                 {{ with .planned }}<li class="text-slate-400 italic">{{ . }}</li>{{ end }}
                             </ul>

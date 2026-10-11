@@ -1,0 +1,13 @@
+{{- /* Λίστα των διαδραστικών εργαλείων του blog. Κάθε εργαλείο εμφανίζεται μόνο αν η σελίδα του είναι δημοσιευμένη. Χρήση: {{< tools-list >}} */ -}}
+{{- $tools := slice
+    (dict "page" "/elegxos-ypagogis" "name" "Έλεγχος υπαγωγής στον ν. 5160/2024" "text" "πέντε ερωτήσεις για να δεις αν είσαι βασική ή σημαντική οντότητα, και από πού ξεκινάς με το Microsoft 365.")
+    (dict "page" "/elegxos-domain" "name" "Έλεγχος domain" "text" "SPF, DKIM, DMARC, MTA-STS και DNSSEC για το domain σου, με τη ρύθμιση του Microsoft 365 που διορθώνει κάθε εύρημα.") -}}
+{{- $any := false -}}
+{{- range $tools }}{{ if site.GetPage .page }}{{ $any = true }}{{ end }}{{ end -}}
+{{- if $any }}
+<ul>
+{{- range $tools }}{{ $t := . }}{{ with site.GetPage .page }}
+<li><strong><a href="{{ .RelPermalink }}">{{ $t.name }}</a>:</strong> {{ $t.text }}</li>
+{{- end }}{{ end }}
+</ul>
+{{- end -}}

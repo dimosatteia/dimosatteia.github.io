@@ -1,0 +1,260 @@
+{{- /* Έλεγχος υπαγωγής στον ν. 5160/2024 (άρθρα 3 και 4, Παραρτήματα I και II).
+       Όλος ο υπολογισμός γίνεται στον browser. Δεν αποστέλλεται κανένα στοιχείο.
+       Χρήση: {{< scope-check >}} */ -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="scopeCheck">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Έλεγχος υπαγωγής · ν. 5160/2024</p>
+
+    <form id="scForm" class="flex flex-col gap-5" novalidate data-clarity-mask="true">
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">1.</span> Σε ποιον τομέα δραστηριοποιείται ο οργανισμός;</span>
+            <select id="scSector" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                <option value="">Διάλεξε τομέα…</option>
+                <optgroup label="Παράρτημα I: τομείς υψηλής κρισιμότητας">
+                    <option value="I|std">Ενέργεια (ηλεκτρισμός, τηλεθέρμανση, πετρέλαιο, αέριο, υδρογόνο)</option>
+                    <option value="I|std">Μεταφορές (αεροπορικές, σιδηροδρομικές, πλωτές, οδικές)</option>
+                    <option value="I|fin">Τράπεζες</option>
+                    <option value="I|fin">Υποδομές χρηματοπιστωτικών αγορών</option>
+                    <option value="I|std">Υγεία (πάροχοι υγειονομικής περίθαλψης, εργαστήρια, φαρμακευτικά, κρίσιμα ιατροτεχνολογικά)</option>
+                    <option value="I|std">Πόσιμο νερό</option>
+                    <option value="I|std">Λύματα</option>
+                    <option value="I|std">Ψηφιακές υποδομές: IXP, cloud computing, data centres, CDN</option>
+                    <option value="I|dns">Ψηφιακές υποδομές: μητρώο ονομάτων TLD ή πάροχος υπηρεσιών DNS</option>
+                    <option value="I|tsp">Ψηφιακές υποδομές: πάροχος υπηρεσιών εμπιστοσύνης</option>
+                    <option value="I|ecom">Ψηφιακές υποδομές: δημόσια δίκτυα ή υπηρεσίες ηλεκτρονικών επικοινωνιών</option>
+                    <option value="I|std">Διαχείριση υπηρεσιών ΤΠΕ μεταξύ επιχειρήσεων (managed services, managed security services)</option>
+                    <option value="I|gov">Δημόσια διοίκηση (κεντρική κυβέρνηση, ΟΤΑ α΄ ή β΄ βαθμού)</option>
+                    <option value="I|std">Διάστημα</option>
+                </optgroup>
+                <optgroup label="Παράρτημα II: άλλοι κρίσιμοι τομείς">
+                    <option value="II|std">Ταχυδρομικές υπηρεσίες και υπηρεσίες ταχυμεταφορών</option>
+                    <option value="II|std">Διαχείριση αποβλήτων</option>
+                    <option value="II|std">Παραγωγή και διανομή χημικών προϊόντων</option>
+                    <option value="II|std">Παραγωγή, μεταποίηση και διανομή τροφίμων</option>
+                    <option value="II|std">Μεταποίηση: ιατροτεχνολογικά, υπολογιστές και ηλεκτρονικά, ηλεκτρολογικός εξοπλισμός, μηχανήματα, οχήματα, λοιπός εξοπλισμός μεταφορών</option>
+                    <option value="II|std">Πάροχοι ψηφιακών υπηρεσιών (online marketplaces, μηχανές αναζήτησης, κοινωνικά δίκτυα)</option>
+                    <option value="II|std">Έρευνα (ερευνητικοί οργανισμοί)</option>
+                </optgroup>
+                <optgroup label="Άλλο">
+                    <option value="none|none">Κανένας από τους παραπάνω (π.χ. λιανικό εμπόριο, ξενοδοχεία, λογιστικά γραφεία)</option>
+                </optgroup>
+            </select>
+        </label>
+
+        <div id="scQualifiedWrap" class="hidden rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+            <label class="flex items-start gap-2 text-sm text-slate-300">
+                <input type="checkbox" id="scQualified" class="mt-1">
+                <span>Ο οργανισμός είναι εγκεκριμένος πάροχος υπηρεσιών εμπιστοσύνης (qualified trust service provider).</span>
+            </label>
+        </div>
+
+        <fieldset id="scSizeBlock" class="flex flex-col gap-5">
+            <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                <span><span class="font-mono text-blue-400">2.</span> Πόσους εργαζομένους έχει;</span>
+                <select id="scEmp" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <option value="">Διάλεξε…</option>
+                    <option value="1">Λιγότερους από 50</option>
+                    <option value="2">50 έως 249</option>
+                    <option value="3">250 ή περισσότερους</option>
+                </select>
+            </label>
+            <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                <span><span class="font-mono text-blue-400">3.</span> Ποιος ήταν ο ετήσιος κύκλος εργασιών στην τελευταία κλεισμένη χρήση;</span>
+                <select id="scTurn" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <option value="">Διάλεξε…</option>
+                    <option value="1">Έως 10 εκατ. €</option>
+                    <option value="2">Πάνω από 10 και έως 50 εκατ. €</option>
+                    <option value="3">Πάνω από 50 εκατ. €</option>
+                </select>
+            </label>
+            <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                <span><span class="font-mono text-blue-400">4.</span> Ποιο ήταν το σύνολο του ισολογισμού στην τελευταία κλεισμένη χρήση;</span>
+                <select id="scBal" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <option value="">Διάλεξε…</option>
+                    <option value="1">Έως 10 εκατ. €</option>
+                    <option value="2">Πάνω από 10 και έως 43 εκατ. €</option>
+                    <option value="3">Πάνω από 43 εκατ. €</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <fieldset class="flex flex-col gap-2 text-sm text-slate-300">
+            <legend class="mb-1"><span class="font-mono text-blue-400">5.</span> Ισχύει κάτι από τα παρακάτω; Σημείωσε όσα ισχύουν.</legend>
+            <label class="flex items-start gap-2"><input type="checkbox" class="scSpecial mt-1" value="sole"><span>Είναι ο μοναδικός πάροχος στη χώρα μιας υπηρεσίας ουσιώδους για κρίσιμες κοινωνικές ή οικονομικές δραστηριότητες.</span></label>
+            <label class="flex items-start gap-2"><input type="checkbox" class="scSpecial mt-1" value="safety"><span>Η διατάραξη της υπηρεσίας του θα είχε σημαντικό αντίκτυπο στη δημόσια ασφάλεια, τη δημόσια τάξη ή τη δημόσια υγεία.</span></label>
+            <label class="flex items-start gap-2"><input type="checkbox" class="scSpecial mt-1" value="systemic"><span>Η διατάραξη της υπηρεσίας του θα προκαλούσε σημαντικό συστημικό κίνδυνο.</span></label>
+            <label class="flex items-start gap-2"><input type="checkbox" class="scSpecial mt-1" value="critical"><span>Έχει ιδιαίτερη σημασία σε εθνικό ή περιφερειακό επίπεδο για τον τομέα του.</span></label>
+            <label class="flex items-start gap-2"><input type="checkbox" class="scSpecial mt-1" value="cer"><span>Έχει χαρακτηριστεί κρίσιμη οντότητα κατά την Οδηγία (ΕΕ) 2022/2557, ή είχε οριστεί φορέας εκμετάλλευσης βασικών υπηρεσιών κατά τον ν. 4577/2018.</span></label>
+            <label class="flex items-start gap-2"><input type="checkbox" class="scSpecial mt-1" value="registrar"><span>Παρέχει υπηρεσίες καταχώρισης ονομάτων τομέα (domain names).</span></label>
+        </fieldset>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Δες το αποτέλεσμα</button>
+            <button type="reset" id="scReset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>
+            <span id="scError" class="text-sm text-amber-400 hidden" role="alert"></span>
+        </div>
+    </form>
+
+    <div id="scResult" class="hidden mt-5 rounded-lg border bg-slate-900/60 p-5" aria-live="polite" tabindex="-1" data-clarity-mask="true">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Αποτέλεσμα</p>
+        <p id="scTitle" class="text-2xl font-bold text-slate-100"></p>
+        <p id="scWhy" class="text-sm text-slate-300 leading-relaxed mt-2"></p>
+        <ul id="scNotes" class="text-sm text-slate-300 leading-relaxed mt-3 list-disc pl-5 flex flex-col gap-1"></ul>
+        <p class="text-xs text-amber-300/90 leading-relaxed mt-3">Ενδεικτικό αποτέλεσμα, όχι νομική συμβουλή. Την υπαγωγή την κρίνει το κείμενο του νόμου και η Εθνική Αρχή Κυβερνοασφάλειας. Η λογική του ελέγχου επαληθεύτηκε με το κείμενο του ν. 5160/2024 στις 11/10/2026.</p>
+
+        <div id="scNext" class="hidden mt-5">
+            <p class="text-sm font-semibold text-slate-100 mb-2">Τι ακολουθεί</p>
+            <ol class="text-sm text-slate-300 leading-relaxed list-decimal pl-5 flex flex-col gap-1">
+                <li>Εγγραφή στο μητρώο οντοτήτων της Εθνικής Αρχής Κυβερνοασφάλειας, αν δεν έχει γίνει. <a href="https://nis2register.cyber.gov.gr/app/home" class="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener noreferrer">Μητρώο Φορέων – Υπόχρεων</a></li>
+                <li>Ορισμός Υπευθύνου Ασφάλειας Συστημάτων Πληροφορικής και Επικοινωνιών (ΥΑΣΠΕ). <a href="https://search.et.gr/el/fek/?fekId=774154" class="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener noreferrer">ν. 5160/2024 (ΦΕΚ Α΄ 195/2024)</a></li>
+                <li>Εφαρμογή των μέτρων της ΚΥΑ 1689/2025 και διαδικασία αναφοράς περιστατικών. <a href="https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf" class="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener noreferrer">ΚΥΑ 1689/2025 (ΦΕΚ Β΄ 2186/2025)</a> · <a href="https://cyber.gov.gr/kyvernoepitheseis/anafora-symvanton/" class="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener noreferrer">Αναφορά συμβάντων</a></li>
+            </ol>
+            <p class="text-sm font-semibold text-slate-100 mt-5 mb-2">Από πού ξεκινάς αν έχεις Microsoft 365</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left border-collapse">
+                    <thead>
+                        <tr class="text-slate-400 border-b border-slate-800">
+                            <th class="py-2 pr-3 font-medium">Απαίτηση ΚΥΑ 1689/2025</th>
+                            <th class="py-2 font-medium">Εργαλείο Microsoft</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-300">
+                        <tr class="border-b border-slate-800/60"><td class="py-2 pr-3"><a href="{{ "kya-1689-2025/" | relURL }}#13-ζ" class="font-mono text-blue-400 hover:text-blue-300 underline">13.ζ</a> Πολυπαραγοντική αυθεντικοποίηση</td><td class="py-2">Conditional Access στο Microsoft Entra ID</td></tr>
+                        <tr class="border-b border-slate-800/60"><td class="py-2 pr-3"><a href="{{ "kya-1689-2025/" | relURL }}#20-γ" class="font-mono text-blue-400 hover:text-blue-300 underline">20.γ</a> Φιλτράρισμα email</td><td class="py-2">Exchange Online Protection και Microsoft Defender for Office 365</td></tr>
+                        <tr class="border-b border-slate-800/60"><td class="py-2 pr-3"><a href="{{ "kya-1689-2025/" | relURL }}#11-α" class="font-mono text-blue-400 hover:text-blue-300 underline">11.α</a> Κατάλογος αγαθών</td><td class="py-2">Device inventory στο Microsoft Defender for Endpoint και στο Intune</td></tr>
+                        <tr class="border-b border-slate-800/60"><td class="py-2 pr-3"><a href="{{ "kya-1689-2025/" | relURL }}#24-δ" class="font-mono text-blue-400 hover:text-blue-300 underline">24.δ</a> Τήρηση καταγραφών</td><td class="py-2">Audit log retention στο Microsoft Purview Audit</td></tr>
+                        <tr class="border-b border-slate-800/60"><td class="py-2 pr-3"><a href="{{ "kya-1689-2025/" | relURL }}#25-1-ε" class="font-mono text-blue-400 hover:text-blue-300 underline">25.1.ε</a> Αντίγραφα ασφαλείας</td><td class="py-2">Microsoft 365 Backup</td></tr>
+                        <tr><td class="py-2 pr-3"><a href="{{ "kya-1689-2025/" | relURL }}#21-α" class="font-mono text-blue-400 hover:text-blue-300 underline">21.α</a> Εκπαίδευση προσωπικού</td><td class="py-2">Attack simulation training (Microsoft Defender for Office 365 Plan 2)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed mt-3">Το Microsoft 365 δεν καλύπτει όλες τις απαιτήσεις. Οι οργανωτικές απαιτήσεις (πολιτικές, ρόλοι, εκτίμηση κινδύνων) και τα συστήματα OT μένουν εκτός. Όλες οι απαιτήσεις, μία προς μία, είναι στον <a href="{{ "kya-1689-2025/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">οδηγό της ΚΥΑ 1689/2025 με Microsoft 365</a>.</p>
+        </div>
+
+        <div id="scOut" class="hidden mt-5">
+            <p class="text-sm font-semibold text-slate-100 mb-2">Τι σημαίνει αυτό στην πράξη</p>
+            <p class="text-sm text-slate-300 leading-relaxed">Ο νόμος δεν σου επιβάλλει άμεσα υποχρεώσεις. Αν όμως είσαι προμηθευτής οντότητας που υπάγεται, είναι πιθανό να σου ζητήσει μέτρα ασφάλειας μέσω της σύμβασης. Η πολυπαραγοντική αυθεντικοποίηση, το φιλτράρισμα του email και τα αντίγραφα ασφαλείας είναι τα πρώτα που ζητούνται συνήθως.</p>
+        </div>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Ο έλεγχος είναι ενδεικτικός και δεν αποτελεί νομική συμβουλή. Οι απαντήσεις σου δεν αποστέλλονται πουθενά: ο υπολογισμός γίνεται μέσα στον browser σου.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Ο έλεγχος χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    var form = document.getElementById('scForm');
+    if (!form) return;
+    function $(id) { return document.getElementById(id); }
+    var sector = $('scSector'), emp = $('scEmp'), turn = $('scTurn'), bal = $('scBal');
+    var qWrap = $('scQualifiedWrap'), qual = $('scQualified'), sizeBlock = $('scSizeBlock');
+    var err = $('scError'), box = $('scResult');
+
+    // Σύσταση 2003/361/ΕΚ: μικρή, μεσαία ή μεγάλη επιχείρηση.
+    function sizeOf(e, t, b) {
+        if (e === 3 || (t === 3 && b === 3)) return 'large';
+        if (e === 1 && (t === 1 || b === 1)) return 'small';
+        return 'medium';
+    }
+
+    // Κατάταξη κατά τα άρθρα 3 και 4 του ν. 5160/2024.
+    function classify(a) {
+        var notes = [], special = a.special, size = a.size;
+        var identified = special.sole || special.safety || special.systemic || special.critical;
+        var sizeName = { small: 'μικρή ή πολύ μικρή', medium: 'μεσαία', large: 'μεγάλη' }[size];
+
+        if (a.annex === 'none') {
+            if (special.cer) return { level: 'essential', why: 'Οι κρίσιμες οντότητες της Οδηγίας (ΕΕ) 2022/2557 και οι φορείς εκμετάλλευσης βασικών υπηρεσιών του ν. 4577/2018 είναι βασικές οντότητες, ανεξάρτητα από μέγεθος.', notes: notes };
+            if (special.registrar) return { level: 'registrar', why: 'Οι πάροχοι υπηρεσιών καταχώρισης ονομάτων τομέα υπάγονται στον νόμο ανεξάρτητα από μέγεθος, με υποχρέωση εγγραφής στο μητρώο της Εθνικής Αρχής Κυβερνοασφάλειας.', notes: notes };
+            if (identified) notes.push('Τα ειδικά κριτήρια που σημείωσες ισχύουν μόνο για οντότητες των Παραρτημάτων I και II. Αν η δραστηριότητά σου ανήκει τελικά σε κάποιον από αυτούς τους τομείς, ξανακάνε τον έλεγχο.');
+            return { level: 'out', why: 'Ο τομέας σου δεν περιλαμβάνεται στα Παραρτήματα I και II του νόμου.', notes: notes };
+        }
+
+        if (a.kind === 'gov') {
+            notes.push('Εξαιρούνται οι φορείς που δραστηριοποιούνται στην εθνική ασφάλεια, τη δημόσια τάξη, την άμυνα ή την επιβολή του νόμου, καθώς και τα Ανώτατα Εκπαιδευτικά Ιδρύματα.');
+            return { level: 'essential', why: 'Οι φορείς της κεντρικής κυβέρνησης και οι ΟΤΑ α΄ και β΄ βαθμού είναι βασικές οντότητες, ανεξάρτητα από μέγεθος.', notes: notes };
+        }
+        if (special.cer) return { level: 'essential', why: 'Οι κρίσιμες οντότητες της Οδηγίας (ΕΕ) 2022/2557 και οι φορείς εκμετάλλευσης βασικών υπηρεσιών του ν. 4577/2018 είναι βασικές οντότητες, ανεξάρτητα από μέγεθος.', notes: notes };
+        if (a.kind === 'dns') return { level: 'essential', why: 'Τα μητρώα ονομάτων TLD και οι πάροχοι υπηρεσιών DNS είναι βασικές οντότητες, ανεξάρτητα από μέγεθος.', notes: notes };
+        if (a.kind === 'tsp') {
+            if (a.qualified) return { level: 'essential', why: 'Οι εγκεκριμένοι πάροχοι υπηρεσιών εμπιστοσύνης είναι βασικές οντότητες, ανεξάρτητα από μέγεθος.', notes: notes };
+            if (size === 'large') return { level: 'essential', why: 'Οντότητα του Παραρτήματος I που υπερβαίνει τα όρια της μεσαίας επιχείρησης.', notes: notes };
+            return { level: 'important', why: 'Οι πάροχοι υπηρεσιών εμπιστοσύνης υπάγονται ανεξάρτητα από μέγεθος. Όσοι δεν είναι εγκεκριμένοι και δεν υπερβαίνουν τα όρια της μεσαίας επιχείρησης είναι σημαντικές οντότητες.', notes: notes };
+        }
+        if (a.kind === 'ecom') {
+            if (size !== 'small') return { level: 'essential', why: 'Οι πάροχοι δημόσιων δικτύων ή υπηρεσιών ηλεκτρονικών επικοινωνιών είναι βασικές οντότητες από το μέγεθος της μεσαίας επιχείρησης και πάνω.', notes: notes };
+            return { level: 'important', why: 'Οι πάροχοι δημόσιων δικτύων ή υπηρεσιών ηλεκτρονικών επικοινωνιών υπάγονται ανεξάρτητα από μέγεθος. Οι μικρές και οι πολύ μικρές επιχειρήσεις είναι σημαντικές οντότητες.', notes: notes };
+        }
+
+        if (a.kind === 'fin') notes.push('Για τις χρηματοπιστωτικές οντότητες, η διαχείριση κινδύνων ΤΠΕ και η αναφορά περιστατικών ρυθμίζονται κυρίως από τον Κανονισμό (ΕΕ) 2022/2554 (DORA).');
+        if (special.registrar) notes.push('Ως πάροχος υπηρεσιών καταχώρισης ονομάτων τομέα έχεις υποχρέωση εγγραφής στο μητρώο, ανεξάρτητα από μέγεθος.');
+
+        if (size === 'small') {
+            if (identified) {
+                notes.push('Τον χαρακτηρισμό σε αυτές τις περιπτώσεις τον κάνει η Εθνική Αρχή Κυβερνοασφάλειας, οντότητα προς οντότητα. Μπορεί να είναι βασική ή σημαντική.');
+                return { level: 'maybe', why: 'Ως ' + sizeName + ' επιχείρηση δεν υπάγεσαι με βάση το μέγεθος. Σημείωσες όμως ειδικό κριτήριο, για το οποίο ο νόμος δεν εξετάζει το μέγεθος.', notes: notes };
+            }
+            if (special.registrar) return { level: 'registrar', why: 'Ως ' + sizeName + ' επιχείρηση δεν υπάγεσαι με βάση το μέγεθος. Οι πάροχοι υπηρεσιών καταχώρισης ονομάτων τομέα υπάγονται όμως ανεξάρτητα από μέγεθος.', notes: [] };
+            return { level: 'out', why: 'Ο τομέας σου περιλαμβάνεται στο Παράρτημα ' + a.annex + ', αλλά ως ' + sizeName + ' επιχείρηση δεν φτάνεις τα όρια της μεσαίας και δεν σημείωσες ειδικό κριτήριο.', notes: notes };
+        }
+        if (a.annex === 'I' && size === 'large') {
+            return { level: 'essential', why: 'Οντότητα του Παραρτήματος I που υπερβαίνει τα όρια της μεσαίας επιχείρησης.', notes: notes };
+        }
+        if (identified) notes.push('Με τα ειδικά κριτήρια που σημείωσες, η Εθνική Αρχή Κυβερνοασφάλειας μπορεί να σε χαρακτηρίσει βασική οντότητα.');
+        if (a.annex === 'I') return { level: 'important', why: 'Οντότητα του Παραρτήματος I με μέγεθος μεσαίας επιχείρησης.', notes: notes };
+        return { level: 'important', why: 'Οντότητα του Παραρτήματος II με μέγεθος ' + (size === 'large' ? 'μεγάλης' : 'μεσαίας') + ' επιχείρησης. Οι οντότητες του Παραρτήματος II είναι σημαντικές και όχι βασικές, όσο μεγάλες κι αν είναι.', notes: notes };
+    }
+    window.__scopeCheck = { sizeOf: sizeOf, classify: classify };
+
+    var LEVELS = {
+        essential: { title: 'Βασική οντότητα', cls: 'border-rose-500/50' },
+        important: { title: 'Σημαντική οντότητα', cls: 'border-amber-500/50' },
+        maybe: { title: 'Πιθανώς υπάγεσαι', cls: 'border-amber-500/50' },
+        registrar: { title: 'Υπάγεσαι ως πάροχος καταχώρισης ονομάτων τομέα', cls: 'border-amber-500/50' },
+        out: { title: 'Δεν φαίνεται να υπάγεσαι', cls: 'border-emerald-500/50' }
+    };
+
+    function needsSize() {
+        var k = (sector.value.split('|')[1] || '');
+        return !(k === 'gov' || k === 'dns' || k === 'none');
+    }
+    function syncForm() {
+        var k = (sector.value.split('|')[1] || '');
+        qWrap.classList.toggle('hidden', k !== 'tsp');
+        if (k !== 'tsp') qual.checked = false;
+        var on = needsSize();
+        sizeBlock.disabled = !on;
+        sizeBlock.classList.toggle('opacity-40', !on);
+    }
+    sector.addEventListener('change', syncForm);
+
+    function fail(msg) { err.textContent = msg; err.classList.remove('hidden'); box.classList.add('hidden'); }
+
+    form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        err.classList.add('hidden');
+        if (!sector.value) return fail('Διάλεξε τομέα.');
+        var parts = sector.value.split('|'), size = 'small';
+        if (needsSize()) {
+            if (!emp.value || !turn.value || !bal.value) return fail('Απάντησε στις ερωτήσεις 2, 3 και 4.');
+            size = sizeOf(Number(emp.value), Number(turn.value), Number(bal.value));
+        }
+        var special = {};
+        Array.prototype.forEach.call(form.querySelectorAll('.scSpecial'), function (c) { special[c.value] = c.checked; });
+        var r = classify({ annex: parts[0], kind: parts[1], size: size, qualified: qual.checked, special: special });
+        var lv = LEVELS[r.level];
+        box.className = 'mt-5 rounded-lg border bg-slate-900/60 p-5 ' + lv.cls;
+        $('scTitle').textContent = lv.title;
+        $('scWhy').textContent = r.why;
+        var ul = $('scNotes'); ul.textContent = '';
+        r.notes.forEach(function (n) { var li = document.createElement('li'); li.textContent = n; ul.appendChild(li); });
+        ul.classList.toggle('hidden', r.notes.length === 0);
+        $('scNext').classList.toggle('hidden', r.level === 'out');
+        $('scOut').classList.toggle('hidden', r.level !== 'out');
+        box.focus({ preventScroll: true });
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    form.addEventListener('reset', function () {
+        setTimeout(function () { syncForm(); box.classList.add('hidden'); err.classList.add('hidden'); }, 0);
+    });
+    syncForm();
+})();
+</script>

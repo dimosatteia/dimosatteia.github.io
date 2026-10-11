@@ -134,6 +134,7 @@
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300 h-full">
                 {{ $currentPage := . }}
                 {{ range site.Menus.main }}
+                    {{ if and .Params.noLink (not .HasChildren) }}{{ continue }}{{ end }}
                     {{ $active := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
                     {{ if .HasChildren }}
                     <div class="relative group flex items-center h-full">
@@ -197,6 +198,7 @@
             <ul class="flex flex-col py-2 text-sm font-medium">
                 {{ $cp := . }}
                 {{ range site.Menus.main }}
+                {{ if and .Params.noLink (not .HasChildren) }}{{ continue }}{{ end }}
                 {{ $active := or ($cp.IsMenuCurrent "main" .) ($cp.HasMenuCurrent "main" .) }}
                 <li>
                     {{ if .Params.noLink }}

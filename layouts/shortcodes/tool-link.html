@@ -1,0 +1,8 @@
+{{- /* Πλαίσιο με link προς ένα εργαλείο του blog. Εμφανίζεται ΜΟΝΟ αν η σελίδα του εργαλείου είναι δημοσιευμένη
+       (όχι draft), ώστε να μη βγει ποτέ σπασμένο link. Χρήση:
+       {{< tool-link page="/elegxos-domain" lead="Έλεγξε το domain σου." label="Έλεγχος domain" >}} */ -}}
+{{- with site.GetPage (.Get "page") -}}
+<blockquote>
+<p>🛠️ <strong>{{ $.Get "lead" }}</strong> <a href="{{ .RelPermalink }}">{{ $.Get "label" | default .Title }}</a>{{ with $.Get "tail" }} {{ . }}{{ end }}</p>
+</blockquote>
+{{- end -}}

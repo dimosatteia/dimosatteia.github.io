@@ -1,0 +1,381 @@
+{{- /* Έλεγχος email authentication ενός domain (MX, SPF, DKIM, DMARC, MTA-STS, TLS-RPT, DNSSEC).
+       Τα ερωτήματα DNS γίνονται από τον browser με DNS over HTTPS (Cloudflare, εφεδρικά Google).
+       Το site δεν έχει backend και δεν καταγράφει το domain. Χρήση: {{< domain-check >}} */ -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="domainCheck">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Έλεγχος domain · email authentication</p>
+
+    <form id="dcForm" class="flex flex-col gap-3" novalidate>
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300" for="dcDomain">Domain που θέλεις να ελέγξεις</label>
+        <div class="flex flex-col sm:flex-row gap-3">
+            <input type="text" id="dcDomain" placeholder="example.gr" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" maxlength="253" data-clarity-mask="true"
+                   class="flex-1 rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono focus:outline-none focus:border-blue-500">
+            <button type="submit" id="dcBtn" class="rounded-md bg-blue-600 hover:bg-blue-500 disabled:opacity-50 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Έλεγχος</button>
+        </div>
+        <label class="flex items-start gap-2 text-sm text-slate-300 leading-relaxed">
+            <input type="checkbox" id="dcConsent" class="mt-1">
+            <span>Επιβεβαιώνω ότι έχω εξουσιοδότηση να αξιολογήσω αυτό το domain. Ο έλεγχος χρησιμοποιεί μόνο δημόσια διαθέσιμα δεδομένα DNS. Το thecybersec.gr δεν καταγράφει το domain, την ώρα ή τη διεύθυνση IP σου. Τα ερωτήματα πηγαίνουν από τον browser σου απευθείας σε δημόσιο DNS resolver (Cloudflare, και εφεδρικά Google), που βλέπει τη διεύθυνση IP σου και το domain που ρωτάς.</span>
+        </label>
+        <span id="dcError" class="text-sm text-amber-400 hidden" role="alert"></span>
+    </form>
+
+    <div id="dcResult" class="hidden mt-5" aria-live="polite" data-clarity-mask="true">
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Αποτέλεσμα για <span id="dcName" class="text-slate-200 normal-case"></span></p>
+            <p id="dcSummary" class="text-xl font-bold text-slate-100"></p>
+            <p id="dcProvider" class="text-sm text-slate-300 leading-relaxed mt-2"></p>
+        </div>
+        <div id="dcList" class="mt-3 flex flex-col gap-3"></div>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Το αποτέλεσμα είναι ενδεικτικό και δεν αντικαθιστά αξιολόγηση ασφάλειας ή penetration test.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Ο έλεγχος χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    var form = document.getElementById('dcForm');
+    if (!form) return;
+    function $(id) { return document.getElementById(id); }
+    var input = $('dcDomain'), btn = $('dcBtn'), err = $('dcError'), out = $('dcResult'), list = $('dcList');
+
+    var LEARN = 'https://learn.microsoft.com/en-us/';
+    var DOCS = {
+        spf: LEARN + 'defender-office-365/email-authentication-spf-configure',
+        dkim: LEARN + 'defender-office-365/email-authentication-dkim-configure',
+        dmarc: LEARN + 'defender-office-365/email-authentication-dmarc-configure',
+        mtasts: LEARN + 'purview/enhancing-mail-flow-with-mta-sts',
+        dane: LEARN + 'purview/how-smtp-dane-works',
+        records: LEARN + 'microsoft-365/enterprise/external-domain-name-system-records'
+    };
+
+    // ---------- DNS over HTTPS ----------
+    var RESOLVERS = [
+        function (n, t) { return 'https://cloudflare-dns.com/dns-query?name=' + encodeURIComponent(n) + '&type=' + t + '&do=1'; },
+        function (n, t) { return 'https://dns.google/resolve?name=' + encodeURIComponent(n) + '&type=' + t + '&do=1'; }
+    ];
+    var TYPE = { TXT: 16, MX: 15, CNAME: 5, TLSA: 52 };
+    var cache = {};
+    function dns(name, type) {
+        var key = type + ' ' + name.toLowerCase();
+        if (cache[key]) return cache[key];
+        function attempt(i) {
+            return fetch(RESOLVERS[i](name, type), { headers: { accept: 'application/dns-json' }, credentials: 'omit', referrerPolicy: 'no-referrer' })
+                .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .catch(function (e) { if (i + 1 < RESOLVERS.length) return attempt(i + 1); throw e; });
+        }
+        cache[key] = attempt(0).then(function (j) {
+            var ans = (j.Answer || []).filter(function (a) { return a.type === TYPE[type]; }).map(function (a) { return a.data; });
+            return { status: j.Status, ad: !!j.AD, answers: ans };
+        });
+        return cache[key];
+    }
+    // Ένα TXT μπορεί να έρθει ως "κομμάτι1" "κομμάτι2". Τα ενώνουμε όπως ορίζει το RFC.
+    function txt(data) {
+        var parts = String(data).match(/"((?:[^"\\]|\\.)*)"/g);
+        if (!parts) return String(data).trim();
+        return parts.map(function (p) { return p.slice(1, -1).replace(/\\(.)/g, '$1'); }).join('');
+    }
+    function txtRecords(name) { return dns(name, 'TXT').then(function (r) { return r.answers.map(txt); }); }
+
+    // ---------- Κανονικοποίηση εισόδου ----------
+    function normalize(v) {
+        v = String(v || '').trim().toLowerCase();
+        v = v.replace(/^[a-z][a-z0-9+.-]*:\/\//, '');
+        if (v.indexOf('@') !== -1) v = v.slice(v.lastIndexOf('@') + 1);
+        v = v.split(/[\/?#:]/)[0].replace(/\.$/, '').replace(/^www\./, '');
+        if (v.length > 253 || !/^(?=.{1,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])$/.test(v)) return null;
+        return v;
+    }
+
+    // ---------- Έλεγχοι ----------
+    function checkMx(d) {
+        return dns(d, 'MX').then(function (r) {
+            var hosts = r.answers.map(function (a) { var p = a.trim().split(/\s+/); return (p[1] || p[0] || '').replace(/\.$/, '').toLowerCase(); });
+            var provider = 'other', label = '';
+            if (!hosts.length) provider = 'none';
+            else if (hosts.length === 1 && hosts[0] === '') provider = 'null';
+            else if (hosts.some(function (h) { return /\.mail\.protection\.outlook\.com$|\.mx\.microsoft$|\.mail\.eo\.outlook\.com$/.test(h); })) provider = 'exo';
+            var third = [[/pphosted\.com$|ppe-hosted\.com$/, 'Proofpoint'], [/mimecast\.com$/, 'Mimecast'], [/barracudanetworks\.com$/, 'Barracuda'], [/google\.com$|googlemail\.com$/, 'Google Workspace'], [/iphmx\.com$/, 'Cisco Secure Email'], [/trendmicro\.(com|eu)$/, 'Trend Micro'], [/messagelabs\.com$/, 'Symantec']];
+            if (provider === 'other') third.forEach(function (t) { if (!label && hosts.some(function (h) { return t[0].test(h); })) label = t[1]; });
+            var isExo = function (h) { return /\.mail\.protection\.outlook\.com$|\.mx\.microsoft$|\.mail\.eo\.outlook\.com$/.test(h); };
+            var exoHosts = hosts.filter(isExo), otherHosts = hosts.filter(function (h) { return h && !isExo(h); });
+            if (exoHosts.length && otherHosts.length) third.forEach(function (t) { if (!label && otherHosts.some(function (h) { return t[0].test(h); })) label = t[1]; });
+            return { hosts: hosts, provider: provider, label: label, mixed: exoHosts.length > 0 && otherHosts.length > 0, exoHosts: exoHosts, otherHosts: otherHosts, dane: hosts.some(function (h) { return /\.mx\.microsoft$/.test(h); }) };
+        });
+    }
+
+    var LOOKUP = /^[+\-~?]?(include|a|mx|ptr|exists)(?=[:\/]|$)/i;
+    function spfTerms(rec) { return rec.trim().split(/\s+/).slice(1); }
+    // Μετράει τα DNS lookups ακολουθώντας include και redirect, με όριο ασφαλείας στα ερωτήματα.
+    function countLookups(rec, budget, seen) {
+        var n = 0, chain = Promise.resolve();
+        spfTerms(rec).forEach(function (term) {
+            var red = /^redirect=(.+)$/i.exec(term), inc = /^[+\-~?]?include:(.+)$/i.exec(term);
+            if (LOOKUP.test(term) || red) n++;
+            var target = (inc && inc[1]) || (red && red[1]);
+            if (!target || /%/.test(target)) return;
+            target = target.toLowerCase().replace(/\.$/, '');
+            chain = chain.then(function () {
+                if (seen[target] || budget.left <= 0) return;
+                seen[target] = true; budget.left--;
+                return txtRecords(target).then(function (recs) {
+                    var sub = recs.filter(function (t) { return /^v=spf1(\s|$)/i.test(t); })[0];
+                    if (!sub) { if (inc) budget.voids.push(target); return; }
+                    return countLookups(sub, budget, seen).then(function (m) { n += m; });
+                }).catch(function () { budget.partial = true; });
+            });
+        });
+        return chain.then(function () { return n; });
+    }
+    function checkSpf(d) {
+        return txtRecords(d).then(function (recs) {
+            var spf = recs.filter(function (t) { return /^v=spf1(\s|$)/i.test(t); });
+            if (!spf.length) return { state: 'fail', title: 'Δεν υπάρχει εγγραφή SPF', value: '', text: 'Οποιοσδήποτε server μπορεί να στείλει email με το domain σου στον φάκελο αποστολέα, χωρίς ο παραλήπτης να έχει τρόπο να το ελέγξει.' };
+            if (spf.length > 1) return { state: 'fail', title: 'Υπάρχουν ' + spf.length + ' εγγραφές SPF', value: spf.join('\n'), text: 'Το domain πρέπει να έχει μία μόνο εγγραφή SPF. Με περισσότερες, ο έλεγχος επιστρέφει permerror και αποτυγχάνει για όλα τα μηνύματα.' };
+            var rec = spf[0], terms = spfTerms(rec);
+            var all = terms.filter(function (t) { return /^[+\-~?]?all$/i.test(t); })[0] || '';
+            var hasRedirect = terms.some(function (t) { return /^redirect=/i.test(t); });
+            var m365 = /include:spf\.protection\.outlook\.com/i.test(rec);
+            var budget = { left: 25, partial: false, voids: [] }, seen = {}; seen[d] = true;
+            return countLookups(rec, budget, seen).then(function (n) {
+                var res = { state: 'pass', title: 'Η εγγραφή SPF είναι σωστή', value: rec, text: '', m365: m365 };
+                var q = all ? (all.length === 3 ? '+' : all.charAt(0)) : '';
+                if (n > 10) { res.state = 'fail'; res.title = 'Το SPF ξεπερνά τα 10 DNS lookups'; res.text = 'Η εγγραφή χρειάζεται ' + n + ' DNS lookups. Πάνω από 10, ο έλεγχος επιστρέφει permerror και τα μηνύματα μπορεί να απορριφθούν.'; }
+                else if (q === '+') { res.state = 'fail'; res.title = 'Το SPF επιτρέπει όλους τους αποστολείς (+all)'; res.text = 'Με +all η εγγραφή εξουσιοδοτεί κάθε server στο internet να στέλνει ως το domain σου.'; }
+                else if (q === '?') { res.state = 'warn'; res.title = 'Το SPF τελειώνει σε ?all'; res.text = 'Το ?all είναι ουδέτερο και προορίζεται για δοκιμές. Δεν προστατεύει το domain.'; }
+                else if (q === '~') { res.state = 'warn'; res.title = 'Το SPF τελειώνει σε ~all (soft fail)'; res.text = 'Το ~all είναι αποδεκτό, αλλά το DMARC αγνοεί στην πράξη τις αποτυχίες soft fail όταν το μήνυμα δεν έχει υπογραφή DKIM. Η Microsoft προτείνει -all όταν έχεις ρυθμίσει DKIM και DMARC.'; }
+                else if (q === '-') { res.text = 'Η εγγραφή τελειώνει σε -all, άρα μόνο οι αποστολείς που αναφέρει είναι εξουσιοδοτημένοι.'; }
+                else if (hasRedirect) { res.text = 'Η εγγραφή παραπέμπει σε άλλο domain με redirect, οπότε η πολιτική ορίζεται εκεί.'; }
+                else { res.state = 'warn'; res.title = 'Το SPF δεν έχει κανόνα all'; res.text = 'Χωρίς all στο τέλος, το αποτέλεσμα για κάθε μη εξουσιοδοτημένο αποστολέα είναι ουδέτερο.'; }
+                if (n <= 10) res.text += ' DNS lookups: ' + n + ' από 10' + (budget.partial || budget.left <= 0 ? ' (μερική μέτρηση)' : '') + '.';
+                var extra = [];
+                if (budget.voids.length) { extra.push('Το include προς ' + budget.voids.join(', ') + ' δείχνει σε domain χωρίς εγγραφή SPF, κάτι που προκαλεί permerror.'); res.state = 'fail'; if (res.title === 'Η εγγραφή SPF είναι σωστή' || /all/.test(res.title)) res.title = 'Το SPF έχει include που δεν λειτουργεί'; }
+                if (terms.some(function (t) { return /^[+\-~?]?ptr(?=[:\/]|$)/i.test(t); })) { extra.push('Χρησιμοποιεί τον μηχανισμό ptr, που έχει καταργηθεί και αγνοείται από πολλούς παραλήπτες.'); if (res.state === 'pass') res.state = 'warn'; }
+                var incs = terms.filter(function (t) { return /^[+\-~?]?include:/i.test(t); }).map(function (t) { return t.toLowerCase(); });
+                if (incs.some(function (t, i) { return incs.indexOf(t) !== i; })) extra.push('Το ίδιο include εμφανίζεται δύο φορές και ξοδεύει lookups χωρίς λόγο.');
+                if (rec.length > 450) extra.push('Η εγγραφή έχει ' + rec.length + ' χαρακτήρες. Πολύ μεγάλες εγγραφές μπορεί να μη χωρούν σε μία απάντηση DNS.');
+                if (res.state === 'warn' && res.title === 'Η εγγραφή SPF είναι σωστή') res.title = 'Το SPF λειτουργεί, αλλά θέλει καθάρισμα';
+                if (extra.length) res.text += ' ' + extra.join(' ');
+                return res;
+            });
+        });
+    }
+
+    function dkimAt(sel, d) {
+        return txtRecords(sel + '._domainkey.' + d).then(function (recs) {
+            var k = recs.filter(function (t) { return /(^|;)\s*p=/i.test(t) || /^v=DKIM1/i.test(t); })[0];
+            if (!k) return null;
+            var p = /(?:^|;)\s*p=([^;]*)/i.exec(k), kt = /(?:^|;)\s*k=([^;]*)/i.exec(k);
+            var key = p ? p[1].replace(/\s+/g, '') : '', ed = !!kt && /ed25519/i.test(kt[1]);
+            // Το μήκος του δημόσιου κλειδιού RSA σε base64: περίπου 216 χαρακτήρες για 1024 bit, 392 για 2048 bit.
+            var bits = ed ? 0 : (key.length < 180 ? 512 : key.length < 300 ? 1024 : key.length < 600 ? 2048 : 4096);
+            return { selector: sel, revoked: !!p && key === '', bits: bits, ed: ed };
+        }).catch(function () { return null; });
+    }
+    function checkDkim(d, mx) {
+        var ms = ['selector1', 'selector2'], common = ['google', 'default', 'k1', 'k2', 's1', 's2', 'mail', 'dkim', 'smtp', 'mxvault', 'proofpoint'];
+        return Promise.all(ms.map(function (s) { return dkimAt(s, d); })).then(function (found) {
+            var live = found.filter(function (f) { return f && !f.revoked; });
+            if (live.length) return { m365: true, keys: live, state: 'pass', title: 'Βρέθηκε DKIM με τους selectors του Microsoft 365', value: live.map(keyLine).join('\n'), text: live.length === 2 ? 'Υπάρχουν και οι δύο selectors, όπως τους δημιουργεί το Microsoft 365.' : 'Βρέθηκε ο ένας από τους δύο selectors. Το Microsoft 365 χρειάζεται και τους δύο για την εναλλαγή των κλειδιών.', warnOne: live.length === 1 };
+            return Promise.all(common.map(function (s) { return dkimAt(s, d); })).then(function (other) {
+                var hit = other.filter(function (f) { return f && !f.revoked; });
+                if (hit.length) return { keys: hit, state: 'pass', title: 'Βρέθηκε DKIM με άλλον selector', value: hit.map(keyLine).join('\n'), text: 'Το DKIM υπάρχει, αλλά όχι με τους selectors του Microsoft 365. Αν στέλνεις και από το Microsoft 365, έλεγξε ότι το DKIM είναι ενεργό και εκεί.' };
+                if (mx.provider === 'exo') return { state: 'fail', title: 'Δεν βρέθηκε DKIM για το Microsoft 365', value: '', text: 'Το email του domain περνά από το Exchange Online, αλλά δεν υπάρχουν οι εγγραφές selector1 και selector2. Για τα custom domains το Microsoft 365 δεν υπογράφει με DKIM αν δεν το ενεργοποιήσεις, οπότε το DMARC δεν μπορεί να περάσει μέσω DKIM.' };
+                return { state: 'unknown', title: 'Δεν βρέθηκε DKIM στους συνηθισμένους selectors', value: '', text: 'Ο selector του DKIM μπορεί να έχει οποιοδήποτε όνομα και δεν υπάρχει τρόπος να βρεθεί από το DNS. Ο έλεγχος δοκίμασε τους selectors του Microsoft 365 και μερικούς συνηθισμένους. Για βεβαιότητα, δες το πεδίο s= στην κεφαλίδα DKIM-Signature ενός μηνύματος που έστειλες.' };
+            });
+        }).then(function (r) {
+            if (r.warnOne) r.state = 'warn';
+            var weak = (r.keys || []).filter(function (f) { return !f.ed && f.bits < 2048; });
+            if (weak.length) {
+                r.weak = true; if (r.state === 'pass') r.state = 'warn';
+                r.title = 'Το DKIM υπάρχει, αλλά με κλειδί ' + weak[0].bits + ' bit';
+                r.text += ' Το κλειδί είναι ' + weak[0].bits + ' bit. Το σημερινό ελάχιστο που αξίζει να έχεις είναι τα 2048 bit.';
+            }
+            return r;
+        });
+        function keyLine(f) { return f.selector + '._domainkey.' + d + '  (' + (f.ed ? 'Ed25519' : 'RSA ' + f.bits + ' bit') + ')'; }
+    }
+
+    function tags(rec) {
+        var o = {};
+        rec.split(';').forEach(function (kv) { var i = kv.indexOf('='); if (i > 0) o[kv.slice(0, i).trim().toLowerCase()] = kv.slice(i + 1).trim(); });
+        return o;
+    }
+    function checkDmarc(d) {
+        return txtRecords('_dmarc.' + d).then(function (recs) {
+            var dm = recs.filter(function (t) { return /^v=DMARC1(\s*;|$)/i.test(t.trim()); });
+            if (!dm.length) return { state: 'fail', title: 'Δεν υπάρχει εγγραφή DMARC', value: '', text: 'Χωρίς DMARC, ο παραλήπτης δεν ξέρει τι να κάνει με μηνύματα που αποτυγχάνουν σε SPF και DKIM, και κάποιος μπορεί να στείλει email που φαίνεται ότι προέρχεται από το domain σου. Δεν λαμβάνεις ούτε αναφορές για το ποιος στέλνει στο όνομά σου.' };
+            if (dm.length > 1) return { state: 'fail', title: 'Υπάρχουν ' + dm.length + ' εγγραφές DMARC', value: dm.join('\n'), text: 'Το domain πρέπει να έχει μία μόνο εγγραφή DMARC. Με περισσότερες, οι παραλήπτες τις αγνοούν όλες.' };
+            var t = tags(dm[0]), p = (t.p || '').toLowerCase(), pct = t.pct === undefined ? 100 : parseInt(t.pct, 10);
+            var res = { state: 'pass', title: 'Το DMARC είναι σε p=' + p, value: dm[0], text: '' };
+            if (p === 'reject') res.text = 'Τα μηνύματα που αποτυγχάνουν απορρίπτονται. Αυτός είναι ο στόχος που προτείνει η Microsoft για όλα τα domains.';
+            else if (p === 'quarantine') { res.text = 'Τα μηνύματα που αποτυγχάνουν πηγαίνουν σε καραντίνα ή στα ανεπιθύμητα. Το επόμενο βήμα είναι το p=reject.'; }
+            else if (p === 'none') { res.state = 'warn'; res.title = 'Το DMARC είναι μόνο σε παρακολούθηση (p=none)'; res.text = 'Με p=none λαμβάνεις αναφορές, αλλά τα πλαστά μηνύματα παραδίδονται κανονικά. Είναι το σωστό πρώτο βήμα, όχι η τελική ρύθμιση.'; }
+            else { res.state = 'fail'; res.title = 'Η εγγραφή DMARC δεν έχει έγκυρη πολιτική'; res.text = 'Το πεδίο p= λείπει ή έχει μη έγκυρη τιμή. Οι αποδεκτές τιμές είναι none, quarantine και reject.'; }
+            if (res.state !== 'fail') {
+                if (!isNaN(pct) && pct < 100) { res.text += ' Η πολιτική εφαρμόζεται μόνο στο ' + pct + '% των μηνυμάτων (pct=' + pct + ').'; if (res.state === 'pass') res.state = 'warn'; }
+                if (!t.rua) res.text += ' Δεν έχει οριστεί διεύθυνση για τις συγκεντρωτικές αναφορές (rua), οπότε δεν βλέπεις ποιος στέλνει στο όνομά σου.';
+                if (t.sp && t.sp.toLowerCase() === 'none' && p !== 'none') res.text += ' Τα subdomains έχουν χαλαρότερη πολιτική (sp=none).';
+                var strict = [];
+                if ((t.adkim || '').toLowerCase() === 's') strict.push('DKIM');
+                if ((t.aspf || '').toLowerCase() === 's') strict.push('SPF');
+                if (strict.length) res.text += ' Το alignment είναι αυστηρό για ' + strict.join(' και ') + ', άρα μηνύματα από subdomains δεν περνούν με το κλειδί ή το SPF του κύριου domain.';
+            }
+            if (res.state === 'fail' || !t.rua) return res;
+            // Αν οι αναφορές πηγαίνουν σε άλλο domain, εκείνο πρέπει να δηλώνει ότι τις δέχεται (RFC 7489, 7.1).
+            var ext = [];
+            t.rua.split(',').forEach(function (u) {
+                var m = /^\s*mailto:[^@\s]+@([^!\s]+)/i.exec(u); if (!m) return;
+                var h = m[1].toLowerCase().replace(/\.$/, '');
+                var same = h === d || h.slice(-d.length - 1) === '.' + d || d.slice(-h.length - 1) === '.' + h;
+                if (!same && ext.indexOf(h) === -1) ext.push(h);
+            });
+            return Promise.all(ext.map(function (h) {
+                return txtRecords(d + '._report._dmarc.' + h).then(function (r2) { return r2.some(function (x) { return /^v=DMARC1/i.test(x.trim()); }) ? null : h; }).catch(function () { return null; });
+            })).then(function (miss) {
+                miss = miss.filter(Boolean);
+                if (miss.length) { res.text += ' Οι αναφορές στέλνονται στο ' + miss.join(', ') + ', που δεν έχει δηλώσει ότι τις δέχεται για το domain σου (λείπει η εγγραφή ' + d + '._report._dmarc.' + miss[0] + '). Οι περισσότεροι αποστολείς δεν θα τις στείλουν.'; if (res.state === 'pass') res.state = 'warn'; }
+                return res;
+            });
+        });
+    }
+
+    function checkTxtPresence(name, re) {
+        return txtRecords(name).then(function (recs) { return recs.filter(function (t) { return re.test(t.trim()); })[0] || ''; }).catch(function () { return null; });
+    }
+
+    function cname(name) {
+        return dns(name, 'CNAME').then(function (r) { return (r.answers[0] || '').replace(/\.$/, '').toLowerCase(); }).catch(function () { return null; });
+    }
+    function checkTlsa(mx) {
+        var hosts = mx.exoHosts.concat(mx.otherHosts).slice(0, 3);
+        return Promise.all(hosts.map(function (h) { return dns('_25._tcp.' + h, 'TLSA').then(function (r) { return r.answers.length > 0 && r.ad; }).catch(function () { return false; }); }))
+            .then(function (x) { return { any: x.some(Boolean), all: x.length > 0 && x.every(Boolean) }; });
+    }
+    function checkRecords(d) {
+        return Promise.all([cname('autodiscover.' + d), cname('enterpriseregistration.' + d), cname('enterpriseenrollment.' + d), cname('msoid.' + d)]).then(function (c) {
+            var rows = [], state = 'pass';
+            if (c[0] === 'autodiscover.outlook.com') rows.push('autodiscover → autodiscover.outlook.com: σωστό.');
+            else if (c[0]) { rows.push('autodiscover → ' + c[0] + ': δεν δείχνει στο Exchange Online. Αν τα mailboxes είναι στο Microsoft 365, η τιμή πρέπει να είναι autodiscover.outlook.com.'); state = 'warn'; }
+            else { rows.push('autodiscover: λείπει. Η Microsoft το ζητά για να ρυθμίζεται αυτόματα το Outlook.'); state = 'warn'; }
+            if (c[3]) { rows.push('msoid → ' + c[3] + ': πρέπει να αφαιρεθεί. Ισχύει μόνο για το Microsoft 365 της 21Vianet, και όπου αλλού υπάρχει εμποδίζει την ενεργοποίηση των αδειών.'); state = 'fail'; }
+            if (c[1] === 'enterpriseregistration.windows.net') rows.push('enterpriseregistration → enterpriseregistration.windows.net: σωστό.');
+            else if (c[1]) { rows.push('enterpriseregistration → ' + c[1] + ': η αναμενόμενη τιμή είναι enterpriseregistration.windows.net.'); if (state === 'pass') state = 'warn'; }
+            else rows.push('enterpriseregistration: δεν υπάρχει. Χρειάζεται μόνο αν κάνεις εγγραφή συσκευών στο Microsoft Entra ID με το όνομα του domain.');
+            if (c[2] && /(^|\.)manage\.microsoft\.com$/.test(c[2])) rows.push('enterpriseenrollment → ' + c[2] + ': σωστό.');
+            else if (c[2]) { rows.push('enterpriseenrollment → ' + c[2] + ': η αναμενόμενη τιμή είναι enterpriseenrollment-s.manage.microsoft.com.'); if (state === 'pass') state = 'warn'; }
+            else rows.push('enterpriseenrollment: δεν υπάρχει. Χρειάζεται μόνο για χειροκίνητη εγγραφή συσκευών Windows στο Intune.');
+            var title = state === 'fail' ? 'Υπάρχει εγγραφή msoid που πρέπει να αφαιρεθεί' : state === 'warn' ? 'Οι εγγραφές του Microsoft 365 θέλουν έλεγχο' : 'Οι εγγραφές του Microsoft 365 είναι σωστές';
+            return { state: state, title: title, value: rows.join('\n'), text: '' };
+        });
+    }
+
+    // ---------- Τι κάνεις στο Microsoft 365 ----------
+    function fixSpf(r, mx) {
+        if (r.state === 'pass') return null;
+        return { text: 'Αν στέλνεις μόνο από το Microsoft 365, η εγγραφή που δίνει η Microsoft είναι: v=spf1 include:spf.protection.outlook.com -all. Πρόσθεσε πριν από το -all κάθε άλλη υπηρεσία που στέλνει στο όνομά σου (π.χ. ERP, newsletter). Μην αντικαταστήσεις το include της Microsoft με διευθύνσεις IP, γιατί αλλάζουν συχνά.', link: DOCS.spf, label: 'Ρύθμιση SPF (Microsoft Learn)' };
+    }
+    function fixDkim(r) {
+        if (r.state === 'pass') return null;
+        if (r.weak && r.m365) return { text: 'Στο ίδιο panel του Defender portal (Email authentication settings → DKIM → το domain) υπάρχει το «Rotate DKIM keys». Για να αλλάξει το μήκος χρειάζεται PowerShell: Rotate-DkimSigningConfig -Identity <domain> -KeySize 2048. Η αλλαγή περνά πρώτα στον επόμενο selector, οπότε θέλει δύο rotations για να γίνουν και οι δύο 2048 bit.', link: DOCS.dkim, label: 'Ρύθμιση DKIM (Microsoft Learn)' };
+        if (r.weak) return { text: 'Το κλειδί αυτό δεν είναι του Microsoft 365. Η αλλαγή σε 2048 bit γίνεται στην υπηρεσία που υπογράφει τα μηνύματα.', link: '', label: '' };
+        return { text: 'Στο Defender portal: Email & collaboration → Policies & rules → Threat policies → Email authentication settings → καρτέλα DKIM. Διάλεξε το domain, δημιούργησε τα δύο CNAME (selector1 και selector2) στον πάροχο DNS και μετά ενεργοποίησε το «Sign messages for this domain with DKIM signatures».', link: DOCS.dkim, label: 'Ρύθμιση DKIM (Microsoft Learn)' };
+    }
+    function fixDmarc(r) {
+        if (r.state === 'pass' && /p=reject/i.test(r.title)) return { text: 'Για τα εισερχόμενα, έλεγξε ότι στις anti-phishing policies του Microsoft Defender for Office 365 είναι ενεργό το «Honor DMARC record policy when the message is detected as spoof», ώστε να τηρείται και η πολιτική των άλλων αποστολέων.', link: DOCS.dmarc, label: 'Ρύθμιση DMARC (Microsoft Learn)' };
+        return { text: 'Η σειρά που προτείνει η Microsoft: ξεκίνα με p=none και διεύθυνση rua για αναφορές, πέρνα σε p=quarantine αφού βεβαιωθείς ότι όλοι οι νόμιμοι αποστολείς περνούν SPF ή DKIM, και κατάληξε σε p=reject. Το DMARC έχει νόημα μόνο αφού ρυθμίσεις SPF και DKIM.', link: DOCS.dmarc, label: 'Ρύθμιση DMARC (Microsoft Learn)' };
+    }
+
+    // ---------- Απόδοση ----------
+    var STATE = {
+        pass: { label: 'Εντάξει', cls: 'border-emerald-500/40', badge: 'bg-emerald-500/15 text-emerald-300' },
+        warn: { label: 'Θέλει προσοχή', cls: 'border-amber-500/40', badge: 'bg-amber-500/15 text-amber-300' },
+        fail: { label: 'Πρόβλημα', cls: 'border-rose-500/40', badge: 'bg-rose-500/15 text-rose-300' },
+        unknown: { label: 'Δεν επιβεβαιώθηκε', cls: 'border-slate-700', badge: 'bg-slate-700/60 text-slate-300' },
+        info: { label: 'Προαιρετικό', cls: 'border-slate-800', badge: 'bg-slate-700/60 text-slate-300' }
+    };
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+    function card(name, r, fix) {
+        var s = STATE[r.state], c = el('div', 'rounded-lg border bg-slate-900/60 p-4 ' + s.cls);
+        var head = el('div', 'flex flex-wrap items-center gap-2');
+        head.appendChild(el('span', 'text-[11px] font-mono uppercase tracking-wider text-slate-400', name));
+        head.appendChild(el('span', 'text-[11px] font-semibold rounded px-2 py-0.5 ' + s.badge, s.label));
+        c.appendChild(head);
+        c.appendChild(el('p', 'text-base font-semibold text-slate-100 mt-2', r.title));
+        if (r.value) c.appendChild(el('pre', 'mt-2 text-xs font-mono text-slate-300 bg-slate-950/70 border border-slate-800 rounded p-2 whitespace-pre-wrap break-all', r.value));
+        if (r.text) c.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed mt-2', r.text.trim()));
+        if (fix) {
+            var f = el('div', 'mt-3 border-t border-slate-800 pt-3');
+            f.appendChild(el('p', 'text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-1', 'Στο Microsoft 365'));
+            f.appendChild(el('p', 'text-sm text-slate-300 leading-relaxed', fix.text));
+            if (fix.link) { var a = el('a', 'inline-block mt-2 text-sm text-blue-400 hover:text-blue-300 underline', fix.label); a.href = fix.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; f.appendChild(a); }
+            c.appendChild(f);
+        }
+        return c;
+    }
+
+    function run(d) {
+        return checkMx(d).then(function (mx) {
+            return Promise.all([checkSpf(d), checkDkim(d, mx), checkDmarc(d), checkTxtPresence('_mta-sts.' + d, /^v=STSv1/i), checkTxtPresence('_smtp._tls.' + d, /^v=TLSRPTv1/i), dns(d, 'MX').then(function (r) { return r.ad; }), checkTlsa(mx), checkRecords(d)]).then(function (x) {
+                return { mx: mx, spf: x[0], dkim: x[1], dmarc: x[2], sts: x[3], rpt: x[4], dnssec: x[5], tlsa: x[6], records: x[7] };
+            });
+        });
+    }
+
+    function render(d, r) {
+        list.textContent = '';
+        $('dcName').textContent = d;
+        var core = [r.spf, r.dkim, r.dmarc];
+        var ok = core.filter(function (c) { return c.state === 'pass'; }).length;
+        var bad = core.filter(function (c) { return c.state === 'fail'; }).length;
+        $('dcSummary').textContent = ok + ' από τους 3 βασικούς ελέγχους είναι εντάξει' + (bad ? ', ' + bad + (bad === 1 ? ' έχει πρόβλημα' : ' έχουν πρόβλημα') : '');
+        var pv = $('dcProvider');
+        if (r.mx.mixed) pv.textContent = 'Το email του domain παραδίδεται και σε ' + (r.mx.label ? 'υπηρεσία ' + r.mx.label : 'server εκτός Microsoft 365') + ' και απευθείας στο Exchange Online.';
+        else if (r.mx.provider === 'exo') pv.textContent = 'Το email του domain παραδίδεται απευθείας στο Exchange Online (Microsoft 365).';
+        else if (r.mx.provider === 'none') pv.textContent = 'Το domain δεν έχει εγγραφές MX, άρα δεν δέχεται email. Αν δεν στέλνει κιόλας, χρειάζεται μόνο SPF «v=spf1 -all» και DMARC «v=DMARC1; p=reject;».';
+        else if (r.mx.provider === 'null') pv.textContent = 'Το domain δηλώνει ρητά ότι δεν δέχεται email (null MX).';
+        else pv.textContent = 'Το email του domain παραδίδεται πρώτα σε ' + (r.mx.label ? 'υπηρεσία ' + r.mx.label : 'server εκτός Microsoft 365') + ' (' + r.mx.hosts.slice(0, 2).join(', ') + '). Αν από πίσω υπάρχει Microsoft 365, χρειάζεται Enhanced Filtering for Connectors για να αξιολογούνται σωστά SPF, DKIM και DMARC.';
+
+        var uses365 = r.mx.provider === 'exo' || r.mx.mixed || !!r.spf.m365 || !!r.dkim.m365;
+        if (r.mx.mixed) list.appendChild(card('MX', { state: 'warn', title: 'Το MX δείχνει και σε τρίτη υπηρεσία και απευθείας στο Exchange Online', value: r.mx.hosts.join('\n'), text: 'Όποιος στείλει απευθείας στο MX του Exchange Online προσπερνά το φίλτρο της άλλης υπηρεσίας. Αν το email πρέπει να περνά πρώτα από εκείνη, το MX του Exchange Online δεν χρειάζεται να είναι δημοσιευμένο.' }, { text: 'Αφαίρεσε το MX προς το Exchange Online και περιόρισε το inbound connector ώστε να δέχεται email μόνο από την υπηρεσία φιλτραρίσματος. Ενεργοποίησε και το Enhanced Filtering for Connectors, για να αξιολογεί το Microsoft Defender for Office 365 τον πραγματικό αποστολέα.', link: '', label: '' }));
+        list.appendChild(card('SPF', r.spf, fixSpf(r.spf, r.mx)));
+        list.appendChild(card('DKIM', r.dkim, fixDkim(r.dkim)));
+        list.appendChild(card('DMARC', r.dmarc, fixDmarc(r.dmarc)));
+
+        var sts = r.sts === null ? { state: 'unknown', title: 'Ο έλεγχος MTA-STS δεν ολοκληρώθηκε', text: '' }
+            : r.sts ? { state: 'pass', title: 'Υπάρχει εγγραφή MTA-STS', value: r.sts, text: 'Ο έλεγχος βλέπει μόνο την εγγραφή DNS. Το αρχείο πολιτικής στο https://mta-sts.' + d + '/.well-known/mta-sts.txt δεν μπορεί να ελεγχθεί από τον browser.' }
+            : { state: 'info', title: 'Δεν υπάρχει MTA-STS', text: 'Το MTA-STS υποχρεώνει τους αποστολείς να παραδίδουν το email σου μόνο με TLS και έγκυρο πιστοποιητικό. Δεν είναι υποχρεωτικό, αλλά κλείνει τις επιθέσεις υποβάθμισης της κρυπτογράφησης.' };
+        list.appendChild(card('MTA-STS', sts, { text: 'Το Exchange Online υποστηρίζει MTA-STS για τα εισερχόμενα όταν το MX δείχνει σε αυτό. Χρειάζονται μια εγγραφή TXT στο _mta-sts και ένα αρχείο πολιτικής σε HTTPS. Για τα εξερχόμενα είναι πάντα ενεργό.', link: DOCS.mtasts, label: 'MTA-STS στο Exchange Online (Microsoft Learn)' }));
+
+        var rpt = r.rpt === null ? { state: 'unknown', title: 'Ο έλεγχος TLS-RPT δεν ολοκληρώθηκε', text: '' }
+            : r.rpt ? { state: 'pass', title: 'Υπάρχει εγγραφή TLS-RPT', value: r.rpt, text: 'Λαμβάνεις αναφορές όταν αποτυγχάνει η παράδοση με TLS προς το domain σου.' }
+            : { state: 'info', title: 'Δεν υπάρχει TLS-RPT', text: 'Το TLS-RPT (εγγραφή TXT στο _smtp._tls) σου στέλνει αναφορές για αποτυχίες TLS. Έχει νόημα μαζί με MTA-STS ή DANE.' };
+        list.appendChild(card('TLS-RPT', rpt, null));
+
+        var sec = r.dnssec ? { state: 'pass', title: r.tlsa.any ? 'DNSSEC και DANE είναι ενεργά' : 'Η ζώνη DNS είναι υπογεγραμμένη με DNSSEC', text: r.tlsa.any ? 'Το MX έχει εγγραφές TLSA, άρα οι αποστολείς που υποστηρίζουν DANE επαληθεύουν το πιστοποιητικό του mail server σου.' + (r.tlsa.all ? '' : ' Δεν έχουν όμως όλα τα MX εγγραφή TLSA.') : (r.mx.dane ? 'Το MX χρησιμοποιεί τη μορφή mx.microsoft, αλλά δεν βρέθηκαν εγγραφές TLSA. Το inbound SMTP DANE δεν φαίνεται ενεργό.' : 'Οι απαντήσεις DNS του domain επαληθεύονται κρυπτογραφικά. Το MX δεν έχει εγγραφές TLSA, άρα το DANE δεν είναι ενεργό.') }
+            : { state: 'info', title: 'Η ζώνη DNS δεν είναι υπογεγραμμένη με DNSSEC', text: 'Χωρίς DNSSEC, οι εγγραφές του domain (και οι MX, SPF, DKIM, DMARC) δεν προστατεύονται από πλαστογράφηση στο DNS.' };
+        list.appendChild(card('DNSSEC και DANE', sec, { text: 'Το Exchange Online υποστηρίζει inbound SMTP DANE with DNSSEC. Προϋποθέτει υπογεγραμμένη ζώνη και αλλαγή του MX στη μορφή mx.microsoft, με το Enable-DnssecForVerifiedDomain.', link: DOCS.dane, label: 'SMTP DANE with DNSSEC (Microsoft Learn)' }));
+
+        if (uses365) list.appendChild(card('Εγγραφές Microsoft 365', r.records, { text: 'Τις τιμές που ισχύουν για το tenant σου τις δίνει το Microsoft 365 admin center: Settings → Domains → το domain → DNS records.', link: DOCS.records, label: 'Εξωτερικές εγγραφές DNS για το Microsoft 365 (Microsoft Learn)' }));
+
+        out.classList.remove('hidden');
+        out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    window.__domainCheck = { normalize: normalize, txt: txt, run: run };
+
+    form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        err.classList.add('hidden');
+        var d = normalize(input.value);
+        if (d && !document.getElementById('dcConsent').checked) { err.textContent = 'Επιβεβαίωσε πρώτα ότι έχεις εξουσιοδότηση να αξιολογήσεις το domain.'; err.classList.remove('hidden'); out.classList.add('hidden'); return; }
+        if (!d) { err.textContent = 'Γράψε ένα έγκυρο domain, π.χ. example.gr.'; err.classList.remove('hidden'); out.classList.add('hidden'); return; }
+        input.value = d;
+        btn.disabled = true; btn.textContent = 'Γίνεται έλεγχος…';
+        cache = {};
+        run(d).then(function (r) { render(d, r); }).catch(function () {
+            err.textContent = 'Ο έλεγχος δεν ολοκληρώθηκε. Ο browser δεν μπόρεσε να φτάσει σε δημόσιο DNS resolver (ίσως τον μπλοκάρει το δίκτυο ή κάποιο extension). Δοκίμασε ξανά.';
+            err.classList.remove('hidden'); out.classList.add('hidden');
+        }).then(function () { btn.disabled = false; btn.textContent = 'Έλεγχος'; });
+    });
+})();
+</script>

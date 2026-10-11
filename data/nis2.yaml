@@ -838,6 +838,9 @@ articles:
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
     - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    - title: 'Εργαλείο: Έλεγχος domain (SPF, DKIM, DMARC) με τη ρύθμιση του Microsoft 365'
+      url: /elegxos-domain/
+      page: /elegxos-domain
   - code: 20.δ
     scope: Βασικές και σημαντικές
     requirement: Χρήση μόνο υποστηριζόμενων browsers, τακτική ενημέρωσή τους και περιορισμός των επεκτάσεων τρίτων.

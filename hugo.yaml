@@ -214,6 +214,12 @@ menu:
       name: "⚖️ ΚΥΑ 1689/2025 με Microsoft 365"
       url: /kya-1689-2025/
       weight: 1
+    # Ομάδα «Εργαλεία»: τα παιδιά ορίζονται στο front matter των σελίδων τους. Χωρίς δημοσιευμένο παιδί, η ομάδα δεν εμφανίζεται.
+    - identifier: tools
+      name: Εργαλεία
+      weight: 28
+      params:
+        noLink: true
     - identifier: releases-new
       parent: releases
       name: "🆕 Νέα Χαρακτηριστικά (New Features)"

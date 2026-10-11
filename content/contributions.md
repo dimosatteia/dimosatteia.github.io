@@ -56,6 +56,8 @@ Live webinar, δεύτερη συμμετοχή στο ίδιο κανάλι. Τ
 
 ## Εργαλεία
 
+{{< tools-list >}}
+
 - **Checklists σε Excel** για την [ΚΥΑ 1689/2025](/kya-1689-2025/) και την [Οδηγία NIS2](/nis2/), με κατάσταση ανά απαίτηση και ποσοστό ολοκλήρωσης ανά άρθρο.
 - **[Υπολογιστής SCU](/posts/security-copilot-sto-microsoft-365-e5-scu/)** για το Security Copilot σε Microsoft 365 E5 και E7.
 - **[Εβδομαδιαία σύνοψη](/series/microsoft-365-security-weekly/)** κάθε Παρασκευή, με τις αλλαγές της εβδομάδας σε Defender, Entra, Intune και Purview.
