@@ -1,8 +1,7 @@
 ---
-title: "Έλεγχος domain: SPF, DKIM και DMARC, και τι ρυθμίζεις στο Microsoft 365"
-seoTitle: "Έλεγχος domain: SPF, DKIM, DMARC με Microsoft 365"
+title: "Έλεγχος domain: SPF, DKIM, DMARC με Microsoft 365"
 date: 2026-10-11T19:25:00+03:00
-lastmod: 2026-10-11T19:25:00+03:00
+lastmod: 2026-10-11T19:30:00+03:00
 draft: false
 url: "/elegxos-domain/"
 # Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
