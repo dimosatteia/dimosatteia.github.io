@@ -597,6 +597,8 @@ articles:
     - &id019
       title: 'Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές'
       url: /posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/
+    - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
   - code: A.6.4
     scope: ''
     requirement: Disciplinary process
@@ -915,6 +917,8 @@ articles:
       url: /posts/microsoft-defender-air-automated-investigation-response/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
   - code: A.8.8
     scope: ''
     requirement: Management of technical vulnerabilities

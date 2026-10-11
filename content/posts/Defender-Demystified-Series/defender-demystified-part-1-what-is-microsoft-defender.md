@@ -83,8 +83,7 @@ These four are Microsoft's flagship security products. Each one is sold separate
 
 **When you need it:** the moment you realise that endpoint protection in 2026 means more than just antivirus.
 
-> 📖 **Deep dive:** I'll write about it sometime later, a dedicated walkthrough of Microsoft Defender for Endpoint, what Plan 1 and Plan 2 actually differ on, how to deploy it, and what to configure first.
-<!--**[Microsoft Defender for Endpoint, Up Close](/posts/microsoft-defender-for-endpoint-deep-dive/).**-->
+> 📖 **Deep dive:** a dedicated walkthrough of Microsoft Defender for Endpoint, what Plan 1 and Plan 2 actually differ on, how to deploy it, and what to configure first: **[Microsoft Defender for Endpoint, Up Close](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** (in Greek).
 
 ### Microsoft Defender for Office 365
 
@@ -92,8 +91,7 @@ These four are Microsoft's flagship security products. Each one is sold separate
 
 **When you need it:** the moment someone on the finance team tells you about the *"really convincing"* email they almost replied to.
 
-> 📖 **Deep dive:** Plan 1 vs Plan 2, the policies that actually matter, Safe Links and Safe Attachments configuration step by step.
-<!--**[Microsoft Defender for Office 365, Up Close](/posts/microsoft-defender-for-office-365-deep-dive/).**-->
+> 📖 **Deep dive:** Plan 1 vs Plan 2, the policies that actually matter, Safe Links and Safe Attachments configuration step by step: **[Microsoft Defender for Office 365, Up Close](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)** (in Greek).
 
 ### Microsoft Defender for Identity
 

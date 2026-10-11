@@ -175,7 +175,7 @@ ShowWordCount: true
 
 ## Πού να συνεχίσετε από εδώ
 
-> 🔗 **Η σειρά Microsoft Defender Up Close συνεχίζεται** με τα «αδελφά» workloads: **Microsoft Defender for Office 365**, **Microsoft Defender for Identity** και **Microsoft Defender for Cloud Apps**. Θα τα βρείτε, μόλις δημοσιευτούν, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
+> 🔗 **Η σειρά Microsoft Defender Up Close συνεχίζεται** με το **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**. Ακολουθούν τα **Microsoft Defender for Identity** και **Microsoft Defender for Cloud Apps**, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
 > 🔗 **Θέλετε να δείτε πώς όλα αυτά τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 

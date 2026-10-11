@@ -836,6 +836,8 @@ articles:
       url: /posts/generally-available/mdo-mark-and-notify-localization/
     - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+    - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
   - code: 20.δ
     scope: Βασικές και σημαντικές
     requirement: Χρήση μόνο υποστηριζόμενων browsers, τακτική ενημέρωσή τους και περιορισμός των επεκτάσεων τρίτων.
@@ -874,6 +876,8 @@ articles:
       url: /posts/generally-available/mdo-mark-and-notify-localization/
     - title: 'Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές'
       url: /posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/
+    - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
   - code: 21.β
     scope: Βασικές και σημαντικές
     requirement: Εξειδικευμένη εκπαίδευση για το τεχνικό προσωπικό, ανάλογα με τον ρόλο του.
