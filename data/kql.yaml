@@ -202,15 +202,15 @@ queries:
 
   - id: spray-success
     title: Επιτυχημένο sign-in μετά από πολλές αποτυχίες
-    summary: Λογαριασμοί που είχαν πολλές αποτυχημένες συνδέσεις σε σύντομο διάστημα και αμέσως μετά μία επιτυχημένη, με IP, χώρες και εφαρμογή.
-    why: Πολλές αποτυχίες μόνες τους είναι θόρυβος που το Entra συνήθως μπλοκάρει. Η επιτυχία που ακολουθεί είναι το εύρημα, γιατί μπορεί να σημαίνει ότι ένα password spray ή brute force βρήκε τον κωδικό. Η στήλη AuthenticationRequirement δείχνει αν η επιτυχία πέρασε με MFA, και αν γράφει singleFactorAuthentication, το εύρημα είναι σοβαρό. Η στήλη SameIP δείχνει αν οι αποτυχίες ήρθαν από άλλη IP από την επιτυχία, που ταιριάζει με spray. Οι αποτυχίες που είναι απλώς διακοπές για MFA δεν μετρούν, ώστε να μη βγαίνει θόρυβος.
+    summary: Λογαριασμοί που είχαν πολλές αποτυχίες κωδικού σε σύντομο διάστημα και, μέσα σε μία ώρα, μία επιτυχημένη interactive σύνδεση, με IP, χώρες και εφαρμογή.
+    why: Πολλές αποτυχίες μόνες τους είναι θόρυβος που το Entra συνήθως μπλοκάρει. Η επιτυχία που ακολουθεί είναι το εύρημα, γιατί μπορεί να σημαίνει ότι ένα password spray ή brute force βρήκε τον κωδικό. Το query κρατά μόνο τις interactive επιτυχίες, γιατί οι ανανεώσεις token στο παρασκήνιο θα έδειχναν επιτυχία ακόμα κι όταν η επίθεση απέτυχε. Η στήλη AuthenticationRequirement δείχνει αν η σύνδεση απαίτησε MFA, και αν γράφει singleFactorAuthentication ο λογαριασμός μπήκε μόνο με κωδικό και το εύρημα είναι σοβαρό. Η στήλη SameIP δείχνει αν η επιτυχία ήρθε από την ίδια IP με τις αποτυχίες. Αν ναι και η IP δεν είναι γνωστή, είναι το πιο επικίνδυνο σενάριο. Αν οι αποτυχίες ήρθαν από άλλες IP και η επιτυχία από τη συνήθη IP του χρήστη, συνήθως κάποιος άλλος απέτυχε και ο χρήστης συνδέθηκε κανονικά.
     pillar: identity
     product: Entra ID
     table: EntraIdSignInEvents
     license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
     tested: 2026-10-12
     evidence: /images/kql/spray-success.webp
-    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Τέσσερις λογαριασμοί είχαν 6 έως 9 αποτυχίες κωδικού μέσα σε μία ώρα και μετά επιτυχημένη σύνδεση, όλες από την Ελλάδα και όλες με multiFactorAuthentication. Η εικόνα ταιριάζει με χρήστες που ξέχασαν ή άλλαξαν τον κωδικό τους και όχι με επίθεση, και το MFA κράτησε. Τα UPN και οι IP έχουν αφαιρεθεί.
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Ένας λογαριασμός είχε 6 αποτυχίες κωδικού και μέσα σε 33 λεπτά επιτυχημένη interactive σύνδεση στο Outlook Web από browser, από την ίδια IP στην Ελλάδα (SameIP = 1). Η σύνδεση απαίτησε και ολοκλήρωσε MFA, άρα δεν έγινε είσοδος μόνο με τον κωδικό, και η εικόνα ταιριάζει με χρήστη που πληκτρολόγησε λάθος τον κωδικό του. Τα UPN και οι IP έχουν αφαιρεθεί.
     map:
       kya: ["13.ζ", "24.ε"]
       nis2: ["21.2.ι", "21.2.β"]
@@ -220,13 +220,14 @@ queries:
       - title: "Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID"
         url: /posts/passkeys-by-default-telos-sms-voice-mfa/
     query: |-
-      // Επιτυχημένο sign-in μετά από πολλές αποτυχίες κωδικού, τελευταίες 7 ημέρες
+      // Επιτυχημένο interactive sign-in μετά από πολλές αποτυχίες κωδικού, τελευταίες 7 ημέρες
       // ΚΥΑ 1689/2025: 13.ζ, 24.ε
       let Lookback = 7d;          // πόσο πίσω ψάχνουμε επιτυχίες
       let FailWindow = 1h;        // πόσο πριν από την επιτυχία μετράμε αποτυχίες
       let MinFailures = 5;        // από πόσες αποτυχίες και πάνω
-      // 50126 λάθος κωδικός, 50053 κλείδωμα (Smart Lockout), 50055 και 50056 ληγμένος ή ελλιπής κωδικός
-      let PasswordFailures = dynamic([50126, 50053, 50055, 50056]);
+      // 50126 λάθος όνομα χρήστη ή κωδικός, 50053 κλείδωμα (Smart Lockout) ή IP με κακόβουλη δραστηριότητα,
+      // 50055/50144 σωστός αλλά ληγμένος κωδικός (cloud/AD), 50056 κενός ή ανύπαρκτος κωδικός
+      let PasswordFailures = dynamic([50126, 50053, 50055, 50144, 50056]);
       let Failures = EntraIdSignInEvents
           | where Timestamp > ago(Lookback + FailWindow)
           | where ErrorCode in (PasswordFailures)
@@ -234,12 +235,13 @@ queries:
       EntraIdSignInEvents
       | where Timestamp > ago(Lookback)
       | where ErrorCode == 0 and isnotempty(AccountUpn)
+      | where LogonType has "interactiveUser"     // μόνο interactive, όχι ανανεώσεις token στο παρασκήνιο
       | project AccountUpn, SuccessTime = Timestamp, SuccessIP = IPAddress, SuccessCountry = Country,
                 Application, ClientAppUsed, AuthenticationRequirement
       | join kind=inner Failures on AccountUpn
       | where FailTime between ((SuccessTime - FailWindow) .. SuccessTime)
       | summarize Failures = count(), FirstFail = min(FailTime),
-                  FailIPs = make_set(FailIP, 10), FailCountries = make_set(FailCountry, 10)
+                  FailIPs = make_set(FailIP, 100), FailCountries = make_set(FailCountry, 10)
                   by AccountUpn, SuccessTime, SuccessIP, SuccessCountry, Application, ClientAppUsed, AuthenticationRequirement
       | where Failures >= MinFailures
       | summarize arg_max(Failures, *) by AccountUpn, SuccessIP
