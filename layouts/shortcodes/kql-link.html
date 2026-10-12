@@ -3,9 +3,9 @@
        {{< kql-link id="legacy-auth" lead="Θέλεις να το ελέγξεις;" label="Τρέξε το KQL" tail="στο Advanced Hunting." >}} */ -}}
 {{- $id := .Get "id" -}}
 {{- with site.GetPage "/kql" -}}{{ $p := . }}
-{{- range where site.Data.kql.queries "id" $id }}
+{{- range where site.Data.kql.queries "id" $id }}{{ if not .draft }}
 <blockquote>
 <p>🔎 <strong>{{ $.Get "lead" }}</strong> <a href="{{ $p.RelPermalink }}#{{ $id }}">{{ $.Get "label" | default .title }}</a>{{ with $.Get "tail" }} {{ . }}{{ end }}</p>
 </blockquote>
-{{- end }}
+{{- end }}{{ end }}
 {{- end -}}

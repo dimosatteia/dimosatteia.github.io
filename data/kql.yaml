@@ -13,6 +13,8 @@
 #   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso), data/gdpr.yaml (gdpr)
 #   posts:     σχετικά άρθρα του blog
 #   query:     το KQL
+#   draft:     true = καταχώρηση σε αναμονή. Δεν εμφανίζεται πουθενά (σελίδα /kql/, οδηγοί, kql-link) μέχρι να γραφτεί το query,
+#              να δοκιμαστεί και να μπει εικόνα-πειστήριο. Τότε σβήνεται το draft.
 
 updated: 2026-10-12
 
@@ -195,3 +197,265 @@ queries:
       | extend LoggedOnUser = tostring(parse_json(LoggedOnUsers)[0].UserName)
       | project MountTime, DeviceName, LoggedOnUser, DriveLetter, Manufacturer, Product, SerialNumber
       | order by MountTime desc
+
+  # ---- Σε αναμονή (draft): γράφεται το query, δοκιμάζεται στο tenant, μπαίνει πειστήριο, σβήνεται το draft ----
+
+  - id: spray-success
+    title: Επιτυχημένο sign-in μετά από πολλές αποτυχίες
+    summary: Λογαριασμοί που είχαν πολλές αποτυχημένες συνδέσεις σε σύντομο διάστημα και αμέσως μετά μία επιτυχημένη, με IP, χώρες και εφαρμογή.
+    why: Πολλές αποτυχίες μόνες τους είναι θόρυβος που το Entra συνήθως μπλοκάρει. Η επιτυχία που ακολουθεί είναι το εύρημα, γιατί μπορεί να σημαίνει ότι ένα password spray ή brute force βρήκε τον κωδικό. Η στήλη AuthenticationRequirement δείχνει αν η επιτυχία πέρασε με MFA, και αν γράφει singleFactorAuthentication, το εύρημα είναι σοβαρό. Η στήλη SameIP δείχνει αν οι αποτυχίες ήρθαν από άλλη IP από την επιτυχία, που ταιριάζει με spray. Οι αποτυχίες που είναι απλώς διακοπές για MFA δεν μετρούν, ώστε να μη βγαίνει θόρυβος.
+    pillar: identity
+    product: Entra ID
+    table: EntraIdSignInEvents
+    license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
+    tested: 2026-10-12
+    evidence: /images/kql/spray-success.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Τέσσερις λογαριασμοί είχαν 6 έως 9 αποτυχίες κωδικού μέσα σε μία ώρα και μετά επιτυχημένη σύνδεση, όλες από την Ελλάδα και όλες με multiFactorAuthentication. Η εικόνα ταιριάζει με χρήστες που ξέχασαν ή άλλαξαν τον κωδικό τους και όχι με επίθεση, και το MFA κράτησε. Τα UPN και οι IP έχουν αφαιρεθεί.
+    map:
+      kya: ["13.ζ", "24.ε"]
+      nis2: ["21.2.ι", "21.2.β"]
+      iso: ["A.8.5", "A.8.16"]
+      gdpr: ["32.1.β", "33.1"]
+    posts:
+      - title: "Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID"
+        url: /posts/passkeys-by-default-telos-sms-voice-mfa/
+    query: |-
+      // Επιτυχημένο sign-in μετά από πολλές αποτυχίες κωδικού, τελευταίες 7 ημέρες
+      // ΚΥΑ 1689/2025: 13.ζ, 24.ε
+      let Lookback = 7d;          // πόσο πίσω ψάχνουμε επιτυχίες
+      let FailWindow = 1h;        // πόσο πριν από την επιτυχία μετράμε αποτυχίες
+      let MinFailures = 5;        // από πόσες αποτυχίες και πάνω
+      // 50126 λάθος κωδικός, 50053 κλείδωμα (Smart Lockout), 50055 και 50056 ληγμένος ή ελλιπής κωδικός
+      let PasswordFailures = dynamic([50126, 50053, 50055, 50056]);
+      let Failures = EntraIdSignInEvents
+          | where Timestamp > ago(Lookback + FailWindow)
+          | where ErrorCode in (PasswordFailures)
+          | project AccountUpn, FailTime = Timestamp, FailIP = IPAddress, FailCountry = Country;
+      EntraIdSignInEvents
+      | where Timestamp > ago(Lookback)
+      | where ErrorCode == 0 and isnotempty(AccountUpn)
+      | project AccountUpn, SuccessTime = Timestamp, SuccessIP = IPAddress, SuccessCountry = Country,
+                Application, ClientAppUsed, AuthenticationRequirement
+      | join kind=inner Failures on AccountUpn
+      | where FailTime between ((SuccessTime - FailWindow) .. SuccessTime)
+      | summarize Failures = count(), FirstFail = min(FailTime),
+                  FailIPs = make_set(FailIP, 10), FailCountries = make_set(FailCountry, 10)
+                  by AccountUpn, SuccessTime, SuccessIP, SuccessCountry, Application, ClientAppUsed, AuthenticationRequirement
+      | where Failures >= MinFailures
+      | summarize arg_max(Failures, *) by AccountUpn, SuccessIP
+      | extend SameIP = set_has_element(FailIPs, SuccessIP)
+      | order by Failures desc, SuccessTime desc
+
+  - id: foreign-signins
+    title: Sign-ins από χώρες εκτός Ελλάδας και ΕΕ
+    summary: Επιτυχημένες συνδέσεις από χώρες εκτός της Ελλάδας και της Ευρωπαϊκής Ένωσης τις τελευταίες 7 ημέρες, ανά λογαριασμό, χώρα, IP και εφαρμογή.
+    why: Για έναν Ελληνικό οργανισμό, μια σύνδεση από χώρα όπου δεν έχεις ούτε υπαλλήλους ούτε συνεργάτες θέλει εξήγηση. Αν είναι ταξίδι, τεκμηριώνεται. Αν δεν είναι, είναι πιθανή παραβίαση λογαριασμού. Το ίδιο εύρημα δείχνει και αν αξίζει πολιτική Conditional Access με named locations. Αν έχεις ήδη τέτοια πολιτική, το κενό αποτέλεσμα είναι το τεκμήριο ότι δουλεύει.
+    pillar: identity
+    product: Entra ID
+    table: EntraIdSignInEvents
+    license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
+    tested: 2026-10-12
+    evidence: /images/kql/foreign-signins.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Το query στην εικόνα είναι το κανονικό, όπως το δίνουμε εδώ. Για να τρέξει η δοκιμή αφαιρέθηκε το "GR" από τη λίστα AllowedCountries, επειδή σε αυτό το tenant τα sign-ins εκτός Ελλάδας μπλοκάρονται ήδη με Conditional Access και το αποτέλεσμα θα ήταν κενό. Γι' αυτό τα αποτελέσματα δείχνουν συνδέσεις από την Ελλάδα, όλες με multiFactorAuthentication. Στο δικό σου tenant κράτα το "GR" στη λίστα. Τα UPN και οι IP έχουν αφαιρεθεί.
+    map:
+      kya: ["13.ζ", "24.ε"]
+      nis2: ["21.2.ι"]
+      iso: ["A.8.5", "A.8.16"]
+      gdpr: ["32.1.β"]
+    posts:
+      - title: "Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν"
+        url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    query: |-
+      // Επιτυχημένα sign-ins από χώρες εκτός Ελλάδας και ΕΕ, τελευταίες 7 ημέρες
+      // ΚΥΑ 1689/2025: 13.ζ, 24.ε
+      let Lookback = 7d;
+      // Τα 27 κράτη-μέλη της ΕΕ (κωδικοί ISO). Πρόσθεσε χώρες που είναι αναμενόμενες για εσένα, π.χ. "CH", "GB", "NO".
+      let AllowedCountries = dynamic(["GR","AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","HU","IE",
+          "IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE"]);
+      EntraIdSignInEvents
+      | where Timestamp > ago(Lookback)
+      | where ErrorCode == 0
+      | where isnotempty(Country) and Country !in (AllowedCountries)
+      | summarize
+          SignIns = count(),
+          FirstSeen = min(Timestamp),
+          LastSeen = max(Timestamp),
+          IPs = make_set(IPAddress, 10),
+          Cities = make_set(City, 10),
+          Apps = make_set(Application, 10),
+          AuthRequirement = make_set(AuthenticationRequirement, 5),
+          ManagedDevice = make_set(IsManaged, 2)
+          by AccountUpn, Country, IsGuestUser
+      | order by LastSeen desc
+
+  - id: inbox-forward
+    draft: true
+    title: Κανόνες inbox που προωθούν email εκτός οργανισμού
+    summary: Νέοι ή αλλαγμένοι κανόνες inbox που προωθούν, ανακατευθύνουν ή διαγράφουν μηνύματα, με έμφαση σε όσους στέλνουν σε εξωτερικές διευθύνσεις.
+    why: Ο κανόνας που προωθεί αθόρυβα το email σε εξωτερική διεύθυνση είναι από τις πρώτες κινήσεις μετά από παραβίαση mailbox, και συχνά συνοδεύεται από κανόνα που κρύβει ή σβήνει τις απαντήσεις. Κάθε κανόνας προς εξωτερικό domain θέλει επιβεβαίωση από τον χρήστη.
+    pillar: email
+    product: Exchange Online
+    table: CloudAppEvents
+    license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
+    map:
+      kya: ["20.γ", "24.ε"]
+      nis2: ["21.2.β"]
+      iso: ["A.8.12", "A.8.16"]
+      gdpr: ["5.1.στ", "32.1.β", "33.1"]
+    posts:
+      - title: "Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    query: ""
+
+  - id: oauth-consent
+    draft: true
+    title: Συγκατάθεση χρηστών σε εφαρμογές OAuth
+    summary: Ποιος χρήστης έδωσε σε ποια εφαρμογή πρόσβαση στα δεδομένα του και με ποια δικαιώματα, τις τελευταίες 30 ημέρες.
+    why: Στο consent phishing ο επιτιθέμενος δεν χρειάζεται τον κωδικό. Ο χρήστης πατά «Accept» και η εφαρμογή παίρνει πρόσβαση σε email και αρχεία, που δεν κόβεται με αλλαγή κωδικού. Προσοχή σε εφαρμογές με δικαιώματα όπως Mail.Read, Files.Read.All ή offline_access, και σε εφαρμογές που δεν αναγνωρίζεις.
+    pillar: identity
+    product: Entra ID
+    table: CloudAppEvents
+    license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
+    map:
+      kya: ["12.2.α", "13.γ"]
+      nis2: ["21.2.δ", "21.2.θ"]
+      iso: ["A.5.23", "A.5.15"]
+      gdpr: ["28.1", "32.1.β"]
+    posts:
+      - title: "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)"
+        url: /posts/microsoft-entra-architecture-guide-defender/
+    query: ""
+
+  - id: mass-download
+    draft: true
+    title: Μαζικά downloads από SharePoint και OneDrive
+    summary: Χρήστες που κατέβασαν ασυνήθιστα πολλά αρχεία από SharePoint ή OneDrive μέσα σε μία ώρα, με sites, συσκευή και IP.
+    why: Τα πολλά downloads σε λίγο χρόνο είναι το συνηθισμένο αποτύπωμα διαρροής δεδομένων, είτε από παραβιασμένο λογαριασμό είτε από υπάλληλο που αποχωρεί. Το όριο το προσαρμόζεις στον οργανισμό σου, και το εύρημα το συγκρίνεις με το HR για αποχωρήσεις.
+    pillar: cloud
+    product: SharePoint και OneDrive
+    table: CloudAppEvents
+    license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
+    map:
+      kya: ["11.δ", "24.ε"]
+      nis2: ["21.2.θ"]
+      iso: ["A.8.12", "A.8.16"]
+      gdpr: ["5.1.στ", "32.1.β", "33.1"]
+    posts:
+      - title: "Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου"
+        url: /posts/purview-autolabeling-500k-scale-increase/
+    query: ""
+
+  - id: local-admin-add
+    draft: true
+    title: Προσθήκες στο local Administrators group
+    summary: Ποιος λογαριασμός προστέθηκε στο τοπικό group Administrators σε ποια συσκευή, από ποιον και πότε, τις τελευταίες 30 ημέρες.
+    why: Τα τοπικά δικαιώματα admin είναι ο πιο συνηθισμένος δρόμος για να κλείσει κάποιος το antivirus, να εγκαταστήσει λογισμικό ή να κινηθεί πλάγια. Κάθε προσθήκη που δεν πέρασε από τη διαδικασία σου (LAPS, Intune Account protection) θέλει εξήγηση.
+    pillar: endpoint
+    product: Defender for Endpoint
+    table: DeviceEvents
+    license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security)
+    map:
+      kya: ["13.δ", "24.γ"]
+      nis2: ["21.2.θ"]
+      iso: ["A.8.2", "A.8.15"]
+      gdpr: ["32.1.β"]
+    posts:
+      - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    query: ""
+
+  - id: ad-sensitive-groups
+    draft: true
+    title: Αλλαγές στα ευαίσθητα groups του Active Directory
+    summary: Μέλη που προστέθηκαν ή αφαιρέθηκαν από Domain Admins, Enterprise Admins, Schema Admins και τα υπόλοιπα προνομιακά groups του on-premises AD, με τον λογαριασμό που έκανε την αλλαγή.
+    why: Μια νέα είσοδος στο Domain Admins είναι Tier 0 αλλαγή και πρέπει να αντιστοιχεί σε εγκεκριμένο αίτημα. Αν δεν αντιστοιχεί, είναι από τα πιο σοβαρά ευρήματα που μπορείς να έχεις. Θέλει sensor του Defender for Identity στους Domain Controllers.
+    pillar: identity
+    product: Defender for Identity
+    table: IdentityDirectoryEvents
+    license: Microsoft Defender for Identity (Microsoft 365 E5, E5 Security ή EMS E5)
+    map:
+      kya: ["13.γ", "24.γ"]
+      nis2: ["21.2.θ"]
+      iso: ["A.8.2", "A.5.18"]
+      gdpr: ["32.1.β"]
+    posts:
+      - title: "Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing"
+        url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+    query: ""
+
+  - id: av-disabled
+    draft: true
+    title: Συσκευές με ανενεργή προστασία του Defender Antivirus
+    summary: Συσκευές όπου το real-time protection, το tamper protection ή η cloud-delivered protection του Microsoft Defender Antivirus δεν είναι ενεργά.
+    why: Μια συσκευή χωρίς real-time protection είναι ουσιαστικά απροστάτευτη, ακόμα κι αν φαίνεται onboarded. Το tamper protection εμποδίζει τον επιτιθέμενο να κλείσει την προστασία. Το αποτέλεσμα είναι λίστα εργασιών για το Intune και τεκμήριο για τον έλεγχο.
+    pillar: endpoint
+    product: Defender for Endpoint
+    table: DeviceTvmSecureConfigurationAssessment
+    license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security)
+    map:
+      kya: ["20.α", "14.β"]
+      nis2: ["21.2.ε"]
+      iso: ["A.8.7", "A.8.9"]
+      gdpr: ["32.1.β"]
+    posts:
+      - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    query: ""
+
+  - id: exploitable-cves
+    title: Critical ευπάθειες με γνωστό exploit που μένουν ανοιχτές
+    summary: Ευπάθειες με σοβαρότητα Critical και διαθέσιμο exploit, ανά συσκευή και λογισμικό, με τον αριθμό των συσκευών που επηρεάζονται.
+    why: Από εκατοντάδες CVEs, αυτά με γνωστό exploit είναι αυτά που χρησιμοποιούνται πραγματικά σε επιθέσεις. Κάθε γραμμή είναι ένα λογισμικό σε συγκεκριμένη έκδοση, άρα μία ενέργεια patching, και η στήλη DaysOpen μετρά τις ημέρες από τη δημοσίευση του παλαιότερου CVE. Οι πίνακες δείχνουν την τρέχουσα κατάσταση, γι' αυτό το query δεν έχει φίλτρο χρόνου. Η λίστα δείχνει από πού ξεκινά το patching και είναι τεκμήριο ότι οι ενημερώσεις ασφαλείας εφαρμόζονται σε εύλογο χρόνο.
+    pillar: endpoint
+    product: Defender Vulnerability Management
+    table: DeviceTvmSoftwareVulnerabilities
+    license: Microsoft Defender for Endpoint Plan 2 ή Defender Vulnerability Management (Microsoft 365 E5 ή E5 Security)
+    tested: 2026-10-12
+    evidence: /images/kql/exploitable-cves.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δέκα συνδυασμοί λογισμικού και έκδοσης με Critical ευπάθεια και διαθέσιμο exploit, ο καθένας σε μία συσκευή, με CVSS από 9.1 έως 9.8. Οι παλαιότερες είναι ευπάθειες του Apache HTTP Server ανοιχτές πάνω από 1.800 ημέρες, ενώ βρέθηκαν και Windows 11, Edge και MikroTik RouterOS. Η στήλη RecommendedUpdate είναι συμπληρωμένη μόνο για τα Windows 11, οπότε για τα υπόλοιπα η ενημέρωση βρίσκεται από τον κατασκευαστή. Οι εκδόσεις και τα ονόματα των συσκευών έχουν αφαιρεθεί.
+    map:
+      kya: ["17.α", "17.γ"]
+      nis2: ["21.2.ε"]
+      iso: ["A.8.8"]
+      gdpr: ["32.1.β", "32.1.δ"]
+    posts:
+      - title: "Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune"
+        url: /posts/previews/vulnerability-remediation-agent-intune/
+    query: |-
+      // Critical ευπάθειες με γνωστό exploit που μένουν ανοιχτές, ανά λογισμικό
+      // ΚΥΑ 1689/2025: 17.α, 17.γ
+      let ExploitableCritical = DeviceTvmSoftwareVulnerabilitiesKB
+          | where VulnerabilitySeverityLevel == "Critical" and IsExploitAvailable == true
+          | project CveId, CvssScore, PublishedDate;
+      DeviceTvmSoftwareVulnerabilities
+      | join kind=inner ExploitableCritical on CveId
+      | summarize
+          Devices = dcount(DeviceId),
+          CVEs = dcount(CveId),
+          MaxCvss = max(CvssScore),
+          OldestCve = min(PublishedDate),
+          CveList = make_set(CveId, 10),
+          SampleDevices = make_set(DeviceName, 5),
+          RecommendedUpdate = make_set(RecommendedSecurityUpdate, 3)
+          by SoftwareVendor, SoftwareName, SoftwareVersion
+      | extend DaysOpen = datetime_diff('day', now(), OldestCve)
+      | order by Devices desc, MaxCvss desc
+
+  - id: rdp-logons
+    draft: true
+    title: RDP logons σε servers από απρόσμενες πηγές
+    summary: Απομακρυσμένες συνδέσεις RDP σε servers, με λογαριασμό, IP πηγής και αποτέλεσμα, με έμφαση σε δημόσιες IP και σε λογαριασμούς που δεν είναι admins.
+    why: Το RDP είναι από τους πιο συνηθισμένους δρόμους για ransomware και πλάγια κίνηση. Ένα RDP από δημόσια IP σημαίνει ότι η θύρα είναι εκτεθειμένη. Ένα RDP από υπολογιστή χρήστη σε server δείχνει ότι λείπει διαχωρισμός δικτύου ή jump host.
+    pillar: endpoint
+    product: Defender for Endpoint
+    table: DeviceLogonEvents
+    license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security), ή Defender for Servers για servers στο Azure
+    map:
+      kya: ["19.γ", "19.η", "24.ε"]
+      nis2: ["21.2.ι"]
+      iso: ["A.8.20", "A.8.16"]
+      gdpr: ["32.1.β"]
+    posts:
+      - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    query: ""

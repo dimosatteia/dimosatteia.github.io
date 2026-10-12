@@ -132,7 +132,7 @@
                         {{ end }}
                         {{- $code := .code -}}
                         {{- $kqlHits := slice -}}
-                        {{- if $kqlPage }}{{ range site.Data.kql.queries }}{{ $kq := . }}{{ with index .map $kqlKey }}{{ if in . $code }}{{ $kqlHits = $kqlHits | append $kq }}{{ end }}{{ end }}{{ end }}{{ end -}}
+                        {{- if $kqlPage }}{{ range site.Data.kql.queries }}{{ if not .draft }}{{ $kq := . }}{{ with index .map $kqlKey }}{{ if in . $code }}{{ $kqlHits = $kqlHits | append $kq }}{{ end }}{{ end }}{{ end }}{{ end }}{{ end -}}
                         {{ with $kqlHits }}
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">KQL</dt>
                         <dd>
