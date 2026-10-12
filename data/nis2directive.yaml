@@ -90,7 +90,7 @@ articles:
     posts:
     - *id001
     - *id002
-    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+    - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
   - code: 21.2.β
     scope: Βασικές και σημαντικές
@@ -228,7 +228,7 @@ articles:
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
-    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+    - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/

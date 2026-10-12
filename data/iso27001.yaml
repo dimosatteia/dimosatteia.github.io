@@ -68,7 +68,7 @@ articles:
       title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
     - &id025
-      title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+      title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
   - code: A.5.4
     scope: ''
@@ -946,7 +946,7 @@ articles:
     posts:
     - *id023
     - *id024
-    - title: 'Microsoft Secure Score Part 1: How to Read a Recommendation'
+    - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
