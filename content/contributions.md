@@ -47,6 +47,8 @@ Live webinar, δεύτερη συμμετοχή στο ίδιο κανάλι. Τ
 
 - **[ΚΥΑ 1689/2025 με Microsoft 365](/kya-1689-2025/):** το Εθνικό Πλαίσιο Απαιτήσεων Κυβερνοασφάλειας ανά απαίτηση, με τη ρύθμιση της Microsoft που την υποστηρίζει, το τεκμήριο για τον ελεγκτή και checklist σε Excel.
 - **[Οδηγία NIS2 (ΕΕ) 2022/2555 με Microsoft 365](/nis2/):** τα άρθρα 20, 21, 23, 24 και 25 της Οδηγίας, με αντιστοίχιση στα άρθρα της ΚΥΑ και checklist σε Excel.
+- **[ISO/IEC 27001:2022 Annex A με Microsoft 365](/iso-27001/):** τα 93 controls ένα προς ένα, με αντιστοίχιση στα άρθρα της ΚΥΑ και checklist σε Excel.
+- **[GDPR (ΕΕ) 2016/679 με Microsoft 365](/gdpr/):** οι υποχρεώσεις του υπευθύνου και του εκτελούντος την επεξεργασία, με αντιστοίχιση σε ΚΥΑ 1689/2025 και ISO/IEC 27001 και checklist σε Excel.
 
 ## Σειρές άρθρων
 
@@ -58,7 +60,7 @@ Live webinar, δεύτερη συμμετοχή στο ίδιο κανάλι. Τ
 
 {{< tools-list >}}
 
-- **Checklists σε Excel** για την [ΚΥΑ 1689/2025](/kya-1689-2025/) και την [Οδηγία NIS2](/nis2/), με κατάσταση ανά απαίτηση και ποσοστό ολοκλήρωσης ανά άρθρο.
+- **Checklists σε Excel** για την [ΚΥΑ 1689/2025](/kya-1689-2025/), την [Οδηγία NIS2](/nis2/), το [ISO/IEC 27001](/iso-27001/) και τον [GDPR](/gdpr/), με κατάσταση ανά απαίτηση και ποσοστό ολοκλήρωσης ανά άρθρο.
 - **[Υπολογιστής SCU](/posts/security-copilot-sto-microsoft-365-e5-scu/)** για το Security Copilot σε Microsoft 365 E5 και E7.
 - **[Εβδομαδιαία σύνοψη](/series/microsoft-365-security-weekly/)** κάθε Παρασκευή, με τις αλλαγές της εβδομάδας σε Defender, Entra, Intune και Purview.
 
@@ -80,4 +82,4 @@ Live webinar, δεύτερη συμμετοχή στο ίδιο κανάλι. Τ
 
 ## In English
 
-Dimosthenis Atteia is a CIO/CISO who writes and speaks about Microsoft 365 Security for the Greek-speaking community. This page lists his webinars, article series, compliance guides that map the Greek national cybersecurity framework (ΚΥΑ 1689/2025) and the NIS2 Directive to Microsoft technologies, and free tools. All content is in Greek and free to use.
+Dimosthenis Atteia is a CIO/CISO who writes and speaks about Microsoft 365 Security for the Greek-speaking community. This page lists his webinars, article series, compliance guides that map the Greek national cybersecurity framework (ΚΥΑ 1689/2025), the NIS2 Directive, ISO/IEC 27001 and the GDPR to Microsoft technologies, and free tools. All content is in Greek and free to use.

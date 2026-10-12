@@ -23,7 +23,7 @@
     "org"   "bg-slate-800 text-slate-300 border-slate-700" -}}
 {{- /* Σύνδεση με τη Βιβλιοθήκη KQL (data/kql.yaml): ποιο κλειδί του «map» αντιστοιχεί σε αυτόν τον οδηγό.
        Εμφανίζεται μόνο αν η σελίδα /kql/ είναι δημοσιευμένη. */ -}}
-{{- $kqlKey := index (dict "nis2" "kya" "nis2directive" "nis2" "iso27001" "iso") (.Params.dataKey | default "nis2") -}}
+{{- $kqlKey := index (dict "nis2" "kya" "nis2directive" "nis2" "iso27001" "iso" "gdpr" "gdpr") (.Params.dataKey | default "nis2") -}}
 {{- $kqlPage := site.GetPage "/kql" -}}
 {{- $labels := dict -}}
 {{- range $d.types }}{{ $labels = merge $labels (dict .key .label) }}{{ end -}}
@@ -139,6 +139,12 @@
                             <ul class="flex flex-col gap-1">
                                 {{ range . }}<li><a href="{{ $kqlPage.RelPermalink }}#{{ .id }}" class="text-blue-400 hover:text-blue-300 underline leading-relaxed">🔎 {{ .title }}</a></li>{{ end }}
                             </ul>
+                        </dd>
+                        {{ end }}
+                        {{ with .iso }}
+                        <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">ISO/IEC 27001</dt>
+                        <dd class="flex flex-wrap gap-2">
+                            {{ range . }}<a href="{{ "iso-27001/" | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">{{ . }}</a>{{ end }}
                         </dd>
                         {{ end }}
                         {{ if or .posts .planned }}

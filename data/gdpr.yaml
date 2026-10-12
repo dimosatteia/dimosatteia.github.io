@@ -1,0 +1,591 @@
+# Αντιστοίχιση Κανονισμού (ΕΕ) 2016/679 (GDPR) -> Microsoft -> ΚΥΑ 1689/2025 και ISO/IEC 27001 -> άρθρα thecybersec.gr
+# Παράγεται από script. Η σελίδα /gdpr/ διαβάζει αυτό το αρχείο. requirement: δική μας σύντομη απόδοση, όχι το κείμενο του Κανονισμού.
+# kya: άρθρα της ΚΥΑ 1689/2025 με θεματική αντιστοιχία. iso: controls του ISO/IEC 27001:2022 Annex A.
+source:
+  act: Κανονισμός (ΕΕ) 2016/679 (GDPR)
+  title: Γενικός Κανονισμός για την Προστασία Δεδομένων
+  fek: ΕΕ L 119 της 4.5.2016
+  url: https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32016R0679
+  of: του Κανονισμού
+  items: υποχρεώσεις
+  item: υποχρέωση
+  groups: άρθρα
+  disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια υποχρέωση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες αποδόσεις· για το ακριβές κείμενο ισχύει ο [Κανονισμός (ΕΕ) 2016/679](https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32016R0679). Στην Ελλάδα εφαρμόζεται μαζί με τον ν. 4624/2019, και η εποπτική αρχή είναι η [Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα](https://www.dpa.gr/).
+updated: '2026-10-12'
+types:
+- key: tech
+  label: Τεχνικό
+  hint: Υλοποιείται κυρίως με ρύθμιση
+- key: mixed
+  label: Μικτό
+  hint: Έγγραφο ή διαδικασία, με τεχνική επιβολή ή τεκμήριο από τη Microsoft
+- key: org
+  label: Οργανωτικό ή εκτός Microsoft 365
+  hint: Δεν υπάρχει ρύθμιση που να το καλύπτει
+articles:
+- number: 5
+  title: Αρχές που διέπουν την επεξεργασία δεδομένων προσωπικού χαρακτήρα
+  requirements:
+  - code: 5.1.γ
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: '«Ελαχιστοποίηση των δεδομένων»: τα δεδομένα είναι κατάλληλα, συναφή και περιορίζονται σε ό,τι είναι αναγκαίο για τους σκοπούς της επεξεργασίας.'
+    type: mixed
+    control: Content explorer και Activity explorer του Microsoft Purview για να φανεί πού βρίσκονται δεδομένα προσωπικού χαρακτήρα (sensitive information types, trainable classifiers). Microsoft Purview Data Security Posture Management για τα σημεία με υπερβολική συγκέντρωση ή έκθεση δεδομένων.
+    evidence: 'Purview: Content explorer (κατανομή sensitive information types ανά τοποθεσία). Τεκμηρίωση της απόφασης για το ποια δεδομένα χρειάζονται ανά σκοπό.'
+    license: Microsoft 365 E5 ή Microsoft Purview Suite (πρώην Microsoft 365 E5 Compliance) για Content explorer, Activity explorer και Data Security Posture Management. Στο Microsoft 365 E3 τα δεδομένα συλλέγονται, αλλά οι οθόνες του Content explorer και του Activity explorer δεν είναι διαθέσιμες
+    comment: Το ποια δεδομένα είναι «αναγκαία» το κρίνει ο υπεύθυνος επεξεργασίας. Το Purview δείχνει τι υπάρχει, δεν αποφασίζει τι πρέπει να φύγει.
+    kya:
+    - 11
+    iso:
+    - A.5.12
+    - A.5.34
+    posts:
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: 5.1.ε
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: '«Περιορισμός της περιόδου αποθήκευσης»: τα δεδομένα διατηρούνται σε μορφή που επιτρέπει την ταυτοποίηση μόνο όσο χρειάζεται για τον σκοπό της επεξεργασίας.'
+    type: mixed
+    control: 'Microsoft Purview Data Lifecycle Management: retention policies και retention labels με ενέργεια διαγραφής στο τέλος της περιόδου, για Exchange, SharePoint, OneDrive και Teams. Disposition review στο Microsoft Purview Records Management για τα αρχεία που θέλουν έγκριση πριν διαγραφούν.'
+    evidence: 'Purview: Data Lifecycle Management, λίστα retention policies και labels με διάρκεια και ενέργεια. Records Management: ιστορικό disposition.'
+    license: Οι retention policies υπάρχουν στο Microsoft 365 E3. Η αυτόματη εφαρμογή retention labels και το disposition review θέλουν Microsoft 365 E5 ή Microsoft Purview Suite (πρώην Microsoft 365 E5 Compliance)
+    comment: Τους χρόνους διατήρησης ορίζει ο υπεύθυνος με βάση τον σκοπό και τις νόμιμες υποχρεώσεις, π.χ. φορολογικές ή εργατικές. Μια retention policy που κρατά τα πάντα για πάντα έρχεται σε αντίθεση με αυτή την αρχή.
+    kya:
+    - 11
+    iso:
+    - A.5.33
+    - A.8.10
+  - code: 5.1.στ
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: '«Ακεραιότητα και εμπιστευτικότητα»: η επεξεργασία εξασφαλίζει κατάλληλη ασφάλεια των δεδομένων με τεχνικά και οργανωτικά μέτρα, ώστε να προστατεύονται από μη εξουσιοδοτημένη ή παράνομη επεξεργασία και από τυχαία απώλεια, καταστροφή ή φθορά.'
+    type: tech
+    control: Conditional Access και MFA στο Microsoft Entra ID για την πρόσβαση. Sensitivity labels με κρυπτογράφηση και Data Loss Prevention στο Microsoft Purview για τα ίδια τα δεδομένα. Microsoft Defender XDR για τον εντοπισμό επιθέσεων σε ταυτότητες, endpoints, email και cloud apps.
+    evidence: 'Entra: πολιτικές Conditional Access. Purview: χρήση sensitivity labels και DLP alerts. Microsoft Secure Score: βαθμολογία και History.'
+    license: Microsoft Entra ID P1 για Conditional Access. Microsoft 365 E5 για DLP στα endpoints, αυτόματο labeling και Microsoft Defender XDR
+    comment: Η αρχή καλύπτει και τα οργανωτικά μέτρα, π.χ. εξουσιοδοτήσεις και εκπαίδευση. Οι λεπτομέρειες των τεχνικών μέτρων βρίσκονται στο άρθρο 32.
+    kya:
+    - 13
+    - 22
+    iso:
+    - A.5.15
+    - A.8.12
+    - A.8.24
+    posts:
+    - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
+      url: /posts/passkeys-by-default-telos-sms-voice-mfa/
+    - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: '5.2'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: '«Λογοδοσία»: ο υπεύθυνος επεξεργασίας φέρει την ευθύνη και είναι σε θέση να αποδείξει τη συμμόρφωση με τις αρχές της παραγράφου 1.'
+    type: mixed
+    control: Microsoft Purview Compliance Manager με το assessment «EU GDPR (General Data Protection Regulation)» ως μητρώο μέτρων και τεκμηρίων. Microsoft Purview Audit για το ιστορικό ενεργειών χρηστών και διαχειριστών.
+    evidence: 'Compliance Manager: βαθμολογία του assessment και improvement actions με συνημμένα τεκμήρια. Purview: Audit search.'
+    license: Το regulation «EU GDPR (General Data Protection Regulation)» είναι premium στο Compliance Manager. Με Microsoft 365 E5 επιλέγονται τρία premium regulations χωρίς χρέωση
+    comment: 'Το Compliance Manager είναι αυτοαξιολόγηση και η βαθμολογία του δεν αποδεικνύει συμμόρφωση. Η λογοδοσία στηρίζεται στα έγγραφα του υπευθύνου: αρχείο δραστηριοτήτων, πολιτικές, εκτιμήσεις αντικτύπου.'
+    kya:
+    - 9
+    iso:
+    - A.5.31
+    - A.5.36
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+- number: 6
+  title: Νομιμότητα της επεξεργασίας
+  requirements:
+  - code: '6.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: 'Η επεξεργασία είναι σύννομη μόνο αν ισχύει τουλάχιστον μία από τις νομικές βάσεις: συγκατάθεση, σύμβαση, έννομη υποχρέωση, ζωτικό συμφέρον, δημόσιο συμφέρον ή έννομο συμφέρον.'
+    type: org
+    control: Δεν υπάρχει ρύθμιση της Microsoft που να καθορίζει ή να τεκμηριώνει τη νομική βάση.
+    evidence: Αρχείο δραστηριοτήτων επεξεργασίας με τη νομική βάση ανά επεξεργασία. Τεκμηρίωση στάθμισης όπου η βάση είναι το έννομο συμφέρον.
+    comment: Νομικό ζήτημα. Καλύπτεται με το αρχείο δραστηριοτήτων του άρθρου 30.
+    iso:
+    - A.5.31
+    - A.5.34
+- number: 9
+  title: Επεξεργασία ειδικών κατηγοριών δεδομένων προσωπικού χαρακτήρα
+  requirements:
+  - code: '9.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Απαγορεύεται η επεξεργασία ειδικών κατηγοριών δεδομένων (π.χ. δεδομένα υγείας, βιομετρικά για ταυτοποίηση, φυλετική ή εθνοτική καταγωγή, πολιτικά φρονήματα, θρησκευτικές πεποιθήσεις, συμμετοχή σε συνδικαλιστική οργάνωση), εκτός αν ισχύει μία από τις εξαιρέσεις της παραγράφου 2.
+    type: mixed
+    control: Sensitive information types και trainable classifiers του Microsoft Purview για τον εντοπισμό τέτοιων δεδομένων σε email και αρχεία. Sensitivity label με κρυπτογράφηση για όσα εντοπίζονται, και DLP policy που μπλοκάρει την αποστολή τους εκτός οργανισμού.
+    evidence: 'Purview: Content explorer για τις αντίστοιχες κατηγορίες. DLP policies και alerts. Εφαρμογή labels στα σχετικά αρχεία.'
+    license: Microsoft 365 E5 ή Microsoft Purview Suite (πρώην Microsoft 365 E5 Compliance) για trainable classifiers, αυτόματο labeling και Content explorer
+    comment: Το αν ισχύει εξαίρεση της παραγράφου 2 είναι νομικό ζήτημα. Οι classifiers δεν αναγνωρίζουν όλες τις ειδικές κατηγορίες, π.χ. τα πολιτικά φρονήματα, και χρειάζονται έλεγχο για ψευδώς θετικά.
+    kya:
+    - 11
+    iso:
+    - A.5.12
+    - A.5.34
+    posts:
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+- number: 12
+  title: Διαφανής ενημέρωση, ανακοίνωση και ρυθμίσεις για την άσκηση των δικαιωμάτων του υποκειμένου των δεδομένων
+  requirements:
+  - code: '12.3'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Ο υπεύθυνος απαντά στο αίτημα του υποκειμένου χωρίς καθυστέρηση και το αργότερο μέσα σε έναν μήνα από την παραλαβή του. Η προθεσμία παρατείνεται κατά δύο ακόμη μήνες για σύνθετα ή πολλά αιτήματα, με ενημέρωση του υποκειμένου μέσα στον πρώτο μήνα.
+    type: mixed
+    control: Microsoft Purview eDiscovery (Premium) για τη διαχείριση των αιτημάτων ως cases, με ημερομηνίες, αναζητήσεις και ιστορικό. Από τις 9 Μαΐου 2026 τα αιτήματα του Microsoft Priva Subject Rights Requests υποστηρίζονται μέσω του eDiscovery (Premium).
+    evidence: 'Μητρώο αιτημάτων με ημερομηνία παραλαβής και απάντησης. eDiscovery: cases ανά αίτημα με ιστορικό ενεργειών.'
+    license: Microsoft Purview eDiscovery (Premium) στο Microsoft 365 E5 ή αντίστοιχο add-on. Η αναζήτηση και η εξαγωγή περιεχομένου υπάρχουν και στο Microsoft 365 E3
+    comment: Η παρακολούθηση της προθεσμίας και η επικοινωνία με το υποκείμενο είναι διαδικασία του υπευθύνου. Τα δεδομένα εκτός Microsoft 365, π.χ. σε ERP ή CRM, θέλουν ξεχωριστή αναζήτηση.
+    iso:
+    - A.5.34
+- number: 15
+  title: Δικαίωμα πρόσβασης του υποκειμένου των δεδομένων
+  requirements:
+  - code: '15.3'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Ο υπεύθυνος παρέχει αντίγραφο των δεδομένων που υποβάλλονται σε επεξεργασία. Αν το αίτημα υποβληθεί ηλεκτρονικά, το αντίγραφο δίνεται σε κοινώς χρησιμοποιούμενη ηλεκτρονική μορφή, εκτός αν ζητηθεί διαφορετικά.
+    type: mixed
+    control: Αναζήτηση στο Microsoft Purview eDiscovery με τα στοιχεία του υποκειμένου (όνομα, email, αριθμοί ταυτοποίησης) σε Exchange, SharePoint, OneDrive και Teams, και εξαγωγή των αποτελεσμάτων. Στο eDiscovery (Premium), review set για έλεγχο και απόκρυψη (redaction) πριν την παράδοση.
+    evidence: 'eDiscovery: case με τα κριτήρια αναζήτησης, το πλήθος αποτελεσμάτων και την εξαγωγή.'
+    license: Microsoft Purview eDiscovery (Premium) στο Microsoft 365 E5 ή αντίστοιχο add-on. Η αναζήτηση και η εξαγωγή περιεχομένου υπάρχουν και στο Microsoft 365 E3
+    comment: Σύμφωνα με την παράγραφο 4, το αντίγραφο δεν πρέπει να θίγει τα δικαιώματα τρίτων, οπότε χρειάζεται έλεγχος πριν δοθεί. Τα δεδομένα σε εφαρμογές εκτός Microsoft 365 δεν καλύπτονται.
+    iso:
+    - A.5.34
+- number: 16
+  title: Δικαίωμα διόρθωσης
+  requirements:
+  - code: '16'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Το υποκείμενο έχει δικαίωμα να ζητήσει τη διόρθωση ανακριβών δεδομένων που το αφορούν χωρίς αδικαιολόγητη καθυστέρηση, και τη συμπλήρωση ελλιπών δεδομένων.
+    type: org
+    control: Η διόρθωση γίνεται στο σύστημα όπου τηρούνται τα δεδομένα. Το Microsoft Purview eDiscovery βοηθά μόνο στον εντοπισμό του πού υπάρχουν στο Microsoft 365.
+    evidence: Μητρώο αιτημάτων με την ενέργεια διόρθωσης και την ημερομηνία.
+    comment: Για τα στοιχεία των εργαζομένων στο Microsoft Entra ID, η διόρθωση γίνεται συνήθως στο σύστημα HR που τα τροφοδοτεί, αλλιώς ο επόμενος συγχρονισμός τα επαναφέρει.
+    iso:
+    - A.5.34
+- number: 17
+  title: Δικαίωμα διαγραφής («δικαίωμα στη λήθη»)
+  requirements:
+  - code: '17.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Το υποκείμενο έχει δικαίωμα να ζητήσει τη διαγραφή δεδομένων που το αφορούν χωρίς αδικαιολόγητη καθυστέρηση, και ο υπεύθυνος υποχρεούται να τα διαγράψει όταν ισχύει ένας από τους λόγους του άρθρου, π.χ. τα δεδομένα δεν είναι πλέον απαραίτητα ή η συγκατάθεση ανακλήθηκε.
+    type: mixed
+    control: Εντοπισμός με το Microsoft Purview eDiscovery και διαγραφή των μηνυμάτων με search and purge. Στο SharePoint και στο OneDrive η διαγραφή γίνεται στα αρχεία.
+    evidence: 'eDiscovery: case με την αναζήτηση και την ενέργεια purge. Purview Audit για τις διαγραφές.'
+    license: Microsoft Purview eDiscovery (Premium) στο Microsoft 365 E5 ή αντίστοιχο add-on. Η αναζήτηση και η εξαγωγή περιεχομένου υπάρχουν και στο Microsoft 365 E3
+    comment: Retention policies και holds κρατούν αντίγραφα ακόμη και μετά τη διαγραφή από τον χρήστη (Recoverable Items, Preservation Hold library). Ελέγξτε αν ισχύει εξαίρεση της παραγράφου 3, π.χ. νόμιμη υποχρέωση διατήρησης, πριν τη διαγραφή.
+    iso:
+    - A.8.10
+    - A.5.34
+- number: 18
+  title: Δικαίωμα περιορισμού της επεξεργασίας
+  requirements:
+  - code: '18.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Το υποκείμενο έχει δικαίωμα να ζητήσει τον περιορισμό της επεξεργασίας σε συγκεκριμένες περιπτώσεις, π.χ. όσο ελέγχεται η ακρίβεια των δεδομένων. Τα περιορισμένα δεδομένα, πέρα από την αποθήκευση, υποβάλλονται σε επεξεργασία μόνο υπό τις προϋποθέσεις της παραγράφου 2.
+    type: mixed
+    control: Μεταφορά των σχετικών αρχείων σε SharePoint site με περιορισμένη πρόσβαση ή εφαρμογή sensitivity label με κρυπτογράφηση μόνο για εξουσιοδοτημένα πρόσωπα. eDiscovery hold ώστε να μη διαγραφούν όσο ισχύει ο περιορισμός.
+    evidence: 'Μητρώο αιτημάτων. SharePoint: δικαιώματα του site. Purview: εφαρμογή label ή hold.'
+    license: Microsoft 365 E3 για sensitivity labels με χειροκίνητη εφαρμογή και για holds
+    comment: Ο περιορισμός πρέπει να σημειώνεται και στα συστήματα εκτός Microsoft 365 που περιέχουν τα ίδια δεδομένα.
+    iso:
+    - A.8.3
+    - A.5.34
+- number: 20
+  title: Δικαίωμα στη φορητότητα των δεδομένων
+  requirements:
+  - code: '20.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Το υποκείμενο έχει δικαίωμα να λαμβάνει τα δεδομένα που έχει παράσχει σε δομημένο, κοινώς χρησιμοποιούμενο και αναγνώσιμο από μηχανήματα μορφότυπο, και να τα διαβιβάζει σε άλλον υπεύθυνο, όταν η επεξεργασία βασίζεται σε συγκατάθεση ή σύμβαση και γίνεται με αυτοματοποιημένα μέσα.
+    type: mixed
+    control: Εξαγωγή από το Microsoft Purview eDiscovery για δεδομένα στο Microsoft 365, σε αρχεία στην αρχική τους μορφή ή PST για το email.
+    evidence: 'eDiscovery: εξαγωγή ανά αίτημα. Μητρώο αιτημάτων.'
+    license: Microsoft Purview eDiscovery (Premium) στο Microsoft 365 E5 ή αντίστοιχο add-on. Η αναζήτηση και η εξαγωγή περιεχομένου υπάρχουν και στο Microsoft 365 E3
+    comment: Το δικαίωμα αφορά κυρίως δεδομένα σε εφαρμογές (π.χ. CRM, e-shop), όπου η εξαγωγή γίνεται από την ίδια την εφαρμογή σε CSV ή JSON. Το Microsoft 365 καλύπτει μικρό μέρος.
+    iso:
+    - A.5.34
+- number: 21
+  title: Δικαίωμα εναντίωσης
+  requirements:
+  - code: '21.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Το υποκείμενο έχει δικαίωμα να αντιταχθεί οποτεδήποτε, για λόγους που σχετίζονται με την ιδιαίτερη κατάστασή του, στην επεξεργασία που βασίζεται σε δημόσιο ή έννομο συμφέρον, περιλαμβανομένης της κατάρτισης προφίλ. Ο υπεύθυνος σταματά την επεξεργασία, εκτός αν αποδείξει επιτακτικούς και νόμιμους λόγους που υπερισχύουν των δικαιωμάτων του υποκειμένου ή αν η επεξεργασία χρειάζεται για νομικές αξιώσεις.
+    type: org
+    control: Δεν υπάρχει ρύθμιση της Microsoft που να καλύπτει το δικαίωμα εναντίωσης.
+    evidence: Μητρώο αιτημάτων με την απόφαση και την αιτιολογία.
+    comment: 'Διαδικασία του υπευθύνου, που εφαρμόζεται στα συστήματα όπου γίνεται η επεξεργασία. Για την απευθείας εμπορική προώθηση, π.χ. λίστες marketing, ισχύουν οι παράγραφοι 2 και 3: η εναντίωση είναι απόλυτη και η επεξεργασία για αυτόν τον σκοπό σταματά χωρίς στάθμιση.'
+    iso:
+    - A.5.34
+- number: 24
+  title: Ευθύνη του υπευθύνου επεξεργασίας
+  requirements:
+  - code: '24.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Ο υπεύθυνος εφαρμόζει κατάλληλα τεχνικά και οργανωτικά μέτρα, τα οποία επανεξετάζει και επικαιροποιεί όταν χρειάζεται, ώστε να διασφαλίζει και να μπορεί να αποδείξει ότι η επεξεργασία γίνεται σύμφωνα με τον Κανονισμό.
+    type: mixed
+    control: Microsoft Purview Compliance Manager (assessment «EU GDPR») για την παρακολούθηση των μέτρων και των τεκμηρίων τους. Microsoft Secure Score για την τεχνική εικόνα και την εξέλιξή της στον χρόνο.
+    evidence: 'Compliance Manager: improvement actions, υπεύθυνοι και ημερομηνίες. Secure Score: History.'
+    license: Το regulation «EU GDPR (General Data Protection Regulation)» είναι premium στο Compliance Manager. Με Microsoft 365 E5 επιλέγονται τρία premium regulations χωρίς χρέωση
+    comment: Η επανεξέταση των μέτρων είναι περιοδική διαδικασία του υπευθύνου. Ένα εργαλείο δείχνει την κατάσταση, δεν κάνει την επανεξέταση.
+    kya:
+    - 5
+    - 9
+    iso:
+    - A.5.31
+    - A.5.36
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
+      url: /posts/secure-score-defender-praktikos-odigos/
+- number: 25
+  title: Προστασία των δεδομένων ήδη από το σχεδιασμό και εξ ορισμού
+  requirements:
+  - code: '25.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Ο υπεύθυνος εφαρμόζει, τόσο κατά τον καθορισμό των μέσων επεξεργασίας όσο και κατά την ίδια την επεξεργασία, κατάλληλα τεχνικά και οργανωτικά μέτρα, όπως η ψευδωνυμοποίηση, για την εφαρμογή των αρχών προστασίας δεδομένων και την ενσωμάτωση των αναγκαίων εγγυήσεων.
+    type: mixed
+    control: Sensitivity labels για Teams, Microsoft 365 Groups και SharePoint sites, ώστε τα δικαιώματα και η εξωτερική κοινή χρήση να ορίζονται κατά τη δημιουργία. DLP policies από την πρώτη μέρα σε κάθε νέο χώρο εργασίας.
+    evidence: 'Purview: sensitivity labels με ρυθμίσεις για containers. Τεκμηρίωση του σχεδιασμού για νέες επεξεργασίες ή εφαρμογές.'
+    license: Microsoft 365 E3 για sensitivity labels σε containers. Microsoft 365 E5 για αυτόματο labeling
+    comment: Η ψευδωνυμοποίηση δεν είναι λειτουργία του Microsoft 365 και γίνεται στις εφαρμογές ή στις βάσεις δεδομένων. Ο σχεδιασμός νέων εφαρμογών είναι διαδικασία ανάπτυξης.
+    kya:
+    - 14
+    - 15
+    iso:
+    - A.5.34
+    - A.8.26
+    posts:
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: '25.2'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Ο υπεύθυνος διασφαλίζει ότι, εξ ορισμού, υποβάλλονται σε επεξεργασία μόνο τα δεδομένα που είναι αναγκαία για κάθε συγκεκριμένο σκοπό, και ότι τα δεδομένα δεν γίνονται προσβάσιμα σε αόριστο αριθμό προσώπων χωρίς την παρέμβαση του υποκειμένου.
+    type: tech
+    control: Προεπιλεγμένος τύπος συνδέσμου κοινής χρήσης «Specific people» και περιορισμός της εξωτερικής κοινής χρήσης στο SharePoint και στο OneDrive. Προεπιλεγμένη sensitivity label. Αποκλεισμός της αυτόματης προώθησης email εκτός οργανισμού στο Exchange Online. Ρυθμίσεις guest access στο Microsoft Teams.
+    evidence: 'SharePoint admin center: Sharing. Purview: label policy με default label. Microsoft Defender: outbound spam policy (Automatic forwarding rules). Teams admin center: Guest access.'
+    comment: Το «Anyone» link (σύνδεσμος που ανοίγει χωρίς sign-in) είναι το αντίθετο της προστασίας εξ ορισμού. Αν το χρειάζεστε, βάλτε ημερομηνία λήξης και περιορίστε το σε συγκεκριμένα sites.
+    kya:
+    - 13
+    - 14
+    iso:
+    - A.5.15
+    - A.8.3
+- number: 28
+  title: Εκτελών την επεξεργασία
+  requirements:
+  - code: '28.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Ο υπεύθυνος χρησιμοποιεί μόνο εκτελούντες που παρέχουν επαρκείς διαβεβαιώσεις ότι εφαρμόζουν κατάλληλα τεχνικά και οργανωτικά μέτρα, ώστε η επεξεργασία να πληροί τις απαιτήσεις του Κανονισμού.
+    type: mixed
+    control: 'Για τη Microsoft ως εκτελούσα: εκθέσεις ελέγχου και πιστοποιητικά (π.χ. ISO/IEC 27001, ISO/IEC 27018, ISO/IEC 27701, SOC 2) στο Service Trust Portal. Για τις υπόλοιπες cloud εφαρμογές: Cloud app catalog του Microsoft Defender for Cloud Apps, με τα στοιχεία ασφάλειας και συμμόρφωσης κάθε εφαρμογής, και Cloud Discovery για όσες χρησιμοποιούνται χωρίς έγκριση.'
+    evidence: 'Πιστοποιητικά της Microsoft από το Service Trust Portal. Defender for Cloud Apps: risk score και στοιχεία συμμόρφωσης των εφαρμογών, λίστα sanctioned και unsanctioned apps.'
+    license: Microsoft Defender for Cloud Apps (Microsoft 365 E5 ή αντίστοιχο)
+    comment: Η αξιολόγηση των εκτελούντων είναι διαδικασία του υπευθύνου. Τα στοιχεία του Cloud app catalog είναι ένδειξη και όχι διαβεβαίωση του παρόχου.
+    kya:
+    - 12
+    iso:
+    - A.5.19
+    - A.5.21
+    - A.5.23
+    posts:
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+  - code: '28.2'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Ο εκτελών δεν προσλαμβάνει άλλον εκτελούντα χωρίς προηγούμενη γραπτή άδεια του υπευθύνου. Με γενική άδεια, ενημερώνει τον υπεύθυνο για κάθε αλλαγή ώστε να μπορεί να αντιταχθεί.
+    type: mixed
+    control: Η Microsoft δημοσιεύει τη λίστα των υπεργολάβων επεξεργασίας (subprocessors) των online υπηρεσιών της στο Service Trust Portal και ενημερώνει για νέους υπεργολάβους όπως ορίζει το Data Protection Addendum (DPA).
+    evidence: 'Service Trust Portal: τρέχουσα λίστα subprocessors και εγγραφή στις ειδοποιήσεις για αλλαγές.'
+    comment: Για άλλους παρόχους, η απαίτηση καλύπτεται με τη σύμβαση και με την παρακολούθηση των αλλαγών τους. Δεν υπάρχει ρύθμιση στο Microsoft 365 που να το κάνει.
+    kya:
+    - 12
+    iso:
+    - A.5.20
+    - A.5.21
+  - code: '28.3'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Η επεξεργασία από τον εκτελούντα διέπεται από σύμβαση ή άλλη νομική πράξη που ορίζει το αντικείμενο, τη διάρκεια, τη φύση και τον σκοπό της επεξεργασίας, τα είδη των δεδομένων και τις υποχρεώσεις του εκτελούντος, π.χ. εντολές, εμπιστευτικότητα, μέτρα ασφάλειας, συνδρομή και διαγραφή ή επιστροφή των δεδομένων.
+    type: mixed
+    control: Για τις online υπηρεσίες της Microsoft, οι όροι του άρθρου 28 περιλαμβάνονται στο Microsoft Products and Services Data Protection Addendum (DPA), που ισχύει μέσω της σύμβασης αδειοδότησης.
+    evidence: Τρέχουσα έκδοση του DPA από το Microsoft Licensing (Product Terms). Συμβάσεις επεξεργασίας με τους υπόλοιπους εκτελούντες.
+    comment: Το DPA καλύπτει μόνο τη Microsoft. Χρειάζεται σύμβαση με κάθε άλλον εκτελούντα, π.χ. πάροχο μισθοδοσίας, CRM ή IT support.
+    kya:
+    - 12
+    iso:
+    - A.5.20
+- number: 30
+  title: Αρχεία των δραστηριοτήτων επεξεργασίας
+  requirements:
+  - code: '30.1'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Ο υπεύθυνος τηρεί γραπτό αρχείο των δραστηριοτήτων επεξεργασίας για τις οποίες είναι υπεύθυνος, με τα στοιχεία της παραγράφου 1, και το θέτει στη διάθεση της εποπτικής αρχής όταν ζητηθεί. Ο εκτελών τηρεί αντίστοιχο αρχείο σύμφωνα με την παράγραφο 2.
+    type: org
+    control: Δεν υπάρχει προϊόν στο Microsoft 365 για την τήρηση του αρχείου δραστηριοτήτων. Το Content explorer του Microsoft Purview βοηθά μόνο να φανεί πού υπάρχουν δεδομένα προσωπικού χαρακτήρα.
+    evidence: Αρχείο δραστηριοτήτων επεξεργασίας, επικαιροποιημένο και με ημερομηνία.
+    license: Microsoft 365 E5 ή Microsoft Purview Suite για Content explorer
+    comment: Η παράγραφος 5 εξαιρεί τις επιχειρήσεις με λιγότερους από 250 εργαζομένους, εκτός αν η επεξεργασία ενδέχεται να θέσει σε κίνδυνο τα δικαιώματα των υποκειμένων, δεν είναι περιστασιακή ή αφορά ειδικές κατηγορίες του άρθρου 9 ή δεδομένα ποινικών καταδικών του άρθρου 10. Στην πράξη, η μισθοδοσία είναι μη περιστασιακή επεξεργασία, οπότε σχεδόν κάθε εργοδότης χρειάζεται αρχείο.
+    kya:
+    - 11
+    iso:
+    - A.5.9
+    - A.5.34
+- number: 32
+  title: Ασφάλεια επεξεργασίας
+  requirements:
+  - code: 32.1.α
+    scope: Υπεύθυνος και εκτελών
+    requirement: Μέτρα ασφάλειας ανάλογα με τον κίνδυνο, που περιλαμβάνουν, μεταξύ άλλων, την ψευδωνυμοποίηση και την κρυπτογράφηση των δεδομένων προσωπικού χαρακτήρα.
+    type: tech
+    control: BitLocker στις συσκευές Windows μέσω Microsoft Intune. Sensitivity labels με κρυπτογράφηση για αρχεία και email. Microsoft Purview Message Encryption για email προς εξωτερικούς παραλήπτες. Κρυπτογράφηση των δεδομένων του Microsoft 365 σε κατάσταση ηρεμίας από προεπιλογή, και Customer Key για κλειδιά που ελέγχει ο οργανισμός.
+    evidence: 'Intune: encryption report και compliance policies. Purview: sensitivity labels με κρυπτογράφηση. Exchange: mail flow rules ή policies για Message Encryption.'
+    license: Microsoft Intune Plan 1 και sensitivity labels στο Microsoft 365 E3. Customer Key και Advanced Message Encryption στο Microsoft 365 E5
+    comment: Η ψευδωνυμοποίηση δεν είναι λειτουργία του Microsoft 365 και γίνεται στις εφαρμογές ή στις βάσεις δεδομένων.
+    kya:
+    - 22
+    iso:
+    - A.8.24
+    - A.8.11
+    posts:
+    - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
+      url: /posts/purview-autolabeling-500k-scale-increase/
+  - code: 32.1.β
+    scope: Υπεύθυνος και εκτελών
+    requirement: Δυνατότητα διασφάλισης του απορρήτου, της ακεραιότητας, της διαθεσιμότητας και της αξιοπιστίας των συστημάτων και των υπηρεσιών επεξεργασίας σε συνεχή βάση.
+    type: tech
+    control: Conditional Access, MFA και Privileged Identity Management στο Microsoft Entra ID. Compliance policies στο Microsoft Intune ως προϋπόθεση πρόσβασης. Microsoft Defender XDR για τον εντοπισμό και την αντιμετώπιση επιθέσεων σε endpoints, ταυτότητες, email και cloud apps.
+    evidence: 'Entra: πολιτικές Conditional Access, PIM assignments. Intune: device compliance report. Defender XDR: incidents. Microsoft Secure Score: βαθμολογία.'
+    license: Microsoft Entra ID P2 για Privileged Identity Management. Microsoft 365 E5 ή αντίστοιχο για Microsoft Defender XDR
+    comment: Η διαθεσιμότητα των ίδιων των υπηρεσιών του Microsoft 365 είναι ευθύνη της Microsoft, σύμφωνα με τους όρους της σύμβασης.
+    kya:
+    - 13
+    - 14
+    - 19
+    - 20
+    iso:
+    - A.5.15
+    - A.8.2
+    - A.8.5
+    - A.8.16
+    posts:
+    - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
+      url: /posts/passkeys-by-default-telos-sms-voice-mfa/
+    - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+  - code: 32.1.γ
+    scope: Υπεύθυνος και εκτελών
+    requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.
+    type: mixed
+    control: Microsoft 365 Backup για Exchange, SharePoint και OneDrive. OneDrive Restore και Recycle Bin για τις συνηθισμένες περιπτώσεις. Retention policies ώστε τα διαγραμμένα να μένουν ανακτήσιμα.
+    evidence: 'Microsoft 365 Backup: πολιτικές και δοκιμές επαναφοράς. Τεκμηριωμένη δοκιμή επαναφοράς με ημερομηνία και αποτέλεσμα.'
+    license: Το Microsoft 365 Backup χρεώνεται ξεχωριστά, με βάση τον όγκο των δεδομένων
+    comment: Η Microsoft διασφαλίζει τη διαθεσιμότητα της υπηρεσίας, όχι την ανάκτηση δεδομένων που διέγραψε ή κρυπτογράφησε ο ίδιος ο οργανισμός ή ένας επιτιθέμενος. Τα συστήματα εκτός Microsoft 365 θέλουν δική τους λύση αντιγράφων.
+    kya:
+    - 25
+    iso:
+    - A.8.13
+    - A.5.30
+  - code: 32.1.δ
+    scope: Υπεύθυνος και εκτελών
+    requirement: Διαδικασία για την τακτική δοκιμή, εκτίμηση και αξιολόγηση της αποτελεσματικότητας των τεχνικών και οργανωτικών μέτρων για τη διασφάλιση της ασφάλειας της επεξεργασίας.
+    type: mixed
+    control: Microsoft Secure Score για τη συνεχή μέτρηση των ρυθμίσεων. Attack simulation training στο Microsoft Defender for Office 365 Plan 2 για τη δοκιμή των χρηστών. Microsoft Purview Compliance Manager για την αξιολόγηση των μέτρων.
+    evidence: 'Secure Score: History. Αναφορές του Attack simulation training. Εκθέσεις ελέγχων παρείσδυσης και εσωτερικών ελέγχων.'
+    license: Microsoft Defender for Office 365 Plan 2 για το Attack simulation training
+    comment: Οι έλεγχοι παρείσδυσης και οι εσωτερικοί έλεγχοι γίνονται εκτός Microsoft 365. Η βαθμολογία του Secure Score δεν αντικαθιστά την αξιολόγηση της αποτελεσματικότητας.
+    kya:
+    - 8
+    - 18
+    iso:
+    - A.5.35
+    - A.5.36
+    posts:
+    - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
+      url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
+      url: /posts/secure-score-defender-praktikos-odigos/
+  - code: '32.2'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Το κατάλληλο επίπεδο ασφάλειας εκτιμάται με βάση τους κινδύνους της επεξεργασίας, ιδίως από τυχαία ή παράνομη καταστροφή, απώλεια, αλλοίωση, άνευ αδείας κοινολόγηση ή πρόσβαση.
+    type: mixed
+    control: Microsoft Purview Data Security Posture Management για τους κινδύνους στα δεδομένα. Microsoft Purview Insider Risk Management για κινδύνους από χρήστες με νόμιμη πρόσβαση. Microsoft Security Exposure Management για την εικόνα έκθεσης των συστημάτων.
+    evidence: Μητρώο κινδύνων με τις επεξεργασίες δεδομένων προσωπικού χαρακτήρα. Αναφορές του Data Security Posture Management.
+    license: Microsoft 365 E5 ή Microsoft Purview Suite (πρώην Microsoft 365 E5 Compliance) για Data Security Posture Management και Insider Risk Management
+    comment: Η εκτίμηση κινδύνου είναι διαδικασία του υπευθύνου. Τα εργαλεία δίνουν δεδομένα σε αυτήν, δεν την κάνουν.
+    kya:
+    - 5
+  - code: '32.4'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Ο υπεύθυνος και ο εκτελών λαμβάνουν μέτρα ώστε κάθε φυσικό πρόσωπο που ενεργεί υπό την εποπτεία τους και έχει πρόσβαση σε δεδομένα προσωπικού χαρακτήρα να τα επεξεργάζεται μόνο κατ' εντολή του υπευθύνου επεξεργασίας, εκτός αν υποχρεούται από το δίκαιο της Ένωσης ή του κράτους μέλους.
+    type: mixed
+    control: Access reviews στο Microsoft Entra ID για τον περιοδικό έλεγχο του ποιος έχει πρόσβαση. Microsoft Purview Audit για τις ενέργειες των χρηστών. Microsoft Purview Insider Risk Management για ασυνήθιστη χρήση δεδομένων.
+    evidence: 'Entra: αποτελέσματα access reviews. Purview: Audit search. Δηλώσεις εμπιστευτικότητας των εργαζομένων.'
+    license: Microsoft Entra ID P2 ή Microsoft Entra ID Governance για access reviews. Microsoft 365 E5 για Insider Risk Management
+    comment: Οι εντολές και οι δεσμεύσεις εμπιστευτικότητας είναι έγγραφα και διαδικασίες. Το Insider Risk Management χρειάζεται ενημέρωση των εργαζομένων και έλεγχο αναλογικότητας, γιατί είναι κι αυτό επεξεργασία δεδομένων.
+    kya:
+    - 10
+    - 13
+    iso:
+    - A.6.6
+    - A.5.18
+- number: 33
+  title: Γνωστοποίηση παραβίασης δεδομένων προσωπικού χαρακτήρα στην εποπτική αρχή
+  requirements:
+  - code: '33.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Σε περίπτωση παραβίασης, ο υπεύθυνος τη γνωστοποιεί στην αρμόδια εποπτική αρχή χωρίς αδικαιολόγητη καθυστέρηση και, όπου είναι εφικτό, μέσα σε 72 ώρες από τη στιγμή που αποκτά γνώση, εκτός αν η παραβίαση δεν ενδέχεται να θέσει σε κίνδυνο τα δικαιώματα των φυσικών προσώπων. Η καθυστέρηση πέρα από τις 72 ώρες αιτιολογείται.
+    type: mixed
+    control: Incidents του Microsoft Defender XDR, που καταγράφουν πότε ξεκίνησε η δραστηριότητα και πότε εντοπίστηκε, για τον υπολογισμό των 72 ωρών. Τα alerts του Microsoft Purview DLP εμφανίζονται στην ίδια ουρά incidents.
+    evidence: 'Defender XDR: incident με χρονολόγιο, ανάθεση και ταξινόμηση. Γνωστοποίηση προς την Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα με ημερομηνία και ώρα.'
+    license: Microsoft 365 E5 ή αντίστοιχο για Microsoft Defender XDR
+    comment: Στην Ελλάδα η γνωστοποίηση γίνεται στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα. Για τις βασικές και σημαντικές οντότητες, το ίδιο περιστατικό μπορεί να θέλει και αναφορά βάσει του ν. 5160/2024, με διαφορετικές προθεσμίες και αποδέκτη.
+    kya:
+    - 24
+    iso:
+    - A.5.5
+    - A.5.24
+    - A.5.25
+    - A.5.26
+    posts:
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
+      url: /posts/microsoft-defender-air-automated-investigation-response/
+  - code: '33.2'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Ο εκτελών ενημερώνει τον υπεύθυνο χωρίς αδικαιολόγητη καθυστέρηση μόλις αντιληφθεί παραβίαση δεδομένων προσωπικού χαρακτήρα.
+    type: mixed
+    control: Για τις online υπηρεσίες της Microsoft, η ειδοποίηση για περιστατικά ασφάλειας ορίζεται στο Data Protection Addendum (DPA) και γίνεται προς τους διαχειριστές του tenant. Service health και Message center στο Microsoft 365 admin center για τις ανακοινώσεις της υπηρεσίας.
+    evidence: Επικαιροποιημένα στοιχεία επικοινωνίας στο Microsoft 365 admin center. Συμβάσεις με τους υπόλοιπους εκτελούντες με όρο ειδοποίησης.
+    comment: Κρατήστε επικαιροποιημένα τα στοιχεία επικοινωνίας των διαχειριστών, αλλιώς η ειδοποίηση της Microsoft δεν φτάνει σε κανέναν.
+    kya:
+    - 12
+    - 24
+    iso:
+    - A.5.20
+    - A.5.24
+  - code: '33.3'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Η γνωστοποίηση περιγράφει τουλάχιστον τη φύση της παραβίασης, με τις κατηγορίες και τον κατά προσέγγιση αριθμό των υποκειμένων και των αρχείων, τα στοιχεία επικοινωνίας του υπευθύνου προστασίας δεδομένων ή άλλου σημείου επικοινωνίας, τις πιθανές συνέπειες και τα μέτρα που ελήφθησαν ή προτείνονται.
+    type: mixed
+    control: Microsoft Purview Audit, π.χ. το event MailItemsAccessed, για το ποια μηνύματα και αρχεία προσπελάστηκαν. Microsoft Purview eDiscovery για το ποια υποκείμενα αφορούν τα επηρεαζόμενα δεδομένα. Το incident του Microsoft Defender XDR για το εύρος και τις ενέργειες αντιμετώπισης.
+    evidence: 'Audit search με τα επηρεαζόμενα αντικείμενα. Defender XDR: incident με evidence και Action center.'
+    license: Το Microsoft Purview Audit (Standard) υπάρχει στο Microsoft 365 E3. Το Audit (Premium), με μεγαλύτερη διατήρηση, στο Microsoft 365 E5
+    comment: Το Audit (Standard) κρατά τα logs για 180 ημέρες. Αν η παραβίαση εντοπιστεί αργά, τα στοιχεία μπορεί να έχουν χαθεί, οπότε ελέγξτε τον χρόνο διατήρησης πριν τον χρειαστείτε.
+    kya:
+    - 24
+    iso:
+    - A.5.28
+    - A.8.15
+    posts:
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+  - code: '33.5'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Ο υπεύθυνος τεκμηριώνει κάθε παραβίαση, με τα γεγονότα, τις συνέπειες και τα διορθωτικά μέτρα, ώστε η εποπτική αρχή να μπορεί να ελέγξει τη συμμόρφωση.
+    type: mixed
+    control: Ιστορικό των incidents στο Microsoft Defender XDR με σχόλια, ταξινόμηση και ενέργειες αντιμετώπισης.
+    evidence: 'Μητρώο παραβιάσεων, και για όσες δεν γνωστοποιήθηκαν. Defender XDR: incidents με σχόλια και κατάσταση.'
+    license: Microsoft 365 E5 ή αντίστοιχο για Microsoft Defender XDR
+    comment: Το μητρώο τηρείται για όλες τις παραβιάσεις, ακόμη κι αν κρίθηκε ότι δεν χρειάζεται γνωστοποίηση. Το Defender XDR δεν αντικαθιστά το μητρώο.
+    kya:
+    - 24
+    iso:
+    - A.5.27
+    - A.5.28
+    posts:
+    - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
+      url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+- number: 34
+  title: Ανακοίνωση παραβίασης δεδομένων προσωπικού χαρακτήρα στο υποκείμενο των δεδομένων
+  requirements:
+  - code: '34.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Όταν η παραβίαση ενδέχεται να θέσει σε υψηλό κίνδυνο τα δικαιώματα και τις ελευθερίες των φυσικών προσώπων, ο υπεύθυνος την ανακοινώνει στο υποκείμενο χωρίς αδικαιολόγητη καθυστέρηση.
+    type: org
+    control: Η ανακοίνωση είναι διαδικασία του υπευθύνου. Το Microsoft Purview eDiscovery βοηθά να βρεθούν τα υποκείμενα που αφορά η παραβίαση.
+    evidence: Κείμενο της ανακοίνωσης, λίστα παραληπτών και ημερομηνία.
+    comment: Η ανακοίνωση περιέχει τουλάχιστον τα στοιχεία των σημείων β, γ και δ του άρθρου 33 παράγραφος 3.
+    kya:
+    - 24
+    iso:
+    - A.5.26
+  - code: 34.3.α
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Η ανακοίνωση στο υποκείμενο δεν απαιτείται αν ο υπεύθυνος είχε εφαρμόσει κατάλληλα τεχνικά και οργανωτικά μέτρα προστασίας στα επηρεαζόμενα δεδομένα, ιδίως μέτρα που τα καθιστούν μη κατανοητά σε όποιον δεν έχει άδεια πρόσβασης, όπως η κρυπτογράφηση.
+    type: tech
+    control: BitLocker στις συσκευές μέσω Microsoft Intune, ώστε ένα χαμένο ή κλεμμένο laptop να μη δίνει πρόσβαση στα δεδομένα. Sensitivity labels με κρυπτογράφηση, ώστε ένα αρχείο που διέρρευσε να μην ανοίγει εκτός οργανισμού.
+    evidence: 'Intune: encryption report για τη συγκεκριμένη συσκευή τη στιγμή της απώλειας. Purview: label με κρυπτογράφηση στο αρχείο που διέρρευσε.'
+    license: Microsoft Intune Plan 1 και sensitivity labels στο Microsoft 365 E3
+    comment: Η εξαίρεση ισχύει μόνο αν τα κλειδιά δεν έχουν διαρρεύσει. Η απόδειξη ότι η συσκευή ήταν κρυπτογραφημένη πριν την απώλεια είναι αυτό που μετράει, γι' αυτό κρατήστε την αναφορά του Intune.
+    kya:
+    - 22
+    iso:
+    - A.8.24
+- number: 35
+  title: Εκτίμηση αντικτύπου σχετικά με την προστασία δεδομένων
+  requirements:
+  - code: '35.1'
+    scope: Υπεύθυνος επεξεργασίας
+    requirement: Όταν μια επεξεργασία, ιδίως με νέες τεχνολογίες, ενδέχεται να επιφέρει υψηλό κίνδυνο για τα δικαιώματα των φυσικών προσώπων, ο υπεύθυνος διενεργεί εκτίμηση αντικτύπου πριν από την επεξεργασία.
+    type: org
+    control: Η εκτίμηση αντικτύπου είναι έγγραφο του υπευθύνου. Το Service Trust Portal της Microsoft διαθέτει τεκμηρίωση για την εκτίμηση αντικτύπου στις υπηρεσίες της, που χρησιμεύει ως είσοδος.
+    evidence: Εκθέσεις εκτίμησης αντικτύπου με ημερομηνία, γνώμη του υπευθύνου προστασίας δεδομένων όπου υπάρχει, και απόφαση.
+    comment: Χρειάζεται συχνά πριν την ενεργοποίηση νέων λειτουργιών που επεξεργάζονται δεδομένα εργαζομένων, π.χ. Insider Risk Management ή εργαλεία AI.
+    kya:
+    - 5
+    iso:
+    - A.5.34
+- number: 37
+  title: Ορισμός του υπευθύνου προστασίας δεδομένων
+  requirements:
+  - code: '37.1'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Ο υπεύθυνος και ο εκτελών ορίζουν υπεύθυνο προστασίας δεδομένων όταν η επεξεργασία γίνεται από δημόσια αρχή, ή όταν οι βασικές τους δραστηριότητες περιλαμβάνουν τακτική και συστηματική παρακολούθηση σε μεγάλη κλίμακα ή επεξεργασία σε μεγάλη κλίμακα ειδικών κατηγοριών ή δεδομένων για ποινικές καταδίκες και αδικήματα.
+    type: org
+    control: Δεν υπάρχει ρύθμιση της Microsoft. Αν ορίσετε υπεύθυνο προστασίας δεδομένων, δώστε του πρόσβαση μόνο ανάγνωσης στα εργαλεία του Microsoft Purview που χρειάζεται, π.χ. Compliance Manager.
+    evidence: Απόφαση ορισμού και γνωστοποίηση των στοιχείων του στην εποπτική αρχή.
+    comment: Οργανωτικό και νομικό ζήτημα.
+    kya:
+    - 7
+    iso:
+    - A.5.2
+    - A.5.34
+- number: 44
+  title: Γενικές αρχές για διαβιβάσεις
+  requirements:
+  - code: '44'
+    scope: Υπεύθυνος και εκτελών
+    requirement: Κάθε διαβίβαση δεδομένων προς τρίτη χώρα ή διεθνή οργανισμό γίνεται μόνο αν τηρούνται οι προϋποθέσεις του Κεφαλαίου V, ώστε να μην υπονομεύεται το επίπεδο προστασίας που εγγυάται ο Κανονισμός.
+    type: mixed
+    control: EU Data Boundary της Microsoft για την αποθήκευση και την επεξεργασία των δεδομένων των online υπηρεσιών εντός ΕΕ. Data location στο Microsoft 365 admin center για τη χώρα αποθήκευσης. Cloud Discovery του Microsoft Defender for Cloud Apps για εφαρμογές που αποθηκεύουν δεδομένα εκτός ΕΕ.
+    evidence: 'Microsoft 365 admin center: Settings, Org settings, Organization profile, Data location. Defender for Cloud Apps: αναφορές Cloud Discovery.'
+    license: Για Ελληνικούς tenants στη γεωγραφία European Union το Advanced Data Residency δεν εφαρμόζεται, γιατί η Ελλάδα δεν περιλαμβάνεται στις Local Region Geographies. Microsoft Defender for Cloud Apps (Microsoft 365 E5 ή αντίστοιχο)
+    comment: Το EU Data Boundary έχει τεκμηριωμένες εξαιρέσεις, π.χ. για ορισμένες λειτουργίες ασφάλειας και υποστήριξης. Διαβάστε τες πριν δηλώσετε ότι «τίποτα δεν φεύγει από την ΕΕ».
+    kya:
+    - 12
+    iso:
+    - A.5.14
+    - A.5.23
+    posts:
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+- number: 46
+  title: Διαβιβάσεις που υπόκεινται σε κατάλληλες εγγυήσεις
+  requirements:
+  - code: 46.2.γ
+    scope: Υπεύθυνος και εκτελών
+    requirement: Χωρίς απόφαση επάρκειας, η διαβίβαση επιτρέπεται με κατάλληλες εγγυήσεις, όπως οι τυποποιημένες ρήτρες προστασίας δεδομένων που εκδίδει η Επιτροπή, και εφόσον υπάρχουν εκτελεστά δικαιώματα και αποτελεσματικά ένδικα μέσα για τα υποκείμενα.
+    type: mixed
+    control: Το Data Protection Addendum (DPA) της Microsoft ενσωματώνει τις τυποποιημένες ρήτρες της Επιτροπής για τις διαβιβάσεις που κάνει η Microsoft. Data Loss Prevention του Microsoft Purview για τον έλεγχο της αποστολής δεδομένων σε εξωτερικούς παραλήπτες.
+    evidence: 'Τρέχουσα έκδοση του DPA. Κατάλογος διαβιβάσεων με τη νομική βάση της καθεμίας. Purview: DLP policies.'
+    comment: Για τις ΗΠΑ ισχύει επίσης η απόφαση επάρκειας (ΕΕ) 2023/1795 για το EU-U.S. Data Privacy Framework (άρθρο 45), μόνο για αποδέκτες πιστοποιημένους σε αυτό. Η απόφαση εκκρεμεί σε αναίρεση στο Δικαστήριο της ΕΕ, οπότε κρατήστε τις τυποποιημένες ρήτρες ως δεύτερη βάση. Οι διαβιβάσεις σε άλλους παρόχους θέλουν δική τους αξιολόγηση.
+    kya:
+    - 12
+    iso:
+    - A.5.14
+    - A.5.20

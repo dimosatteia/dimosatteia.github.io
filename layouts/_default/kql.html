@@ -9,7 +9,8 @@
 {{- $fw := slice
     (dict "key" "kya"  "label" "ΚΥΑ 1689/2025" "url" "kya-1689-2025/")
     (dict "key" "nis2" "label" "NIS2"          "url" "nis2/")
-    (dict "key" "iso"  "label" "ISO 27001"     "url" "iso-27001/") -}}
+    (dict "key" "iso"  "label" "ISO 27001"     "url" "iso-27001/")
+    (dict "key" "gdpr" "label" "GDPR"          "url" "gdpr/") -}}
 {{- $products := slice -}}
 {{- range $d.queries }}{{ if not (in $products .product) }}{{ $products = $products | append .product }}{{ end }}{{ end -}}
 {{- $total := len $d.queries -}}
@@ -144,7 +145,7 @@
 
     <div class="glass-card rounded-xl p-5 border-l-4 border-l-amber-500">
         <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Πριν τα χρησιμοποιήσεις</h2>
-        <p class="text-sm text-slate-400 leading-relaxed">Τα queries δίνονται ως παράδειγμα, χωρίς εγγύηση. Ένα query που φέρνει αποτελέσματα υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνο του συμμόρφωση. Η Microsoft αλλάζει κατά καιρούς ονόματα πινάκων και στηλών: αν πάρεις σφάλμα, έλεγξε το Schema reference του Advanced Hunting. Η αντιστοίχιση στις απαιτήσεις ακολουθεί τους οδηγούς για την <a href="{{ "kya-1689-2025/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">ΚΥΑ 1689/2025</a>, την <a href="{{ "nis2/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Οδηγία NIS2</a> και το <a href="{{ "iso-27001/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">ISO/IEC 27001</a>.</p>
+        <p class="text-sm text-slate-400 leading-relaxed">Τα queries δίνονται ως παράδειγμα, χωρίς εγγύηση. Ένα query που φέρνει αποτελέσματα υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνο του συμμόρφωση. Η Microsoft αλλάζει κατά καιρούς ονόματα πινάκων και στηλών: αν πάρεις σφάλμα, έλεγξε το Schema reference του Advanced Hunting. Η αντιστοίχιση στις απαιτήσεις ακολουθεί τους οδηγούς για την <a href="{{ "kya-1689-2025/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">ΚΥΑ 1689/2025</a>, την <a href="{{ "nis2/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Οδηγία NIS2</a>, το <a href="{{ "iso-27001/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">ISO/IEC 27001</a> και τον <a href="{{ "gdpr/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">GDPR</a>.</p>
     </div>
 </main>
 

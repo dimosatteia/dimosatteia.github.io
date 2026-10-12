@@ -10,7 +10,7 @@
 #   license:   απαιτούμενη άδεια
 #   tested:    ημερομηνία που το δοκίμασε ο Δημοσθένης (YYYY-MM-DD)
 #   evidence:  εικόνα-πειστήριο. Χωρίς αυτήν δεν εμφανίζεται η σήμανση «Δοκιμασμένο».
-#   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso)
+#   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso), data/gdpr.yaml (gdpr)
 #   posts:     σχετικά άρθρα του blog
 #   query:     το KQL
 
@@ -43,6 +43,7 @@ queries:
       kya: ["13.ζ", "19.η"]
       nis2: ["21.2.ι"]
       iso: ["A.8.5"]
+      gdpr: ["32.1.β"]
     posts:
       - title: "Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2"
         url: /posts/secure-score-defender-praktikos-odigos/
@@ -82,6 +83,7 @@ queries:
       kya: ["13.γ", "13.δ", "24.γ"]
       nis2: ["21.2.θ"]
       iso: ["A.5.18", "A.8.2"]
+      gdpr: ["32.1.β", "32.4"]
     posts:
       - title: "Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2"
         url: /posts/secure-score-defender-praktikos-odigos/
