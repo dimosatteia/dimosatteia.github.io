@@ -154,9 +154,10 @@ Sensitivity labels για ταξινόμηση και κρυπτογράφηση
 
 > 🔗 **Αν θες να δεις πώς το Microsoft Secure Score μπορεί να γίνει η ραχοκοκαλιά ενός ολοκληρωμένου GRC προγράμματος ευθυγραμμισμένου με ISO 27001:2022 και NIS2,** ρίξε μια ματιά στη σειρά **[Microsoft Secure Score as a Cyber GRC Instrument](/series/microsoft-secure-score-as-a-cyber-grc-instrument/)**:
 >
-> - **[Series Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**
+> - **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**
 > - **[Μέρος 1: Πώς διαβάζεις ένα recommendation](/posts/secure-score-grc-part-1-anatomy/)**
 > - **[Μέρος 2: Μέσα στο οικοσύστημα του Defender](/posts/secure-score-grc-part-2-ecosystem/)**
+> - **[Μέρος 3: Καθημερινή λειτουργία και ISO 27001](/posts/secure-score-grc-part-3-operations/)**
 
 Διάβασέ τα με τη σειρά όταν είσαι έτοιμος. Καλή ανάγνωση! 📚
 

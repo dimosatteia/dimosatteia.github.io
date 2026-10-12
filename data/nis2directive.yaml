@@ -73,7 +73,7 @@ articles:
     - 5
     posts:
     - &id001
-      title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
     - &id002
       title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
@@ -175,7 +175,7 @@ articles:
     - 9
     - 18
     posts:
-    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+    - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
@@ -280,7 +280,7 @@ articles:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
     - &id018
-      title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+      title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
 - number: 23
   title: Υποχρεώσεις αναφοράς περιστατικών
@@ -367,7 +367,7 @@ articles:
     kya:
     - 24
     posts:
-    - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
+    - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
     - *id012
     - *id013

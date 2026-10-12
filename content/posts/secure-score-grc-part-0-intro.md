@@ -157,14 +157,14 @@ cover:
 
 1. [**Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation**](/posts/secure-score-grc-part-1-anatomy/): κάθε πεδίο ενός recommendation του Microsoft Secure Score, εξηγημένο όπως θα το εξηγούσε ένας φιλικός συνάδελφος. Γραμμένο για όσους ανοίγουν το score για πρώτη φορά.
 2. [**Microsoft Secure Score Μέρος 2: Μέσα στο οικοσύστημα του Defender**](/posts/secure-score-grc-part-2-ecosystem/): πώς λειτουργεί πραγματικά η βαθμολογία, ποια προϊόντα της Microsoft την τροφοδοτούν και πώς ακολουθείς έναν βαθμό πίσω στην πηγή του.
-3. [**Microsoft Secure Score Part 3: Daily Operations & ISO 27001**](/posts/secure-score-grc-part-3-operations/): πώς ιεραρχείς τα recommendations, πώς στήνεις ροή αποκατάστασης, πώς αντιστοιχίζεις controls σε ISO 27001 και NIS2, πώς συλλέγεις audit evidence και πώς αναφέρεις στο board.
+3. [**Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001**](/posts/secure-score-grc-part-3-operations/): πώς ιεραρχείς τα recommendations, πώς στήνεις ροή αποκατάστασης, πώς αντιστοιχίζεις controls σε ISO 27001 και NIS2, πώς συλλέγεις audit evidence και πώς αναφέρεις στο board.
 
 Αν προτιμάς να ξεκινήσεις στα ελληνικά, ο [**Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2**](/posts/secure-score-defender-praktikos-odigos/) καλύπτει το Secure Score από την οπτική του Έλληνα Υπευθύνου Ασφάλειας.
 
 **Γιατί να διαβάσεις πρώτα τα Μέρη 1, 2 και 3**
 
 Το **Secure Score** είναι ο προορισμός αυτής της σειράς: το καθημερινό dashboard που σου δείχνει πού βρίσκεται ο οργανισμός σου σε ωριμότητα ασφάλειας, ανεξάρτητα από το μέγεθος, τη γεωγραφική θέση και την παρουσία του, και σε βοηθά να αποφασίσεις τι θα αντιμετωπίσεις πρώτο και τι μπορεί να περιμένει, σε εφαρμογές, δεδομένα, συσκευές και ταυτότητες χρηστών.
-Για να είναι όμως πραγματικά χρήσιμο, και όχι άλλος ένας αριθμός που κοιτάς χωρίς να ξέρεις τι σημαίνει, πρέπει πρώτα να καταλάβεις πώς είναι χτισμένο [**(Μέρος 1: Anatomy)**](/posts/secure-score-grc-part-1-anatomy/), σε ποιο οικοσύστημα ζει [**(Μέρος 2: Ecosystem)**](/posts/secure-score-grc-part-2-ecosystem/) και πώς το λειτουργείς καθημερινά ως πραγματικό εργαλείο λειτουργίας και συμμόρφωσης [**(Μέρος 3: Daily Operations)**](/posts/secure-score-grc-part-3-operations/). Όταν αυτά τα τρία μέρη γίνουν ξεκάθαρα, το Secure Score του Defender παύει να είναι ένας «μαγικός αριθμός» και γίνεται εργαλείο λήψης αποφάσεων.
+Για να είναι όμως πραγματικά χρήσιμο, και όχι άλλος ένας αριθμός που κοιτάς χωρίς να ξέρεις τι σημαίνει, πρέπει πρώτα να καταλάβεις πώς είναι χτισμένο [**(Μέρος 1: Anatomy)**](/posts/secure-score-grc-part-1-anatomy/), σε ποιο οικοσύστημα ζει [**(Μέρος 2: Ecosystem)**](/posts/secure-score-grc-part-2-ecosystem/) και πώς το λειτουργείς καθημερινά ως πραγματικό εργαλείο λειτουργίας και συμμόρφωσης [**(Μέρος 3: Καθημερινή λειτουργία)**](/posts/secure-score-grc-part-3-operations/). Όταν αυτά τα τρία μέρη γίνουν ξεκάθαρα, το Secure Score του Defender παύει να είναι ένας «μαγικός αριθμός» και γίνεται εργαλείο λήψης αποφάσεων.
 Διάβασε λοιπόν τα Μέρη 1, 2 και 3 με τη σειρά. Μετά, όσα καλύπτουμε στα κεφάλαια για το GRC και το evidence θα έχουν συγκεκριμένο νόημα μέσα στο δικό σου περιβάλλον.
 
 Δεν χρειάζεται να είσαι developer. Δεν χρειάζεσαι πλατφόρμα GRC τρίτου. Χρειάζεσαι ένα Microsoft 365 tenant, λίγες συγκεντρωμένες ώρες την εβδομάδα και τη διάθεση να δεις το Microsoft Secure Score με φρέσκια ματιά.
@@ -177,7 +177,7 @@ cover:
 
 - [**Μέρος 1: Πώς διαβάζεις ένα recommendation**](/posts/secure-score-grc-part-1-anatomy/)
 - [**Μέρος 2: Μέσα στο οικοσύστημα του Defender**](/posts/secure-score-grc-part-2-ecosystem/)
-- [**Part 3: Daily Operations & ISO 27001**](/posts/secure-score-grc-part-3-operations/)
+- [**Μέρος 3: Καθημερινή λειτουργία και ISO 27001**](/posts/secure-score-grc-part-3-operations/)
 
 Όλα τα άρθρα της σειράς θα τα βρίσκεις πάντα στη [σελίδα της σειράς](/series/microsoft-secure-score-as-a-cyber-grc-instrument/).
 
