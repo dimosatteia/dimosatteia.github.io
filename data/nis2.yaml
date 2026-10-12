@@ -256,7 +256,7 @@ articles:
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
       url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
-    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
@@ -515,7 +515,7 @@ articles:
     evidence: Πρότυπα ανάπτυξης, αποτελέσματα code review.
     license: Microsoft Defender for Cloud, GitHub Advanced Security
     posts:
-    - title: 'Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That''s Actually Different)'
+    - title: 'Microsoft Defender Μέρος 3: Microsoft Defender for Cloud (αυτό που είναι πραγματικά διαφορετικό)'
       url: /posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/
   - code: 15.γ
     scope: Βασικές και σημαντικές
@@ -805,7 +805,7 @@ articles:
     posts:
     - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
       url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
-    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
     - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
       url: /posts/microsoft-defender-air-automated-investigation-response/
@@ -834,7 +834,7 @@ articles:
       url: /posts/new-features/prompt-injection-protection-defender-office-365/
     - title: 'Localized Mark and Notify στο Microsoft Defender for Office 365: Γιατί ένα notification email στη σωστή γλώσσα είναι θέμα Security Awareness (MC1387578)'
       url: /posts/generally-available/mdo-mark-and-notify-localization/
-    - title: 'Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close'
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
     - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/

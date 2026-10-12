@@ -1,20 +1,20 @@
 ---
-title: "Microsoft Defender Part 3: Microsoft Defender for Cloud (The One That's Actually Different)"
-seoTitle: "Microsoft Defender Part 3: Defender for Cloud"
+title: "Microsoft Defender Μέρος 3: Microsoft Defender for Cloud (αυτό που είναι πραγματικά διαφορετικό)"
+seoTitle: "Microsoft Defender Μέρος 3: Defender for Cloud"
 date: 2026-07-10T10:51:00+03:00
-lastmod: 2026-07-27T11:00:00+03:00
+lastmod: 2026-10-12T13:30:00+03:00
 draft: false
 keywords:
   - Microsoft Defender for Cloud vs Defender XDR
-  - what is Microsoft Defender for Cloud
-  - Defender for Cloud licensing explained
+  - τι είναι το Microsoft Defender for Cloud
+  - Microsoft Defender for Cloud αδειοδότηση
   - Foundational CSPM vs Defender CSPM
-  - Defender for Cloud pricing per resource
-  - Microsoft CNAPP explained
+  - Defender for Cloud κόστος ανά πόρο
+  - Microsoft CNAPP
   - Defender for Cloud workload protection plans
   - Defender for Cloud AWS GCP multicloud
-  - is Microsoft Defender for Cloud free
-  - Defender for Cloud unified Defender portal
+  - είναι δωρεάν το Microsoft Defender for Cloud
+  - Defender for Cloud ΚΥΑ 1689/2025
 tags:
   - Microsoft Defender for Cloud
   - Microsoft Defender XDR
@@ -29,8 +29,9 @@ tags:
   - NIS2
   - ISO 27001
 author: "Dimosthenis Atteia"
-description: "Microsoft Defender for Cloud vs Defender XDR: different portal, licensing, and audience. CSPM tiers, workload protection plans, and multicloud explained."
-summary: "Part 3 of the Microsoft Defender Demystified series. Microsoft Defender for Cloud explained in plain language, the CSPM foundation, the paid Defender CSPM tier, the workload protection plans, the multicloud story, and why the unified Microsoft Defender portal is quietly making all this one experience."
+description: "Microsoft Defender for Cloud και Defender XDR: άλλη αδειοδότηση, άλλο κοινό, άλλο σημείο ρύθμισης. Τα επίπεδα CSPM, τα workload protection plans και η εικόνα του multicloud, απλά."
+seoDescription: "Microsoft Defender for Cloud και Defender XDR: άλλη αδειοδότηση, άλλο κοινό. Τα επίπεδα CSPM, τα workload protection plans και το multicloud, απλά."
+summary: "Μέρος 3 της σειράς Microsoft Defender Demystified. Το Microsoft Defender for Cloud με απλά λόγια: το δωρεάν Foundational CSPM, το επί πληρωμή Defender CSPM, τα workload protection plans, το multicloud, και γιατί το ενιαίο Microsoft Defender portal τα κάνει σιγά σιγά μία εμπειρία."
 categories: ["Cloud Security"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
@@ -38,208 +39,209 @@ TocOpen: false
 weight: 3
 cover:
   image: "/images/DefenderDemystified/MSDef.webp"
-  alt: "Microsoft Defender for Cloud — protecting Azure and multicloud workloads"
-  caption: "Microsoft Defender Demystified — Part 3"
+  alt: "Το Microsoft Defender for Cloud προστατεύει workloads στο Azure και σε άλλα clouds"
+  caption: "Microsoft Defender Demystified, Μέρος 3"
 ---
 
-## Where we are so far
+## Πού είμαστε μέχρι τώρα
 
-**[Part 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** gave us the whole family map. **[Part 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)** went deep into the four core XDR workloads. Now we move to the product that Microsoft itself documents separately from the rest of the Defender family on the [Microsoft Defender hub](https://learn.microsoft.com/en-us/defender/), and the one I see confused with everything else more often than any other: **[Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)**.
+Το **[Μέρος 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** μας έδωσε τον χάρτη όλης της οικογένειας. Το **[Μέρος 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)** μπήκε σε βάθος στα τέσσερα βασικά workloads του XDR. Τώρα περνάμε στο προϊόν που η ίδια η Microsoft τεκμηριώνει χωριστά από την υπόλοιπη οικογένεια στη [σελίδα του Microsoft Defender](https://learn.microsoft.com/en-us/defender/), και αυτό που βλέπω να μπερδεύεται με όλα τα υπόλοιπα πιο συχνά από κάθε άλλο: το **[Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)**.
 
-Let me say this clearly up front, because it's the single most expensive misunderstanding in Microsoft security conversations: **Microsoft Defender for Cloud is a different product from Microsoft Defender XDR.** Different portal. Different licensing. Different billing. Different audience.
+Θα το πω καθαρά από την αρχή, γιατί είναι η πιο δαπανηρή παρανόηση στις συζητήσεις για το Microsoft Security: **το Microsoft Defender for Cloud είναι διαφορετικό προϊόν από το Microsoft Defender XDR.** Άλλη αδειοδότηση. Άλλη χρέωση. Άλλο κοινό. Και η ρύθμισή του γίνεται σε άλλο portal.
 
-Every Microsoft security professional will have this conversation at some point, usually with someone holding an invoice. Let me save you from being that person.
+Κάθε επαγγελματίας στο Microsoft Security θα κάνει αυτή τη συζήτηση κάποια στιγμή, συνήθως με κάποιον που κρατά ένα τιμολόγιο. Ας σε γλιτώσω από αυτό.
 
-## Microsoft Defender for Cloud vs Microsoft Defender XDR: what's different
+## Microsoft Defender for Cloud και Microsoft Defender XDR: τι διαφέρει
 
 {{< figure
     src="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.webp"
     link="/images/DefenderDemystified/microsoft-defender-for-cloud-overview-azure-portal.webp"
     target="_blank"
-    alt="Microsoft Defender for Cloud overview dashboard in the Azure portal showing secure score, recommendations and security alerts"
-    caption="📷 **Image 1: The Microsoft Defender for Cloud overview in the Azure portal. A different portal from Microsoft Defender XDR at security.microsoft.com.**"
+    alt="Η σελίδα επισκόπησης του Microsoft Defender for Cloud στο Azure portal με secure score, recommendations και security alerts"
+    caption="📷 **Εικόνα 1: Η επισκόπηση του Microsoft Defender for Cloud στο Azure portal. Άλλο portal από το Microsoft Defender XDR στο security.microsoft.com.**"
     loading="lazy"
     width="1600"
     height="800"
     rel="noopener noreferrer"
 >}}
 
-Everything in **Part 2** lived at `security.microsoft.com` and was licensed **per user** as part of a **Microsoft 365** plan. Microsoft Defender for Cloud lives in the **Azure portal** at `portal.azure.com` and is licensed **per resource** (per VM, per storage account, per database) as part of your **Azure consumption**.
+Ό,τι είδαμε στο **Μέρος 2** ζούσε στο `security.microsoft.com` και αδειοδοτούνταν **ανά χρήστη**, ως μέρος ενός πλάνου **Microsoft 365**. Το Microsoft Defender for Cloud ρυθμίζεται στο **Azure portal** στο `portal.azure.com` και χρεώνεται **ανά πόρο** (ανά VM, ανά storage account, ανά βάση δεδομένων), ως μέρος της **κατανάλωσης στο Azure**.
 
-Your Microsoft 365 E5 license does not give you Microsoft Defender for Cloud entitlement. Your Microsoft Defender for Cloud subscription does not give you Microsoft Defender XDR entitlement. These are two genuinely separate products that happen to share a brand.
+Η άδεια Microsoft 365 E5 δεν σου δίνει Microsoft Defender for Cloud. Το Microsoft Defender for Cloud δεν σου δίνει Microsoft Defender XDR. Είναι δύο πραγματικά ξεχωριστά προϊόντα που απλώς μοιράζονται ένα brand.
 
-What they protect is also different. The four workloads in Part 2 protect **user-facing surfaces**, devices, email, identities, SaaS. Microsoft Defender for Cloud protects **infrastructure** like the VMs, containers, databases, storage, and increasingly the AI services that run your applications. Different problem, different tool.
+Διαφέρει και αυτό που προστατεύουν. Τα τέσσερα workloads του Μέρους 2 προστατεύουν **ό,τι αγγίζουν οι χρήστες**: συσκευές, email, ταυτότητες, SaaS. Το Microsoft Defender for Cloud προστατεύει **υποδομή**: τα VMs, τα containers, τις βάσεις δεδομένων, το storage και, όλο και περισσότερο, τις υπηρεσίες AI πάνω στις οποίες τρέχουν οι εφαρμογές σου. Άλλο πρόβλημα, άλλο εργαλείο.
 
-Microsoft calls this category a **CNAPP** aka Cloud Native Application Protection Platform, which is an industry term for a single product that combines several cloud-security disciplines:
+Η Microsoft ονομάζει αυτή την κατηγορία **CNAPP** (Cloud Native Application Protection Platform). Είναι όρος της αγοράς για ένα προϊόν που ενώνει διάφορους κλάδους της ασφάλειας στο cloud:
 
-- **CSPM** is Cloud Security Posture Management: finding misconfigurations before attackers do
-- **CWPP** is Cloud Workload Protection: runtime threat detection for workloads
-- **DevSecOps**: pulling security earlier into the development process
-- **CIEM** is Cloud Infrastructure Entitlement Management: managing permissions across cloud resources
+- **CSPM** (Cloud Security Posture Management): βρίσκεις τις λάθος ρυθμίσεις πριν τις βρουν οι επιτιθέμενοι.
+- **CWPP** (Cloud Workload Protection): ανίχνευση απειλών στα workloads την ώρα που τρέχουν.
+- **DevSecOps**: η ασφάλεια μπαίνει νωρίτερα στη διαδικασία ανάπτυξης.
+- **CIEM** (Cloud Infrastructure Entitlement Management): διαχείριση δικαιωμάτων στους πόρους του cloud.
 
-You don't need to remember the acronyms. What you do need to remember is the **two-layer structure** Microsoft Defender for Cloud is sold in. That's the practical bit.
+Δεν χρειάζεται να θυμάσαι τα ακρωνύμια. Αυτό που πρέπει να θυμάσαι είναι η **δομή δύο επιπέδων** με την οποία πωλείται το Microsoft Defender for Cloud. Αυτό είναι το πρακτικό κομμάτι.
 
-## Layer 1: CSPM, the posture layer
+## Επίπεδο 1: CSPM, το επίπεδο της στάσης ασφάλειας
 
-The first thing Microsoft Defender for Cloud does, the moment you onboard an Azure subscription, an AWS account, or a GCP project, is **assess your posture** against a security baseline. This is the CSPM layer. It comes in two tiers.
+Το πρώτο που κάνει το Microsoft Defender for Cloud, μόλις συνδέσεις ένα Azure subscription, ένα AWS account ή ένα GCP project, είναι να **αξιολογήσει τη στάση ασφάλειάς σου** απέναντι σε ένα baseline. Αυτό είναι το επίπεδο CSPM, και έρχεται σε δύο εκδόσεις.
 
-### Foundational CSPM: Free, Automatic, Multicloud
+### Foundational CSPM: δωρεάν, αυτόματο, multicloud
 
-Every onboarded environment gets **[Foundational CSPM](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)** at no cost. What you get:
+Κάθε περιβάλλον που συνδέεις παίρνει **[Foundational CSPM](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)** χωρίς κόστος. Τι περιλαμβάνει:
 
-- **Asset inventory** across Azure, AWS, and GCP
-- Continuous **security recommendations** based on the **[Microsoft Cloud Security Benchmark](https://learn.microsoft.com/en-us/security/benchmark/azure/introduction)**
-- A **Secure Score**: the cloud-infrastructure equivalent of the Microsoft 365 Secure Score I've written about in the [Gold-winning GRC series](/posts/secure-score-grc-part-0-intro/)
-- **Regulatory compliance** assessment against the Microsoft Cloud Security Benchmark itself, note that adding *additional* standards like ISO 27001, NIST CSF, or PCI DSS to the compliance dashboard requires the paid **Defender CSPM** plan (a detail that surprises many people, so plan for it if compliance dashboards are your goal)
+- **Απογραφή πόρων** σε Azure, AWS και GCP.
+- Συνεχή **security recommendations** με βάση το **[Microsoft Cloud Security Benchmark](https://learn.microsoft.com/en-us/security/benchmark/azure/introduction)**.
+- Ένα **Secure Score** για την υποδομή cloud, το αντίστοιχο του Microsoft Secure Score στο Microsoft 365, για το οποίο έχω γράψει στη **[σειρά για το Secure Score](/posts/secure-score-grc-part-0-intro/)**.
+- Αξιολόγηση **κανονιστικής συμμόρφωσης** με βάση το ίδιο το Microsoft Cloud Security Benchmark. Πρόσεξε ότι για να προσθέσεις *άλλα* πρότυπα στο compliance dashboard, όπως ISO 27001, NIST CSF ή PCI DSS, χρειάζεσαι το επί πληρωμή **Defender CSPM**. Αυτό εκπλήσσει πολλούς, οπότε λογάριασέ το αν στόχος σου είναι τα compliance dashboards.
 
-This alone is worth turning on. It's free, it takes minutes, and within a few hours you'll have a clearer picture of your cloud estate than most organisations ever build.
+Αυτό μόνο του αξίζει να το ενεργοποιήσεις. Είναι δωρεάν, θέλει λίγα λεπτά, και μέσα σε λίγες ώρες θα έχεις καθαρότερη εικόνα του cloud σου απ' ό,τι φτιάχνουν οι περισσότεροι οργανισμοί ποτέ.
 
-If your company has any presence in Azure, AWS, or GCP (even a single subscription someone spun up for a side project that nobody remembers) turn on Foundational CSPM today. It will tell you things you didn't know and cost you nothing.
+Αν η εταιρεία σου έχει οποιαδήποτε παρουσία σε Azure, AWS ή GCP, ακόμη κι ένα subscription που άνοιξε κάποιος για ένα δοκιμαστικό project και δεν το θυμάται κανείς, ενεργοποίησε σήμερα το Foundational CSPM. Θα σου πει πράγματα που δεν ήξερες και δεν θα σου κοστίσει τίποτα.
 
 {{< figure
     src="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.webp"
     link="/images/DefenderDemystified/defender-for-cloud-security-recommendations-mcsb.webp"
     target="_blank"
-    alt="Microsoft Defender for Cloud security recommendations based on the Microsoft Cloud Security Benchmark with risk levels"
-    caption="📷 **Image 2: The Microsoft Cloud Security Benchmark recommendations view.**"
+    alt="Τα security recommendations του Microsoft Defender for Cloud με βάση το Microsoft Cloud Security Benchmark, με επίπεδα κινδύνου"
+    caption="📷 **Εικόνα 2: Τα recommendations του Microsoft Cloud Security Benchmark.**"
     loading="lazy"
     width="1600"
     height="802"
     rel="noopener noreferrer"
 >}}
 
-### Defender CSPM: The paid tier
+### Defender CSPM: το επί πληρωμή επίπεδο
 
-If you want **proactive, attacker-perspective** analysis, which is a real upgrade over reactive recommendation lists, you enable the paid **Defender CSPM** plan. What the paid tier adds:
+Αν θέλεις **προληπτική ανάλυση από τη σκοπιά του επιτιθέμενου**, που είναι πραγματική αναβάθμιση σε σχέση με μια λίστα recommendations, ενεργοποιείς το επί πληρωμή **Defender CSPM**. Τι προσθέτει:
 
-- **Agentless vulnerability scanning** of your VMs and container images (no agent to install, no performance overhead)
-- **Attack path analysis**: Microsoft graphs your cloud estate and shows you the actual paths an attacker could take to reach your sensitive data, which is a genuinely different way of thinking about risk
-- **Cloud Security Explorer**: a queryable knowledge graph of your cloud environment
-- **Sensitive data discovery** across storage and databases
-- **Regulatory compliance dashboards** for standards beyond the MCSB, ISO 27001, NIST CSF, PCI DSS, CIS Benchmarks, and more
-- **AI security posture management** for organisations running generative AI workloads
-- **DevOps security** with pull-request annotations and code-to-cloud mapping
+- **Agentless σάρωση ευπαθειών** στα VMs και στα container images, χωρίς επιβάρυνση στην απόδοση.
+- **Attack path analysis**: η Microsoft φτιάχνει γράφημα του cloud σου και σου δείχνει τις πραγματικές διαδρομές που θα ακολουθούσε ένας επιτιθέμενος για να φτάσει στα ευαίσθητα δεδομένα σου. Είναι διαφορετικός τρόπος να σκέφτεσαι τον κίνδυνο.
+- **Cloud Security Explorer**: ένα γράφημα γνώσης του cloud σου στο οποίο κάνεις ερωτήματα.
+- **Εντοπισμό ευαίσθητων δεδομένων** σε storage και βάσεις δεδομένων.
+- **Compliance dashboards** για πρότυπα πέρα από το MCSB: ISO 27001, NIST CSF, PCI DSS, CIS Benchmarks και άλλα.
+- **AI security posture management** για οργανισμούς που τρέχουν workloads παραγωγικής AI.
+- **DevOps security** με σχόλια στα pull requests και αντιστοίχιση από τον κώδικα στο cloud.
 
-Approximate pricing is around **$5 per billable resource per month** (list price $5.11 at the time of writing), billed on Compute, Databases, Storage, and (since April 2026) Serverless resources. Use the **[official pricing calculator](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** before enabling, costs scale with your estate.
+Η τιμή καταλόγου είναι περίπου **5 δολάρια ανά πόρο που χρεώνεται, τον μήνα**, για πόρους Compute, Databases, Storage και Serverless. Χρησιμοποίησε τον **[επίσημο τιμοκατάλογο](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** πριν το ενεργοποιήσεις, γιατί το κόστος μεγαλώνει μαζί με την υποδομή σου.
 
-## Layer 2: CWPP, the workload protection plans
+## Επίπεδο 2: CWPP, τα workload protection plans
 
-Where CSPM tells you *"this VM is misconfigured"*, **CWPP tells you "this VM is being attacked right now."** That's an important distinction.
+Εκεί που το CSPM σου λέει *«αυτό το VM είναι λάθος ρυθμισμένο»*, το **CWPP σου λέει «αυτό το VM δέχεται επίθεση τώρα»**. Είναι σημαντική διάκριση.
 
-Workload protection isn't one plan, it's **separate plans per resource type**, each enabled independently, each with its own pricing and threat-detection capabilities. As of mid-2026, these are the plans you'll find in your Environment settings:
+Η προστασία των workloads δεν είναι ένα πλάνο. Είναι **ξεχωριστά πλάνα ανά τύπο πόρου**, που ενεργοποιούνται ανεξάρτητα, το καθένα με τη δική του τιμή και τις δικές του ανιχνεύσεις. Αυτά είναι τα πλάνα που θα βρεις στα Environment settings:
 
-- **Microsoft Defender for Servers**: Windows and Linux VMs, on-premises and multicloud. Plan 2 includes the full Microsoft Defender for Endpoint agent on every protected VM, which is a genuine bonus if you're already in that ecosystem. It also bundles DNS threat detection, the old standalone **Microsoft Defender for DNS** plan was retired for new subscriptions back in August 2023 and lives on inside Plan 2.
-- **Microsoft Defender for Containers**: Kubernetes (AKS, EKS, GKE) clusters and container registries
-- **Microsoft Defender for Storage**: Azure Blob Storage, Azure Files, and Azure Data Lake Storage Gen2 (note: queues and tables are not covered), including on-upload malware scanning
-- **Microsoft Defender for SQL**: technically two plans: one for Azure SQL PaaS (Azure SQL Database, Managed Instance, elastic pools, Synapse dedicated pools) and one for SQL Server on machines, Azure or Arc-enabled
-- **Microsoft Defender for open-source relational databases**: PostgreSQL, MySQL, MariaDB on Azure PaaS, and (generally available since June 2026) AWS RDS instances including Aurora PostgreSQL and Aurora MySQL
-- **Microsoft Defender for Azure Cosmos DB**: Microsoft's NoSQL database gets its own dedicated plan (it's neither open-source nor relational, so don't look for it in the plan above)
-- **Microsoft Defender for App Service**: Azure App Service web apps
-- **Microsoft Defender for Key Vault**: Azure Key Vault
-- **Microsoft Defender for Resource Manager**: the Azure control plane itself
-- **Microsoft Defender for APIs**: Azure API Management endpoints
-- **Microsoft Defender for AI Services**: Azure OpenAI and Azure AI Services workloads (this one is newer and will only get more important)
+- **Microsoft Defender for Servers:** VMs με Windows και Linux, on-premises και σε άλλα clouds. Το Plan 2 περιλαμβάνει τον πλήρη agent του Microsoft Defender for Endpoint σε κάθε VM που προστατεύεται, κάτι πολύ χρήσιμο αν είσαι ήδη σε αυτό το οικοσύστημα. Το Plan 2 περιλαμβάνει και ανίχνευση απειλών στο DNS, αφού το παλιό αυτόνομο πλάνο **Microsoft Defender for DNS** σταμάτησε να διατίθεται σε νέες συνδρομές τον Αύγουστο του 2023.
+- **Microsoft Defender for Containers:** clusters Kubernetes (AKS, EKS, GKE) και container registries.
+- **Microsoft Defender for Storage:** Azure Blob Storage, Azure Files και Azure Data Lake Storage Gen2 (τα queues και τα tables δεν καλύπτονται), με σάρωση για malware κατά το upload στο Blob Storage.
+- **Microsoft Defender for SQL:** στην ουσία δύο πλάνα, ένα για τις υπηρεσίες Azure SQL (Azure SQL Database, Managed Instance, elastic pools, Synapse dedicated pools) και ένα για SQL Server σε μηχανήματα, στο Azure ή μέσω Azure Arc.
+- **Microsoft Defender for open-source relational databases:** PostgreSQL και MySQL (Flexible Server) στο Azure, και instances του AWS RDS (PostgreSQL, MySQL, MariaDB, Aurora PostgreSQL και Aurora MySQL).
+- **Microsoft Defender for Azure Cosmos DB:** η NoSQL βάση της Microsoft έχει δικό της πλάνο (δεν είναι ούτε open-source ούτε relational, οπότε μην την ψάχνεις στο προηγούμενο).
+- **Microsoft Defender for App Service:** web apps στο Azure App Service.
+- **Microsoft Defender for Key Vault:** Azure Key Vault.
+- **Microsoft Defender for Resource Manager:** το ίδιο το control plane του Azure.
+- **Microsoft Defender for APIs:** endpoints του Azure API Management.
+- **Microsoft Defender for AI Services:** workloads Azure OpenAI και Azure AI Services. Είναι από τα νεότερα πλάνα και θα γίνεται όλο και πιο σημαντικό.
 
 {{< figure
     src="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.webp"
     link="/images/DefenderDemystified/defender-for-cloud-plans-pricing-environment-settings.webp"
     target="_blank"
-    alt="Defender for Cloud environment settings showing Defender CSPM and workload protection plans with per-resource pricing toggles"
-    caption="📷 **Image 3: The Environment settings page showing enabled plans.**"
+    alt="Τα Environment settings του Defender for Cloud με το Defender CSPM και τα workload protection plans, με τιμή ανά πόρο και διακόπτες"
+    caption="📷 **Εικόνα 3: Η σελίδα Environment settings με τα ενεργά πλάνα.**"
     loading="lazy"
     width="1600"
     height="765"
     rel="noopener noreferrer"
 >}}
 
-Each plan turns on additional Microsoft-curated detections specific to that resource type. You enable only what you need. A startup with 10 VMs and a storage account might enable just **Microsoft Defender for Servers** Plan 2 and **Microsoft Defender for Storage**. A large bank running hundreds of databases and a Kubernetes platform will enable nearly everything.
+Κάθε πλάνο ενεργοποιεί επιπλέον ανιχνεύσεις της Microsoft για τον συγκεκριμένο τύπο πόρου. Ενεργοποιείς μόνο ό,τι χρειάζεσαι. Μια startup με 10 VMs και ένα storage account μπορεί να ενεργοποιήσει μόνο το **Microsoft Defender for Servers** Plan 2 και το **Microsoft Defender for Storage**. Μια μεγάλη τράπεζα με εκατοντάδες βάσεις δεδομένων και πλατφόρμα Kubernetes θα ενεργοποιήσει σχεδόν τα πάντα.
 
-## The multicloud story
+## Η εικόνα του multicloud
 
-Microsoft Defender for Cloud is genuinely multicloud. Onboarding an **AWS account** or a **GCP project** takes minutes through native connectors, an IAM role in AWS, a service account in GCP, and you're done.
+Το Microsoft Defender for Cloud είναι πραγματικά multicloud. Η σύνδεση ενός **AWS account** ή ενός **GCP project** θέλει λίγα λεπτά μέσα από τους native connectors: ένα IAM role στο AWS, ένα service account στο GCP, και τελείωσες.
 
-Once connected, Foundational CSPM runs immediately across the multicloud estate. The paid tier and most CWPP plans (especially Microsoft Defender for Servers and Microsoft Defender for Containers) extend natively to AWS and GCP. The same Microsoft platform that protects your Azure resources can protect your Linux VM in EC2 and your GKE cluster in Google Cloud.
+Μόλις συνδεθεί, το Foundational CSPM τρέχει αμέσως σε όλο το multicloud περιβάλλον. Το επί πληρωμή επίπεδο και τα περισσότερα πλάνα CWPP, κυρίως το Microsoft Defender for Servers και το Microsoft Defender for Containers, επεκτείνονται σε AWS και GCP. Η ίδια πλατφόρμα που προστατεύει τους πόρους σου στο Azure μπορεί να προστατεύει το Linux VM σου στο EC2 και το GKE cluster σου στο Google Cloud.
 
-This matters more every year, because most organisations don't actually live on a single cloud, even when they think they do. Run a quick inventory. You'll find AWS accounts in a subsidiary, a GCP project someone set up for a data science experiment in 2023, maybe a Digital Ocean instance running a marketing landing page. **NIS2** and **DORA** reporting obligations don't care which cloud the workload runs on, they care that the workload is monitored and that incidents are reported on time.
+Αυτό μετράει περισσότερο κάθε χρόνο, γιατί οι περισσότεροι οργανισμοί δεν ζουν σε ένα cloud, ακόμη κι όταν νομίζουν ότι ζουν. Κάνε μια γρήγορη απογραφή. Θα βρεις AWS accounts σε μια θυγατρική, ένα GCP project που έστησε κάποιος για ένα πείραμα ανάλυσης δεδομένων, ίσως κι ένα VM σε άλλον πάροχο για ένα landing page του marketing. Ο ν. 5160/2024 και η ΚΥΑ 1689/2025, όπως και η DORA για τον χρηματοπιστωτικό τομέα, δεν κοιτάνε σε ποιο cloud τρέχει το workload. Κοιτάνε αν παρακολουθείται και αν τα περιστατικά αναφέρονται εγκαίρως.
 
 {{< figure
     src="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.webp"
     link="/images/DefenderDemystified/defender-for-cloud-multicloud-aws-gcp-connectors.webp"
     target="_blank"
-    alt="Adding AWS and GCP environments to Microsoft Defender for Cloud through native multicloud connectors"
-    caption="📷 **Image 4: Multicloud environment view in Microsoft Defender for Cloud.**"
+    alt="Προσθήκη περιβαλλόντων AWS και GCP στο Microsoft Defender for Cloud μέσω των native multicloud connectors"
+    caption="📷 **Εικόνα 4: Τα περιβάλλοντα multicloud στο Microsoft Defender for Cloud.**"
     loading="lazy"
     width="1600"
     height="783"
     rel="noopener noreferrer"
 >}}
 
-## How this flows back into the unified Microsoft Defender portal
+## Πώς φτάνουν όλα αυτά στο ενιαίο Microsoft Defender portal
 
-Until recently, the boundary was hard. Microsoft Defender for Cloud lived in Azure; Microsoft Defender XDR lived in Microsoft 365. SOC teams had to switch contexts, which is exactly the kind of friction that leads to missed incidents.
+Μέχρι πρόσφατα, το όριο ήταν σκληρό. Το Microsoft Defender for Cloud ζούσε στο Azure και το Microsoft Defender XDR στο Microsoft 365. Οι ομάδες SOC άλλαζαν συνεχώς κονσόλα, και αυτή ακριβώς η τριβή οδηγεί σε incidents που χάνονται.
 
-That's changing, and it's one of the more significant Microsoft Security improvements of the last two years.
+Αυτό αλλάζει, και είναι από τις σημαντικότερες βελτιώσεις του Microsoft Security των τελευταίων ετών.
 
-Microsoft has integrated Microsoft Defender for Cloud signals **directly into the unified Microsoft Defender portal** at `security.microsoft.com`. Cloud incidents now appear in the same incident queue as your Microsoft 365 incidents, correlated against identity and email signals, surfaced in the same unified SecOps experience.
+Η Microsoft έχει ενσωματώσει τα σήματα του Microsoft Defender for Cloud **κατευθείαν στο ενιαίο Microsoft Defender portal** στο `security.microsoft.com`. Τα incidents του cloud εμφανίζονται πλέον στην ίδια ουρά με τα incidents του Microsoft 365, συσχετίζονται με τα σήματα ταυτότητας και email, και βρίσκονται στην ίδια ενιαία εμπειρία SecOps.
 
-Practically, this means an attack that starts with a phishing email (**Microsoft Defender for Office 365**), pivots through a compromised laptop (**Microsoft Defender for Endpoint**), then targets an Azure VM (**Microsoft Defender for Servers** in Microsoft Defender for Cloud) is now a **single incident**. Not two products' worth of disconnected alerts in different consoles. One story, one timeline, one response workflow.
+Στην πράξη, μια επίθεση που ξεκινά με ένα phishing email (**Microsoft Defender for Office 365**), περνά από ένα παραβιασμένο laptop (**Microsoft Defender for Endpoint**) και μετά στοχεύει ένα VM στο Azure (**Microsoft Defender for Servers** στο Microsoft Defender for Cloud) είναι πλέον **ένα incident**. Όχι ασύνδετα alerts από δύο προϊόντα σε διαφορετικές κονσόλες. Μία ιστορία, ένα χρονολόγιο, μία ροή απόκρισης.
 
-The CNAPP vision Microsoft has been talking about for years is finally a single operational experience. It's taken a while, but it's here.
+Το όραμα του CNAPP για το οποίο μιλά η Microsoft εδώ και χρόνια γίνεται επιτέλους μία λειτουργική εμπειρία. Πήρε καιρό, αλλά είναι εδώ. Η ρύθμιση των πλάνων γίνεται ακόμη στο Azure portal.
 
 {{< figure
     src="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.webp"
     link="/images/DefenderDemystified/defender-for-cloud-incident-unified-defender-portal.webp"
     target="_blank"
-    alt="Microsoft Defender for Cloud incident displayed in the unified Microsoft Defender portal incident queue at security.microsoft.com"
-    caption="📷 **Image 5: A Defender for Cloud incident inside the unified Defender portal.**"
+    alt="Incident του Microsoft Defender for Cloud στην ενιαία ουρά incidents του Microsoft Defender portal στο security.microsoft.com"
+    caption="📷 **Εικόνα 5: Ένα incident του Defender for Cloud μέσα στο ενιαίο Defender portal.**"
     loading="lazy"
     width="1600"
     height="803"
     rel="noopener noreferrer"
 >}}
 
-## Do I need Microsoft Defender for Cloud? A quick checklist
+## Χρειάζομαι το Microsoft Defender for Cloud; Μια γρήγορη λίστα
 
-- **Any Azure subscriptions at all?** Turn on Foundational CSPM today. It's free.
-- **Production workloads in Azure, AWS, or GCP?** Evaluate the relevant CWPP plans.
-- **ISO 27001 or NIS2 obligations covering cloud workloads?** At minimum you probably want Foundational CSPM plus Microsoft Defender for Servers plus Microsoft Defender for Storage.
-- **Multicloud, single-pane-of-glass requirement?** This is one of the few products that credibly delivers end-to-end.
-- **Zero cloud presence, fully on-premises?** You don't need this right now. Focus on Microsoft Defender XDR for your endpoints, email, identity, and SaaS.
+- **Έχεις έστω και ένα Azure subscription;** Ενεργοποίησε σήμερα το Foundational CSPM. Είναι δωρεάν.
+- **Έχεις workloads παραγωγής σε Azure, AWS ή GCP;** Αξιολόγησε τα σχετικά πλάνα CWPP.
+- **Έχεις υποχρεώσεις ISO 27001 ή ΚΥΑ 1689/2025 που καλύπτουν cloud workloads;** Ως ελάχιστο θέλεις μάλλον Foundational CSPM, Microsoft Defender for Servers και Microsoft Defender for Storage.
+- **Θέλεις μία εικόνα για όλα τα clouds;** Είναι από τα λίγα προϊόντα που το προσφέρουν πραγματικά από άκρη σε άκρη.
+- **Δεν έχεις καθόλου cloud και είσαι εντελώς on-premises;** Δεν το χρειάζεσαι τώρα. Εστίασε στο Microsoft Defender XDR για endpoints, email, ταυτότητες και SaaS.
 
-The specific licensing decisions (which plan, for which resource, at which budget) are what we'll work through in **Part 4**.
+Στη συμμόρφωση, το Defender for Cloud υποστηρίζει κυρίως την ασφαλή παραμετροποίηση του **[άρθρου 14](/kya-1689-2025/#arthro-14)** και τη διαχείριση ευπαθειών του **[άρθρου 17](/kya-1689-2025/#arthro-17)** της ΚΥΑ 1689/2025. Στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα controls [A.5.23](/iso-27001/#A-5-23) (Information security for use of cloud services), [A.8.8](/iso-27001/#A-8-8) (Management of technical vulnerabilities) και [A.8.9](/iso-27001/#A-8-9) (Configuration management).
 
-## What's next
+Οι συγκεκριμένες αποφάσεις αδειοδότησης (ποιο πλάνο, για ποιον πόρο, με ποιον προϋπολογισμό) είναι αυτό που εξετάζουμε στο **[Μέρος 4](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)**.
 
-In **Part 4** we tackle the question most readers actually arrived with: *"Which Microsoft Defender do I need, and which plan should I buy?"* A practical decoder with three real scenarios.
+## Τι ακολουθεί
 
-> 🔗 **Related deep-dive series:** Curious how the Microsoft Cloud Security Benchmark approach (continuous assessment against a maintained control catalogue) can be turned into a full GRC programme at the Microsoft 365 layer? Read [How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/).
+Στο **[Μέρος 4](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)** απαντάμε στην ερώτηση με την οποία έρχονται οι περισσότεροι αναγνώστες: *«Ποιο Microsoft Defender χρειάζομαι, και ποιο πλάνο να αγοράσω;»* Ένας πρακτικός οδηγός με τρία πραγματικά σενάρια.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+> 🔗 **Θέλεις να δεις τη συνεχή αξιολόγηση και στο Microsoft 365;** Η λογική του Microsoft Cloud Security Benchmark, δηλαδή συνεχής αξιολόγηση απέναντι σε έναν κατάλογο controls που συντηρείται, μπορεί να γίνει ολόκληρο πρόγραμμα GRC. Δες τη σειρά **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
-## Frequently asked questions
+Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
-**Is Microsoft Defender for Cloud free?**
-Partially. Foundational CSPM (asset inventory, security recommendations, Secure Score, and assessment against the Microsoft Cloud Security Benchmark) is free on every onboarded subscription. The Defender CSPM plan and all workload protection plans are paid, billed per resource through Azure consumption.
+## Συχνές ερωτήσεις
 
-**Is Microsoft Defender for Cloud included in Microsoft 365 E5?**
-No. Microsoft 365 E5 includes the Defender XDR workloads (Endpoint, Office 365, Identity, Cloud Apps), which are licensed per user. Microsoft Defender for Cloud is licensed per resource through your Azure subscription and is a separate purchase.
+**Είναι δωρεάν το Microsoft Defender for Cloud;**
+Εν μέρει. Το Foundational CSPM (απογραφή πόρων, security recommendations, Secure Score και αξιολόγηση με βάση το Microsoft Cloud Security Benchmark) είναι δωρεάν σε κάθε subscription που συνδέεις. Το Defender CSPM και όλα τα workload protection plans είναι επί πληρωμή, με χρέωση ανά πόρο μέσω της κατανάλωσης στο Azure.
 
-**Does Microsoft Defender for Cloud work with AWS and GCP?**
-Yes. Native connectors onboard AWS accounts and GCP projects in minutes, and both the CSPM layers and the main workload protection plans (Servers, Containers, and open-source relational databases) extend to AWS and GCP resources.
+**Περιλαμβάνεται το Microsoft Defender for Cloud στο Microsoft 365 E5;**
+Όχι. Το Microsoft 365 E5 περιλαμβάνει τα workloads του Defender XDR (Endpoint, Office 365, Identity, Cloud Apps), με άδεια ανά χρήστη. Το Microsoft Defender for Cloud χρεώνεται ανά πόρο μέσω του Azure subscription και είναι ξεχωριστή αγορά.
 
-**What is the difference between Defender for Cloud and Defender XDR?**
-Defender XDR protects user-facing surfaces (devices, email, identities, SaaS apps), lives at security.microsoft.com, and is licensed per user. Defender for Cloud protects infrastructure (VMs, containers, databases, storage, AI services), is managed from the Azure portal, and is licensed per resource, though its incidents now surface in the unified Defender portal too.
+**Δουλεύει το Microsoft Defender for Cloud με AWS και GCP;**
+Ναι. Οι native connectors συνδέουν AWS accounts και GCP projects σε λίγα λεπτά, και τόσο τα επίπεδα CSPM όσο και τα κύρια workload protection plans επεκτείνονται πέρα από το Azure: το Servers και το Containers σε AWS και GCP, το open-source relational databases μόνο σε AWS.
 
-## Microsoft Learn resources
+**Ποια η διαφορά ανάμεσα στο Defender for Cloud και στο Defender XDR;**
+Το Defender XDR προστατεύει ό,τι αγγίζουν οι χρήστες (συσκευές, email, ταυτότητες, εφαρμογές SaaS), ζει στο security.microsoft.com και αδειοδοτείται ανά χρήστη. Το Defender for Cloud προστατεύει υποδομή (VMs, containers, βάσεις δεδομένων, storage, υπηρεσίες AI), ρυθμίζεται από το Azure portal και χρεώνεται ανά πόρο, αλλά τα incidents του εμφανίζονται πλέον και στο ενιαίο Defender portal.
 
-- [Microsoft Defender for Cloud overview](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)
-- [Cloud Security Posture Management in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)
+## Πηγές Microsoft Learn
+
+- [Microsoft Defender for Cloud: επισκόπηση](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)
+- [Cloud Security Posture Management στο Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)
 - [Microsoft Cloud Security Benchmark](https://learn.microsoft.com/en-us/security/benchmark/azure/introduction)
 - [Microsoft Defender for Servers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction)
 - [Microsoft Defender for Storage](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction)
 - [Microsoft Defender for Containers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction)
-- [Connect AWS accounts to Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-aws)
-- [Connect GCP projects to Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp)
-- [Microsoft Defender for Cloud pricing](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)
-
----
+- [Σύνδεση AWS accounts στο Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-aws)
+- [Σύνδεση GCP projects στο Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp)
+- [Microsoft Defender for Cloud στο Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal)
+- [Τιμές του Microsoft Defender for Cloud](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)

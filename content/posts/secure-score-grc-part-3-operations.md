@@ -500,7 +500,7 @@ ShowWordCount: true
 - **[Μέρος 2: Μέσα στο οικοσύστημα του Defender](/posts/secure-score-grc-part-2-ecosystem/)**: από πού παίρνει τα δεδομένα του το Microsoft Secure Score
 - **Μέρος 3: Καθημερινή λειτουργία** (αυτό το άρθρο): πώς το δουλεύεις στην παραγωγή
 
-> 🔗 **Θέλεις να μπεις πιο βαθιά στο οικοσύστημα του Microsoft Defender;** Η σειρά **[Microsoft Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** (στα αγγλικά) δίνει τη συνολική εικόνα, και η σειρά **[Microsoft Defender Up Close](/series/microsoft-defender-up-close/)** εξηγεί κάθε προϊόν στην πράξη, ξεκινώντας από το **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και το **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**.
+> 🔗 **Θέλεις να μπεις πιο βαθιά στο οικοσύστημα του Microsoft Defender;** Η σειρά **[Microsoft Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** δίνει τη συνολική εικόνα, και η σειρά **[Microsoft Defender Up Close](/series/microsoft-defender-up-close/)** εξηγεί κάθε προϊόν στην πράξη, ξεκινώντας από το **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και το **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**.
 
 > 🔗 **Θέλεις το Secure Score από την οπτική του ΥΑΣΠΕ;** Ο **[Πρακτικός Οδηγός για τον ΥΑΣΠΕ](/posts/secure-score-defender-praktikos-odigos/)** δείχνει πώς ιεραρχείς τα recommendations για τον ν. 5160/2024.
 

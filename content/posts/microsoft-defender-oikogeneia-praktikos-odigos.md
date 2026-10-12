@@ -234,15 +234,17 @@ cover:
 
 ## Θες να εμβαθύνεις περισσότερο;
 
-> 🔗 **Αν θέλεις μια πιο αναλυτική, βήμα-βήμα ματιά στα ίδια προϊόντα στα αγγλικά,** με πραγματικά screenshots από το Defender portal, δες τη σειρά **Microsoft Defender Demystified**:
+> 🔗 **Αν θέλεις μια πιο αναλυτική, βήμα βήμα ματιά στα ίδια προϊόντα,** με πραγματικά screenshots από το Defender portal, δες τη σειρά **[Microsoft Defender Demystified](/series/microsoft-defender-demystified/)**:
 >
-> - **[Part 1: All Products, Which One Do You Need](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)**
-> - **[Part 2: The Four Core XDR Workloads, Up Close](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)**
-> - **[Part 3: Microsoft Defender for Cloud](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)**
+> - **[Microsoft Defender Μέρος 1: Όλα τα προϊόντα και ποιο χρειάζεσαι](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)**
+> - **[Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)**
+> - **[Microsoft Defender Μέρος 3: Microsoft Defender for Cloud (αυτό που είναι πραγματικά διαφορετικό)](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)**
+> - **[Microsoft Defender Μέρος 4: Οδηγός αδειοδότησης](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)**
+> - **[Microsoft Defender Μέρος 5: Περιήγηση στο Microsoft Defender portal](/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/)**
 
 Αν σε ενδιαφέρει πώς όλα αυτά τα σήματα τροφοδοτούν το **Microsoft Secure Score** και πώς μπορεί να γίνει η ραχοκοκαλιά ενός προγράμματος **GRC** ευθυγραμμισμένου με **ISO 27001** και **NIS2**, διάβασε επίσης **[Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2](/posts/secure-score-defender-praktikos-odigos/)**.
 
-Follow me στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις για νέα άρθρα, ή κάνε subscribe μέσω RSS στην κορυφή της σελίδας.
+Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
 ## Πηγές & επιπλέον υλικό
 

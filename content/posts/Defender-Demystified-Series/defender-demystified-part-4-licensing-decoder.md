@@ -1,18 +1,19 @@
 ---
-title: "Microsoft Defender Part 4: The Licensing Decoder"
+title: "Microsoft Defender Μέρος 4: Οδηγός αδειοδότησης"
+seoTitle: "Microsoft Defender Μέρος 4: ποιο πλάνο δίνει ποιο Defender"
 date: 2026-07-25T20:00:00+03:00
-lastmod: 2026-08-14T09:31:00+03:00
+lastmod: 2026-10-12T13:30:00+03:00
 draft: false
 keywords:
-  - which microsoft 365 plan includes defender
-  - microsoft 365 business premium vs e3 vs e5 security
-  - microsoft defender suite pricing 2026
-  - microsoft 365 e3 defender for office 365 included
-  - microsoft 365 e7 vs e5 security
-  - microsoft defender suite for business premium
-  - microsoft 365 licensing for nis2 iso 27001
-  - microsoft defender for endpoint plan 1 vs plan 2 licensing
-  - microsoft 365 e5 security renamed defender suite
+  - ποιο πλάνο Microsoft 365 περιλαμβάνει Defender
+  - Microsoft 365 Business Premium vs E3 vs E5
+  - Microsoft Defender Suite τιμή 2026
+  - Microsoft 365 E3 Defender for Office 365
+  - Microsoft 365 E7 vs E5
+  - Microsoft Defender Suite για Business Premium
+  - άδειες Microsoft 365 για ΚΥΑ 1689/2025 και ISO 27001
+  - Microsoft Defender for Endpoint Plan 1 vs Plan 2 άδειες
+  - Microsoft 365 E5 Security μετονομασία Defender Suite
 tags:
   - Microsoft 365 Licensing
   - Microsoft Defender Suite
@@ -26,9 +27,9 @@ tags:
   - NIS2
   - ISO 27001
 author: "Dimosthenis Atteia"
-description: "The most practical post in the Microsoft Defender Demystified series. Which Microsoft 365 plan includes which Defender? When does Business Premium beat E3? When is E5 worth the jump? Three realistic scenarios, verified 2026 prices, a decision flow you can actually use."
-seoDescription: "Which Microsoft 365 plan includes which Defender? Business Premium vs E3 vs E5, three realistic scenarios, verified 2026 prices and a practical decision flow."
-summary: "Part 4 of the Microsoft Defender Demystified series. A licensing decoder across the 2026 Microsoft 365 lineup, including the new Defender Suite add-ons, the July 2026 pricing update, and three real-world scenarios (small business, mid-market, enterprise) for sizing the right purchase."
+description: "Ποιο πλάνο Microsoft 365 περιλαμβάνει ποιο Defender; Πότε το Business Premium κερδίζει το E3 και πότε αξίζει το E5; Τρία ρεαλιστικά σενάρια, τιμές καταλόγου 2026 και μια ροή απόφασης που χρησιμοποιείς."
+seoDescription: "Ποιο πλάνο Microsoft 365 περιλαμβάνει ποιο Defender; Business Premium, E3 και E5, τρία ρεαλιστικά σενάρια, τιμές 2026 και μια πρακτική ροή απόφασης."
+summary: "Μέρος 4 της σειράς Microsoft Defender Demystified. Οδηγός αδειοδότησης για τα πλάνα Microsoft 365 του 2026, μαζί με τα νέα add-ons Defender Suite, την ενημέρωση τιμών του Ιουλίου 2026 και τρία σενάρια (μικρή, μεσαία, μεγάλη επιχείρηση) για τη σωστή αγορά."
 categories: ["GRC & Compliance"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
@@ -36,193 +37,201 @@ TocOpen: false
 weight: 4
 cover:
   image: "/images/DefenderDemystified/MSDef.webp"
-  alt: "Which Microsoft Defender products come with Business Premium, E3, E5, and E7"
-  caption: "Microsoft Defender Demystified — Part 4"
+  alt: "Ποια προϊόντα Microsoft Defender περιλαμβάνονται στο Business Premium, στο E3, στο E5 και στο E7"
+  caption: "Microsoft Defender Demystified, Μέρος 4"
 ---
 
-> ⚠️ **Prices move.** Everything below is in **USD, list price, as of July 1, 2026**, when Microsoft's most recent pricing and packaging update took effect. Local pricing varies by region and currency. Always double-check on the official **[Microsoft 365 plans page](https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans)** and the **[Microsoft Defender for Cloud pricing page](https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing/)** before making a purchase decision.
+> ⚠️ **Οι τιμές αλλάζουν.** Όλα τα παρακάτω είναι σε **δολάρια ΗΠΑ, τιμή καταλόγου, όπως ίσχυαν την 1η Ιουλίου 2026**, όταν εφαρμόστηκε η πιο πρόσφατη ενημέρωση τιμών και πακέτων της Microsoft. Οι τοπικές τιμές διαφέρουν ανά περιοχή και νόμισμα. Έλεγξε πάντα την επίσημη **[σελίδα των πλάνων Microsoft 365](https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans)** και τη **[σελίδα τιμών του Microsoft Defender for Cloud](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** πριν αποφασίσεις μια αγορά.
 
-## The licensing conversation most of us dread
+## Η συζήτηση για τις άδειες που οι περισσότεροι αποφεύγουμε
 
-If you've done any time in Microsoft security, you'll have had this meeting. Finance or procurement wants a number. Leadership wants to know whether you're over-licensed or under-licensed. Someone says *"let's just buy E5, problem solved"* and someone else says *"E5 is overkill, we're a small shop"*. A third person mentions the "Defender Suite" that they heard about at a conference but nobody in the room is entirely sure what that includes.
+Αν έχεις δουλέψει λίγο στο Microsoft Security, έχεις κάνει αυτή τη σύσκεψη. Το λογιστήριο ή οι προμήθειες θέλουν έναν αριθμό. Η διοίκηση θέλει να μάθει αν ο οργανισμός έχει περισσότερες ή λιγότερες άδειες απ' όσες χρειάζεται. Κάποιος λέει *«ας πάρουμε E5 και τελειώσαμε»* και κάποιος άλλος *«το E5 είναι υπερβολή, είμαστε μικρή εταιρεία»*. Ένας τρίτος αναφέρει το «Defender Suite» που άκουσε σε ένα συνέδριο, αλλά κανείς στην αίθουσα δεν είναι σίγουρος τι περιλαμβάνει.
 
-Everyone wants clarity. Nobody wants to read the [Microsoft 365 Subscription Suites licensing guidance](https://www.microsoft.com/licensing/guidance/subscription-suites) end to end, which is fair, it's thorough and important but it isn't exactly written to help you make a Tuesday-morning decision.
+Όλοι θέλουν σαφήνεια. Κανείς δεν θέλει να διαβάσει από την αρχή μέχρι το τέλος το [Microsoft 365 Subscription Suites licensing guidance](https://www.microsoft.com/licensing/guidance/subscription-suites). Και δικαίως: είναι πλήρες και σημαντικό, αλλά δεν γράφτηκε για να πάρεις μια απόφαση ένα πρωινό Τρίτης.
 
-This post is the Tuesday-morning version. We'll cover what Microsoft 365 Business Premium, E3, and E5 actually give you from the Defender family, the newish Defender Suite add-ons that Microsoft launched in late 2025, three realistic organisation profiles, and a decision flow you can take into your next budget meeting.
+Αυτό το άρθρο είναι η έκδοση για το πρωινό της Τρίτης. Βλέπουμε τι σου δίνουν από την οικογένεια του Defender το Microsoft 365 Business Premium, το E3 και το E5, τα σχετικά νέα add-ons Defender Suite, τρία ρεαλιστικά προφίλ οργανισμών και μια ροή απόφασης που παίρνεις μαζί σου στην επόμενη σύσκεψη για τον προϋπολογισμό.
 
-## Two universes to keep separate in your head
+## Δύο κόσμοι που πρέπει να κρατάς χωριστά
 
-Before we look at any plan comparison, this distinction:
+Πριν από οποιαδήποτε σύγκριση πλάνων, αυτή η διάκριση:
 
-- **Microsoft Defender XDR** (everything we covered in **[Part 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)**, endpoint, email, identity, SaaS) is licensed **per user, per month** as part of a **Microsoft 365** plan.
-- **Microsoft Defender for Cloud** (Part 3 — Azure and multicloud workloads) is licensed **per resource, per month** as part of your **Azure consumption**.
+- Το **Microsoft Defender XDR** (ό,τι είδαμε στο **[Μέρος 2](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/)**: endpoint, email, ταυτότητα, SaaS) αδειοδοτείται **ανά χρήστη, ανά μήνα**, ως μέρος ενός πλάνου **Microsoft 365**.
+- Το **Microsoft Defender for Cloud** (**[Μέρος 3](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)**, workloads σε Azure και άλλα clouds) χρεώνεται **ανά πόρο, ανά μήνα**, ως μέρος της **κατανάλωσης στο Azure**.
 
-These show up on different invoices. Your Microsoft 365 E5 license gives you zero Microsoft Defender for Cloud entitlement, and vice versa. I've seen companies budget for "Defender" as a single line item and be unpleasantly surprised when the two different products turn up as two different costs.
+Εμφανίζονται σε διαφορετικά τιμολόγια. Η άδεια Microsoft 365 E5 δεν σου δίνει τίποτα από το Microsoft Defender for Cloud, και το αντίστροφο. Έχω δει εταιρείες να βάζουν στον προϋπολογισμό το «Defender» ως μία γραμμή και να εκπλήσσονται δυσάρεστα όταν τα δύο προϊόντα έρχονται ως δύο διαφορετικά κόστη.
 
-The rest of this post focuses on the per-user, Microsoft 365 side. We'll close with a quick note on the Azure side.
+Το υπόλοιπο άρθρο εστιάζει στην πλευρά του Microsoft 365, ανά χρήστη. Κλείνουμε με μια σύντομη σημείωση για την πλευρά του Azure.
 
-## The Microsoft 365 ladder, from least to most security
+## Η σκάλα του Microsoft 365, από τη λιγότερη στην περισσότερη ασφάλεια
 
-[![Comparison table of Defender for Endpoint, Office 365, Identity and Cloud Apps entitlements across Microsoft 365 Business Premium, E3, E5, and E3 + Defender Suite](/images/DefenderDemystified/m365-defender-entitlements-comparison.png)](/images/DefenderDemystified/m365-defender-entitlements-comparison.png)
-> 📷 **Image 1: Which Defender products come with which Microsoft 365 plan.**
+[![Πίνακας σύγκρισης των Defender for Endpoint, Office 365, Identity και Cloud Apps στα Microsoft 365 Business Premium, E3, E5 και E3 με Defender Suite](/images/DefenderDemystified/m365-defender-entitlements-comparison.png)](/images/DefenderDemystified/m365-defender-entitlements-comparison.png)
+> 📷 **Εικόνα 1: Ποια προϊόντα Defender έρχονται με ποιο πλάνο Microsoft 365.**
 
-Here's what each main Microsoft 365 plan currently includes from the Defender family, after the **July 2026 packaging update** that added meaningful security capabilities to lower-tier plans.
+Αυτό περιλαμβάνει σήμερα κάθε βασικό πλάνο Microsoft 365 από την οικογένεια του Defender, μετά την **ενημέρωση πακέτων του Ιουλίου 2026**, που πρόσθεσε ουσιαστικές δυνατότητες ασφάλειας στα χαμηλότερα πλάνα.
 
-### Microsoft 365 Business Basic: $7/user/month
+### Microsoft 365 Business Basic: 7 $ ανά χρήστη τον μήνα
 
-- **Safe Links URL checks** in Outlook (added in the 2026 packaging update)
+- **Έλεγχος URL με Safe Links** στο Outlook (προστέθηκε με την ενημέρωση του 2026).
 
-That's it from the Defender family. This plan is for lightweight collaboration accounts that barely need security tooling.
+Αυτό είναι όλο από την οικογένεια του Defender. Το πλάνο είναι για απλούς λογαριασμούς συνεργασίας που σχεδόν δεν χρειάζονται εργαλεία ασφάλειας.
 
-### Microsoft 365 Business Standard: $14/user/month
+### Microsoft 365 Business Standard: 14 $ ανά χρήστη τον μήνα
 
-- **Safe Links URL checks** in Outlook
+- **Έλεγχος URL με Safe Links** στο Outlook.
 
-Similar story. Business Standard is a productivity plan, not a security plan.
+Παρόμοια εικόνα. Το Business Standard είναι πλάνο παραγωγικότητας, όχι ασφάλειας.
 
-### Microsoft 365 Business Premium: $22/user/month
+### Microsoft 365 Business Premium: 22 $ ανά χρήστη τον μήνα
 
-This is the security sweet spot for anyone under 300 users. Worth flagging that **its price did not change** in the July 2026 update while E3 and E5 both went up, so the value gap has actually widened. What you get:
+Αυτό είναι το ιδανικό σημείο για την ασφάλεια σε οργανισμούς κάτω από 300 χρήστες. Αξίζει να σημειώσεις ότι **η τιμή του δεν άλλαξε** στην ενημέρωση του Ιουλίου 2026, ενώ το E3 και το E5 ακρίβυναν, οπότε η διαφορά στην αξία μεγάλωσε. Τι παίρνεις:
 
-- **Microsoft Defender for Business:** a streamlined Microsoft Defender for Endpoint experience with simpler setup and SMB-friendly defaults
-- **Microsoft Defender for Office 365 Plan 1:** Safe Links, Safe Attachments, anti-phishing
-- **Microsoft Entra ID P1:** Conditional Access, MFA enforcement
-- **Microsoft Intune Plan 1:** full mobile device and application management
+- **Microsoft Defender for Business:** μια απλοποιημένη εμπειρία Microsoft Defender for Endpoint, με ευκολότερη εγκατάσταση και ρυθμίσεις φιλικές για μικρές επιχειρήσεις.
+- **Microsoft Defender for Office 365 Plan 1:** Safe Links, Safe Attachments, anti-phishing.
+- **Microsoft Entra ID P1:** Conditional Access, επιβολή MFA.
+- **Microsoft Intune Plan 1:** πλήρη διαχείριση συσκευών και εφαρμογών.
 
-For a small or mid-sized business, one $22 license replaces what used to need a separate antivirus, an email security gateway, an MDM product, and an identity governance tool. The only real ceiling is the 300-user cap, once you cross that, you need to move to Enterprise plans.
+Για μια μικρή ή μεσαία επιχείρηση, μία άδεια των 22 $ αντικαθιστά ό,τι παλιά ήθελε ξεχωριστό antivirus, email security gateway, προϊόν MDM και εργαλείο διαχείρισης ταυτοτήτων. Το μόνο πραγματικό όριο είναι οι 300 χρήστες. Μόλις τους ξεπεράσεις, περνάς στα πλάνα Enterprise.
 
-Honestly, if someone asks me the single best per-dollar security decision in the entire Microsoft catalogue, this is my answer. It's not close.
+Ειλικρινά, αν κάποιος με ρωτήσει ποια επένδυση ασφάλειας δίνει την περισσότερη αξία για τα χρήματα σε όλο τον κατάλογο της Microsoft, αυτή είναι η απάντησή μου. Και με διαφορά.
 
-### Microsoft 365 E3: $39/user/month
+### Microsoft 365 E3: 39 $ ανά χρήστη τον μήνα
 
-E3 is the standard enterprise productivity plan. After the July 2026 packaging update, it includes noticeably more security than it used to:
+Το E3 είναι το βασικό πλάνο παραγωγικότητας για επιχειρήσεις. Μετά την ενημέρωση του Ιουλίου 2026 περιλαμβάνει αισθητά περισσότερη ασφάλεια απ' ό,τι παλιά:
 
-- **Microsoft Defender for Endpoint Plan 1:** preventive endpoint protection
-- **Microsoft Defender for Office 365 Plan 1:** *(newly added in 2026)*, Safe Links, Safe Attachments, anti-phishing
-- **Microsoft Entra ID P1:** Conditional Access, MFA, basic identity governance
-- **Microsoft Intune Plan 1 + Plan 2:** including Remote Help and Advanced Analytics
-- **Windows 11 Enterprise**
+- **Microsoft Defender for Endpoint Plan 1:** προληπτική προστασία endpoints.
+- **Microsoft Defender for Office 365 Plan 1** *(νέο από το 2026)*: Safe Links, Safe Attachments, anti-phishing.
+- **Microsoft Entra ID P1:** Conditional Access, MFA, βασική διακυβέρνηση ταυτοτήτων.
+- **Microsoft Intune Plan 1 και Plan 2:** μαζί με Remote Help και Advanced Analytics.
+- **Windows 11 Enterprise.**
 
-E3 works if you want enterprise productivity plus *basic* security, with the option to bolt on advanced security separately.
+Το E3 ταιριάζει αν θέλεις παραγωγικότητα επιπέδου επιχείρησης με *βασική* ασφάλεια, και την επιλογή να προσθέσεις προχωρημένη ασφάλεια χωριστά.
 
-### Microsoft 365 E5: $60/user/month
+### Microsoft 365 E5: 60 $ ανά χρήστη τον μήνα
 
-E5 is the full enterprise security stack in a single per-user SKU. Everything in E3, plus:
+Το E5 είναι η πλήρης στοίβα ασφάλειας σε ένα SKU ανά χρήστη. Ό,τι έχει το E3, και επιπλέον:
 
-- **Microsoft Defender for Endpoint Plan 2:** full EDR, automated investigation and response, vulnerability management
-- **Microsoft Defender for Office 365 Plan 2:** adds Attack Simulation Training and Threat Explorer
-- **Microsoft Defender for Identity:** on-premises AD and Microsoft Entra ID protection
-- **Microsoft Defender for Cloud Apps:** the CASB for SaaS visibility and control
-- **Microsoft Entra ID P2:** Privileged Identity Management, Identity Protection
-- **Microsoft Sentinel:** integration, unified into the Defender portal
-- **Microsoft Security Copilot:** *(newly included at no extra cost in 2026)*
-- **Microsoft Purview:** advanced compliance, eDiscovery Premium, Insider Risk Management
-- **Microsoft Cloud PKI:** *(added in 2026)*
-- **Microsoft Power BI Pro**
+- **Microsoft Defender for Endpoint Plan 2:** πλήρες EDR, αυτοματοποιημένη διερεύνηση και απόκριση, διαχείριση ευπαθειών.
+- **Microsoft Defender for Office 365 Plan 2:** προσθέτει Attack simulation training και Threat Explorer.
+- **Microsoft Defender for Identity:** προστασία για το on-premises AD και το Microsoft Entra ID.
+- **Microsoft Defender for Cloud Apps:** το CASB για ορατότητα και έλεγχο στις εφαρμογές SaaS.
+- **Microsoft Entra ID P2:** Privileged Identity Management, Identity Protection.
+- **Microsoft Sentinel:** όχι το ίδιο το SIEM, αλλά δωρεάν εισαγωγή ορισμένων δεδομένων του Microsoft 365 (δες τη σημείωση παρακάτω).
+- **Microsoft Security Copilot** *(περιλαμβάνεται από τον Νοέμβριο του 2025, με μηνιαίο όριο 400 SCUs ανά 1.000 άδειες)*.
+- **Microsoft Purview:** προχωρημένη συμμόρφωση, eDiscovery (Premium), Insider Risk Management.
+- **Microsoft Cloud PKI** *(προστέθηκε το 2026)*.
+- **Microsoft Power BI Pro.**
 
-E5 is for organisations that want a unified security and compliance stack from one vendor rather than stitching together point products. The $21 gap over E3 sounds like a lot until you price out what it would cost you separately for a SIEM, an EDR, a CASB, identity protection, Power BI, and now Security Copilot. Those numbers add up fast.
+Το E5 είναι για οργανισμούς που θέλουν ενιαία στοίβα ασφάλειας και συμμόρφωσης από έναν κατασκευαστή, αντί να ενώνουν μεμονωμένα προϊόντα. Η διαφορά των 21 $ από το E3 ακούγεται πολλή, μέχρι να κοστολογήσεις χωριστά ένα SIEM, ένα EDR, ένα CASB, προστασία ταυτοτήτων, Power BI και τώρα Security Copilot. Τα ποσά ανεβαίνουν γρήγορα.
 
-### Microsoft 365 E7: $99/user/month *(new in 2026)*
+Πρόσεξε μια λεπτομέρεια για το Sentinel: η άδεια E5 δίνει δωρεάν εισαγωγή ορισμένων δεδομένων του Microsoft 365, αλλά το Microsoft Sentinel χρεώνεται κατά βάση με τον όγκο των δεδομένων που συλλέγεις στο Azure. Λογάριασέ το χωριστά.
 
-The new top tier. Everything in E5 plus **Microsoft 365 Copilot**, **Microsoft Entra Suite**, and **Microsoft Agent 365**. This one is for AI-forward enterprises and isn't primarily a security upgrade, E5 already gives you the full Defender story.
+### Microsoft 365 E7: 99 $ ανά χρήστη τον μήνα *(νέο το 2026)*
 
-## The 2026 Defender Suite add-ons, actually useful flexibility
+Το νέο κορυφαίο πλάνο. Ό,τι έχει το E5, και επιπλέον **Microsoft 365 Copilot**, **Microsoft Entra Suite** και **Microsoft Agent 365**. Είναι για επιχειρήσεις με έντονη χρήση AI και δεν είναι κυρίως αναβάθμιση ασφάλειας. Το E5 σου δίνει ήδη ολόκληρο το Defender.
 
-Until late 2025, if you wanted E5-level Defender capabilities but were stuck on E3 or Business Premium, your only realistic option was the full upgrade. That changed. Microsoft launched **standalone Defender Suite add-ons** that let you layer enterprise-grade security onto lower-tier plans without committing to E5 across the board.
+## Τα add-ons Defender Suite: ευελιξία που πραγματικά χρησιμεύει
 
-- **Microsoft Defender Suite:** *(formerly "Microsoft 365 E5 Security")*, adds to **Microsoft 365 E3** the missing pieces: Defender for Endpoint Plan 2, Defender for Office 365 Plan 2, Defender for Identity, Defender for Cloud Apps, and Microsoft Entra ID P2.
-- **Microsoft Defender Suite for Business Premium:** the same idea for Business Premium customers. (Separately, since October 2025, Business Premium is no longer a required prerequisite to purchase the standard Defender Suite add-on on top of E3.)
+Για το E3 υπήρχε εδώ και χρόνια το add-on Microsoft 365 E5 Security, που από την 1η Οκτωβρίου 2025 λέγεται **Microsoft Defender Suite**. Το πραγματικά νέο είναι ότι από το φθινόπωρο του 2025 υπάρχει αντίστοιχο add-on και για το Business Premium. Έτσι προσθέτεις ασφάλεια επιπέδου E5 σε χαμηλότερα πλάνα, χωρίς να δεσμευτείς σε E5 για όλους.
 
-One small but important operational note from the Microsoft licensing docs: a tenant that ends up with both **Microsoft Defender for Business** (from Business Premium) and **Defender for Endpoint Plan 2** (from the Defender Suite add-on) **defaults to the Defender for Business experience**. Plan accordingly if you're mixing.
+- **Microsoft Defender Suite** *(πρώην «Microsoft 365 E5 Security»)*: προσθέτει στο **Microsoft 365 E3** ό,τι λείπει: Defender for Endpoint Plan 2, Defender for Office 365 Plan 2, Defender for Identity, Defender for Cloud Apps και Microsoft Entra ID P2.
+- **Microsoft Defender Suite for Business Premium:** η ίδια ιδέα για πελάτες Business Premium. Πρόσεξε ότι από τον Μάιο του 2025 το Business Premium δεν είναι επιλέξιμη προϋπόθεση για το κανονικό Microsoft Defender Suite. Για πελάτες Business Premium το σωστό add-on είναι το Defender Suite for Business Premium.
 
-[![Official Microsoft 365 Business plan pricing: Basic $7, Standard $14, Premium $22 per user per month, with Copilot-bundled tier prices shown alongside](/images/DefenderDemystified/m365-business-plans-official-pricing.png)](/images/DefenderDemystified/m365-business-plans-official-pricing.png)
-> 📷 **Image 2: Official Microsoft 365 Business pricing, plain tier vs Copilot-bundled tier.**
+Μια μικρή αλλά σημαντική λειτουργική σημείωση από την τεκμηρίωση αδειοδότησης της Microsoft: ένα tenant που καταλήγει να έχει και **Microsoft Defender for Business** (από το Business Premium) και **Defender for Endpoint Plan 2** (από το add-on Defender Suite) **χρησιμοποιεί από προεπιλογή την εμπειρία του Defender for Business**. Σχεδίασε ανάλογα αν συνδυάζεις.
 
-## Three realistic scenarios
+[![Οι επίσημες τιμές των πλάνων Microsoft 365 Business: Basic 7 $, Standard 14 $, Premium 22 $ ανά χρήστη τον μήνα, με τις τιμές των εκδόσεων με Copilot δίπλα](/images/DefenderDemystified/m365-business-plans-official-pricing.png)](/images/DefenderDemystified/m365-business-plans-official-pricing.png)
+> 📷 **Εικόνα 2: Οι επίσημες τιμές του Microsoft 365 Business, το απλό πλάνο και η έκδοση με Copilot.**
 
-### Scenario 1: the small firm (50 people)
+## Τρία ρεαλιστικά σενάρια
 
-**Profile:** 50 knowledge workers, no on-premises infrastructure, hybrid work, GDPR obligations, no dedicated security team.
+### Σενάριο 1: η μικρή εταιρεία (50 άτομα)
 
-**Recommendation:** **Microsoft 365 Business Premium**. That's the whole answer.
+**Προφίλ:** 50 υπάλληλοι γραφείου, καμία on-premises υποδομή, υβριδική εργασία, υποχρεώσεις από τον **[GDPR](/gdpr/)**, χωρίς ειδική ομάδα ασφάλειας.
 
-For around $1,100 a month total, you get genuinely strong security, endpoint protection, email protection, Conditional Access, MFA, MDM. You won't outgrow it until you hit 300 users. For any professional asked to secure a small firm on a realistic budget, this is the cleanest recommendation you can make.
+**Πρόταση:** **Microsoft 365 Business Premium**. Αυτή είναι όλη η απάντηση.
 
-If you also handle highly sensitive data (legal, healthcare, financial advisory), consider adding the **Microsoft Defender Suite for Business Premium** add-on. You get the full enterprise Defender stack at SMB-friendly pricing.
+Με περίπου 1.100 $ τον μήνα συνολικά, παίρνεις πραγματικά ισχυρή ασφάλεια: προστασία endpoints, προστασία email, Conditional Access, MFA, MDM. Δεν θα το ξεπεράσεις μέχρι να φτάσεις τους 300 χρήστες. Για όποιον του ζητούν να ασφαλίσει μια μικρή εταιρεία με ρεαλιστικό προϋπολογισμό, είναι η πιο καθαρή πρόταση που μπορεί να κάνει.
 
-### Scenario 2: the mid-market organisation (500 people)
+Αν διαχειρίζεσαι και πολύ ευαίσθητα δεδομένα (νομικά, υγείας, χρηματοοικονομικών συμβουλών), σκέψου να προσθέσεις το add-on **Microsoft Defender Suite for Business Premium**. Παίρνεις ολόκληρη τη στοίβα του Defender με τιμή φιλική για μικρές επιχειρήσεις.
 
-**Profile:** 500 people, a mix of office and shop-floor workers, on-premises Active Directory, growing Microsoft Entra ID footprint, ISO 27001 in scope, NIS2 in scope, a small but real security team.
+### Σενάριο 2: ο μεσαίος οργανισμός (500 άτομα)
 
-**Recommendation:** **Microsoft 365 E3 + Microsoft Defender Suite add-on** for the office workers, **Microsoft 365 F3** for the shop-floor workers.
+**Προφίλ:** 500 άτομα, μείγμα υπαλλήλων γραφείου και εργαζομένων στην παραγωγή, on-premises Active Directory, Microsoft Entra ID που μεγαλώνει, ISO 27001 στο πεδίο εφαρμογής, βασική ή σημαντική οντότητα του ν. 5160/2024 με υποχρεώσεις από την **[ΚΥΑ 1689/2025](/kya-1689-2025/)**, μικρή αλλά πραγματική ομάδα ασφάλειας.
 
-Why this beats standardising on E5:
+**Πρόταση:** **Microsoft 365 E3 με το add-on Microsoft Defender Suite** για τους υπαλλήλους γραφείου, **Microsoft 365 F3** για τους εργαζόμενους στην παραγωγή.
 
-- Shop-floor users (say 200 of the 500) don't need full E3 or E5. F3 at $10/user/month is the right fit.
-- The 300 office knowledge workers get E3 ($39) plus the Defender Suite add-on, which gives them E5-equivalent security at a lower blended cost than E5 across the board.
-- If you don't have 24x7 SOC coverage in-house, the **Microsoft Defender Experts Suite** (generally available from January 2026) layers managed XDR services on top.
+Γιατί αυτό είναι καλύτερο από E5 για όλους:
 
-This pattern (**right-sizing licenses instead of uniformly deploying E5**) saves mid-market organisations 15–30% in many engagements I've seen. It's worth the thirty minutes to actually do the analysis.
+- Οι εργαζόμενοι στην παραγωγή (ας πούμε 200 από τους 500) δεν χρειάζονται πλήρες E3 ή E5. Το F3 με 10 $ ανά χρήστη τον μήνα είναι το σωστό.
+- Οι 300 υπάλληλοι γραφείου παίρνουν E3 (39 $) με το add-on Defender Suite, που τους δίνει ασφάλεια ισοδύναμη με το E5 με χαμηλότερο συνολικό κόστος απ' ό,τι E5 για όλους.
+- Αν δεν έχεις SOC 24x7 εσωτερικά, το **Microsoft Defender Experts Suite** προσθέτει managed υπηρεσίες XDR από πάνω.
 
-### Scenario 3: the enterprise (5,000 people, multicloud)
+Αυτή η προσέγγιση (**άδεια ανάλογα με τον ρόλο, αντί για E5 σε όλους**) εξοικονομεί αισθητό ποσό στους μεσαίους οργανισμούς, στα έργα που έχω δει από 15% έως 30%. Αξίζει τα τριάντα λεπτά για να κάνεις την ανάλυση.
 
-**Profile:** 5,000 people, multiple business units, hybrid AD plus Microsoft Entra ID, full SOC team, compliance obligations spanning ISO 27001, NIS2, GDPR, and DORA, workloads running in both Microsoft Azure and Amazon Web Services.
+### Σενάριο 3: η μεγάλη επιχείρηση (5.000 άτομα, multicloud)
 
-**Recommendation:** a **tiered mix**:
+**Προφίλ:** 5.000 άτομα, πολλές επιχειρηματικές μονάδες, υβριδικό AD με Microsoft Entra ID, πλήρης ομάδα SOC, υποχρεώσεις από ISO 27001, ΚΥΑ 1689/2025, GDPR και DORA, workloads τόσο στο Microsoft Azure όσο και στο Amazon Web Services.
 
-- **E5** for executives, legal, finance, IT, and the security team (roughly 5–10% of users) to unlock Privileged Identity Management, Microsoft Security Copilot, eDiscovery Premium
-- **E3 + Defender Suite add-on** for the majority (~80%) of standard knowledge workers
-- **F1 / F3** for frontline workers
-- **Microsoft Defender for Cloud** plans (Defender CSPM plus Defender for Servers Plan 2 plus Defender for Storage, and others as needed) on the Azure side
-- **Microsoft Sentinel** as the SIEM, unified into the Defender portal
+**Πρόταση:** ένα **κλιμακωτό μείγμα**:
 
-The mistake a lot of enterprises make is **uniform E5 deployment** without actually checking feature usage. Industry data suggests around 38% of E5 licenses are oversized for their actual users. That's a real recovery opportunity whenever someone does the analysis properly.
+- **E5** για τη διοίκηση, το νομικό, το οικονομικό, το IT και την ομάδα ασφάλειας (περίπου 5 έως 10% των χρηστών), για Microsoft Security Copilot, eDiscovery (Premium) και τις υπόλοιπες δυνατότητες του Microsoft Purview. Το Privileged Identity Management το έχουν ήδη και οι χρήστες με Defender Suite, μέσω του Entra ID P2.
+- **E3 με το add-on Defender Suite** για την πλειονότητα (περίπου 80%) των υπαλλήλων γραφείου.
+- **F1 ή F3** για τους εργαζόμενους πρώτης γραμμής.
+- Πλάνα του **Microsoft Defender for Cloud** (Defender CSPM, Defender for Servers Plan 2, Defender for Storage και άλλα όπου χρειάζεται) για την πλευρά του Azure.
+- **Microsoft Sentinel** ως SIEM, μέσα στο ενιαίο Defender portal.
 
-## What about Microsoft Defender for Cloud pricing?
+Το λάθος που κάνουν πολλές μεγάλες επιχειρήσεις είναι το **E5 για όλους**, χωρίς να ελέγξουν ποιες δυνατότητες χρησιμοποιούνται πραγματικά. Συχνά ένα σημαντικό μέρος των αδειών E5 πληρώνεται για δυνατότητες που κανείς δεν χρησιμοποιεί, και αυτό είναι πραγματική ευκαιρία εξοικονόμησης όποτε κάποιος κάνει σωστά την ανάλυση.
 
-Quick recap from **[Part 3](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)**:
+## Και το κόστος του Microsoft Defender for Cloud;
 
-- **Foundational CSPM:** free for any onboarded Azure subscription, AWS account, or GCP project
-- **Defender CSPM:** (paid tier) around $5 per billable resource per month
-- **CWPP plans:** (Servers, Storage, Containers, Databases, and the rest) each with its own per-resource pricing
+Μια γρήγορη υπενθύμιση από το **[Μέρος 3](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)**:
 
-Use the **[official calculator](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** before enabling. Costs scale with your estate, and large estates can add up quickly.
+- **Foundational CSPM:** δωρεάν για κάθε Azure subscription, AWS account ή GCP project που συνδέεις.
+- **Defender CSPM:** (επί πληρωμή) περίπου 5 $ ανά πόρο που χρεώνεται, τον μήνα.
+- **Πλάνα CWPP:** (Servers, Storage, Containers, Databases και τα υπόλοιπα) το καθένα με τη δική του τιμή ανά πόρο.
 
-## A decision flow you can actually use
+Χρησιμοποίησε τον **[επίσημο τιμοκατάλογο](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** πριν ενεργοποιήσεις οτιδήποτε. Το κόστος μεγαλώνει μαζί με την υποδομή, και σε μεγάλα περιβάλλοντα ανεβαίνει γρήγορα.
 
-If you take one thing from this post, take this:
+## Μια ροή απόφασης που χρησιμοποιείς στην πράξη
 
-- **Under 300 users, no special compliance burden?** → Microsoft 365 Business Premium
-- **Under 300 users, regulated industry or sensitive data?** → Business Premium + Defender Suite for Business Premium add-on
-- **300+ users, basic security needs, flexibility valued?** → E3 + Defender Suite add-on for security-tier users
-- **300+ users, want everything in one SKU?** → E5 (but right-size — don't deploy uniformly)
-- **Frontline workers in any of the above?** → F1 / F3 + appropriate F-series security add-ons
-- **Any Azure / AWS / GCP workloads?** → Foundational CSPM turned on today (free), then evaluate paid plans
+Αν κρατήσεις ένα πράγμα από αυτό το άρθρο, κράτα αυτό:
 
-[![Decision flowchart for organisations under 300 users choosing between Business Premium and Business Premium with the Defender Suite add-on](/images/DefenderDemystified/m365-licensing-decision-small-business.png)](/images/DefenderDemystified/m365-licensing-decision-small-business.png)
-> 📷 **Image 3a: Under 300 users: choosing between Business Premium and Business Premium + Defender Suite.**
+- **Κάτω από 300 χρήστες, χωρίς ιδιαίτερο βάρος συμμόρφωσης;** → Microsoft 365 Business Premium.
+- **Κάτω από 300 χρήστες, ρυθμιζόμενος κλάδος ή ευαίσθητα δεδομένα;** → Business Premium με το add-on Defender Suite for Business Premium.
+- **Πάνω από 300 χρήστες, βασικές ανάγκες ασφάλειας, θέλεις ευελιξία;** → E3 με το add-on Defender Suite για τους χρήστες που το χρειάζονται.
+- **Πάνω από 300 χρήστες, θέλεις τα πάντα σε ένα SKU;** → E5, αλλά με άδεια ανάλογα με τον ρόλο, όχι σε όλους.
+- **Εργαζόμενοι πρώτης γραμμής σε οποιοδήποτε από τα παραπάνω;** → F1 ή F3 με τα κατάλληλα add-ons ασφάλειας.
+- **Έχεις workloads σε Azure, AWS ή GCP;** → Ενεργοποίησε σήμερα το Foundational CSPM (δωρεάν) και μετά αξιολόγησε τα επί πληρωμή πλάνα.
 
-[![Decision flowchart for organisations with 300 or more users choosing between E3 with Defender Suite and right-sized E5](/images/DefenderDemystified/m365-licensing-decision-enterprise.png)](/images/DefenderDemystified/m365-licensing-decision-enterprise.png)
-> 📷 **Image 3b: 300+ users: choosing between E3 + Defender Suite and right-sized E5.**
+[![Διάγραμμα απόφασης για οργανισμούς κάτω από 300 χρήστες: Business Premium ή Business Premium με το add-on Defender Suite](/images/DefenderDemystified/m365-licensing-decision-small-business.png)](/images/DefenderDemystified/m365-licensing-decision-small-business.png)
+> 📷 **Εικόνα 3α: Κάτω από 300 χρήστες: Business Premium ή Business Premium με Defender Suite.**
 
-Frontline workers in either scenario → F1/F3 + appropriate add-ons. Azure/AWS/GCP workloads → enable the free Foundational CSPM today, then evaluate paid plans.
+[![Διάγραμμα απόφασης για οργανισμούς με 300 ή περισσότερους χρήστες: E3 με Defender Suite ή E5 ανάλογα με τον ρόλο](/images/DefenderDemystified/m365-licensing-decision-enterprise.png)](/images/DefenderDemystified/m365-licensing-decision-enterprise.png)
+> 📷 **Εικόνα 3β: Πάνω από 300 χρήστες: E3 με Defender Suite ή E5 ανάλογα με τον ρόλο.**
 
-## What's next
+Εργαζόμενοι πρώτης γραμμής σε οποιοδήποτε σενάριο → F1 ή F3 με τα κατάλληλα add-ons. Workloads σε Azure, AWS ή GCP → ενεργοποίησε σήμερα το δωρεάν Foundational CSPM και μετά αξιολόγησε τα επί πληρωμή πλάνα.
 
-In **Part 5**, the final post of this series, we open the **Microsoft Defender portal** at `security.microsoft.com` together and go on a guided tour. Where to find each workload, where Microsoft Secure Score now lives, how to set up the right roles, and a practical "first hour in the portal" agenda you can follow today.
+## Ποια άδεια χρειάζεσαι για ποια απαίτηση
 
-> 🔗 **Related deep-dive series:** Once you've chosen your licensing, the next question is what to do with it. [How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/) walks through turning Microsoft Defender telemetry into an award-winning compliance programme, end to end.
+Η άδεια είναι και θέμα συμμόρφωσης. Στους οδηγούς για την **[ΚΥΑ 1689/2025](/kya-1689-2025/)**, την **[Οδηγία NIS2](/nis2/)**, το **[ISO/IEC 27001](/iso-27001/)** και τον **[GDPR](/gdpr/)**, όπου η απαίτηση χρειάζεται άδεια πέρα από τη βασική, υπάρχει γραμμή «Επιπλέον άδεια» που τη λέει ρητά. Το checklist σε Excel κάθε οδηγού έχει την ίδια στήλη, οπότε βλέπεις με μια ματιά πού σε φτάνει η άδεια που έχεις και πού όχι.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+## Τι ακολουθεί
 
-## Microsoft Learn resources
+Στο **[Μέρος 5](/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/)**, το τελευταίο της σειράς, ανοίγουμε μαζί το **Microsoft Defender portal** στο `security.microsoft.com` για μια ξενάγηση. Πού βρίσκεται κάθε workload, πού ζει πλέον το Microsoft Secure Score, πώς ρυθμίζεις τους σωστούς ρόλους, και ένα πρακτικό πρόγραμμα για την «πρώτη ώρα στο portal» που ακολουθείς από σήμερα.
 
-- [Microsoft 365 plans comparison (official)](https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing)
+> 🔗 **Διάλεξες άδεια. Και τώρα;** Η επόμενη ερώτηση είναι τι κάνεις με αυτήν. Η σειρά **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)** δείχνει πώς το telemetry του Microsoft Defender έγινε ένα πρόγραμμα συμμόρφωσης που βραβεύτηκε, από την αρχή μέχρι το τέλος.
+
+{{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained" >}}
+> 🔗 **Έχεις EMS στα συμβόλαιά σου;** Δες **[Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσετε](/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/)**.
+{{< /if-published >}}
+
+Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
+
+## Πηγές
+
+- [Σύγκριση πλάνων Microsoft 365 (επίσημη)](https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing)
 - [Microsoft 365 Subscription Suites licensing guidance](https://www.microsoft.com/licensing/guidance/subscription-suites)
 - [Microsoft 365 service descriptions](https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-service-descriptions-technet-library)
-- [Microsoft Defender for Endpoint plans comparison](https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1-2)
-- [Microsoft Defender for Office 365 plan comparison](https://learn.microsoft.com/en-us/defender-office-365/mdo-security-comparison)
-- [Microsoft Defender for Cloud pricing](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)
+- [Σύγκριση πλάνων Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1-2)
+- [Σύγκριση πλάνων Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-security-comparison)
+- [Τιμές του Microsoft Defender for Cloud](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)
 - [Microsoft Defender Experts Suite](https://learn.microsoft.com/en-us/defender-xdr/dex-xdr-overview)
-
----

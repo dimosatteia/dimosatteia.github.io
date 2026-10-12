@@ -217,7 +217,7 @@ ShowWordCount: true
 
 Στο **[Μέρος 2](/posts/secure-score-grc-part-2-ecosystem/)** βγαίνουμε από το ένα recommendation και κοιτάμε πού ακριβώς βρίσκεται το Microsoft Secure Score μέσα στο Microsoft Defender portal και, κυρίως, *ποια προϊόντα το τροφοδοτούν*: Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps και Microsoft Purview. Θα μάθεις και πώς εντοπίζεις από ποιο προϊόν προέρχεται ένας συγκεκριμένος πόντος.
 
-> 🔗 **Θέλεις πρώτα μια περιήγηση στην οικογένεια Microsoft Defender;** Ξεκίνα από το **[Microsoft Defender Part 1: All Products, Which One Do You Need](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** (στα αγγλικά), το πρώτο άρθρο της σειράς Defender Demystified.
+> 🔗 **Θέλεις πρώτα μια περιήγηση στην οικογένεια Microsoft Defender;** Ξεκίνα από το **[Microsoft Defender Μέρος 1: Όλα τα προϊόντα και ποιο χρειάζεσαι](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)**, το πρώτο άρθρο της σειράς Defender Demystified.
 
 > 🔗 **Θέλεις το Secure Score από την οπτική της συμμόρφωσης;** Ο **[Πρακτικός Οδηγός για τον ΥΑΣΠΕ](/posts/secure-score-defender-praktikos-odigos/)** δείχνει πώς ιεραρχείς τα recommendations για τον ν. 5160/2024. Οι καταστάσεις To address, Planned και Risk accepted που είδαμε εδώ είναι το πλάνο αντιμετώπισης κινδύνων που ζητά η απαίτηση **[5.1.γ](/kya-1689-2025/#5-1-γ)** του **[οδηγού της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Τα ίδια recommendations αντιστοιχούν σε controls του **[ISO/IEC 27001](/iso-27001/)**, όπως το A.8.9 (Configuration management).
 

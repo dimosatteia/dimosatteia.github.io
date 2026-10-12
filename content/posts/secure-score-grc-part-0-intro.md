@@ -141,25 +141,25 @@ cover:
 
 **Πρώτα τα θεμέλια: η οικογένεια του Microsoft Defender**
 
-Αν τα ονόματα Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity ή Microsoft Defender for Cloud Apps δεν σου λένε ακόμα πολλά, ξεκίνα από τη συνοδευτική σειρά [Microsoft Defender Demystified](/series/microsoft-defender-demystified/), που καλύπτει ολόκληρο το οικοσύστημα του Microsoft Defender από άκρη σε άκρη (τα άρθρα της είναι στα αγγλικά):
+Αν τα ονόματα Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Identity ή Microsoft Defender for Cloud Apps δεν σου λένε ακόμα πολλά, ξεκίνα από τη συνοδευτική σειρά [Microsoft Defender Demystified](/series/microsoft-defender-demystified/), που καλύπτει ολόκληρο το οικοσύστημα του Microsoft Defender από άκρη σε άκρη:
 
-1. [**Microsoft Defender Part 1: All Products, Which One Do You Need**](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/): ο χάρτης όλης της οικογένειας σε ένα άρθρο.
-2. [**Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close**](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/): τι προστατεύει κάθε workload.
-3. [**Microsoft Defender Part 3: Microsoft Defender for Cloud**](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/): η ιστορία του Azure και του multicloud.
-4. [**Microsoft Defender Part 4: The Licensing Decoder**](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/): το licensing σε Microsoft 365 και Enterprise Mobility + Security.
-5. [**Microsoft Defender Part 5: A Walk Through the Microsoft Defender Portal**](/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/): πού βρίσκεται το καθετί.
+1. [**Microsoft Defender Μέρος 1: Όλα τα προϊόντα και ποιο χρειάζεσαι**](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/): ο χάρτης όλης της οικογένειας σε ένα άρθρο.
+2. [**Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά**](/posts/defender-demystified-series/defender-demystified-part-2-four-workloads/): τι προστατεύει κάθε workload.
+3. [**Microsoft Defender Μέρος 3: Microsoft Defender for Cloud (αυτό που είναι πραγματικά διαφορετικό)**](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/): η ιστορία του Azure και του multicloud.
+4. [**Microsoft Defender Μέρος 4: Οδηγός αδειοδότησης**](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/): το licensing σε Microsoft 365 και Enterprise Mobility + Security.
+5. [**Microsoft Defender Μέρος 5: Περιήγηση στο Microsoft Defender portal**](/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/): πού βρίσκεται το καθετί.
 
 Θέλεις να μπεις πιο βαθιά σε ένα συγκεκριμένο workload; Η σειρά [**Microsoft Defender Up Close**](/series/microsoft-defender-up-close/) ξεκίνησε με το [Microsoft Defender AIR](/posts/microsoft-defender-air-automated-investigation-response/). Έρχονται σύντομα πρακτικά walkthroughs σε επίπεδο παραμετροποίησης για τα Microsoft Defender for Endpoint, Office 365, Identity και Cloud Apps, καθώς και ένα άρθρο για το Enterprise Mobility + Security, το πακέτο ασφάλειας που πολλοί οργανισμοί έχουν ήδη και δεν αξιοποιούν πλήρως.
 
 **Μετά, η ίδια η σειρά του Secure Score**
 
-Μόλις το τοπίο του Microsoft Defender σου γίνει οικείο, γύρνα εδώ. Θα έχεις πλέον το πλαίσιο για να παρακολουθήσεις τι ακριβώς μετράει το Microsoft Secure Score. Τα τρία μέρη είναι στα αγγλικά:
+Μόλις το τοπίο του Microsoft Defender σου γίνει οικείο, γύρνα εδώ. Θα έχεις πλέον το πλαίσιο για να παρακολουθήσεις τι ακριβώς μετράει το Microsoft Secure Score. Τα τρία μέρη:
 
 1. [**Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation**](/posts/secure-score-grc-part-1-anatomy/): κάθε πεδίο ενός recommendation του Microsoft Secure Score, εξηγημένο όπως θα το εξηγούσε ένας φιλικός συνάδελφος. Γραμμένο για όσους ανοίγουν το score για πρώτη φορά.
 2. [**Microsoft Secure Score Μέρος 2: Μέσα στο οικοσύστημα του Defender**](/posts/secure-score-grc-part-2-ecosystem/): πώς λειτουργεί πραγματικά η βαθμολογία, ποια προϊόντα της Microsoft την τροφοδοτούν και πώς ακολουθείς έναν βαθμό πίσω στην πηγή του.
 3. [**Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001**](/posts/secure-score-grc-part-3-operations/): πώς ιεραρχείς τα recommendations, πώς στήνεις ροή αποκατάστασης, πώς αντιστοιχίζεις controls σε ISO 27001 και NIS2, πώς συλλέγεις audit evidence και πώς αναφέρεις στο board.
 
-Αν προτιμάς να ξεκινήσεις στα ελληνικά, ο [**Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2**](/posts/secure-score-defender-praktikos-odigos/) καλύπτει το Secure Score από την οπτική του Έλληνα Υπευθύνου Ασφάλειας.
+Αν προτιμάς να ξεκινήσεις από την οπτική της συμμόρφωσης, ο [**Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2**](/posts/secure-score-defender-praktikos-odigos/) καλύπτει το Secure Score από την οπτική του Έλληνα Υπευθύνου Ασφάλειας.
 
 **Γιατί να διαβάσεις πρώτα τα Μέρη 1, 2 και 3**
 

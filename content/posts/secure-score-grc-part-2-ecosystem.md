@@ -66,7 +66,7 @@ ShowWordCount: true
 
 ## Η οικογένεια Microsoft Defender σε μία παράγραφο
 
-Η Microsoft ομαδοποιεί τα προϊόντα ασφάλειάς της σε μια οικογένεια με το όνομα **Microsoft Defender**, με ομπρέλα το **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)**. Κάτω από την ομπρέλα υπάρχουν αρκετά workloads: το Microsoft Defender for Endpoint (συσκευές), το Microsoft Defender for Office 365 (email και Teams), το Microsoft Defender for Identity (Active Directory) και το Microsoft Defender for Cloud Apps (εφαρμογές SaaS). Δίπλα τους υπάρχει και το Microsoft Defender for Cloud, για τα workloads του Azure και άλλων clouds. Για μια πλήρη περιήγηση, δες τη σειρά **[Microsoft Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** (στα αγγλικά), ή τον **[πρακτικό οδηγό για την οικογένεια Microsoft Defender](/posts/microsoft-defender-oikogeneia-praktikos-odigos/)** στα Ελληνικά.
+Η Microsoft ομαδοποιεί τα προϊόντα ασφάλειάς της σε μια οικογένεια με το όνομα **Microsoft Defender**, με ομπρέλα το **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)**. Κάτω από την ομπρέλα υπάρχουν αρκετά workloads: το Microsoft Defender for Endpoint (συσκευές), το Microsoft Defender for Office 365 (email και Teams), το Microsoft Defender for Identity (Active Directory) και το Microsoft Defender for Cloud Apps (εφαρμογές SaaS). Δίπλα τους υπάρχει και το Microsoft Defender for Cloud, για τα workloads του Azure και άλλων clouds. Για μια πλήρη περιήγηση, δες τη σειρά **[Microsoft Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)**, ή τον πιο σύντομο **[πρακτικό οδηγό για την οικογένεια Microsoft Defender](/posts/microsoft-defender-oikogeneia-praktikos-odigos/)**.
 
 Το Microsoft Secure Score διαβάζει από τα περισσότερα από αυτά.
 
@@ -174,7 +174,7 @@ ShowWordCount: true
 
 Γι' αυτό δύο οργανισμοί που συγκρίνουν βαθμολογίες μπορεί να μπερδευτούν. Δεν βαθμολογούνται πάνω στο ίδιο σύνολο ερωτήσεων: ο καθένας βλέπει τα recommendations των προϊόντων που έχει. Η Microsoft γράφει πάντως ότι η απόλυτη στάση ασφάλειας που μετρά το Secure Score δεν αλλάζει με τις άδειες που έχεις για ένα προϊόν.
 
-Για το τι περιλαμβάνει κάθε άδεια, δες το **[Microsoft Defender Part 4: The Licensing Decoder](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)** (στα αγγλικά).
+Για το τι περιλαμβάνει κάθε άδεια, δες το **[Microsoft Defender Μέρος 4: Οδηγός αδειοδότησης](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)**.
 
 ## Πόσο συχνά ενημερώνεται το Microsoft Secure Score;
 

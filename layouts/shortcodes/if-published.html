@@ -1,0 +1,8 @@
+{{- /* Εμφανίζει το περιεχόμενο ΜΟΝΟ αν η σελίδα στο «page» είναι δημοσιευμένη (όχι draft, όχι μελλοντική ημερομηνία).
+       Έτσι ένα link προς άρθρο που δεν έχει βγει ακόμη εμφανίζεται μόνο του τη μέρα της δημοσίευσης. Χρήση:
+       {{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-identity-deep-dive" >}}
+       > 📖 **Αναλυτικά:** [Microsoft Defender for Identity](/posts/...)
+       {{< /if-published >}} */ -}}
+{{- if site.GetPage (.Get "page") -}}
+{{ .Inner | .Page.RenderString (dict "display" "block") }}
+{{- end -}}

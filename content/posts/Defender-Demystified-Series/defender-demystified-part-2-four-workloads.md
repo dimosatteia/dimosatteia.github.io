@@ -1,23 +1,20 @@
 ---
-title: "Microsoft Defender Part 2: The Four Core XDR Workloads, Up Close"
+title: "Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά"
+seoTitle: "Microsoft Defender Μέρος 2: τα τέσσερα workloads του XDR"
 date: 2026-05-25T10:00:00+03:00
-lastmod: 2026-07-27T11:00:00+03:00
+lastmod: 2026-10-12T13:30:00+03:00
 draft: false
 keywords:
-  - microsoft defender xdr explained
-  - microsoft defender for endpoint vs office 365
-  - microsoft defender xdr incident correlation example
-  - which microsoft defender workload to deploy first
-  - microsoft defender for endpoint plan 1 vs plan 2
-  - microsoft defender for office 365 safe links explained
-  - microsoft defender for identity lateral movement detection
-  - microsoft defender for cloud apps shadow it discovery
-  - how microsoft defender detects multi stage attacks
-  - microsoft defender xdr attack story
-  - microsoft defender edr behavioral monitoring
-  - microsoft defender for office 365 anti phishing
-  - microsoft defender xdr automatic attack disruption
-  - microsoft 365 E5 security workloads
+  - Microsoft Defender XDR τι είναι
+  - Microsoft Defender XDR συσχέτιση incidents παράδειγμα
+  - ποιο workload του Microsoft Defender να εγκαταστήσω πρώτα
+  - Microsoft Defender for Endpoint Plan 1 vs Plan 2
+  - Microsoft Defender for Office 365 Safe Links
+  - Microsoft Defender for Identity lateral movement
+  - Microsoft Defender for Cloud Apps shadow IT
+  - Microsoft Defender XDR attack story
+  - Microsoft Defender XDR automatic attack disruption
+  - Microsoft Defender XDR ΚΥΑ 1689/2025 διαχείριση περιστατικών
 tags:
   - Microsoft Defender XDR
   - Microsoft Defender for Endpoint
@@ -29,9 +26,9 @@ tags:
   - Incident Response
   - Microsoft 365 E5
 author: "Dimosthenis Atteia"
-description: "How does Microsoft Defender XDR actually correlate signals across Endpoint, Office 365, Identity, and Cloud Apps? A technical walkthrough of the four core XDR workloads with a real multi-stage attack example showing cross-product correlation in action. For SOC teams, security architects, and CISOs implementing Microsoft 365 E5."
-seoDescription: "How Microsoft Defender XDR correlates signals across Endpoint, Office 365, Identity and Cloud Apps, with a real multi-stage attack example."
-summary: "Deep dive into Microsoft Defender's four XDR workloads. Endpoint EDR, Office 365 Safe Links, Identity lateral movement detection, and Cloud Apps shadow IT discovery. Includes a phishing-to-data-exfiltration attack scenario showing how XDR correlation transforms four separate alerts into one unified incident."
+description: "Πώς συσχετίζει το Microsoft Defender XDR τα σήματα από Endpoint, Office 365, Identity και Cloud Apps; Τα τέσσερα βασικά workloads από κοντά, με ένα πραγματικό παράδειγμα επίθεσης σε πολλά στάδια."
+seoDescription: "Πώς το Microsoft Defender XDR συσχετίζει σήματα από Endpoint, Office 365, Identity και Cloud Apps, με πραγματικό παράδειγμα επίθεσης σε πολλά στάδια."
+summary: "Τα τέσσερα workloads του Microsoft Defender XDR: EDR στο Endpoint, Safe Links στο Office 365, ανίχνευση lateral movement στο Identity και εντοπισμός shadow IT στο Cloud Apps. Με ένα σενάριο από phishing μέχρι διαρροή δεδομένων, όπου τέσσερα ξεχωριστά alerts γίνονται ένα incident."
 categories: ["Security Operations & XDR"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
@@ -39,157 +36,174 @@ TocOpen: false
 weight: 2
 cover:
   image: "/images/DefenderDemystified/MSDef.webp"
-  alt: "The four core workloads of Microsoft Defender XDR"
-  caption: "Microsoft Defender Demystified — Part 2"
+  alt: "Τα τέσσερα βασικά workloads του Microsoft Defender XDR"
+  caption: "Microsoft Defender Demystified, Μέρος 2"
 ---
 
-## Picking up from Part 1
+## Συνεχίζοντας από το Μέρος 1
 
-In **[Part 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** I called **Microsoft Defender XDR** the conductor of an orchestra, and the individual Microsoft security products the instruments. It's a tidy metaphor, but it's time to actually meet the instruments.
+Στο **[Μέρος 1](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** είπα ότι το **Microsoft Defender XDR** είναι ο μαέστρος μιας ορχήστρας και τα επιμέρους προϊόντα ασφάλειας της Microsoft είναι τα όργανα. Είναι μια βολική μεταφορά, αλλά ήρθε η ώρα να γνωρίσουμε τα όργανα.
 
-There are four of them at the core of Microsoft Defender XDR. Each one is sold on its own, each one has its own engineering team at Microsoft, each one has its own portal section, and each one could protect a tenant in isolation. What makes them XDR, aka "Extended Detection and Response" is what happens when they start sharing signals. We'll get to that at the end.
+Στον πυρήνα του Microsoft Defender XDR υπάρχουν τέσσερα. Το καθένα πωλείται χωριστά, έχει τη δική του ομάδα ανάπτυξης στη Microsoft, τη δική του ενότητα στο portal, και θα μπορούσε να προστατεύει ένα tenant μόνο του. Αυτό που τα κάνει XDR (Extended Detection and Response) είναι ό,τι συμβαίνει όταν αρχίζουν να μοιράζονται σήματα. Θα φτάσουμε εκεί στο τέλος.
 
-First, let's meet each one properly.
+Πρώτα, ας γνωρίσουμε το καθένα.
 
-## Microsoft Defender for Endpoint: EDR and Behavioral Monitoring Explained
+## Microsoft Defender for Endpoint: EDR και παρακολούθηση συμπεριφοράς
 
-[![Microsoft Defender portal home with the left navigation expanded, showing Endpoints, Email & collaboration, Identities, and Cloud apps](/images/DefenderDemystified/microsoft-defender-portal-navigation-workloads.webp)](/images/DefenderDemystified/microsoft-defender-portal-navigation-workloads.webp)
-> 📷 *Image 1: The unified Microsoft Defender portal at security.microsoft.com, one console for all four XDR workloads.*
+[![Η αρχική σελίδα του Microsoft Defender portal με το μενού ανοιχτό, όπου φαίνονται τα Endpoints, Email & collaboration, Identities και Cloud apps](/images/DefenderDemystified/microsoft-defender-portal-navigation-workloads.webp)](/images/DefenderDemystified/microsoft-defender-portal-navigation-workloads.webp)
+> 📷 *Εικόνα 1: Το ενιαίο Microsoft Defender portal στο security.microsoft.com, μία κονσόλα για τα τέσσερα workloads του XDR.*
 
-**[Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** is probably the one you've heard of. It protects the devices — Windows 10/11, Windows Server, macOS, Linux, iOS, Android. If someone's doing work on it, Microsoft Defender for Endpoint is watching.
+Το **[Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** είναι μάλλον αυτό που έχεις ήδη ακούσει. Προστατεύει τις συσκευές: Windows 10 και 11, Windows Server, macOS, Linux, iOS, Android. Αν κάποιος δουλεύει πάνω σε μια συσκευή, το Microsoft Defender for Endpoint την παρακολουθεί.
 
-What does "watching" actually mean in 2026? Quite a lot, as it turns out:
+Τι σημαίνει «παρακολουθεί» το 2026; Αρκετά πράγματα:
 
-- Next-generation antivirus that catches things traditional signature-based AV misses
-- **EDR** aka "Endpoint Detection and Response" the continuous behavioural monitoring that picks up on an attack in progress, not just a known bad file
-- Attack Surface Reduction rules that close off the paths attackers actually use (malicious macros, credential theft, suspicious scripts)
-- Automated Investigation and Remediation that does the first 15 minutes of SOC triage while your analysts are still reading the alert
-- Microsoft Defender Vulnerability Management bundled in (at Plan 2) — more on that one in a later post
+- Next-generation antivirus που πιάνει ό,τι ξεφεύγει από τα παραδοσιακά antivirus με signatures.
+- **EDR** (Endpoint Detection and Response), δηλαδή συνεχής παρακολούθηση της συμπεριφοράς, που εντοπίζει μια επίθεση ενώ εξελίσσεται και όχι μόνο ένα γνωστό κακόβουλο αρχείο.
+- Κανόνες Attack Surface Reduction που κλείνουν τους δρόμους που χρησιμοποιούν οι επιτιθέμενοι (κακόβουλα macros, κλοπή credentials, ύποπτα scripts).
+- Automated Investigation and Remediation, που κάνει τα πρώτα 15 λεπτά του triage ενώ οι αναλυτές σου διαβάζουν ακόμη το alert.
+- Μέρος του Microsoft Defender Vulnerability Management (στο Plan 2).
 
-Here's a concrete example. Someone in accounting opens an invoice that turns out to be a ransomware dropper. Within seconds, Microsoft Defender for Endpoint notices the suspicious behavioural pattern, isolates the device from the network so the infection can't spread, kills the malicious process, and where possible rolls back the files it encrypted. An automated investigation opens that traces the thing backwards (*how did it get onto this device in the first place?*) and in many cases finds that the original email is still sitting in other inboxes, which the platform can then quarantine.
+Ένα συγκεκριμένο παράδειγμα. Κάποιος στο λογιστήριο ανοίγει ένα τιμολόγιο που αποδεικνύεται dropper για ransomware. Μέσα σε δευτερόλεπτα, το Microsoft Defender for Endpoint αναγνωρίζει την ύποπτη συμπεριφορά, απομονώνει τη συσκευή από το δίκτυο για να μην εξαπλωθεί η μόλυνση, και σταματά την κακόβουλη διεργασία. Ανοίγει αυτόματα μια διερεύνηση που ακολουθεί τα ίχνη προς τα πίσω (*πώς έφτασε αυτό στη συσκευή;*) και συχνά βρίσκει ότι το αρχικό email υπάρχει ακόμη σε άλλα inbox, οπότε η πλατφόρμα μπορεί να το βάλει σε καραντίνα.
 
-Notice the phrase *"the original email"*. That's not something Microsoft Defender for Endpoint sees on its own. That signal came from somewhere else. Hold that thought.
+Πρόσεξε τη φράση *«το αρχικό email»*. Αυτό το Microsoft Defender for Endpoint δεν το βλέπει μόνο του. Το σήμα ήρθε από αλλού. Κράτα το στο μυαλό σου.
 
-[![Microsoft Defender for Endpoint device inventory showing onboarded devices with risk and exposure levels](/images/DefenderDemystified/microsoft-defender-for-endpoint-device-inventory.webp)](/images/DefenderDemystified/microsoft-defender-for-endpoint-device-inventory.webp)
-> 📷 *Image 2: Device inventory (Assets → Devices) with per-device risk and exposure scoring.*
+[![Το device inventory του Microsoft Defender for Endpoint με τις συσκευές και το επίπεδο κινδύνου και έκθεσης της καθεμίας](/images/DefenderDemystified/microsoft-defender-for-endpoint-device-inventory.webp)](/images/DefenderDemystified/microsoft-defender-for-endpoint-device-inventory.webp)
+> 📷 *Εικόνα 2: Το device inventory (Assets, Devices) με βαθμολογία κινδύνου και έκθεσης ανά συσκευή.*
 
-## Microsoft Defender for Office 365: Safe Links, Safe Attachments, and Anti-Phishing
+> 📖 **Αναλυτικά:** **[Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)**.
 
-**[Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)** protects the productivity surface that most employees actually live in: email, Microsoft Teams, SharePoint Online, and OneDrive for Business. This is where the modern attack lifecycle overwhelmingly starts. If you ask any SOC lead where their detection alerts come from, email will be in the top three nine times out of ten.
+## Microsoft Defender for Office 365: Safe Links, Safe Attachments και anti-phishing
 
-A few of the things Microsoft Defender for Office 365 does that are worth knowing:
+Το **[Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)** προστατεύει τα εργαλεία στα οποία ζουν οι περισσότεροι εργαζόμενοι: email, Microsoft Teams, SharePoint Online και OneDrive for Business. Εδώ ξεκινά συνήθως η σύγχρονη επίθεση. Αν ρωτήσεις οποιονδήποτε επικεφαλής SOC από πού έρχονται τα alerts του, το email θα είναι στις τρεις πρώτες θέσεις σχεδόν πάντα.
 
-- **Safe Links** rewrites every URL in inbound email and scans the destination *at click time*, not just at delivery. This matters because attackers know delivery-time scanning exists, they send links that go to a benign page on Monday and flip to a credential harvester on Wednesday.
-- **Safe Attachments** detonates attachments in a sandbox before handing them to the user, so if someone forwards you a "quarterly report" that actually runs PowerShell on open, the sandbox finds out first.
-- **Anti-phishing policies** with impersonation protection, the thing that catches the *"Hi, this is the CEO, I need you to buy gift cards for the client meeting"* email even when it comes from a believable-looking domain.
-- **Attack Simulation Training** lets you run realistic phishing simulations against your own users for training purposes. This is both useful and occasionally humbling.
+Μερικά από όσα κάνει το Microsoft Defender for Office 365 και αξίζει να ξέρεις:
 
-A concrete example. A spear-phishing email impersonating your CEO lands in the CFO's inbox with a fake invoice attached. Microsoft Defender for Office 365 spots the impersonation pattern, sandboxes the attachment, identifies it as a credential harvester, and pulls the email out of every recipient's inbox before anyone clicks. If a click *had* already happened, that's where the signal handover to Microsoft Defender for Endpoint becomes powerful.
+- **Safe Links:** ελέγχει κάθε URL των εισερχόμενων email *τη στιγμή του κλικ* και όχι μόνο κατά την παράδοση. Αυτό μετράει, γιατί οι επιτιθέμενοι ξέρουν ότι υπάρχει έλεγχος κατά την παράδοση. Στέλνουν links που τη Δευτέρα οδηγούν σε μια αθώα σελίδα και την Τετάρτη γίνονται σελίδα κλοπής credentials.
+- **Safe Attachments:** ανοίγει τα συνημμένα σε sandbox πριν τα δώσει στον χρήστη. Αν κάποιος σου προωθήσει μια «τριμηνιαία αναφορά» που τρέχει PowerShell μόλις ανοίξει, το sandbox το καταλαβαίνει πρώτο.
+- **Πολιτικές anti-phishing** με προστασία από impersonation. Αυτές πιάνουν το email *«Καλημέρα, είμαι ο CEO, χρειάζομαι να αγοράσεις gift cards για τη συνάντηση με τον πελάτη»*, ακόμη κι όταν έρχεται από domain που μοιάζει αξιόπιστο.
+- **Attack simulation training:** σου επιτρέπει να τρέχεις ρεαλιστικές προσομοιώσεις phishing στους δικούς σου χρήστες για εκπαίδευση. Είναι χρήσιμο, και μερικές φορές σε προσγειώνει.
 
-[![Microsoft Defender for Office 365 Threat Explorer showing a timeline of phishing emails, blocked versus delivered](/images/DefenderDemystified/microsoft-defender-office-365-threat-explorer-phish.webp)](/images/DefenderDemystified/microsoft-defender-office-365-threat-explorer-phish.webp)
-> 📷 *Image 3: Threat Explorer (Email & collaboration → Explorer) — phishing detections over time, blocked vs delivered.*
+Ένα συγκεκριμένο παράδειγμα. Ένα spear-phishing email που υποδύεται τον CEO φτάνει στο inbox του οικονομικού διευθυντή με ένα ψεύτικο τιμολόγιο συνημμένο. Το Microsoft Defender for Office 365 αναγνωρίζει το μοτίβο impersonation, ανοίγει το συνημμένο σε sandbox, βρίσκει ότι είναι εργαλείο κλοπής credentials και αφαιρεί το email από κάθε inbox πριν το ανοίξει κανείς. Αν *είχε* ήδη γίνει κλικ, εκεί η παράδοση του σήματος στο Microsoft Defender for Endpoint γίνεται πολύτιμη.
 
-## Microsoft Defender for Identity: Lateral Movement and Pass the Hash Detection
+[![Το Threat Explorer του Microsoft Defender for Office 365 με χρονολόγιο των email phishing, μπλοκαρισμένα και παραδομένα](/images/DefenderDemystified/microsoft-defender-office-365-threat-explorer-phish.webp)](/images/DefenderDemystified/microsoft-defender-office-365-threat-explorer-phish.webp)
+> 📷 *Εικόνα 3: Το Threat Explorer (Email & collaboration, Explorer), εντοπισμοί phishing στον χρόνο, μπλοκαρισμένα και παραδομένα.*
 
-This is the workload I find most interesting, because it catches what the other two cannot: **what an attacker does after they've already got valid credentials.**
+> 📖 **Αναλυτικά:** **[Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**.
 
-**[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** watches your on-premises Active Directory and the hybrid identities you've synchronized to Microsoft Entra ID. (For attacks against cloud-only identities, that's the job of Microsoft Entra ID Protection — a separate product.) Lightweight sensors installed on your domain controllers and, where present, on AD FS, AD CS, and Microsoft Entra Connect servers forward telemetry to the Microsoft Defender portal, where the platform looks for the kinds of things that don't look unusual from any single log but are very unusual when you see them in context.
+## Microsoft Defender for Identity: ανίχνευση lateral movement και pass-the-hash
 
-What kinds of things?
+Αυτό είναι το workload που βρίσκω πιο ενδιαφέρον, γιατί πιάνει κάτι που τα άλλα δύο δεν μπορούν: **τι κάνει ένας επιτιθέμενος αφού έχει ήδη έγκυρα credentials.**
 
-- Pass-the-hash and pass-the-ticket attacks
-- Kerberoasting and AS-REP roasting
-- Golden ticket and silver ticket forgeries
-- LDAP reconnaissance from accounts that have no business enumerating the directory
-- Privilege escalation via sensitive group modifications
-- Lateral movement paths using compromised accounts
+Το **[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** παρακολουθεί το on-premises Active Directory και τις υβριδικές ταυτότητες που συγχρονίζεις στο Microsoft Entra ID. Για επιθέσεις σε ταυτότητες που υπάρχουν μόνο στο cloud, υπεύθυνο είναι το Microsoft Entra ID Protection, ξεχωριστό προϊόν. Ελαφριοί sensors εγκατεστημένοι στους domain controllers και, όπου υπάρχουν, στους servers AD FS, AD CS και Microsoft Entra Connect, στέλνουν telemetry στο Microsoft Defender portal. Εκεί η πλατφόρμα ψάχνει πράγματα που δεν φαίνονται ασυνήθιστα σε κανένα log μόνο του, αλλά είναι πολύ ασυνήθιστα όταν τα δεις στο σύνολό τους.
 
-Here's a scenario to make it tangible. An attacker has compromised one workstation and now wants to move laterally. They run a credential-dumping tool to extract NTLM hashes from memory, then try to use one of those hashes to authenticate to a file server. Nothing about that pattern looks unusual from an endpoint perspective — the file server just saw a successful authentication. But Microsoft Defender for Identity, sitting on the domain controller, sees the authentication shape and says *hold on, that's not how this user normally authenticates*. Alert fires, the SOC sees it within seconds, containment happens before the attacker reaches anything privileged.
+Τι πράγματα;
 
-For any organisation with a meaningful on-premises AD footprint — which is still the vast majority of mid-market and enterprise companies — this workload is genuinely non-optional.
+- Επιθέσεις pass-the-hash και pass-the-ticket.
+- Kerberoasting και AS-REP roasting.
+- Πλαστά golden tickets και silver tickets.
+- LDAP reconnaissance από λογαριασμούς που δεν έχουν λόγο να απαριθμούν τον κατάλογο.
+- Κλιμάκωση δικαιωμάτων μέσω αλλαγών σε ευαίσθητες ομάδες.
+- Διαδρομές lateral movement με παραβιασμένους λογαριασμούς.
 
-[![Microsoft Defender for Identity timeline showing identity activity events for a user account](/images/DefenderDemystified/microsoft-defender-for-identity-timeline.webp)](/images/DefenderDemystified/microsoft-defender-for-identity-timeline.webp)
-> 📷 *Image 4: Defender for Identity timeline on an identity entity page (Assets → Identities → user → Timeline).*
+Ένα σενάριο για να γίνει πιο απτό. Ένας επιτιθέμενος έχει παραβιάσει έναν σταθμό εργασίας και θέλει να κινηθεί πλευρικά. Τρέχει ένα εργαλείο που εξάγει NTLM hashes από τη μνήμη και προσπαθεί να χρησιμοποιήσει ένα από αυτά για να συνδεθεί σε έναν file server. Από τη σκοπιά του endpoint, τίποτα δεν φαίνεται ασυνήθιστο: ο file server απλώς είδε μια επιτυχημένη σύνδεση. Το Microsoft Defender for Identity όμως, στον domain controller, βλέπει τη μορφή της αυθεντικοποίησης και λέει *στάσου, έτσι δεν συνδέεται συνήθως αυτός ο χρήστης*. Το alert βγαίνει, το SOC το βλέπει μέσα σε δευτερόλεπτα, και ο περιορισμός γίνεται πριν ο επιτιθέμενος φτάσει σε κάτι προνομιακό.
 
-## Microsoft Defender for Cloud Apps: Shadow IT Discovery and CASB Controls
+Για κάθε οργανισμό με ουσιαστικό on-premises AD, δηλαδή για τη συντριπτική πλειονότητα των μεσαίων και μεγάλων επιχειρήσεων, αυτό το workload δεν είναι προαιρετικό.
 
-**[Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)** is a **CASB** — Cloud Access Security Broker. Translation: it sits between your users and the SaaS applications they use, giving you visibility, governance, and threat protection across both Microsoft and third-party cloud services.
+[![Το timeline του Microsoft Defender for Identity με τα γεγονότα ενός λογαριασμού χρήστη](/images/DefenderDemystified/microsoft-defender-for-identity-timeline.webp)](/images/DefenderDemystified/microsoft-defender-for-identity-timeline.webp)
+> 📷 *Εικόνα 4: Το timeline του Defender for Identity στη σελίδα μιας ταυτότητας (Assets, Identities, χρήστης, Timeline).*
 
-Why is this a distinct product? Because the way people work changed, and security needed to catch up.
+{{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-identity-deep-dive" >}}
+> 📖 **Αναλυτικά:** **[Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)**.
+{{< /if-published >}}
 
-Here's what Microsoft Defender for Cloud Apps actually does day to day:
+## Microsoft Defender for Cloud Apps: εντοπισμός shadow IT και έλεγχοι CASB
 
-- **Shadow IT discovery**: finds the unsanctioned SaaS apps your users are already using. The number is always bigger than you think. I've seen tenants where the IT team believed they were running 40 apps and the reality was over 200.
-- **App governance**: surfaces risky **OAuth applications** that users have granted consent to. This is one of the most under-appreciated attack vectors of the last five years.
-- **Conditional Access App Control**: applies real-time session policies to risky sessions. Think: *"you can read this document in a browser, but you can't download it on an unmanaged device."*
-- **Information protection extension**: takes your Microsoft Purview policies and applies them to third-party SaaS apps like Salesforce or Box.
-- **Anomalous user behaviour detection**: impossible-travel logins, mass downloads, unusual admin activities.
+Το **[Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)** είναι ένα **CASB** (Cloud Access Security Broker). Δηλαδή κάθεται ανάμεσα στους χρήστες και στις εφαρμογές SaaS που χρησιμοποιούν, και σου δίνει ορατότητα, διακυβέρνηση και προστασία από απειλές, τόσο σε υπηρεσίες της Microsoft όσο και τρίτων.
 
-The concrete example I like for this one: a user, somewhere, gets phished into granting an OAuth consent to a malicious app that requests broad mailbox access. The attacker never stole the password, but now has read access to every email the user ever receives. Microsoft Defender for Cloud Apps flags the consent grant, identifies the app as malicious through Microsoft threat intelligence, revokes the consent, and alerts the SOC. The attacker is locked out within minutes, not days.
+Γιατί είναι ξεχωριστό προϊόν; Γιατί άλλαξε ο τρόπος που δουλεύουμε, και η ασφάλεια έπρεπε να τον προλάβει.
 
-[![Microsoft Defender for Cloud Apps Cloud Discovery dashboard showing discovered shadow IT SaaS apps and risk levels](/images/DefenderDemystified/microsoft-defender-cloud-apps-shadow-it-discovery.webp)](/images/DefenderDemystified/microsoft-defender-cloud-apps-shadow-it-discovery.webp)
-> 📷 *Image 5: Cloud Discovery dashboard (Cloud apps → Cloud discovery) — 259 discovered apps, the classic shadow-IT gap.*
+Τι κάνει στην καθημερινότητα:
 
-## How Microsoft Defender XDR Correlates Signals: A Real Multi-Stage Attack Example
+- **Εντοπισμός shadow IT:** βρίσκει τις εφαρμογές SaaS που χρησιμοποιούν ήδη οι χρήστες σου χωρίς έγκριση. Ο αριθμός είναι πάντα μεγαλύτερος απ' όσο νομίζεις. Έχω δει tenants όπου το IT πίστευε ότι τρέχουν 40 εφαρμογές και η πραγματικότητα ήταν πάνω από 200.
+- **App governance:** δείχνει τις επικίνδυνες **εφαρμογές OAuth** στις οποίες έχουν δώσει συγκατάθεση οι χρήστες. Είναι από τους πιο υποτιμημένους δρόμους επίθεσης των τελευταίων ετών.
+- **Conditional Access App Control:** εφαρμόζει πολιτικές σε πραγματικό χρόνο σε επικίνδυνα sessions. Για παράδειγμα: *«μπορείς να διαβάσεις αυτό το έγγραφο στον browser, αλλά δεν μπορείς να το κατεβάσεις σε μη διαχειριζόμενη συσκευή»*.
+- **Επέκταση της προστασίας πληροφοριών:** παίρνει τις πολιτικές του Microsoft Purview και τις εφαρμόζει σε εφαρμογές SaaS τρίτων, όπως Salesforce ή Box.
+- **Ανίχνευση ασυνήθιστης συμπεριφοράς χρηστών:** συνδέσεις από αδύνατες αποστάσεις (impossible travel), μαζικά downloads, ασυνήθιστες ενέργειες διαχειριστών.
 
-Everything above was four separate products doing four separate jobs. That's useful. It's not yet **XDR**.
+Το παράδειγμα που μου αρέσει εδώ: ένας χρήστης πέφτει θύμα phishing και δίνει συγκατάθεση OAuth σε μια κακόβουλη εφαρμογή που ζητά ευρεία πρόσβαση στο mailbox. Ο επιτιθέμενος δεν έκλεψε ποτέ τον κωδικό, αλλά τώρα διαβάζει κάθε email που λαμβάνει ο χρήστης. Το Microsoft Defender for Cloud Apps επισημαίνει τη συγκατάθεση, αναγνωρίζει την εφαρμογή ως κακόβουλη μέσω του threat intelligence της Microsoft, ανακαλεί τη συγκατάθεση και ειδοποιεί το SOC. Ο επιτιθέμενος μένει έξω μέσα σε λεπτά και όχι σε μέρες.
 
-XDR (Extended Detection and Response) is what happens when these four products **share signals in real time** and a single attack that touches multiple surfaces becomes a single incident with a single attack story.
+[![Το Cloud Discovery dashboard του Microsoft Defender for Cloud Apps με τις εφαρμογές shadow IT που εντοπίστηκαν και το επίπεδο κινδύνου τους](/images/DefenderDemystified/microsoft-defender-cloud-apps-shadow-it-discovery.webp)](/images/DefenderDemystified/microsoft-defender-cloud-apps-shadow-it-discovery.webp)
+> 📷 *Εικόνα 5: Το Cloud Discovery dashboard (Cloud apps, Cloud discovery), 259 εφαρμογές που εντοπίστηκαν, το κλασικό κενό του shadow IT.*
 
-Let me walk through what that actually looks like, because this is the part that makes the whole investment worthwhile.
+{{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive" >}}
+> 📖 **Αναλυτικά:** **[Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)**.
+{{< /if-published >}}
 
-Imagine a reasonably standard multi-stage attack:
+## Πώς συσχετίζει το Microsoft Defender XDR τα σήματα: ένα πραγματικό παράδειγμα επίθεσης σε πολλά στάδια
 
-1. A spear-phishing email arrives in a finance manager's inbox. **Microsoft Defender for Office 365** flags suspicious indicators but the user, being human clicks anyway.
-2. The link triggers a malicious download on the laptop. **Microsoft Defender for Endpoint** catches the dropper mid-execution, but not before it has managed to run a credential-stealer in memory.
-3. The stolen credentials are used to authenticate against Active Directory from an unusual location. **Microsoft Defender for Identity** flags the abnormal sign-in pattern.
-4. The now-compromised account starts mass-downloading files from SharePoint Online and a connected third-party SaaS app. **Microsoft Defender for Cloud Apps** detects the anomalous activity.
+Όλα τα παραπάνω ήταν τέσσερα προϊόντα που κάνουν τέσσερις διαφορετικές δουλειές. Αυτό είναι χρήσιμο. Δεν είναι όμως ακόμη **XDR**.
 
-In a world without XDR, your SOC sees four separate alerts in four separate consoles, with no obvious connection between them, and probably closes at least the first three as low-confidence noise because none of them looks like a full attack on its own.
+Το XDR (Extended Detection and Response) είναι αυτό που συμβαίνει όταν τα τέσσερα προϊόντα **μοιράζονται σήματα σε πραγματικό χρόνο**, και μια επίθεση που αγγίζει πολλά σημεία γίνεται ένα incident με μία ιστορία επίθεσης.
 
-In Microsoft Defender XDR, **all four alerts collapse into one incident**, presented as a single attack story with a complete timeline, impacted assets, and recommended response actions. The platform can also **automatically disrupt** the attack (disabling the compromised account, isolating the device, and quarantining related emails across every recipient) without any analyst having to stitch it together manually.
+Ας δούμε πώς φαίνεται αυτό στην πράξη, γιατί αυτό είναι το κομμάτι που δικαιολογεί όλη την επένδυση.
 
-This is what you're paying for when you buy into Microsoft Defender XDR. It's also why deploying only one workload, just Microsoft Defender for Endpoint, for example, a common starting point, gives you maybe 30% of the platform's value. The cross-product correlation is the product.
+Φαντάσου μια αρκετά συνηθισμένη επίθεση σε πολλά στάδια:
 
-[![Microsoft Defender XDR incident attack story with an incident graph correlating alerts, devices, users, and processes](/images/DefenderDemystified/microsoft-defender-xdr-incident-attack-story.webp)](/images/DefenderDemystified/microsoft-defender-xdr-incident-attack-story.webp)
-> 📷 *Image 6: An incident attack story (Incidents → incident → Attack story) with the correlation graph.*
+1. Ένα spear-phishing email φτάνει στο inbox ενός οικονομικού διευθυντή. Το **Microsoft Defender for Office 365** επισημαίνει ύποπτες ενδείξεις, αλλά ο χρήστης, άνθρωπος όπως όλοι, κάνει κλικ.
+2. Το link κατεβάζει κάτι κακόβουλο στο laptop. Το **Microsoft Defender for Endpoint** πιάνει το dropper την ώρα που τρέχει, αλλά όχι πριν προλάβει να τρέξει στη μνήμη ένα εργαλείο κλοπής credentials.
+3. Τα κλεμμένα credentials χρησιμοποιούνται για σύνδεση στο Active Directory από ασυνήθιστη τοποθεσία. Το **Microsoft Defender for Identity** επισημαίνει το ασυνήθιστο μοτίβο σύνδεσης.
+4. Ο παραβιασμένος λογαριασμός αρχίζει να κατεβάζει μαζικά αρχεία από το SharePoint Online και από μια συνδεδεμένη εφαρμογή SaaS τρίτου. Το **Microsoft Defender for Cloud Apps** εντοπίζει την ασυνήθιστη δραστηριότητα.
 
-## What's next
+Σε έναν κόσμο χωρίς XDR, το SOC σου βλέπει τέσσερα ξεχωριστά alerts σε τέσσερις κονσόλες, χωρίς προφανή σύνδεση μεταξύ τους. Πιθανότατα κλείνει τουλάχιστον τα τρία πρώτα ως θόρυβο χαμηλής βεβαιότητας, γιατί κανένα δεν μοιάζει μόνο του με ολοκληρωμένη επίθεση.
 
-In **Part 3** we leave the Microsoft 365 world entirely and look at **Microsoft Defender for Cloud**, the separate product that protects Azure and multicloud workloads. Different portal, different licensing, different audience.
+Στο Microsoft Defender XDR, **τα τέσσερα alerts γίνονται ένα incident**, με μία ιστορία επίθεσης, πλήρες χρονολόγιο, τα assets που επηρεάστηκαν και προτεινόμενες ενέργειες απόκρισης. Η πλατφόρμα μπορεί επίσης να **διακόψει αυτόματα** την επίθεση (automatic attack disruption): απενεργοποιεί τον παραβιασμένο λογαριασμό και απομονώνει τη συσκευή, ενώ η αυτοματοποιημένη διερεύνηση του Defender for Office 365 αφαιρεί τα σχετικά email από κάθε inbox, χωρίς να χρειαστεί κάποιος αναλυτής να ενώσει τα κομμάτια με το χέρι.
 
-> 🔗 **Related deep-dive series:** Curious how Microsoft Secure Score, a feature inside the same Microsoft Defender portal we've been touring, can become the engine of an award-winning compliance programme? Read [How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/).
+Γι' αυτό πληρώνεις όταν επενδύεις στο Microsoft Defender XDR. Είναι και ο λόγος που η ανάπτυξη ενός μόνο workload, π.χ. μόνο του Microsoft Defender for Endpoint, που είναι συνηθισμένη αφετηρία, σου δίνει μικρό μέρος της αξίας της πλατφόρμας. Η συσχέτιση ανάμεσα στα προϊόντα είναι το ίδιο το προϊόν.
 
-## Related Questions Security Teams Often Ask
+[![Η ιστορία επίθεσης ενός incident στο Microsoft Defender XDR, με γράφημα που συσχετίζει alerts, συσκευές, χρήστες και διεργασίες](/images/DefenderDemystified/microsoft-defender-xdr-incident-attack-story.webp)](/images/DefenderDemystified/microsoft-defender-xdr-incident-attack-story.webp)
+> 📷 *Εικόνα 6: Η ιστορία επίθεσης ενός incident (Incidents, incident, Attack story) με το γράφημα συσχέτισης.*
 
-**"Which Microsoft Defender workload should we deploy first?"**
+## Πού συναντάς αυτά τα workloads στη συμμόρφωση
 
-Start with Defender for Endpoint (device protection) and Defender for Office 365 Plan 2 (email security). These two catch 80% of initial access attempts. Add Identity and Cloud Apps once your core coverage is solid.
+Αν ο οργανισμός σου είναι βασική ή σημαντική οντότητα, τα τέσσερα workloads υποστηρίζουν συγκεκριμένες απαιτήσεις του **[οδηγού της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Το Defender for Endpoint την ανίχνευση κακόβουλου λογισμικού ([20.α](/kya-1689-2025/#20-α)). Το Defender for Office 365 το φιλτράρισμα των email ([20.γ](/kya-1689-2025/#20-γ)). Το Defender for Identity την καταγραφή δραστηριοτήτων για προνομιούχους λογαριασμούς ([24.γ](/kya-1689-2025/#24-γ)). Και το Defender XDR συνολικά τον τακτικό έλεγχο των καταγραφών και την ειδοποίηση ([24.ε](/kya-1689-2025/#24-ε)). Στο **[ISO/IEC 27001](/iso-27001/)**, τα αντίστοιχα controls είναι τα A.8.7 (Protection against malware), A.8.16 (Monitoring activities) και A.5.24 έως A.5.26 για τα περιστατικά.
 
-**"What's the difference between Defender for Endpoint Plan 1 and Plan 2?"**
+## Τι ακολουθεί
 
-Plan 1 is prevention-focused: next-gen antivirus, attack surface reduction, device control, web/network protection, and manual response actions, but no EDR. Plan 2 is what adds the EDR engine itself (continuous behavioral monitoring with alerts and telemetry retention), automated investigation and remediation, advanced hunting, Live Response, and vulnerability management. Most enterprises need Plan 2 for meaningful SOC capability.
+Στο **[Μέρος 3](/posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/)** αφήνουμε εντελώς τον κόσμο του Microsoft 365 και εξετάζουμε το **Microsoft Defender for Cloud**, το ξεχωριστό προϊόν που προστατεύει workloads στο Azure και σε άλλα clouds. Άλλη αδειοδότηση, άλλο κοινό, και ρύθμιση στο Azure portal.
 
-**"How long does it take for Microsoft Defender XDR to correlate an incident?"**
+> 🔗 **Θέλεις να δεις τι μπορείς να χτίσεις πάνω σε αυτό;** Το Microsoft Secure Score ζει στο ίδιο Microsoft Defender portal που γνωρίσαμε εδώ. Η σειρά **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)** δείχνει πώς έγινε η μηχανή ενός προγράμματος συμμόρφωσης που βραβεύτηκε.
 
-Near real time. The correlation engine processes signals within seconds to minutes. You'll typically see a unified incident appear within 5 to 10 minutes of the first alert firing, though complex attacks may take slightly longer as the platform gathers context.
+> 🔗 **Θέλεις να ψάξεις μόνος σου στα δεδομένα;** Η **[Βιβλιοθήκη KQL](/kql/)** έχει έτοιμα Advanced Hunting queries για το Defender XDR, αντιστοιχισμένα σε απαιτήσεις και δοκιμασμένα σε πραγματικό tenant.
 
-**"Does Microsoft Defender XDR work with third party security tools?"**
+Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
-Yes, via Microsoft Sentinel integration. Sentinel acts as the SIEM layer that ingests logs from both Microsoft Defender workloads and third party tools (firewalls, proxies, EDR from other vendors), providing unified threat hunting and correlation across your entire security stack.
+## Ερωτήσεις που κάνουν συχνά οι ομάδες ασφάλειας
 
-**"Can we use Microsoft Defender workloads separately without XDR?"**
+**«Ποιο workload του Microsoft Defender να εγκαταστήσουμε πρώτο;»**
 
-Technically yes, each workload functions standalone. But you lose the correlation engine, unified incident queue, and cross product automated response. Running them separately gives you maybe 30% of the platform's value. The XDR correlation is the product.
+Ξεκίνα με το Defender for Endpoint (προστασία συσκευών) και το Defender for Office 365 Plan 2 (ασφάλεια email). Αυτά τα δύο καλύπτουν τα σημεία από όπου ξεκινούν οι περισσότερες επιθέσεις. Πρόσθεσε το Identity και το Cloud Apps μόλις σταθεροποιηθεί η βασική κάλυψη.
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications, or subscribe via RSS at the top of the page.
+**«Ποια η διαφορά ανάμεσα στο Defender for Endpoint Plan 1 και Plan 2;»**
 
-## Microsoft Learn resources
+Το Plan 1 εστιάζει στην πρόληψη: next-generation antivirus, attack surface reduction, device control, web και network protection, και χειροκίνητες ενέργειες απόκρισης, αλλά όχι EDR. Το Plan 2 προσθέτει την ίδια τη μηχανή EDR (συνεχή παρακολούθηση συμπεριφοράς με alerts και διατήρηση του telemetry), αυτοματοποιημένη διερεύνηση και αποκατάσταση, advanced hunting, Live Response και διαχείριση ευπαθειών. Οι περισσότερες επιχειρήσεις χρειάζονται το Plan 2 για ουσιαστική δουλειά SOC.
 
-- [Microsoft Defender XDR overview](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
-- [Microsoft Defender for Endpoint overview](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
-- [Microsoft Defender for Office 365 overview](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
-- [Microsoft Defender for Identity overview](https://learn.microsoft.com/en-us/defender-for-identity/what-is)
-- [Microsoft Defender for Cloud Apps overview](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)
+**«Πόσο γρήγορα συσχετίζει το Microsoft Defender XDR ένα incident;»**
 
----
+Σχεδόν σε πραγματικό χρόνο. Η μηχανή συσχέτισης επεξεργάζεται τα σήματα μέσα σε δευτερόλεπτα έως λίγα λεπτά. Σε σύνθετες επιθέσεις, το incident μπορεί να εμπλουτίζεται για λίγο ακόμη, όσο η πλατφόρμα μαζεύει πλαίσιο και προσθέτει νέα alerts.
+
+**«Δουλεύει το Microsoft Defender XDR με εργαλεία ασφάλειας τρίτων;»**
+
+Ναι, μέσω του Microsoft Sentinel. Το Sentinel είναι το επίπεδο SIEM που συλλέγει logs τόσο από τα workloads του Microsoft Defender όσο και από εργαλεία τρίτων (firewalls, proxies, EDR άλλων κατασκευαστών), και δίνει ενιαίο hunting και συσχέτιση σε όλη τη στοίβα ασφάλειας.
+
+**«Μπορούμε να χρησιμοποιούμε τα workloads χωριστά, χωρίς XDR;»**
+
+Τεχνικά ναι, κάθε workload λειτουργεί μόνο του. Χάνεις όμως τη μηχανή συσχέτισης, την ενιαία ουρά incidents και την αυτοματοποιημένη απόκριση ανάμεσα στα προϊόντα. Η συσχέτιση του XDR είναι το ίδιο το προϊόν.
+
+## Πηγές Microsoft Learn
+
+- [Microsoft Defender XDR: επισκόπηση](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
+- [Microsoft Defender for Endpoint: επισκόπηση](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
+- [Microsoft Defender for Office 365: επισκόπηση](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
+- [Microsoft Defender for Identity: επισκόπηση](https://learn.microsoft.com/en-us/defender-for-identity/what-is)
+- [Microsoft Defender for Cloud Apps: επισκόπηση](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)
+- [Automatic attack disruption στο Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/automatic-attack-disruption)
