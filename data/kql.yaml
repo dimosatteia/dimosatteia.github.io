@@ -124,6 +124,7 @@ queries:
       kya: ["20.γ", "24.ε"]
       nis2: ["21.2.β"]
       iso: ["A.8.7", "A.5.25"]
+      gdpr: ["5.1.στ", "32.1.β"]
     posts:
       - title: "Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση"
         url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
@@ -165,6 +166,7 @@ queries:
       kya: ["11.δ", "24.γ"]
       nis2: ["21.2.θ"]
       iso: ["A.7.10", "A.8.12"]
+      gdpr: ["5.1.στ", "32.1.β", "32.4"]
     posts:
       - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
         url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
