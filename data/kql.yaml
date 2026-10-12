@@ -37,7 +37,7 @@ queries:
     pillar: identity
     product: Entra ID
     table: EntraIdSignInEvents
-    license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
+    license: Microsoft Entra ID P2, και πρόσβαση στο Advanced Hunting του Defender XDR μέσω άδειας Defender (π.χ. Defender for Endpoint P2 ή Microsoft 365 E5)
     tested: 2026-10-12
     evidence: /images/kql/legacy-auth.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. 0 επιτυχημένες και 41 αποτυχημένες συνδέσεις μέσω «Other clients» από πέντε χώρες, δηλαδή password spray που μπλοκαρίστηκε. Τα UPN έχουν αφαιρεθεί.
@@ -198,8 +198,6 @@ queries:
       | project MountTime, DeviceName, LoggedOnUser, DriveLetter, Manufacturer, Product, SerialNumber
       | order by MountTime desc
 
-  # ---- Σε αναμονή (draft): γράφεται το query, δοκιμάζεται στο tenant, μπαίνει πειστήριο, σβήνεται το draft ----
-
   - id: spray-success
     title: Επιτυχημένο sign-in μετά από πολλές αποτυχίες
     summary: Λογαριασμοί που είχαν πολλές αποτυχίες κωδικού σε σύντομο διάστημα και, μέσα σε μία ώρα, μία επιτυχημένη interactive σύνδεση, με IP, χώρες και εφαρμογή.
@@ -207,15 +205,15 @@ queries:
     pillar: identity
     product: Entra ID
     table: EntraIdSignInEvents
-    license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
+    license: Microsoft Entra ID P2, και πρόσβαση στο Advanced Hunting του Defender XDR μέσω άδειας Defender (π.χ. Defender for Endpoint P2 ή Microsoft 365 E5)
     tested: 2026-10-12
     evidence: /images/kql/spray-success.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Ένας λογαριασμός είχε 6 αποτυχίες κωδικού και μέσα σε 33 λεπτά επιτυχημένη interactive σύνδεση στο Outlook Web από browser, από την ίδια IP στην Ελλάδα (SameIP = 1). Η σύνδεση απαίτησε και ολοκλήρωσε MFA, άρα δεν έγινε είσοδος μόνο με τον κωδικό, και η εικόνα ταιριάζει με χρήστη που πληκτρολόγησε λάθος τον κωδικό του. Τα UPN και οι IP έχουν αφαιρεθεί.
     map:
-      kya: ["13.ζ", "24.ε"]
+      kya: ["13.ζ", "13.στ", "24.ε"]
       nis2: ["21.2.ι", "21.2.β"]
       iso: ["A.8.5", "A.8.16"]
-      gdpr: ["32.1.β", "33.1"]
+      gdpr: ["32.1.β"]
     posts:
       - title: "Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID"
         url: /posts/passkeys-by-default-telos-sms-voice-mfa/
@@ -251,18 +249,18 @@ queries:
   - id: foreign-signins
     title: Sign-ins από χώρες εκτός Ελλάδας και ΕΕ
     summary: Επιτυχημένες συνδέσεις από χώρες εκτός της Ελλάδας και της Ευρωπαϊκής Ένωσης τις τελευταίες 7 ημέρες, ανά λογαριασμό, χώρα, IP και εφαρμογή.
-    why: Για έναν Ελληνικό οργανισμό, μια σύνδεση από χώρα όπου δεν έχεις ούτε υπαλλήλους ούτε συνεργάτες θέλει εξήγηση. Αν είναι ταξίδι, τεκμηριώνεται. Αν δεν είναι, είναι πιθανή παραβίαση λογαριασμού. Το ίδιο εύρημα δείχνει και αν αξίζει πολιτική Conditional Access με named locations. Αν έχεις ήδη τέτοια πολιτική, το κενό αποτέλεσμα είναι το τεκμήριο ότι δουλεύει.
+    why: Για έναν Ελληνικό οργανισμό, μια σύνδεση από χώρα όπου δεν έχεις ούτε υπαλλήλους ούτε συνεργάτες θέλει εξήγηση. Αν είναι ταξίδι, τεκμηριώνεται. Αν δεν είναι, είναι πιθανή παραβίαση λογαριασμού. Το ίδιο εύρημα δείχνει και αν αξίζει πολιτική Conditional Access με named locations. Αν έχεις ήδη τέτοια πολιτική, το κενό αποτέλεσμα είναι το τεκμήριο ότι δουλεύει. Οι συνδέσεις για τις οποίες το Entra δεν μπόρεσε να βρει χώρα δεν εμφανίζονται, γιατί το query κρατά μόνο όσες έχουν συμπληρωμένη χώρα.
     pillar: identity
     product: Entra ID
     table: EntraIdSignInEvents
-    license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
+    license: Microsoft Entra ID P2, και πρόσβαση στο Advanced Hunting του Defender XDR μέσω άδειας Defender (π.χ. Defender for Endpoint P2 ή Microsoft 365 E5)
     tested: 2026-10-12
     evidence: /images/kql/foreign-signins.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Το query στην εικόνα είναι το κανονικό, όπως το δίνουμε εδώ. Για να τρέξει η δοκιμή αφαιρέθηκε το "GR" από τη λίστα AllowedCountries, επειδή σε αυτό το tenant τα sign-ins εκτός Ελλάδας μπλοκάρονται ήδη με Conditional Access και το αποτέλεσμα θα ήταν κενό. Γι' αυτό τα αποτελέσματα δείχνουν συνδέσεις από την Ελλάδα, όλες με multiFactorAuthentication. Στο δικό σου tenant κράτα το "GR" στη λίστα. Τα UPN και οι IP έχουν αφαιρεθεί.
     map:
-      kya: ["13.ζ", "24.ε"]
-      nis2: ["21.2.ι"]
-      iso: ["A.8.5", "A.8.16"]
+      kya: ["13.α", "13.ζ", "24.ε"]
+      nis2: ["21.2.θ", "21.2.ι"]
+      iso: ["A.5.15", "A.8.5", "A.8.16"]
       gdpr: ["32.1.β"]
     posts:
       - title: "Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν"
@@ -289,6 +287,8 @@ queries:
           ManagedDevice = make_set(IsManaged, 2)
           by AccountUpn, Country, IsGuestUser
       | order by LastSeen desc
+
+  # ---- Σε αναμονή όσα έχουν draft: true: γράφεται το query, δοκιμάζεται στο tenant, μπαίνει πειστήριο, σβήνεται το draft ----
 
   - id: inbox-forward
     draft: true
@@ -405,18 +405,18 @@ queries:
     query: ""
 
   - id: exploitable-cves
-    title: Critical ευπάθειες με γνωστό exploit που μένουν ανοιχτές
-    summary: Ευπάθειες με σοβαρότητα Critical και διαθέσιμο exploit, ανά συσκευή και λογισμικό, με τον αριθμό των συσκευών που επηρεάζονται.
-    why: Από εκατοντάδες CVEs, αυτά με γνωστό exploit είναι αυτά που χρησιμοποιούνται πραγματικά σε επιθέσεις. Κάθε γραμμή είναι ένα λογισμικό σε συγκεκριμένη έκδοση, άρα μία ενέργεια patching, και η στήλη DaysOpen μετρά τις ημέρες από τη δημοσίευση του παλαιότερου CVE. Οι πίνακες δείχνουν την τρέχουσα κατάσταση, γι' αυτό το query δεν έχει φίλτρο χρόνου. Η λίστα δείχνει από πού ξεκινά το patching και είναι τεκμήριο ότι οι ενημερώσεις ασφαλείας εφαρμόζονται σε εύλογο χρόνο.
+    title: Critical ευπάθειες με δημόσια διαθέσιμο exploit που μένουν ανοιχτές
+    summary: Ευπάθειες με σοβαρότητα Critical και δημόσια διαθέσιμο exploit, ανά λογισμικό και έκδοση, με τον αριθμό των συσκευών που επηρεάζονται.
+    why: Από εκατοντάδες CVEs, αυτά με δημόσια διαθέσιμο exploit είναι αυτά που ένας επιτιθέμενος μπορεί να χρησιμοποιήσει άμεσα. Κάθε γραμμή είναι ένα λογισμικό σε συγκεκριμένη έκδοση, άρα μία ενέργεια patching, και η στήλη DaysSincePublished μετρά τις ημέρες από τη δημοσίευση του παλαιότερου CVE. Οι πίνακες δείχνουν την τρέχουσα κατάσταση, γι' αυτό το query δεν έχει φίλτρο χρόνου. Η λίστα δείχνει από πού ξεκινά το patching, και όσο μικραίνει με τον χρόνο τεκμηριώνει ότι οι ενημερώσεις ασφαλείας εφαρμόζονται σε εύλογο χρόνο.
     pillar: endpoint
     product: Defender Vulnerability Management
     table: DeviceTvmSoftwareVulnerabilities
-    license: Microsoft Defender for Endpoint Plan 2 ή Defender Vulnerability Management (Microsoft 365 E5 ή E5 Security)
+    license: Microsoft Defender for Endpoint Plan 2 (περιλαμβάνεται στα Microsoft 365 E5 και E5 Security) ή Defender Vulnerability Management Standalone
     tested: 2026-10-12
     evidence: /images/kql/exploitable-cves.webp
-    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δέκα συνδυασμοί λογισμικού και έκδοσης με Critical ευπάθεια και διαθέσιμο exploit, ο καθένας σε μία συσκευή, με CVSS από 9.1 έως 9.8. Οι παλαιότερες είναι ευπάθειες του Apache HTTP Server ανοιχτές πάνω από 1.800 ημέρες, ενώ βρέθηκαν και Windows 11, Edge και MikroTik RouterOS. Η στήλη RecommendedUpdate είναι συμπληρωμένη μόνο για τα Windows 11, οπότε για τα υπόλοιπα η ενημέρωση βρίσκεται από τον κατασκευαστή. Οι εκδόσεις και τα ονόματα των συσκευών έχουν αφαιρεθεί.
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δέκα συνδυασμοί λογισμικού και έκδοσης με Critical ευπάθεια και δημόσια διαθέσιμο exploit, ο καθένας σε μία συσκευή, με CVSS από 9.1 έως 9.8. Οι παλαιότερες είναι ευπάθειες του Apache HTTP Server που έχουν δημοσιευτεί πάνω από 1.800 ημέρες, ενώ βρέθηκαν και Windows 11, Edge και MikroTik RouterOS. Η στήλη RecommendedUpdate είναι συμπληρωμένη μόνο για τα Windows 11, οπότε για τα υπόλοιπα η ενημέρωση αναζητείται στον κατασκευαστή. Οι εκδόσεις και τα ονόματα των συσκευών έχουν αφαιρεθεί.
     map:
-      kya: ["17.α", "17.γ"]
+      kya: ["17.α", "17.γ", "17.στ"]
       nis2: ["21.2.ε"]
       iso: ["A.8.8"]
       gdpr: ["32.1.β", "32.1.δ"]
@@ -424,11 +424,11 @@ queries:
       - title: "Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune"
         url: /posts/previews/vulnerability-remediation-agent-intune/
     query: |-
-      // Critical ευπάθειες με γνωστό exploit που μένουν ανοιχτές, ανά λογισμικό
-      // ΚΥΑ 1689/2025: 17.α, 17.γ
+      // Critical ευπάθειες με δημόσια διαθέσιμο exploit που μένουν ανοιχτές, ανά λογισμικό
+      // ΚΥΑ 1689/2025: 17.α, 17.γ, 17.στ
       let ExploitableCritical = DeviceTvmSoftwareVulnerabilitiesKB
           | where VulnerabilitySeverityLevel == "Critical" and IsExploitAvailable == true
-          | project CveId, CvssScore, PublishedDate;
+          | project CveId, CvssScore = todouble(CvssScore), PublishedDate;
       DeviceTvmSoftwareVulnerabilities
       | join kind=inner ExploitableCritical on CveId
       | summarize
@@ -438,9 +438,9 @@ queries:
           OldestCve = min(PublishedDate),
           CveList = make_set(CveId, 10),
           SampleDevices = make_set(DeviceName, 5),
-          RecommendedUpdate = make_set(RecommendedSecurityUpdate, 3)
+          RecommendedUpdate = make_set_if(RecommendedSecurityUpdate, isnotempty(RecommendedSecurityUpdate), 3)
           by SoftwareVendor, SoftwareName, SoftwareVersion
-      | extend DaysOpen = datetime_diff('day', now(), OldestCve)
+      | extend DaysSincePublished = datetime_diff('day', now(), OldestCve)
       | order by Devices desc, MaxCvss desc
 
   - id: rdp-logons
