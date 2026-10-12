@@ -10,7 +10,7 @@ menu:
   main:
     identifier: tool-kql
     parent: tools
-    name: "🔎 Βιβλιοθήκη KQL ανά απαίτηση"
+    name: "🎯 Βιβλιοθήκη KQL ανά απαίτηση"
     weight: 3
 author: "Dimosthenis Atteia"
 description: "Advanced Hunting queries για το Microsoft Defender XDR, αντιστοιχισμένα στις απαιτήσεις της ΚΥΑ 1689/2025, της Οδηγίας NIS2 και του ISO/IEC 27001. Κάθε query έχει δοκιμαστεί σε πραγματικό tenant."
