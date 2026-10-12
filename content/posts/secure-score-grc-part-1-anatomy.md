@@ -2,7 +2,7 @@
 title: "Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation"
 seoTitle: "Microsoft Secure Score: πώς διαβάζεις ένα recommendation"
 date: 2026-04-27T07:00:00+03:00
-lastmod: 2026-10-12T11:30:00+03:00
+lastmod: 2026-10-12T12:00:00+03:00
 draft: false
 keywords:
   - Microsoft Secure Score recommendation
@@ -62,7 +62,7 @@ ShowWordCount: true
 
 1. Άνοιξε το **`https://security.microsoft.com`** (το Microsoft Defender portal)
 2. Στο αριστερό μενού, άνοιξε το **Exposure management**
-3. Πάτα **Microsoft Secure Score**
+3. Πάτα **Secure score**
 
 Μπορείς να πας και απευθείας στο `https://security.microsoft.com/securescore`.
 
@@ -215,7 +215,7 @@ ShowWordCount: true
 
 ## Πού να συνεχίσεις από εδώ
 
-Στο **[Μέρος 2](/posts/secure-score-grc-part-2-ecosystem/)** (στα αγγλικά) βγαίνουμε από το ένα recommendation και κοιτάμε πού ακριβώς βρίσκεται το Microsoft Secure Score μέσα στο Microsoft Defender portal και, κυρίως, *ποια προϊόντα το τροφοδοτούν*: Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps και Microsoft Purview. Θα μάθεις και πώς εντοπίζεις από ποιο προϊόν προέρχεται ένας συγκεκριμένος πόντος.
+Στο **[Μέρος 2](/posts/secure-score-grc-part-2-ecosystem/)** βγαίνουμε από το ένα recommendation και κοιτάμε πού ακριβώς βρίσκεται το Microsoft Secure Score μέσα στο Microsoft Defender portal και, κυρίως, *ποια προϊόντα το τροφοδοτούν*: Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps και Microsoft Purview. Θα μάθεις και πώς εντοπίζεις από ποιο προϊόν προέρχεται ένας συγκεκριμένος πόντος.
 
 > 🔗 **Θέλεις πρώτα μια περιήγηση στην οικογένεια Microsoft Defender;** Ξεκίνα από το **[Microsoft Defender Part 1: All Products, Which One Do You Need](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** (στα αγγλικά), το πρώτο άρθρο της σειράς Defender Demystified.
 

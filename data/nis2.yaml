@@ -470,7 +470,7 @@ articles:
     posts:
     - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
-    - title: 'Microsoft Secure Score Part 2: Inside the Defender Ecosystem'
+    - title: 'Microsoft Secure Score Μέρος 2: Μέσα στο οικοσύστημα του Defender'
       url: /posts/secure-score-grc-part-2-ecosystem/
     - title: 'Microsoft Secure Score Part 3: Daily Operations & ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/

@@ -156,7 +156,7 @@ Sensitivity labels για ταξινόμηση και κρυπτογράφηση
 >
 > - **[Series Introduction — How We Built a Gold-Winning GRC Programme on Microsoft Secure Score](/posts/secure-score-grc-part-0-intro/)**
 > - **[Μέρος 1: Πώς διαβάζεις ένα recommendation](/posts/secure-score-grc-part-1-anatomy/)**
-> - **[Part 2 — Where It Sits in the Microsoft Defender World](/posts/secure-score-grc-part-2-ecosystem/)**
+> - **[Μέρος 2: Μέσα στο οικοσύστημα του Defender](/posts/secure-score-grc-part-2-ecosystem/)**
 
 Διάβασέ τα με τη σειρά όταν είσαι έτοιμος. Καλή ανάγνωση! 📚
 

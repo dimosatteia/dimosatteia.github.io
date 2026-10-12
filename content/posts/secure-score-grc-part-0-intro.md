@@ -156,7 +156,7 @@ cover:
 Μόλις το τοπίο του Microsoft Defender σου γίνει οικείο, γύρνα εδώ. Θα έχεις πλέον το πλαίσιο για να παρακολουθήσεις τι ακριβώς μετράει το Microsoft Secure Score. Τα τρία μέρη είναι στα αγγλικά:
 
 1. [**Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation**](/posts/secure-score-grc-part-1-anatomy/): κάθε πεδίο ενός recommendation του Microsoft Secure Score, εξηγημένο όπως θα το εξηγούσε ένας φιλικός συνάδελφος. Γραμμένο για όσους ανοίγουν το score για πρώτη φορά.
-2. [**Microsoft Secure Score Part 2: Inside the Defender Ecosystem**](/posts/secure-score-grc-part-2-ecosystem/): πώς λειτουργεί πραγματικά η βαθμολογία, ποια προϊόντα της Microsoft την τροφοδοτούν και πώς ακολουθείς έναν βαθμό πίσω στην πηγή του.
+2. [**Microsoft Secure Score Μέρος 2: Μέσα στο οικοσύστημα του Defender**](/posts/secure-score-grc-part-2-ecosystem/): πώς λειτουργεί πραγματικά η βαθμολογία, ποια προϊόντα της Microsoft την τροφοδοτούν και πώς ακολουθείς έναν βαθμό πίσω στην πηγή του.
 3. [**Microsoft Secure Score Part 3: Daily Operations & ISO 27001**](/posts/secure-score-grc-part-3-operations/): πώς ιεραρχείς τα recommendations, πώς στήνεις ροή αποκατάστασης, πώς αντιστοιχίζεις controls σε ISO 27001 και NIS2, πώς συλλέγεις audit evidence και πώς αναφέρεις στο board.
 
 Αν προτιμάς να ξεκινήσεις στα ελληνικά, ο [**Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2**](/posts/secure-score-defender-praktikos-odigos/) καλύπτει το Secure Score από την οπτική του Έλληνα Υπευθύνου Ασφάλειας.
@@ -176,7 +176,7 @@ cover:
 Και τα τρία μέρη έχουν δημοσιευτεί και σε περιμένουν:
 
 - [**Μέρος 1: Πώς διαβάζεις ένα recommendation**](/posts/secure-score-grc-part-1-anatomy/)
-- [**Part 2: Inside the Defender Ecosystem**](/posts/secure-score-grc-part-2-ecosystem/)
+- [**Μέρος 2: Μέσα στο οικοσύστημα του Defender**](/posts/secure-score-grc-part-2-ecosystem/)
 - [**Part 3: Daily Operations & ISO 27001**](/posts/secure-score-grc-part-3-operations/)
 
 Όλα τα άρθρα της σειράς θα τα βρίσκεις πάντα στη [σελίδα της σειράς](/series/microsoft-secure-score-as-a-cyber-grc-instrument/).

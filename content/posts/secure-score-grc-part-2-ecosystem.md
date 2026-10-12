@@ -1,24 +1,26 @@
 ---
-title: "Microsoft Secure Score Part 2: Inside the Defender Ecosystem"
+title: "Microsoft Secure Score Μέρος 2: Μέσα στο οικοσύστημα του Defender"
+seoTitle: "Microsoft Secure Score: από πού έρχεται η βαθμολογία"
 date: 2026-05-04T07:00:00+03:00
-lastmod: 2026-05-23T19:30:00+03:00
+lastmod: 2026-10-12T12:00:00+03:00
 draft: false
 keywords:
-  - where does Microsoft Secure Score data come from
-  - which Microsoft products contribute to Secure Score
+  - από πού έρχεται το Microsoft Secure Score
+  - ποια προϊόντα τροφοδοτούν το Microsoft Secure Score
   - Microsoft Secure Score Exposure Management
-  - Microsoft Secure Score license dependency
-  - why are some Secure Score recommendations missing
-  - Microsoft Secure Score refresh time
-  - Microsoft Secure Score for ISO 27001
-  - Microsoft Secure Score as audit evidence
-  - Microsoft Secure Score NIS2 compliance
+  - Microsoft Secure Score άδειες χρήσης
+  - γιατί λείπουν recommendations από το Secure Score
+  - πόσο συχνά ενημερώνεται το Microsoft Secure Score
+  - Microsoft Secure Score History
+  - Microsoft Secure Score ως τεκμήριο ελέγχου
+  - Microsoft Secure Score ΚΥΑ 1689/2025
 tags:
   - Microsoft Secure Score
   - Microsoft Defender XDR
   - Microsoft Defender for Endpoint
   - Microsoft Defender for Office 365
   - Microsoft Defender for Identity
+  - Microsoft Defender for Cloud Apps
   - Microsoft Entra ID
   - Microsoft Purview
   - Microsoft 365 Security
@@ -27,8 +29,8 @@ tags:
   - NIS2
   - ISO 27001
 author: "Dimosthenis Atteia"
-description: "Where does Microsoft Secure Score come from? Which Defender products feed it and how? Learn to trace any score point back to its source."
-summary: "Part 2 of the Secure Score series. Where Microsoft Secure Score physically lives, how it feeds off the Microsoft Defender family, what each source product contributes, and a practical exercise to trace one score point back to the product that generated it."
+description: "Από πού έρχεται το Microsoft Secure Score; Ποια προϊόντα το τροφοδοτούν και πώς; Μάθε να βρίσκεις από ποιο προϊόν προέρχεται κάθε πόντος της βαθμολογίας."
+summary: "Μέρος 2 της σειράς για το Microsoft Secure Score. Πού βρίσκεται μέσα στο Microsoft Defender portal, ποια προϊόντα το τροφοδοτούν, γιατί δεν βλέπεις όλα τα recommendations, πόσο συχνά ενημερώνεται, και μια πρακτική άσκηση για να εντοπίσεις από πού προέρχεται ένας πόντος."
 categories: ["GRC & Compliance"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
@@ -36,205 +38,194 @@ TocOpen: false
 weight: -2
 cover:
   image: "/images/MSS.webp"
-  alt: "Microsoft Secure Score in the Microsoft Defender XDR ecosystem — how Entra ID, Defender for Endpoint, Office 365, and Purview feed the score"
-  caption: "Secure Score Series — Part 2: The Defender Ecosystem"
+  alt: "Το Microsoft Secure Score μέσα στο οικοσύστημα του Microsoft Defender XDR"
+  caption: "Σειρά Secure Score, Μέρος 2: Το οικοσύστημα του Defender"
   relative: false
   hidden: false
+ShowReadingTime: true
+ShowWordCount: true
 ---
 
-## A small moment most beginners hit
+## Μια στιγμή που φτάνουν όλοι οι αρχάριοι
 
-In **[Part 1](/posts/secure-score-grc-part-1-anatomy/)** we opened a single Microsoft Secure Score recommendation and walked through every field. By now you can look at a recommendation and understand what you're seeing.
+Στο **[Μέρος 1](/posts/secure-score-grc-part-1-anatomy/)** ανοίξαμε ένα recommendation του Microsoft Secure Score και είδαμε κάθε πεδίο του. Πλέον μπορείς να κοιτάξεις ένα recommendation και να καταλάβεις τι βλέπεις.
 
-But if you've been clicking around for a few days, you've probably hit this moment: you look at your overall score, and you wonder, *where does this number actually come from? Who's measuring what? Is Microsoft running some kind of scan on my tenant? And why are there recommendations about products I didn't even know I had?*
+Αν όμως έχεις κάνει μερικές μέρες κλικ εδώ κι εκεί, μάλλον έφτασες σε αυτή τη στιγμή: κοιτάς τη συνολική βαθμολογία και αναρωτιέσαι *από πού βγαίνει αυτός ο αριθμός; Ποιος μετράει τι; Κάνει η Microsoft κάποιο scan στο tenant μου; Και γιατί υπάρχουν recommendations για προϊόντα που δεν ήξερα καν ότι έχω;*
 
-These are good questions. The answers are genuinely useful to know, and once they click, the whole Microsoft Defender portal stops feeling like a random collection of features and starts feeling like a system.
+Είναι καλές ερωτήσεις. Οι απαντήσεις είναι χρήσιμες, και μόλις τις καταλάβεις, το Microsoft Defender portal σταματά να μοιάζει με τυχαία συλλογή από λειτουργίες και αρχίζει να μοιάζει με σύστημα.
 
-This is that post.
+Αυτές τις απαντήσεις δίνει αυτό το άρθρο.
 
-## The honest, short version
+## Η σύντομη εκδοχή
 
-Microsoft Secure Score isn't a product on its own. It's **a scoreboard that reads configuration data from a bunch of other Microsoft products and gives you a single number.**
+Το Microsoft Secure Score δεν είναι ξεχωριστό προϊόν ασφάλειας. Είναι **ένας πίνακας αποτελεσμάτων που διαβάζει δεδομένα από άλλα προϊόντα της Microsoft και σου δίνει έναν αριθμό.**
 
-Each of those other products already knows what it should be configured like. Microsoft Secure Score asks them *"hey, is this specific thing configured correctly in this tenant?"*, gets a yes/no back, tallies the results, and shows you the total.
+Κάθε ένα από αυτά τα προϊόντα ξέρει πώς πρέπει να είναι ρυθμισμένο. Το Microsoft Secure Score ελέγχει, για κάθε recommendation, αν η ρύθμιση υπάρχει στο tenant σου. Τα περισσότερα recommendations μετρούν «όλα ή τίποτα». Κάποια δίνουν μέρος των πόντων, ανάλογα με το πόσοι χρήστες ή πόσες συσκευές καλύπτονται. Στο τέλος αθροίζει τους πόντους και σου δείχνει το σύνολο.
 
-That's really it. The rest of this post is just unpacking which products contribute what, and how to trace a score point back to its source.
+Αυτό είναι όλο. Το υπόλοιπο άρθρο ξεδιπλώνει ποιο προϊόν δίνει τι, και πώς βρίσκεις από πού προέρχεται ένας πόντος.
 
-## The Microsoft Defender family in one paragraph
+## Η οικογένεια Microsoft Defender σε μία παράγραφο
 
-The short version for now: Microsoft groups its security products into a family called **Microsoft Defender**, the umbrella brand being **Microsoft Defender XDR**, as described in the ([Microsoft Defender XDR documentation](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)). Inside that umbrella are several workloads, Microsoft Defender for Endpoint (devices), Microsoft Defender for Office 365 (email and Teams), Microsoft Defender for Identity (Active Directory), Microsoft Defender for Cloud Apps (SaaS apps), plus a couple of close cousins like Microsoft Defender for Cloud (Azure workloads). A full deep dive into the Microsoft Defender family is on the way in a dedicated companion series, **Microsoft Defender Demystified**, starting in June 2026.
+Η Microsoft ομαδοποιεί τα προϊόντα ασφάλειάς της σε μια οικογένεια με το όνομα **Microsoft Defender**, με ομπρέλα το **[Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)**. Κάτω από την ομπρέλα υπάρχουν αρκετά workloads: το Microsoft Defender for Endpoint (συσκευές), το Microsoft Defender for Office 365 (email και Teams), το Microsoft Defender for Identity (Active Directory) και το Microsoft Defender for Cloud Apps (εφαρμογές SaaS). Δίπλα τους υπάρχει και το Microsoft Defender for Cloud, για τα workloads του Azure και άλλων clouds. Για μια πλήρη περιήγηση, δες τη σειρά **[Microsoft Defender Demystified](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)** (στα αγγλικά), ή τον **[πρακτικό οδηγό για την οικογένεια Microsoft Defender](/posts/microsoft-defender-oikogeneia-praktikos-odigos/)** στα Ελληνικά.
 
-Microsoft Secure Score reads from most of these.
+Το Microsoft Secure Score διαβάζει από τα περισσότερα από αυτά.
 
-## Where Microsoft Secure Score physically lives
+## Πού βρίσκεται το Microsoft Secure Score
 
-Remember from **[Part 1](/posts/secure-score-grc-part-1-anatomy/)**, the navigation path is:
+Θυμήσου από το **[Μέρος 1](/posts/secure-score-grc-part-1-anatomy/)** τη διαδρομή:
 
-**`security.microsoft.com` → Exposure management → Microsoft Secure Score**
+**`security.microsoft.com` → Exposure management → Secure score**
 
-The important word is **Exposure management**. Microsoft Secure Score moved into that section a while back, and it lives alongside other posture-related features.
+Η σημαντική λέξη είναι το **Exposure management**. Εκεί βρίσκεται το Microsoft Secure Score, μαζί με άλλες λειτουργίες που αφορούν τη στάση ασφάλειας (security posture) του οργανισμού.
 
-[![Microsoft Secure Score location in Defender portal Exposure management navigation](/images/SS_GRC_P2_Ecosystem_image_1.webp)](/images/SS_GRC_P2_Ecosystem_image_1.webp)
-> 📷 **Image 1 — The Exposure management section in the left navigation.**
+[![Το Microsoft Secure Score στην ενότητα Exposure management του αριστερού μενού στο Defender portal](/images/SS_GRC_P2_Ecosystem_image_1.webp)](/images/SS_GRC_P2_Ecosystem_image_1.webp)
+> 📷 **Εικόνα 1:** Η ενότητα Exposure management στο αριστερό μενού.
 
-**[Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)** is a newer Microsoft surface that tries to answer *"how exposed are we?"*. It includes:
+Το **[Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)** προσπαθεί να απαντήσει στο *«πόσο εκτεθειμένοι είμαστε;»*. Στο μενού του, όπως φαίνεται στην Εικόνα 1, θα βρεις:
 
-- Your **attack surface** (what an attacker could see from outside)
-- Your **exposure insights** (what risks matter most right now)
-- **Microsoft Secure Score** (how configured-correctly your tenant is)
-- Other posture signals
+- **Overview**, **Secure now**, **Initiatives** και **Recommendations**: η συνολική εικόνα και οι προτεραιότητες
+- **Vulnerability management**: οι ευπάθειες των συσκευών
+- **Attack surface**: η επιφάνεια επίθεσης του οργανισμού
+- **Secure score**: το Microsoft Secure Score
+- **Data connectors**: οι συνδέσεις με πηγές δεδομένων
 
-Microsoft Secure Score is one of several posture instruments that live here. For now you don't need to use the other ones, just notice they exist and they're related.
+Το Microsoft Secure Score είναι ένα από τα εργαλεία της ενότητας. Προς το παρόν δεν χρειάζεται να χρησιμοποιήσεις τα υπόλοιπα. Απλώς πρόσεξε ότι υπάρχουν και ότι συνδέονται.
 
-## The products that feed your Microsoft Secure Score
+## Τα προϊόντα που τροφοδοτούν το Microsoft Secure Score
 
-This is the part that usually surprises new professionals. Your Microsoft Secure Score is calculated from configuration data in **many different Microsoft products**. Here's the main list:
+Αυτό είναι το κομμάτι που συνήθως εκπλήσσει τους νέους συναδέλφους. Το Microsoft Secure Score υπολογίζεται από δεδομένα **πολλών διαφορετικών προϊόντων**. Η στήλη **Product** της λίστας Recommended actions σου δείχνει από ποιο προϊόν έρχεται κάθε recommendation, και η στήλη **Category** σε ποια από τις τέσσερις ομάδες (Identity, Data, Device, Apps) ανήκει.
 
-[![Microsoft Secure Score Recommended actions showing Identity Data Device Apps source categories](/images/SS_GRC_P2_Ecosystem_image_2.webp)](/images/SS_GRC_P2_Ecosystem_image_2.webp)
-> 📷 **Image 2 — The Recommended actions list with the Category column visible.**
+[![Η λίστα Recommended actions του Microsoft Secure Score με τις στήλες Category και Product](/images/SS_GRC_P2_Ecosystem_image_2.webp)](/images/SS_GRC_P2_Ecosystem_image_2.webp)
+> 📷 **Εικόνα 2:** Η λίστα Recommended actions με τις στήλες Category και Product.
 
-### Microsoft Entra ID (identity)
+Η Microsoft έχει σήμερα recommendations για Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Identity, Microsoft Defender for Office, Exchange Online, SharePoint Online, Microsoft Teams, Microsoft Defender for Cloud Apps, app governance και Microsoft Purview Information Protection. Έχει επίσης για εφαρμογές τρίτων, όπως Salesforce, ServiceNow, Zoom, GitHub, Okta και Docusign. Ας δούμε τα κυριότερα.
 
-**[Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)** is Microsoft's cloud identity and access management service. It provides a big chunk of your Microsoft Secure Score recommendations, things like:
+### Microsoft Entra ID (ταυτότητες)
 
-- Multifactor authentication policies
-- Conditional Access policies
-- Password protection
-- Risk-based sign-in policies
+Το **[Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)** είναι η υπηρεσία της Microsoft για ταυτότητες και πρόσβαση στο cloud. Δίνει μεγάλο μέρος των recommendations, όπως:
+
+- Πολυπαραγοντική αυθεντικοποίηση (MFA), ειδικά για τους διαχειριστές
+- Πολιτικές Conditional Access, π.χ. αποκλεισμός του legacy authentication
+- Πολιτικές κινδύνου σύνδεσης του Microsoft Entra ID Protection
 - Self-service password reset
-- Privileged account controls
+- Έλεγχοι στους προνομιούχους λογαριασμούς
 
-Any recommendation with a badge or category of **Identity** comes from Microsoft Entra ID.
+Τα recommendations με Product **Microsoft Entra ID** ανήκουν σχεδόν πάντα στην κατηγορία **Identity**.
 
-### Microsoft Defender for Endpoint (devices)
+### Microsoft Defender for Identity (Active Directory)
 
-**[Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** protects the devices in your fleet. Its Microsoft Secure Score contribution covers:
+Το **[Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/what-is)** φέρνει στο Secure Score ευρήματα από το on-premises Active Directory: λογαριασμούς υπηρεσιών σε προνομιούχες ομάδες, ανασφαλείς ρυθμίσεις του domain, κωδικούς που φαίνονται σε attributes ή σε GPOs. Ανήκουν κι αυτά στην κατηγορία **Identity**. Αν δεν έχεις εγκαταστήσει ακόμα sensors στους domain controllers, θα δεις recommendation που σου ζητά να ξεκινήσεις την ανάπτυξη.
 
-- Whether antivirus is enabled and up to date
-- Whether attack surface reduction rules are configured
-- Whether network protection is on
-- Device security baselines and exposure levels
+### Microsoft Defender for Endpoint (συσκευές)
 
-Recommendations with the **Device** category come from here. If you see very few Device recommendations, it usually means Microsoft Defender for Endpoint isn't fully deployed yet.
+Το **[Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)** προστατεύει τις συσκευές του οργανισμού. Τα recommendations του αφορούν:
 
-### Microsoft Defender for Office 365 (email and Teams)
+- Αν το antivirus είναι ενεργό και ενημερωμένο
+- Αν είναι ρυθμισμένοι οι κανόνες attack surface reduction
+- Αν είναι ενεργά το firewall και το network protection
+- Ρυθμίσεις ασφάλειας του λειτουργικού, όπως το Credential Guard και το UAC
 
-**[Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)** protects email and Microsoft Teams. Its Microsoft Secure Score contributions include:
+Είναι η κατηγορία **Device**. Αν τα recommendations του Device είναι λίγα, συνήθως σημαίνει ότι το Microsoft Defender for Endpoint δεν έχει αναπτυχθεί ακόμα σε όλες τις συσκευές.
 
-- Anti-phishing policies
-- Safe Links and Safe Attachments policies
-- Anti-spam and anti-malware configurations
-- DKIM, SPF, DMARC email authentication
-- Attack Simulation Training usage (in Plan 2)
+### Microsoft Defender for Office 365 και Exchange Online (email)
 
-These show up mostly under the **Apps** or **Data** category, depending on the specific recommendation.
+Το **[Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)** προστατεύει το email και το Microsoft Teams. Τα recommendations του αφορούν πολιτικές όπως Safe Links, Safe Attachments, anti-phishing και zero-hour auto purge. Το **Exchange Online** δίνει recommendations για βασικές ρυθμίσεις του email, όπως το mailbox auditing και την αυτόματη προώθηση προς εξωτερικούς παραλήπτες.
 
-### Microsoft Defender for Cloud Apps (SaaS apps)
+Στο δικό μου tenant, αυτά τα recommendations εμφανίζονται κυρίως στην κατηγορία **Apps** (δες το «Create Safe Links policies for email messages» στην Εικόνα 2).
 
-**[Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)** watches over your SaaS application usage. Its recommendations include:
+### Microsoft Defender for Cloud Apps (εφαρμογές SaaS)
 
-- Cloud app governance policies
-- OAuth app review status
-- Anomaly detection policy coverage
+Το **[Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)** παρακολουθεί τη χρήση εφαρμογών SaaS. Μέσω αυτού έρχονται στο Secure Score τα recommendations για εφαρμογές τρίτων που έχεις συνδέσει (π.χ. Salesforce ή ServiceNow), τα recommendations του app governance για τις OAuth εφαρμογές, και κάποια recommendations για υπηρεσίες του Microsoft 365, όπως το Microsoft Forms που θα δούμε παρακάτω.
 
-### Microsoft Purview (data protection and compliance)
+### Microsoft Purview (προστασία δεδομένων)
 
-**[Microsoft Purview](https://learn.microsoft.com/en-us/purview/purview)** handles data protection and compliance. It contributes recommendations about:
+Το **[Microsoft Purview](https://learn.microsoft.com/en-us/purview/purview)** καλύπτει την προστασία δεδομένων και τη συμμόρφωση. Στο Secure Score φέρνει recommendations του **Microsoft Purview Information Protection**, π.χ. για sensitivity labels. Εμφανίζονται στην κατηγορία **Data**.
 
-- Sensitivity labels being configured
-- Data Loss Prevention (DLP) policies being active
-- Audit log search being enabled
-- Retention policies and records management
+## Πώς βρίσκεις από πού προέρχεται ένας πόντος
 
-These show up under the **Data** category.
+Μια πρακτική άσκηση που τα κάνει όλα να «κουμπώσουν». Άνοιξε το Microsoft Secure Score, διάλεξε ένα recommendation και ας βρούμε μαζί από πού έρχεται.
 
-### Microsoft Exchange Online (mail flow)
+Παράδειγμα: το recommendation *«Ensure internal phishing protection for Forms is enabled»*.
 
-Some foundational email configuration recommendations come directly from **Microsoft Exchange Online**, things like mailbox auditing settings, modern authentication, and external forwarding restrictions. They usually appear with **Apps** or **Data** badges.
+[![Η καρτέλα Implementation ενός recommendation του Microsoft Secure Score που δείχνει το προϊόν και την οθόνη της ρύθμισης](/images/SS_GRC_P2_Ecosystem_image_3.webp)](/images/SS_GRC_P2_Ecosystem_image_3.webp)
+> 📷 **Εικόνα 3:** Η καρτέλα Implementation ενός recommendation, με την προϋπόθεση και την οθόνη όπου γίνεται η ρύθμιση.
 
-## Tracing one score point back to its source
+Η καρτέλα Implementation γράφει στα **Prerequisites** ότι χρειάζεται το Microsoft Defender for Cloud Apps, και στα **Next steps** σε στέλνει στο **Microsoft 365 admin center → Settings → Org settings → Microsoft Forms**, για να ενεργοποιήσεις το internal phishing protection. Πρόσεξε τι μόλις έγινε:
 
-Here's a concrete exercise that makes all this click. Open your Microsoft Secure Score, pick any recommendation that's currently **To address**, and we'll trace it back to its source together.
+- **Πίνακας αποτελεσμάτων:** το Microsoft Secure Score, στο Defender portal
+- **Πού γίνεται η ρύθμιση:** στο Microsoft Forms, από το Microsoft 365 admin center
+- **Ποιο προϊόν φέρνει το recommendation:** το Microsoft Defender for Cloud Apps
+- **Η ερώτηση που απαντά ο πόντος:** *Είναι ενεργό το internal phishing protection στο Forms;*
 
-Example: let's say the recommendation is *"Ensure internal phishing protection for Forms is enabled"*.
+Όταν κάνεις τη ρύθμιση στο Microsoft 365 admin center, η αλλαγή φτάνει στο Microsoft Secure Score στον επόμενο συγχρονισμό. Η κατάσταση γίνεται **Completed** και η βαθμολογία ανεβαίνει όσο αξίζει το recommendation.
 
-[![Tracing a Microsoft Secure Score recommendation back to Microsoft Entra ID source product](/images/SS_GRC_P2_Ecosystem_image_3.webp)](/images/SS_GRC_P2_Ecosystem_image_3.webp)
-> 📷 **Image 3 — A recommendation's Implementation tab showing which Microsoft product configures it.**
+**Το συμπέρασμα:** το Microsoft Secure Score δεν *έκανε* ποτέ τίποτα στο tenant σου. Απλώς ρωτά τα άλλα προϊόντα και διαβάζει την απάντηση. Το ίδιο μοτίβο ισχύει για όλα τα recommendations. Γι' αυτό το κουμπί **Manage** στο κάτω μέρος του panel σε πηγαίνει στην οθόνη του προϊόντος όπου γίνεται η ρύθμιση, όχι σε κάποια ρύθμιση του ίδιου του Secure Score.
 
-The Implementation tab tells you to go to **Microsoft 365 admin center → Settings → Org Settings → Microsoft Forms** and enable internal phishing 
-protection. Notice what just happened:
+## Γιατί δεν βλέπω όλα τα recommendations;
 
-- **Scoreboard:** Microsoft Secure Score (in the Defender portal)
-- **Source product:** Microsoft Forms (configured in Microsoft 365 admin center)
-- **Score answers the question:** *Is internal phishing protection enabled in Forms?*
-- **Data collected by:** Microsoft Forms, continuously, from tenant settings
+Συχνή απορία. Διάβασες ένα άρθρο ή είδες ένα webinar για ένα συγκεκριμένο recommendation, και στο δικό σου tenant δεν υπάρχει.
 
-When you implement the policy in Microsoft 365 admin center, Microsoft Entra ID reports back to Microsoft Secure Score that the configuration has changed. The recommendation's status flips to **Completed** (usually within a few hours), and your score goes up by the recommendation's point value.
+Ο λόγος είναι σχεδόν πάντα οι **άδειες χρήσης**. Αν έχεις άδεια για ένα προϊόν, βλέπεις όλα τα recommendations του, ανεξάρτητα από το πακέτο ή το plan. Αν δεν έχεις καθόλου άδεια για ένα προϊόν, τα recommendations του μπορεί να μην εμφανίζονται, ή να εμφανίζονται με «No» στη στήλη **Have license?**. Αν, για παράδειγμα, δεν έχεις αναπτύξει το Microsoft Defender for Identity, δεν θα δεις τα ευρήματα του Active Directory.
 
-**The insight:** Microsoft Secure Score never *did* anything in your tenant. It's just asking Microsoft Entra ID a question and reading the answer. The same pattern applies to every other source product.
+[![Η σελίδα Licenses του Microsoft 365 admin center με τις συνδρομές του tenant](/images/SS_GRC_P2_Ecosystem_image_4.png)](/images/SS_GRC_P2_Ecosystem_image_4.png)
+> 📷 **Εικόνα 4:** Η σελίδα Licenses του Microsoft 365 admin center.
 
-## Why don't I see all Secure Score recommendations?
+Για να δεις ποια προϊόντα έχεις, άνοιξε το **Microsoft 365 admin center → Billing → Licenses**.
 
-This is a common beginner moment of confusion. You've read an article or watched a webinar that mentioned a specific Microsoft Secure Score recommendation, and when you look in your own tenant, it isn't there.
+Γι' αυτό δύο οργανισμοί που συγκρίνουν βαθμολογίες μπορεί να μπερδευτούν. Δεν βαθμολογούνται πάνω στο ίδιο σύνολο ερωτήσεων: ο καθένας βλέπει τα recommendations των προϊόντων που έχει. Η Microsoft γράφει πάντως ότι η απόλυτη στάση ασφάλειας που μετρά το Secure Score δεν αλλάζει με τις άδειες που έχεις για ένα προϊόν.
 
-The reason is almost always **licensing**. Microsoft Secure Score only shows you recommendations for products you're **licensed for**. If your tenant doesn't have Microsoft Defender for Office 365 Plan 2, you won't see the recommendations that are specific to Plan 2 (like the Attack Simulation Training ones). If you don't have Microsoft Defender for Cloud Apps, you won't see any Cloud App recommendations at all.
+Για το τι περιλαμβάνει κάθε άδεια, δες το **[Microsoft Defender Part 4: The Licensing Decoder](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)** (στα αγγλικά).
 
-[![Microsoft 365 admin center licenses page showing which Secure Score recommendations apply to your tenant](/images/SS_GRC_P2_Ecosystem_image_4.png)](/images/SS_GRC_P2_Ecosystem_image_4.png)
-> 📷 **Image 4 — The Microsoft 365 admin center licenses page.**
+## Πόσο συχνά ενημερώνεται το Microsoft Secure Score;
 
-This is why two people comparing their scores can get confusing numbers. A company with Microsoft 365 E5 might have 180 recommendations; a company with Microsoft 365 E3 might have 120. They're not being scored against the same set of questions.
+Όχι αμέσως. Όταν αλλάζεις μια ρύθμιση στο Microsoft Entra ID, στο Microsoft Defender for Endpoint ή σε άλλο προϊόν, χρειάζεται χρόνος μέχρι να τη δει το Microsoft Secure Score.
 
-For a deeper walk through what each license includes, an upcoming post, the **Microsoft Defender Demystified — Part 4 (licensing decoder)** will cover this in plain language.
-<!--(/posts/defender-demystified-part-4-licensing-decoder/)-->
+Τι λέει η Microsoft:
 
-## How long does Microsoft Secure Score take to update?
+- **Γενικά:** οι πόντοι συγχρονίζονται μία φορά την ημέρα, και η λίστα Recommended actions γράφει ότι η ενημέρωση μπορεί να πάρει **έως 24 ώρες**. Στην Εικόνα 5 θα δεις ότι οι αλλαγές στο History καταγράφονται όλες στις 3:00 τα ξημερώματα.
+- **Recommendations του Microsoft Entra ID:** η κατάστασή τους ανανεώνεται **μία φορά την εβδομάδα**.
+- **Recommendations του Microsoft Teams:** **μία φορά τον μήνα**.
 
-Not instantly. When you make a configuration change in Microsoft Entra ID, Microsoft Defender for Endpoint, or any other source product, there's a lag before Microsoft Secure Score picks it up.
+Από την εμπειρία μου, τα recommendations του Microsoft Defender for Endpoint εξαρτώνται και από το πότε επικοινωνούν οι συσκευές με την υπηρεσία, οπότε μπορεί να αργήσουν περισσότερο.
 
-In practice:
+Αν κάνεις μια αλλαγή και η βαθμολογία δεν κουνηθεί την επόμενη μέρα, μην πανικοβληθείς. Ξαναδές τη μεθεπόμενη. Για τα recommendations του Entra ID, περίμενε μία εβδομάδα. Αν περάσει αυτός ο χρόνος και δεν έχει αλλάξει τίποτα, τότε ψάξε: συνήθως η ρύθμισή σου δεν είναι ακριβώς αυτό που ελέγχει το Microsoft Secure Score, π.χ. μια πολιτική που δεν καλύπτει όλους τους χρήστες.
 
-- **Most recommendations:** refresh within 24 hours
-- **Some identity and policy recommendations:** can take up to 48 hours to update
-- **Certain Microsoft Defender for Endpoint recommendations:** depend on device check-in frequency, can be longer
+## Η καρτέλα History λέει μια ιστορία
 
-If you implement a change and your score hasn't moved by the next day, don't panic, come back the day after. If it still hasn't moved after 72 hours, that's when you'd start investigating, usually the configuration isn't quite what Microsoft Secure Score is checking for happens occasionally.
+Ένα τελευταίο κομμάτι της σελίδας που αξίζει να ξέρεις: η καρτέλα **History**.
 
-## The history tab tells a story
+[![Η καρτέλα History του Microsoft Secure Score, με το γράφημα της βαθμολογίας και τις αλλαγές πόντων ανά recommendation](/images/SS_GRC_P2_Ecosystem_image_5.png)](/images/SS_GRC_P2_Ecosystem_image_5.png)
+> 📷 **Εικόνα 5:** Η καρτέλα History του Microsoft Secure Score.
 
-One last part of the page worth knowing about: **History**.
+Η καρτέλα History δείχνει την πορεία της βαθμολογίας και κάθε αλλαγή πόντων: πότε ένα recommendation κέρδισε πόντους (*points gained*), πότε έχασε (*points regressed*), πόσους πόντους έχει πλέον (**Resulting points**), σε ποια κατηγορία ανήκει, και ποιος ή τι προκάλεσε την αλλαγή (**Attributed to**, π.χ. System).
 
-[![Microsoft Secure Score History tab as audit evidence and ISO 27001 compliance trail](/images/SS_GRC_P2_Ecosystem_image_5.png)](/images/SS_GRC_P2_Ecosystem_image_5.png)
-> 📷 **Image 5 — The Microsoft Secure Score History tab.**
+Είναι χρήσιμη όταν:
 
-The History tab shows every score event over time, when a recommendation got completed, when a new one was added (which drops the score temporarily), when configuration drifted (which can also drop the score).
+- Η βαθμολογία έπεσε απροσδόκητα και θέλεις να βρεις γιατί
+- Θέλεις να δείξεις πρόοδο σε μια περίοδο αναφοράς (*«ανεβήκαμε 1.37% το τρίμηνο»*)
+- Θέλεις να δεις ποιες αλλαγές ρυθμίσεων κίνησαν πραγματικά τον αριθμό
 
-This is genuinely useful when:
+Όσο εξοικειώνεσαι με το Microsoft Secure Score, η καρτέλα History γίνεται η πηγή σου για συζητήσεις του τύπου *«ναι, αυτή τη δουλειά την κάναμε»* και *«εδώ έγινε η πτώση»*. Είναι και τεκμήριο που μπορείς να δείξεις σε έναν έλεγχο. Η ΚΥΑ 1689/2025 ζητά περιοδική αξιολόγηση της παραμετροποίησης (απαίτηση **[14.δ](/kya-1689-2025/#14-δ)**) και επικαιροποίηση του πλάνου αντιμετώπισης κινδύνων (απαίτηση **[5.1.δ](/kya-1689-2025/#5-1-δ)**), και το History με το Export δίνει την ιστορία των αλλαγών με ημερομηνίες.
 
-- Your score dropped unexpectedly and you want to find out why
-- You want to see progress over a reporting period (*"we improved by 12 points last quarter"*)
-- You want to track which configuration changes actually moved the number
+## Συνοψίζοντας
 
-As you get more comfortable with Microsoft Secure Score, the History tab becomes your evidence source for *"yes, we did that work"* and *"here's when the drop happened"* conversations.
+Όλα όσα είπαμε σε μία παράγραφο: το Microsoft Secure Score είναι ένας πίνακας αποτελεσμάτων μέσα στην ενότητα Exposure management του Microsoft Defender portal. Διαβάζει δεδομένα από πολλά προϊόντα της Microsoft, όπως το Microsoft Entra ID, τα Microsoft Defender for Endpoint, Identity, Office 365 και Cloud Apps, το Exchange Online και το Microsoft Purview, και σου δίνει έναν αριθμό. Όταν εφαρμόζεις ένα recommendation, δεν αλλάζεις τίποτα στο ίδιο το Secure Score. Αλλάζεις μια ρύθμιση σε κάποιο από αυτά τα προϊόντα, και η αλλαγή φτάνει στη βαθμολογία στον επόμενο συγχρονισμό. Οι άδειες καθορίζουν ποια recommendations βλέπεις. Η καρτέλα History σου λέει τι έγινε και πότε.
 
-## A quick wrap-up
+Αυτό είναι όλο το νοητικό μοντέλο. Μόλις το αποκτήσεις, το Microsoft Secure Score, και ένα εκπληκτικά μεγάλο μέρος του Microsoft Defender portal, βγάζουν νόημα.
 
-Everything we covered in one paragraph: Microsoft Secure Score is a scoreboard inside the Microsoft Defender portal's Exposure management section. It reads configuration data from several Microsoft products, Microsoft Entra ID, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, Microsoft Purview, Microsoft Exchange Online, and gives you a single number. When you implement a recommendation, you're not changing anything in Microsoft Secure Score itself; you're changing configuration in one of those source products, which then reports back. The score refreshes within 24–48 hours of configuration changes. Licensing determines which recommendations you can see. The History tab tells you everything that's happened.
+## Πού να συνεχίσεις από εδώ
 
-That's the whole mental model. Once you have it, everything else in Microsoft Secure Score, and a surprising amount of the broader Microsoft Defender portal, makes intuitive sense.
+Στο **[Μέρος 3](/posts/secure-score-grc-part-3-operations/)** (στα αγγλικά) περνάμε στην καθημερινή διαχείριση του Microsoft Secure Score ως μέρος ενός προγράμματος συμμόρφωσης: πώς ιεραρχείς όταν έχεις πάνω από 250 recommendations, πώς τεκμηριώνεις τις αποφάσεις κινδύνου για τους ελεγκτές, και πώς βλέπεις τη βαθμολογία ως τεκμήριο και όχι ως στόχο.
 
-## What's next
+> 🔗 **Θέλεις το Secure Score από την οπτική της συμμόρφωσης;** Ο **[Πρακτικός Οδηγός για τον ΥΑΣΠΕ](/posts/secure-score-defender-praktikos-odigos/)** δείχνει πώς ιεραρχείς τα recommendations για τον ν. 5160/2024. Δες και πώς αντιστοιχίζεται το Microsoft Secure Score στις απαιτήσεις του **[οδηγού της ΚΥΑ 1689/2025](/kya-1689-2025/)** και στα controls του **[ISO/IEC 27001](/iso-27001/)**.
 
-In **Microsoft Defender Demystified Series** we move into actually managing Microsoft Secure Score as part of a compliance programme, how to prioritise recommendations when you have 150 of them, how to document risk decisions for auditors, and how to start thinking about score as evidence rather than as a target.
+Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-> 🔗 For a ground-up tour of the Microsoft Defender ecosystem, the upcoming **Microsoft Defender Demystified** series will start there. *Subscribe via [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) to be notified when it drops.*
+## Πηγές Microsoft Learn
 
-Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
-
-## Microsoft Learn resources
-
-- [Microsoft Secure Score overview](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)
-- [How Microsoft Secure Score is calculated](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions)
-- [Microsoft Security Exposure Management overview](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)
-- [Microsoft Defender XDR overview](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
-- [Microsoft Entra ID overview](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)
-- [Microsoft Purview overview](https://learn.microsoft.com/en-us/purview/purview)
+- [Microsoft Secure Score: επισκόπηση, υπολογισμός και συχνότητα ενημέρωσης](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)
+- [Assess your security posture with Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions)
+- [Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)
+- [Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
+- [Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)
+- [Microsoft Purview](https://learn.microsoft.com/en-us/purview/purview)
