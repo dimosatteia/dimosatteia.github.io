@@ -36,6 +36,13 @@
       url: "https://mvp.microsoft.com/en-US/MVP/profile/14e20609-fb53-4f6e-b179-81b6b9325274"
     # πρόσθεσε blog/YouTube URL όταν το έχεις έτοιμο
 
+- name: "Κώστας Τσιόλας"
+  role: "Ex-Microsoft, CISSP, CCSP"
+  avatar: "https://static.wixstatic.com/media/a0d7ce_619bdf21ca9f40dcbbbaf8f87d1ea1f4~mv2.jpg/v1/fill/w_470,h_589,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/0262.jpg"
+  links:
+    - type: "LinkedIn"
+      url: "https://www.linkedin.com/in/ktsiolas/"
+
 # - name: "Νέο άτομο εδώ"
 #   role: "Τίτλος"
 #   avatar: "https://.../photo.jpg"
