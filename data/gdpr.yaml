@@ -77,6 +77,8 @@ articles:
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
     - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
       url: /posts/purview-autolabeling-500k-scale-increase/
+    - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
+      url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
   - code: '5.2'
     scope: Υπεύθυνος επεξεργασίας
     requirement: '«Λογοδοσία»: ο υπεύθυνος επεξεργασίας φέρει την ευθύνη και είναι σε θέση να αποδείξει τη συμμόρφωση με τις αρχές της παραγράφου 1.'
@@ -375,6 +377,10 @@ articles:
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
     - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    - title: 'Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing'
+      url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+    - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
+      url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.
@@ -454,6 +460,10 @@ articles:
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
       url: /posts/microsoft-defender-air-automated-investigation-response/
+    - title: 'Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing'
+      url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+    - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
+      url: /posts/previews/isoc-integrated-security-operations-defender/
   - code: '33.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Ο εκτελών ενημερώνει τον υπεύθυνο χωρίς αδικαιολόγητη καθυστέρηση μόλις αντιληφθεί παραβίαση δεδομένων προσωπικού χαρακτήρα.

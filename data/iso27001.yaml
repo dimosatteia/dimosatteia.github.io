@@ -402,6 +402,8 @@ articles:
     - &id014
       title: 'Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging'
       url: /posts/teams-security-detection-report/
+    - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
+      url: /posts/previews/isoc-integrated-security-operations-defender/
   - code: A.5.26
     scope: ''
     requirement: Response to information security incidents
@@ -416,6 +418,8 @@ articles:
     - *id009
     - *id010
     - *id011
+    - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
+      url: /posts/previews/isoc-integrated-security-operations-defender/
   - code: A.5.27
     scope: ''
     requirement: Learning from information security incidents
@@ -919,6 +923,8 @@ articles:
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
     - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
+      url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
   - code: A.8.8
     scope: ''
     requirement: Management of technical vulnerabilities
@@ -982,6 +988,8 @@ articles:
     - 11
     posts:
     - *id001
+    - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
+      url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
   - code: A.8.13
     scope: ''
     requirement: Information backup
@@ -1019,6 +1027,8 @@ articles:
     - *id030
     - *id031
     - *id032
+    - title: 'Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing'
+      url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
   - code: A.8.16
     scope: Νέο στην έκδοση 2022
     requirement: Monitoring activities
@@ -1033,6 +1043,10 @@ articles:
     - *id012
     - *id013
     - *id014
+    - title: 'Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing'
+      url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+    - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
+      url: /posts/previews/isoc-integrated-security-operations-defender/
   - code: A.8.17
     scope: ''
     requirement: Clock synchronization

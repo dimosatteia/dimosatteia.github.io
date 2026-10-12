@@ -1,7 +1,7 @@
 ---
 title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)"
 date: 2026-10-02T08:00:00+03:00
-lastmod: 2026-10-02T23:00:00+03:00
+lastmod: 2026-10-12T13:30:00+03:00
 draft: false
 keywords:
   - Microsoft 365 Security νέα
@@ -50,6 +50,8 @@ cover:
 
 **Τι να κάνεις.** Άνοιξε στο Defender portal το Settings → Identities → **Sensor management** (είναι καρτέλα της σελίδας On-premises). Εκεί εμφανίζεται η ειδοποίηση. Όσο εμφανίζεται, έχεις δύο επιλογές: **Go to Advanced features** για να το ενεργοποιήσεις εσύ, ή **Opt out** για να μη γίνει αυτόματα. Οι δύο ρυθμίσεις βρίσκονται στο Settings → Identities → Advanced features και λέγονται **Automatic sensor v3.x activation** και **Automatic Windows auditing configuration**. Αν έχεις διαδικασία διαχείρισης αλλαγών για τους Domain Controllers, πέρασέ το από εκεί πριν λήξει η ειδοποίηση.
 
+**Αναλυτικά:** [Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing](/posts/generally-available/defender-identity-sensor-v3-automatic-activation/)
+
 **Πηγή:** [What's new in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/whats-new) · [Activate the Defender for Identity sensor v3.x](https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor#control-automatic-activation) · [Configure Windows event auditing](https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection#control-automatic-windows-auditing) · Message Center MC1484018 (δημοσιεύθηκε στις 30 Σεπτεμβρίου 2026)
 
 ### 2. Purview: Network Data Security με Global Secure Access
@@ -70,6 +72,8 @@ cover:
 
 **Τι να κάνεις.** Είναι Preview, οπότε δοκίμασέ το μόνο σε πιλοτικές συσκευές. Η Microsoft ζητά οι συσκευές δοκιμής να παίρνουν ενημερώσεις του Defender Antivirus από το Beta Channel, με το Defender Antivirus σε active mode και real-time protection ενεργό. Ξεκίνα με Audit σε όσους ήδη χρησιμοποιούν AI agents τοπικά και κοίταξε τα alerts πριν περάσεις σε Block.
 
+**Αναλυτικά:** [Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents](/posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/)
+
 **Πηγή:** [What's new in Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/whats-new) · [AI agent runtime protection with Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/ai-agent-runtime-protection-overview) · [Set up AI agent runtime protection](https://learn.microsoft.com/en-us/defender-endpoint/configure-ai-agent-runtime-protection)
 
 ### 4. Defender portal: Integrated Security Operations Center (ISOC)
@@ -79,6 +83,8 @@ cover:
 **Τι αλλάζει.** Το ISOC συγκεντρώνει XDR, SIEM, threat intelligence, αυτοματισμό και δυνατότητες AI μέσα στο Microsoft Defender portal. Από τις 23 Σεπτεμβρίου 2026 είναι διαθέσιμο σε πελάτες Microsoft Defender Suite, Microsoft 365 E5 και E7 που δεν έχουν ενεργό Microsoft Sentinel workspace. Σε αυτή τη φάση του Preview περιλαμβάνονται 30 ημέρες διατήρησης για τα δεδομένα του Defender. Οι δυνατότητες που εξαρτώνται από workspace (UEBA, Content Hub, δεδομένα τρίτων) θέλουν ISOC workspace με συνδρομή Azure, και η εισαγωγή επιπλέον δεδομένων μπορεί να χρεώνεται.
 
 **Τι να κάνεις.** Αν έχεις ήδη ενεργό Sentinel workspace, η Microsoft λέει να συνεχίσεις με αυτό. Αν δεν έχεις, διάβασε τι περιλαμβάνεται και τι χρεώνεται πριν συνδέσεις πηγές δεδομένων. Είναι Preview και η Microsoft σημειώνει ότι δυνατότητες και διαθεσιμότητα μπορεί να αλλάξουν, οπότε μην το βάλεις ακόμα ως τεκμήριο σε έλεγχο.
+
+**Αναλυτικά:** [Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace](/posts/previews/isoc-integrated-security-operations-defender/)
 
 **Πηγή:** [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new) · [ISOC in Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/isoc-overview)
 

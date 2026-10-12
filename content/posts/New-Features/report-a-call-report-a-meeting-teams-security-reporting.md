@@ -2,7 +2,7 @@
 title: "Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές"
 seoTitle: "Report a Call & Report a Meeting στο Microsoft Teams"
 date: 2026-08-07T11:00:00+03:00
-lastmod: 2026-08-24T10:00:00+03:00
+lastmod: 2026-10-12T13:30:00+03:00
 draft: false
 keywords: 
   - Report a call Microsoft Teams
@@ -27,13 +27,14 @@ tags:
   - Microsoft Teams
   - Microsoft Defender XDR
 author: "Dimosthenis Atteia"
-description: "Τα Report a call και Report a meeting φέρνουν εγγενή αναφορά ασφαλείας στο Microsoft Teams. Τι φτάνει στο Teams Admin Center και στο Defender, τι δείχνει το licensing matrix, και πώς ετοιμάζεις το SOC σου πριν τη Γενική Διαθεσιμότητα τον Οκτώβριο 2026."
-seoDescription: "Τα Report a call και Report a meeting στο Microsoft Teams: τι φτάνει σε Teams Admin Center και Defender, licensing και προετοιμασία SOC πριν το GA του Οκτωβρίου."
-summary: "Δύο νέα κουμπιά reporting στο Teams (Report a call, Report a meeting) μετατρέπουν τον χρήστη σε αισθητήρα ασφαλείας. Δες πώς δουλεύουν, τι φτάνει στο Defender, τι θέλει ποιο license, και τι πρέπει να ετοιμάσει το SOC σου πριν την GA τον Οκτώβριο 2026."
+description: "Τα Report a call και Report a meeting φέρνουν εγγενή αναφορά ασφαλείας στο Microsoft Teams. Τι φτάνει στο Teams Admin Center και στο Defender, τι δείχνει το licensing matrix, και τι κάνει το SOC σου τώρα που ξεκίνησε η Γενική Διαθεσιμότητα, τον Οκτώβριο 2026."
+seoDescription: "Τα Report a call και Report a meeting στο Microsoft Teams: τι φτάνει σε Teams Admin Center και Defender, licensing και προετοιμασία του SOC για το GA του Οκτωβρίου 2026."
+summary: "Δύο νέα κουμπιά reporting στο Teams (Report a call, Report a meeting) μετατρέπουν τον χρήστη σε αισθητήρα ασφαλείας. Δες πώς δουλεύουν, τι φτάνει στο Defender, τι θέλει ποιο license, και τι πρέπει να ετοιμάσει το SOC σου τώρα που ξεκίνησε η GA, τον Οκτώβριο 2026."
 categories: ["Email & Collaboration", "Security Operations & XDR"]
 series:
 releases:
   - "new-features"
+  - "generally-available"
 ShowToc: true
 TocOpen: false
 weight: -5
@@ -44,6 +45,8 @@ cover:
     alt: "Report a security concern στο Microsoft Teams meeting"
     caption: 
 ---
+
+> **Ενημέρωση 12 Οκτωβρίου 2026:** η Γενική Διαθεσιμότητα και για τα δύο features ξεκίνησε worldwide στις αρχές Οκτωβρίου 2026, σύμφωνα με τις ανακοινώσεις MC1447673 και MC1446794. Στο [What's new in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/defender-for-office-365-whats-new) η αναφορά ομαδικών κλήσεων καταγράφεται τον Σεπτέμβριο 2026 και η αναφορά συναντήσεων τον Οκτώβριο 2026, χωρίς ένδειξη Preview. Η διάθεση γίνεται σταδιακά, οπότε μπορεί να μην τα βλέπουν ακόμα όλοι οι χρήστες σου. Το θέμα αναφέρθηκε και στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).
 
 Πριν λίγες μέρες έπεσα πάνω σε δύο ανακοινώσεις στο Message Center που, διαβασμένες μαζί, μου άλλαξαν λίγο τον τρόπο που σκέφτομαι το Teams ως επιφάνεια απειλής. Η μία λέει ότι οι χρήστες θα μπορούν να αναφέρουν ύποπτη κλήση απευθείας από το ιστορικό κλήσεων (MC1447673). Η άλλη λέει το ίδιο για τις συναντήσεις, μέσα από το μενού ή το chat header (MC1446794). Ξεχωριστά ακούγονται σαν δύο ακόμα μικρές προσθήκες σε ένα προϊόν που αλλάζει κάθε βδομάδα. Μαζί, είναι κάτι πολύ πιο ενδιαφέρον: η Microsoft δίνει επιτέλους στον χρήστη ένα κουμπί «κάτι δεν πάει καλά εδώ» για το Teams, ακριβώς όπως έχει χρόνια στο Outlook.
 
@@ -141,14 +144,14 @@ cover:
 |---|---|
 | Ιούλιος 2026 | MDO Plan 1 ενσωματώνεται σε Microsoft 365 E3 / Office 365 E3 (rollout ολοκληρώνεται αρχές Αυγούστου) |
 | Αρχές Αυγούστου 2026 | Targeted Release για Report a call (MC1447673) και Report a meeting (MC1446794) |
-| Αρχές Οκτωβρίου 2026 | Γενική Διαθεσιμότητα (Worldwide) και για τα δύο features |
+| Αρχές Οκτωβρίου 2026 | Γενική Διαθεσιμότητα (Worldwide) και για τα δύο features. Ξεκίνησε, με σταδιακή διάθεση. |
 
 ## Τι κάνεις αύριο
 
 [![Σχέδιο δράσης τεσσάρων βημάτων για την προετοιμασία του SOC](/images/teams-reporting/action-plan.webp)](/images/teams-reporting/action-plan.webp)
 > 📷 **Εικόνα 7: Δεν χρειάζεται να περιμένεις τη Γενική Διαθεσιμότητα για να ξεκινήσεις**
 
-Αν είσαι σε Targeted Release ή θες απλώς να είσαι έτοιμος πριν τον Οκτώβριο:
+Η Γενική Διαθεσιμότητα ξεκίνησε, οπότε αν δεν τα έχεις κάνει ήδη, αυτά είναι τα τέσσερα βήματα:
 
 1. **Επιβεβαίωσε το user reporting στο Defender portal.** Χωρίς αυτό, οι λεπτομερείς αναφορές δεν φτάνουν εκεί, όσο license κι αν έχεις.
 2. **Έλεγξε τις άδειές σου.** Αν είσαι σε E3, έχεις ήδη Plan 1. Αποφάσισε αν το «βλέπω αναφορές» σου αρκεί, ή αν χρειάζεσαι Plan 2 για hunting και αυτοματοποίηση.

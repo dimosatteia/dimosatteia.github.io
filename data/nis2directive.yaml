@@ -112,6 +112,12 @@ articles:
     - &id010
       title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing'
+      url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+    - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
+      url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
+      url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
   - code: 21.2.γ
     scope: Βασικές και σημαντικές
     requirement: Επιχειρησιακή συνέχεια, όπως διαχείριση αντιγράφων ασφαλείας και αποκατάσταση έπειτα από καταστροφή, και διαχείριση των κρίσεων.
