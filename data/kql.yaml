@@ -4,6 +4,7 @@
 # Πεδία ανά query:
 #   id:        anchor της σελίδας (/kql/#id) και όνομα της εικόνας (content/images/kql/<id>.webp)
 #   title, summary, why: κείμενα στα Ελληνικά
+#   pillar:    ομάδα της σελίδας, ένας από τους πυλώνες στο «pillars» παρακάτω
 #   product:   προϊόν για το φίλτρο (π.χ. Entra ID, Defender for Office 365)
 #   table:     πίνακας του Advanced Hunting
 #   license:   απαιτούμενη άδεια
@@ -15,11 +16,23 @@
 
 updated: 2026-10-12
 
+# Οι ομάδες της σελίδας, με τη σειρά που εμφανίζονται. Εμφανίζονται μόνο όσες έχουν τουλάχιστον ένα query.
+pillars:
+  - { key: identity, name: "Identity & Access" }
+  - { key: endpoint, name: "Endpoint & Device" }
+  - { key: email, name: "Email & Collaboration" }
+  - { key: network, name: "Network & SSE" }
+  - { key: cloud, name: "Cloud Security" }
+  - { key: secops, name: "Security Operations & XDR" }
+  - { key: ai, name: "AI Security" }
+  - { key: grc, name: "GRC & Compliance" }
+
 queries:
   - id: legacy-auth
     title: Sign-ins με legacy authentication
     summary: Ποιοι λογαριασμοί δέχονται ή κάνουν συνδέσεις με πρωτόκολλα που παρακάμπτουν το MFA (IMAP, POP3, SMTP AUTH, ActiveSync, Other clients), με επιτυχίες, αποτυχίες, IP και χώρες τις τελευταίες 30 ημέρες.
     why: Οι επιτυχημένες συνδέσεις είναι το πραγματικό εύρημα, γιατί σημαίνουν ότι κάπου το MFA δεν εφαρμόζεται. Πολλές αποτυχημένες από διαφορετικές χώρες δείχνουν συνήθως password spray. Η διόρθωση είναι πολιτική Conditional Access που μπλοκάρει τα «Other clients» και «Exchange ActiveSync clients».
+    pillar: identity
     product: Entra ID
     table: EntraIdSignInEvents
     license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
@@ -53,3 +66,43 @@ queries:
           Countries = make_set(Country, 10)
           by AccountUpn, ClientAppUsed, Application
       | order by Successful desc, Failed desc
+
+  - id: privileged-roles
+    title: Αναθέσεις ρόλων στο Entra ID
+    summary: Ποιος έδωσε σε ποιον ρόλο του Entra ID και πότε, τις τελευταίες 30 ημέρες, με πρώτους στη λίστα τους προνομιακούς ρόλους όπως Global Administrator και Privileged Role Administrator. Περιλαμβάνει μόνιμες αναθέσεις και eligible αναθέσεις του PIM.
+    why: Η στήλη IsPrivileged βάζει πάνω-πάνω τους ρόλους υψηλού κινδύνου. Το εύρημα που μετράει είναι μια ανάθεση προνομιακού ρόλου που δεν πέρασε από PIM ή που δεν ξέρεις ποιος την έκανε. Όταν ο Actor είναι Service Principal, η ανάθεση έγινε από εφαρμογή ή αυτοματοποιημένη διαδικασία, οπότε έλεγξε ποια είναι. Αν θεωρείς προνομιακούς και άλλους ρόλους, πρόσθεσέ τους στη λίστα PrivilegedRoles.
+    pillar: identity
+    product: Entra ID
+    table: CloudAppEvents
+    license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
+    tested: 2026-10-12
+    evidence: /images/kql/privileged-roles.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Μία ανάθεση ρόλου (Global Secure Access Administrator) από Service Principal, με επιτυχία. Τα UPN έχουν αφαιρεθεί.
+    map:
+      kya: ["13.γ", "13.δ", "24.γ"]
+      nis2: ["21.2.θ"]
+      iso: ["A.5.18", "A.8.2"]
+    posts:
+      - title: "Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2"
+        url: /posts/secure-score-defender-praktikos-odigos/
+    query: |-
+      // Αναθέσεις ρόλων στο Entra ID, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 13.γ, 13.δ, 24.γ
+      let PrivilegedRoles = dynamic(["Global Administrator", "Privileged Role Administrator",
+          "Privileged Authentication Administrator", "Security Administrator",
+          "Exchange Administrator", "SharePoint Administrator", "User Administrator",
+          "Application Administrator", "Cloud Application Administrator",
+          "Conditional Access Administrator", "Intune Administrator",
+          "Hybrid Identity Administrator"]);
+      CloudAppEvents
+      | where Timestamp > ago(30d)
+      | where ActionType has "member to role"
+      | extend MP = tostring(RawEventData.ModifiedProperties)
+      | extend RoleName = extract(@'"Name":"Role\.DisplayName","NewValue":"([^"]*)"', 1, MP)
+      | extend
+          Actor = tostring(RawEventData.UserId),
+          TargetUser = tostring(RawEventData.ObjectId),
+          Result = tostring(RawEventData.ResultStatus),
+          IsPrivileged = RoleName in (PrivilegedRoles)
+      | project Timestamp, ActionType, Actor, TargetUser, RoleName, IsPrivileged, Result, IPAddress
+      | order by IsPrivileged desc, Timestamp desc

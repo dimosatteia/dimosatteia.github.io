@@ -1,7 +1,9 @@
 {{ define "main" }}
 {{- /*
   Βιβλιοθήκη KQL: όλα τα δεδομένα έρχονται από το data/kql.yaml.
-  Χωρίς JavaScript η σελίδα δείχνει τα πάντα, το script προσθέτει μόνο φίλτρα και το κουμπί αντιγραφής.
+  Ευρετήριο: ομάδες ανά πυλώνα, και κάθε query μία γραμμή που ανοίγει με κλικ.
+  Χωρίς JavaScript η σελίδα δουλεύει (details/summary), το script προσθέτει φίλτρα, αντιγραφή,
+  φόρτωση της εικόνας μόνο όταν ανοίγει το query, και άνοιγμα του σωστού query από το #id του URL.
 */ -}}
 {{- $d := site.Data.kql -}}
 {{- $fw := slice
@@ -31,7 +33,7 @@
     <section id="kqlFilters" class="glass-card rounded-xl p-4 hidden" aria-label="Φίλτρα">
         <div class="flex flex-col lg:flex-row lg:items-center gap-3">
             <div class="flex flex-wrap gap-2" role="group" aria-label="Πλαίσιο">
-                <button type="button" data-fw="all" aria-pressed="true" class="kql-fw px-3 py-1.5 rounded border text-xs font-mono border-blue-500 text-white bg-slate-800">Όλα</button>
+                <button type="button" data-fw="all" aria-pressed="true" class="kql-fw px-3 py-1.5 rounded border text-xs font-mono border-blue-500 text-white bg-slate-800">Όλα ({{ $total }})</button>
                 {{ range $fw }}<button type="button" data-fw="{{ .key }}" aria-pressed="false" class="kql-fw px-3 py-1.5 rounded border text-xs font-mono border-slate-700 text-slate-300 bg-slate-900">{{ .label }}</button>{{ end }}
             </div>
             <label class="flex items-center gap-2 text-xs text-slate-300 font-mono">
@@ -41,69 +43,101 @@
                     {{ range $products }}<option value="{{ . }}">{{ . }}</option>{{ end }}
                 </select>
             </label>
-            <div class="lg:ml-auto w-full lg:w-auto">
+            <div class="lg:ml-auto flex items-center gap-2 w-full lg:w-auto">
                 <label for="kqlSearch" class="sr-only">Αναζήτηση στα queries</label>
                 <input type="search" id="kqlSearch" placeholder="Αναζήτηση, π.χ. 13.ζ, MFA, EmailEvents" autocomplete="off"
                        class="w-full lg:w-72 bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-md py-1.5 px-3 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <button type="button" id="kqlToggle" class="shrink-0 px-3 py-1.5 rounded border border-slate-700 text-xs font-mono text-slate-300 bg-slate-900 hover:border-blue-500">Άνοιγμα όλων</button>
             </div>
         </div>
         <p id="kqlCount" class="text-xs text-slate-500 font-mono mt-3" aria-live="polite"></p>
     </section>
 
-    <section class="flex flex-col gap-4" aria-label="Queries">
-        {{ range $d.queries }}
-        {{- $q := . -}}
-        <article class="kql-item glass-card rounded-xl p-5 scroll-mt-24" id="{{ .id }}" data-product="{{ .product }}"
-                 data-fw="{{ range $fw }}{{ if index $q.map .key }}{{ .key }} {{ end }}{{ end }}">
-            <div class="flex flex-wrap items-center gap-2 mb-2">
-                {{ if and .tested .evidence }}
-                <span class="text-[11px] font-mono border rounded px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border-emerald-500/30">✓ Δοκιμασμένο {{ (time .tested).Format "02/01/2006" }}</span>
+    <!-- Ομάδες ανά πυλώνα -->
+    <section class="flex flex-col gap-3" aria-label="Queries ανά πυλώνα">
+        {{ range $d.pillars }}
+        {{- $pl := . -}}
+        {{- $items := where $d.queries "pillar" .key -}}
+        {{- if $items }}
+        <details class="kql-group group glass-card rounded-xl" id="pylonas-{{ .key }}" open>
+            <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex flex-wrap items-center gap-x-3 gap-y-2 hover:bg-slate-800/40 rounded-xl">
+                <span class="shrink-0 text-slate-500 text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
+                <h2 class="text-base font-bold text-slate-100 flex-1 min-w-[200px]">{{ .name }}</h2>
+                <span class="text-[11px] font-mono text-slate-400">{{ len $items }} {{ if eq (len $items) 1 }}query{{ else }}queries{{ end }}</span>
+            </summary>
+            <div class="px-4 pb-4 flex flex-col gap-2">
+                {{ range $items }}
+                {{- $q := . -}}
+                <details class="kql-item group/item rounded-lg border border-slate-800 bg-slate-900/50 scroll-mt-24" id="{{ .id }}" data-product="{{ .product }}"
+                         data-fw="{{ range $fw }}{{ if index $q.map .key }}{{ .key }} {{ end }}{{ end }}">
+                    <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-3 flex flex-col md:flex-row md:items-center gap-2 hover:bg-slate-800/40 rounded-lg">
+                        <div class="flex items-center gap-2 flex-1 min-w-0">
+                            <span class="shrink-0 text-slate-500 text-xs transition-transform group-open/item:rotate-90" aria-hidden="true">▸</span>
+                            <h3 class="text-sm font-semibold text-slate-100">{{ .title }}</h3>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-1.5 md:justify-end pl-5 md:pl-0">
+                            {{ if and .tested .evidence }}<span class="text-[11px] font-mono border rounded px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 border-emerald-500/30" title="Δοκιμασμένο {{ (time .tested).Format "02/01/2006" }}">✓</span>{{ end }}
+                            <span class="text-[11px] font-mono border rounded px-1.5 py-0.5 bg-blue-500/10 text-blue-400 border-blue-500/30">{{ .product }}</span>
+                            {{ range $fw }}{{ range index $q.map .key }}<span class="text-[11px] font-mono rounded px-1.5 py-0.5 bg-slate-800 text-slate-300 border border-slate-700">{{ . }}</span>{{ end }}{{ end }}
+                        </div>
+                    </summary>
+
+                    <div class="px-4 pb-4 pt-1">
+                        <p class="text-sm text-slate-300 leading-relaxed mb-4">{{ .summary }}</p>
+
+                        <dl class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-x-4 gap-y-2 text-sm mb-4">
+                            {{ if and .tested .evidence }}
+                            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Δοκιμή</dt>
+                            <dd class="text-emerald-400 font-mono text-xs md:pt-0.5">✓ Δοκιμασμένο σε πραγματικό tenant, {{ (time .tested).Format "02/01/2006" }}</dd>
+                            {{ end }}
+                            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Πίνακας</dt>
+                            <dd class="text-slate-300 font-mono text-xs md:pt-0.5">{{ .table }}</dd>
+                            {{ range $fw }}{{ $f := . }}{{ with index $q.map .key }}
+                            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-1">{{ $f.label }}</dt>
+                            <dd class="flex flex-wrap gap-2">
+                                {{ range . }}<a href="{{ $f.url | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">{{ . }}</a>{{ end }}
+                            </dd>
+                            {{ end }}{{ end }}
+                            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Άδεια</dt>
+                            <dd class="text-slate-300 leading-relaxed">{{ .license }}</dd>
+                        </dl>
+
+                        <div class="relative mb-4">
+                            <button type="button" class="kql-copy hidden absolute top-2 right-2 px-2.5 py-1 rounded border border-slate-600 bg-slate-800 hover:border-blue-500 text-xs font-mono text-slate-200">Αντιγραφή</button>
+                            <pre class="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-4 pr-24 text-[13px] leading-relaxed text-slate-200"><code>{{ .query }}</code></pre>
+                        </div>
+
+                        {{ with .why }}
+                        <div class="border-l-4 border-l-amber-500 pl-4 mb-4">
+                            <p class="text-[11px] font-mono uppercase tracking-wider text-amber-400 mb-1">Πώς το διαβάζεις</p>
+                            <p class="text-sm text-slate-300 leading-relaxed">{{ . }}</p>
+                        </div>
+                        {{ end }}
+
+                        {{ with .evidence }}
+                        {{- $alt := printf "Εκτέλεση του query «%s» στο Advanced Hunting του Microsoft Defender XDR" $q.title -}}
+                        <figure class="mb-4">
+                            <a href="{{ . | relURL }}" target="_blank" rel="noopener" class="block rounded-lg overflow-hidden border border-slate-800 hover:border-blue-500 max-w-xl">
+                                {{- /* Η εικόνα φορτώνει μόνο όταν ανοίξει το query (data-src). Χωρίς JavaScript φορτώνει κανονικά. */ -}}
+                                <img data-src="{{ . | relURL }}" alt="{{ $alt }}" class="kql-evidence w-full h-auto">
+                                <noscript><img src="{{ . | relURL }}" alt="{{ $alt }}" class="w-full h-auto"></noscript>
+                            </a>
+                            <figcaption class="text-xs text-slate-400 mt-2 leading-relaxed max-w-xl">Εκτέλεση στο Advanced Hunting{{ with $q.tested }}, {{ (time .).Format "02/01/2006" }}{{ end }}. {{ $q.evidenceNote }} Κάνε κλικ για μεγέθυνση.</figcaption>
+                        </figure>
+                        {{ end }}
+
+                        {{ with .posts }}
+                        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-1">Σχετικά άρθρα</p>
+                        <ul class="flex flex-col gap-1 text-sm">
+                            {{ range . }}<li><a href="{{ .url | relURL }}" class="text-blue-400 hover:text-blue-300 underline">{{ .title }}</a></li>{{ end }}
+                        </ul>
+                        {{ end }}
+                    </div>
+                </details>
                 {{ end }}
-                <span class="text-[11px] font-mono border rounded px-2 py-0.5 bg-blue-500/10 text-blue-400 border-blue-500/30">{{ .product }}</span>
-                <span class="text-[11px] font-mono border rounded px-2 py-0.5 bg-slate-800 text-slate-300 border-slate-700">{{ .table }}</span>
             </div>
-            <h2 class="text-lg font-bold text-slate-100 mb-2"><a href="#{{ .id }}" class="hover:text-blue-300 no-underline">{{ .title }}</a></h2>
-            <p class="text-sm text-slate-300 leading-relaxed mb-4">{{ .summary }}</p>
-
-            <dl class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-x-4 gap-y-2 text-sm mb-4">
-                {{ range $fw }}{{ $f := . }}{{ with index $q.map .key }}
-                <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-1">{{ $f.label }}</dt>
-                <dd class="flex flex-wrap gap-2">
-                    {{ range . }}<a href="{{ $f.url | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">{{ . }}</a>{{ end }}
-                </dd>
-                {{ end }}{{ end }}
-                <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Άδεια</dt>
-                <dd class="text-slate-300 leading-relaxed">{{ .license }}</dd>
-            </dl>
-
-            <div class="relative mb-4">
-                <button type="button" class="kql-copy hidden absolute top-2 right-2 px-2.5 py-1 rounded border border-slate-600 bg-slate-800 hover:border-blue-500 text-xs font-mono text-slate-200">Αντιγραφή</button>
-                <pre class="kql-code overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-4 pr-24 text-[13px] leading-relaxed text-slate-200"><code>{{ .query }}</code></pre>
-            </div>
-
-            {{ with .why }}
-            <div class="border-l-4 border-l-amber-500 pl-4 mb-4">
-                <p class="text-[11px] font-mono uppercase tracking-wider text-amber-400 mb-1">Πώς το διαβάζεις</p>
-                <p class="text-sm text-slate-300 leading-relaxed">{{ . }}</p>
-            </div>
-            {{ end }}
-
-            {{ with .evidence }}
-            <figure class="mb-4">
-                <a href="{{ . | relURL }}" target="_blank" rel="noopener" class="block rounded-lg overflow-hidden border border-slate-800 hover:border-blue-500 max-w-xl">
-                    <img src="{{ . | relURL }}" loading="lazy" alt="Εκτέλεση του query «{{ $q.title }}» στο Advanced Hunting του Microsoft Defender XDR" class="w-full h-auto">
-                </a>
-                <figcaption class="text-xs text-slate-400 mt-2 leading-relaxed max-w-xl">Εκτέλεση στο Advanced Hunting{{ with $q.tested }}, {{ (time .).Format "02/01/2006" }}{{ end }}. {{ $q.evidenceNote }} Κάνε κλικ για μεγέθυνση.</figcaption>
-            </figure>
-            {{ end }}
-
-            {{ with .posts }}
-            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-1">Σχετικά άρθρα</p>
-            <ul class="flex flex-col gap-1 text-sm">
-                {{ range . }}<li><a href="{{ .url | relURL }}" class="text-blue-400 hover:text-blue-300 underline">{{ .title }}</a></li>{{ end }}
-            </ul>
-            {{ end }}
-        </article>
+        </details>
+        {{- end }}
         {{ end }}
         <p id="kqlEmpty" class="hidden text-sm font-mono text-slate-500 p-4">Κανένα query δεν ταιριάζει με τα φίλτρα.</p>
     </section>
@@ -116,48 +150,18 @@
 
 <script>
 (function () {
-    var filters = document.getElementById('kqlFilters');
-    if (!filters) return;
-    filters.classList.remove('hidden');
     var items = Array.prototype.slice.call(document.querySelectorAll('.kql-item'));
-    var fwBtns = Array.prototype.slice.call(document.querySelectorAll('.kql-fw'));
-    var product = document.getElementById('kqlProduct');
-    var search = document.getElementById('kqlSearch');
-    var count = document.getElementById('kqlCount');
-    var empty = document.getElementById('kqlEmpty');
-    var fw = 'all';
-    function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ς/g, 'σ'); }
-    items.forEach(function (i) { i._text = norm(i.textContent); });
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.kql-group'));
 
-    function apply() {
-        var q = norm(search.value.trim());
-        var p = product.value;
-        var filtering = fw !== 'all' || p || q;
-        var shown = 0;
-        items.forEach(function (i) {
-            var ok = (fw === 'all' || (' ' + i.dataset.fw).indexOf(' ' + fw + ' ') !== -1) &&
-                     (!p || i.dataset.product === p) &&
-                     (!q || i._text.indexOf(q) !== -1);
-            i.classList.toggle('hidden', !ok);
-            if (ok) shown++;
+    // Η εικόνα-πειστήριο φορτώνει μόνο όταν ανοίξει το query
+    function loadImages(item) {
+        item.querySelectorAll('img.kql-evidence[data-src]').forEach(function (img) {
+            img.src = img.dataset.src; img.removeAttribute('data-src');
         });
-        empty.classList.toggle('hidden', shown > 0);
-        count.textContent = filtering ? ('Εμφανίζονται ' + shown + ' από ' + items.length + ' queries') : '';
     }
-    fwBtns.forEach(function (b) {
-        b.addEventListener('click', function () {
-            fw = b.dataset.fw;
-            fwBtns.forEach(function (x) {
-                var on = x === b;
-                x.setAttribute('aria-pressed', on ? 'true' : 'false');
-                x.classList.toggle('border-blue-500', on); x.classList.toggle('text-white', on); x.classList.toggle('bg-slate-800', on);
-                x.classList.toggle('border-slate-700', !on); x.classList.toggle('text-slate-300', !on); x.classList.toggle('bg-slate-900', !on);
-            });
-            apply();
-        });
+    items.forEach(function (i) {
+        i.addEventListener('toggle', function () { if (i.open) loadImages(i); });
     });
-    product.addEventListener('change', apply);
-    search.addEventListener('input', apply);
 
     // Αντιγραφή στο clipboard του επισκέπτη. Δεν στέλνεται τίποτα πουθενά.
     document.querySelectorAll('.kql-copy').forEach(function (btn) {
@@ -171,6 +175,75 @@
             });
         });
     });
+
+    // Άνοιγμα του σωστού query όταν το URL έχει #legacy-auth (π.χ. από τους οδηγούς)
+    function openHash() {
+        if (!location.hash) return;
+        var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (!el) return;
+        var g = el.closest('.kql-group'); if (g) g.open = true;
+        if (el.classList.contains('kql-item')) el.open = true;
+        el.scrollIntoView();
+    }
+    window.addEventListener('hashchange', openHash);
+
+    // Φίλτρα
+    var filters = document.getElementById('kqlFilters');
+    if (filters) {
+        filters.classList.remove('hidden');
+        var fwBtns = Array.prototype.slice.call(document.querySelectorAll('.kql-fw'));
+        var product = document.getElementById('kqlProduct');
+        var search = document.getElementById('kqlSearch');
+        var toggle = document.getElementById('kqlToggle');
+        var count = document.getElementById('kqlCount');
+        var empty = document.getElementById('kqlEmpty');
+        var fw = 'all';
+        function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ς/g, 'σ'); }
+        items.forEach(function (i) { i._text = norm(i.textContent); });
+
+        function apply() {
+            var q = norm(search.value.trim());
+            var p = product.value;
+            var filtering = fw !== 'all' || p || q;
+            var shown = 0;
+            items.forEach(function (i) {
+                var ok = (fw === 'all' || (' ' + i.dataset.fw).indexOf(' ' + fw + ' ') !== -1) &&
+                         (!p || i.dataset.product === p) &&
+                         (!q || i._text.indexOf(q) !== -1);
+                i.classList.toggle('hidden', !ok);
+                if (ok) shown++;
+            });
+            groups.forEach(function (g) {
+                var any = g.querySelector('.kql-item:not(.hidden)');
+                g.classList.toggle('hidden', !any);
+                if (filtering && any) g.open = true;
+            });
+            empty.classList.toggle('hidden', shown > 0);
+            count.textContent = filtering ? ('Εμφανίζονται ' + shown + ' από ' + items.length + ' queries') : '';
+        }
+        fwBtns.forEach(function (b) {
+            b.addEventListener('click', function () {
+                fw = b.dataset.fw;
+                fwBtns.forEach(function (x) {
+                    var on = x === b;
+                    x.setAttribute('aria-pressed', on ? 'true' : 'false');
+                    x.classList.toggle('border-blue-500', on); x.classList.toggle('text-white', on); x.classList.toggle('bg-slate-800', on);
+                    x.classList.toggle('border-slate-700', !on); x.classList.toggle('text-slate-300', !on); x.classList.toggle('bg-slate-900', !on);
+                });
+                apply();
+            });
+        });
+        product.addEventListener('change', apply);
+        search.addEventListener('input', apply);
+        toggle.addEventListener('click', function () {
+            var visible = items.filter(function (i) { return !i.classList.contains('hidden'); });
+            var open = visible.some(function (i) { return !i.open; });
+            visible.forEach(function (i) { i.open = open; });
+            if (open) groups.forEach(function (g) { g.open = true; });
+            toggle.textContent = open ? 'Κλείσιμο όλων' : 'Άνοιγμα όλων';
+        });
+    }
+    openHash();
 })();
 </script>
 {{ end }}
