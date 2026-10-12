@@ -1,0 +1,11 @@
+{{- /* Πλαίσιο με link προς ένα query της Βιβλιοθήκης KQL. Εμφανίζεται ΜΟΝΟ αν η σελίδα /kql/ είναι δημοσιευμένη
+       και το id υπάρχει στο data/kql.yaml, ώστε να μη βγει ποτέ σπασμένο link. Χρήση:
+       {{< kql-link id="legacy-auth" lead="Θέλεις να το ελέγξεις;" label="Τρέξε το KQL" tail="στο Advanced Hunting." >}} */ -}}
+{{- $id := .Get "id" -}}
+{{- with site.GetPage "/kql" -}}{{ $p := . }}
+{{- range where site.Data.kql.queries "id" $id }}
+<blockquote>
+<p>🔎 <strong>{{ $.Get "lead" }}</strong> <a href="{{ $p.RelPermalink }}#{{ $id }}">{{ $.Get "label" | default .title }}</a>{{ with $.Get "tail" }} {{ . }}{{ end }}</p>
+</blockquote>
+{{- end }}
+{{- end -}}

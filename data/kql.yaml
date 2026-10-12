@@ -1,0 +1,55 @@
+# Βιβλιοθήκη KQL: Advanced Hunting queries αντιστοιχισμένα σε ΚΥΑ 1689/2025, Οδηγία NIS2 και ISO/IEC 27001:2022.
+# Κάθε query μπαίνει εδώ ΜΟΝΟ αφού έχει τρέξει σε πραγματικό tenant, με εικόνα-πειστήριο.
+#
+# Πεδία ανά query:
+#   id:        anchor της σελίδας (/kql/#id) και όνομα της εικόνας (content/images/kql/<id>.webp)
+#   title, summary, why: κείμενα στα Ελληνικά
+#   product:   προϊόν για το φίλτρο (π.χ. Entra ID, Defender for Office 365)
+#   table:     πίνακας του Advanced Hunting
+#   license:   απαιτούμενη άδεια
+#   tested:    ημερομηνία που το δοκίμασε ο Δημοσθένης (YYYY-MM-DD)
+#   evidence:  εικόνα-πειστήριο. Χωρίς αυτήν δεν εμφανίζεται η σήμανση «Δοκιμασμένο».
+#   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso)
+#   posts:     σχετικά άρθρα του blog
+#   query:     το KQL
+
+updated: 2026-10-12
+
+queries:
+  - id: legacy-auth
+    title: Sign-ins με legacy authentication
+    summary: Ποιοι λογαριασμοί δέχονται ή κάνουν συνδέσεις με πρωτόκολλα που παρακάμπτουν το MFA (IMAP, POP3, SMTP AUTH, ActiveSync, Other clients), με επιτυχίες, αποτυχίες, IP και χώρες τις τελευταίες 30 ημέρες.
+    why: Οι επιτυχημένες συνδέσεις είναι το πραγματικό εύρημα, γιατί σημαίνουν ότι κάπου το MFA δεν εφαρμόζεται. Πολλές αποτυχημένες από διαφορετικές χώρες δείχνουν συνήθως password spray. Η διόρθωση είναι πολιτική Conditional Access που μπλοκάρει τα «Other clients» και «Exchange ActiveSync clients».
+    product: Entra ID
+    table: EntraIdSignInEvents
+    license: Microsoft Entra ID P2 και Microsoft Defender XDR (για τον πίνακα στο Advanced Hunting)
+    tested: 2026-10-12
+    evidence: /images/kql/legacy-auth.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. 0 επιτυχημένες και 41 αποτυχημένες συνδέσεις μέσω «Other clients» από πέντε χώρες, δηλαδή password spray που μπλοκαρίστηκε. Τα UPN έχουν αφαιρεθεί.
+    map:
+      kya: ["13.ζ", "19.η"]
+      nis2: ["21.2.ι"]
+      iso: ["A.8.5"]
+    posts:
+      - title: "Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2"
+        url: /posts/secure-score-defender-praktikos-odigos/
+      - title: "Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν"
+        url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    query: |-
+      // Sign-ins με legacy authentication, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 13.ζ, 19.η
+      let LegacyClients = dynamic(["Exchange ActiveSync", "IMAP4", "POP3", "Authenticated SMTP",
+          "Exchange Web Services", "MAPI Over HTTP", "Offline Address Book",
+          "Outlook Anywhere (RPC over HTTP)", "Exchange Online PowerShell",
+          "Autodiscover", "Other clients"]);
+      EntraIdSignInEvents
+      | where Timestamp > ago(30d)
+      | where ClientAppUsed in (LegacyClients)
+      | summarize
+          Successful = countif(ErrorCode == 0),
+          Failed = countif(ErrorCode != 0),
+          LastSeen = max(Timestamp),
+          IPs = make_set(IPAddress, 10),
+          Countries = make_set(Country, 10)
+          by AccountUpn, ClientAppUsed, Application
+      | order by Successful desc, Failed desc

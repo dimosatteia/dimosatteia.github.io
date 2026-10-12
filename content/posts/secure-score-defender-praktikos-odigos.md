@@ -112,6 +112,8 @@ cover:
 
 Ο πιο κρίσιμος πυλώνας. Οι περισσότερες σύγχρονες επιθέσεις ξεκινούν από credentials, και οι actions εδώ έχουν τη μεγαλύτερη αξία πόντων και όχι τυχαία. Προτεραιότητες: MFA για όλους, απενεργοποίηση legacy auth (POP3, IMAP, SMTP basic), conditional access policies, just-in-time admin πρόσβαση μέσω PIM.
 
+{{< kql-link id="legacy-auth" lead="Θέλεις να δεις αν έχεις ακόμη legacy authentication;" label="Τρέξε το έτοιμο KQL query" tail="στο Advanced Hunting." >}}
+
 ### Συσκευές (Devices)
 
 Onboarding όλων των endpoints στο Defender for Endpoint, εφαρμογή security baselines για Windows, encryption (BitLocker), συμμόρφωση μέσω Intune ως προϋπόθεση πρόσβασης σε εταιρικά δεδομένα.

@@ -21,6 +21,10 @@
     "tech"  "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
     "mixed" "bg-blue-500/10 text-blue-400 border-blue-500/30"
     "org"   "bg-slate-800 text-slate-300 border-slate-700" -}}
+{{- /* Σύνδεση με τη Βιβλιοθήκη KQL (data/kql.yaml): ποιο κλειδί του «map» αντιστοιχεί σε αυτόν τον οδηγό.
+       Εμφανίζεται μόνο αν η σελίδα /kql/ είναι δημοσιευμένη. */ -}}
+{{- $kqlKey := index (dict "nis2" "kya" "nis2directive" "nis2" "iso27001" "iso") (.Params.dataKey | default "nis2") -}}
+{{- $kqlPage := site.GetPage "/kql" -}}
 {{- $labels := dict -}}
 {{- range $d.types }}{{ $labels = merge $labels (dict .key .label) }}{{ end -}}
 
@@ -124,6 +128,17 @@
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">ΚΥΑ 1689/2025</dt>
                         <dd class="flex flex-wrap gap-2">
                             {{ range . }}<a href="{{ "kya-1689-2025/" | relURL }}#arthro-{{ . }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">Άρθρο {{ . }}</a>{{ end }}
+                        </dd>
+                        {{ end }}
+                        {{- $code := .code -}}
+                        {{- $kqlHits := slice -}}
+                        {{- if $kqlPage }}{{ range site.Data.kql.queries }}{{ $kq := . }}{{ with index .map $kqlKey }}{{ if in . $code }}{{ $kqlHits = $kqlHits | append $kq }}{{ end }}{{ end }}{{ end }}{{ end -}}
+                        {{ with $kqlHits }}
+                        <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">KQL</dt>
+                        <dd>
+                            <ul class="flex flex-col gap-1">
+                                {{ range . }}<li><a href="{{ $kqlPage.RelPermalink }}#{{ .id }}" class="text-blue-400 hover:text-blue-300 underline leading-relaxed">🔎 {{ .title }}</a></li>{{ end }}
+                            </ul>
                         </dd>
                         {{ end }}
                         {{ if or .posts .planned }}
