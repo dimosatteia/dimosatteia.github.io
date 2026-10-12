@@ -108,3 +108,44 @@ queries:
           IsPrivileged = RoleName in (PrivilegedRoles)
       | project Timestamp, ActionType, Actor, TargetUser, RoleName, IsPrivileged, Result, IPAddress
       | order by IsPrivileged desc, Timestamp desc
+
+  - id: phish-zap
+    title: Phishing που παραδόθηκε και αφαιρέθηκε εκ των υστέρων (ZAP)
+    summary: Κάθε μήνυμα phishing ή malware που έφτασε σε mailbox και το Zero-hour auto purge (ZAP) το αφαίρεσε αργότερα, τις τελευταίες 30 ημέρες. Για το καθένα βλέπεις σε ποιον χρήστη πήγε, από ποιον αποστολέα και πόσα λεπτά έμεινε στο mailbox.
+    why: Η στήλη MinutesInMailbox είναι το πραγματικό εύρημα. Όσο περισσότερο έμεινε ένα μήνυμα στο mailbox, τόσο πιθανότερο είναι να το άνοιξε ή να έκανε κλικ ο χρήστης, οπότε ξεκίνα από την κορυφή της λίστας και έλεγξε αυτούς τους χρήστες. Αν η στήλη ActionResult δεν δείχνει επιτυχία, το ZAP δεν κατάφερε να αφαιρέσει το μήνυμα και χρειάζεται άμεση ενέργεια.
+    pillar: email
+    product: Defender for Office 365
+    table: EmailPostDeliveryEvents, EmailEvents
+    license: Microsoft Defender for Office 365 Plan 2 για τους πίνακες email στο Advanced Hunting (Microsoft 365 E5 ή Microsoft Defender Suite). Το ίδιο το ZAP λειτουργεί και χωρίς αυτό
+    tested: 2026-10-12
+    evidence: /images/kql/phish-zap.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δύο μηνύματα phishing παραδόθηκαν στο Inbox και το ZAP τα μετέφερε σε καραντίνα περίπου 8 ώρες αργότερα (497 και 490 λεπτά), με επιτυχία. Οι διευθύνσεις έχουν αφαιρεθεί.
+    map:
+      kya: ["20.γ", "24.ε"]
+      nis2: ["21.2.β"]
+      iso: ["A.8.7", "A.5.25"]
+    posts:
+      - title: "Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+      - title: "Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά"
+        url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+    query: |-
+      // Phishing και malware που παραδόθηκαν και αφαιρέθηκαν εκ των υστέρων από το ZAP, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 20.γ, 24.ε
+      let Lookback = 30d;
+      EmailPostDeliveryEvents
+      | where Timestamp > ago(Lookback)
+      | where ActionType in ("Phish ZAP", "Malware ZAP")
+      | project ZapTime = Timestamp, NetworkMessageId, RecipientEmailAddress,
+          ActionType, Action, ActionResult
+      | join kind=inner (
+          EmailEvents
+          | where Timestamp > ago(Lookback)
+          | where DeliveryAction == "Delivered"
+          | project DeliveredTime = Timestamp, NetworkMessageId, RecipientEmailAddress,
+              SenderFromAddress, Subject, DeliveryLocation
+        ) on NetworkMessageId, RecipientEmailAddress
+      | extend MinutesInMailbox = datetime_diff('minute', ZapTime, DeliveredTime)
+      | project DeliveredTime, ZapTime, MinutesInMailbox, RecipientEmailAddress,
+          SenderFromAddress, Subject, DeliveryLocation, ActionType, Action, ActionResult
+      | order by MinutesInMailbox desc
