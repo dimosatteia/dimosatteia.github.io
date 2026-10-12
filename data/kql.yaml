@@ -149,3 +149,47 @@ queries:
       | project DeliveredTime, ZapTime, MinutesInMailbox, RecipientEmailAddress,
           SenderFromAddress, Subject, DeliveryLocation, ActionType, Action, ActionResult
       | order by MinutesInMailbox desc
+
+  - id: usb-storage
+    title: Χρήση αφαιρούμενων μέσων USB
+    summary: Κάθε φορά που συνδέθηκε USB storage σε συσκευή τις τελευταίες 30 ημέρες, με τη συσκευή, τον χρήστη που ήταν συνδεδεμένος, τον κατασκευαστή, το μοντέλο και τον σειριακό αριθμό του USB. Οι εικονικές μονάδες CD, DVD και VMware εξαιρούνται, ώστε να μένουν μόνο τα πραγματικά USB sticks και δίσκοι.
+    why: Το εύρημα που μετράει είναι ένα USB σε server ή σε συσκευή όπου η πολιτική σου δεν το επιτρέπει, ή ο ίδιος σειριακός αριθμός σε πολλές συσκευές, που σημαίνει ότι ένα stick κυκλοφορεί από υπολογιστή σε υπολογιστή. Το event της σύνδεσης καταγράφεται από τον λογαριασμό του συστήματος, γι' αυτό ο χρήστης έρχεται από το DeviceInfo, από την τελευταία καταγραφή πριν τη σύνδεση. Αν δεις άλλα εικονικά μέσα στη στήλη Product, πρόσθεσέ τα στο φίλτρο. Για να τα μπλοκάρεις, χρησιμοποίησε το Device control του Defender for Endpoint μέσω Intune.
+    pillar: endpoint
+    product: Defender for Endpoint
+    table: DeviceEvents, DeviceInfo
+    license: Microsoft Defender for Endpoint Plan 2 για τον πίνακα DeviceEvents στο Advanced Hunting (Microsoft 365 E5 ή Microsoft Defender Suite)
+    tested: 2026-10-12
+    evidence: /images/kql/usb-storage.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Το ίδιο USB stick (Generic Flash Disk) συνδέθηκε 11 φορές σε μία συσκευή μέσα σε δύο ημέρες. Οι χρήστες, οι συσκευές και ο σειριακός αριθμός έχουν αφαιρεθεί.
+    map:
+      kya: ["11.δ", "24.γ"]
+      nis2: ["21.2.θ"]
+      iso: ["A.7.10", "A.8.12"]
+    posts:
+      - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    query: |-
+      // Χρήση αφαιρούμενων μέσων USB, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 11.δ, 24.γ
+      let Lookback = 30d;
+      let Mounts = DeviceEvents
+      | where Timestamp > ago(Lookback)
+      | where ActionType == "UsbDriveMounted"
+      | extend AF = parse_json(AdditionalFields)
+      | project MountTime = Timestamp, DeviceId, DeviceName,
+          DriveLetter = tostring(AF.DriveLetter), Manufacturer = tostring(AF.Manufacturer),
+          Product = tostring(AF.ProductName), SerialNumber = tostring(AF.SerialNumber)
+      | where not(Product matches regex @"(?i)(CD|DVD|ROM|VIRTUAL|VMWARE)");
+      Mounts
+      | join kind=leftouter (
+          DeviceInfo
+          | where Timestamp > ago(Lookback + 1d)
+          | where isnotempty(LoggedOnUsers) and LoggedOnUsers != "[]"
+          | project InfoTime = Timestamp, DeviceId, LoggedOnUsers
+        ) on DeviceId
+      | where isnull(InfoTime) or InfoTime <= MountTime
+      | summarize arg_max(InfoTime, LoggedOnUsers)
+          by MountTime, DeviceName, DriveLetter, Manufacturer, Product, SerialNumber
+      | extend LoggedOnUser = tostring(parse_json(LoggedOnUsers)[0].UserName)
+      | project MountTime, DeviceName, LoggedOnUser, DriveLetter, Manufacturer, Product, SerialNumber
+      | order by MountTime desc
