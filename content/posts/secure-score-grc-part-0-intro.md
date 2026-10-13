@@ -38,6 +38,28 @@ cover:
   caption: "Εισαγωγή στη σειρά, χτισμένη πάνω στο Microsoft 365"
   relative: false
   hidden: false
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Secure Score (προϊόντα, ενημέρωση βαθμολογίας)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender XDR"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 / Defender Suite"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender"
+    verified: 2026-10-13
+  - feature: "Microsoft Purview Compliance Manager (πάνω από 360 πρότυπα)"
+    status: "Generally Available"
+    license: "Ανάλογα με τη συμφωνία αδειοδότησης"
+    source: "https://learn.microsoft.com/en-us/purview/compliance-manager"
+    verified: 2026-10-13
+  - feature: "Microsoft Graph: secureScore"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/graph/api/resources/securescore"
+    verified: 2026-10-13
 ---
 
 ## Το πρόβλημα GRC της μεσαίας επιχείρησης: NIS2 και ISO 27001 χωρίς μεγάλο budget
@@ -184,3 +206,7 @@ cover:
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις όταν βγαίνει νέο άρθρο.
 
 ---
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

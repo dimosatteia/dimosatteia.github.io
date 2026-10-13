@@ -44,6 +44,33 @@ cover:
   hidden: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Secure Score (προϊόντα, ενημέρωση βαθμολογίας)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score"
+    verified: 2026-10-13
+  - feature: "Recommended actions και καταστάσεις (To address, Planned, Risk accepted, Resolved, Completed)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions"
+    verified: 2026-10-13
+  - feature: "Microsoft Purview Compliance Manager (πάνω από 360 πρότυπα)"
+    status: "Generally Available"
+    license: "Ανάλογα με τη συμφωνία αδειοδότησης"
+    source: "https://learn.microsoft.com/en-us/purview/compliance-manager"
+    verified: 2026-10-13
+  - feature: "Compliance Manager: automated testing (Secure Score ως πηγή)"
+    status: "Generally Available"
+    license: "Ανάλογα με τη συμφωνία αδειοδότησης"
+    source: "https://learn.microsoft.com/en-us/purview/compliance-manager-setup"
+    verified: 2026-10-13
+  - feature: "Microsoft Graph: secureScore"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/graph/api/resources/securescore"
+    verified: 2026-10-13
 ---
 
 ## Το επόμενο πρωί, αφού άνοιξες το Microsoft Secure Score
@@ -508,10 +535,6 @@ ShowWordCount: true
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)
-- [Assess your security posture with Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions)
-- [Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)
-- [Compliance Manager: ρυθμίσεις και automated testing](https://learn.microsoft.com/en-us/purview/compliance-manager-setup)
-- [secureScore resource type (Microsoft Graph)](https://learn.microsoft.com/en-us/graph/api/resources/securescore)
+{{< verification >}}

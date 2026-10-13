@@ -42,6 +42,23 @@ cover:
   hidden: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Secure Score (προϊόντα, ενημέρωση βαθμολογίας)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score"
+    verified: 2026-10-13
+  - feature: "Recommended actions και καταστάσεις (To address, Planned, Risk accepted, Resolved, Completed)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions"
+    verified: 2026-10-13
+  - feature: "Microsoft Security Exposure Management"
+    status: "Generally Available"
+    license: "Με βάση τα Defender workloads"
+    source: "https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management"
+    verified: 2026-10-13
 ---
 
 ## Πριν ξεκινήσουμε: τι είναι το Microsoft Secure Score, σε μία παράγραφο
@@ -223,9 +240,10 @@ ShowWordCount: true
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Secure Score: επισκόπηση και υπολογισμός της βαθμολογίας](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)
-- [Assess your security posture with Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Take action to improve your score: καταστάσεις και εφαρμογή των recommendations](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions#take-action-to-improve-your-score)
-- [Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)

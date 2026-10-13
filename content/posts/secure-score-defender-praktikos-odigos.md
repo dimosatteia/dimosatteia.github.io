@@ -41,6 +41,28 @@ cover:
   caption: "Πρακτικός οδηγός — Microsoft Secure Score & Defender"
   relative: false
   hidden: false
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Secure Score (προϊόντα, ενημέρωση βαθμολογίας)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score"
+    verified: 2026-10-13
+  - feature: "Recommended actions και καταστάσεις (To address, Planned, Risk accepted, Resolved, Completed)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender XDR"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 / Defender Suite"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender"
+    verified: 2026-10-13
+  - feature: "Microsoft Purview Compliance Manager (πάνω από 360 πρότυπα)"
+    status: "Generally Available"
+    license: "Ανάλογα με τη συμφωνία αδειοδότησης"
+    source: "https://learn.microsoft.com/en-us/purview/compliance-manager"
+    verified: 2026-10-13
 ---
 
 > 📌 **TL;DR**
@@ -86,9 +108,9 @@ cover:
 - Υπάρχει **partial credit**. Αν προστατεύουμε 50 από τους 100 χρήστες μας με MFA, παίρνουμε τους μισούς πόντους. Δεν είναι all-or-nothing, οπότε ξεκινάμε από κάπου, όσο μικρό κι αν φαίνεται.
 - Κάθε recommendation έχει **status** που μπορούμε να ορίσουμε: *To address*, *Planned*, *Risk accepted*, *Resolved through third party*, *Resolved through alternate mitigation*, *Completed*. Είναι πολύτιμο όταν χρησιμοποιούμε ένα control που η Microsoft δεν «βλέπει» άμεσα, π.χ. ένα third-party MFA solution. Δηλώνουμε χειροκίνητα την ισοδύναμη αντιμετώπιση και κερδίζουμε τους πόντους χωρίς να αλλοιώνεται η εικόνα της θέσης μας.
 
-[![Microsoft Secure Score Status dropdown με επιλογές Resolved through alternate mitigation για third-party controls](/images/secure-score-defender-praktikos-odigos/03-overview.webp)](/images/secure-score-defender-praktikos-odigos/03-overview.webp)
+[![Microsoft Secure Score Status dropdown με τις επιλογές Resolved through third party και Resolved through alternate mitigation](/images/secure-score-defender-praktikos-odigos/03-overview.webp)](/images/secure-score-defender-praktikos-odigos/03-overview.webp)
 > 📷 **Image 2 — Status dropdown σε recommendation.**
-> *Οι επιλογές status. Το «Resolved through alternate mitigation» είναι αυτό που χρησιμοποιούμε όταν ένα third-party tool καλύπτει το control.*
+> *Οι επιλογές status. Το «Resolved through third party» το χρησιμοποιούμε όταν ένα εργαλείο τρίτου κατασκευαστή καλύπτει το control, και το «Resolved through alternate mitigation» όταν το καλύπτει εσωτερικό εργαλείο ή άλλη ρύθμιση.*
 
 Οι ενημερώσεις των πόντων γίνονται περίπου κάθε 24 ώρες — δεν περιμένουμε, λοιπόν, να δούμε την αλλαγή που κάναμε άμεσα μετά από ένα toggle.
 
@@ -165,11 +187,11 @@ Sensitivity labels για ταξινόμηση και κρυπτογράφηση
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
 
-## Πηγές & επιπλέον υλικό
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Secure Score overview](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)
-- [How Microsoft Secure Score is calculated](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions)
-- [Microsoft Defender XDR overview](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
-- [Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Microsoft Defender for Cloud — Secure Score](https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls)
 - [Νόμος 5160/2024](https://cyber.gov.gr/wp-content/uploads/2024/12/ENOTHTA_5_%CE%9D%CE%9F%CE%9C%CE%9F%CE%98%CE%95%CE%A3%CE%99%CE%91_fek_a_195_2024-5160-2024.pdf) 

@@ -44,6 +44,53 @@ cover:
   hidden: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Secure Score (προϊόντα, ενημέρωση βαθμολογίας)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score"
+    verified: 2026-10-13
+  - feature: "Recommended actions και καταστάσεις (To address, Planned, Risk accepted, Resolved, Completed)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions"
+    verified: 2026-10-13
+  - feature: "Microsoft Security Exposure Management"
+    status: "Generally Available"
+    license: "Με βάση τα Defender workloads"
+    source: "https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra ID"
+    status: "Generally Available"
+    license: "Entra ID Free / P1 / P2"
+    source: "https://learn.microsoft.com/en-us/entra/fundamentals/whatis"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Endpoint"
+    status: "Generally Available"
+    license: "Plan 1 (E3) / Plan 2 (E5)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Identity"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή standalone"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/what-is"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Office 365"
+    status: "Generally Available"
+    license: "Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-about"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Cloud Apps"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή standalone"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps"
+    verified: 2026-10-13
+  - feature: "Microsoft Purview"
+    status: "Generally Available"
+    license: "Ανά λύση"
+    source: "https://learn.microsoft.com/en-us/purview/purview"
+    verified: 2026-10-13
 ---
 
 ## Μια στιγμή που φτάνουν όλοι οι αρχάριοι
@@ -221,11 +268,10 @@ ShowWordCount: true
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Secure Score: επισκόπηση, υπολογισμός και συχνότητα ενημέρωσης](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)
-- [Assess your security posture with Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score-improvement-actions)
-- [Microsoft Security Exposure Management](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
-- [Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis)
-- [Microsoft Purview](https://learn.microsoft.com/en-us/purview/purview)
