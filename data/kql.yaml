@@ -386,14 +386,16 @@ queries:
     query: ""
 
   - id: av-disabled
-    draft: true
     title: Συσκευές με ανενεργή προστασία του Defender Antivirus
     summary: Συσκευές όπου το real-time protection, το tamper protection ή η cloud-delivered protection του Microsoft Defender Antivirus δεν είναι ενεργά.
-    why: Μια συσκευή χωρίς real-time protection είναι ουσιαστικά απροστάτευτη, ακόμα κι αν φαίνεται onboarded. Το tamper protection εμποδίζει τον επιτιθέμενο να κλείσει την προστασία. Το αποτέλεσμα είναι λίστα εργασιών για το Intune και τεκμήριο για τον έλεγχο.
+    why: Μια συσκευή χωρίς real-time protection είναι ουσιαστικά απροστάτευτη, ακόμα κι αν φαίνεται onboarded. Το query δεν βασίζεται σε κωδικούς ρυθμίσεων. Παίρνει τα ονόματα των ελέγχων από τον πίνακα DeviceTvmSecureConfigurationAssessmentKB, οπότε πιάνει κάθε έλεγχο του antivirus που αξιολογεί το Defender Vulnerability Management. Η στήλη MaxImpact βάζει πρώτες τις συσκευές με τον σοβαρότερο έλεγχο. Το tamper protection εμποδίζει τον επιτιθέμενο να κλείσει την προστασία. Το αποτέλεσμα είναι λίστα εργασιών για το Intune και τεκμήριο για τον έλεγχο.
     pillar: endpoint
     product: Defender for Endpoint
     table: DeviceTvmSecureConfigurationAssessment
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security)
+    tested: 2026-10-13
+    evidence: /images/kql/av-disabled.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Τρεις συσκευές με ελέγχους του antivirus που αποτυγχάνουν. Σε έναν σταθμό εργασίας Windows είναι κλειστό το real-time protection, με impact 10, που είναι το σοβαρό εύρημα και θέλει άμεση διόρθωση. Σε δύο Windows Server αποτυγχάνει μόνο το email scanning, με impact 9. Τα ονόματα των συσκευών έχουν αφαιρεθεί.
     map:
       kya: ["20.α", "14.β"]
       nis2: ["21.2.ε"]
@@ -402,7 +404,28 @@ queries:
     posts:
       - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
         url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
-    query: ""
+    query: |-
+      // Συσκευές με ανενεργή ή μη συμμορφούμενη προστασία του Microsoft Defender Antivirus
+      // ΚΥΑ 1689/2025: 20.α, 14.β
+      // Τα security configurations του Defender Vulnerability Management που αφορούν το antivirus,
+      // όπως real-time protection, cloud-delivered protection, tamper protection, PUA και ενημερώσεις
+      let AvConfigs = DeviceTvmSecureConfigurationAssessmentKB
+          | where ConfigurationSubcategory =~ "Antivirus"
+              or ConfigurationName has_any ("Microsoft Defender Antivirus", "Tamper Protection",
+                                            "real-time protection", "cloud-delivered protection")
+          | project ConfigurationId, ConfigurationName, ConfigurationImpact;
+      DeviceTvmSecureConfigurationAssessment
+      | where IsApplicable == 1 and IsCompliant == 0
+      | join kind=inner AvConfigs on ConfigurationId
+      | summarize
+          FailedChecks = dcount(ConfigurationId),
+          MaxImpact = max(ConfigurationImpact),
+          Checks = make_set(ConfigurationName, 20),
+          ConfigIds = make_set(ConfigurationId, 20),
+          LastAssessed = max(Timestamp)
+          by DeviceId, DeviceName, OSPlatform
+      | order by MaxImpact desc, FailedChecks desc
+
 
   - id: exploitable-cves
     title: Critical ευπάθειες με δημόσια διαθέσιμο exploit που μένουν ανοιχτές
