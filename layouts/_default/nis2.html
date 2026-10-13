@@ -14,7 +14,8 @@
   {{- range .requirements -}}
     {{- $total = add $total 1 -}}
     {{- if eq .type "tech" }}{{ $tech = add $tech 1 }}{{ else if eq .type "mixed" }}{{ $mixed = add $mixed 1 }}{{ else }}{{ $org = add $org 1 }}{{ end -}}
-    {{- if .posts }}{{ $withPosts = add $withPosts 1 }}{{ end -}}
+    {{- $live := false -}}{{- range .posts }}{{ if or (not .page) (site.GetPage .page) }}{{ $live = true }}{{ end }}{{ end -}}
+    {{- if $live }}{{ $withPosts = add $withPosts 1 }}{{ end -}}
   {{- end -}}
 {{- end -}}
 {{- $badge := dict
@@ -92,7 +93,7 @@
     <section class="flex flex-col gap-3" aria-label="Απαιτήσεις ανά άρθρο">
         {{ range $d.articles }}
         {{- $n := len .requirements -}}
-        {{- $np := 0 -}}{{- range .requirements }}{{ if .posts }}{{ $np = add $np 1 }}{{ end }}{{ end -}}
+        {{- $np := 0 -}}{{- range .requirements }}{{- $live := false -}}{{- range .posts }}{{ if or (not .page) (site.GetPage .page) }}{{ $live = true }}{{ end }}{{ end -}}{{ if $live }}{{ $np = add $np 1 }}{{ end }}{{ end -}}
         <details class="nis2-article group glass-card rounded-xl" id="arthro-{{ .number }}">
             <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex flex-wrap items-center gap-x-3 gap-y-2 hover:bg-slate-800/40 rounded-xl">
                 <span class="shrink-0 text-slate-500 text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
@@ -102,8 +103,9 @@
             </summary>
             <div class="px-4 pb-4 flex flex-col gap-3">
                 {{ range .requirements }}
+                {{- $live := false -}}{{- range .posts }}{{ if or (not .page) (site.GetPage .page) }}{{ $live = true }}{{ end }}{{ end -}}
                 <article class="nis2-req rounded-lg border border-slate-800 bg-slate-900/50 p-4" id="{{ replace .code "." "-" }}"
-                         data-type="{{ .type }}" data-posts="{{ if .posts }}1{{ else }}0{{ end }}">
+                         data-type="{{ .type }}" data-posts="{{ if $live }}1{{ else }}0{{ end }}">
                     <div class="flex flex-wrap items-center gap-2 mb-2">
                         <span class="text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 rounded px-2 py-0.5">{{ .code }}</span>
                         <span class="text-[11px] font-mono border rounded px-2 py-0.5 {{ index $badge .type }}">{{ index $labels .type }}</span>
@@ -147,7 +149,7 @@
                             {{ range . }}<a href="{{ "iso-27001/" | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">{{ . }}</a>{{ end }}
                         </dd>
                         {{ end }}
-                        {{ if or .posts .planned }}
+                        {{ if or $live .planned }}
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Άρθρα</dt>
                         <dd>
                             <ul class="flex flex-col gap-1">

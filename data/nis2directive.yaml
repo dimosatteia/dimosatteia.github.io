@@ -168,6 +168,21 @@ articles:
     - &id005
       title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
       url: /posts/entra-tenant-governance-ga/
+    - title: 'Microsoft Defender Vulnerability Management: από τις 771 ημέρες στις 4 ώρες'
+      url: /posts/microsoft-defender-vulnerability-management-series/00-mdvm-bridge-from-771-days-to-4-hours/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/00-mdvm-bridge-from-771-days-to-4-hours
+    - title: 'Microsoft Defender Vulnerability Management: επίπεδα αδειοδότησης και αρχιτεκτονική'
+      url: /posts/microsoft-defender-vulnerability-management-series/01-mdvm-foundations-and-architecture/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/01-mdvm-foundations-and-architecture
+    - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
+      url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
+    - title: 'Microsoft Defender Vulnerability Management: η μηχανή ιεράρχησης'
+      url: /posts/microsoft-defender-vulnerability-management-series/03-mdvm-the-prioritization-engine/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/03-mdvm-the-prioritization-engine
+    - title: 'Microsoft Defender Vulnerability Management: αποκατάσταση, baselines και ενσωμάτωση'
+      url: /posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/04-mdvm-remediation-baselines-and-integration
   - code: 21.2.στ
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες για την αξιολόγηση της αποτελεσματικότητας των μέτρων διαχείρισης κινδύνων στον τομέα της κυβερνοασφάλειας.
@@ -240,6 +255,9 @@ articles:
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
+      url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
   - code: 21.2.ι
     scope: Βασικές και σημαντικές
     requirement: Χρήση λύσεων πολυπαραγοντικής επαλήθευσης ταυτότητας ή συνεχούς επαλήθευσης ταυτότητας, ασφαλών φωνητικών επικοινωνιών, επικοινωνιών βίντεο και κειμένου και ασφαλών συστημάτων επικοινωνιών έκτακτης ανάγκης εντός της οντότητας, κατά περίπτωση.

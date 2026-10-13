@@ -213,10 +213,10 @@
                             </div>
 
                             <!-- Tags στα δεξιά -->
-                            <div class="flex flex-wrap sm:flex-col sm:items-end gap-1.5 shrink-0 sm:w-48">
+                            <div class="flex flex-wrap sm:flex-col sm:items-end gap-1.5 shrink-0 sm:w-48 min-w-0 max-w-full">
                                 {{ if .Params.tags }}
                                     {{ range first 3 .Params.tags }}
-                                        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 text-slate-300 text-[10px] font-mono rounded whitespace-nowrap">{{ . }}</span>
+                                        <span class="max-w-full px-2 py-0.5 bg-slate-800 border border-slate-700 text-slate-300 text-[10px] font-mono rounded break-words sm:text-right">{{ . }}</span>
                                     {{ end }}
                                 {{ end }}
                             </div>

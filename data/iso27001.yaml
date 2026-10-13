@@ -117,6 +117,9 @@ articles:
     - &id029
       title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
       url: /posts/entra-connect-mandatory-upgrade-2026/
+    - title: 'Microsoft Defender Vulnerability Management: η μηχανή ιεράρχησης'
+      url: /posts/microsoft-defender-vulnerability-management-series/03-mdvm-the-prioritization-engine/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/03-mdvm-the-prioritization-engine
   - code: A.5.8
     scope: ''
     requirement: Information security in project management
@@ -146,6 +149,9 @@ articles:
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
+      url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
   - code: A.5.10
     scope: ''
     requirement: Acceptable use of information and other associated assets
@@ -939,6 +945,21 @@ articles:
     - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
       url: /posts/previews/vulnerability-remediation-agent-intune/
     - *id029
+    - title: 'Microsoft Defender Vulnerability Management: από τις 771 ημέρες στις 4 ώρες'
+      url: /posts/microsoft-defender-vulnerability-management-series/00-mdvm-bridge-from-771-days-to-4-hours/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/00-mdvm-bridge-from-771-days-to-4-hours
+    - title: 'Microsoft Defender Vulnerability Management: επίπεδα αδειοδότησης και αρχιτεκτονική'
+      url: /posts/microsoft-defender-vulnerability-management-series/01-mdvm-foundations-and-architecture/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/01-mdvm-foundations-and-architecture
+    - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
+      url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
+    - title: 'Microsoft Defender Vulnerability Management: η μηχανή ιεράρχησης'
+      url: /posts/microsoft-defender-vulnerability-management-series/03-mdvm-the-prioritization-engine/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/03-mdvm-the-prioritization-engine
+    - title: 'Microsoft Defender Vulnerability Management: αποκατάσταση, baselines και ενσωμάτωση'
+      url: /posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/04-mdvm-remediation-baselines-and-integration
   - code: A.8.9
     scope: Νέο στην έκδοση 2022
     requirement: Configuration management
@@ -956,6 +977,9 @@ articles:
       url: /posts/secure-score-grc-part-1-anatomy/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    - title: 'Microsoft Defender Vulnerability Management: αποκατάσταση, baselines και ενσωμάτωση'
+      url: /posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/
+      page: /posts/Microsoft-Defender-Vulnerability-Management-Series/04-mdvm-remediation-baselines-and-integration
   - code: A.8.10
     scope: Νέο στην έκδοση 2022
     requirement: Information deletion
