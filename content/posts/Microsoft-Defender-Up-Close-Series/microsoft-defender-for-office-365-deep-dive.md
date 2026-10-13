@@ -40,6 +40,48 @@ cover:
   relative: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Defender for Office 365 (επισκόπηση)"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-about"
+    verified: 2026-10-13
+  - feature: "Preset security policies"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/preset-security-policies"
+    verified: 2026-10-13
+  - feature: "Safe Links"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/safe-links-about"
+    verified: 2026-10-13
+  - feature: "Safe Attachments (Dynamic Delivery)"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about"
+    verified: 2026-10-13
+  - feature: "Anti-phishing impersonation protection"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-about#defender-for-office-365-plan-1-vs-plan-2-cheat-sheet"
+    verified: 2026-10-13
+  - feature: "Real-time detections"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-real-time-detections-about"
+    verified: 2026-10-13
+  - feature: "Threat Explorer"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-real-time-detections-about"
+    verified: 2026-10-13
+  - feature: "Attack simulation training"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 2 ή Microsoft 365 E5"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-simulations"
+    verified: 2026-10-13
 ---
 
 ## Γιατί αυτό μετράει περισσότερο από τα περισσότερα
@@ -181,15 +223,9 @@ ShowWordCount: true
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender for Office 365, επισκόπηση](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
-- [Microsoft Defender for Office 365 Plan 1 vs Plan 2](https://learn.microsoft.com/en-us/defender-office-365/mdo-about#defender-for-office-365-plan-1-vs-plan-2-cheat-sheet)
-- [Preset security policies](https://learn.microsoft.com/en-us/defender-office-365/preset-security-policies)
-- [Safe Links](https://learn.microsoft.com/en-us/defender-office-365/safe-links-about)
-- [Safe Attachments](https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about)
-- [Attack Simulation Training](https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-simulations)
-- [Threat Explorer και Real-time detections](https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-real-time-detections-about)
+{{< verification >}}
 
 ---
 

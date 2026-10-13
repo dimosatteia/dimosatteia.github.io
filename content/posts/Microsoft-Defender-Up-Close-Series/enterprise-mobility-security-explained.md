@@ -37,6 +37,38 @@ cover:
   relative: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "EMS E3 και EMS E5 (τιμές και περιεχόμενο)"
+    status: "Generally Available"
+    license: "EMS E3 $12 / EMS E5 $18 ανά χρήστη/μήνα"
+    source: "https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing"
+    verified: 2026-10-13
+  - feature: "Intune Plan 2, Remote Help, Advanced Analytics στα EMS E3/E5 (από 1/7/2026)"
+    status: "Generally Available"
+    license: "EMS E3 ή EMS E5"
+    source: "https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing"
+    verified: 2026-10-13
+  - feature: "Microsoft 365 E3, E5 και E7 (τιμές και περιεχόμενο)"
+    status: "Generally Available"
+    license: "E3 $39 / E5 $60 / E7 $99 ανά χρήστη/μήνα"
+    source: "https://www.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-plans-and-pricing"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra ID P1 και P2 (PIM, risk-based Conditional Access)"
+    status: "Generally Available"
+    license: "Entra ID P1 / P2"
+    source: "https://learn.microsoft.com/en-us/entra/fundamentals/licensing"
+    verified: 2026-10-13
+  - feature: "Microsoft Intune Plan 1 και Plan 2"
+    status: "Generally Available"
+    license: "Intune Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/intune/fundamentals/licensing"
+    verified: 2026-10-13
+  - feature: "Microsoft Purview Information Protection"
+    status: "Generally Available"
+    license: "EMS E3 (μερικώς) ή EMS E5"
+    source: "https://learn.microsoft.com/en-us/purview/information-protection"
+    verified: 2026-10-13
 ---
 
 > ⚠️ **Σημείωση για τις τιμές:** Οι τιμές που αναφέρονται παρακάτω είναι τιμές καταλόγου σε USD, με ετήσια δέσμευση, από τις επίσημες σελίδες τιμών της Microsoft για το [Enterprise Mobility + Security](https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing) και το [Microsoft 365 Enterprise](https://www.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-plans-and-pricing), όπως επαληθεύτηκαν τον Σεπτέμβριο του 2026. Οι τοπικές τιμές διαφέρουν ανά περιοχή. Επιβεβαιώνετε πάντα τις τρέχουσες τιμές με τον licensing partner σας πριν δεσμευτείτε.
@@ -177,15 +209,9 @@ ShowWordCount: true
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn και τιμών
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Enterprise Mobility + Security: τιμές και πακέτα](https://www.microsoft.com/en-us/microsoft-365/enterprise-mobility-security/compare-plans-and-pricing)
-- [Microsoft 365 Enterprise: τιμές και πακέτα (E3, E5, E7)](https://www.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-plans-and-pricing)
-- [Enterprise Mobility + Security: λεπτομέρειες αδειοδότησης](https://www.microsoft.com/en-us/licensing/product-licensing/enterprise-mobility-security)
-- [Microsoft Security: κεντρική σελίδα προϊόντων](https://www.microsoft.com/en-us/security/)
-- [Αδειοδότηση Microsoft Entra: P1 vs P2](https://learn.microsoft.com/en-us/entra/fundamentals/licensing)
-- [Πακέτα Microsoft Intune](https://learn.microsoft.com/en-us/intune/fundamentals/licensing)
-- [Microsoft Purview Information Protection](https://learn.microsoft.com/en-us/purview/information-protection)
+{{< verification >}}
 
 ---
 

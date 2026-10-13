@@ -38,6 +38,53 @@ cover:
   relative: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Defender for Cloud Apps"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps"
+    verified: 2026-10-13
+  - feature: "Cloud Discovery"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/set-up-cloud-discovery"
+    verified: 2026-10-13
+  - feature: "App risk score (0 έως 10, πάνω από 90 παράγοντες)"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/risk-score"
+    verified: 2026-10-13
+  - feature: "Ενσωμάτωση με Defender for Endpoint"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps + MDE Plan 2 ή Defender for Business"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/mde-integration"
+    verified: 2026-10-13
+  - feature: "App governance (Entra ID, Google, Salesforce)"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/app-governance-manage-app-governance"
+    verified: 2026-10-13
+  - feature: "Conditional Access App Control"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone) + Entra ID P1"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad"
+    verified: 2026-10-13
+  - feature: "Session policies"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone) + Entra ID P1"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/session-policy-aad"
+    verified: 2026-10-13
+  - feature: "Activity policies"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies"
+    verified: 2026-10-13
+  - feature: "Απόσυρση file policies (6 Ιανουαρίου 2027)"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/migrate-file-policies-to-purview"
+    verified: 2026-10-13
 ---
 
 ## Γιατί υπάρχουν τα CASBs
@@ -140,17 +187,9 @@ ShowWordCount: true
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender for Cloud Apps, επισκόπηση](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)
-- [Cloud Discovery](https://learn.microsoft.com/en-us/defender-cloud-apps/set-up-cloud-discovery)
-- [Ενσωμάτωση Microsoft Defender for Cloud Apps και Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-cloud-apps/mde-integration)
-- [App governance](https://learn.microsoft.com/en-us/defender-cloud-apps/app-governance-manage-app-governance)
-- [Conditional Access App Control](https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad)
-- [Session policies](https://learn.microsoft.com/en-us/defender-cloud-apps/session-policy-aad)
-- [Activity policies](https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies)
-- [File policies και απόσυρση](https://learn.microsoft.com/en-us/defender-cloud-apps/data-protection-policies)
-- [Μετάβαση των file policies στο Microsoft Purview](https://learn.microsoft.com/en-us/defender-cloud-apps/migrate-file-policies-to-purview)
+{{< verification >}}
 
 ---
 

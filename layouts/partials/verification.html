@@ -1,0 +1,84 @@
+{{- /*
+  Επαλήθευση χαρακτηριστικών (Last verified).
+  Διαβάζει τη λίστα .Params.verification από το front matter. Κάθε στοιχείο:
+    feature:  όνομα του χαρακτηριστικού (στα Αγγλικά, όπως στο Microsoft Learn)
+    status:   φάση κυκλοφορίας (New Feature, Public Preview, Generally Available)
+    license:  προαπαιτούμενη άδεια (προαιρετικό)
+    source:   URL της πρωτογενούς πηγής (Microsoft Learn ή Microsoft 365 Roadmap)
+    verified: ημερομηνία τελευταίας επαλήθευσης (YYYY-MM-DD)
+
+  Κλήση: partial "verification.html" (dict "page" . "mode" "top")   από το single.html
+         partial "verification.html" (dict "page" .Page "mode" "full") από το shortcode {{< verification >}}
+
+  mode "top":  αν το άρθρο έχει ένα μόνο χαρακτηριστικό ή δεν έχει το shortcode, δείχνει όλο τον πίνακα·
+               αλλιώς δείχνει μία γραμμή σύνοψης με link στον πίνακα στο τέλος (#last-verified).
+  mode "full": ο πλήρης πίνακας (μπαίνει κάτω από την επικεφαλίδα «Πηγές και επαλήθευση»).
+  Επαλήθευση παλαιότερη από 90 ημέρες εμφανίζεται με κίτρινη ένδειξη.
+*/ -}}
+{{- $p := .page -}}
+{{- $mode := .mode | default "full" -}}
+{{- with $p.Params.verification }}
+{{- $items := . -}}
+{{- $staleDays := 90 -}}
+{{- $months := slice "Ιαν" "Φεβ" "Μαρ" "Απρ" "Μαΐ" "Ιουν" "Ιουλ" "Αυγ" "Σεπ" "Οκτ" "Νοε" "Δεκ" -}}
+{{- /* Η παλαιότερη ημερομηνία επαλήθευσης */ -}}
+{{- $oldest := time.AsTime (index $items 0).verified -}}
+{{- range $items }}{{ $t := time.AsTime .verified }}{{ if $t.Before $oldest }}{{ $oldest = $t }}{{ end }}{{ end -}}
+{{- $oldStale := gt (div (now.Sub $oldest).Hours 24) $staleDays -}}
+{{- $oldLabel := printf "%d %s %d" $oldest.Day (index $months (sub (int $oldest.Month) 1)) $oldest.Year -}}
+{{- $showFull := or (eq $mode "full") (eq (len $items) 1) (not ($p.HasShortcode "verification")) -}}
+
+{{- if and (eq $mode "top") (not $showFull) }}
+<a href="#last-verified" class="not-prose no-underline mb-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border {{ if $oldStale }}border-amber-500/40 bg-amber-500/5{{ else }}border-emerald-500/30 bg-emerald-500/5{{ end }} px-3 py-1.5 text-xs font-mono hover:border-blue-500 transition-colors">
+    <span class="{{ if $oldStale }}text-amber-400{{ else }}text-emerald-400{{ end }}">{{ if $oldStale }}⚠ Χρειάζεται νέο έλεγχο{{ else }}✓ Last verified{{ end }}</span>
+    <time datetime="{{ $oldest.Format "2006-01-02" }}" class="text-slate-200">{{ $oldLabel }}</time>
+    <span class="text-slate-500">·</span>
+    <span class="text-slate-300">{{ len $items }} χαρακτηριστικά</span>
+    <span class="text-slate-500">·</span>
+    <span class="text-blue-400">πηγές και φάση κυκλοφορίας ↓</span>
+</a>
+{{- else if or (eq $mode "full") (and (eq $mode "top") $showFull (not ($p.HasShortcode "verification"))) }}
+<aside class="not-prose {{ if eq $mode "top" }}mb-8{{ else }}my-6{{ end }} rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5" aria-label="Επαλήθευση χαρακτηριστικών">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 mb-1">Επαλήθευση χαρακτηριστικών · Last verified</p>
+    <p class="text-sm text-slate-300 leading-relaxed mb-4">Κάθε χαρακτηριστικό ελέγχθηκε στην πρωτογενή πηγή της Microsoft. Η φάση κυκλοφορίας και η άδεια μπορεί να αλλάξουν, γι' αυτό δες την ημερομηνία ελέγχου και άνοιξε την πηγή.</p>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+            <thead>
+                <tr class="text-[10px] font-mono uppercase tracking-wider text-slate-500 border-b border-slate-700">
+                    <th class="py-2 pr-3 font-medium">Χαρακτηριστικό</th>
+                    <th class="py-2 pr-3 font-medium">Φάση</th>
+                    <th class="py-2 pr-3 font-medium hidden sm:table-cell">Άδεια</th>
+                    <th class="py-2 pr-3 font-medium">Last verified</th>
+                    <th class="py-2 font-medium">Πηγή</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{- range $items }}
+                {{- $d := time.AsTime .verified -}}
+                {{- $stale := gt (div (now.Sub $d).Hours 24) $staleDays -}}
+                {{- $label := printf "%d %s %d" $d.Day (index $months (sub (int $d.Month) 1)) $d.Year -}}
+                <tr class="border-b border-slate-800 last:border-0 align-top">
+                    <td class="py-2 pr-3 font-semibold text-slate-100">{{ .feature }}</td>
+                    <td class="py-2 pr-3">
+                        {{- $s := .status | default "Generally Available" -}}
+                        {{- $cls := "text-emerald-300 bg-emerald-500/10 border-emerald-500/30" -}}
+                        {{- if eq $s "Public Preview" }}{{ $cls = "text-amber-300 bg-amber-500/10 border-amber-500/30" }}{{ end -}}
+                        {{- if eq $s "New Feature" }}{{ $cls = "text-blue-300 bg-blue-500/10 border-blue-500/30" }}{{ end }}
+                        <span class="inline-block whitespace-nowrap rounded border px-1.5 py-0.5 font-mono text-[10px] {{ $cls }}">{{ $s }}</span>
+                    </td>
+                    <td class="py-2 pr-3 text-slate-300 hidden sm:table-cell">{{ .license }}</td>
+                    <td class="py-2 pr-3 whitespace-nowrap font-mono">
+                        <time datetime="{{ $d.Format "2006-01-02" }}" class="{{ if $stale }}text-amber-400{{ else }}text-slate-300{{ end }}">{{ $label }}</time>
+                        {{- if $stale }}<span class="block text-[10px] text-amber-400">χρειάζεται νέο έλεγχο</span>{{ end }}
+                    </td>
+                    <td class="py-2">
+                        <a href="{{ .source }}" target="_blank" rel="noopener" class="whitespace-nowrap font-semibold text-blue-400 hover:text-blue-300 underline">{{ if in .source "roadmap" }}Microsoft 365 Roadmap{{ else if in .source "learn.microsoft.com" }}Microsoft Learn{{ else }}microsoft.com{{ end }} ↗</a>
+                    </td>
+                </tr>
+                {{- end }}
+            </tbody>
+        </table>
+    </div>
+</aside>
+{{- end }}
+{{- end }}

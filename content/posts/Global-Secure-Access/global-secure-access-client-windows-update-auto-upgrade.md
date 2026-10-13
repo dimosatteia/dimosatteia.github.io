@@ -39,6 +39,13 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Αυτόματα upgrades του client μέσω Windows Update (Windows x64, από 2.31.125)"
+    status: "New Feature"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/reference-windows-client-release-history"
+    verified: 2026-10-13
 ---
 
 Στο [πρώτο μέρος της σειράς για το Global Secure Access]({{< ref "global-secure-access-meros-1-ti-einai-sse.md" >}}) μιλήσαμε για τη φιλοσοφία του SSE και το πού μπαίνει το GSA στο Zero Trust roadmap σου. Πριν προχωρήσουμε στο επόμενο μέρος, αξίζει μια μικρή στάση σε κάτι που μόλις προστέθηκε στα release notes του Windows client και που εύκολα θα περάσει απαρατήρητο σε ένα changelog: το **πώς** θα ενημερώνεται στο εξής ο client, όχι το **τι** κάνει.

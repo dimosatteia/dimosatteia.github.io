@@ -41,6 +41,23 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Entra Internet Access"
+    status: "Generally Available"
+    license: "Entra Internet Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access#licensing-overview"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra Private Access"
+    status: "Generally Available"
+    license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access#licensing-overview"
+    verified: 2026-10-13
+  - feature: "Traffic forwarding profiles"
+    status: "Generally Available"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-traffic-forwarding"
+    verified: 2026-10-13
 ---
 
 Αποφάσισα να ξεκινήσω μια σειρά άρθρων γύρω από το Microsoft Global Secure Access, γιατί κάθε φορά που το παρουσιάζω σε πελάτες ή σε συναδέλφους, καταλαβαίνω ότι το πρόβλημα δεν είναι ποτέ το «πώς το ρυθμίζω». Το πρόβλημα είναι ότι κανείς δεν έχει σταθεί αρκετά ώρα στο «τι ακριβώς είναι αυτό, και γιατί υπάρχει». Οπότε πριν ανοίξουμε το Entra admin center και αρχίσουμε να πατάμε toggles, θέλω να μείνω σε αυτό το πρώτο μέρος αποκλειστικά στη θεωρία και στη φιλοσοφία. Τα επόμενα τέσσερα μέρη θα μπουν βαθιά στο κάθε traffic profile ξεχωριστά, Microsoft, Internet, Private, και στο Conditional Access που τα ενώνει όλα μαζί, με screenshots και πρακτικά βήματα από το δικό μου tenant.
@@ -105,3 +122,7 @@ ShowWordCount: true
 - [**Μέρος 5**](https://thecybersec.gr/posts/global-secure-access/global-secure-access-meros-5-conditional-access/): το Conditional Access σε βάθος, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile, block χωρίς client, απαίτηση compliant device, και web content filtering μέσω security profile
 
 Κάθε μέρος θα έχει τα δικά του screenshots από το δικό μου tenant, τα δικά του πρακτικά βήματα, και τη δική του ενότητα NIS2/ISO 27001. Αν τρέχεις ήδη κάποιο κομμάτι του Global Secure Access στον οργανισμό σου, ή σκέφτεσαι να ξεκινήσεις, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

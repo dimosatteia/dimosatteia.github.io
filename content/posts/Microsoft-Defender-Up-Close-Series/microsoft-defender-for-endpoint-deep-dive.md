@@ -38,6 +38,53 @@ cover:
   relative: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Defender for Endpoint Plan 1 (NGAV, ASR, χειροκίνητη απόκριση)"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1"
+    verified: 2026-10-13
+  - feature: "Defender for Endpoint Plan 2 (EDR, Endpoint Attack Notifications)"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 2 (Microsoft 365 E5 ή Defender Suite)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint"
+    verified: 2026-10-13
+  - feature: "Windows και Windows Server (2012 R2 και νεότερα)"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/minimum-requirements"
+    verified: 2026-10-13
+  - feature: "macOS (οι τρεις πιο πρόσφατες major εκδόσεις)"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint-mac-prerequisites"
+    verified: 2026-10-13
+  - feature: "Linux (RHEL, Ubuntu, CentOS, SLES, Debian, Oracle, Amazon Linux)"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/mde-linux-prerequisites"
+    verified: 2026-10-13
+  - feature: "Onboarding συσκευών"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/onboarding"
+    verified: 2026-10-13
+  - feature: "Attack surface reduction rules"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender Vulnerability Management"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 2 (Microsoft 365 E5 ή Defender Suite)"
+    source: "https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management"
+    verified: 2026-10-13
+  - feature: "Security baseline για το Defender for Endpoint"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/configure-machines-security-baseline"
+    verified: 2026-10-13
 ---
 
 ## Σε ποιον απευθύνεται αυτό το άρθρο
@@ -181,13 +228,9 @@ ShowWordCount: true
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender for Endpoint, επισκόπηση](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
-- [Onboarding συσκευών στο Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/onboarding)
-- [Attack surface reduction rules (αναφορά)](https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference)
-- [Microsoft Defender Vulnerability Management](https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management)
-- [Security baselines για το Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/configure-machines-security-baseline)
+{{< verification >}}
 
 ---
 

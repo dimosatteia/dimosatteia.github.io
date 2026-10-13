@@ -38,6 +38,38 @@ cover:
   relative: false
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Defender for Identity (AD, Entra ID, API connectors)"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/what-is"
+    verified: 2026-10-13
+  - feature: "Sensor v3.x (Windows Server 2019+) και v2.x (2016 ή παλαιότερο)"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/deploy-defender-identity"
+    verified: 2026-10-13
+  - feature: "Directory Service account (sensor v2.x)"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/directory-service-accounts"
+    verified: 2026-10-13
+  - feature: "Security alerts"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/alerts-overview"
+    verified: 2026-10-13
+  - feature: "Entity tags (Sensitive, Honeytoken, Exchange server)"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/entity-tags"
+    verified: 2026-10-13
+  - feature: "Identity inventory (ενιαία προβολή AD και Entra ID)"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/identity-inventory"
+    verified: 2026-10-13
 ---
 
 ## Γιατί αυτό είναι το αγαπημένο μου
@@ -169,14 +201,9 @@ ShowWordCount: true
 
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender for Identity, επισκόπηση](https://learn.microsoft.com/en-us/defender-for-identity/what-is)
-- [Ανάπτυξη των sensors του Microsoft Defender for Identity (v3.x και v2.x)](https://learn.microsoft.com/en-us/defender-for-identity/deploy/deploy-defender-identity)
-- [Directory Service accounts (sensor v2.x)](https://learn.microsoft.com/en-us/defender-for-identity/deploy/directory-service-accounts)
-- [Alerts του Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/alerts-overview)
-- [Entity tags: Sensitive, Honeytoken, Exchange server](https://learn.microsoft.com/en-us/defender-for-identity/entity-tags)
-- [Identity inventory: ενιαία προβολή AD και Microsoft Entra ID](https://learn.microsoft.com/en-us/defender-for-identity/identity-inventory)
+{{< verification >}}
 
 ---
 

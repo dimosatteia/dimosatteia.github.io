@@ -43,6 +43,33 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Internet access profile"
+    status: "Generally Available"
+    license: "Entra Internet Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-traffic-forwarding"
+    verified: 2026-10-13
+  - feature: "Conditional Access signaling και compliant network"
+    status: "Generally Available"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-compliant-network"
+    verified: 2026-10-13
+  - feature: "Web content filtering (web categories, FQDN)"
+    status: "Generally Available"
+    license: "Entra Internet Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-web-content-filtering"
+    verified: 2026-10-13
+  - feature: "Baseline security profile"
+    status: "Generally Available"
+    license: "Entra Internet Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-web-content-filtering"
+    verified: 2026-10-13
+  - feature: "Internet Access licensing"
+    status: "Generally Available"
+    license: "Entra Internet Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access#licensing-overview"
+    verified: 2026-10-13
 ---
 
 Στο [1ο μέρος](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία πίσω από το SSE και το Global Secure Access γενικότερα, και στο [2ο μέρος](/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/) μπήκαμε στο Microsoft traffic profile, το θεμέλιο που φροντίζει για τη βέλτιστη δρομολόγηση της κίνησης προς Microsoft 365. Σε αυτό το τρίτο μέρος περνάμε σε αυτό που, ας είμαστε ειλικρινείς, τραβάει τη μεγαλύτερη προσοχή όταν κάποιος βλέπει το Global Secure Access για πρώτη φορά: το **Internet access profile**, το κομμάτι που λειτουργεί ως πλήρες Secure Web Gateway για ό,τι δεν καλύπτεται ήδη από το Microsoft traffic profile.
@@ -117,3 +144,7 @@ ShowWordCount: true
 Στο επόμενο μέρος της σειράς περνάμε στο **Private access profile**, τη λύση της Microsoft για αντικατάσταση του κλασικού VPN σε εσωτερικές, on-premises εφαρμογές, μέσα από Quick Access και private network connectors. Και επειδή το Conditional Access είναι το νήμα που συνδέει όλα τα profiles μεταξύ τους, ένα ξεχωριστό, [5ο μέρος](/posts/global-secure-access/global-secure-access-meros-5-conditional-access/) θα μείνει αποκλειστικά σε αυτό, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile που είδαμε εδώ.
 
 Αν τρέχεις ή σχεδιάζεις κάτι ανάλογο στον δικό σου οργανισμό και βλέπεις τη σχέση δικτύου και ταυτότητας διαφορετικά, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

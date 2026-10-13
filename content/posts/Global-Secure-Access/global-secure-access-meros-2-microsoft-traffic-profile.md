@@ -42,6 +42,38 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft traffic profile (Forward / Bypass)"
+    status: "Generally Available"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-microsoft-traffic-profile"
+    verified: 2026-10-13
+  - feature: "Microsoft traffic profile licensing"
+    status: "Generally Available"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access#licensing-overview"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra traffic profile (system-managed)"
+    status: "Generally Available"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-traffic-forwarding"
+    verified: 2026-10-13
+  - feature: "Remote network connectivity"
+    status: "Generally Available"
+    license: "Entra ID P1 (τουλάχιστον 50 άδειες)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access#licensing-overview"
+    verified: 2026-10-13
+  - feature: "Universal Conditional Access"
+    status: "Generally Available"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-universal-conditional-access"
+    verified: 2026-10-13
+  - feature: "Global Secure Access client (Windows, macOS, Android, iOS)"
+    status: "Generally Available"
+    license: "Entra ID P1/P2"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/reference-current-known-limitations"
+    verified: 2026-10-13
 ---
 
 Στο [πρώτο μέρος αυτής της σειράς](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) έμεινα στη θεωρία: τι είναι το SSE ως κατηγορία, γιατί η Microsoft το έχτισε πάνω στο Entra ID, και ποια είναι η σχέση Global Secure Access, Entra Internet Access και Entra Private Access. Από εδώ και πέρα μπαίνουμε στην πράξη, ένα traffic forwarding profile τη φορά. Ξεκινάω σκόπιμα από το **Microsoft traffic profile**, γιατί είναι αυτό που η ίδια η Microsoft θεωρεί θεμέλιο, το πρώτο profile που αξιολογείται όταν περνάει κίνηση μέσα από το Global Secure Access, πριν καν φτάσει στο Private ή στο Internet access profile.
@@ -85,7 +117,7 @@ ShowWordCount: true
 
 ## Πώς συνδέεται με το Conditional Access
 
-Όπως και τα άλλα δύο profiles, το Microsoft traffic profile μπορεί να συνδεθεί με πολιτικές Conditional Access, όχι μόνο ως προϋπόθεση πρόσβασης σε μια εφαρμογή, αλλά ως προϋπόθεση πάνω στο ίδιο το traffic profile. Αυτό ανοίγει τον δρόμο για κάτι που η Microsoft ονομάζει **universal Conditional Access**: μπορείς να απαιτήσεις MFA, compliant device, ή συγκεκριμένο επίπεδο sign-in risk όχι μόνο όταν κάποιος συνδέεται σε μια cloud εφαρμογή, αλλά και όταν η συσκευή του αποκτά πρόσβαση μέσω ενός traffic profile γενικότερα. Πρακτική συνέπεια: εφαρμογές που παραδοσιακά δεν υποστήριζαν σύγχρονη αυθεντικοποίηση μπορούν τώρα να προστατευτούν έμμεσα, μέσω του traffic profile πίσω από το οποίο κάθονται, αντί να μείνουν εκτός Conditional Access εντελώς.
+Όπως και το Internet access profile, το Microsoft traffic profile μπορεί να συνδεθεί με πολιτικές Conditional Access, όχι μόνο ως προϋπόθεση πρόσβασης σε μια εφαρμογή, αλλά ως προϋπόθεση πάνω στο ίδιο το traffic profile (στο Private access profile, αντίθετα, η πολιτική μπαίνει σε κάθε private εφαρμογή ξεχωριστά, όχι στο ίδιο το profile). Αυτό ανοίγει τον δρόμο για κάτι που η Microsoft ονομάζει **universal Conditional Access**: μπορείς να απαιτήσεις MFA, compliant device, ή συγκεκριμένο επίπεδο sign-in risk όχι μόνο όταν κάποιος συνδέεται σε μια cloud εφαρμογή, αλλά και όταν η συσκευή του αποκτά πρόσβαση μέσω ενός traffic profile γενικότερα. Πρακτική συνέπεια: εφαρμογές που παραδοσιακά δεν υποστήριζαν σύγχρονη αυθεντικοποίηση μπορούν τώρα να προστατευτούν έμμεσα, μέσω του traffic profile πίσω από το οποίο κάθονται, αντί να μείνουν εκτός Conditional Access εντελώς.
 
 ## Η οπτική NIS2 και ISO 27001
 
@@ -104,3 +136,7 @@ ShowWordCount: true
 Στο επόμενο μέρος περνάμε στο profile που συνήθως τραβάει τη μεγαλύτερη προσοχή, το **Internet access profile**: πώς λειτουργεί ως secure web gateway, πώς δουλεύει το web content filtering με βάση κατηγορίες και FQDNs, και πώς όλα αυτά συνδέονται σε security profiles που εφαρμόζονται μέσω Conditional Access σε συγκεκριμένες ομάδες χρηστών.
 
 Αν έχεις ήδη ενεργοποιήσει το Microsoft traffic profile στον οργανισμό σου και έχεις παρατηρήσει κάτι ενδιαφέρον, ιδιαίτερα γύρω από bypass κανόνες ή απόδοση, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
