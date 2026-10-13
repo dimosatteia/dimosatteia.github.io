@@ -405,14 +405,16 @@ queries:
 
 
   - id: local-admin-add
-    draft: true
     title: Προσθήκες στο local Administrators group
     summary: Ποιος λογαριασμός προστέθηκε στο τοπικό group Administrators σε ποια συσκευή, από ποιον και πότε, τις τελευταίες 30 ημέρες.
-    why: Τα τοπικά δικαιώματα admin είναι ο πιο συνηθισμένος δρόμος για να κλείσει κάποιος το antivirus, να εγκαταστήσει λογισμικό ή να κινηθεί πλάγια. Κάθε προσθήκη που δεν πέρασε από τη διαδικασία σου (LAPS, Intune Account protection) θέλει εξήγηση.
+    why: Τα τοπικά δικαιώματα admin είναι ο πιο συνηθισμένος δρόμος για να κλείσει κάποιος το antivirus, να εγκαταστήσει λογισμικό ή να κινηθεί πλάγια. Κάθε προσθήκη που δεν πέρασε από τη διαδικασία σου (LAPS, Intune Account protection) θέλει εξήγηση. Το query αναγνωρίζει το group από το SID του (S-1-5-32-544) και όχι από το όνομα, οπότε πιάνει και τα Ελληνικά Windows, όπου λέγεται «Διαχειριστές». Αν η στήλη AddedBy δείχνει το SYSTEM με process όπως omadmclient.exe ή svchost.exe, η αλλαγή έγινε συνήθως από πολιτική του Intune ή GPO. Αν δείχνει κανονικό λογαριασμό με net.exe ή powershell.exe, έγινε με το χέρι. Όταν η στήλη AddedAccount εμφανίζει μόνο SID, πρόκειται συνήθως για λογαριασμό ή group του domain.
     pillar: endpoint
     product: Defender for Endpoint
     table: DeviceEvents
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security)
+    tested: 2026-10-13
+    evidence: /images/kql/local-admin-add.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δύο προσθήκες στο τοπικό group Administrators, στις 9 και στις 12 Οκτωβρίου, και στις δύο περιπτώσεις με λογαριασμό που εμφανίζεται ως SID, δηλαδή λογαριασμό ή group του domain. Κάθε τέτοια προσθήκη ελέγχεται απέναντι σε εγκεκριμένο αίτημα. Οι συσκευές, τα SID και οι λογαριασμοί έχουν αφαιρεθεί.
     map:
       kya: ["13.δ", "24.γ"]
       nis2: ["21.2.θ"]
@@ -421,7 +423,23 @@ queries:
     posts:
       - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
         url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
-    query: ""
+    query: |-
+      // Προσθήκες λογαριασμών στο τοπικό group Administrators, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 13.δ, 24.γ
+      let Lookback = 30d;
+      DeviceEvents
+      | where Timestamp > ago(Lookback)
+      | where ActionType == "UserAccountAddedToLocalGroup"
+      | extend AF = parse_json(AdditionalFields)
+      | extend GroupName = tostring(AF.GroupName), GroupSid = tostring(AF.GroupSid)
+      // S-1-5-32-544 είναι το Administrators σε κάθε γλώσσα των Windows (π.χ. «Διαχειριστές»)
+      | where GroupSid == "S-1-5-32-544"
+      | extend AddedAccount = iff(isnotempty(AccountName), strcat(AccountDomain, "\\", AccountName), AccountSid),
+               AddedBy = strcat(InitiatingProcessAccountDomain, "\\", InitiatingProcessAccountName)
+      | project Timestamp, DeviceName, GroupName, AddedAccount, AccountSid, AddedBy,
+                InitiatingProcessFileName, InitiatingProcessCommandLine
+      | order by Timestamp desc
+
 
   - id: ad-sensitive-groups
     draft: true
