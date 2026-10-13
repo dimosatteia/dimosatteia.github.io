@@ -44,6 +44,43 @@ cover:
   image: "/images/DefenderAIR/air-cover-evolution.webp"
   alt: "Η εξέλιξη του Automated Investigation & Response στο Microsoft Defender, από το χειροκίνητο triage στην αυτόνομη απόκριση"
   caption: "Microsoft Defender AIR — Automated Investigation & Response"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Automated investigation and response (AIR): verdicts και επέκταση της έρευνας"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 2 ή Defender for Business"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/automated-investigations"
+    verified: 2026-10-13
+  - feature: "AIR ως ξεχωριστή εμπειρία έρευνας και χειροκίνητη εκκίνηση (έως 1/9/2026)"
+    status: "Retirement"
+    license: "Defender for Endpoint Plan 2 ή Defender for Business"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/automated-investigations"
+    verified: 2026-10-13
+  - feature: "Automation levels (πέντε επίπεδα, Full προτεινόμενο)"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 2 ή Defender for Business"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/automation-levels"
+    verified: 2026-10-13
+  - feature: "Ρύθμιση μέσω device groups (χωρίς διακόπτη στα Advanced features)"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 2 ή Defender for Business"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/configure-automated-investigations-remediation"
+    verified: 2026-10-13
+  - feature: "Αποτελέσματα έρευνας και investigation states"
+    status: "Generally Available"
+    license: "Defender for Endpoint Plan 2 ή Defender for Business"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/autoir-investigation-results"
+    verified: 2026-10-13
+  - feature: "Unified Action center"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/auto-investigation-action-center"
+    verified: 2026-10-13
+  - feature: "Automated investigation and response στο Defender XDR"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/m365d-autoir"
+    verified: 2026-10-13
 ---
 
 ## Ας ξεκινήσουμε από το πραγματικό πρόβλημα
@@ -77,7 +114,7 @@ cover:
 
 Ας το δούμε βήμα-βήμα, γιατί η ροή είναι πιο κομψή απ' όσο φαίνεται.
 
-Μια αυτόματη έρευνα ξεκινά με δύο τρόπους: είτε **όταν σκάει ένα alert** (και δημιουργείται το αντίστοιχο incident), είτε **χειροκίνητα**, όταν ένας security operator επιλέξει μια συσκευή και πατήσει *Initiate Automated Investigation*. Το δεύτερο σενάριο το χρησιμοποιείς όταν, ας πούμε, βλέπεις μια συσκευή με ψηλό risk level και θέλεις να σκάψεις χωρίς να περιμένεις να σκάσει alert.
+Μια αυτόματη έρευνα ξεκινά **όταν σκάει ένα alert** (και δημιουργείται το αντίστοιχο incident). Μέχρι την 1η Σεπτεμβρίου 2026 μπορούσες να την ξεκινήσεις και χειροκίνητα, με το *Initiate Automated Investigation*. Πλέον, για έρευνα κατά παραγγελία σε μια συσκευή με υψηλό risk level, η Microsoft προτείνει full antivirus scan.
 
 Μόλις ξεκινήσει, η έρευνα **επεκτείνει το εύρος της** μόνη της. Αν κατά τη διάρκειά της εμφανιστούν νέα alerts από την ίδια συσκευή, προστίθενται στην τρέχουσα έρευνα. Κι αν η ίδια απειλή εντοπιστεί σε άλλη συσκευή, τότε και εκείνη η συσκευή μπαίνει στην έρευνα και ξεκινά ένα γενικό security playbook πάνω της. Υπάρχει όμως ένα δικλείδα ασφαλείας που μου αρέσει ιδιαίτερα: **αν η επέκταση αγγίξει 10 ή περισσότερες συσκευές** από την ίδια οντότητα, τότε αυτή η ενέργεια **απαιτεί έγκριση** και εμφανίζεται στην καρτέλα *Pending actions*. Δηλαδή το σύστημα ξέρει πότε το πράγμα μεγαλώνει αρκετά ώστε να θέλει ανθρώπινο μάτι.
 
@@ -195,13 +232,11 @@ cover:
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
-## Πηγές από το Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Overview of automated investigations (Defender for Endpoint)](https://learn.microsoft.com/en-us/defender-endpoint/automated-investigations)
-- [Automation levels in automated investigation and remediation](https://learn.microsoft.com/en-us/defender-endpoint/automation-levels)
-- [Configure automated investigation and remediation capabilities](https://learn.microsoft.com/en-us/defender-endpoint/configure-automated-investigations-remediation)
-- [View the details and results of an automated investigation](https://learn.microsoft.com/en-us/defender-endpoint/autoir-investigation-results)
-- [Automated investigation and response in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/m365d-autoir)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Details and results of an automated investigation (unified investigation page)](https://learn.microsoft.com/en-us/defender-xdr/m365d-autoir-results)
-- [The unified Action center](https://learn.microsoft.com/en-us/defender-endpoint/auto-investigation-action-center)
 - [Review and approve remediation actions following an automated investigation](https://learn.microsoft.com/en-us/defender-endpoint/manage-auto-investigation)
