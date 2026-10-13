@@ -42,6 +42,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Allowed agent types: Only certified external publishers"
+    status: "Not stated"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/agent-settings"
+    verified: 2026-10-13
+  - feature: "Microsoft 365 App Compliance Program (Publisher Attestation, Microsoft 365 Certification)"
+    status: "Generally Available"
+    license: "Πρόγραμμα για publishers"
+    source: "https://learn.microsoft.com/en-us/microsoft-365-app-certification/overview"
+    verified: 2026-10-13
 ---
 
 Πριν λίγες μέρες πέρασα ξανά από τα Agent settings του δικού μας tenant, κάτι που έχω κάνει δεκάδες φορές τους τελευταίους μήνες καθώς το Copilot Control System αλλάζει σχεδόν κάθε sprint. Αυτή τη φορά όμως στάθηκα λίγο παραπάνω σε ένα radio button που τις προηγούμενες φορές το προσπερνούσα: **Allowed agent types**, και συγκεκριμένα η επιλογή ανάμεσα σε *All external publishers* και *Only certified external publishers*.
@@ -136,3 +148,7 @@ ShowWordCount: true
 Δεν είναι κάθε ρύθμιση στο admin center τόσο κρίσιμη όσο φαίνεται με την πρώτη ματιά...αλλά αυτή είναι. Είναι από τα σπάνια σημεία όπου ένα default checkbox στο Copilot Control System λειτουργεί σαν πραγματικό supply-chain control, με άμεση αντιστοίχιση σε NIS2 και ISO 27001. Αν δεν το έχεις ελέγξει ακόμα στο δικό σου tenant, είναι πέντε λεπτά δουλειάς με μετρήσιμο αντίκτυπο στο risk register σου.
 
 Αν το δοκιμάσεις στο δικό σου περιβάλλον ή αν βλέπεις τη διάκριση Verified/Attested/Certified διαφορετικά, θα χαρώ να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

@@ -38,6 +38,33 @@ cover:
 ShowReadingTime: true
 ShowWordCount: true
 slug: "microsoft-defender-xdr-full-tutorial-ciso"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Defender XDR"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή μεμονωμένα προϊόντα Defender"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender"
+    verified: 2026-10-13
+  - feature: "Passkeys (FIDO2) στο Microsoft Entra ID"
+    status: "Generally Available"
+    license: "Microsoft Entra ID Free και πάνω"
+    source: "https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-enable-passkey-fido2"
+    verified: 2026-10-13
+  - feature: "Cloud app catalog και risk score"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/risk-score"
+    verified: 2026-10-13
+  - feature: "Leaked credentials detection (Microsoft Entra ID Protection)"
+    status: "Generally Available"
+    license: "Microsoft Entra ID Free ή P1"
+    source: "https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks"
+    verified: 2026-10-13
+  - feature: "Live response"
+    status: "Generally Available"
+    license: "Defender for Endpoint P2"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/live-response"
+    verified: 2026-10-13
 ---
 
 Για δεύτερη φορά ήμουν καλεσμένος στο live webinar του Χρήστου Σπανουγάκη, **[Chris Spanougakis MVP](https://www.youtube.com/@Chris_OnTechnology)**, εδώ και 26 χρόνια και MVP σε Microsoft 365 και Security. Αυτή τη φορά το θέμα ήταν πιο τεχνικό και πιο βαθύ: ολόκληρη η σουίτα **Microsoft Defender XDR**, μέσα από πραγματικά demo και στα δύο μας tenants. Το βίντεο το βρίσκετε ολόκληρο εδώ, [Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά](https://www.youtube.com/watch?v=Dq1LRbkD36g&t=2454s), και όπως πάντα σας προτείνω να κάνετε εγγραφή στο [κανάλι Chris Spanougakis MVP](https://www.youtube.com/@Chris_OnTechnology), γιατί ανεβάζει σταθερά πολύ καλό, πρακτικό υλικό γύρω από το Microsoft 365 και το Security, καθώς και να επισκεφτείτε το [Personal Webiste & Blog του](https://spanougakis.com/).
@@ -109,3 +136,7 @@ slug: "microsoft-defender-xdr-full-tutorial-ciso"
 Ευχαριστώ ξανά τον Χρήστο Σπανουγάκη για την πρόσκληση και τη φιλοξενία στο **[Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά](https://www.youtube.com/watch?v=Dq1LRbkD36g&t=2454s)**. Το πλήρες βίντεο, με όλα τα live demo και το Q&A, το βρίσκετε εκεί, και το [κανάλι Chris Spanougakis MVP](https://www.youtube.com/@Chris_OnTechnology) αξίζει σίγουρα την εγγραφή σας.
 
 Αν έχετε δει κάτι αντίστοιχο στον δικό σας οργανισμό, ή αν κάτι από όσα περιέγραψα σας φαίνεται διαφορετικό στο δικό σας tenant, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

@@ -43,7 +43,26 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Entra Connect Sync 2.6.84.0+ με application-based authentication (υποχρεωτικό έως 7 Απρ 2027)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/reference-connect-version-history"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra Connect 2.6.92.0 (τελευταία έκδοση)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/reference-connect-version-history"
+    verified: 2026-10-13
+  - feature: "Αναβάθμιση και λήψη από το Microsoft Entra admin center"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-upgrade-previous-version"
+    verified: 2026-10-13
 ---
+
+> **Ενημέρωση 13 Οκτωβρίου 2026:** Η Microsoft άλλαξε τις απαιτήσεις μετά τη δημοσίευση του άρθρου. Σύμφωνα με το [Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/reference-connect-version-history), πρέπει να αναβαθμίσεις το Entra Connect Sync σε **2.6.84.0 ή νεότερη** και να ρυθμίσεις **application-based authentication** έως τις **7 Απριλίου 2027**, αλλιώς ο συγχρονισμός σταματά. Η τελευταία έκδοση είναι η **2.6.92.0** (23/9/2026) και περιέχει security fixes. Ο έλεγχος που περιγράφω παρακάτω ισχύει, αλλά σύγκρινε με την 2.6.84.0, όχι με την 2.5.79.0.
 
 Το ξανάδα τις προάλλες, καθαρά τυχαία, ενώ έλεγχα κάτι άλλο στο Entra admin center: ένα banner στη σελίδα του Connect Sync που παρέπεμπε σε μια προθεσμία. Το πρώτο μου instinct ήταν «άλλο ένα advisory που θα διαβάσω αργότερα». Μόλις όμως κάθισα και το διάβασα σωστά, κατάλαβα ότι δεν είναι τυπικό. Η Microsoft έχει βάλει ημερομηνία λήξης στη λειτουργία του Entra Connect Sync για όσους δεν έχουν ανεβάσει έκδοση, και αυτή η ημερομηνία είναι η **30 Σεπτεμβρίου 2026**. Δηλαδή, όσο διαβάζεις αυτό το άρθρο, μιλάμε πλέον για λίγες εβδομάδες.
 
@@ -149,3 +168,7 @@ ShowWordCount: true
 Αν διαχειρίζεσαι Entra Connect servers, το πρώτο πράγμα που αξίζει να κάνεις σήμερα, όχι την επόμενη εβδομάδα, είναι να ανοίξεις το Entra admin center και να δεις τι έκδοση τρέχεις. Πέντε λεπτά δουλειά, και μια προθεσμία λιγότερη στο ρολόι που δεν σου ανήκει.
 
 Αν έχεις ήδη περάσει από αυτή τη διαδικασία αναβάθμισης, ή αν βλέπεις κάποιο ζήτημα που δεν κάλυψα εδώ, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

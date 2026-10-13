@@ -33,6 +33,28 @@ cover:
   caption: "400 SCU τον μήνα ανά 1.000 άδειες, με ανώτατο όριο 10.000"
   relative: false
   hidden: false
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Security Copilot inclusion: 400 SCU ανά 1.000 άδειες, έως 10.000"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή E7"
+    source: "https://learn.microsoft.com/en-us/copilot/security/security-copilot-inclusion"
+    verified: 2026-10-13
+  - feature: "Auto-provisioning: data sharing off, πρόσβαση σε δεδομένα Microsoft 365 on"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή E7"
+    source: "https://learn.microsoft.com/en-us/copilot/security/auto-provisioning-security-copilot"
+    verified: 2026-10-13
+  - feature: "Recommended Microsoft Security roles ως προεπιλεγμένοι contributors"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/copilot/security/authentication"
+    verified: 2026-10-13
+  - feature: "Security Copilot agents"
+    status: "Not stated"
+    license: "Κατανάλωση SCU"
+    source: "https://learn.microsoft.com/en-us/copilot/security/agents-overview"
+    verified: 2026-10-13
 ---
 
 ## Με λίγα λόγια
@@ -148,10 +170,11 @@ cover:
 
 Το πώς ταιριάζει το Security Copilot στη συνολική εικόνα των αλλαγών τιμολόγησης του 2026 το έχω αναλύσει στο [Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders](/posts/microsoft-365-price-increase-2026-security-leader-playbook/).
 
-## Πηγές
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Security Copilot inclusion in Microsoft 365 E5 and E7](https://learn.microsoft.com/en-us/copilot/security/security-copilot-inclusion)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Get started with Microsoft Security Copilot](https://learn.microsoft.com/en-us/copilot/security/get-started-security-copilot)
-- [Understand authentication in Microsoft Security Copilot](https://learn.microsoft.com/en-us/copilot/security/authentication)
-- [Microsoft Security Copilot agents overview](https://learn.microsoft.com/en-us/copilot/security/agents-overview)
 - [Privacy and data security in Microsoft Security Copilot](https://learn.microsoft.com/en-us/copilot/security/privacy-data-security)

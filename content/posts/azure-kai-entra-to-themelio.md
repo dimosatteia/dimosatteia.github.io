@@ -42,6 +42,28 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Shared responsibility in the cloud"
+    status: "Not stated"
+    license: "Δεν αφορά άδεια"
+    source: "https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra ID"
+    status: "Generally Available"
+    license: "Free, P1, P2"
+    source: "https://learn.microsoft.com/en-us/entra/fundamentals/whatis"
+    verified: 2026-10-13
+  - feature: "Zero Trust"
+    status: "Not stated"
+    license: "Δεν αφορά άδεια"
+    source: "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender XDR"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή μεμονωμένα προϊόντα Defender"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender"
+    verified: 2026-10-13
 ---
 
 Κάθε εβδομάδα διαβάζω, γράφω ή σχολιάζω κάτι καινούργιο στο Microsoft security ecosystem. Ένα νέο session control στο Conditional Access, ένα feature που πέρασε σε GA, ένα capability που μόλις μπήκε σε Public Preview. Το κάνω με ευχαρίστηση, είναι κομμάτι της δουλειάς μου ως CISO και το λόγο που κρατάω αυτό το blog. Πριν από λίγες μέρες όμως, σε μια συζήτηση με έναν junior μηχανικό που μόλις μπήκε στην ομάδα, μου έκανε μια ερώτηση που με έβαλε σε σκέψεις: «Καλά, το Entra είναι μέσα στο Azure ή είναι ξεχωριστό προϊόν; Και το M365 πού κολλάει σε όλο αυτό;»
@@ -196,3 +218,7 @@ ShowWordCount: true
 Το επόμενο άρθρο θα επιστρέψει στη συνηθισμένη ροή, νέα features, GA ανακοινώσεις, τεχνικές λεπτομέρειες. Αλλά ήθελα πρώτα να βάλω αυτό το θεμέλιο δημόσια, γραπτά, ώστε να μπορώ να παραπέμπω σε αυτό όποτε χρειαστεί, και ελπίζω να κάνει το ίδιο και για εσάς.
 
 Αν βλέπετε τη σχέση Azure/Entra/M365/Defender διαφορετικά, ή αν έχετε μια δική σας αναλογία που δουλεύει καλύτερα σε παρουσιάσεις, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

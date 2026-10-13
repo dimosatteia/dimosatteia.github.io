@@ -42,6 +42,23 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Security detections report (Teams admin center)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1311977"
+    verified: 2026-10-13
+  - feature: "Messaging safety: malicious URL και weaponizable file protection On by default (από 12 Ιαν 2026)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1200576"
+    verified: 2026-10-13
+  - feature: "Weaponizable file protection στο Teams"
+    status: "Not stated"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/microsoftteams/weaponizable-file-protection-teams"
+    verified: 2026-10-13
 ---
 
 Όσο περνάει ο καιρός, όλο και λιγότερο μιλάμε για το Teams σαν «εργαλείο συνεργασίας» και όλο και περισσότερο σαν attack surface. Δεν είναι κάτι νέο για όποιον παρακολουθεί closely το threat landscape, phishing μέσω chat, malicious links σε κανάλια, εξωτερικοί χρήστες που παριστάνουν συνάδελφο ή προμηθευτή. Αυτό που έλειπε μέχρι σήμερα ήταν ένα native, κεντρικό σημείο μέσα στο ίδιο το Teams admin center για να το βλέπεις αυτό συγκεντρωμένα, χωρίς να πηγαίνεις να ψάχνεις σε τρία διαφορετικά reports του Defender portal.
@@ -68,10 +85,10 @@ ShowWordCount: true
 Ένα σημείο που αξίζει προσοχή, γιατί συχνά μπερδεύει: το report δεν είναι το ίδιο το detection mechanism, είναι το reporting layer πάνω από προστασίες που ήδη υπάρχουν στο Teams messaging.
 
 - Η **ανίχνευση impersonation** δεν χρειάζεται καμία ρύθμιση, είναι ενεργή by default.
-- Η **σάρωση malicious links** ελέγχεται μέσω των **Messaging safety settings** στο Teams admin center.
-- Η **σάρωση weaponizable αρχείων** ελέγχεται επίσης μέσω των ίδιων Messaging safety settings.
+- Η **σάρωση malicious links** ελέγχεται μέσω των **Messaging safety settings** στο Teams admin center, και από τις 12 Ιανουαρίου 2026 είναι ενεργή by default.
+- Η **σάρωση weaponizable αρχείων** ελέγχεται επίσης μέσω των ίδιων Messaging safety settings, και είναι επίσης ενεργή by default από την ίδια ημερομηνία.
 
-Αυτό σημαίνει ότι αν οι ρυθμίσεις Messaging Safety στο tenant σου είναι σε default ή ημιτελή κατάσταση, το νέο report θα σου δείξει λιγότερα από όσα θα έπρεπε, όχι επειδή δεν υπάρχει απειλή, αλλά επειδή δεν είναι configured να την πιάσει. Πριν πανηγυρίσεις για ένα «καθαρό» dashboard, αξίζει να επιβεβαιώσεις ότι το scanning είναι πραγματικά ενεργό, όχι μόνο ότι το report είναι διαθέσιμο.
+Αυτό σημαίνει ότι αν κάποιος έχει απενεργοποιήσει στο παρελθόν τις ρυθμίσεις Messaging Safety στο tenant σου, το νέο report θα σου δείξει λιγότερα από όσα θα έπρεπε, όχι επειδή δεν υπάρχει απειλή, αλλά επειδή δεν είναι configured να την πιάσει. Πριν πανηγυρίσεις για ένα «καθαρό» dashboard, αξίζει να επιβεβαιώσεις ότι το scanning είναι πραγματικά ενεργό, όχι μόνο ότι το report είναι διαθέσιμο.
 
 ## Χρονοδιάγραμμα rollout, και γιατί μετακινήθηκε τρεις φορές
 
@@ -104,3 +121,7 @@ ShowWordCount: true
 Το Security Detection Report δεν είναι ένα revolutionary feature με τη τεχνική έννοια, είναι κυρίως ενοποίηση κάτι που ήδη υπήρχε σκόρπιο. Ακριβώς όμως αυτή η ενοποίηση είναι που το κάνει χρήσιμο για εμάς που πρέπει να αποδείξουμε, όχι απλώς να ισχυριστούμε, ότι παρακολουθούμε το messaging attack surface. Ένα tenant που «δείχνει πράσινο» επειδή κανείς δεν κοιτάζει το σωστό dashboard δεν είναι ασφαλές tenant, είναι απλώς tenant χωρίς visibility. Το 560702 είναι ακριβώς το είδος του incremental capability που, αν το εντάξεις σωστά στο δικό σου monitoring και evidence trail, αξίζει πολύ περισσότερο από όσο δείχνει στην πρώτη ματιά ενός roadmap item.
 
 Αν διαχειρίζεσαι Teams tenant, δύο πράγματα αξίζει να ελέγξεις τώρα: επιβεβαίωσε ότι τα Messaging safety settings σου είναι πραγματικά ενεργά, και βάλε ήδη στο documentation σου πού θα καταγράφεται αυτό το νέο monitoring capability μόλις φτάσει στο tenant σου. Αν έχεις ήδη δει το report live ή θέλεις να συζητήσουμε πώς το εντάσσεις σε NIS2/ISO 27001 τεκμηρίωση, χαίρομαι να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

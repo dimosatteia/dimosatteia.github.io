@@ -51,6 +51,28 @@ cover:
   image: "images/mfasms-killing-sms.webp"
   alt: "Microsoft is killing SMS authentication - Passkeys are taking over"
   caption: "Το χρονοδιάγραμμα απόσυρσης SMS/Voice MFA στο Microsoft Entra ID"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Passkeys by default (από 1 Σεπ 2026)"
+    status: "Generally Available"
+    license: "Microsoft Entra ID Free και πάνω"
+    source: "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-sms-voice-retirement"
+    verified: 2026-10-13
+  - feature: "Retirement Microsoft-provided SMS/voice (1 Φεβ 2027, Global Admins και external users 1 Ιουλ 2027)"
+    status: "Retirement"
+    license: "Δεν αφορά άδεια"
+    source: "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-sms-voice-retirement"
+    verified: 2026-10-13
+  - feature: "Telephony provider από το Microsoft Security Store (από 30 Οκτ 2026)"
+    status: "New Feature"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-sms-voice-retirement-faq"
+    verified: 2026-10-13
+  - feature: "Passkeys (FIDO2) στο Microsoft Entra ID"
+    status: "Generally Available"
+    license: "Microsoft Entra ID Free και πάνω"
+    source: "https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-enable-passkey-fido2"
+    verified: 2026-10-13
 ---
 
 Θα το πω απλά, όπως θα το έλεγα σε έναν συνάδελφο μπροστά σε έναν καφέ: αν ακόμα έχετε χρήστες στο tenant σας που κάνουν MFA με SMS ή με τηλεφωνική κλήση, έχετε ακριβώς έναν χρόνο και κάτι να τους μετακομίσετε αλλού. Η Microsoft το ανακοίνωσε επίσημα και αυτή τη φορά δεν είναι απλά ένα «recommendation» σε κάποιο Ignite session. Είναι ημερομηνίες, με ρολόι που ήδη μετράει αντίστροφα.
@@ -67,7 +89,9 @@ cover:
 ## Το χρονοδιάγραμμα που πρέπει να έχετε στο ημερολόγιό σας
 
 - **1 Σεπτεμβρίου 2026:** Όσοι χρήστες έχουν ενεργοποιημένο SMS ή Voice ως μέθοδο MFA, μπαίνουν αυτόματα σε passkey profile στο Authentication Methods Policy. Το Registration Campaign περνάει σε Microsoft Managed κατάσταση με στόχευση passkeys, οπότε στην επόμενη σύνδεσή τους θα αρχίσουν να βλέπουν το γνωστό nudge «θέλεις να καταχωρήσεις passkey;». Το nudge αυτό, από προεπιλογή, μπορεί να «κοιμηθεί» (snooze) απεριόριστες φορές, άρα μην περιμένετε ότι θα λύσει μόνο του το πρόβλημα.
-- **1 Φεβρουαρίου 2027:** Η SMS/Voice παράδοση μέσω Microsoft αποσύρεται πλήρως. Αν κάποιος χρήστης έχει ως *μοναδική* διαθέσιμη μέθοδο MFA το SMS ή το Voice, θα δει blocking prompt: δεν θα μπορεί να προσπεράσει την εγγραφή passkey, θα πρέπει να την ολοκληρώσει για να συνεχίσει να μπαίνει στον λογαριασμό του. Και το σημειώνω γιατί η Microsoft το τονίζει ρητά στο άρθρο: **δεν υπάρχει opt-out** για αυτή την ημερομηνία, ισχύει για όλα τα tenants χωρίς εξαίρεση.
+- **30 Οκτωβρίου 2026:** Όσοι χρειάζονται ακόμα SMS ή Voice μπορούν να επιλέξουν και να ρυθμίσουν telephony provider από το Microsoft Security Store.
+- **1 Φεβρουαρίου 2027:** Η SMS/Voice παράδοση μέσω Microsoft αποσύρεται για όλους τους χρήστες εκτός από τους Global Administrators και τους external users. Αν κάποιος χρήστης έχει ως *μοναδική* διαθέσιμη μέθοδο MFA το SMS ή το Voice, θα δει blocking prompt: δεν θα μπορεί να προσπεράσει την εγγραφή passkey, θα πρέπει να την ολοκληρώσει για να συνεχίσει να μπαίνει στον λογαριασμό του. Και το σημειώνω γιατί η Microsoft το τονίζει ρητά στο άρθρο: **δεν υπάρχει opt-out** για αυτή την ημερομηνία, ισχύει για όλα τα tenants χωρίς εξαίρεση.
+- **1 Ιουλίου 2027:** Η SMS/Voice παράδοση μέσω Microsoft αποσύρεται και για τους Global Administrators και τους external users, με το ίδιο blocking prompt και χωρίς opt-out.
 
 Ανάμεσα στις δύο ημερομηνίες θα υπάρχει ένα προσωρινό opt-out (API support από 1η Αυγούστου 2026) για όσους χρειάζονται λίγο παραπάνω χρόνο να οργανωθούν, αλλά αυτό ισχύει μόνο μέχρι τον Φεβρουάριο του 2027, όχι μετά.
 
@@ -109,4 +133,6 @@ cover:
 
 ---
 
-*Πηγή: [Passkeys by default and retirement of Microsoft-provided SMS and voice authentication - Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-sms-voice-retirement)*
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

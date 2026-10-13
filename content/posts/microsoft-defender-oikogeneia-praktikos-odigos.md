@@ -37,6 +37,38 @@ cover:
   image: "/images/microsoft-defender-oikogeneia-praktikos-odigos/01-title-overview.png"
   alt: "Η οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR"
   caption: "Η Οικογένεια Microsoft Defender — πρακτικός οδηγός για νέους επαγγελματίες Security"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Defender for Endpoint"
+    status: "Generally Available"
+    license: "Defender for Endpoint P1 ή P2"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Office 365"
+    status: "Generally Available"
+    license: "Defender for Office 365 P1 ή P2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-about"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Identity"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/what-is"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Cloud Apps"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Cloud"
+    status: "Generally Available"
+    license: "Azure subscription, Defender plans"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender XDR"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή μεμονωμένα προϊόντα Defender"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender"
+    verified: 2026-10-13
 ---
 
 ## Δευτέρα πρωί, νέος στην ομάδα ασφάλειας
@@ -246,14 +278,9 @@ cover:
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
-## Πηγές & επιπλέον υλικό
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender for Endpoint overview](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
-- [Why do I need Microsoft Defender for Office 365?](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
-- [Microsoft Defender for Identity overview](https://learn.microsoft.com/en-us/defender-for-identity/what-is)
-- [What is Microsoft Defender for Cloud Apps?](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)
-- [Microsoft Defender for Cloud overview](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction)
-- [What is Microsoft Defender XDR?](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
+{{< verification >}}
 
 - [Microsoft Defender](/tags/microsoft-defender/)
 - [Microsoft Defender for Endpoint](/tags/microsoft-defender-for-endpoint/)

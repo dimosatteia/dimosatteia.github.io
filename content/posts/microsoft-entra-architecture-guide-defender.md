@@ -44,6 +44,18 @@ cover:
     relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Entra ID: partitions, primary και secondary replicas"
+    status: "Generally Available"
+    license: "Όλα τα πλάνα Entra ID"
+    source: "https://learn.microsoft.com/en-us/entra/architecture/architecture"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra security operations guide"
+    status: "Not stated"
+    license: "Δεν αφορά άδεια"
+    source: "https://learn.microsoft.com/en-us/entra/architecture/security-operations-introduction"
+    verified: 2026-10-13
 ---
 
 ## Γιατί ασχολούμαι σήμερα με κάτι τόσο «θεωρητικό»
@@ -143,11 +155,12 @@ ShowWordCount: true
 
 ---
 
-### Πηγές
+## Πηγές και επαλήθευση {#last-verified}
 
-Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft:
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Microsoft Entra architecture documentation](https://learn.microsoft.com/en-us/entra/architecture/)
-- [Architecture overview - Microsoft Entra](https://learn.microsoft.com/en-us/entra/architecture/architecture)
-- [Microsoft Entra security operations guide](https://learn.microsoft.com/en-us/entra/architecture/security-operations-introduction)
 
 ---

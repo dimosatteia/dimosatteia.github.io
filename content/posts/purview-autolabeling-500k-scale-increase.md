@@ -42,7 +42,26 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Service-side auto-labeling SharePoint/OneDrive: έως 500.000 αρχεία την ημέρα"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή αντίστοιχο Purview add-on"
+    source: "https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically"
+    verified: 2026-10-13
+  - feature: "MC1461154: GA rollout από αρχές έως τέλη Οκτωβρίου 2026"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1461154"
+    verified: 2026-10-13
+  - feature: "Simulation mode: έως 20.000.000 matched files"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή αντίστοιχο Purview add-on"
+    source: "https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically"
+    verified: 2026-10-13
 ---
+
+> **Ενημέρωση 13 Οκτωβρίου 2026:** Το νέο όριο είναι πλέον σε General Availability. Σύμφωνα με το [MC1461154](https://mc.merill.net/message/MC1461154), το rollout ξεκίνησε στις αρχές Οκτωβρίου και ολοκληρώνεται έως τα τέλη Οκτωβρίου 2026, και το [Microsoft Learn](https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically) αναφέρει ήδη μέγιστο 500.000 αρχεία την ημέρα. Το νέο όριο εφαρμόζεται αυτόματα στις υπάρχουσες πολιτικές, χωρίς αλλαγή ρυθμίσεων. Το checklist παρακάτω ισχύει, απλώς τώρα το εκτελείς, δεν προετοιμάζεσαι.
 
 Υπάρχουν αλλαγές στο Message Center που διαβάζεις, σημειώνεις νοερά «ωραίο», και προχωράς. Και υπάρχουν αλλαγές που σε κάνουν να ανοίξεις ξανά το spreadsheet με το labeling roadmap του πελάτη ή του οργανισμού σου και να ξαναδείς τους αριθμούς. Το RM567890 είναι από τη δεύτερη κατηγορία.
 
@@ -58,14 +77,14 @@ ShowWordCount: true
 
 ## Το νούμερο: από 100Κ σε 500Κ, και τι δεν αλλάζει μαζί του
 
-Σύμφωνα με την επίσημη τεκμηρίωση της Microsoft, το σημερινό όριο για auto-labeling πάνω σε SharePoint και OneDrive είναι <cite index="2-15">μέγιστο 100.000 αυτόματα επισημασμένα αρχεία στο tenant σου ανά ημέρα</cite>. Το RM567890 στο Message Center Archive περιγράφει την επόμενη κίνηση: <cite index="3-6">αύξηση της μέγιστης χωρητικότητας auto-labeling για SharePoint και OneDrive από 100.000 σε έως 500.000 αρχεία ανά tenant την ημέρα</cite>. Preview τον Σεπτέμβριο, Γενική Διαθεσιμότητα τον Οκτώβριο του 2026.
+Σύμφωνα με την επίσημη τεκμηρίωση της Microsoft, το σημερινό όριο για auto-labeling πάνω σε SharePoint και OneDrive είναι μέγιστο 100.000 αυτόματα επισημασμένα αρχεία στο tenant σου ανά ημέρα. Το RM567890 στο Message Center Archive περιγράφει την επόμενη κίνηση: αύξηση της μέγιστης χωρητικότητας auto-labeling για SharePoint και OneDrive από 100.000 σε έως 500.000 αρχεία ανά tenant την ημέρα. Preview τον Σεπτέμβριο, Γενική Διαθεσιμότητα τον Οκτώβριο του 2026.
 
 [![Σύγκριση παλιού και νέου ορίου auto-labeling ανά ημέρα στο Purview](/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.webp)](/images/purview-autolabeling-500k/autolabel-limit-before-after-comparison.webp)
 > 📷 **Εικόνα 1: Microsoft Purview portal → Information Protection → Policies → Auto-labeling policies → Overview μιας ενεργής πολιτικής. Το γράφημα «Labeling activity overview» δείχνει την τάση επισημασμένων αρχείων τις τελευταίες 30 ημέρες, τυπικά αρκετές τάξεις μεγέθους κάτω από το σημερινό όριο των 100.000 αρχείων/ημέρα.**
 
-Το επίσημο σκεπτικό της Microsoft είναι απλό και το βρίσκω εύστοχο: <cite index="3-6">η αύξηση βοηθά τους οργανισμούς να επισημαίνουν και να προστατεύουν περισσότερα δεδομένα σε κατάσταση ηρεμίας, ταχύτερα, κλείνοντας τα κενά labeling σε υπάρχον περιεχόμενο</cite>. Και η γραμμή που πραγματικά με ενδιαφέρει ως CISO: <cite index="3-6">με sensitivity labels και ρυθμίσεις προστασίας να εφαρμόζονται σε περισσότερα αρχεία νωρίτερα, οι οργανισμοί μπορούν να προετοιμάσουν καλύτερα το data estate τους για το Microsoft 365 Copilot με μεγαλύτερη εμπιστοσύνη</cite>. Δηλαδή η Microsoft συνδέει ανοιχτά αυτή την αλλαγή με το Copilot readiness, όχι μόνο με compliance hygiene. Αν στον οργανισμό σου υπάρχει ήδη πίεση να ενεργοποιηθεί Copilot γρήγορα, αυτό το νούμερο είναι το πρώτο επιχείρημα που θα ακούσεις από την πλευρά του business.
+Το επίσημο σκεπτικό της Microsoft είναι απλό και το βρίσκω εύστοχο: η αύξηση βοηθά τους οργανισμούς να επισημαίνουν και να προστατεύουν περισσότερα δεδομένα σε κατάσταση ηρεμίας, ταχύτερα, κλείνοντας τα κενά labeling σε υπάρχον περιεχόμενο. Και η γραμμή που πραγματικά με ενδιαφέρει ως CISO: με sensitivity labels και ρυθμίσεις προστασίας να εφαρμόζονται σε περισσότερα αρχεία νωρίτερα, οι οργανισμοί μπορούν να προετοιμάσουν καλύτερα το data estate τους για το Microsoft 365 Copilot με μεγαλύτερη εμπιστοσύνη. Δηλαδή η Microsoft συνδέει ανοιχτά αυτή την αλλαγή με το Copilot readiness, όχι μόνο με compliance hygiene. Αν στον οργανισμό σου υπάρχει ήδη πίεση να ενεργοποιηθεί Copilot γρήγορα, αυτό το νούμερο είναι το πρώτο επιχείρημα που θα ακούσεις από την πλευρά του business.
 
-Κάτι που αξίζει να προσέξεις: το roadmap item μιλάει ρητά για SharePoint και OneDrive. Δεν αναφέρεται πουθενά σε αλλαγή του ξεχωριστού ορίου των **4.000.000 matched files** για το simulation mode, ούτε στο όριο των **100 auto-labeling policies ανά tenant**. Αν βρεις πηγές που υπονοούν ότι αλλάζουν και αυτά τα δύο, μεταχειρίσου τις με επιφύλαξη, το επίσημο roadmap item δεν το επιβεβαιώνει, και προτιμώ να το πω καθαρά παρά να υποθέσω κάτι που δεν τεκμηριώνεται ακόμα.
+Κάτι που αξίζει να προσέξεις: το roadmap item μιλάει ρητά για SharePoint και OneDrive. Δεν αναφέρεται πουθενά σε αλλαγή του ξεχωριστού ορίου των **20.000.000 matched files** για το simulation mode, ούτε στο όριο των **100 auto-labeling policies ανά tenant**. Αν βρεις πηγές που υπονοούν ότι αλλάζουν και αυτά τα δύο, μεταχειρίσου τις με επιφύλαξη, το επίσημο roadmap item δεν το επιβεβαιώνει, και προτιμώ να το πω καθαρά παρά να υποθέσω κάτι που δεν τεκμηριώνεται ακόμα.
 
 ## Γιατί το 100Κ ήταν στην πράξη σφιχτό όριο
 
@@ -86,7 +105,7 @@ ShowWordCount: true
 
 **Ξαναδές το scope των πολιτικών σου.** Αν στο παρελθόν περιόρισες μια πολιτική σε συγκεκριμένα sites επειδή δεν άντεχε το throughput να καλύψει όλο το tenant, αυτός είναι καλός χρόνος να καταγράψεις ποιες πολιτικές είναι υποψήφιες για επέκταση scope μόλις έρθει το νέο όριο.
 
-**Μην ξεχνάς το simulation mode.** Το όριο των 4.000.000 matched files για simulation παραμένει, τουλάχιστον σύμφωνα με ό,τι είναι επίσημα τεκμηριωμένο σήμερα. Αν σχεδιάζεις να επεκτείνεις μια πολιτική σε πολύ μεγαλύτερο εύρος τοποθεσιών, τρέξε πρώτα simulation και βεβαιώσου ότι δεν ξεπερνάς αυτό το ανώτατο όριο πριν ενεργοποιήσεις την πολιτική σε production.
+**Μην ξεχνάς το simulation mode.** Το όριο για simulation είναι πλέον 20.000.000 matched files, σύμφωνα με το Microsoft Learn (Οκτώβριος 2026). Αν σχεδιάζεις να επεκτείνεις μια πολιτική σε πολύ μεγαλύτερο εύρος τοποθεσιών, τρέξε πρώτα simulation και βεβαιώσου ότι δεν ξεπερνάς αυτό το ανώτατο όριο πριν ενεργοποιήσεις την πολιτική σε production.
 
 **Έλεγξε τα prerequisites που συχνά ξεχνιούνται.** Το auto-labeling σε SharePoint και OneDrive προϋποθέτει ότι έχεις ενεργοποιήσει sensitivity labels για Office files στις συγκεκριμένες τοποθεσίες, και ότι τα αρχεία δεν βρίσκονται σε ανοιχτό session ή checked-out κατάσταση τη στιγμή που τρέχει η πολιτική. Ένα μεγαλύτερο daily throughput δεν βοηθάει αν ένα σημαντικό ποσοστό του backlog σου είναι τεχνικά μη διαθέσιμο για labeling.
 
@@ -105,3 +124,7 @@ ShowWordCount: true
 Δεν χρειάζεται δραματική αλλαγή στρατηγικής, χρειάζεται ενημέρωση του πλάνου. Θα κατέγραφα το τρέχον labeling coverage percentage του tenant ως baseline, θα σημείωνα ποιες πολιτικές περιορίστηκαν στο παρελθόν λόγω throughput, και θα προετοίμαζα ένα timeline για το πότε αναμένω να δω τη νέα χωρητικότητα στο δικό μου tenant μετά το preview του Σεπτεμβρίου. Αν έχεις labeling backlog project σε εξέλιξη, τώρα είναι η στιγμή να ξαναδείς το χρονοδιάγραμμά του, όχι μετά το GA.
 
 Αν παρακολουθείς κι εσύ Purview roadmap items ή έχεις ήδη labeling policies να τρέχουν σε μεγάλο tenant, χαίρομαι να ακούσω πώς σου φαίνεται το νέο όριο στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

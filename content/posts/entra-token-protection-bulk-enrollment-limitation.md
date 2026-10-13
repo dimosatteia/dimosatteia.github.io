@@ -42,6 +42,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Token Protection (Windows, native applications)"
+    status: "Generally Available"
+    license: "Microsoft Entra ID P1"
+    source: "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-token-protection"
+    verified: 2026-10-13
+  - feature: "Known limitation: συσκευές από bulk enrollment δεν υποστηρίζονται"
+    status: "Generally Available"
+    license: "Microsoft Entra ID P1"
+    source: "https://learn.microsoft.com/en-us/entra/identity/conditional-access/deployment-guide-token-protection-windows"
+    verified: 2026-10-13
 ---
 
 Τις τελευταίες εβδομάδες βλέπω όλο και περισσότερους οργανισμούς να τρέχουν projects μετάβασης από Hybrid Entra Join σε καθαρό Entra Join, συνήθως στο πλαίσιο ενός ευρύτερου cloud-native identity roadmap. Το θέμα δεν είναι καινούργιο, αλλά κάτι που έπεσε στα χέρια μου πρόσφατα, ένα πολύ αναλυτικό post του Sreejith Reghunathan Pillai στο TheTechTrails, με έβαλε σε σκέψεις που ξεπερνούν το καθαρά τεχνικό κομμάτι.
@@ -132,3 +144,7 @@ ShowWordCount: true
 Αν τρέχεις ή σχεδιάζεις παρόμοιο migration, δύο πράγματα αξίζει να ελέγξεις άμεσα: ρώτα τον vendor του migration tool αν το join γίνεται μέσω bulk enrollment token, και έλεγξε τα sign-in logs σου για status code 1003 πριν ενεργοποιήσεις Token Protection σε production. Αναλυτικά βήματα, screenshots και τα workaround options θα τα βρεις στο πρωτότυπο άρθρο του Sreejith στο TheTechTrails, το συνιστώ ανεπιφύλακτα σε όποιον έχει ενεργό ή προγραμματισμένο migration.
 
 Αν έχεις περάσει από ανάλογο σενάριο ή βλέπεις τη σχέση compliance / token binding διαφορετικά, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
