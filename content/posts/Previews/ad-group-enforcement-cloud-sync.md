@@ -43,6 +43,18 @@ ShowRssButtonInSectionTermList: true
 searchHidden: false
 robotsNoIndex: false
 canonicalURL: "https://thecybersec.gr/posts/previews/ad-group-enforcement-cloud-sync/"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "AD user and group enforcement στο Microsoft Entra Cloud Sync"
+    status: "Public Preview"
+    license: "Όπως για το provisioning προς AD"
+    source: "https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/how-to-active-directory-object-enforcement"
+    verified: 2026-10-13
+  - feature: "Enforced και Audit mode, break-glass SIDs (έως 64)"
+    status: "Public Preview"
+    license: "Όπως για το provisioning προς AD"
+    source: "https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/how-to-active-directory-object-enforcement"
+    verified: 2026-10-13
 ---
 
 Υπάρχει ένα σενάριο που το έχουμε ζήσει όλοι όσοι διαχειριζόμαστε hybrid identity: έχεις χτίσει προσεκτικά το access model σου στο Microsoft Entra ID, έχεις access packages, access reviews, dynamic membership, όλα όμορφα τεκμηριωμένα και μετά κάποιος με Account Operator δικαιώματα ανοίγει το «Active Directory Users and Computers» και προσθέτει χειροκίνητα έναν χρήστη σε ένα synced group. Το group ήταν cloud-governed. Δεν είναι πια. Και το χειρότερο: δεν θα το μάθεις μέχρι το επόμενο reconciliation, αν υπάρχει καν reconciliation.
@@ -123,7 +135,7 @@ canonicalURL: "https://thecybersec.gr/posts/previews/ad-group-enforcement-cloud-
 
 Είναι preview, και οι περιορισμοί δεν είναι διακοσμητικοί.
 
-Υποστηρίζονται **μόνο group objects**. Ο μηχανισμός τεχνικά δουλεύει και για users, αλλά το user provisioning προς AD μέσω provisioning agent δεν υποστηρίζεται ακόμα.
+Αρχικά υποστηρίζονταν **μόνο group objects**. Σύμφωνα με το [Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/how-to-active-directory-object-enforcement) (Οκτώβριος 2026), το preview καλύπτει πλέον **users και groups**. Στις προεπιλεγμένες αντιστοιχίσεις για users, το `msDS-ObjectSoa` είναι ήδη `Cloud`, άρα όσοι users κάνεις provision προς AD επισημαίνονται αυτόματα. Έλεγξε το scope πριν ενεργοποιήσεις το Enforced mode.
 
 Η **μετατροπή του source of authority** ενός group στο Entra δεν κλειδώνει αυτόματα το group στο AD. Είναι δύο ξεχωριστές ενέργειες, και πρέπει να κάνεις ρητά τη διαμόρφωση που περιγράφεται παραπάνω.
 
@@ -143,4 +155,8 @@ canonicalURL: "https://thecybersec.gr/posts/previews/ad-group-enforcement-cloud-
 
 ---
 
-**Πηγή:** Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Configure AD group enforcement in Microsoft Entra Cloud Sync (preview)](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/how-to-ad-group-enforcement).
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
+
+Επιπλέον πηγές: Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Configure AD group enforcement in Microsoft Entra Cloud Sync (preview)](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/how-to-ad-group-enforcement).

@@ -44,6 +44,18 @@ cover:
   image: "/images/ProjectPerception/project-perception-cover.webp"
   alt: "Project Perception: το agentic security system της Microsoft με red, blue και green AI agents"
   caption: "Microsoft Project Perception, an Agentic Security System (Preview)"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Project Perception (Limited Public Preview, μόνο με πρόσκληση)"
+    status: "Public Preview"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/security/agentic-security/agentic-security-overview"
+    verified: 2026-10-13
+  - feature: "Agent categories: red, blue και green team agents"
+    status: "Public Preview"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/security/agentic-security/agentic-security-agent-categories"
+    verified: 2026-10-13
 ---
 
 ## Η φυσική της κυβερνοασφάλειας αλλάζει και το ξέρουμε
@@ -51,6 +63,8 @@ cover:
 Ας το πούμε ωμά. Οι επιτιθέμενοι χρησιμοποιούν ήδη AI για να γράφουν exploits πιο γρήγορα, να τρέχουν καμπάνιες σε μεγαλύτερη κλίμακα και να δουλεύουν 24/7 χωρίς να κουράζονται. Στην άλλη πλευρά, το SOC δίνει μάχη με τα χθεσινά εργαλεία και με ανθρώπους που ήδη πνίγονται στα alerts. Αυτή η ανισορροπία (δηλαδή φθηνότερη επίθεση, ακριβότερη και πιο αργή άμυνα) είναι το πραγματικό πρόβλημα της εποχής.
 
 Η απάντηση της Microsoft λέγεται **Project Perception**: ένα σύστημα που, αντί να σου πετάει κι άλλα alerts, υπόσχεται να **αντιλαμβάνεται, να σκέφτεται και να δρα** στην ίδια ταχύτητα με τις απειλές. Ανακοινώθηκε στις 27 Ιουλίου 2026 και μπαίνει σε **public preview στις 3 Αυγούστου 2026**, μέσα στο Microsoft Defender. Επειδή Ελληνικό υλικό που να το εξηγεί καθαρά δεν θα βρεις εύκολα, ας το δούμε μαζί.
+
+> **Ενημέρωση 13 Οκτωβρίου 2026:** Σύμφωνα με το [Microsoft Learn](https://learn.microsoft.com/en-us/security/agentic-security/agentic-security-overview), το Perception είναι σε **Limited Public Preview**, δηλαδή διαθέσιμο μόνο σε μικρό αριθμό πελατών **με πρόσκληση**, όχι σε όλους. Η τεκμηρίωση περιγράφει και τους agents πιο συντηρητικά: ο Recon Agent (red) είναι read-only και δεν τροποποιεί πόρους, ο Posture Prioritization Agent (green) ιεραρχεί τι να διορθώσεις χωρίς να εφαρμόζει μόνος του fixes, και κάθε ενέργεια με μεγάλο αντίκτυπο περιμένει έγκριση από άνθρωπο. Διάβασε τις περιγραφές των agents παρακάτω με αυτό στο μυαλό σου.
 
 [![Project Perception: το agentic security system της Microsoft με red, blue και green AI agents](/images/ProjectPerception/project-perception-cover.webp)](/images/ProjectPerception/project-perception-cover.webp)
 > 📷 **Εικόνα 1: Τρεις ομάδες agents, ένας συνεχής βρόχος, ο άνθρωπος στον τελικό έλεγχο. Αυτή είναι η ιδέα σε μία εικόνα.**
@@ -135,7 +149,11 @@ cover:
 
 Μέχρι τότε, η στάση που προτείνω είναι η υγιής περιέργεια: δοκίμασέ το στο preview, μάθε τη λογική του, χτίσε από τώρα τη διακυβέρνηση γύρω του. Γιατί όταν φτάσει η ώρα να το εμπιστευτείς με πραγματικές ενέργειες, θα θέλεις να έχεις ήδη απαντήσει στο δύσκολο ερώτημα: **πόσο αυτόνομη άμυνα αντέχεις, και πώς την αποδεικνύεις;**
 
-## Πηγές
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
+
+Επιπλέον πηγές:
 
 - [Project Perception — Microsoft Security (επίσημη σελίδα)](https://www.microsoft.com/en-us/security/business/ai-powered-cybersecurity/project-perception-agentic-system)
 - [Announcing Project Perception — Microsoft Security Blog](https://www.microsoft.com/en-us/security/blog/)

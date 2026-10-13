@@ -35,6 +35,18 @@ cover:
   alt: "Η αρχική σελίδα του Microsoft Defender portal με το banner των δυνατοτήτων ISOC"
   caption: "Πηγή εικόνας: Microsoft Learn"
   relative: false
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "ISOC στο Microsoft Defender (χωρίς ενεργό Sentinel workspace)"
+    status: "Public Preview"
+    license: "Defender Suite, Microsoft 365 E5 ή E7"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/isoc-overview"
+    verified: 2026-10-13
+  - feature: "Data ingestion και billing: 30 ημέρες retention για δεδομένα Defender"
+    status: "Public Preview"
+    license: "Defender Suite, Microsoft 365 E5 ή E7"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/integrated-security-operations-data-billing-retention"
+    verified: 2026-10-13
 ---
 
 Στις περισσότερες μεσαίες Ελληνικές εταιρείες που ξέρω, η κουβέντα για SIEM τελειώνει στο ίδιο σημείο: «έχουμε Microsoft 365 E5, τα δεδομένα του Defender τα βλέπουμε ήδη στο portal, γιατί να πληρώσουμε και Sentinel;». Και έχουν ένα δίκιο. Το Defender XDR καλύπτει πολύ καλά endpoints, email, ταυτότητες και cloud apps. Αυτό που λείπει είναι τα εργαλεία ενός SOC γύρω από αυτά τα δεδομένα: case management, playbooks, workbooks, UEBA.
@@ -104,6 +116,10 @@ cover:
 
 ---
 
-**Πηγές:** [ISOC in Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/isoc-overview) · [Data ingestion and billing for ISOC](https://learn.microsoft.com/en-us/defender-xdr/integrated-security-operations-data-billing-retention) · [Create an ISOC workspace in the Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/onboard-isoc-workspace) · [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new). Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
+
+Επιπλέον πηγές: [ISOC in Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/isoc-overview) · [Data ingestion and billing for ISOC](https://learn.microsoft.com/en-us/defender-xdr/integrated-security-operations-data-billing-retention) · [Create an ISOC workspace in the Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/onboard-isoc-workspace) · [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new). Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).
 
 Τελευταίος έλεγχος στοιχείων: 12 Οκτωβρίου 2026.
