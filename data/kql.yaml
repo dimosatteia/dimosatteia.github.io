@@ -307,7 +307,37 @@ queries:
     posts:
       - title: "Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση"
         url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
-    query: ""
+    query: |-
+      // Κανόνες inbox και προώθηση mailbox προς εξωτερικούς παραλήπτες, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 20.γ, 24.ε
+      let Lookback = 30d;
+      let EmailRegex = @"([A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,})";
+      CloudAppEvents
+      | where Timestamp > ago(Lookback)
+      | where ActionType in ("New-InboxRule", "Set-InboxRule", "Set-Mailbox")
+      | mv-apply p = RawEventData.Parameters on (
+          summarize PB = make_bag(bag_pack(tostring(p.Name), tostring(p.Value))))
+      | extend Actor = tostring(RawEventData.UserId),
+               Mailbox = tostring(PB.Identity),
+               RuleName = tostring(PB.Name),
+               ForwardTo = tostring(PB.ForwardTo),
+               ForwardAsAttachmentTo = tostring(PB.ForwardAsAttachmentTo),
+               RedirectTo = tostring(PB.RedirectTo),
+               ForwardingSmtpAddress = tostring(PB.ForwardingSmtpAddress),
+               DeleteMessage = tostring(PB.DeleteMessage),
+               MoveToFolder = tostring(PB.MoveToFolder)
+      | extend Targets = strcat(ForwardTo, ";", ForwardAsAttachmentTo, ";", RedirectTo, ";", ForwardingSmtpAddress)
+      | where Targets matches regex EmailRegex or DeleteMessage =~ "True"
+      | extend ActorDomain = tolower(tostring(split(Actor, "@")[1]))
+      | extend TargetAddresses = extract_all(EmailRegex, Targets)
+      | mv-apply a = TargetAddresses to typeof(string) on (
+          summarize ExternalTargets = make_set_if(a, tolower(tostring(split(a, "@")[1])) != ActorDomain))
+      | extend IsExternal = array_length(ExternalTargets) > 0
+      | project Timestamp, Actor, ActionType, Mailbox, RuleName, ExternalTargets, IsExternal,
+                ForwardTo, ForwardAsAttachmentTo, RedirectTo, ForwardingSmtpAddress,
+                DeleteMessage, MoveToFolder, IPAddress, CountryCode
+      | order by IsExternal desc, Timestamp desc
+
 
   - id: oauth-consent
     draft: true
@@ -329,23 +359,50 @@ queries:
     query: ""
 
   - id: mass-download
-    draft: true
     title: Μαζικά downloads από SharePoint και OneDrive
     summary: Χρήστες που κατέβασαν ασυνήθιστα πολλά αρχεία από SharePoint ή OneDrive μέσα σε μία ώρα, με sites, συσκευή και IP.
-    why: Τα πολλά downloads σε λίγο χρόνο είναι το συνηθισμένο αποτύπωμα διαρροής δεδομένων, είτε από παραβιασμένο λογαριασμό είτε από υπάλληλο που αποχωρεί. Το όριο το προσαρμόζεις στον οργανισμό σου, και το εύρημα το συγκρίνεις με το HR για αποχωρήσεις.
+    why: Τα πολλά downloads σε λίγο χρόνο είναι το συνηθισμένο αποτύπωμα διαρροής δεδομένων, είτε από παραβιασμένο λογαριασμό είτε από υπάλληλο που αποχωρεί. Το όριο το προσαρμόζεις στον οργανισμό σου, και το εύρημα το συγκρίνεις με το HR για αποχωρήσεις. Το query μετρά μόνο τα downloads από browser ή εφαρμογή και όχι τον συγχρονισμό του OneDrive client, γιατί ο συγχρονισμός σε νέο υπολογιστή κατεβάζει χιλιάδες αρχεία και θα έπνιγε το αποτέλεσμα. Όταν το DistinctFiles είναι κοντά στο Downloads, ο χρήστης κατέβασε πολλά διαφορετικά αρχεία. Αν στη στήλη Clients δεις εργαλεία όπως rclone, python ή PowerShell αντί για browser ή Office, το εύρημα είναι σοβαρό.
     pillar: cloud
     product: SharePoint και OneDrive
     table: CloudAppEvents
     license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
+    tested: 2026-10-13
+    evidence: /images/kql/mass-download.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Με το όριο των 100 downloads την ώρα το αποτέλεσμα ήταν κενό, οπότε για τη δοκιμή το Threshold κατέβηκε στο 30. Βρέθηκαν τρεις περιπτώσεις με 34 έως 47 downloads σε μία ώρα, όλες από την Ελλάδα, από το Microsoft Office και από προσωπικά OneDrive, δηλαδή κανονική εργασία και όχι διαρροή. Στη σελίδα το query μένει με όριο 100. Οι χρήστες, οι IP, τα sites και τα ονόματα αρχείων έχουν αφαιρεθεί.
     map:
       kya: ["11.δ", "24.ε"]
       nis2: ["21.2.θ"]
       iso: ["A.8.12", "A.8.16"]
-      gdpr: ["5.1.στ", "32.1.β", "33.1"]
+      gdpr: ["5.1.στ", "32.1.β"]
     posts:
       - title: "Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου"
         url: /posts/purview-autolabeling-500k-scale-increase/
-    query: ""
+    query: |-
+      // Μαζικά downloads από SharePoint και OneDrive ανά χρήστη και ώρα, τελευταίες 7 ημέρες
+      // ΚΥΑ 1689/2025: 11.δ, 24.ε
+      let Lookback = 7d;
+      let Threshold = 100;        // από πόσα downloads μέσα σε μία ώρα και πάνω
+      CloudAppEvents
+      | where Timestamp > ago(Lookback)
+      | where ActionType == "FileDownloaded"
+      | where Application in ("Microsoft SharePoint Online", "Microsoft OneDrive for Business")
+      | extend User = tostring(RawEventData.UserId),
+               Site = tostring(RawEventData.SiteUrl),
+               FileName = tostring(RawEventData.SourceFileName),
+               UserAgent = tostring(RawEventData.UserAgent)
+      | where isnotempty(User) and User !has "app@sharepoint"
+      | summarize
+          Downloads = count(),
+          DistinctFiles = dcount(FileName),
+          Sites = make_set(Site, 10),
+          IPs = make_set(IPAddress, 10),
+          Countries = make_set(CountryCode, 5),
+          Clients = make_set(UserAgent, 5),
+          SampleFiles = make_set(FileName, 10)
+          by User, Hour = bin(Timestamp, 1h)
+      | where Downloads >= Threshold
+      | order by Downloads desc
+
 
   - id: local-admin-add
     draft: true
