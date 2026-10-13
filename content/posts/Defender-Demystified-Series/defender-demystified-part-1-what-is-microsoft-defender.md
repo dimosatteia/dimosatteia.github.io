@@ -47,6 +47,63 @@ cover:
   image: "/images/DefenderDemystified/MSDef.webp"
   alt: "Η οικογένεια του Microsoft Defender, όπως την οργανώνει η ίδια η Microsoft"
   caption: "Microsoft Defender Demystified, Μέρος 1"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Οικογένεια προϊόντων Microsoft Defender"
+    status: "Generally Available"
+    license: "Ανά προϊόν"
+    source: "https://learn.microsoft.com/en-us/defender/"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender XDR"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 / Defender Suite"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Endpoint"
+    status: "Generally Available"
+    license: "Plan 1 (E3) / Plan 2 (E5)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Office 365"
+    status: "Generally Available"
+    license: "Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-about"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Identity"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή standalone"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/what-is"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Cloud Apps"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή standalone"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender Vulnerability Management"
+    status: "Generally Available"
+    license: "MDE Plan 2 ή add-on"
+    source: "https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for IoT"
+    status: "Generally Available"
+    license: "Ξεχωριστή άδεια"
+    source: "https://learn.microsoft.com/en-us/defender-for-iot/microsoft-defender-iot"
+    verified: 2026-10-13
+  - feature: "Microsoft Sentinel στο Defender portal (Azure portal έως 31/3/2027)"
+    status: "Generally Available"
+    license: "Κατανάλωση Azure"
+    source: "https://learn.microsoft.com/en-us/unified-secops/whats-new"
+    verified: 2026-10-13
+  - feature: "Microsoft Security Exposure Management"
+    status: "Generally Available"
+    license: "Με βάση τα Defender workloads"
+    source: "https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Cloud"
+    status: "Generally Available"
+    license: "Κατανάλωση Azure (ανά πόρο)"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/"
+    verified: 2026-10-13
 ---
 
 ## Πόσα προϊόντα Microsoft Defender υπάρχουν τελικά;
@@ -196,16 +253,11 @@ cover:
 
 - **«Φτάνει το Microsoft Defender για το ISO 27001;»** Βοηθά πολύ, αν είναι σωστά ρυθμισμένο, αλλά από μόνο του δεν φέρνει συμμόρφωση. Τα τέσσερα βασικά workloads υποστηρίζουν μεγάλο μέρος των technological controls της ενότητας A.8 του Annex A, π.χ. A.8.7 (Protection against malware), A.8.8 (Management of technical vulnerabilities) και A.8.16 (Monitoring activities), και αρκετά της A.5, όπως η διαχείριση περιστατικών (A.5.24 έως A.5.26). Το ποιο προϊόν υποστηρίζει ποιο control το βλέπεις ένα προς ένα στον οδηγό **[ISO/IEC 27001:2022 Annex A με Microsoft 365](/iso-27001/)**. Πολλοί οργανισμοί χρησιμοποιούν το Microsoft Secure Score ως συνεχές τεκμήριο, όπως εξηγώ στη **[σειρά για το Secure Score](/posts/secure-score-grc-part-0-intro/)**.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender: προϊόντα και υπηρεσίες](https://learn.microsoft.com/en-us/defender/)
-- [Microsoft Defender XDR: επισκόπηση](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
-- [Microsoft Defender for Endpoint: επισκόπηση](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
-- [Microsoft Defender for Office 365: επισκόπηση](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
-- [Microsoft Defender for Identity: επισκόπηση](https://learn.microsoft.com/en-us/defender-for-identity/what-is)
-- [Microsoft Defender for Cloud Apps: επισκόπηση](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)
-- [Microsoft Defender Vulnerability Management: επισκόπηση](https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management)
-- [Microsoft Defender for IoT: επισκόπηση](https://learn.microsoft.com/en-us/defender-for-iot/microsoft-defender-iot)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Microsoft Sentinel: επισκόπηση](https://learn.microsoft.com/en-us/unified-secops-platform/overview-unified-security)
-- [Microsoft Security Exposure Management: επισκόπηση](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)
-- [Microsoft Defender for Cloud: επισκόπηση](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)
+

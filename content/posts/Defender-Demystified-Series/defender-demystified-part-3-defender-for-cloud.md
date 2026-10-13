@@ -41,6 +41,48 @@ cover:
   image: "/images/DefenderDemystified/MSDef.webp"
   alt: "Το Microsoft Defender for Cloud προστατεύει workloads στο Azure και σε άλλα clouds"
   caption: "Microsoft Defender Demystified, Μέρος 3"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Foundational CSPM και Defender CSPM"
+    status: "Generally Available"
+    license: "Foundational δωρεάν / Defender CSPM ανά πόρο"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management"
+    verified: 2026-10-13
+  - feature: "Microsoft Cloud Security Benchmark"
+    status: "Generally Available"
+    license: "Δωρεάν (Foundational CSPM)"
+    source: "https://learn.microsoft.com/en-us/security/benchmark/azure/introduction"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Servers (Plan 1 / Plan 2)"
+    status: "Generally Available"
+    license: "Ανά server"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-overview"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Storage (Blob, Azure Files, ADLS Gen2)"
+    status: "Generally Available"
+    license: "Ανά storage account"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Containers"
+    status: "Generally Available"
+    license: "Ανά vCore"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction"
+    verified: 2026-10-13
+  - feature: "Σύνδεση AWS accounts"
+    status: "Generally Available"
+    license: "Ανά πόρο"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-aws"
+    verified: 2026-10-13
+  - feature: "Σύνδεση GCP projects"
+    status: "Generally Available"
+    license: "Ανά πόρο"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp"
+    verified: 2026-10-13
+  - feature: "Defender for Cloud στο Defender portal (ρυθμίσεις ακόμη στο Azure portal)"
+    status: "Generally Available"
+    license: "Κατανάλωση Azure"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal"
+    verified: 2026-10-13
 ---
 
 ## Πού είμαστε μέχρι τώρα
@@ -129,7 +171,7 @@ cover:
 
 Η προστασία των workloads δεν είναι ένα πλάνο. Είναι **ξεχωριστά πλάνα ανά τύπο πόρου**, που ενεργοποιούνται ανεξάρτητα, το καθένα με τη δική του τιμή και τις δικές του ανιχνεύσεις. Αυτά είναι τα πλάνα που θα βρεις στα Environment settings:
 
-- **Microsoft Defender for Servers:** VMs με Windows και Linux, on-premises και σε άλλα clouds. Το Plan 2 περιλαμβάνει τον πλήρη agent του Microsoft Defender for Endpoint σε κάθε VM που προστατεύεται, κάτι πολύ χρήσιμο αν είσαι ήδη σε αυτό το οικοσύστημα. Το Plan 2 περιλαμβάνει και ανίχνευση απειλών στο DNS, αφού το παλιό αυτόνομο πλάνο **Microsoft Defender for DNS** σταμάτησε να διατίθεται σε νέες συνδρομές τον Αύγουστο του 2023.
+- **Microsoft Defender for Servers:** VMs με Windows και Linux, on-premises και σε άλλα clouds. Και τα δύο plans περιλαμβάνουν τον agent του Microsoft Defender for Endpoint (EDR) σε κάθε VM που προστατεύεται, κάτι πολύ χρήσιμο αν είσαι ήδη σε αυτό το οικοσύστημα. Το Plan 2 περιλαμβάνει και ανίχνευση απειλών στο DNS, αφού το παλιό αυτόνομο πλάνο **Microsoft Defender for DNS** σταμάτησε να διατίθεται σε νέες συνδρομές τον Αύγουστο του 2023.
 - **Microsoft Defender for Containers:** clusters Kubernetes (AKS, EKS, GKE) και container registries.
 - **Microsoft Defender for Storage:** Azure Blob Storage, Azure Files και Azure Data Lake Storage Gen2 (τα queues και τα tables δεν καλύπτονται), με σάρωση για malware κατά το upload στο Blob Storage.
 - **Microsoft Defender for SQL:** στην ουσία δύο πλάνα, ένα για τις υπηρεσίες Azure SQL (Azure SQL Database, Managed Instance, elastic pools, Synapse dedicated pools) και ένα για SQL Server σε μηχανήματα, στο Azure ή μέσω Azure Arc.
@@ -233,15 +275,13 @@ cover:
 **Ποια η διαφορά ανάμεσα στο Defender for Cloud και στο Defender XDR;**
 Το Defender XDR προστατεύει ό,τι αγγίζουν οι χρήστες (συσκευές, email, ταυτότητες, εφαρμογές SaaS), ζει στο security.microsoft.com και αδειοδοτείται ανά χρήστη. Το Defender for Cloud προστατεύει υποδομή (VMs, containers, βάσεις δεδομένων, storage, υπηρεσίες AI), ρυθμίζεται από το Azure portal και χρεώνεται ανά πόρο, αλλά τα incidents του εμφανίζονται πλέον και στο ενιαίο Defender portal.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
+
+Επιπλέον πηγές:
 
 - [Microsoft Defender for Cloud: επισκόπηση](https://learn.microsoft.com/en-us/azure/defender-for-cloud/)
-- [Cloud Security Posture Management στο Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)
-- [Microsoft Cloud Security Benchmark](https://learn.microsoft.com/en-us/security/benchmark/azure/introduction)
 - [Microsoft Defender for Servers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction)
-- [Microsoft Defender for Storage](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction)
-- [Microsoft Defender for Containers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction)
-- [Σύνδεση AWS accounts στο Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-aws)
-- [Σύνδεση GCP projects στο Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp)
-- [Microsoft Defender for Cloud στο Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal)
 - [Τιμές του Microsoft Defender for Cloud](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)
+

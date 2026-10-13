@@ -40,6 +40,53 @@ cover:
   image: "/images/DefenderDemystified/MSDef.webp"
   alt: "Περιήγηση στο μενού του Microsoft Defender portal στο security.microsoft.com"
   caption: "Microsoft Defender Demystified, Μέρος 5"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Defender portal (XDR, Sentinel, Defender for Cloud, Exposure Management)"
+    status: "Generally Available"
+    license: "Ανά workload"
+    source: "https://learn.microsoft.com/en-us/unified-secops/overview-defender-portal"
+    verified: 2026-10-13
+  - feature: "Microsoft Sentinel στο Defender portal (Azure portal έως 31/3/2027)"
+    status: "Generally Available"
+    license: "Κατανάλωση Azure"
+    source: "https://learn.microsoft.com/en-us/unified-secops/whats-new"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Cloud στο Defender portal"
+    status: "Generally Available"
+    license: "Κατανάλωση Azure"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal"
+    verified: 2026-10-13
+  - feature: "Microsoft Security Exposure Management"
+    status: "Generally Available"
+    license: "Με βάση τα Defender workloads"
+    source: "https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management"
+    verified: 2026-10-13
+  - feature: "Microsoft Secure Score"
+    status: "Generally Available"
+    license: "Microsoft 365 (χωρίς επιπλέον άδεια)"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score"
+    verified: 2026-10-13
+  - feature: "Advanced hunting"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 / Defender Suite"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview"
+    verified: 2026-10-13
+  - feature: "Πίνακας EntraIdSignInEvents"
+    status: "Public Preview"
+    license: "Entra ID P2"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-entraidsigninevents-table"
+    verified: 2026-10-13
+  - feature: "Threat intelligence στο Defender portal (πρώην MDTI)"
+    status: "Generally Available"
+    license: "Χωρίς επιπλέον κόστος"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/threat-intelligence-transition"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender XDR Unified RBAC"
+    status: "Generally Available"
+    license: "Χωρίς επιπλέον άδεια"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/manage-rbac"
+    verified: 2026-10-13
 ---
 
 ## Φτάσαμε στο τέλος
@@ -223,15 +270,12 @@ Recommendations της Microsoft για το πού να βελτιώσεις τ
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender portal: επισκόπηση](https://learn.microsoft.com/en-us/unified-secops/overview-defender-portal)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Microsoft Defender XDR στο Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender-portal)
 - [Microsoft Sentinel στο Microsoft Defender portal](https://learn.microsoft.com/en-us/azure/sentinel/move-to-defender)
-- [Microsoft Defender for Cloud στο Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal)
-- [Microsoft Security Exposure Management: επισκόπηση](https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management)
-- [Microsoft Secure Score](https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score)
-- [Advanced hunting στο Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview)
-- [Ο πίνακας EntraIdSignInEvents στο schema του Advanced hunting](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-entraidsigninevents-table)
-- [Microsoft Defender XDR Unified RBAC](https://learn.microsoft.com/en-us/defender-xdr/manage-rbac)
-- [Τι νέο υπάρχει στο unified security operations της Microsoft](https://learn.microsoft.com/en-us/unified-secops/whats-new)
+

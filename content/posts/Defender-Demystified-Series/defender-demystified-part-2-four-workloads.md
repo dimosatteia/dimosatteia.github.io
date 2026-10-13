@@ -38,6 +38,43 @@ cover:
   image: "/images/DefenderDemystified/MSDef.webp"
   alt: "Τα τέσσερα βασικά workloads του Microsoft Defender XDR"
   caption: "Microsoft Defender Demystified, Μέρος 2"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft Defender XDR (συσχέτιση σε incidents)"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 / Defender Suite"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender"
+    verified: 2026-10-13
+  - feature: "Defender for Endpoint Plan 1 (NGAV, ASR, device control, web/network protection)"
+    status: "Generally Available"
+    license: "Plan 1 (standalone ή Microsoft 365 E3)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1"
+    verified: 2026-10-13
+  - feature: "Defender for Endpoint (EDR, Endpoint Attack Notifications)"
+    status: "Generally Available"
+    license: "Plan 2 (Microsoft 365 E5 / Defender Suite)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint"
+    verified: 2026-10-13
+  - feature: "Defender for Office 365 (Safe Links, Safe Attachments, anti-phishing, Attack simulation training)"
+    status: "Generally Available"
+    license: "Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-about"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Identity"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή standalone"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/what-is"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender for Cloud Apps"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή standalone"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps"
+    verified: 2026-10-13
+  - feature: "Automatic attack disruption"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 / Defender Suite"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/automatic-attack-disruption"
+    verified: 2026-10-13
 ---
 
 ## Συνεχίζοντας από το Μέρος 1
@@ -199,11 +236,7 @@ cover:
 
 Τεχνικά ναι, κάθε workload λειτουργεί μόνο του. Χάνεις όμως τη μηχανή συσχέτισης, την ενιαία ουρά incidents και την αυτοματοποιημένη απόκριση ανάμεσα στα προϊόντα. Η συσχέτιση του XDR είναι το ίδιο το προϊόν.
 
-## Πηγές Microsoft Learn
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Microsoft Defender XDR: επισκόπηση](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender)
-- [Microsoft Defender for Endpoint: επισκόπηση](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
-- [Microsoft Defender for Office 365: επισκόπηση](https://learn.microsoft.com/en-us/defender-office-365/mdo-about)
-- [Microsoft Defender for Identity: επισκόπηση](https://learn.microsoft.com/en-us/defender-for-identity/what-is)
-- [Microsoft Defender for Cloud Apps: επισκόπηση](https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps)
-- [Automatic attack disruption στο Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/automatic-attack-disruption)
+{{< verification >}}
+

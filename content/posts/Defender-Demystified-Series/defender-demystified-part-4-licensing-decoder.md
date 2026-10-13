@@ -39,6 +39,53 @@ cover:
   image: "/images/DefenderDemystified/MSDef.webp"
   alt: "Ποια προϊόντα Microsoft Defender περιλαμβάνονται στο Business Premium, στο E3, στο E5 και στο E7"
   caption: "Microsoft Defender Demystified, Μέρος 4"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Microsoft 365 Business Basic, Standard, Premium (τιμές και ασφάλεια)"
+    status: "Generally Available"
+    license: "Basic $7 / Premium $22 ανά χρήστη/μήνα"
+    source: "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing"
+    verified: 2026-10-13
+  - feature: "Microsoft 365 E3, E5, E7 (τιμές και ασφάλεια)"
+    status: "Generally Available"
+    license: "E3 $39 / E5 $60 / E7 $99 ανά χρήστη/μήνα"
+    source: "https://www.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-plans-and-pricing"
+    verified: 2026-10-13
+  - feature: "Microsoft 365 F1 και F3"
+    status: "Generally Available"
+    license: "F1 $3 / F3 $10 ανά χρήστη/μήνα"
+    source: "https://www.microsoft.com/en-us/microsoft-365/enterprise/frontline-plans-and-pricing"
+    verified: 2026-10-13
+  - feature: "Security Copilot στο Microsoft 365 E5 (400 SCUs / 1.000 άδειες)"
+    status: "Generally Available"
+    license: "Microsoft 365 E5 ή E7"
+    source: "https://learn.microsoft.com/en-us/copilot/security/security-copilot-inclusion"
+    verified: 2026-10-13
+  - feature: "Defender for Endpoint Plan 1 vs Plan 2"
+    status: "Generally Available"
+    license: "Plan 1 (E3) / Plan 2 (E5)"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1"
+    verified: 2026-10-13
+  - feature: "Defender for Office 365 Plan 1 vs Plan 2"
+    status: "Generally Available"
+    license: "Plan 1 / Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-about#defender-for-office-365-plan-1-vs-plan-2-cheat-sheet"
+    verified: 2026-10-13
+  - feature: "Microsoft Entra ID P1 και P2"
+    status: "Generally Available"
+    license: "Entra ID P1 / P2"
+    source: "https://learn.microsoft.com/en-us/entra/fundamentals/licensing"
+    verified: 2026-10-13
+  - feature: "Foundational CSPM και Defender CSPM"
+    status: "Generally Available"
+    license: "Foundational δωρεάν / Defender CSPM ανά πόρο"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management"
+    verified: 2026-10-13
+  - feature: "Microsoft Defender Experts Suite"
+    status: "Generally Available"
+    license: "Υπηρεσία Microsoft"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/dex-xdr-overview"
+    verified: 2026-10-13
 ---
 
 > ⚠️ **Οι τιμές αλλάζουν.** Όλα τα παρακάτω είναι σε **δολάρια ΗΠΑ, τιμή καταλόγου, όπως ίσχυαν την 1η Ιουλίου 2026**, όταν εφαρμόστηκε η πιο πρόσφατη ενημέρωση τιμών και πακέτων της Microsoft. Οι τοπικές τιμές διαφέρουν ανά περιοχή και νόμισμα. Έλεγξε πάντα την επίσημη **[σελίδα των πλάνων Microsoft 365](https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans)** και τη **[σελίδα τιμών του Microsoft Defender for Cloud](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)** πριν αποφασίσεις μια αγορά.
@@ -134,7 +181,7 @@ cover:
 Για το E3 υπήρχε εδώ και χρόνια το add-on Microsoft 365 E5 Security, που από την 1η Οκτωβρίου 2025 λέγεται **Microsoft Defender Suite**. Το πραγματικά νέο είναι ότι από το φθινόπωρο του 2025 υπάρχει αντίστοιχο add-on και για το Business Premium. Έτσι προσθέτεις ασφάλεια επιπέδου E5 σε χαμηλότερα πλάνα, χωρίς να δεσμευτείς σε E5 για όλους.
 
 - **Microsoft Defender Suite** *(πρώην «Microsoft 365 E5 Security»)*: προσθέτει στο **Microsoft 365 E3** ό,τι λείπει: Defender for Endpoint Plan 2, Defender for Office 365 Plan 2, Defender for Identity, Defender for Cloud Apps και Microsoft Entra ID P2.
-- **Microsoft Defender Suite for Business Premium:** η ίδια ιδέα για πελάτες Business Premium. Πρόσεξε ότι από τον Μάιο του 2025 το Business Premium δεν είναι επιλέξιμη προϋπόθεση για το κανονικό Microsoft Defender Suite. Για πελάτες Business Premium το σωστό add-on είναι το Defender Suite for Business Premium.
+- **Microsoft Defender Suite for Business Premium:** η ίδια ιδέα για πελάτες Business Premium. Πρόσεξε ότι από την 1η Οκτωβρίου 2025 το Business Premium δεν είναι επιλέξιμη προϋπόθεση για το κανονικό Microsoft Defender Suite. Για πελάτες Business Premium το σωστό add-on είναι το Defender Suite for Business Premium.
 
 Μια μικρή αλλά σημαντική λειτουργική σημείωση από την τεκμηρίωση αδειοδότησης της Microsoft: ένα tenant που καταλήγει να έχει και **Microsoft Defender for Business** (από το Business Premium) και **Defender for Endpoint Plan 2** (από το add-on Defender Suite) **χρησιμοποιεί από προεπιλογή την εμπειρία του Defender for Business**. Σχεδίασε ανάλογα αν συνδυάζεις.
 
@@ -208,8 +255,6 @@ cover:
 [![Διάγραμμα απόφασης για οργανισμούς με 300 ή περισσότερους χρήστες: E3 με Defender Suite ή E5 ανάλογα με τον ρόλο](/images/DefenderDemystified/m365-licensing-decision-enterprise.png)](/images/DefenderDemystified/m365-licensing-decision-enterprise.png)
 > 📷 **Εικόνα 3β: Πάνω από 300 χρήστες: E3 με Defender Suite ή E5 ανάλογα με τον ρόλο.**
 
-Εργαζόμενοι πρώτης γραμμής σε οποιοδήποτε σενάριο → F1 ή F3 με τα κατάλληλα add-ons. Workloads σε Azure, AWS ή GCP → ενεργοποίησε σήμερα το δωρεάν Foundational CSPM και μετά αξιολόγησε τα επί πληρωμή πλάνα.
-
 ## Ποια άδεια χρειάζεσαι για ποια απαίτηση
 
 Η άδεια είναι και θέμα συμμόρφωσης. Στους οδηγούς για την **[ΚΥΑ 1689/2025](/kya-1689-2025/)**, την **[Οδηγία NIS2](/nis2/)**, το **[ISO/IEC 27001](/iso-27001/)** και τον **[GDPR](/gdpr/)**, όπου η απαίτηση χρειάζεται άδεια πέρα από τη βασική, υπάρχει γραμμή «Επιπλέον άδεια» που τη λέει ρητά. Το checklist σε Excel κάθε οδηγού έχει την ίδια στήλη, οπότε βλέπεις με μια ματιά πού σε φτάνει η άδεια που έχεις και πού όχι.
@@ -226,12 +271,15 @@ cover:
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
 
-## Πηγές
+## Πηγές και επαλήθευση {#last-verified}
 
-- [Σύγκριση πλάνων Microsoft 365 (επίσημη)](https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Microsoft 365 Subscription Suites licensing guidance](https://www.microsoft.com/licensing/guidance/subscription-suites)
 - [Microsoft 365 service descriptions](https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-service-descriptions-technet-library)
 - [Σύγκριση πλάνων Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/defender-endpoint-plan-1-2)
 - [Σύγκριση πλάνων Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-security-comparison)
 - [Τιμές του Microsoft Defender for Cloud](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/)
-- [Microsoft Defender Experts Suite](https://learn.microsoft.com/en-us/defender-xdr/dex-xdr-overview)
+
