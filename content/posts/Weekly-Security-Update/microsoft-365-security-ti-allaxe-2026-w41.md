@@ -33,6 +33,33 @@ cover:
   caption: "Microsoft 365 Security: εβδομαδιαία ενημέρωση"
   relative: false
   hidden: false
+# Πλαίσιο «Last verified»: η ημερομηνία είναι ο έλεγχος του τεύχους (στιγμιότυπο της εβδομάδας)
+verification:
+  - feature: "Entra: απόσυρση του τελεστή MemberOf (3 Νοεμβρίου 2026)"
+    status: "Retirement"
+    license: "Entra ID P1 ή P2"
+    source: "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-member-of"
+    verified: 2026-10-08
+  - feature: "Teams: προστασίες για QR codes"
+    status: "Generally Available"
+    license: "ZAP: Defender for Office 365 Plan 1/2, hunting: Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/mdo-support-teams-about"
+    verified: 2026-10-08
+  - feature: "Defender for Cloud Apps: αυτόματη σύνδεση SaaS accounts με το Identity inventory"
+    status: "Not stated"
+    license: "Defender for Cloud Apps"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/release-notes"
+    verified: 2026-10-08
+  - feature: "Exchange Online: .msix και .msixbundle στα blocked file types"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-owamailboxpolicy"
+    verified: 2026-10-08
+  - feature: "Intune: security baseline για Windows 11, version 26H2"
+    status: "Generally Available"
+    license: "Intune Plan 1"
+    source: "https://learn.microsoft.com/en-us/intune/device-security/security-baselines/configure-baselines"
+    verified: 2026-10-08
 ---
 
 ## Με μια ματιά
@@ -122,7 +149,9 @@ cover:
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
 
-## Πηγές
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
 
 Για αυτό το τεύχος ελέγχθηκαν το αρχείο mc.merill.net (αναρτήσεις Message Center από την 1η έως τις 8 Οκτωβρίου 2026) και οι σελίδες «What's new» των Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Microsoft Intune, Microsoft Purview και Microsoft Entra. Οι σελίδες των Defender XDR, Defender for Endpoint, Defender for Office 365, Purview και Entra δεν είχαν καταχωρίσεις Οκτωβρίου όταν διαβάστηκαν. Η σελίδα του Defender for Identity είχε μία καταχώριση Οκτωβρίου, τη γενική διαθεσιμότητα της ενεργοποίησης του sensor v3.x χωρίς Defender for Endpoint, που δεν μπήκε στις πέντε αλλαγές. Για την αλλαγή στο Defender for Cloud Apps και για το security baseline του Intune δεν βρέθηκε ανακοίνωση Message Center.
 

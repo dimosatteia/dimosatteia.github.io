@@ -34,6 +34,33 @@ cover:
   caption: "Microsoft 365 Security: εβδομαδιαία ενημέρωση"
   relative: false
   hidden: false
+# Πλαίσιο «Last verified»: η ημερομηνία είναι ο έλεγχος του τεύχους (στιγμιότυπο της εβδομάδας)
+verification:
+  - feature: "Defender for Identity: αυτόματη ενεργοποίηση sensor v3.x και Windows auditing"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, E5 Security ή EMS E5)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/whats-new"
+    verified: 2026-10-02
+  - feature: "Purview: Network Data Security με Global Secure Access"
+    status: "Generally Available"
+    license: "Microsoft 365 E7, ή Purview E5 μαζί με Entra Internet Access"
+    source: "https://learn.microsoft.com/en-us/purview/dlp-network-data-security-learn"
+    verified: 2026-10-02
+  - feature: "Intune: AI agent runtime protection του Defender for Endpoint"
+    status: "Public Preview"
+    license: "Defender for Endpoint Plan 2, Microsoft 365 E5/E7 ή Agent 365"
+    source: "https://learn.microsoft.com/en-us/defender-endpoint/ai-agent-runtime-protection-overview"
+    verified: 2026-10-02
+  - feature: "Defender portal: Integrated Security Operations Center (ISOC)"
+    status: "Public Preview"
+    license: "Defender Suite, Microsoft 365 E5 ή E7"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/isoc-overview"
+    verified: 2026-10-02
+  - feature: "Defender for Office 365: αναφορά ομαδικών κλήσεων στο Teams"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1 ή Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/submissions-teams"
+    verified: 2026-10-02
 ---
 
 ## Με μια ματιά
@@ -149,7 +176,9 @@ cover:
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
 
-## Πηγές
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
 
 Για αυτό το τεύχος ελέγχθηκαν οι σελίδες «What's new» των Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Microsoft Intune, Microsoft Purview και Microsoft Entra, και για κάθε αλλαγή η σελίδα λεπτομερειών της στο Microsoft Learn. Οι σελίδες του Defender for Cloud Apps και του Entra δεν είχαν νέες καταχωρίσεις για την περίοδο όταν διαβάστηκαν. Οι ανακοινώσεις MC1243549, MC1484018 και MC1485116 προέρχονται από το Message Center του Microsoft 365 admin center. Οι MC1419797, MC1478970 και MC1447673 διαβάστηκαν στο αρχείο mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft. Για το AI agent runtime protection και το ISOC δεν βρέθηκε ανακοίνωση Message Center. Οι ανακοινώσεις και οι ημερομηνίες τους διαφέρουν ανά tenant.
 
