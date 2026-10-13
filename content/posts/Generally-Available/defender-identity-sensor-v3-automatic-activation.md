@@ -34,6 +34,33 @@ cover:
   alt: "Η καρτέλα Sensor management στο Microsoft Defender portal μετά την ενεργοποίηση του sensor v3.x"
   caption: "Πηγή εικόνας: Microsoft Learn"
   relative: false
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Automatic sensor v3.x activation και automatic Windows auditing"
+    status: "Generally Available"
+    license: "Defender for Identity (E5, E5 Security, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/whats-new"
+    verified: 2026-10-13
+  - feature: "MC1484018: αυτόματη ενεργοποίηση σε υπάρχοντες πελάτες από τα τέλη Οκτωβρίου 2026"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://mc.merill.net/message/MC1484018"
+    verified: 2026-10-13
+  - feature: "Sensor v3.x activation χωρίς Defender for Endpoint"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor"
+    verified: 2026-10-13
+  - feature: "Sensor v3.x σε AD FS, AD CS και Entra Connect servers εκτός Domain Controllers"
+    status: "Public Preview"
+    license: "Defender for Identity"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/whats-new"
+    verified: 2026-10-13
+  - feature: "Automatic Windows event auditing"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection"
+    verified: 2026-10-13
 ---
 
 Όποιος έχει στήσει Defender for Identity ξέρει ότι το δύσκολο κομμάτι δεν ήταν ποτέ η εγκατάσταση του sensor. Ήταν το auditing. Ο sensor βλέπει μόνο ό,τι του δίνουν τα Windows events, και αν το Advanced Audit Policy, τα SACL στο domain ή το NTLM auditing δεν είναι σωστά ρυθμισμένα, ο Domain Controller φαίνεται «υγιής» στο portal ενώ στην πράξη μένουν τυφλά σημεία. Για αυτό ακριβώς το Defender for Identity απέκτησε πριν από λίγους μήνες health issue για τα Windows events που λείπουν, που το είχα γράψει στο [Defender for Identity: Το νέο health issue που σου λέει πότε «τυφλώνεσαι» σε έναν Domain Controller](/posts/new-features/defender-for-identity-health-issue-missing-windows-events/).
@@ -110,6 +137,10 @@ cover:
 
 ---
 
-**Πηγές:** [What's new in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/whats-new) · [Activate the Defender for Identity sensor v3.x](https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor) · [Configure Windows event auditing](https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection) · Message Center MC1484018 (30 Σεπτεμβρίου 2026). Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
+
+Επιπλέον πηγές: [What's new in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/whats-new) · [Activate the Defender for Identity sensor v3.x](https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor) · [Configure Windows event auditing](https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection) · Message Center MC1484018 (30 Σεπτεμβρίου 2026). Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).
 
 Τελευταίος έλεγχος στοιχείων: 12 Οκτωβρίου 2026.

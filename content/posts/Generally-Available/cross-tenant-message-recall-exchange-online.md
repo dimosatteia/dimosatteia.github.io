@@ -44,6 +44,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Cross-tenant message recall (Set-CrossTenantRecallConfiguration)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/exchange/mail-flow-best-practices/work-with-cloud-based-message-recall"
+    verified: 2026-10-13
+  - feature: "MC1423106: rollout από μέσα Αυγούστου έως αρχές Σεπτεμβρίου 2026 (Roadmap 561330)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1423106"
+    verified: 2026-10-13
 ---
 
 Ένα από τα πιο παλιά «θα ήταν ωραίο αν...» αιτήματα στο Exchange Online ήταν αυτό: να μπορείς να ανακαλέσεις ένα email που έστειλες κατά λάθος σε κάποιον εκτός του οργανισμού σου. Μέχρι σήμερα, το Message Recall σταματούσε ακριβώς στα σύνορα του tenant, μπορούσες να διαγράψεις ένα μήνυμα από το mailbox συναδέλφου σου, ποτέ όμως από το mailbox ενός πελάτη, συνεργάτη ή θυγατρικής σε άλλο Microsoft 365 tenant. Με το [MC1423106](https://mc.merill.net/message/MC1423106), αυτό το σύνορο ανοίγει. Και όπως συμβαίνει σχεδόν πάντα όταν ανοίγει ένα trust boundary ανάμεσα σε δύο tenants, το ενδιαφέρον από τη σκοπιά ασφάλειας δεν είναι στο «πώς λειτουργεί», είναι στο «ποιος αποφασίζει, και με βάση τι».
@@ -99,6 +111,8 @@ Set-CrossTenantRecallConfiguration -AllowedSenderTenantIds @{Remove="tenantId1",
 
 Κάτι που θα ήθελα να δω ξεκάθαρα στην επίσημη τεκμηρίωση, και που προς το παρόν δεν το βρίσκω επιβεβαιωμένο, είναι πώς αλληλεπιδρά το cross-tenant recall με **litigation hold, retention policies και eDiscovery**. Το intra-tenant recall είναι ήδη γνωστό ότι κάνει hard delete στο πρωτότυπο μήνυμα, αλλά σε mailbox με ενεργό hold το περιεχόμενο συνήθως διατηρείται στα Recoverable Items ανεξάρtητα από την ενέργεια του χρήστη. Αν η ίδια λογική ισχύει και εδώ, μια χαρά. Αν όμως υπάρχει έστω και ένα σενάριο όπου ένα recall από εξωτερικό tenant μπορεί να αφαιρέσει αποδεικτικό υλικό από mailbox υπό νομική δέσμευση, αυτό είναι κάτι που κάθε compliance και legal team πρέπει να το ξέρει πριν ενεργοποιηθεί το feature, όχι μετά από ένα incident. Μέχρι να το επιβεβαιώσω πάνω σε δικό μου tenant, το κρατάω ως ανοιχτό ερώτημα και όχι ως δεδομένο.
 
+> **Ενημέρωση 13 Οκτωβρίου 2026:** Το [FAQ του Microsoft Learn](https://learn.microsoft.com/en-us/exchange/mail-flow-best-practices/work-with-cloud-based-message-recall#frequently-asked-questions) απαντά πλέον στο πρώτο σκέλος: σε mailbox με Litigation Hold ή In-Place Hold, το μήνυμα που ανακλήθηκε εμφανίζεται κανονικά στο eDiscovery. Η ίδια σελίδα λέει όμως ότι τα recalls **δεν καταγράφονται στο mailbox audit log**. Αν ενεργοποιήσεις το cross-tenant recall, κράτα αυτό το κενό στο risk register σου: η ενέργεια δεν αφήνει ίχνος εκεί που θα την έψαχνες πρώτα.
+
 ## Η οπτική NIS2 και ISO 27001
 
 **Διαχείριση σχέσεων με τρίτους (ISO 27001 A.5.19-5.22).** Ένα allow list tenant IDs που επιτρέπει σε εξωτερικό οργανισμό να εκτελεί ενέργειες πάνω σε δικά σου δεδομένα είναι, στην ουσία, μια νέα κατηγορία τεχνικής σχέσης εμπιστοσύνης. Αν το πρόγραμμα supplier/partner relationships του οργανισμού σου δεν προβλέπει ρητά τεχνικές δυνατότητες σαν κι αυτή, χρειάζεται ενημέρωση, αλλιώς η προσθήκη ενός tenant ID στο allow list γίνεται μια ενέργεια IT χωρίς GRC ορατότητα.
@@ -127,3 +141,7 @@ Set-CrossTenantRecallConfiguration -AllowedSenderTenantIds @{Remove="tenantId1",
 Αν διαχειρίζεσαι tenant με ενεργές συνεργασίες B2B και σκέφτεσαι να ενεργοποιήσεις το feature μόλις ολοκληρωθεί το rollout, δύο πράγματα θα έλεγα να κάνεις πρώτα: να ελέγξεις με τη νομική ομάδα σου την αλληλεπίδραση με retention/hold, και να φτιάξεις το governance register πριν προσθέσεις το πρώτο tenant ID, όχι μετά.
 
 Αν έχεις ήδη δοκιμάσει το feature ή βλέπεις διαφορετικά ρίσκα σε αυτό το μοντέλο εμπιστοσύνης, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

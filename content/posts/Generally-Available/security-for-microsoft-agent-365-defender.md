@@ -31,6 +31,23 @@ cover:
   alt: "Διάγραμμα κύκλου ζωής κινδύνων AI στο Microsoft Defender: χρήση, κακή συμπεριφορά agent, διαρροές δεδομένων και απειλές μοντέλων"
   caption: "Πηγή εικόνας: Microsoft Learn"
   relative: false
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Security for AI agents στο Microsoft Defender με Agent 365"
+    status: "Generally Available"
+    license: "Microsoft Agent 365"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/get-started-defender-security-for-ai"
+    verified: 2026-10-13
+  - feature: "Microsoft Agent 365 (GA από 1 Μαΐου 2026)"
+    status: "Generally Available"
+    license: "Microsoft Agent 365"
+    source: "https://learn.microsoft.com/en-us/microsoft-agent-365/overview"
+    verified: 2026-10-13
+  - feature: "Agent security για Copilot Studio και Foundry μέσω Defender for Cloud Apps και Defender for Cloud (μετάβαση σε Agent 365 από 1 Ιουλ 2026)"
+    status: "Retirement"
+    license: "Microsoft Agent 365"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/transition-agent-security-to-agent-365"
+    verified: 2026-10-13
 ---
 
 Οι AI agents μπήκαν στη ζωή μας γρήγορα, ίσως πιο γρήγορα από όσο προλάβαμε να χτίσουμε γύρω τους τα σωστά security controls. Ένας agent που «σκέφτεται», καλεί εργαλεία, αγγίζει δεδομένα και παίρνει αποφάσεις μόνος του δεν είναι απλώς ένα ακόμα application είναι μια νέα επιφάνεια επίθεσης, με τη δική της λογική κινδύνου. Και όσο περισσότερους agents αναπτύσσει ένας οργανισμός, τόσο πιο δύσκολο γίνεται να ξέρεις ποιοι υπάρχουν, τι δικαιώματα έχουν, και αν κάποιος από αυτούς μόλις έκανε κάτι που δεν έπρεπε.
@@ -74,6 +91,8 @@ cover:
 
 Μια λεπτομέρεια που αξίζει να προσέξεις: αν δεν έχεις συνδέσει τον Microsoft 365 connector, το real-time protection για Copilot Studio agents συνεχίζει κανονικά να μπλοκάρει ύποπτη δραστηριότητα, απλώς τα σχετικά alerts και incidents δεν θα εμφανιστούν στο Defender portal. Δηλαδή η προστασία «τρέχει», αλλά χάνεις την ορατότητα αν δεν έχεις κάνει το πλήρες setup.
 
+> **Ενημέρωση 13 Οκτωβρίου 2026:** Από την 1η Ιουλίου 2026 άλλαξαν τέσσερα πράγματα, σύμφωνα με το [Microsoft Learn](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/transition-agent-security-to-agent-365). Όλες οι δυνατότητες ελέγχονται πλέον από ένα toggle, το **Security for AI Agents**. Οι κανόνες real-time protection που ήταν σε **Block** σταμάτησαν να μπλοκάρουν και πρέπει να τους ορίσεις ξανά στο **Settings → Security for AI → Policies & rules → Real-time protection**. Το table **AIAgentsInfo** στο Advanced Hunting αντικαθίσταται από το **AgentsInfo**, οπότε έλεγξε τα αποθηκευμένα queries και τα custom detections σου. Και το agent security για Copilot Studio και Foundry απαιτεί πλέον άδεια Agent 365, όχι Defender for Cloud Apps ή Defender for Cloud.
+
 ## Και η υποδομή γύρω από τους agents
 
 Πέρα από τους ίδιους τους agents, το Defender καλύπτει και την υποδομή που τους στηρίζει: μοντέλα, υπηρεσίες, dependencies. Εδώ μιλάμε για discovery όλης της AI υποδομής, εντοπισμό ευπαθειών και λανθασμένων ρυθμίσεων σε artifacts (μοντέλα, dependencies, repositories, container images), συνεχή αξιολόγηση μοντέλων για malware, unsafe operators, serialization vulnerabilities και εκτεθειμένα secrets, καθώς και ανίχνευση απειλών σε generative AI εφαρμογές χτισμένες με Microsoft Foundry.
@@ -86,4 +105,8 @@ cover:
 
 ---
 
-**Πηγές:** Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Protect AI assets from emerging threats and vulnerabilities using Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai#protect-ai-agents-using-microsoft-defender) και [Enable security for AI agents using Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/get-started-defender-security-for-ai), καθώς και στην καταχώρηση Ιουλίου 2026 του [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new), όπου το feature καταγράφεται ως Generally Available.
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
+
+Επιπλέον πηγές: Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Protect AI assets from emerging threats and vulnerabilities using Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai#protect-ai-agents-using-microsoft-defender) και [Enable security for AI agents using Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/get-started-defender-security-for-ai), καθώς και στην καταχώρηση Ιουλίου 2026 του [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new), όπου το feature καταγράφεται ως Generally Available.

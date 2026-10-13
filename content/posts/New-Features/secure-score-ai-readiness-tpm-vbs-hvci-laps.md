@@ -48,6 +48,18 @@ cover:
 ShowReadingTime: true
 ShowWordCount: true
 slug:
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Συστάσεις AI-Readiness στο Secure Score: TPM 2.0, VBS, HVCI, LAPS"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1466750"
+    verified: 2026-10-13
+  - feature: "Microsoft Secure Score"
+    status: "Generally Available"
+    license: "Περιλαμβάνεται στο Microsoft 365"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score"
+    verified: 2026-10-13
 ---
 
 Το είδα πρώτη φορά σε ένα γρήγορο διάλειμμα, στο κινητό, ανάμεσα σε δύο meetings, και σχεδόν το προσπέρασα. «AI-Readiness recommendations» δίπλα σε TPM, VBS, HVCI, LAPS. Η πρώτη μου σκέψη, ειλικρινά, ήταν κάτι σαν «άλλο ένα sticker». Έχω δει τόσα «AI-powered» να κολλάνε σε πράγματα που δεν έχουν καμία σχέση με μοντέλα μηχανικής μάθησης, που το αντανακλαστικό μου πια είναι δυσπιστία πρώτα, ενδιαφέρον μετά. Το ξανακοίταξα το βράδυ, πιο ήρεμα, με καφέ αυτή τη φορά αντί για βιαστικό scroll, και κάτι άλλαξε.
@@ -146,3 +158,7 @@ if ($tpm.TpmPresent -and $tpm.TpmEnabled -and $tpm.TpmActivated -and $tpm.Manufa
 Ξεκίνησα δύσπιστος με την ετικέτα «AI-Readiness», το παραδέχτηκα ήδη. Το συμπέρασμα στο οποίο καταλήγω με πείθει, όμως όχι για τον λόγο που αρχικά ανέμενα: όχι επειδή το AI άλλαξε κάτι θεμελιώδες σε αυτά τα controls, αλλά επειδή μου θύμισε πόσο εύκολα βάζουμε στο ράφι πράγματα που θεωρούμε «τελειωμένα». Το TPM, το VBS, το HVCI, το LAPS, δεν χρειάζονταν καινούργιο όνομα για να είναι σημαντικά. Χρειαζόμασταν απλώς κάποιον να μας τα ξαναφέρει μπροστά.
 
 Αν κάτσεις να δεις τις δικές σου συσκευές μέσα στον Σεπτέμβριο, πες μου πόσες κοκκίνισαν. Στοιχηματίζω πως θα σε εκπλήξει ο αριθμός, όχι απαραίτητα ευχάριστα...
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

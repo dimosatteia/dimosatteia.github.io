@@ -44,6 +44,18 @@ cover:
   image: "/images/MDO-EncryptedAttachments/mdo-encrypted-attachment-cover.webp"
   alt: "Το Microsoft Defender for Office 365 βάζει σε quarantine κρυπτογραφημένα συνημμένα που δεν μπορεί να σαρώσει (MC1440701)"
   caption: "MDO — Encrypted Attachment Protection: MC1440701"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Safe Attachments: Block messages containing encrypted attachments that could not be scanned (opt-in)"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 1 ή Plan 2"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about"
+    verified: 2026-10-13
+  - feature: "MC1440701: rollout Worldwide Αύγουστος 2026, GCC High και DoD έως τέλη Οκτωβρίου"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1440701"
+    verified: 2026-10-13
 ---
 
 ## Το τυφλό σημείο που όλοι ξέραμε αλλά κάναμε πως δεν βλέπαμε
@@ -126,10 +138,12 @@ EmailAttachmentInfo
 
 Με άλλα λόγια, το opt-in δεν είναι μόνο τεχνική επιλογή είναι ευκαιρία να δείξεις **ώριμη διακυβέρνηση**. Και αυτό, στο τέλος της ημέρας, είναι που ξεχωρίζει έναν οργανισμό που «έχει εργαλεία» από έναν που «τα χρησιμοποιεί σωστά».
 
-## Πηγές
+## Πηγές και επαλήθευση {#last-verified}
 
-- [MC1440701 — MDO Encrypted email attachment protection (Message Center Archive)](https://mc.merill.net/message/MC1440701)
-- [Safe Attachments in Microsoft Defender for Office 365 — Microsoft Learn](https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about)
+{{< verification >}}
+
+Επιπλέον πηγές:
+
 - [Set up Safe Attachments policies — Microsoft Learn](https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-policies-configure)
 - [Manage quarantined messages and files as an admin — Microsoft Learn](https://learn.microsoft.com/defender-office-365/quarantine-admin-manage-messages-files)
 - [Microsoft Defender for Office 365 overview — Microsoft Learn](https://learn.microsoft.com/defender-office-365/mdo-about)

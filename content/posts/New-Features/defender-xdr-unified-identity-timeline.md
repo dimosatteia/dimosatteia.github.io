@@ -44,6 +44,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "MC1461705: ενιαίο Identity Timeline, rollout μέσα Σεπτεμβρίου έως μέσα Οκτωβρίου 2026"
+    status: "New Feature"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1461705"
+    verified: 2026-10-13
+  - feature: "Timeline tab: Session ID, Unique token identifier, Conditional Access, Source table"
+    status: "New Feature"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-xdr/investigate-users"
+    verified: 2026-10-13
 ---
 
 Κάθε φορά που διερευνάς μια ύποπτη ταυτότητα σοβαρά, καταλήγεις να κάνεις το ίδιο πράγμα: ανοίγεις τα sign-in logs σε ένα tab, τα audit logs σε άλλο, ίσως ένα advanced hunting query για device logons σε τρίτο, και προσπαθείς νοερά να τα βάλεις σε σειρά χρόνου για να καταλάβεις τι ακριβώς έγινε και με ποια σειρά. Δουλεύει, αλλά τρώει χρόνο, και το χειρότερο, είναι εύκολο να χάσεις τη συσχέτιση ανάμεσα σε ένα sign-in event και ένα Graph audit event που συνέβη 40 δευτερόλεπτα μετά σε διαφορετικό tab.
@@ -110,3 +122,7 @@ ShowWordCount: true
 Αν κάνεις ήδη investigations πάνω σε ταυτότητες μέσω του Defender portal, θα σου πρότεινα να δοκιμάσεις το νέο timeline στην πρώτη πραγματική περίπτωση που θα εμφανιστεί μετά το rollout, και να δεις πόσα από τα βήματα του runbook σου μπορούν πλέον να απλοποιηθούν.
 
 Αν έχεις ήδη εμπειρία με το παλιό timeline και βλέπεις σημεία που θα ήθελες να καλυφθούν ακόμα, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

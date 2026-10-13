@@ -55,10 +55,10 @@ verification:
     license: "Defender for Cloud Apps"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/risk-score"
     verified: 2026-10-13
-  - feature: "Leaked credentials detection (Microsoft Entra ID Protection)"
-    status: "Generally Available"
-    license: "Microsoft Entra ID Free ή P1"
-    source: "https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks"
+  - feature: "Password protection page (Defender for Identity): password hygiene, leaked credentials, exposed passwords"
+    status: "Public Preview"
+    license: "Defender for Identity και Microsoft Entra ID Protection"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/password-protection"
     verified: 2026-10-13
   - feature: "Live response"
     status: "Generally Available"

@@ -44,6 +44,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Localized default Mark and notify template"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/submissions-admin-review-user-reported-messages"
+    verified: 2026-10-13
+  - feature: "MC1387578: rollout έως τέλη Σεπτεμβρίου 2026 (Roadmap 557558)"
+    status: "Generally Available"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1387578"
+    verified: 2026-10-13
 ---
 
 Υπάρχουν features στο Message Center που διαβάζεις, λες «ωραίο», και προχωράς. Και υπάρχουν features που, όσο πιο πολύ τα σκέφτεσαι, τόσο πιο πολύ καταλαβαίνεις ότι αγγίζουν κάτι βαθύτερο από αυτό που γράφει η πρώτη γραμμή της περιγραφής. Το MC1387578 ανήκει στη δεύτερη κατηγορία, παρόλο που στην επιφάνεια μοιάζει με ένα απλό cosmetic update: το default "Mark and notify" email template στο Microsoft Defender for Office 365 θα εμφανίζεται πλέον στη γλώσσα που έχει ρυθμισμένη ο κάθε χρήστης στο Outlook του, αντί να είναι μόνιμα στα Αγγλικά.
@@ -136,3 +148,7 @@ ShowWordCount: true
 Το MC1387578 δεν θα αλλάξει κανένα ποσοστό detection, δεν θα εμφανιστεί σε κανένα security score, και το πιο πιθανό είναι να περάσει απαρατήρητο από το 90% των οργανισμών που το διαβάζουν. Το κρατάω όμως ως ένα καλό παράδειγμα του γιατί η κυβερνοασφάλεια δεν είναι μόνο φίλτρα, playbooks και dashboards. Είναι και η στιγμή που ένας απλός χρήστης, αφού βρήκε το θάρρος να πατήσει Report σε ένα ύποπτο email, παίρνει πίσω μια απάντηση που καταλαβαίνει. Αν αυτή η απάντηση είναι σε γλώσσα που δεν διαβάζει άνετα, το επόμενο ύποπτο email που θα δει, μπορεί απλά να μην το αναφέρει.
 
 Αν θέλεις να δεις πώς είναι διαμορφωμένο το δικό σου User reported settings, ή αν έχεις ήδη custom template και σκέφτεσαι να το αναθεωρήσεις, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

@@ -44,6 +44,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "MC1461704: unified response actions σε όλους τους λογαριασμούς μιας ταυτότητας, rollout μέσα Οκτωβρίου 2026"
+    status: "New Feature"
+    license: "Δεν αναφέρεται"
+    source: "https://mc.merill.net/message/MC1461704"
+    verified: 2026-10-13
+  - feature: "Remediation actions: Disable, Enable, Revoke session, Mark as compromised, Force password change"
+    status: "New Feature"
+    license: "Defender for Identity"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/remediation-actions"
+    verified: 2026-10-13
 ---
 
 Ένα από τα πράγματα που μαθαίνεις γρήγορα όταν χειρίζεσαι πραγματικό incident με compromised λογαριασμό είναι πόσο χρόνο τρώει η ίδια η **μηχανική** της απόκρισης. Όχι η ανάλυση, όχι η απόφαση «ναι, αυτός ο χρήστης είναι compromised», αλλά το καθαρά επιχειρησιακό κομμάτι: να ανοίξεις το Active Directory Users and Computers για να κλειδώσεις τον λογαριασμό, μετά το Entra admin center για να κάνεις revoke τα sessions, μετά ίσως το Okta ή το SaaS console της εφαρμογής που έχει πρόσβαση ο συγκεκριμένος χρήστης. Κάθε extra κλικ, κάθε extra tab, είναι χρόνος που ο επιτιθέμενος έχει ακόμα ενεργό session κάπου.
@@ -115,3 +127,7 @@ ShowWordCount: true
 Αν διαχειρίζεσαι πολλαπλά identity providers ή SaaS connectors μέσα από το Defender, θα σου πρότεινα να περάσεις από τα RBAC roles σου **τώρα**, πριν φτάσει ο Οκτώβριος, ώστε η ομάδα σου να μην ανακαλύψει σε μέση κρίση ότι κάποιος δεν έχει το σωστό permission για να κάνει revoke session σε Okta.
 
 Αν το έχεις ήδη δοκιμάσει ή αν βλέπεις κάποιο κενό στο RBAC μοντέλο που δεν αναφέρει το Message Center, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

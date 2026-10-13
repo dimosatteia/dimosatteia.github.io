@@ -31,6 +31,18 @@ cover:
   alt: "Η καρτέλα Overview της σελίδας Active Directory Domain στο Microsoft Defender"
   caption: "Πηγή εικόνας: Microsoft Learn"
   relative: false
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Active Directory domain page"
+    status: "Generally Available"
+    license: "Defender for Identity (π.χ. E5)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/investigate-domain"
+    verified: 2026-10-13
+  - feature: "Security recommendations για scoped users στη σελίδα domain"
+    status: "Public Preview"
+    license: "Defender for Identity (π.χ. E5)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/investigate-domain"
+    verified: 2026-10-13
 ---
 
 Αν έχεις δουλέψει ποτέ σε investigation γύρω από ένα Active Directory domain, ξέρεις καλά το πρόβλημα: η πληροφορία είναι παντού. Η υγεία των sensors είναι σε μία οθόνη, οι πολιτικές password σε άλλη, τα trust relationships κάπου αλλού, και τα recommendations σκορπισμένα σε posture assessments. Το να χτίσεις μια πλήρη εικόνα ενός domain σήμαινε να πηδάς από tab σε tab, κρατώντας σημειώσεις.
@@ -85,4 +97,8 @@ cover:
 
 ---
 
-**Πηγές:** Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Investigate an Active Directory domain](https://learn.microsoft.com/en-us/defender-for-identity/investigate-domain), και στην καταχώρηση Ιουλίου 2026 του [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new), όπου το Domain investigation page καταγράφεται πλέον ως Generally Available.
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
+
+Επιπλέον πηγές: Το άρθρο βασίζεται στην επίσημη τεκμηρίωση της Microsoft, [Investigate an Active Directory domain](https://learn.microsoft.com/en-us/defender-for-identity/investigate-domain), και στην καταχώρηση Ιουλίου 2026 του [What's new in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/whats-new), όπου το Domain investigation page καταγράφεται πλέον ως Generally Available.

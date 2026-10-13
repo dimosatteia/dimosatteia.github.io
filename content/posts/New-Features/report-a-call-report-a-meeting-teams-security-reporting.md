@@ -44,6 +44,23 @@ cover:
     image: "images/teams-reporting/report-a-security-concern.webp"
     alt: "Report a security concern στο Microsoft Teams meeting"
     caption: 
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Report a call (MC1447673), GA από αρχές Οκτωβρίου 2026"
+    status: "Generally Available"
+    license: "Teams· στο Defender portal: Defender for Office 365 P1/P2 ή Defender XDR"
+    source: "https://mc.merill.net/message/MC1447673"
+    verified: 2026-10-13
+  - feature: "Report a meeting (MC1446794), GA από αρχές Οκτωβρίου 2026"
+    status: "Generally Available"
+    license: "Teams· στο Defender portal: Defender for Office 365 P1/P2 ή Defender XDR"
+    source: "https://mc.merill.net/message/MC1446794"
+    verified: 2026-10-13
+  - feature: "User reported settings για Teams messages, calls και meetings"
+    status: "Generally Available"
+    license: "Defender for Office 365"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/submissions-teams"
+    verified: 2026-10-13
 ---
 
 > **Ενημέρωση 12 Οκτωβρίου 2026:** η Γενική Διαθεσιμότητα και για τα δύο features ξεκίνησε worldwide στις αρχές Οκτωβρίου 2026, σύμφωνα με τις ανακοινώσεις MC1447673 και MC1446794. Στο [What's new in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/defender-for-office-365-whats-new) η αναφορά ομαδικών κλήσεων καταγράφεται τον Σεπτέμβριο 2026 και η αναφορά συναντήσεων τον Οκτώβριο 2026, χωρίς ένδειξη Preview. Η διάθεση γίνεται σταδιακά, οπότε μπορεί να μην τα βλέπουν ακόμα όλοι οι χρήστες σου. Το θέμα αναφέρθηκε και στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).
@@ -171,3 +188,7 @@ cover:
 Δεν είναι κάθε νέο κουμπί στο Teams άξιο ανάλυσης, τα περισσότερα ξεχνιούνται σε μια βδομάδα. Αυτό όμως κλείνει ένα πραγματικό κενό: μέχρι τώρα, ό,τι συνέβαινε μέσα σε μια κλήση ή συνάντηση ήταν ουσιαστικά αόρατο για το SecOps, εκτός αν κάποιος έστελνε χειροκίνητα ένα email. Τώρα υπάρχει ένα κανάλι, είναι ενεργό by default, και φτάνει μέχρι το Defender αν έχεις τη σωστή άδεια. Η δουλειά που μένει δεν είναι τεχνική, είναι διαδικαστική: να το βάλεις στο ISMS σου, να το μάθουν οι χρήστες σου, και να μην αφήσεις μια αναφορά να πέσει σε κενό.
 
 Αν το δεις ήδη στο δικό σου tenant μέσω Targeted Release, θα με ενδιέφερε πολύ να μάθω τι ακριβώς βλέπεις στο submission, ιδίως αν επιβεβαιώνει ή διαψεύδει τα πεδία που υπέθεσα παραπάνω. Τα σχόλια είναι ανοιχτά.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

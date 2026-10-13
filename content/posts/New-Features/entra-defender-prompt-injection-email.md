@@ -45,6 +45,18 @@ cover:
 ShowReadingTime: true
 ShowWordCount: true
 slug: "prompt-injection-protection-defender-office-365"
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Prompt injection protection για email (High confidence phishing)"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 2 ή Microsoft 365 E5"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/step-by-step-guides/prompt-injection-protection-defender-for-office-365"
+    verified: 2026-10-13
+  - feature: "MC1422060: GA από αρχές Οκτωβρίου 2026 (μετά από καθυστέρηση ενός μήνα)"
+    status: "Generally Available"
+    license: "Defender for Office 365 Plan 2 ή Microsoft 365 E5"
+    source: "https://mc.merill.net/message/MC1422060"
+    verified: 2026-10-13
 ---
 
 Θα σας πω κάτι ειλικρινές: όταν πρωτοδιάβασα τον τίτλο του [MC1422060](https://mc.merill.net/message/MC1422060) στο Message Center, το είδα...και το προσπέρασα για την ώρα... «Άλλο ένα detection technology, άλλο ένα bullet σε ένα compliance report», σκέφτηκα. Το ξανάνοιξα μιά-δυό μέρες μετά, γιατί κάτι με παρακίνησε, και τότε κατάλαβα ότι δεν είχα διαβάσει αρκετά καλά και προσεκτικά τι λέει. Δεν μιλάμε για ακόμα ένα anti-phishing φίλτρο, αλλά για το πρώτο επίσημο, mainstream email security control που δεν προστατεύει πια μόνο τον άνθρωπο που διαβάζει το mail, αλλά προστατεύει και τον «άλλον» αναγνώστη, το AI assistant που όλο και περισσότερο τα διαβάζει πρώτο ή θα τα διαβάζει πρώτο απο εδώ και πέρα.
@@ -113,4 +125,6 @@ slug: "prompt-injection-protection-defender-office-365"
 
 ---
 
-**Πηγή:** [MC1422060 - Microsoft Defender for Office 365: Prompt injection protection for email | Microsoft 365 Message Center Archive](https://mc.merill.net/message/MC1422060)
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

@@ -44,6 +44,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Health alert για απούσα δικτυακή κίνηση domain controller"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://mc.merill.net/message/MC1455017"
+    verified: 2026-10-13
+  - feature: "Health issue «No network traffic received from domain controller»"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/health-alerts"
+    verified: 2026-10-13
 ---
 
 Ένα από τα πράγματα που μαθαίνεις γρήγορα όταν διαχειρίζεσαι Defender for Identity σε production είναι ότι «ο sensor τρέχει» δεν σημαίνει «ο sensor βλέπει». Είναι δύο διαφορετικές καταστάσεις, και η απόσταση ανάμεσά τους είναι ακριβώς εκεί που κρύβονται τα πιο επικίνδυνα κενά παρακολούθησης. Το service εμφανίζεται ως healthy, ο υπολογιστής τρέχει κανονικά, και όμως το sensor μπορεί να μην παίρνει καμία απολύτως δικτυακή κίνηση από τον domain controller που υποτίθεται ότι καλύπτει.
@@ -107,3 +119,7 @@ ShowWordCount: true
 Δεν είναι κάθε ανακοίνωση στο Message Center μια νέα δυνατότητα ανίχνευσης, μερικές φορές είναι απλώς μια καλύτερη επιβεβαίωση ότι αυτό που ήδη έχεις εγκατεστημένο λειτουργεί όπως νομίζεις. Αυτό όμως δεν το κάνει λιγότερο σημαντικό. Στην κυβερνοασφάλεια, τα πιο επικίνδυνα κενά δεν είναι αυτά που φωνάζουν, είναι αυτά που δείχνουν healthy ενώ δεν είναι. Αν διαχειρίζεσαι Defender for Identity, βάλε αυτό το alert στη λίστα ελέγχου της επόμενης εβδομάδας, όχι επειδή κάτι έσπασε τώρα, αλλά επειδή τώρα έχεις έναν πιο αξιόπιστο τρόπο να το μάθεις αν σπάσει.
 
 Αν έχεις δει παρόμοιο κενό ορατότητας στο δικό σου περιβάλλον, ή αν θέλεις να συζητήσουμε πώς εντάσσεται αυτό στο δικό σας risk register, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

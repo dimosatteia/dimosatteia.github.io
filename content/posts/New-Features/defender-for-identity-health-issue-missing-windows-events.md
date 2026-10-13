@@ -44,6 +44,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Health issue «No Windows events received from domain controller»"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://mc.merill.net/message/MC1455016"
+    verified: 2026-10-13
+  - feature: "Defender for Identity health issues"
+    status: "Generally Available"
+    license: "Defender for Identity"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/health-alerts"
+    verified: 2026-10-13
 ---
 
 Ένα από τα πράγματα που μαθαίνεις γρήγορα όταν διαχειρίζεσαι Defender for Identity σε production είναι ότι το «ο sensor είναι healthy» και το «ο sensor βλέπει ό,τι πρέπει να βλέπει» δεν είναι το ίδιο πράγμα. Ο sensor μπορεί να είναι connected, updated, χωρίς κανένα κόκκινο εικονίδιο στο dashboard, και ταυτόχρονα να μην έχει λάβει ούτε ένα Windows event από έναν συγκεκριμένο Domain Controller εδώ και μέρες. Μέχρι πρόσφατα, αυτό το gap δεν είχε δικό του όνομα. Το έμαθες μόνο αν έψαχνες σκόπιμα, μέσα από query σε advanced hunting ή γιατί κάποια detection που περίμενες απλά δεν εμφανίστηκε ποτέ.
@@ -116,3 +128,7 @@ ShowWordCount: true
 Αν τρέχεις ήδη Defender for Identity, δεν χρειάζεται καμία ενέργεια πριν το rollout, είναι ήδη ενεργό. Αυτό που προτείνω, όμως, είναι να μην περιμένεις να δεις το health issue παθητικά. Πρόσθεσέ το ρητά στη λίστα ελέγχου του security operations team σου, βεβαιώσου ότι υπάρχουν email ή Syslog notifications ενεργοποιημένες για health issues στο Defender XDR, και, αν δεν το έχεις ήδη κάνει, τρέξε μια φορά τη σύγκριση του τρέχοντος audit policy configuration έναντι του baseline σε όλους τους Domain Controllers σου. Είναι μια σχετικά μικρή προσπάθεια που κλείνει ένα κενό ορατότητας το οποίο, μέχρι τώρα, δεν είχε καν όνομα.
 
 Αν έχεις δει ήδη αυτό το health issue να εμφανίζεται στο περιβάλλον σου, ή αν έχεις άλλη εμπειρία με event collection gaps στο Defender for Identity, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
