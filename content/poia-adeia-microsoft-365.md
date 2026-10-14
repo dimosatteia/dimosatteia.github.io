@@ -24,6 +24,12 @@ showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+categories: ["GRC & Compliance"]
+tags:
+  - Microsoft 365 Licensing
+  - NIS2
+  - Microsoft 365 Security
+  - GRC
 cover:
   image: "/images/M465.webp"
   alt: "Microsoft 365: ποια άδεια χρειάζομαι για την ΚΥΑ 1689/2025"
