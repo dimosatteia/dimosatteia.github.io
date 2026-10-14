@@ -2,7 +2,7 @@
 title: "Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN"
 seoTitle: "GSA Μέρος 4: Το Private access profile αντί για VPN"
 date: 2026-09-20T18:00:00+03:00
-lastmod: 2026-09-26T11:30:00+03:00
+lastmod: 2026-10-14T11:50:00+03:00
 draft: false
 keywords:
   - Microsoft Entra Private Access
@@ -15,6 +15,8 @@ keywords:
   - Conditional Access private access apps
   - NIS2 απομακρυσμένη πρόσβαση
   - ISO 27001 A.8.3 έλεγχος πρόσβασης δικτύου
+  - Private Access Sensor domain controller
+  - Entra Private Access Kerberos MFA
 tags:
   - Microsoft Entra ID
   - Global Secure Access
@@ -27,7 +29,7 @@ tags:
   - Zero Trust
   - SSE
 author: "Dimosthenis Atteia"
-description: "Τέταρτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Private access profile, Quick Access, private network connectors και per-app access, με έμφαση σε NIS2 και ISO 27001."
+description: "Τέταρτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Ανάλυση του Private access profile, Quick Access, private network connectors, per-app access και Private Access για domain controllers, με έμφαση σε NIS2 και ISO 27001."
 seoDescription: "Μέρος 4 της σειράς Global Secure Access: Private access profile, Quick Access, private network connectors και per-app access ως αντικαταστάτης του VPN."
 summary: "Κλείνουμε τη βασική εικόνα των traffic profiles με το κομμάτι που έχει τη μεγαλύτερη πρακτική αξία για όσους ακόμα τρέχουν VPN: το Private access profile. Δεν είναι απλώς μια νέα μέθοδος σύνδεσης, είναι μια διαφορετική φιλοσοφία πρόσβασης, από 'σε βάζω μέσα στο δίκτυο' σε 'σου δίνω πρόσβαση σε αυτό το συγκεκριμένο resource, και μόνο σε αυτό'."
 categories: ["Network & SSE"]
@@ -49,27 +51,37 @@ verification:
     status: "Generally Available"
     license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-private-access"
-    verified: 2026-10-13
+    verified: 2026-10-14
   - feature: "Quick Access"
     status: "Generally Available"
     license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-quick-access"
-    verified: 2026-10-13
+    verified: 2026-10-14
   - feature: "Per-app access (Global Secure Access apps)"
     status: "Generally Available"
     license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-private-access"
-    verified: 2026-10-13
+    verified: 2026-10-14
   - feature: "Microsoft Entra private network connector"
     status: "Generally Available"
     license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-connectors"
-    verified: 2026-10-13
+    verified: 2026-10-14
   - feature: "Περιορισμοί Private Access (μόνο μέσω client, IP εκτός local subnet)"
     status: "Generally Available"
     license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/reference-current-known-limitations"
-    verified: 2026-10-13
+    verified: 2026-10-14
+  - feature: "Private Access για Active Directory domain controllers"
+    status: "Generally Available"
+    license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-domain-controllers"
+    verified: 2026-10-14
+  - feature: "Private Access Sensor 2.2.79 (29 Σεπ 2026): αυτόματες ενημερώσεις, πλήρης εγκατάσταση μία φορά από την 2.2.42"
+    status: "Generally Available"
+    license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/reference-private-access-sensor-release-history"
+    verified: 2026-10-14
 ---
 
 Φτάσαμε στο τέταρτο μέρος αυτής της σειράς. Στο [1ο μέρος](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [2ο μέρος](/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [3ο μέρος](/posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Συνεχίζω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.
@@ -117,6 +129,8 @@ verification:
 Ό,τι φτιάχνεις μέσα από Quick Access ή per-app access λειτουργεί σαν κανονικό enterprise application στο Entra ID, που σημαίνει ότι μπορείς να συνδέσεις πάνω του τις ίδιες πολιτικές Conditional Access που θα έβαζες σε οποιαδήποτε άλλη cloud εφαρμογή: MFA, compliant device, sign-in risk. Ένας περιορισμός που αξίζει να ξέρεις: το compliant network check, το έλεγχο δηλαδή ότι η κίνηση περνάει μέσα από το Global Secure Access δίκτυο, δεν υποστηρίζεται προς το παρόν για Private Access εφαρμογές, σε αντίθεση με ό,τι είδαμε στο Μέρος 3 για το Internet access profile. Η διαφορά σε σχέση με ένα κλασικό cloud app είναι ότι τώρα αυτός ο έλεγχος εφαρμόζεται σε πόρους που παραδοσιακά ζούσαν εντελώς εκτός Entra ID, servers, file shares, εσωτερικές web εφαρμογές που ίσως ούτε καν υποστηρίζουν σύγχρονη αυθεντικοποίηση από μόνες τους.
 
 Για σενάρια με ιδιαίτερα ευαίσθητους πόρους, domain controllers, κρίσιμα line-of-business συστήματα, η Microsoft προτείνει να προστεθεί ένα ακόμα επίπεδο, **Privileged Identity Management (PIM)** πάνω από το ήδη ασφαλισμένο private access, ώστε η πρόσβαση σε αυτούς τους συγκεκριμένους πόρους να είναι just-in-time, όχι μόνιμα ενεργή, ακολουθώντας πιο αυστηρά την αρχή του least privilege.
+
+Για τους ίδιους τους domain controllers υπάρχει ξεχωριστή δυνατότητα, το **Private Access για Active Directory domain controllers**, Generally Available από τον Ιανουάριο 2026. Εγκαθιστάς τον **Private Access Sensor** σε κάθε domain controller και ορίζεις τα SPNs των εφαρμογών που θέλεις να προστατέψεις. Ο sensor ελέγχει τα Kerberos tickets, ώστε το MFA και το Conditional Access να ισχύουν και όταν ο χρήστης είναι μέσα στο εταιρικό δίκτυο. Η τελευταία έκδοση είναι η **2.2.79** (29 Σεπτεμβρίου 2026), που προσθέτει αυτόματες ενημερώσεις του sensor. Αν τρέχεις την 2.2.42, κάνε μία φορά πλήρη εγκατάσταση από το Microsoft Entra admin center για να ενεργοποιηθούν. Άνοιξε inbound TCP και UDP 1337 στους domain controllers. Ο sensor ξεκινά σε Audit mode: δοκίμασε πρώτα με τις private εφαρμογές και άφησε για αργότερα το SPN του ίδιου του domain controller, ώστε να μην κλειδώσεις έξω τους διαχειριστές.
 
 ## Licensing
 
