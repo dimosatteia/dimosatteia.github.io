@@ -24,6 +24,8 @@ showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+# Εμφανίζεται πρώτο στα «Πρόσφατα Άρθρα» της αρχικής. Σβήσε τη γραμμή όταν δεν θες πια να είναι πρώτο.
+homeFeed: true
 # Πλαίσιο «Last verified»: κάθε κανόνας αδειοδότησης με την πηγή του στο Microsoft Learn
 verification:
   - feature: "Microsoft 365 Business Premium: Entra ID P1, Intune Plan 1, Defender for Business, Defender for Office 365 Plan 1, sensitivity labels και DLP, όριο 300 θέσεων"
