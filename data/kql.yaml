@@ -364,7 +364,28 @@ queries:
     posts:
       - title: "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)"
         url: /posts/microsoft-entra-architecture-guide-defender/
-    query: ""
+    verified: 2026-10-14
+    query: |-
+      // Συγκαταθέσεις χρηστών σε εφαρμογές OAuth, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 12.2.α, 13.γ
+      let Lookback = 30d;
+      // Δικαιώματα που δίνουν πρόσβαση σε email και αρχεία, ή μόνιμη πρόσβαση χωρίς νέο sign-in
+      let RiskyScopes = dynamic(["Mail.Read", "Mail.ReadWrite", "Mail.Send", "MailboxSettings.ReadWrite",
+          "Files.Read.All", "Files.ReadWrite.All", "Sites.Read.All", "Sites.ReadWrite.All",
+          "Notes.Read.All", "Contacts.Read", "EWS.AccessAsUser.All", "full_access_as_user",
+          "Directory.ReadWrite.All", "offline_access"]);
+      CloudAppEvents
+      | where Timestamp > ago(Lookback)
+      | where ActionType has "Consent to application"
+      | mv-apply MP = RawEventData.ModifiedProperties on (
+          summarize IsAdminConsent = take_anyif(tostring(MP.NewValue), tostring(MP.Name) == "ConsentContext.IsAdminConsent"),
+                    Permissions = take_anyif(tostring(MP.NewValue), tostring(MP.Name) == "ConsentAction.Permissions")
+        )
+      | extend Scopes = split(trim(@"\s", extract(@"Scope:\s*([^,\]]*)", 1, Permissions)), " ")
+      | extend RiskyGranted = set_intersect(Scopes, RiskyScopes)
+      | project Timestamp, User = AccountDisplayName, UserId = AccountId, App = ObjectName, AppId = ObjectId,
+                IsAdminConsent, RiskyCount = array_length(RiskyGranted), RiskyGranted, Scopes, IPAddress, CountryCode
+      | order by RiskyCount desc, Timestamp desc
 
   - id: mass-download
     title: Μαζικά downloads από SharePoint και OneDrive
@@ -452,7 +473,6 @@ queries:
 
 
   - id: ad-sensitive-groups
-    draft: true
     title: Αλλαγές στα ευαίσθητα groups του Active Directory
     summary: Μέλη που προστέθηκαν ή αφαιρέθηκαν από Domain Admins, Enterprise Admins, Schema Admins και τα υπόλοιπα προνομιακά groups του on-premises AD, με τον λογαριασμό που έκανε την αλλαγή.
     why: Μια νέα είσοδος στο Domain Admins είναι Tier 0 αλλαγή και πρέπει να αντιστοιχεί σε εγκεκριμένο αίτημα. Αν δεν αντιστοιχεί, είναι από τα πιο σοβαρά ευρήματα που μπορείς να έχεις. Θέλει sensor του Defender for Identity στους Domain Controllers.
@@ -468,7 +488,35 @@ queries:
     posts:
       - title: "Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing"
         url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
-    query: ""
+    tested: 2026-10-14
+    verified: 2026-10-14
+    evidence: /images/kql/ad-sensitive-groups.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant, με ελεγχόμενη δοκιμή. Στις τελευταίες 30 ημέρες δεν υπήρξε καμία αλλαγή στα προνομιακά groups, οπότε ένας δοκιμαστικός χρήστης προστέθηκε σε δοκιμαστικό group και μετά αφαιρέθηκε, με το group να μπαίνει προσωρινά στη λίστα SensitiveGroups. Το query έδειξε και την προσθήκη και την αφαίρεση, με τον λογαριασμό που τις έκανε και τον domain controller. Το όνομα του domain controller έχει αφαιρεθεί.
+    query: |-
+      // Αλλαγές μελών στα ευαίσθητα groups του Active Directory, τελευταίες 30 ημέρες
+      // ΚΥΑ 1689/2025: 13.γ, 24.γ
+      let Lookback = 30d;
+      // Τα built-in προνομιακά groups του AD. Πρόσθεσε και τα δικά σου Tier 0 groups.
+      let SensitiveGroups = dynamic(["Domain Admins", "Enterprise Admins", "Schema Admins", "Administrators",
+          "Account Operators", "Backup Operators", "Server Operators", "Print Operators",
+          "DnsAdmins", "Group Policy Creator Owners", "Key Admins", "Enterprise Key Admins",
+          "Cert Publishers", "Domain Controllers", "Protected Users"]);
+      IdentityDirectoryEvents
+      | where Timestamp > ago(Lookback)
+      | where ActionType == "Group Membership changed"
+      | extend AddedToGroup = tostring(AdditionalFields["TO.GROUP"]),
+               RemovedFromGroup = tostring(AdditionalFields["FROM.GROUP"]),
+               TargetUser = tostring(AdditionalFields["TARGET_OBJECT.USER"]),
+               TargetGroup = tostring(AdditionalFields["TARGET_OBJECT.GROUP"]),
+               Actor = tostring(AdditionalFields["ACTOR.ACCOUNT"]),
+               MembershipChange = tostring(AdditionalFields["MembershipChange"])
+      | extend Change = iff(isnotempty(MembershipChange), MembershipChange, iff(isnotempty(AddedToGroup), "added", "removed")),
+               Group = iff(isnotempty(AddedToGroup), AddedToGroup, RemovedFromGroup),
+               Member = coalesce(TargetUser, TargetGroup, TargetAccountDisplayName)
+      | where Group in~ (SensitiveGroups)
+      | project Timestamp, Change, Group, Member, ChangedBy = coalesce(Actor, AccountName),
+                DomainController = DestinationDeviceName
+      | order by Timestamp desc
 
   - id: av-disabled
     title: Συσκευές με ανενεργή προστασία του Defender Antivirus

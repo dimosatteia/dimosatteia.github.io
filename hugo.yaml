@@ -249,10 +249,6 @@ menu:
       name: Σχετικά
       url: /about/
       weight: 50
-    - identifier: search
-      name: 🔍
-      url: /search/
-      weight: 60
    
 # -----------------------------------------------------------------------------
 # Privacy
