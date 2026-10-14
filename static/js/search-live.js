@@ -19,20 +19,38 @@
         });
     }
 
+    // Σύγκριση χωρίς τόνους και χωρίς διάκριση πεζών, με τα Ελληνικά γράμματα που μοιάζουν με Λατινικά
+    // να μετρούν ως ίδια (π.χ. «Α.6» με Ελληνικό Α βρίσκει το A.6 του ISO, «αρθρο» βρίσκει το «Άρθρο»).
+    // Κρατά το ίδιο μήκος με το αρχικό κείμενο, ώστε η επισήμανση να πέφτει στη σωστή θέση.
+    var LOOK = { 'α': 'a', 'β': 'b', 'ε': 'e', 'ζ': 'z', 'η': 'h', 'ι': 'i', 'κ': 'k', 'μ': 'm', 'ν': 'n', 'ο': 'o', 'ρ': 'p', 'τ': 't', 'υ': 'y', 'χ': 'x' };
+    function norm(s) {
+        s = String(s || '');
+        var out = '';
+        for (var k = 0; k < s.length; k++) {
+            var c = s[k].toLowerCase();
+            if (c.length !== 1) c = s[k];
+            c = c.normalize('NFD')[0];
+            out += LOOK[c] || c;
+        }
+        return out;
+    }
+
     function mark(text, term) {
-        var safe = esc(text), t = esc(term);
-        var i = safe.toLowerCase().indexOf(t.toLowerCase());
-        if (i < 0) return safe;
-        return safe.slice(0, i) + '<mark class="bg-blue-500/30 text-white rounded px-0.5">' + safe.slice(i, i + t.length) + '</mark>' + safe.slice(i + t.length);
+        text = String(text || '');
+        var i = term ? norm(text).indexOf(norm(term)) : -1;
+        if (i < 0) return esc(text);
+        return esc(text.slice(0, i)) + '<mark class="bg-blue-500/30 text-white rounded px-0.5">' + esc(text.slice(i, i + term.length)) + '</mark>' + esc(text.slice(i + term.length));
     }
 
     // Μικρό απόσπασμα γύρω από το σημείο όπου βρέθηκε ο όρος
     function snippet(item, term) {
+        var n = norm(term);
         var src = item.summary || '';
-        var i = src.toLowerCase().indexOf(term);
+        var i = norm(src).indexOf(n);
         if (i < 0) {
-            src = (item.contents || '').split(' | Tags:')[0];
-            i = src.toLowerCase().indexOf(term);
+            var body = (item.contents || '').split(' | Tags:')[0];
+            var j = norm(body).indexOf(n);
+            if (j >= 0) { src = body; i = j; }
         }
         if (i < 0) return esc(src.slice(0, 110)) + (src.length > 110 ? '…' : '');
         var start = Math.max(0, i - 45), end = Math.min(src.length, i + term.length + 65);
@@ -40,19 +58,26 @@
     }
 
     function search(data, query) {
-        var term = query.toLowerCase();
+        var term = norm(query);
         var hits = [];
         data.forEach(function (item) {
-            var inTitle = item.title && item.title.toLowerCase().indexOf(term) >= 0;
-            var inOther = !inTitle && ((item.summary && item.summary.toLowerCase().indexOf(term) >= 0) ||
-                                       (item.contents && item.contents.toLowerCase().indexOf(term) >= 0));
-            if (inTitle || inOther) hits.push({ item: item, score: inTitle ? 0 : 1 });
+            if (item._t === undefined) { item._t = norm(item.title); item._o = norm(item.summary) + ' ' + norm(item.contents); }
+            var at = item._t.indexOf(term);
+            var score = at === 0 ? 0 : at > 0 ? 1 : item._o.indexOf(term) >= 0 ? 2 : -1;
+            if (score >= 0) hits.push({ item: item, score: score });
         });
-        // Πρώτα όσα έχουν τον όρο στον τίτλο, μετά τα πιο πρόσφατα
+        // Πρώτα όσα ξεκινούν με τον όρο, μετά όσα τον έχουν στον τίτλο, μετά τα υπόλοιπα, και σε κάθε ομάδα τα πιο πρόσφατα
         hits.sort(function (a, b) {
             return a.score - b.score || String(b.item.date).localeCompare(String(a.item.date));
         });
         return hits.map(function (h) { return h.item; });
+    }
+
+    // Ετικέτα που δείχνει από πού είναι το αποτέλεσμα: KQL ή ο οδηγός (ΚΥΑ 1689/2025, NIS2, ISO 27001, GDPR)
+    function badge(it) {
+        if (it.type === 'kql') return '<span class="text-emerald-400 border border-emerald-500/40 rounded px-1 mr-1.5">KQL</span>';
+        if (it.type === 'guide') return '<span class="text-amber-300 border border-amber-500/40 rounded px-1 mr-1.5">' + esc(it.source) + '</span>';
+        return '';
     }
 
     function attach(input) {
@@ -82,16 +107,16 @@
             if (q.length < MIN_CHARS) { close(); return; }
             loadIndex().then(function (data) {
                 if (input.value.trim() !== q) return;
-                var hits = search(data, q.toLowerCase());
+                var hits = search(data, q);
                 var all = '/search/?q=' + encodeURIComponent(q);
                 if (!hits.length) {
                     box.innerHTML = '<p class="px-4 py-3 text-sm text-slate-400">Δεν βρέθηκαν αποτελέσματα για «' + esc(q) + '».</p>';
                 } else {
                     box.innerHTML = hits.slice(0, MAX).map(function (it) {
                         return '<a data-hit role="option" href="' + esc(it.permalink) + '" class="block px-4 py-3 border-b border-slate-800 hover:bg-slate-800 no-underline">' +
-                            '<span class="block text-[11px] font-mono text-slate-500 mb-0.5">' + esc(it.date) + '</span>' +
+                            '<span class="block text-[11px] font-mono text-slate-500 mb-0.5">' + badge(it) + (it.type === 'guide' ? '' : esc(it.date)) + '</span>' +
                             '<span class="block text-sm font-semibold text-slate-100 leading-snug">' + mark(it.title, q) + '</span>' +
-                            '<span class="block text-xs text-slate-400 leading-relaxed mt-1">' + snippet(it, q.toLowerCase()) + '</span>' +
+                            '<span class="block text-xs text-slate-400 leading-relaxed mt-1">' + snippet(it, q) + '</span>' +
                             '</a>';
                     }).join('') +
                     '<a href="' + all + '" class="block px-4 py-2.5 text-xs font-medium text-blue-400 hover:text-blue-300 hover:bg-slate-900 no-underline">' +

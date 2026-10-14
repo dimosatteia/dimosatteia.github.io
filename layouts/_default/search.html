@@ -44,6 +44,20 @@
         performSearch(e.target.value);
     });
 
+    const LOOK = { 'α': 'a', 'β': 'b', 'ε': 'e', 'ζ': 'z', 'η': 'h', 'ι': 'i', 'κ': 'k', 'μ': 'm', 'ν': 'n', 'ο': 'o', 'ρ': 'p', 'τ': 't', 'υ': 'y', 'χ': 'x' };
+    function norm(s) {
+        return Array.from(String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')).map(c => LOOK[c] || c).join('');
+    }
+    function esc(s) {
+        return String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+    }
+    // Από πού είναι το αποτέλεσμα: άρθρο, KQL query ή οδηγός (ΚΥΑ 1689/2025, NIS2, ISO 27001, GDPR)
+    function badge(item) {
+        if (item.type === 'kql') return '<span class="text-emerald-400 border border-emerald-500/40 rounded px-1.5">KQL</span>';
+        if (item.type === 'guide') return '<span class="text-amber-300 border border-amber-500/40 rounded px-1.5">' + esc(item.source) + '</span>';
+        return '<span>📅 ' + esc(item.date) + '</span>';
+    }
+
     function performSearch(query) {
         resultsContainer.innerHTML = '';
         if (!query || query.trim() === '') {
@@ -51,15 +65,20 @@
             return;
         }
 
-        const term = query.toLowerCase();
-        const filtered = searchData.filter(item => 
-            (item.title && item.title.toLowerCase().includes(term)) ||
-            (item.contents && item.contents.toLowerCase().includes(term)) ||
-            (item.summary && item.summary.toLowerCase().includes(term))
-        );
+        // Ίδια σύγκριση με το πλαίσιο του header (static/js/search-live.js): χωρίς τόνους, πεζά/κεφαλαία,
+        // και τα Ελληνικά γράμματα που μοιάζουν με Λατινικά ως ίδια (π.χ. «Α.6» βρίσκει το A.6 του ISO).
+        const term = norm(query);
+        const scored = [];
+        searchData.forEach(item => {
+            const at = norm(item.title).indexOf(term);
+            const score = at === 0 ? 0 : at > 0 ? 1 : (norm(item.summary) + ' ' + norm(item.contents)).includes(term) ? 2 : -1;
+            if (score >= 0) scored.push({ item, score });
+        });
+        scored.sort((a, b) => a.score - b.score || String(b.item.date).localeCompare(String(a.item.date)));
+        const filtered = scored.map(s => s.item);
 
         if (filtered.length === 0) {
-            resultsContainer.innerHTML = '<p class="text-slate-400">Δεν βρέθηκαν αποτελέσματα για "' + query + '".</p>';
+            resultsContainer.innerHTML = '<p class="text-slate-400">Δεν βρέθηκαν αποτελέσματα για "' + esc(query) + '".</p>';
             return;
         }
 
@@ -68,12 +87,12 @@
             card.className = 'glass-card p-5 rounded-lg border border-slate-800 hover:border-blue-500/50 transition-colors bg-slate-900/60 backdrop-blur-md';
             card.innerHTML = `
                 <div class="flex items-center gap-4 text-xs text-slate-400 mb-2">
-                    <span>📅 ${item.date || ''}</span>
+                    ${badge(item)}
                 </div>
                 <h2 class="text-xl font-bold text-slate-100 mb-2">
-                    <a href="${item.permalink}" class="hover:text-blue-400 transition-colors">${item.title}</a>
+                    <a href="${item.permalink}" class="hover:text-blue-400 transition-colors">${esc(item.title)}</a>
                 </h2>
-                <p class="text-slate-300 text-sm mb-3">${item.summary || ''}</p>
+                <p class="text-slate-300 text-sm mb-3">${esc(item.summary)}</p>
                 <a href="${item.permalink}" class="text-blue-400 text-sm font-medium hover:underline">Διαβάστε περισσότερα →</a>
             `;
             resultsContainer.appendChild(card);
