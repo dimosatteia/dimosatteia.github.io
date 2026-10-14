@@ -6,7 +6,7 @@ source:
   title: Εθνικό Πλαίσιο Απαιτήσεων Κυβερνοασφάλειας Βασικών και Σημαντικών Οντοτήτων
   fek: ΦΕΚ Β΄ 2186/6.5.2025
   url: https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf
-updated: '2026-10-04'
+updated: '2026-10-14'
 types:
 - key: tech
   label: Τεχνικό
@@ -27,6 +27,7 @@ articles:
     type: mixed
     control: Microsoft Purview Compliance Manager (assessment «NIS2 Directive (EU) 2022/2555») ως μητρώο του προγράμματος. Microsoft Secure Score ως μετρήσιμη τεχνική βάση.
     evidence: 'Απόφαση/πρακτικό ΔΣ για το πρόγραμμα. Compliance Manager: βαθμολογία και κατάσταση improvement actions.'
+    verified: 2026-10-14
     license: Premium regulation του Compliance Manager για το NIS 2 (αγοράζεται ξεχωριστά, ή ως ένα από τα τρία δωρεάν premium regulations με Microsoft 365 E5)
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
@@ -39,6 +40,7 @@ articles:
     type: mixed
     control: Αναφορά προς το ΔΣ με Secure Score και Compliance Manager. Attack simulation training και για τα μέλη της διοίκησης (περ. βε).
     evidence: Πρακτικά ΔΣ, εγκεκριμένος προϋπολογισμός, βεβαιώσεις εκπαίδευσης μελών ΔΣ.
+    verified: 2026-10-14
     license: Microsoft Defender for Office 365 Plan 2 (Attack simulation training)
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
@@ -54,6 +56,7 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση. Το Microsoft 365 δίνει μόνο δεδομένα εισόδου (Secure Score, Exposure Management).
     evidence: Εγκεκριμένη μεθοδολογία διαχείρισης κινδύνων.
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
   - code: 5.1.β
     scope: Βασικές και σημαντικές
@@ -61,6 +64,7 @@ articles:
     type: mixed
     control: Microsoft Secure Score και Microsoft Defender Vulnerability Management ως τεχνική είσοδος στην εκτίμηση κινδύνων.
     evidence: 'Μητρώο κινδύνων. Secure Score: History και τάση βαθμολογίας.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 ή Microsoft Defender Vulnerability Management standalone
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
@@ -73,6 +77,7 @@ articles:
     type: mixed
     control: Κατάσταση ανά recommendation στο Secure Score (To address, Planned, Risk accepted, Resolved through third party, Resolved through alternate mitigation) ως το τεχνικό σκέλος του πλάνου.
     evidence: 'Secure Score: Recommended actions με status και σημειώσεις. Εγκεκριμένο risk treatment plan.'
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
@@ -84,6 +89,7 @@ articles:
     type: mixed
     control: Secure Score History και Compliance Manager για την τεκμηρίωση της περιοδικής επανεξέτασης.
     evidence: Ημερολόγιο αναθεωρήσεων, εκδόσεις μητρώου κινδύνων.
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
@@ -93,6 +99,7 @@ articles:
     type: mixed
     control: Threat analytics στο Microsoft Defender XDR για threat intelligence. Microsoft Defender Vulnerability Management για την αξιολόγηση ευπαθειών.
     evidence: 'Defender portal: Threat analytics, Vulnerability management (Weaknesses, Recommendations).'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (περιλαμβάνεται στο Microsoft 365 E5). Εναλλακτικά Microsoft Defender Vulnerability Management standalone για την αξιολόγηση ευπαθειών.
     posts:
     - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
@@ -120,6 +127,7 @@ articles:
     type: org
     control: Οι πολιτικές είναι έγγραφα. Η τεχνική εφαρμογή κάθε πολιτικής αντιστοιχίζεται στα άρθρα 11, 12, 13, 18, 19, 22, 23, 24 και 25 αυτού του πίνακα.
     evidence: Οι έντεκα εγκεκριμένες θεματικές πολιτικές.
+    verified: 2026-10-14
   - code: 6.γ
     scope: Βασικές και σημαντικές
     requirement: Αξιολόγηση και επικαιροποίηση των πολιτικών σε προγραμματισμένα διαστήματα και μετά από σοβαρά περιστατικά ή αλλαγές.
@@ -135,6 +143,7 @@ articles:
     type: mixed
     control: Microsoft Entra ID roles (π.χ. Security Administrator, Security Reader, Compliance Administrator) ως τεχνική αποτύπωση των ρόλων.
     evidence: 'Απόφαση ορισμού Υ.Α.Σ.Π.Ε. Entra admin center: Roles and administrators (assignments).'
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
       url: /posts/secure-score-defender-praktikos-odigos/
@@ -150,6 +159,7 @@ articles:
     type: mixed
     control: Access reviews για τις αναθέσεις ρόλων (Microsoft Entra ID Governance).
     evidence: Αποτελέσματα access reviews, πρακτικά αναθεώρησης ρόλων.
+    verified: 2026-10-14
     license: Microsoft Entra ID Governance ή Microsoft Entra ID P2
 - number: 8
   title: Ανεξάρτητος έλεγχος ασφάλειας πληροφοριών
@@ -160,6 +170,7 @@ articles:
     type: mixed
     control: Πρόσβαση μόνο για ανάγνωση στον ελεγκτή (Global Reader, Security Reader) και dashboard τεκμηρίων από Secure Score μέσω Microsoft Graph και Power BI.
     evidence: Εκθέσεις ελέγχου. Power BI dashboard με ιστορικό Secure Score.
+    verified: 2026-10-14
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
@@ -177,6 +188,7 @@ articles:
     type: mixed
     control: Παρακολούθηση των τεχνικών διορθωτικών ενεργειών ως recommendations στο Secure Score και improvement actions στο Compliance Manager.
     evidence: Πλάνο διορθωτικών ενεργειών με κατάσταση και ημερομηνίες.
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
@@ -195,6 +207,7 @@ articles:
     type: mixed
     control: Microsoft Purview Compliance Manager με τα assessments «NIS2 Directive (EU) 2022/2555» και «ISO/IEC 27001:2022», συνδεδεμένα με το Secure Score.
     evidence: 'Compliance Manager: assessment score και εξαγωγή αναφοράς. Αναφορά προς το ΔΣ.'
+    verified: 2026-10-14
     license: Premium regulations του Compliance Manager για NIS 2 και ISO/IEC 27001:2022 (αγοράζονται ξεχωριστά, ή ως δύο από τα τρία δωρεάν premium regulations με Microsoft 365 E5)
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
@@ -207,6 +220,7 @@ articles:
     type: mixed
     control: Ανάθεση improvement actions σε υπευθύνους στο Compliance Manager.
     evidence: Κατάσταση improvement actions με υπεύθυνο και ημερομηνία.
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
@@ -216,6 +230,7 @@ articles:
     type: mixed
     control: Το Compliance Manager ειδοποιεί όταν η Microsoft αναθεωρεί ένα template, ώστε να ενημερωθεί το assessment.
     evidence: Ημερολόγιο αναθεωρήσεων συμμόρφωσης.
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
@@ -255,6 +270,7 @@ articles:
     type: mixed
     control: Device inventory στο Microsoft Defender for Endpoint και στο Microsoft Intune. Software inventory στο Defender Vulnerability Management. Cloud Discovery στο Microsoft Defender for Cloud Apps για τις cloud υπηρεσίες. Τα αγαθά OT δεν καλύπτονται από το Microsoft 365. Καλύπτονται από το Microsoft Defender for IoT, που είναι ξεχωριστό προϊόν.
     evidence: 'Defender portal: Assets, Devices. Intune: Devices. Εξαγωγές καταλόγου.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 ή Microsoft Defender Vulnerability Management standalone (software inventory, πλήρες device inventory). Microsoft Defender for IoT (για τα αγαθά OT).
     comment: Ο ορισμός ιδιοκτήτη (owner) ανά αγαθό δεν καλύπτεται από προϊόντα Microsoft. Τηρείται σε ξεχωριστό μητρώο αγαθών.
     posts:
@@ -275,6 +291,7 @@ articles:
     type: tech
     control: Sensitivity labels στο Microsoft Purview Information Protection και auto-labeling. Critical asset management στο Microsoft Security Exposure Management για την κρισιμότητα συσκευών και ταυτοτήτων.
     evidence: 'Purview portal: Information protection, Labels και Label policies. Content explorer.'
+    verified: 2026-10-14
     license: Microsoft 365 E5 ή Microsoft Purview Suite (auto-labeling και Content explorer). Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
     posts:
     - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
@@ -285,6 +302,7 @@ articles:
     type: mixed
     control: Microsoft Purview Data Loss Prevention και retention policies (Data Lifecycle Management) για την τεχνική επιβολή. Retire και Wipe στο Intune για την ασφαλή απομάκρυνση.
     evidence: 'Εγκεκριμένη πολιτική. Purview: DLP policies και retention policies.'
+    verified: 2026-10-14
     posts:
     - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
       url: /posts/purview-autolabeling-500k-scale-increase/
@@ -296,6 +314,7 @@ articles:
     type: mixed
     control: Device control (removable storage access control) στο Defender for Endpoint μέσω Intune. BitLocker To Go για κρυπτογράφηση αφαιρούμενων μέσων.
     evidence: 'Εγκεκριμένη πολιτική. Intune: Endpoint security, Attack surface reduction, Device control.'
+    verified: 2026-10-14
     planned: 'Άρθρο για το device control: έρχεται.'
 - number: 12
   title: Διαχείριση κινδύνων από τις σχέσεις με προμηθευτές και παρόχους υπηρεσιών Τ.Π.Ε.
@@ -312,6 +331,7 @@ articles:
     type: mixed
     control: Cloud Discovery και cloud app catalog στο Defender for Cloud Apps για να εντοπιστούν οι cloud πάροχοι που χρησιμοποιούνται πραγματικά. Enterprise applications στο Entra ID για τις εφαρμογές τρίτων με πρόσβαση στο tenant.
     evidence: 'Μητρώο προμηθευτών. Defender portal: Cloud apps, Cloud discovery, Discovered apps.'
+    verified: 2026-10-14
     posts:
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
@@ -321,6 +341,7 @@ articles:
     type: mixed
     control: Risk score ανά cloud εφαρμογή στο Defender for Cloud Apps (πιστοποιήσεις, συμμόρφωση) ως κριτήριο αξιολόγησης. Ρύθμιση Allowed Agent Types «Only certified external publishers». Service Trust Portal για τις εκθέσεις ελέγχου της ίδιας της Microsoft.
     evidence: 'Αρχεία αξιολόγησης προμηθευτών. Cloud app catalog: risk score. Microsoft 365 admin center: Allowed agent types.'
+    verified: 2026-10-14
     posts:
     - title: 'Allowed Agent Types στο Microsoft 365: Γιατί το «Only Certified External Publishers» είναι η μόνη λογική επιλογή'
       url: /posts/allowed-agent-types-only-certified-external-publishers/
@@ -334,6 +355,7 @@ articles:
     type: mixed
     control: 'Οι συμβάσεις είναι οργανωτικό μέτρο. Για την πρόσβαση και την ασφαλή λήξη: cross-tenant access settings, guest accounts με access reviews και αφαίρεση δικαιωμάτων στο Entra ID.'
     evidence: 'Υπογεγραμμένες συμβάσεις. Entra admin center: External Identities, Cross-tenant access settings.'
+    verified: 2026-10-14
     license: Microsoft Entra ID Governance ή Microsoft Entra ID P2 (access reviews)
     posts:
     - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
@@ -352,6 +374,7 @@ articles:
     type: mixed
     control: Conditional Access για external users (MFA, compliant device) και cross-tenant access settings ανά οργανισμό-προμηθευτή.
     evidence: Συμβατικές απαιτήσεις. Conditional Access policies με target «Guest or external users».
+    verified: 2026-10-14
     posts:
     - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
       url: /posts/generally-available/cross-tenant-message-recall-exchange-online/
@@ -374,6 +397,7 @@ articles:
     type: mixed
     control: Conditional Access στο Microsoft Entra ID ως η τεχνική επιβολή της πολιτικής.
     evidence: 'Εγκεκριμένη πολιτική ελέγχου πρόσβασης. Entra admin center: Conditional Access, Policies.'
+    verified: 2026-10-14
     posts:
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
@@ -383,6 +407,7 @@ articles:
     type: tech
     control: Ατομικοί λογαριασμοί στο Microsoft Entra ID, χωρίς κοινόχρηστους λογαριασμούς. Service principals και managed identities για τα συστήματα. Συγχρονισμός από AD με Entra Connect ή Cloud Sync.
     evidence: 'Entra admin center: Users, Enterprise applications. Sign-in logs ανά ταυτότητα.'
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)'
       url: /posts/microsoft-entra-architecture-guide-defender/
@@ -396,6 +421,7 @@ articles:
     type: tech
     control: Microsoft Entra ID roles και ανάθεση πρόσβασης μέσω groups. Access reviews και entitlement management (Microsoft Entra ID Governance).
     evidence: Role assignments, group memberships, αποτελέσματα access reviews.
+    verified: 2026-10-14
     license: Microsoft Entra ID Governance ή Microsoft Entra ID P2 (access reviews και entitlement management)
     posts:
     - title: 'Preview: AD Group Enforcement στο Entra Cloud Sync'
@@ -408,6 +434,7 @@ articles:
     type: tech
     control: Privileged Identity Management (just-in-time ενεργοποίηση ρόλων με έγκριση). Περιορισμός του αριθμού των Global Administrators. Phishing-resistant MFA για τους administrators.
     evidence: 'PIM: eligible και active assignments, audit history. Secure Score: recommendations για admin roles.'
+    verified: 2026-10-14
     license: Microsoft Entra ID P2 (Privileged Identity Management)
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
@@ -420,6 +447,7 @@ articles:
     type: tech
     control: Lifecycle workflows (joiner, mover, leaver) στο Microsoft Entra ID Governance. Απενεργοποίηση λογαριασμού και revoke sessions.
     evidence: 'Entra audit logs: account disabled, sessions revoked. Αρχείο αποχωρήσεων HR.'
+    verified: 2026-10-14
     license: Microsoft Entra ID Governance (lifecycle workflows· πρόσθετο, περιλαμβάνεται στο Microsoft 365 E7)
   - code: 13.στ
     scope: Βασικές και σημαντικές
@@ -427,6 +455,7 @@ articles:
     type: tech
     control: 'Authentication methods policy και authentication strengths στο Entra ID: passkeys (FIDO2), Windows Hello for Business, certificate-based authentication. Token Protection. Password protection.'
     evidence: 'Entra admin center: Authentication methods, Policies και User registration details.'
+    verified: 2026-10-14
     posts:
     - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
       url: /posts/passkeys-by-default-telos-sms-voice-mfa/
@@ -438,6 +467,7 @@ articles:
     type: tech
     control: Conditional Access με «Require multifactor authentication» ή «Require authentication strength», ανά εφαρμογή και επίπεδο κινδύνου.
     evidence: 'Conditional Access policies. Sign-in logs: authentication requirement. Secure Score: MFA recommendations.'
+    verified: 2026-10-14
     license: Microsoft Entra ID P2 (Microsoft Entra ID Protection, για policies με βάση sign-in risk ή user risk)
     posts:
     - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
@@ -452,6 +482,7 @@ articles:
     type: mixed
     control: Conditional Access insights and reporting. Access reviews.
     evidence: Ιστορικό αλλαγών Conditional Access (audit logs), αποτελέσματα access reviews.
+    verified: 2026-10-14
     license: Microsoft Entra ID Governance ή Microsoft Entra ID P2 (access reviews)
     comment: Το Conditional Access insights and reporting χρειάζεται Log Analytics workspace (συνδρομή Azure) με τα sign-in logs του Entra.
     posts:
@@ -466,6 +497,7 @@ articles:
     type: tech
     control: 'Microsoft Intune: configuration profiles, compliance policies, security baselines. Configuration management στο Microsoft Entra Tenant Governance (baselines, drift detection, snapshots) για τις ρυθμίσεις του tenant σε Entra, Intune, Exchange Online, Teams, Purview και Defender.'
     evidence: 'Intune: Devices, Configuration και Compliance, per-policy device status.'
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
       url: /posts/entra-tenant-governance-ga/
@@ -479,6 +511,7 @@ articles:
     type: tech
     control: Security baselines στο Intune. Recommendations του Microsoft Secure Score. Security baselines assessment (π.χ. CIS) στο Defender Vulnerability Management. Attack surface reduction rules.
     evidence: 'Secure Score: βαθμολογία και recommendations. Intune: Security baselines, status ανά profile.'
+    verified: 2026-10-14
     license: Microsoft Defender Vulnerability Management (add-on ή standalone) για το security baselines assessment
     posts:
     - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
@@ -500,6 +533,7 @@ articles:
     type: mixed
     control: Windows LAPS για μοναδικό, εναλλασσόμενο κωδικό τοπικού διαχειριστή σε κάθε συσκευή Windows.
     evidence: 'Intune: Account protection, LAPS policy. Διαδικασία εγκατάστασης για δικτυακές και λοιπές συσκευές.'
+    verified: 2026-10-14
     comment: Το Windows LAPS καλύπτει μόνο τον τοπικό διαχειριστή των Windows. Οι δικτυακές συσκευές, οι εφαρμογές και το OT δεν καλύπτονται από το Microsoft 365.
     posts:
     - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
@@ -510,6 +544,7 @@ articles:
     type: mixed
     control: Νέα recommendations στο Secure Score και ανακοινώσεις στο Message center ως έναυσμα αναθεώρησης.
     evidence: Secure Score History. Αρχείο αναθεωρήσεων baselines.
+    verified: 2026-10-14
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
@@ -522,6 +557,7 @@ articles:
     type: org
     control: 'Δεν καλύπτεται από το Microsoft 365. Για εφαρμογές τρίτων που συνδέονται στο tenant: user consent settings και app governance στο Microsoft Defender for Cloud Apps.'
     evidence: Προδιαγραφές ασφάλειας εφαρμογών.
+    verified: 2026-10-14
     license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery)
   - code: 15.β
     scope: Βασικές και σημαντικές
@@ -529,6 +565,7 @@ articles:
     type: org
     control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: DevOps security στο Microsoft Defender for Cloud και GitHub Advanced Security.'
     evidence: Πρότυπα ανάπτυξης, αποτελέσματα code review.
+    verified: 2026-10-14
     license: Microsoft Defender for Cloud, GitHub Advanced Security
     posts:
     - title: 'Microsoft Defender Μέρος 3: Microsoft Defender for Cloud (αυτό που είναι πραγματικά διαφορετικό)'
@@ -539,6 +576,7 @@ articles:
     type: org
     control: 'Δεν καλύπτεται από το Microsoft 365. Σε Azure: ξεχωριστά subscriptions ή resource groups ανά περιβάλλον, με ξεχωριστά δικαιώματα.'
     evidence: Διάγραμμα περιβαλλόντων, δικαιώματα πρόσβασης ανά περιβάλλον.
+    verified: 2026-10-14
     license: Συνδρομή Azure
   - code: 15.δ
     scope: Βασικές και σημαντικές
@@ -546,6 +584,7 @@ articles:
     type: org
     control: 'Δεν καλύπτεται από το Microsoft 365. Αν αναπτύσσετε λογισμικό: code scanning στο GitHub Advanced Security.'
     evidence: Αναφορές δοκιμών ασφάλειας πριν από το go-live.
+    verified: 2026-10-14
     license: GitHub Advanced Security
 - number: 16
   title: Διαχείριση αλλαγών
@@ -556,6 +595,7 @@ articles:
     type: mixed
     control: Σταδιακή εφαρμογή με pilot groups στο Intune. Report-only mode στο Conditional Access. Update rings και Windows Autopatch. Audit logs του Entra ID ως ίχνος των αλλαγών. Message center για τις αλλαγές του παρόχου.
     evidence: 'Αιτήματα αλλαγής. Entra audit logs. Intune: assignments ανά ring.'
+    verified: 2026-10-14
     posts:
     - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
       url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
@@ -578,6 +618,7 @@ articles:
     type: mixed
     control: Microsoft Defender Vulnerability Management με remediation requests προς το Intune.
     evidence: 'Διαδικασία διαχείρισης ευπαθειών. Defender portal: Vulnerability management, Remediation.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management
     posts:
     - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
@@ -591,6 +632,7 @@ articles:
     type: tech
     control: Defender Vulnerability Management (Weaknesses, με CVE και threat context) και Threat analytics. Message center για ανακοινώσεις της Microsoft.
     evidence: 'Defender portal: Weaknesses, Threat analytics. Αρχείο ενημερώσεων από CSIRT.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management και το Threat analytics
     posts:
     - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
@@ -606,6 +648,7 @@ articles:
     type: tech
     control: Update rings και Windows Autopatch στο Intune. Exceptions με αιτιολόγηση στο Defender Vulnerability Management.
     evidence: 'Intune: Windows update reports. Defender portal: Remediation, Exceptions.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για τα exceptions στο Defender Vulnerability Management
     posts:
     - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
@@ -626,6 +669,7 @@ articles:
     type: tech
     control: Pilot ring πριν από το broad ring, στα update rings του Intune ή στο Windows Autopatch.
     evidence: 'Intune: assignments ανά ring και deferral periods.'
+    verified: 2026-10-14
     posts:
     - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
       url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
@@ -635,6 +679,7 @@ articles:
     type: tech
     control: 'Συνεχής αξιολόγηση ευπαθειών από το Defender Vulnerability Management στις συσκευές που έχουν γίνει onboarding. Για την εξωτερική επιφάνεια: Microsoft Defender External Attack Surface Management. Για OT: Microsoft Defender for IoT.'
     evidence: 'Defender portal: Vulnerability management dashboard και εξαγωγή αναφοράς.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management, Microsoft Defender External Attack Surface Management, Microsoft Defender for IoT
     comment: Το Defender Vulnerability Management καλύπτει τις συσκευές που έχουν γίνει onboarding. Ο δικτυακός εξοπλισμός χρειάζεται άλλο εργαλείο σάρωσης.
     posts:
@@ -652,6 +697,7 @@ articles:
     type: tech
     control: Security recommendations με προτεραιοποίηση (exposure score) και remediation tracking στο Defender Vulnerability Management. Exceptions με αιτιολόγηση.
     evidence: 'Defender portal: Recommendations, Remediation, Exceptions.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management
     posts:
     - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
@@ -691,6 +737,7 @@ articles:
     type: mixed
     control: Όσα ευρήματα αφορούν ρυθμίσεις του Microsoft 365 παρακολουθούνται ως recommendations στο Secure Score ή στο Defender Vulnerability Management.
     evidence: Πλάνο αποκατάστασης και αναφορά επανελέγχου.
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
@@ -701,6 +748,7 @@ articles:
     type: mixed
     control: Εξαγωγές από Secure Score και Compliance Manager ως τεκμήρια για τις απαντήσεις της αυτοαξιολόγησης.
     evidence: Υποβληθείσα αυτοαξιολόγηση και πλάνο διορθωτικών ενεργειών.
+    verified: 2026-10-14
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
@@ -718,6 +766,7 @@ articles:
     type: mixed
     control: Όσα ευρήματα αφορούν το Active Directory και τις ταυτότητες παρακολουθούνται στα security posture assessments του Microsoft Defender for Identity και στο Secure Score.
     evidence: Πλάνο αποκατάστασης και αναφορά επανελέγχου.
+    verified: 2026-10-14
     license: Microsoft Defender for Identity (Microsoft 365 E5 ή αντίστοιχο)
     posts:
     - title: 'Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity'
@@ -739,6 +788,7 @@ articles:
     type: mixed
     control: 'Τα περιμετρικά firewalls είναι εκτός Microsoft 365. Το Microsoft 365 συμπληρώνει με Windows Firewall μέσω Intune και με Microsoft Entra Internet Access (web content filtering) ως Secure Web Gateway. Για workloads σε Azure: Azure Firewall και Azure Web Application Firewall.'
     evidence: 'Ρυθμίσεις firewall. Intune: Endpoint security, Firewall. Global Secure Access: security profiles.'
+    verified: 2026-10-14
     license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7). Azure Firewall, Azure WAF (μόνο για workloads σε Azure)
     posts:
     - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
@@ -751,6 +801,7 @@ articles:
     type: tech
     control: Global Secure Access με Conditional Access (compliant network check) και per-app πρόσβαση με Microsoft Entra Private Access.
     evidence: Conditional Access policies με Global Secure Access. Traffic logs.
+    verified: 2026-10-14
     license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
@@ -763,6 +814,7 @@ articles:
     type: mixed
     control: Το Network Access Control (802.1X) δεν καλύπτεται από προϊόντα Microsoft. Το Intune δίνει device compliance και πιστοποιητικά συσκευών για το 802.1X. Conditional Access με «Require compliant device» για τους πόρους.
     evidence: 'Ρυθμίσεις NAC. Intune: compliance policies. Conditional Access policies.'
+    verified: 2026-10-14
     posts:
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
@@ -772,6 +824,7 @@ articles:
     type: mixed
     control: Το segmentation είναι θέμα δικτυακής υποδομής, εκτός Microsoft 365. Το Microsoft Entra Private Access δίνει per-app πρόσβαση αντί για πρόσβαση σε ολόκληρο το δίκτυο.
     evidence: 'Διάγραμμα δικτύου με ζώνες. Private Access: application segments.'
+    verified: 2026-10-14
     license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
@@ -782,12 +835,14 @@ articles:
     type: org
     control: Εκτός Microsoft 365 (firewall rules μεταξύ ζωνών). Συμπληρωματικά, Windows Firewall rules μέσω Intune στα endpoints.
     evidence: Κανόνες firewall μεταξύ ζωνών.
+    verified: 2026-10-14
   - code: 19.ζ
     scope: Βασικές και σημαντικές
     requirement: Ισχυρός έλεγχος πρόσβασης και αυθεντικοποίηση για τις απομακρυσμένες συνδέσεις, και για προμηθευτές.
     type: tech
     control: Microsoft Entra Private Access με Conditional Access (MFA, compliant device) ως αντικαταστάτης του VPN. Conditional Access για external users.
     evidence: 'Conditional Access policies για remote access. Global Secure Access: traffic logs.'
+    verified: 2026-10-14
     license: Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
@@ -802,6 +857,7 @@ articles:
     type: mixed
     control: Windows Firewall rules μέσω Intune. Recommendations του Secure Score για παλαιά πρωτόκολλα (π.χ. block legacy authentication). Εντοπισμός internet-facing συσκευών στο Defender for Endpoint.
     evidence: 'Αποτελέσματα port scanning. Secure Score recommendations. Intune: Firewall policies.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για τον εντοπισμό internet-facing συσκευών
     comment: Οι ανοικτές θύρες στον δικτυακό εξοπλισμό δεν καλύπτονται από το Microsoft 365.
     posts:
@@ -813,6 +869,7 @@ articles:
     type: mixed
     control: Network protection στο Defender for Endpoint και FQDN/web content filtering στο Microsoft Entra Internet Access. SPF, DKIM και DMARC για τα email domains. DNSSEC και ασφάλεια δρομολόγησης είναι εκτός Microsoft 365.
     evidence: 'DNS records (SPF, DKIM, DMARC). Global Secure Access: filtering policies.'
+    verified: 2026-10-14
     license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
@@ -825,6 +882,7 @@ articles:
     type: org
     control: 'Δεν καλύπτεται από το Microsoft 365 για τις δικές σας υπηρεσίες. Για υπηρεσίες σε Azure: Azure DDoS Protection. Για τις υπηρεσίες του Microsoft 365 ισχύουν τα SLA της Microsoft.'
     evidence: Μέτρα προστασίας DDoS, SLA παρόχων.
+    verified: 2026-10-14
     license: Azure DDoS Protection (μόνο για υπηρεσίες σε Azure)
   - code: 19.ια
     scope: Βασικές και σημαντικές
@@ -841,6 +899,7 @@ articles:
     type: tech
     control: Microsoft Defender Antivirus και Microsoft Defender for Endpoint (cloud-delivered protection, αυτόματα security intelligence updates, tamper protection).
     evidence: 'Defender portal: Device health, Microsoft Defender Antivirus health report.'
+    verified: 2026-10-14
     comment: Οι δικτυακές συσκευές δεν καλύπτονται από το Microsoft Defender for Endpoint.
     posts:
     - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
@@ -859,6 +918,7 @@ articles:
     type: tech
     control: App Control for Business (πρώην WDAC) μέσω Intune και attack surface reduction rules. Software inventory και block vulnerable applications στο Defender Vulnerability Management.
     evidence: 'Intune: App Control policies, ASR rules report. Defender portal: Software inventory.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το software inventory. Microsoft Defender Vulnerability Management (add-on ή standalone) για το block vulnerable applications
     posts:
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
@@ -871,6 +931,8 @@ articles:
     type: tech
     control: 'Exchange Online Protection και Microsoft Defender for Office 365: preset security policies, anti-phishing, Safe Links, Safe Attachments.'
     evidence: 'Defender portal: Email & collaboration, Threat policies. Threat protection status report.'
+    verified: 2026-10-14
+    license: 'Microsoft Defender for Office 365 Plan 1 για Safe Links, Safe Attachments και impersonation protection. Περιλαμβάνεται στο Microsoft 365 E3 και Office 365 E3 από 1 Ιουλίου 2026 και στο Microsoft 365 Business Premium. Το Exchange Online Protection υπάρχει σε κάθε συνδρομή με cloud mailboxes.'
     posts:
     - title: 'Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)'
       url: /posts/new-features/mdo-encrypted-attachment-protection-mc1440701/
@@ -891,6 +953,7 @@ articles:
     type: tech
     control: Πολιτικές Microsoft Edge μέσω Intune (ενημερώσεις, allow list και block list επεκτάσεων). Browser extensions assessment στο Defender Vulnerability Management.
     evidence: 'Intune: Settings catalog, Microsoft Edge policies. Defender portal: Browser extensions.'
+    verified: 2026-10-14
     license: Microsoft Defender Vulnerability Management (add-on ή standalone) για το browser extensions assessment
     planned: 'Άρθρο για τη διαχείριση browsers και επεκτάσεων: έρχεται.'
     posts:
@@ -903,6 +966,7 @@ articles:
     type: tech
     control: Network protection, web content filtering και SmartScreen στο Defender for Endpoint. Web content filtering στο Microsoft Entra Internet Access.
     evidence: 'Defender portal: Web protection report. Global Secure Access: traffic logs.'
+    verified: 2026-10-14
     license: Microsoft Entra Internet Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
@@ -920,6 +984,7 @@ articles:
     type: mixed
     control: Attack simulation training στο Microsoft Defender for Office 365 Plan 2 (προσομοιώσεις phishing και εκπαιδευτικές ενότητες). Κουμπί αναφοράς ύποπτων μηνυμάτων και αναφορά από το Teams.
     evidence: 'Defender portal: Attack simulation training, Reports (training completion). Βεβαιώσεις εκπαίδευσης.'
+    verified: 2026-10-14
     license: Microsoft Defender for Office 365 Plan 2
     comment: Το Attack simulation training δεν καλύπτει όλη τη θεματολογία της περίπτωσης α (π.χ. ασφάλεια οικιακού δικτύου, αντίγραφα ασφαλείας). Τα υπόλοιπα θέματα θέλουν ξεχωριστό εκπαιδευτικό υλικό.
     posts:
@@ -941,6 +1006,7 @@ articles:
     type: mixed
     control: Μετρικές του Attack simulation training (compromise rate, repeat offenders) ως βάση για την αναθεώρηση.
     evidence: Αναφορές προσομοιώσεων ανά περίοδο.
+    verified: 2026-10-14
     license: Microsoft Defender for Office 365 Plan 2
 - number: 22
   title: Χρήση κρυπτογραφίας
@@ -957,6 +1023,7 @@ articles:
     type: tech
     control: 'BitLocker μέσω Intune στα endpoints και BitLocker To Go στα αφαιρούμενα μέσα. Sensitivity labels με κρυπτογράφηση στο Microsoft Purview. Service encryption στο Microsoft 365. Για Windows Servers: BitLocker. Για SQL Server: Transparent Data Encryption.'
     evidence: 'Intune: Encryption report. Purview: labels με encryption settings.'
+    verified: 2026-10-14
     comment: Οι διακομιστές και οι βάσεις δεδομένων άλλων κατασκευαστών δεν καλύπτονται από προϊόντα Microsoft.
     posts:
     - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
@@ -969,6 +1036,7 @@ articles:
     type: tech
     control: TLS στις υπηρεσίες του Microsoft 365. Microsoft Purview Message Encryption για email. Κρυπτογραφημένα tunnels στο Global Secure Access.
     evidence: Ρυθμίσεις connectors στο Exchange Online. Mail flow rules για κρυπτογράφηση.
+    verified: 2026-10-14
     license: Microsoft Entra Internet Access ή Microsoft Entra Private Access (Microsoft Entra Suite ή standalone· περιλαμβάνεται στο Microsoft 365 E7)
     posts:
     - title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
@@ -981,7 +1049,8 @@ articles:
     type: mixed
     control: Certificate profiles στο Intune. Microsoft Cloud PKI για την έκδοση πιστοποιητικών. Customer Key στο Microsoft Purview για όσους διαχειρίζονται δικά τους κλειδιά.
     evidence: 'Διαδικασία διαχείρισης κλειδιών. Intune: certificate profiles.'
-    license: Microsoft Cloud PKI (περιλαμβάνεται στο Microsoft 365 E5, αλλιώς πρόσθετο του Intune), Customer Key (Microsoft 365 E5)
+    verified: 2026-10-14
+    license: 'Microsoft Cloud PKI (περιλαμβάνεται στο Microsoft 365 E5 και E7 από τον Ιούλιο 2026 με σταδιακό rollout, αλλιώς πρόσθετο του Intune), Customer Key (Microsoft 365 E5 ή Microsoft Purview Suite)'
   - code: 22.ε
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών κρυπτογραφίας.
@@ -997,30 +1066,35 @@ articles:
     type: org
     control: Εκτός Microsoft 365. Για τα δεδομένα που φιλοξενούνται στο Microsoft 365, οι εκθέσεις ελέγχου των datacenters της Microsoft βρίσκονται στο Service Trust Portal.
     evidence: Εγκεκριμένη πολιτική φυσικής και περιβαλλοντικής ασφάλειας.
+    verified: 2026-10-14
   - code: 23.β
     scope: Βασικές και σημαντικές
     requirement: Μέτρα φυσικής ασφάλειας και επίβλεψης στην περίμετρο και εσωτερικές ζώνες προστασίας.
     type: org
     control: Εκτός Microsoft 365.
     evidence: Σχέδιο ζωνών, συστήματα επιτήρησης.
+    verified: 2026-10-14
   - code: 23.γ
     scope: Βασικές και σημαντικές
     requirement: Περιορισμός της φυσικής πρόσβασης στους χώρους κρίσιμων συστημάτων σε εξουσιοδοτημένο προσωπικό, με ταυτοποίηση και καταγραφή.
     type: org
     control: Εκτός Microsoft 365.
     evidence: Αρχεία πρόσβασης στο computer room.
+    verified: 2026-10-14
   - code: 23.δ
     scope: Βασικές και σημαντικές
     requirement: Προστασία από φυσικούς και περιβαλλοντικούς κινδύνους (πυρκαγιά, πλημμύρα, εγκληματική δραστηριότητα).
     type: org
     control: Εκτός Microsoft 365.
     evidence: Πυρανίχνευση, πυρόσβεση, συναγερμός.
+    verified: 2026-10-14
   - code: 23.ε
     scope: Βασικές και σημαντικές
     requirement: Προστασία και επίβλεψη των μέσων υποστήριξης (ηλεκτρισμός, νερό, εξαερισμός, κλιματισμός).
     type: org
     control: Εκτός Microsoft 365.
     evidence: UPS, γεννήτρια, αρχεία συντήρησης.
+    verified: 2026-10-14
   - code: 23.στ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών φυσικής ασφάλειας.
@@ -1036,6 +1110,7 @@ articles:
     type: mixed
     control: Incidents queue του Microsoft Defender XDR ως το επιχειρησιακό εργαλείο του πλάνου. Automated investigation and response. Unified response actions για ταυτότητες.
     evidence: 'Εγκεκριμένη πολιτική και πλάνο. Defender portal: Incidents, Action center.'
+    verified: 2026-10-14
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο) για το automated investigation and response και τα response actions ταυτοτήτων
     posts:
     - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
@@ -1052,6 +1127,7 @@ articles:
     type: mixed
     control: Ανάθεση incidents σε συγκεκριμένο χρήστη στο Defender XDR.
     evidence: 'Απόφαση ορισμού. Defender portal: πεδίο «Assigned to» στα incidents.'
+    verified: 2026-10-14
     posts:
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
@@ -1061,6 +1137,7 @@ articles:
     type: tech
     control: Microsoft Purview Audit (unified audit log). Sign-in και audit logs του Entra ID. Telemetry του Defender for Endpoint. Sensors του Defender for Identity στους domain controllers. Audit history του PIM.
     evidence: 'Purview: Audit. Entra: Sign-in logs, Audit logs. Defender for Identity: sensor health.'
+    verified: 2026-10-14
     license: Microsoft Defender for Identity και Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο), Microsoft Entra ID P2 (Privileged Identity Management), Microsoft Sentinel (για logs εκτός Microsoft 365)
     comment: Οι δικτυακές συσκευές χρειάζονται συλλογή logs εκτός Microsoft 365, π.χ. με Microsoft Sentinel ή άλλο SIEM.
     posts:
@@ -1080,7 +1157,8 @@ articles:
     type: tech
     control: Audit log retention policies στο Microsoft Purview Audit. Microsoft Sentinel ή Log Analytics για μακρύτερη διατήρηση. Πρόσβαση στα logs μόνο με ρόλους.
     evidence: 'Purview: Audit retention policies. Ρυθμίσεις retention στο workspace.'
-    license: Microsoft Purview Audit (Premium) ή Microsoft Sentinel για μακρύτερη διατήρηση
+    verified: 2026-10-14
+    license: 'Microsoft Purview Audit (Premium), με Microsoft 365 E5 ή Microsoft Purview Suite: 1 έτος για Entra ID, Exchange, SharePoint και OneDrive (180 ημέρες χωρίς E5), έως 10 έτη με το 10-Year Audit Log Retention add-on. Microsoft Sentinel για μακρύτερη διατήρηση ή για logs εκτός Microsoft 365.'
     comment: 'Ο χρόνος διατήρησης των logs εξαρτάται από τις άδειες και από την πολιτική κάθε οργανισμού. Η ΚΥΑ ζητά «προκαθορισμένη χρονική περίοδο»: ορίστε τη ρητά στην πολιτική σας και ρυθμίστε αντίστοιχα το audit log retention policy.'
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
@@ -1093,6 +1171,7 @@ articles:
     type: tech
     control: Alerts και incidents με συσχέτιση στο Defender XDR. Custom detection rules με advanced hunting (KQL). Anomaly detection policies στο Defender for Cloud Apps. Health alerts του Defender for Identity.
     evidence: 'Defender portal: Incidents, Custom detection rules, Alert tuning.'
+    verified: 2026-10-14
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο) για advanced hunting, custom detection rules, Defender for Cloud Apps και Defender for Identity
     posts:
     - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
@@ -1148,6 +1227,7 @@ articles:
     type: mixed
     control: Microsoft 365 Backup για Exchange Online, SharePoint και OneDrive. Azure Backup για διακομιστές. Το retention και το versioning δεν αποτελούν αντίγραφο ασφαλείας.
     evidence: Backup policies και αναφορές επιτυχίας.
+    verified: 2026-10-14
     license: Microsoft 365 Backup (χρέωση με βάση τη χρήση), Azure Backup
     planned: 'Άρθρο για το backup στο Microsoft 365: έρχεται.'
   - code: 25.1.στ
@@ -1156,6 +1236,7 @@ articles:
     type: mixed
     control: Ξεχωριστοί ρόλοι διαχείρισης backup στο Entra ID, με PIM και MFA.
     evidence: Role assignments για το backup, audit logs.
+    verified: 2026-10-14
     license: Microsoft Entra ID P2 (Privileged Identity Management)
     comment: Η υλοποίηση εξαρτάται από τη λύση backup που χρησιμοποιείται.
   - code: 25.1.ζ
@@ -1164,6 +1245,7 @@ articles:
     type: org
     control: Οργανωτική διαδικασία, με το εργαλείο backup που χρησιμοποιείται.
     evidence: Πρακτικά δοκιμών επαναφοράς.
+    verified: 2026-10-14
   - code: 25.2.α
     scope: Μόνο βασικές
     requirement: Διαδικασίες διαχείρισης κρίσεων για ιδιαίτερα σοβαρά περιστατικά (ρόλοι, κανάλια επικοινωνίας με αρχές και κοινό, διατήρηση ασφάλειας).

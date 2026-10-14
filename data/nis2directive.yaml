@@ -6,7 +6,7 @@ source:
   fek: ΕΕ L 333 της 27.12.2022
   url: https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32022L2555
   of: της Οδηγίας
-updated: '2026-10-04'
+updated: '2026-10-14'
 types:
 - key: tech
   label: Τεχνικό
@@ -27,6 +27,7 @@ articles:
     type: mixed
     control: Microsoft Purview Compliance Manager (assessment «NIS 2 Directive») ως μητρώο των μέτρων. Microsoft Secure Score ως μετρήσιμη βάση για την αναφορά προς τη διοίκηση.
     evidence: 'Απόφαση ή πρακτικό του οργάνου διοίκησης. Compliance Manager: βαθμολογία και κατάσταση improvement actions. Secure Score: History.'
+    verified: 2026-10-14
     license: Microsoft Purview Compliance Manager premium assessment για το NIS2 (με Microsoft 365 E5 τρία premium assessments είναι δωρεάν)
     comment: Η έγκριση και η ευθύνη είναι οργανωτικό και νομικό ζήτημα. Η Microsoft δίνει μόνο τα στοιχεία πάνω στα οποία αποφασίζει η διοίκηση.
     kya:
@@ -44,6 +45,7 @@ articles:
     type: mixed
     control: Attack simulation training στο Microsoft Defender for Office 365 Plan 2, με τα μέλη της διοίκησης ως ξεχωριστή ομάδα-στόχο.
     evidence: Αναφορές του Attack simulation training (ολοκλήρωση εκπαίδευσης ανά χρήστη). Βεβαιώσεις κατάρτισης των μελών της διοίκησης.
+    verified: 2026-10-14
     license: Microsoft Defender for Office 365 Plan 2
     comment: Το Attack simulation training καλύπτει phishing και ευαισθητοποίηση. Η κατάρτιση της διοίκησης στην αξιολόγηση κινδύνων θέλει ξεχωριστό πρόγραμμα.
     kya:
@@ -67,7 +69,8 @@ articles:
     type: mixed
     control: Microsoft Secure Score και Microsoft Security Exposure Management ως εικόνα της τρέχουσας έκθεσης. Microsoft Defender Vulnerability Management ως είσοδος στην εκτίμηση κινδύνων.
     evidence: 'Μητρώο κινδύνων και τεκμηρίωση της αναλογικότητας. Secure Score: βαθμολογία και τάση.'
-    license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management και το Microsoft Security Exposure Management
+    verified: 2026-10-14
+    license: 'Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management. Το Microsoft Security Exposure Management είναι διαθέσιμο με κάθε άδεια Defender (π.χ. Defender for Endpoint, Defender for Office 365 Plan 2, Microsoft 365 Business Premium). Το Microsoft 365 E3 χωρίς πρόσθετα δίνει πρόσβαση μόνο στο Secure Score.'
     comment: Η κρίση για το τι είναι «αναλογικό» ανήκει στην οντότητα. Δεν προκύπτει από καμία βαθμολογία.
     kya:
     - 5
@@ -84,6 +87,7 @@ articles:
     type: mixed
     control: Οι πολιτικές είναι έγγραφα. Το Compliance Manager τις συνδέει με improvement actions και το Secure Score δείχνει κατά πόσο εφαρμόζονται τεχνικά.
     evidence: 'Εγκεκριμένες πολιτικές. Compliance Manager: improvement actions με συνημμένα τεκμήρια.'
+    verified: 2026-10-14
     kya:
     - 5
     - 6
@@ -98,6 +102,7 @@ articles:
     type: tech
     control: Incidents queue του Microsoft Defender XDR με συσχέτιση alerts από endpoints, ταυτότητες, email και cloud apps. Automated investigation and response. Advanced hunting. Microsoft Sentinel για πηγές εκτός Microsoft και μεγαλύτερη διατήρηση.
     evidence: 'Defender XDR: ιστορικό incidents με ταξινόμηση, ανάθεση και χρόνους. Action center για τις ενέργειες αποκατάστασης.'
+    verified: 2026-10-14
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο), Microsoft Sentinel (χρέωση με βάση τον όγκο δεδομένων)
     comment: Το πλάνο αντιμετώπισης περιστατικών και οι ρόλοι είναι έγγραφο της οντότητας.
     kya:
@@ -124,6 +129,7 @@ articles:
     type: mixed
     control: Microsoft 365 Backup για Exchange Online, SharePoint και OneDrive. Azure Backup και Azure Site Recovery για διακομιστές. Το retention και το versioning δεν αποτελούν αντίγραφο ασφαλείας.
     evidence: Αναφορές επιτυχών backup και δοκιμών επαναφοράς. Εγκεκριμένο σχέδιο επιχειρησιακής συνέχειας.
+    verified: 2026-10-14
     license: Microsoft 365 Backup (χρέωση με βάση τη χρήση), Azure Backup, Azure Site Recovery
     comment: Το σχέδιο επιχειρησιακής συνέχειας και η διαχείριση κρίσεων δεν καλύπτονται από προϊόντα Microsoft.
     kya:
@@ -134,6 +140,7 @@ articles:
     type: mixed
     control: Cloud Discovery και risk score ανά εφαρμογή στο Microsoft Defender for Cloud Apps. Cross-tenant access settings, Conditional Access για external users και access reviews για guest accounts στο Entra ID.
     evidence: 'Defender for Cloud Apps: κατάλογος cloud εφαρμογών σε χρήση. Entra ID: ρυθμίσεις cross-tenant και αποτελέσματα access reviews.'
+    verified: 2026-10-14
     license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery), Microsoft Entra ID P2 ή Microsoft Entra ID Governance (access reviews)
     comment: Οι συμβάσεις και η αξιολόγηση των προμηθευτών είναι οργανωτικά μέτρα.
     kya:
@@ -153,6 +160,7 @@ articles:
     type: mixed
     control: Microsoft Defender Vulnerability Management για εντοπισμό και ιεράρχηση ευπαθειών, με remediation requests προς το Intune. Update rings και security baselines στο Intune.
     evidence: 'Defender Vulnerability Management: exposure score, Weaknesses και κατάσταση remediation. Intune: αναφορές συμμόρφωσης ενημερώσεων.'
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management
     comment: Η ασφαλής ανάπτυξη λογισμικού δεν καλύπτεται από το Microsoft 365.
     kya:
@@ -189,6 +197,7 @@ articles:
     type: mixed
     control: Secure Score (History και σύγκριση) και Compliance Manager ως συνεχής μέτρηση. Attack simulation training για τη μέτρηση της ανθρώπινης πλευράς.
     evidence: Εξαγωγές Secure Score και Compliance Manager ανά περίοδο. Εκθέσεις εσωτερικών και εξωτερικών ελέγχων.
+    verified: 2026-10-14
     license: Microsoft Defender for Office 365 Plan 2 (Attack simulation training)
     comment: Οι δοκιμές παρείσδυσης και οι ανεξάρτητοι έλεγχοι γίνονται από εξειδικευμένο ελεγκτή.
     kya:
@@ -206,6 +215,7 @@ articles:
     type: mixed
     control: Security baselines, compliance policies και update rings στο Intune. Recommendations του Secure Score. Attack simulation training στο Microsoft Defender for Office 365 Plan 2.
     evidence: 'Intune: αναφορές συμμόρφωσης συσκευών. Secure Score: κατάσταση recommendations. Αναφορές εκπαίδευσης.'
+    verified: 2026-10-14
     license: Microsoft Defender for Office 365 Plan 2
     kya:
     - 14
@@ -224,6 +234,7 @@ articles:
     type: mixed
     control: BitLocker μέσω Intune. Sensitivity labels με κρυπτογράφηση και Message Encryption στο Microsoft Purview. TLS στις υπηρεσίες του Microsoft 365.
     evidence: 'Εγκεκριμένη πολιτική κρυπτογραφίας. Intune: encryption report. Purview: labels και πολιτικές δημοσίευσης.'
+    verified: 2026-10-14
     comment: Οι διακομιστές και οι βάσεις δεδομένων άλλων κατασκευαστών δεν καλύπτονται από προϊόντα Microsoft.
     kya:
     - 22
@@ -240,6 +251,7 @@ articles:
     type: mixed
     control: Conditional Access, Privileged Identity Management και access reviews στο Entra ID. Device inventory στο Microsoft Defender for Endpoint και στο Intune, software inventory στο Defender Vulnerability Management.
     evidence: 'Entra ID: πολιτικές Conditional Access, αναθέσεις ρόλων και αποτελέσματα access reviews. Εξαγωγή device inventory.'
+    verified: 2026-10-14
     license: Microsoft Entra ID P2 (Privileged Identity Management, access reviews), Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το software inventory
     comment: Η ασφάλεια ανθρώπινων πόρων (έλεγχοι πρόσληψης, πειθαρχική διαδικασία) δεν καλύπτεται από ρύθμιση.
     kya:
@@ -264,6 +276,7 @@ articles:
     type: tech
     control: Conditional Access με «Require authentication strength» και passkeys. Continuous Access Evaluation στο Entra ID. Microsoft Teams για κρυπτογραφημένη φωνή, βίντεο και κείμενο.
     evidence: 'Entra ID: πολιτικές Conditional Access και Authentication methods activity. Sign-in logs με το αποτέλεσμα του MFA.'
+    verified: 2026-10-14
     comment: Η επικοινωνία έκτακτης ανάγκης θέλει κανάλι που δεν εξαρτάται από το tenant. Αν το Entra ID ή το Teams δεν είναι διαθέσιμα, το Teams δεν μπορεί να είναι το εφεδρικό σας κανάλι.
     kya:
     - 13
@@ -280,6 +293,7 @@ articles:
     type: mixed
     control: Risk score ανά cloud εφαρμογή στο Defender for Cloud Apps (πιστοποιήσεις, συμμόρφωση). Service Trust Portal για τις εκθέσεις ελέγχου της ίδιας της Microsoft ως προμηθευτή σας.
     evidence: Φάκελος αξιολόγησης ανά προμηθευτή. Εκθέσεις SOC 2 και ISO 27001 της Microsoft από το Service Trust Portal.
+    verified: 2026-10-14
     license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery)
     comment: Για προμηθευτές που δεν είναι cloud υπηρεσίες δεν υπάρχει εργαλείο Microsoft. Η αξιολόγηση γίνεται με ερωτηματολόγια και συμβατικούς όρους.
     kya:
@@ -296,6 +310,7 @@ articles:
     type: mixed
     control: Recommendations του Secure Score με κατάσταση και action plan. Remediation requests στο Defender Vulnerability Management. Improvement actions στο Compliance Manager με υπεύθυνο και ημερομηνία.
     evidence: Ιστορικό αλλαγών κατάστασης στα recommendations και στα improvement actions, ως απόδειξη ότι τα ευρήματα κλείνουν.
+    verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το Defender Vulnerability Management
     kya:
     - 9
@@ -315,6 +330,7 @@ articles:
     type: mixed
     control: Ο εντοπισμός και η ταξινόμηση γίνονται στο incidents queue του Microsoft Defender XDR (severity, classification, επηρεαζόμενα assets). Email notifications για incidents υψηλής σοβαρότητας.
     evidence: 'Defender XDR: εγγραφή του incident με χρόνο πρώτης δραστηριότητας και χρόνο δημιουργίας. Αντίγραφο της κοινοποίησης.'
+    verified: 2026-10-14
     comment: Η υποβολή γίνεται από την οντότητα προς την CSIRT ή την αρμόδια αρχή. Κανένα προϊόν Microsoft δεν την κάνει για εσάς.
     kya:
     - 24
@@ -328,6 +344,7 @@ articles:
     type: mixed
     control: Threat analytics στο Microsoft Defender XDR για το αν μια ενεργή απειλή αφορά το περιβάλλον σας και ποια assets εκθέτει.
     evidence: 'Threat analytics: αναφορά με τα εκτεθειμένα assets. Αντίγραφο της ενημέρωσης προς τους αποδέκτες.'
+    verified: 2026-10-14
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο) για το Threat analytics
     comment: Η ενημέρωση των πελατών είναι οργανωτική διαδικασία.
     kya:
@@ -342,6 +359,7 @@ articles:
     type: mixed
     control: Το incident στο Defender XDR δίνει τον χρόνο εντοπισμού, από τον οποίο μετρά το 24ωρο, και το attack story για την πρώτη εκτίμηση κακόβουλης ενέργειας.
     evidence: 'Defender XDR: χρονικές σημάνσεις του incident. Αντίγραφο της έγκαιρης προειδοποίησης με ώρα υποβολής.'
+    verified: 2026-10-14
     comment: Η υποβολή γίνεται από την οντότητα προς την CSIRT ή την αρμόδια αρχή. Κανένα προϊόν Microsoft δεν την κάνει για εσάς.
     kya:
     - 24
@@ -355,6 +373,7 @@ articles:
     type: mixed
     control: 'Attack story, επηρεαζόμενα assets και evidence του incident στο Defender XDR. Advanced hunting για την εξαγωγή των ενδείξεων της παραβίασης (indicators of compromise: hashes, IPs, domains, λογαριασμοί).'
     evidence: Εξαγωγή του incident και των αποτελεσμάτων advanced hunting. Αντίγραφο της κοινοποίησης με ώρα υποβολής.
+    verified: 2026-10-14
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο) για το advanced hunting
     comment: Η υποβολή γίνεται από την οντότητα προς την CSIRT ή την αρμόδια αρχή. Κανένα προϊόν Microsoft δεν την κάνει για εσάς.
     kya:
@@ -374,6 +393,7 @@ articles:
     type: mixed
     control: Το ιστορικό ενεργειών του incident (comments, Action center) στο Defender XDR ως πηγή για την επικαιροποίηση.
     evidence: 'Defender XDR: ιστορικό ενεργειών του incident. Αντίγραφο της ενδιάμεσης έκθεσης.'
+    verified: 2026-10-14
     kya:
     - 24
     posts:
@@ -386,7 +406,8 @@ articles:
     type: mixed
     control: Πλήρες χρονολόγιο του incident και των ενεργειών αποκατάστασης στο Defender XDR. Microsoft Purview Audit για τις ενέργειες χρηστών και διαχειριστών. Microsoft Sentinel όταν χρειάζονται δεδομένα παλαιότερα από τη διατήρηση του Defender XDR.
     evidence: Εξαγωγές incident, advanced hunting και audit log. Έκθεση βασικής αιτίας. Αντίγραφο της τελικής έκθεσης.
-    license: Microsoft Purview Audit (Premium) για διατήρηση μεγαλύτερη από την προεπιλεγμένη, Microsoft Sentinel
+    verified: 2026-10-14
+    license: 'Microsoft Purview Audit (Premium), με Microsoft 365 E5 ή Microsoft Purview Suite: 1 έτος για Entra ID, Exchange, SharePoint και OneDrive (180 ημέρες χωρίς E5), έως 10 έτη με το 10-Year Audit Log Retention add-on. Microsoft Sentinel για μακρύτερη διατήρηση ή για logs εκτός Microsoft 365.'
     comment: Ελέγξτε τη διατήρηση των logs πριν τη χρειαστείτε. Η τελική έκθεση γράφεται έως και έναν μήνα μετά, και η έρευνα συχνά πηγαίνει πιο πίσω.
     kya:
     - 24
@@ -401,6 +422,7 @@ articles:
     type: mixed
     control: Η κατάσταση του incident στο Defender XDR (Active, In progress, Resolved) και ο χρόνος επίλυσης δείχνουν πότε ολοκληρώθηκε ο χειρισμός, από τον οποίο μετρά ο μήνας.
     evidence: 'Defender XDR: ιστορικό αλλαγών κατάστασης του incident. Αντίγραφα της έκθεσης προόδου και της τελικής έκθεσης.'
+    verified: 2026-10-14
     kya:
     - 24
     posts:
@@ -414,6 +436,7 @@ articles:
     type: org
     control: Service Trust Portal για τα πιστοποιητικά και τις εκθέσεις ελέγχου των υπηρεσιών της Microsoft. Το Microsoft Purview Compliance Manager δείχνει ποια controls καλύπτει η Microsoft ως πάροχος (Microsoft managed controls).
     evidence: 'Πιστοποιητικά και εκθέσεις ελέγχου της Microsoft από το Service Trust Portal. Compliance Manager: κατάλογος Microsoft managed controls.'
+    verified: 2026-10-14
     comment: Το άρθρο αφορά προϊόντα και υπηρεσίες πιστοποιημένα με ευρωπαϊκά συστήματα του κανονισμού (ΕΕ) 2019/881. Το Compliance Manager είναι αυτοαξιολόγηση και δεν αποτελεί πιστοποίηση. Η υποχρέωση ισχύει μόνο αν την επιβάλει το κράτος μέλος ή κατ' εξουσιοδότηση πράξη της Επιτροπής.
     posts:
     - *id006
@@ -428,6 +451,7 @@ articles:
     type: mixed
     control: Microsoft Purview Compliance Manager με έτοιμα assessments για διεθνή πρότυπα (π.χ. ISO/IEC 27001, NIST CSF), που αντιστοιχίζουν τις ρυθμίσεις του tenant στα controls κάθε προτύπου. Microsoft Secure Score ως μετρήσιμη εικόνα της εφαρμογής των τεχνικών ρυθμίσεων που αντιστοιχούν σε αυτά τα controls.
     evidence: 'Compliance Manager: βαθμολογία ανά assessment και κατάσταση improvement actions ανά control του προτύπου. Secure Score: βαθμολογία και History.'
+    verified: 2026-10-14
     license: Microsoft Purview Compliance Manager premium assessments (ανάλογα με το πρότυπο και την άδεια)
     comment: Το Secure Score δεν είναι πρότυπο και η βαθμολογία του δεν αποδεικνύει συμμόρφωση με κανένα πρότυπο. Το Compliance Manager δείχνει πρόοδο σε αυτοαξιολόγηση. Η πιστοποίηση κατά ISO/IEC 27001 δίνεται μόνο από διαπιστευμένο φορέα.
     kya:

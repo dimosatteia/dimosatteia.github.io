@@ -26,6 +26,10 @@
        Εμφανίζεται μόνο αν η σελίδα /kql/ είναι δημοσιευμένη. */ -}}
 {{- $kqlKey := index (dict "nis2" "kya" "nis2directive" "nis2" "iso27001" "iso" "gdpr" "gdpr") (.Params.dataKey | default "nis2") -}}
 {{- $kqlPage := site.GetPage "/kql" -}}
+{{- /* Last verified: η παλαιότερη ημερομηνία ελέγχου (πεδίο verified) στις απαιτήσεις με αντιστοίχιση Microsoft. Πάνω από 90 ημέρες γίνεται πορτοκαλί. */ -}}
+{{- $staleDays := 90 -}}
+{{- $oldestV := "" -}}{{- $nVer := 0 -}}
+{{- range $d.articles }}{{ range .requirements }}{{ with .verified }}{{ $nVer = add $nVer 1 }}{{ $v := time . }}{{ if or (eq $oldestV "") ($v.Before $oldestV) }}{{ $oldestV = $v }}{{ end }}{{ end }}{{ end }}{{ end -}}
 {{- $labels := dict -}}
 {{- range $d.types }}{{ $labels = merge $labels (dict .key .label) }}{{ end -}}
 
@@ -62,7 +66,7 @@
         <div class="glass-card rounded-xl p-5 {{ if .Params.checklist }}lg:col-span-2{{ else }}lg:col-span-3{{ end }} border-l-4 border-l-amber-500">
             <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Πώς να το διαβάσετε</h2>
             <p class="text-sm text-slate-400 leading-relaxed">{{ with $d.source.disclaimer }}{{ . | markdownify }}{{ else }}Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες παραφράσεις για το ακριβές κείμενο ισχύει το <a href="{{ $d.source.url }}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">{{ $d.source.fek }}</a>.{{ end }}</p>
-            <p class="text-xs text-slate-500 mt-3 font-mono">Τελευταία ενημέρωση: {{ (time $d.updated).Format "02/01/2006" }}</p>
+            <p class="text-xs text-slate-500 mt-3 font-mono">Τελευταία ενημέρωση: {{ (time $d.updated).Format "02/01/2006" }}{{ with $oldestV }} · {{ if gt (div (now.Sub .).Hours 24) $staleDays }}<span class="text-amber-400">⚠ Last verified {{ .Format "02/01/2006" }}, χρειάζεται νέο έλεγχο</span>{{ else }}<span class="text-emerald-400">✓ Last verified {{ .Format "02/01/2006" }}</span>{{ end }}: ρυθμίσεις και άδειες σε {{ $nVer }} {{ $items }} ελεγμένες στο Microsoft Learn{{ end }}</p>
         </div>
     </section>
 
@@ -125,6 +129,10 @@
                         {{ with .comment }}
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-amber-400 md:pt-0.5">Προσοχή</dt>
                         <dd class="text-slate-300 leading-relaxed">{{ . }}</dd>
+                        {{ end }}
+                        {{ with .verified }}{{ $v := time . }}{{ $stale := gt (div (now.Sub $v).Hours 24) $staleDays }}
+                        <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Last verified</dt>
+                        <dd class="font-mono text-xs md:pt-0.5 {{ if $stale }}text-amber-400{{ else }}text-emerald-400{{ end }}">{{ if $stale }}⚠{{ else }}✓{{ end }} <time datetime="{{ $v.Format "2006-01-02" }}">{{ $v.Format "02/01/2006" }}</time>: ρύθμιση και άδεια ελεγμένες στο Microsoft Learn{{ if $stale }}, χρειάζεται νέο έλεγχο{{ end }}</dd>
                         {{ end }}
                         {{ with .kya }}
                         <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">ΚΥΑ 1689/2025</dt>
