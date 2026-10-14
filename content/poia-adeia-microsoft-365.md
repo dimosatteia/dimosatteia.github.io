@@ -1,7 +1,7 @@
 ---
 title: "Ποια άδεια Microsoft 365 χρειάζομαι για την ΚΥΑ 1689/2025;"
 date: 2026-10-14T16:00:00+03:00
-lastmod: 2026-10-14T16:00:00+03:00
+lastmod: 2026-10-14T22:35:00+03:00
 draft: false
 url: "/poia-adeia-microsoft-365/"
 # Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
@@ -12,7 +12,7 @@ menu:
     name: "🧩 Ποια άδεια Microsoft 365 χρειάζομαι"
     weight: 4
 author: "Dimosthenis Atteia"
-description: "Δωρεάν εργαλείο χωρίς τιμές: διάλεξε τα μέτρα της ΚΥΑ 1689/2025 και δες ποιο πακέτο Microsoft 365 (Business Basic, Standard, Premium, E3, E5, E7) τα καλύπτει και ποιες πρόσθετες άδειες χρειάζονται."
+description: "Δωρεάν εργαλείο χωρίς τιμές: δες ποιο πακέτο Microsoft 365, από Business Basic έως E7, καλύπτει τα μέτρα της ΚΥΑ 1689/2025 και τι χρειάζεται επιπλέον."
 keywords:
   - ποια άδεια Microsoft 365
   - Microsoft 365 Business Premium ή E5
