@@ -24,6 +24,10 @@ showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+cover:
+  image: "/images/M465.webp"
+  alt: "Microsoft 365: ποια άδεια χρειάζομαι για την ΚΥΑ 1689/2025"
+  hiddenInSingle: true
 # Εμφανίζεται πρώτο στα «Πρόσφατα Άρθρα» της αρχικής. Σβήσε τη γραμμή όταν δεν θες πια να είναι πρώτο.
 homeFeed: true
 # Πλαίσιο «Last verified»: κάθε κανόνας αδειοδότησης με την πηγή του στο Microsoft Learn
