@@ -14,12 +14,16 @@
                αλλιώς δείχνει μία γραμμή σύνοψης με link στον πίνακα στο τέλος (#last-verified).
   mode "full": ο πλήρης πίνακας (μπαίνει κάτω από την επικεφαλίδα «Πηγές και επαλήθευση»).
   Επαλήθευση παλαιότερη από 90 ημέρες εμφανίζεται με κίτρινη ένδειξη.
+
+  verificationType: "legal" στο front matter: παραλλαγή για νομικές πηγές (νόμοι, ΚΥΑ, Οδηγίες).
+  Οι στήλες γίνονται Διάταξη, Κατάσταση (π.χ. «Ισχύει»), Αναφορά. Το πεδίο license κρατά την αναφορά (π.χ. «Άρθρο 3»).
 */ -}}
 {{- $p := .page -}}
 {{- $mode := .mode | default "full" -}}
 {{- with $p.Params.verification }}
 {{- $items := . -}}
 {{- $staleDays := 90 -}}
+{{- $legal := eq $p.Params.verificationType "legal" -}}
 {{- $months := slice "Ιαν" "Φεβ" "Μαρ" "Απρ" "Μαΐ" "Ιουν" "Ιουλ" "Αυγ" "Σεπ" "Οκτ" "Νοε" "Δεκ" -}}
 {{- /* Η παλαιότερη ημερομηνία επαλήθευσης */ -}}
 {{- $oldest := time.AsTime (index $items 0).verified -}}
@@ -33,21 +37,21 @@
     <span class="{{ if $oldStale }}text-amber-400{{ else }}text-emerald-400{{ end }}">{{ if $oldStale }}⚠ Χρειάζεται νέο έλεγχο{{ else }}✓ Last verified{{ end }}</span>
     <time datetime="{{ $oldest.Format "2006-01-02" }}" class="text-slate-200">{{ $oldLabel }}</time>
     <span class="text-slate-500">·</span>
-    <span class="text-slate-300">{{ len $items }} χαρακτηριστικά</span>
+    <span class="text-slate-300">{{ len $items }} {{ if $legal }}διατάξεις{{ else }}χαρακτηριστικά{{ end }}</span>
     <span class="text-slate-500">·</span>
-    <span class="text-blue-400">πηγές και φάση κυκλοφορίας ↓</span>
+    <span class="text-blue-400">{{ if $legal }}επίσημες πηγές ↓{{ else }}πηγές και φάση κυκλοφορίας ↓{{ end }}</span>
 </a>
 {{- else if or (eq $mode "full") (and (eq $mode "top") $showFull (not ($p.HasShortcode "verification"))) }}
 <aside class="not-prose {{ if eq $mode "top" }}mb-8{{ else }}my-6{{ end }} rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5" aria-label="Επαλήθευση χαρακτηριστικών">
-    <p class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 mb-1">Επαλήθευση χαρακτηριστικών · Last verified</p>
-    <p class="text-sm text-slate-300 leading-relaxed mb-4">Κάθε χαρακτηριστικό ελέγχθηκε στην πρωτογενή πηγή της Microsoft. Η φάση κυκλοφορίας και η άδεια μπορεί να αλλάξουν, γι' αυτό δες την ημερομηνία ελέγχου και άνοιξε την πηγή.</p>
+    <p class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 mb-1">{{ if $legal }}Επαλήθευση νομικών πηγών{{ else }}Επαλήθευση χαρακτηριστικών{{ end }} · Last verified</p>
+    <p class="text-sm text-slate-300 leading-relaxed mb-4">{{ if $legal }}Κάθε διάταξη ελέγχθηκε στο κείμενο που ισχύει. Οι νόμοι και οι αποφάσεις τροποποιούνται, γι' αυτό δες την ημερομηνία ελέγχου και άνοιξε την πηγή.{{ else }}Κάθε χαρακτηριστικό ελέγχθηκε στην πρωτογενή πηγή της Microsoft. Η φάση κυκλοφορίας και η άδεια μπορεί να αλλάξουν, γι' αυτό δες την ημερομηνία ελέγχου και άνοιξε την πηγή.{{ end }}</p>
     <div class="overflow-x-auto">
         <table class="w-full text-left text-xs">
             <thead>
                 <tr class="text-[10px] font-mono uppercase tracking-wider text-slate-500 border-b border-slate-700">
-                    <th class="py-2 pr-3 font-medium">Χαρακτηριστικό</th>
-                    <th class="py-2 pr-3 font-medium">Φάση</th>
-                    <th class="py-2 pr-3 font-medium hidden sm:table-cell">Άδεια</th>
+                    <th class="py-2 pr-3 font-medium">{{ if $legal }}Διάταξη{{ else }}Χαρακτηριστικό{{ end }}</th>
+                    <th class="py-2 pr-3 font-medium">{{ if $legal }}Κατάσταση{{ else }}Φάση{{ end }}</th>
+                    <th class="py-2 pr-3 font-medium hidden sm:table-cell">{{ if $legal }}Αναφορά{{ else }}Άδεια{{ end }}</th>
                     <th class="py-2 pr-3 font-medium">Last verified</th>
                     <th class="py-2 font-medium">Πηγή</th>
                 </tr>
@@ -74,7 +78,7 @@
                         {{- if $stale }}<span class="block text-[10px] text-amber-400">χρειάζεται νέο έλεγχο</span>{{ end }}
                     </td>
                     <td class="py-2">
-                        <a href="{{ .source }}" target="_blank" rel="noopener" class="whitespace-nowrap font-semibold text-blue-400 hover:text-blue-300 underline">{{ if in .source "roadmap" }}Microsoft 365 Roadmap{{ else if in .source "learn.microsoft.com" }}Microsoft Learn{{ else if in .source "mc.merill.net" }}Message Center{{ else }}microsoft.com{{ end }} ↗</a>
+                        <a href="{{ .source }}" target="_blank" rel="noopener" class="whitespace-nowrap font-semibold text-blue-400 hover:text-blue-300 underline">{{ if in .source "roadmap" }}Microsoft 365 Roadmap{{ else if in .source "learn.microsoft.com" }}Microsoft Learn{{ else if in .source "mc.merill.net" }}Message Center{{ else if in .source "eur-lex.europa.eu" }}EUR-Lex{{ else if in .source "cyber.gov.gr" }}cyber.gov.gr{{ else if in .source "et.gr" }}ΦΕΚ{{ else if in .source "taxheaven.gr" }}Taxheaven{{ else if in .source "microsoft.com" }}microsoft.com{{ else }}Πηγή{{ end }} ↗</a>
                     </td>
                 </tr>
                 {{- end }}

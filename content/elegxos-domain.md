@@ -24,6 +24,38 @@ showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+# Πλαίσιο «Last verified»: κάθε οδηγία του Microsoft 365 με την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "SPF για Microsoft 365: v=spf1 include:spf.protection.outlook.com -all"
+    status: "Generally Available"
+    license: "Exchange Online"
+    source: "https://learn.microsoft.com/en-us/microsoft-365/enterprise/external-domain-name-system-records"
+    verified: 2026-10-14
+  - feature: "DKIM: CNAME selector1 και selector2, Rotate-DkimSigningConfig -KeySize 2048"
+    status: "Generally Available"
+    license: "Exchange Online"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dkim-configure"
+    verified: 2026-10-14
+  - feature: "DMARC: p=none, p=quarantine, p=reject και Honor DMARC record policy"
+    status: "Generally Available"
+    license: "Exchange Online"
+    source: "https://learn.microsoft.com/en-us/defender-office-365/email-authentication-dmarc-configure"
+    verified: 2026-10-14
+  - feature: "Inbound MTA-STS στο Exchange Online"
+    status: "Generally Available"
+    license: "Exchange Online"
+    source: "https://learn.microsoft.com/en-us/exchange/security-and-compliance/enhance-mail-flow-using-strict-transport-security"
+    verified: 2026-10-14
+  - feature: "Inbound SMTP DANE with DNSSEC (MX στο mx.microsoft)"
+    status: "Generally Available"
+    license: "Exchange Online"
+    source: "https://learn.microsoft.com/en-us/exchange/security-and-compliance/how-dane-secures-email"
+    verified: 2026-10-14
+  - feature: "Εγγραφές DNS: autodiscover, enterpriseregistration, enterpriseenrollment, msoid μόνο για 21Vianet"
+    status: "Generally Available"
+    license: "Microsoft 365"
+    source: "https://learn.microsoft.com/en-us/microsoft-365/enterprise/external-domain-name-system-records"
+    verified: 2026-10-14
 ---
 
 Γράψε το domain από το οποίο στέλνεις email και δες αν μπορεί κάποιος να στείλει μηνύματα στο όνομά σου. Ο έλεγχος διαβάζει τις δημόσιες εγγραφές DNS, και για κάθε εύρημα σου δείχνει τη ρύθμιση του Microsoft 365 που το διορθώνει. Δεν χρειάζεται εγγραφή.
@@ -63,3 +95,7 @@ hideMeta: true
 ## Απόρρητο
 
 Το thecybersec.gr δεν έχει server που να δέχεται το domain που πληκτρολογείς. Τα ερωτήματα DNS φεύγουν από τον browser σου απευθείας προς τον δημόσιο resolver της Cloudflare (`cloudflare-dns.com`) και, αν αυτός δεν απαντήσει, της Google (`dns.google`). Οι δύο πάροχοι βλέπουν τη διεύθυνση IP σου και το domain που ρωτάς, όπως κάθε DNS resolver. Έλεγξε μόνο domains που σου ανήκουν ή που έχεις άδεια να αξιολογήσεις. Περισσότερα στην [πολιτική απορρήτου](/privacy/).
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

@@ -17,6 +17,10 @@
 {{- $products := slice -}}
 {{- range $queries }}{{ if not (in $products .product) }}{{ $products = $products | append .product }}{{ end }}{{ end -}}
 {{- $total := len $queries -}}
+{{- /* Last verified: η παλαιότερη ημερομηνία ελέγχου του schema στα δημοσιευμένα queries */ -}}
+{{- $staleDays := 90 -}}
+{{- $oldestV := "" -}}
+{{- range $queries }}{{ with .verified }}{{ $v := time . }}{{ if or (eq $oldestV "") ($v.Before $oldestV) }}{{ $oldestV = $v }}{{ end }}{{ end }}{{ end -}}
 
 <main class="flex-grow max-w-[1100px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
 
@@ -29,7 +33,7 @@
     {{ with .Content }}
     <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300">
         {{ . }}
-        <p class="text-xs text-slate-500 font-mono not-prose mt-4">{{ $total }} {{ if eq $total 1 }}query{{ else }}queries{{ end }} · Τελευταία ενημέρωση: {{ (time $d.updated).Format "02/01/2006" }}</p>
+        <p class="text-xs text-slate-500 font-mono not-prose mt-4">{{ $total }} {{ if eq $total 1 }}query{{ else }}queries{{ end }} · Τελευταία ενημέρωση: {{ (time $d.updated).Format "02/01/2006" }}{{ with $oldestV }} · {{ if gt (div (now.Sub .).Hours 24) $staleDays }}<span class="text-amber-400">⚠ Last verified {{ .Format "02/01/2006" }}, χρειάζεται νέο έλεγχο</span>{{ else }}<span class="text-emerald-400">✓ Last verified {{ .Format "02/01/2006" }}</span>{{ end }}: πίνακες και στήλες ελεγμένα στο schema του Microsoft Learn{{ end }}</p>
     </div>
     {{ end }}
 
@@ -95,7 +99,15 @@
                             <dd class="text-emerald-400 font-mono text-xs md:pt-0.5">✓ Δοκιμασμένο σε πραγματικό tenant, {{ (time .tested).Format "02/01/2006" }}</dd>
                             {{ end }}
                             <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Πίνακας</dt>
-                            <dd class="text-slate-300 font-mono text-xs md:pt-0.5">{{ .table }}</dd>
+                            <dd class="text-slate-300 font-mono text-xs md:pt-0.5 flex flex-wrap gap-x-3 gap-y-1">
+                                {{- range split .table "," }}{{ $tb := trim . " " }}
+                                <a href="https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-{{ lower $tb }}-table" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300 underline" title="Schema του πίνακα στο Microsoft Learn">{{ $tb }} ↗</a>
+                                {{- end }}
+                            </dd>
+                            {{ with .verified }}{{ $v := time . }}{{ $stale := gt (div (now.Sub $v).Hours 24) $staleDays }}
+                            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Last verified</dt>
+                            <dd class="font-mono text-xs md:pt-0.5 {{ if $stale }}text-amber-400{{ else }}text-emerald-400{{ end }}">{{ if $stale }}⚠{{ else }}✓{{ end }} <time datetime="{{ $v.Format "2006-01-02" }}">{{ $v.Format "02/01/2006" }}</time>: πίνακες και στήλες ελεγμένα στο schema του Microsoft Learn{{ if $stale }}, χρειάζεται νέο έλεγχο{{ end }}</dd>
+                            {{ end }}
                             {{ range $fw }}{{ $f := . }}{{ with index $q.map .key }}
                             <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-1">{{ $f.label }}</dt>
                             <dd class="flex flex-wrap gap-2">

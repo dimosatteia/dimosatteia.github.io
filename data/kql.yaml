@@ -9,6 +9,8 @@
 #   table:     πίνακας του Advanced Hunting
 #   license:   απαιτούμενη άδεια
 #   tested:    ημερομηνία που το δοκίμασε ο Δημοσθένης (YYYY-MM-DD)
+#   verified:  ημερομηνία που ελέγχθηκαν πίνακες και στήλες στο schema του Microsoft Learn (Last verified).
+#              Μετά από 90 ημέρες εμφανίζεται ως «χρειάζεται νέο έλεγχο».
 #   evidence:  εικόνα-πειστήριο. Χωρίς αυτήν δεν εμφανίζεται η σήμανση «Δοκιμασμένο».
 #   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso), data/gdpr.yaml (gdpr)
 #   posts:     σχετικά άρθρα του blog
@@ -39,6 +41,7 @@ queries:
     table: EntraIdSignInEvents
     license: Microsoft Entra ID P2, και πρόσβαση στο Advanced Hunting του Defender XDR μέσω άδειας Defender (π.χ. Defender for Endpoint P2 ή Microsoft 365 E5)
     tested: 2026-10-12
+    verified: 2026-10-14
     evidence: /images/kql/legacy-auth.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. 0 επιτυχημένες και 41 αποτυχημένες συνδέσεις μέσω «Other clients» από πέντε χώρες, δηλαδή password spray που μπλοκαρίστηκε. Τα UPN έχουν αφαιρεθεί.
     map:
@@ -79,6 +82,7 @@ queries:
     table: CloudAppEvents
     license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
     tested: 2026-10-12
+    verified: 2026-10-14
     evidence: /images/kql/privileged-roles.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Μία ανάθεση ρόλου (Global Secure Access Administrator) από Service Principal, με επιτυχία. Τα UPN έχουν αφαιρεθεί.
     map:
@@ -120,6 +124,7 @@ queries:
     table: EmailPostDeliveryEvents, EmailEvents
     license: Microsoft Defender for Office 365 Plan 2 για τους πίνακες email στο Advanced Hunting (Microsoft 365 E5 ή Microsoft Defender Suite). Το ίδιο το ZAP λειτουργεί και χωρίς αυτό
     tested: 2026-10-12
+    verified: 2026-10-14
     evidence: /images/kql/phish-zap.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δύο μηνύματα phishing παραδόθηκαν στο Inbox και το ZAP τα μετέφερε σε καραντίνα περίπου 8 ώρες αργότερα (497 και 490 λεπτά), με επιτυχία. Οι διευθύνσεις έχουν αφαιρεθεί.
     map:
@@ -162,6 +167,7 @@ queries:
     table: DeviceEvents, DeviceInfo
     license: Microsoft Defender for Endpoint Plan 2 για τον πίνακα DeviceEvents στο Advanced Hunting (Microsoft 365 E5 ή Microsoft Defender Suite)
     tested: 2026-10-12
+    verified: 2026-10-14
     evidence: /images/kql/usb-storage.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Το ίδιο USB stick (Generic Flash Disk) συνδέθηκε 11 φορές σε μία συσκευή μέσα σε δύο ημέρες. Οι χρήστες, οι συσκευές και ο σειριακός αριθμός έχουν αφαιρεθεί.
     map:
@@ -207,6 +213,7 @@ queries:
     table: EntraIdSignInEvents
     license: Microsoft Entra ID P2, και πρόσβαση στο Advanced Hunting του Defender XDR μέσω άδειας Defender (π.χ. Defender for Endpoint P2 ή Microsoft 365 E5)
     tested: 2026-10-12
+    verified: 2026-10-14
     evidence: /images/kql/spray-success.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Ένας λογαριασμός είχε 6 αποτυχίες κωδικού και μέσα σε 33 λεπτά επιτυχημένη interactive σύνδεση στο Outlook Web από browser, από την ίδια IP στην Ελλάδα (SameIP = 1). Η σύνδεση απαίτησε και ολοκλήρωσε MFA, άρα δεν έγινε είσοδος μόνο με τον κωδικό, και η εικόνα ταιριάζει με χρήστη που πληκτρολόγησε λάθος τον κωδικό του. Τα UPN και οι IP έχουν αφαιρεθεί.
     map:
@@ -255,6 +262,7 @@ queries:
     table: EntraIdSignInEvents
     license: Microsoft Entra ID P2, και πρόσβαση στο Advanced Hunting του Defender XDR μέσω άδειας Defender (π.χ. Defender for Endpoint P2 ή Microsoft 365 E5)
     tested: 2026-10-12
+    verified: 2026-10-14
     evidence: /images/kql/foreign-signins.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Το query στην εικόνα είναι το κανονικό, όπως το δίνουμε εδώ. Για να τρέξει η δοκιμή αφαιρέθηκε το "GR" από τη λίστα AllowedCountries, επειδή σε αυτό το tenant τα sign-ins εκτός Ελλάδας μπλοκάρονται ήδη με Conditional Access και το αποτέλεσμα θα ήταν κενό. Γι' αυτό τα αποτελέσματα δείχνουν συνδέσεις από την Ελλάδα, όλες με multiFactorAuthentication. Στο δικό σου tenant κράτα το "GR" στη λίστα. Τα UPN και οι IP έχουν αφαιρεθεί.
     map:
@@ -367,6 +375,7 @@ queries:
     table: CloudAppEvents
     license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
     tested: 2026-10-13
+    verified: 2026-10-14
     evidence: /images/kql/mass-download.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Με το όριο των 100 downloads την ώρα το αποτέλεσμα ήταν κενό, οπότε για τη δοκιμή το Threshold κατέβηκε στο 30. Βρέθηκαν τρεις περιπτώσεις με 34 έως 47 downloads σε μία ώρα, όλες από την Ελλάδα, από το Microsoft Office και από προσωπικά OneDrive, δηλαδή κανονική εργασία και όχι διαρροή. Στη σελίδα το query μένει με όριο 100. Οι χρήστες, οι IP, τα sites και τα ονόματα αρχείων έχουν αφαιρεθεί.
     map:
@@ -413,6 +422,7 @@ queries:
     table: DeviceEvents
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security)
     tested: 2026-10-13
+    verified: 2026-10-14
     evidence: /images/kql/local-admin-add.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δύο προσθήκες στο τοπικό group Administrators, στις 9 και στις 12 Οκτωβρίου, και στις δύο περιπτώσεις με λογαριασμό που εμφανίζεται ως SID, δηλαδή λογαριασμό ή group του domain. Κάθε τέτοια προσθήκη ελέγχεται απέναντι σε εγκεκριμένο αίτημα. Οι συσκευές, τα SID και οι λογαριασμοί έχουν αφαιρεθεί.
     map:
@@ -466,9 +476,10 @@ queries:
     why: Μια συσκευή χωρίς real-time protection είναι ουσιαστικά απροστάτευτη, ακόμα κι αν φαίνεται onboarded. Το query δεν βασίζεται σε κωδικούς ρυθμίσεων. Παίρνει τα ονόματα των ελέγχων από τον πίνακα DeviceTvmSecureConfigurationAssessmentKB, οπότε πιάνει κάθε έλεγχο του antivirus που αξιολογεί το Defender Vulnerability Management. Η στήλη MaxImpact βάζει πρώτες τις συσκευές με τον σοβαρότερο έλεγχο. Το tamper protection εμποδίζει τον επιτιθέμενο να κλείσει την προστασία. Το αποτέλεσμα είναι λίστα εργασιών για το Intune και τεκμήριο για τον έλεγχο.
     pillar: endpoint
     product: Defender for Endpoint
-    table: DeviceTvmSecureConfigurationAssessment
+    table: DeviceTvmSecureConfigurationAssessment, DeviceTvmSecureConfigurationAssessmentKB
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security)
     tested: 2026-10-13
+    verified: 2026-10-14
     evidence: /images/kql/av-disabled.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Τρεις συσκευές με ελέγχους του antivirus που αποτυγχάνουν. Σε έναν σταθμό εργασίας Windows είναι κλειστό το real-time protection, με impact 10, που είναι το σοβαρό εύρημα και θέλει άμεση διόρθωση. Σε δύο Windows Server αποτυγχάνει μόνο το email scanning, με impact 9. Τα ονόματα των συσκευών έχουν αφαιρεθεί.
     map:
@@ -508,9 +519,10 @@ queries:
     why: Από εκατοντάδες CVEs, αυτά με δημόσια διαθέσιμο exploit είναι αυτά που ένας επιτιθέμενος μπορεί να χρησιμοποιήσει άμεσα. Κάθε γραμμή είναι ένα λογισμικό σε συγκεκριμένη έκδοση, άρα μία ενέργεια patching, και η στήλη DaysSincePublished μετρά τις ημέρες από τη δημοσίευση του παλαιότερου CVE. Οι πίνακες δείχνουν την τρέχουσα κατάσταση, γι' αυτό το query δεν έχει φίλτρο χρόνου. Η λίστα δείχνει από πού ξεκινά το patching, και όσο μικραίνει με τον χρόνο τεκμηριώνει ότι οι ενημερώσεις ασφαλείας εφαρμόζονται σε εύλογο χρόνο.
     pillar: endpoint
     product: Defender Vulnerability Management
-    table: DeviceTvmSoftwareVulnerabilities
+    table: DeviceTvmSoftwareVulnerabilities, DeviceTvmSoftwareVulnerabilitiesKB
     license: Microsoft Defender for Endpoint Plan 2 (περιλαμβάνεται στα Microsoft 365 E5 και E5 Security) ή Defender Vulnerability Management Standalone
     tested: 2026-10-12
+    verified: 2026-10-14
     evidence: /images/kql/exploitable-cves.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δέκα συνδυασμοί λογισμικού και έκδοσης με Critical ευπάθεια και δημόσια διαθέσιμο exploit, ο καθένας σε μία συσκευή, με CVSS από 9.1 έως 9.8. Οι παλαιότερες είναι ευπάθειες του Apache HTTP Server που έχουν δημοσιευτεί πάνω από 1.800 ημέρες, ενώ βρέθηκαν και Windows 11, Edge και MikroTik RouterOS. Η στήλη RecommendedUpdate είναι συμπληρωμένη μόνο για τα Windows 11, οπότε για τα υπόλοιπα η ενημέρωση αναζητείται στον κατασκευαστή. Οι εκδόσεις και τα ονόματα των συσκευών έχουν αφαιρεθεί.
     map:

@@ -43,6 +43,18 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Global Secure Access MCP firewall"
+    status: "Public Preview"
+    license: "Microsoft Entra Internet Access"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-mcp-firewall"
+    verified: 2026-10-13
+  - feature: "MCP traffic logging στο Generative AI Insights"
+    status: "Public Preview"
+    license: "Global Secure Access"
+    source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-view-model-context-protocol-logging"
+    verified: 2026-10-13
 ---
 
 Έχω γράψει αρκετές φορές εδώ μέσα για το πόσο γρήγορα η ταυτότητα συσκευής και χρήστη γίνεται το πραγματικό σημείο ελέγχου στο Zero Trust, ενώ όλα τα υπόλοιπα, compliance status, endpoint protection, ακόμα και MFA, μπορούν να δείχνουν άψογα και ταυτόχρονα να κρύβουν ένα κενό. Αυτή τη φορά το θέμα δεν είναι μια συσκευή που μεταναστεύει, είναι κάτι πιο ύπουλο: AI agents που μιλάνε με εξωτερικά εργαλεία χωρίς κανένα από τα κλασικά μας controls να τους «βλέπει» πραγματικά.
@@ -123,3 +135,7 @@ ShowWordCount: true
 Αν τρέχεις ήδη Global Secure Access στον οργανισμό σου, η πιο χρήσιμη πρώτη κίνηση δεν είναι να φτιάξεις policy, είναι να ανοίξεις τα Generative AI Insights και να δεις τι MCP κίνηση υπάρχει ήδη εκεί, πιθανότατα περισσότερη από όση περιμένεις.
 
 Αν έχεις ήδη δοκιμάσει το MCP firewall ή αντιμετωπίζεις παρόμοιο ζήτημα ορατότητας πάνω σε AI agents στον οργανισμό σου, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}

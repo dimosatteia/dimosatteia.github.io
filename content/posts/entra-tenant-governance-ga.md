@@ -43,6 +43,28 @@ cover:
   relative: true
 ShowReadingTime: true
 ShowWordCount: true
+# Πλαίσιο «Last verified»: κάθε χαρακτηριστικό με τη φάση, την άδεια, την πηγή και την ημερομηνία ελέγχου
+verification:
+  - feature: "Tenant Configuration Management APIs (Microsoft Graph v1.0): monitors κάθε 6 ώρες, έως 800 resources την ημέρα"
+    status: "Generally Available"
+    license: "Entra P1/P2 (Basic), ID Governance (Premium)"
+    source: "https://learn.microsoft.com/en-us/graph/api/resources/unified-tenant-configuration-management-api-overview?view=graph-rest-1.0"
+    verified: 2026-10-13
+  - feature: "Related tenants (B2B, multitenant apps, billing)"
+    status: "Not stated"
+    license: "Microsoft Entra ID Governance"
+    source: "https://learn.microsoft.com/en-us/entra/id-governance/tenant-governance/related-tenants"
+    verified: 2026-10-13
+  - feature: "Governance relationships με cross-tenant GDAP"
+    status: "Not stated"
+    license: "Entra P1, P2 ή ID Governance"
+    source: "https://learn.microsoft.com/en-us/entra/id-governance/tenant-governance/how-to-set-up-governance-relationship"
+    verified: 2026-10-13
+  - feature: "Όρια Basic και Premium capacity ανά license"
+    status: "Not stated"
+    license: "Entra P1/P2, ID Governance"
+    source: "https://learn.microsoft.com/en-us/entra/id-governance/tenant-governance/licensing"
+    verified: 2026-10-13
 ---
 
 Πριν λίγες μέρες η Microsoft ανακοίνωσε ότι το **Microsoft Entra Tenant Governance** έγινε γενικά διαθέσιμο (GA). Το διάβασα δύο φορές, γιατί κάτι δεν μου κόλλαγε στην πρώτη ανάγνωση. Ο τίτλος λέει «now generally available», αλλά μέσα στο ίδιο το κείμενο της Microsoft υπάρχει μια πρόταση που περνάει σχεδόν απαρατήρητη: μόνο τα **Tenant Configuration Management APIs είναι GA**. Οι υπόλοιπες εμπειρίες, δηλαδή αυτό που θα δεις και θα κλικάρεις στο admin center, παραμένουν σε public preview.
@@ -104,6 +126,8 @@ ShowWordCount: true
 
 Εδώ πρέπει να είμαι προσεκτικός, γιατί βρήκα μια ασυνέπεια ανάμεσα σε δύο επίσημες πηγές της Microsoft, και νομίζω αξίζει να το ξέρεις πριν σχεδιάσεις κάτι πάνω σε συγκεκριμένα νούμερα. Η αποκλειστική σελίδα licensing του Tenant Governance δείχνει τα **ίδια όρια** και στα τρία tiers (P1, P2, ID Governance): έως 30 monitors και 800 configuration resources ανά tenant ανά ημέρα για monitoring, έως 20.000 resources ανά tenant ανά μήνα με έως 12 ενεργά snapshot jobs. Καμία διαφοροποίηση ανά tier σε αυτή τη σελίδα. Ταυτόχρονα, η ίδια η ανακοίνωση GA λέει ρητά ότι πελάτες με ID Governance, Entra Suite ή Microsoft 365 E7 έχουν πλέον **υψηλότερα** ημερήσια και μηνιαία όρια, χωρίς όμως να δίνει τους νέους αριθμούς. Η πιο πιθανή εξήγηση είναι ότι η τεκμηρίωση απλά δεν έχει προλάβει να ενημερωθεί μετά το GA rollout, όχι ότι δεν υπάρχει πράγματι αύξηση. Πρακτική συμβουλή: μην σχεδιάσεις capacity planning πάνω σε αυτά τα νούμερα από τεκμηρίωση, επαλήθευσέ τα μέσα από το ίδιο το admin center στο δικό σου tenant πριν δεσμευτείς σε πρόγραμμα monitoring μεγάλης κλίμακας.
 
+> **Ενημέρωση 13 Οκτωβρίου 2026:** Η [σελίδα licensing του Tenant Governance](https://learn.microsoft.com/en-us/entra/id-governance/tenant-governance/licensing) δίνει πλέον τα νούμερα. Με P1 ή P2 (Basic) έχεις έως 30 monitors και 800 configuration resources την ημέρα, και 20.000 resources τον μήνα για snapshots. Με Microsoft Entra ID Governance (Premium) έχεις την ίδια βάση, συν 10 resources την ημέρα και 35 resources τον μήνα για κάθε άδεια. Για παράδειγμα, 20 άδειες ανεβάζουν το ημερήσιο όριο από 800 σε 1.000 resources. Η ασυνέπεια που περιγράφω παραπάνω δεν ισχύει πια.
+
 ## Secure tenant creation: το λιγότερο «επείγον» αλλά χρήσιμο κομμάτι
 
 Ο τέταρτος πυλώνας αφορά τον έλεγχο του ποιος μπορεί να δημιουργήσει νέο add-on tenant μέσα στον οργανισμό, με αυτόματη εγκαθίδρυση governance relationship από τη στιγμή της δημιουργίας, και δυνατότητα ανάκτησης διαχειριστικής πρόσβασης αν χαθεί, π.χ. όταν φύγει ο τελευταίος admin ενός add-on tenant ή όταν αυτός παραβιαστεί. Στη νέα ανακοίνωση, αυτό επεκτάθηκε ώστε να καλύπτει και governed add-on tenants κάτω από legacy billing models, όπως Enterprise Agreement και Pay-As-You-Go, κάτι που πρακτικά ενδιαφέρει μεγαλύτερους οργανισμούς με ιστορικές συμβάσεις.
@@ -149,3 +173,7 @@ ShowWordCount: true
 Το Tenant Governance λύνει ένα πρόβλημα που το ένιωθα προσωπικά, δεν έχω δει ποτέ οργανισμό με πάνω από δύο tenants να μπορεί να απαντήσει με σιγουριά «ξέρω όλους τους tenants που σχετίζονται μαζί μου και ξέρω αν κάποιος έχει configuration drift». Αυτό το εργαλείο κινείται προς τη σωστή κατεύθυνση. Αλλά η ίδια η ανακοίνωση GA είναι ένα καλό παράδειγμα του γιατί, ως CISO ή GRC professional, δεν αρκεί να διαβάσεις τον τίτλο ενός announcement. Πρέπει να κατέβεις μια παράγραφο πιο κάτω και να δεις τι ακριβώς λέει το fine print, γιατί εκεί κρύβεται η διαφορά ανάμεσα σε αυτό που μπορείς να παρουσιάσεις σε έναν auditor ως πλήρως υποστηριζόμενο έλεγχο και σε αυτό που πρέπει ακόμα να παρακολουθείς με επιφύλαξη.
 
 Αν τρέχεις ήδη πολλαπλούς tenants, δύο πράγματα αξίζει να ελέγξεις άμεσα: ενεργοποίησε το tenant discovery, έστω σε read-only λειτουργία, για να δεις τι σου βγάζει σε related tenants, και δες τι licensing έχεις σήμερα σε σχέση με το τι πυλώνες χρειάζεσαι πραγματικά. Αν έχεις ήδη εμπειρία από ενεργοποίηση Tenant Governance στο δικό σου περιβάλλον, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
