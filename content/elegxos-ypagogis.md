@@ -34,7 +34,7 @@ verification:
   - feature: "ν. 5160/2024: εξαίρεση των Ανώτατων Εκπαιδευτικών Ιδρυμάτων, που προστέθηκε με το άρθρο 30 του ν. 5256/2025 (ΦΕΚ Α΄ 223/8.12.2025)"
     status: "Ισχύει"
     license: "Άρθρο 3, §8Α"
-    source: "https://www.taxheaven.gr/law/5160/2024/arthro/3"
+    source: "https://search.et.gr/el/simple-search/?selectYear=2025&selectIssue=1&documentNumber=223"
     verified: 2026-10-14
   - feature: "Βασικές και σημαντικές οντότητες, Παραρτήματα I και II, οντότητες ανεξαρτήτως μεγέθους"
     status: "Ισχύει"
