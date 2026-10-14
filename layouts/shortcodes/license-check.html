@@ -1,0 +1,234 @@
+{{- /* Ποια άδεια Microsoft 365 χρειάζομαι για την ΚΥΑ 1689/2025.
+       Οι κανόνες βρίσκονται στο data/license_rules.yaml. Δεν υπάρχουν τιμές.
+       Όλος ο υπολογισμός γίνεται στον browser. Δεν αποστέλλεται κανένα στοιχείο.
+       Χρήση: {{< license-check >}} */ -}}
+{{- $d := hugo.Data.license_rules -}}
+{{- $sel := "rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500" -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="licCheck">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Επιλογή άδειας · Microsoft 365 · ΚΥΑ 1689/2025</p>
+
+    <form id="lcForm" class="flex flex-col gap-5" novalidate data-clarity-mask="true">
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">1.</span> Τι είναι ο οργανισμός κατά τον ν. 5160/2024;</span>
+            <select id="lcEntity" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="essential">Βασική οντότητα</option>
+                <option value="important">Σημαντική οντότητα</option>
+                <option value="supplier">Δεν υπάγομαι, αλλά είμαι προμηθευτής οντότητας που υπάγεται</option>
+                <option value="unknown">Δεν ξέρω ακόμη</option>
+            </select>
+            <span id="lcEntityHint" class="hidden text-xs text-slate-400">Κάνε πρώτα τον <a href="{{ "elegxos-ypagogis/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">έλεγχο υπαγωγής</a> σε πέντε ερωτήσεις. Μπορείς να συνεχίσεις και χωρίς αυτόν.</span>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">2.</span> Πόσοι χρήστες χρειάζονται άδεια Microsoft 365;</span>
+            <select id="lcUsers" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="le300">Έως 300</option>
+                <option value="gt300">Περισσότεροι από 300</option>
+            </select>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">3.</span> Ποιο πακέτο έχεις σήμερα;</span>
+            <select id="lcCurrent" class="{{ $sel }}">
+                <option value="">Κανένα από αυτά, ή δεν ξέρω</option>
+                {{- range $d.plans }}
+                <option value="{{ .key }}">{{ .name }}</option>
+                {{- end }}
+            </select>
+        </label>
+
+        <fieldset class="flex flex-col gap-2 text-sm text-slate-300">
+            <legend class="mb-1"><span class="font-mono text-blue-400">4.</span> Ποια μέτρα της ΚΥΑ θέλεις να καλύψεις με το Microsoft 365; Τα πιο συνηθισμένα είναι ήδη επιλεγμένα.</legend>
+            <div class="flex flex-wrap gap-2 mb-1">
+                <button type="button" id="lcAll" class="rounded border border-slate-700 px-2 py-1 text-xs font-mono text-slate-300 hover:border-blue-500">Όλα</button>
+                <button type="button" id="lcNone" class="rounded border border-slate-700 px-2 py-1 text-xs font-mono text-slate-300 hover:border-blue-500">Κανένα</button>
+                <button type="button" id="lcDefault" class="rounded border border-slate-700 px-2 py-1 text-xs font-mono text-slate-300 hover:border-blue-500">Τα συνηθισμένα</button>
+            </div>
+            <div class="grid gap-2 sm:grid-cols-2">
+            {{- range $d.measures }}
+                <label class="flex items-start gap-2"><input type="checkbox" class="lcMeasure mt-1" value="{{ .key }}"{{ if .default }} checked{{ end }} data-default="{{ if .default }}1{{ end }}"><span>{{ .label }} <span class="font-mono text-xs text-slate-500">({{ delimit .kya ", " }})</span></span></label>
+            {{- end }}
+            </div>
+        </fieldset>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">5.</span> Έχεις servers (Windows ή Linux, on-premises ή σε cloud) που θέλεις να προστατέψεις;</span>
+            <select id="lcServers" class="{{ $sel }}">
+                <option value="none">Όχι</option>
+                <option value="le60">Ναι, έως 60</option>
+                <option value="gt60">Ναι, περισσότερους από 60</option>
+            </select>
+        </label>
+
+        <label class="flex items-start gap-2 text-sm text-slate-300">
+            <input type="checkbox" id="lcOt" class="mt-1">
+            <span><span class="font-mono text-blue-400">6.</span> Ο οργανισμός έχει συστήματα OT (βιομηχανικός έλεγχος, SCADA, PLC, αυτοματισμοί).</span>
+        </label>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Δες το αποτέλεσμα</button>
+            <button type="reset" id="lcReset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>
+            <span id="lcError" class="text-sm text-amber-400 hidden" role="alert"></span>
+        </div>
+    </form>
+
+    <div id="lcResult" class="hidden scroll-mt-24 mt-5 rounded-lg border border-blue-500/40 bg-slate-900/60 p-5" aria-live="polite" tabindex="-1" data-clarity-mask="true">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Αποτέλεσμα</p>
+        <p id="lcTitle" class="text-2xl font-bold text-slate-100"></p>
+        <div id="lcSummary" class="text-sm text-slate-300 leading-relaxed mt-2 flex flex-col gap-2"></div>
+
+        <div id="lcCurrentBox" class="hidden mt-5">
+            <p class="text-sm font-semibold text-slate-100 mb-2">Με το πακέτο που έχεις σήμερα</p>
+            <div id="lcCurrentBody" class="text-sm text-slate-300 leading-relaxed flex flex-col gap-2"></div>
+        </div>
+
+        <p class="text-sm font-semibold text-slate-100 mt-5 mb-2">Σύγκριση των έξι πακέτων για όσα διάλεξες</p>
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse" id="lcMatrix"></table>
+        </div>
+        <p class="text-xs text-slate-400 mt-2"><span class="text-emerald-400">✓</span> περιλαμβάνεται · <span class="text-amber-300">+</span> με πρόσθετη άδεια · <span class="text-rose-400">✗</span> χρειάζεται άλλο πακέτο · <span class="text-sky-300">?</span> επιβεβαίωσε με τον licensing partner. Πέρασε τον δείκτη πάνω από ένα σύμβολο για λεπτομέρειες.</p>
+
+        <p class="text-sm font-semibold text-slate-100 mt-5 mb-2" id="lcDetailTitle"></p>
+        <ul id="lcDetail" class="text-sm text-slate-300 leading-relaxed flex flex-col gap-3"></ul>
+
+        <p class="text-sm font-semibold text-slate-100 mt-5 mb-2">Πριν αγοράσεις</p>
+        <ul id="lcNotes" class="text-sm text-slate-300 leading-relaxed list-disc pl-5 flex flex-col gap-1"></ul>
+
+        <p class="text-sm font-semibold text-slate-100 mt-5 mb-2">Τι δεν καλύπτει καμία άδεια</p>
+        <p class="text-sm text-slate-300 leading-relaxed">Η άδεια σού δίνει το εργαλείο, όχι τη συμμόρφωση. Πρέπει να ρυθμίσεις τη λειτουργία, να κρατάς τεκμήρια και να την ελέγχεις. Οι πολιτικές, οι ρόλοι, η εκτίμηση κινδύνων, οι συμβάσεις με προμηθευτές, η φυσική ασφάλεια και οι δοκιμές επιχειρησιακής συνέχειας είναι οργανωτικά μέτρα και δεν τα καλύπτει κανένα πακέτο. Δες κάθε απαίτηση ξεχωριστά στον <a href="{{ "kya-1689-2025/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">οδηγό της ΚΥΑ 1689/2025 με Microsoft 365</a>.</p>
+
+        <p class="text-xs text-amber-300/90 leading-relaxed mt-4">Ενδεικτικό αποτέλεσμα. Δεν είναι προσφορά ούτε δεσμευτική πληροφορία αδειοδότησης. Οι κανόνες ελέγχθηκαν στο Microsoft Learn στις {{ with $d.updated }}{{ (time.AsTime .).Format "02/01/2006" }}{{ end }}. Πριν από κάθε αγορά επιβεβαίωσε με τον licensing partner σου και με τους Microsoft Product Terms.</p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Το εργαλείο δεν δείχνει τιμές και δεν πουλά τίποτα. Οι απαντήσεις σου δεν αποστέλλονται πουθενά: ο υπολογισμός γίνεται μέσα στον browser σου.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+    <script type="application/json" id="lcData">{{ $d | jsonify | safeJS }}</script>
+</div>
+<script>
+(function () {
+    var form = document.getElementById('lcForm');
+    if (!form) return;
+    function $(id) { return document.getElementById(id); }
+    var D = JSON.parse($('lcData').textContent);
+    var KYA = '{{ "kya-1689-2025/" | relURL }}';
+    var PLAN = {}; D.plans.forEach(function (p) { PLAN[p.key] = p; });
+    var M = {}; D.measures.forEach(function (m) { M[m.key] = m; });
+    var err = $('lcError'), box = $('lcResult');
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('.lcMeasure'));
+
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function codeLink(c) { return '<a href="' + KYA + '#' + encodeURIComponent(c.replace(/\./g, '-')) + '" class="font-mono text-blue-400 hover:text-blue-300 underline">' + esc(c) + '</a>'; }
+    function joinList(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' και ' + a[a.length - 1]; }
+    function cell(m, p) { return M[m].plans[p]; }
+    function sym(c) {
+        if (c.c) return '<span class="text-sky-300">?</span>';
+        return { y: '<span class="text-emerald-400">✓</span>', a: '<span class="text-amber-300">+</span>', n: '<span class="text-rose-400">✗</span>' }[c.s];
+    }
+    function word(c) {
+        if (c.c && c.s === 'n') return 'επιβεβαίωσε με τον licensing partner';
+        return { y: 'περιλαμβάνεται', a: 'με πρόσθετη άδεια', n: 'χρειάζεται άλλο πακέτο' }[c.s] + (c.c ? ', επιβεβαίωσε με τον licensing partner' : '');
+    }
+
+    $('lcEntity').addEventListener('change', function () { $('lcEntityHint').classList.toggle('hidden', this.value !== 'unknown'); });
+    $('lcAll').addEventListener('click', function () { boxes.forEach(function (b) { b.checked = true; }); });
+    $('lcNone').addEventListener('click', function () { boxes.forEach(function (b) { b.checked = false; }); });
+    $('lcDefault').addEventListener('click', function () { boxes.forEach(function (b) { b.checked = b.getAttribute('data-default') === '1'; }); });
+
+    form.addEventListener('reset', function () {
+        box.classList.add('hidden'); err.classList.add('hidden');
+        $('lcEntityHint').classList.add('hidden');
+        setTimeout(function () { boxes.forEach(function (b) { b.checked = b.getAttribute('data-default') === '1'; }); }, 0);
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var users = $('lcUsers').value, entity = $('lcEntity').value, current = $('lcCurrent').value;
+        var servers = $('lcServers').value, ot = $('lcOt').checked;
+        var sel = boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.value; });
+        var miss = [];
+        if (!entity) miss.push('την ερώτηση 1');
+        if (!users) miss.push('την ερώτηση 2');
+        if (!sel.length) miss.push('τουλάχιστον ένα μέτρο στην ερώτηση 4');
+        if (miss.length) { err.textContent = 'Συμπλήρωσε ' + joinList(miss) + '.'; err.classList.remove('hidden'); return; }
+        err.classList.add('hidden');
+
+        // Τα πακέτα Business έχουν όριο 300 θέσεων. Το E3 δεν προτείνεται έως 300 χρήστες, γιατί το Business Premium καλύπτει περισσότερα μέτρα.
+        var ladder = users === 'le300' ? ['basic', 'standard', 'premium', 'e5', 'e7'] : ['e3', 'e5', 'e7'];
+        var ok = function (p) { return sel.every(function (m) { return cell(m, p).s !== 'n'; }); };
+        var rec = ladder.filter(ok)[0];
+        var always = sel.filter(function (m) { return !ladder.some(function (p) { return cell(m, p).s === 'y'; }); });
+        var full = ladder.filter(function (p) { return sel.every(function (m) { return always.indexOf(m) >= 0 || cell(m, p).s === 'y'; }); })[0];
+        var addons = sel.filter(function (m) { return cell(m, rec).s === 'a'; });
+
+        $('lcTitle').textContent = 'Βάση: ' + PLAN[rec].name;
+        var sum = [];
+        sum.push('<p>Είναι το απλούστερο πακέτο που καλύπτει όλα τα μέτρα που διάλεξες, ' + (addons.length ? 'με ' + addons.length + (addons.length === 1 ? ' πρόσθετη άδεια' : ' πρόσθετες άδειες') + ' (σύμβολο <span class="text-amber-300">+</span> στον πίνακα).' : 'χωρίς πρόσθετες άδειες.') + '</p>');
+        if (full && full !== rec) {
+            var rest = always.map(function (m) { return M[m].label; });
+            sum.push('<p>Αν προτιμάς λιγότερες ξεχωριστές άδειες, το <strong class="text-slate-100">' + esc(PLAN[full].name) + '</strong> τα περιλαμβάνει όλα' + (rest.length ? ', εκτός από: ' + esc(joinList(rest)) : '') + '.</p>');
+        } else if (always.length && addons.length === always.length) {
+            sum.push('<p>Κανένα πακέτο δεν περιλαμβάνει: ' + esc(joinList(always.map(function (m) { return M[m].label; }))) + '. Αυτά αγοράζονται πάντα ξεχωριστά.</p>');
+        }
+        if (users === 'gt300') sum.push('<p>Με περισσότερους από 300 χρήστες τα πακέτα Business δεν είναι επιλογή: η Microsoft επιτρέπει έως 300 θέσεις συνολικά σε Business Basic, Standard και Premium.</p>');
+        $('lcSummary').innerHTML = sum.join('');
+
+        // Τρέχον πακέτο
+        var cb = $('lcCurrentBox');
+        if (current) {
+            var g = { y: [], a: [], n: [] };
+            sel.forEach(function (m) { g[cell(m, current).s].push(M[m].label); });
+            var h = ['<p>Το <strong class="text-slate-100">' + esc(PLAN[current].name) + '</strong> καλύπτει ' + g.y.length + ' από τα ' + sel.length + ' μέτρα που διάλεξες.</p>'];
+            if (g.a.length) h.push('<p><span class="text-amber-300">Με πρόσθετη άδεια:</span> ' + esc(joinList(g.a)) + '.</p>');
+            if (g.n.length) h.push('<p><span class="text-rose-400">Χρειάζεται άλλο πακέτο:</span> ' + esc(joinList(g.n)) + '.</p>');
+            if (PLAN[current].business && users === 'gt300') h.push('<p class="text-amber-300">Το πακέτο σου είναι Business, αλλά δήλωσες περισσότερους από 300 χρήστες. Τα πακέτα Business έχουν όριο 300 θέσεων.</p>');
+            if (current === 'e3' && users === 'le300') h.push('<p>Έως 300 χρήστες, το Business Premium περιλαμβάνει EDR και vulnerability management, που στο E3 χρειάζονται πρόσθετη άδεια. Το E3 έχει άλλα πλεονεκτήματα (π.χ. όχι όριο χρηστών), γι\' αυτό σύγκρινε και τα δύο με τον partner σου.</p>');
+            $('lcCurrentBody').innerHTML = h.join('');
+            cb.classList.remove('hidden');
+        } else cb.classList.add('hidden');
+
+        // Πίνακας
+        var head = '<thead><tr class="text-slate-400 border-b border-slate-800"><th class="py-2 pr-3 font-medium min-w-[9rem]">Μέτρο</th>' + D.plans.map(function (p) {
+            var dim = p.business && users === 'gt300';
+            var mark = p.key === rec ? ' bg-blue-500/15 text-blue-300' : '';
+            return '<th class="py-2 px-2 font-medium text-center whitespace-nowrap' + mark + (dim ? ' opacity-40' : '') + '" title="' + esc(p.name) + '">' + esc(p.name.replace('Microsoft 365 ', '').replace('Business ', '')) + (p.key === current ? '<span class="block text-[10px] font-mono text-slate-500">σήμερα</span>' : '') + (p.key === rec ? '<span class="block text-[10px] font-mono">βάση</span>' : '') + '</th>';
+        }).join('') + '</tr></thead>';
+        var body = '<tbody class="text-slate-300">' + sel.map(function (m) {
+            return '<tr class="border-b border-slate-800/60"><td class="py-2 pr-3">' + esc(M[m].label) + '</td>' + D.plans.map(function (p) {
+                var c = cell(m, p.key), dim = p.business && users === 'gt300';
+                return '<td class="py-2 px-2 text-center text-base' + (p.key === rec ? ' bg-blue-500/10' : '') + (dim ? ' opacity-40' : '') + '" title="' + esc(p.name + ': ' + c.t) + '">' + sym(c) + '<span class="sr-only"> ' + esc(word(c)) + '</span></td>';
+            }).join('') + '</tr>';
+        }).join('') + '</tbody>';
+        $('lcMatrix').innerHTML = head + body;
+
+        // Λεπτομέρειες για το προτεινόμενο πακέτο
+        $('lcDetailTitle').textContent = 'Τι ισχύει στο ' + PLAN[rec].name + ', μέτρο προς μέτρο';
+        $('lcDetail').innerHTML = sel.map(function (m) {
+            var x = M[m], c = cell(m, rec);
+            var refs = 'ΚΥΑ ' + x.kya.map(codeLink).join(', ') + ' · NIS2 άρθρο ' + esc(x.nis2) + ' · ISO/IEC 27001 ' + esc(x.iso) + (x.gdpr ? ' · GDPR ' + esc(x.gdpr) : '');
+            return '<li class="border-l-2 ' + (c.s === 'y' ? 'border-emerald-500/60' : c.s === 'a' ? 'border-amber-400/60' : 'border-rose-500/60') + ' pl-3"><p class="text-slate-100">' + sym(c) + ' <strong>' + esc(x.label) + '</strong> <span class="text-xs text-slate-400">(' + esc(word(c)) + ')</span></p><p>' + esc(c.t) + '</p><p class="text-xs text-slate-400 mt-1">' + refs + ' · <a href="' + esc(x.source) + '" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">Microsoft Learn</a></p></li>';
+        }).join('');
+
+        // Σημειώσεις
+        var n = [];
+        var business = PLAN[rec].business || (current && PLAN[current].business);
+        if (business) n.push('Στα πακέτα Business το auditing δεν ενεργοποιείται αυτόματα. Ενεργοποίησέ το στο Microsoft Purview (Audit), αλλιώς δεν θα υπάρχει κανένα audit log όταν το χρειαστείς.');
+        if (PLAN[rec].business) n.push('Όριο 300 θέσεων συνολικά σε Business Basic, Standard και Premium. Το Defender Suite και το Purview Suite for Business Premium απαιτούν βάση Business Premium και έχουν το ίδιο όριο.');
+        var suite = ['training', 'pim', 'reviews', 'xdr', 'identity'].some(function (m) { return sel.indexOf(m) >= 0; });
+        if (rec === 'premium' && suite) n.push('Αν διαλέξεις το Defender Suite for Business Premium, οι χρήστες παίρνουν Defender for Endpoint Plan 2 στη θέση του Defender for Business. Το Defender for Business δεν υποστηρίζει μικτή αδειοδότηση: αν το Defender Suite καλύπτει μόνο μέρος των χρηστών, όλοι μένουν στην εμπειρία του Defender for Business. Για να περάσεις σε Defender for Endpoint Plan 2, χρειάζεται άδεια για όλους τους χρήστες και αίτημα στο Microsoft Support.');
+        if (servers === 'le60' && PLAN[rec].business) n.push('Για τους servers: Microsoft Defender for Business servers, add-on για έως 60 servers.' + (rec === 'premium' && suite ? ' Αν πας σε Defender Suite για όλους τους χρήστες, οι servers χρειάζονται Defender for Endpoint for servers ή Defender for Servers.' : ''));
+        if (servers === 'gt60' || (servers === 'le60' && !PLAN[rec].business)) n.push('Για τους servers: Microsoft Defender for Endpoint for servers ή Microsoft Defender for Servers Plan 1 ή Plan 2 (Microsoft Defender for Cloud). Δεν περιλαμβάνονται σε κανένα πακέτο Microsoft 365.' + (servers === 'gt60' && PLAN[rec].business ? ' Το Defender for Business servers καλύπτει έως 60 servers.' : ''));
+        if (ot) n.push('Κανένα πακέτο Microsoft 365 δεν προστατεύει συστήματα OT. Η Microsoft έχει ξεχωριστό προϊόν, το Microsoft Defender for IoT, με δική του αδειοδότηση. Τα μέτρα της ΚΥΑ για το OT χρειάζονται ξεχωριστό σχέδιο.');
+        if (sel.some(function (m) { return D.plans.some(function (p) { return cell(m, p.key).c; }); })) n.push('Όπου βλέπεις <span class="text-sky-300">?</span>, η Microsoft δεν το αναφέρει ρητά για αυτό το πακέτο. Ζήτησε από τον licensing partner γραπτή επιβεβαίωση πριν από την αγορά.');
+        if (sel.indexOf('backup') >= 0) n.push('Το Microsoft 365 Backup χρεώνεται βάσει χρήσης και χρειάζεται Azure subscription. Η άδεια δεν αποδεικνύει ότι η επαναφορά δουλεύει: κράτα τεκμήρια από δοκιμές επαναφοράς.');
+        if (entity === 'unknown') n.push('Δεν ξέρεις ακόμη αν υπάγεσαι. Κάνε τον <a href="{{ "elegxos-ypagogis/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">έλεγχο υπαγωγής</a> πριν από οποιαδήποτε αγορά.');
+        if (entity === 'supplier') n.push('Ως προμηθευτής, οι υποχρεώσεις σου έρχονται από τη σύμβαση με την οντότητα. Ξεκίνα από όσα ζητά η σύμβαση: συνήθως MFA, φιλτράρισμα email και αντίγραφα ασφαλείας.');
+        $('lcNotes').innerHTML = n.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+
+        box.classList.remove('hidden');
+        box.focus({ preventScroll: true });
+        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+})();
+</script>

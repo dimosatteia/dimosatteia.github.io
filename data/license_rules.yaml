@@ -1,0 +1,339 @@
+# Κανόνες του εργαλείου «Ποια άδεια Microsoft 365 χρειάζομαι για την ΚΥΑ 1689/2025;» (/poia-adeia-microsoft-365/).
+# Το shortcode license-check διαβάζει αυτό το αρχείο. Δεν περιέχει τιμές: το εργαλείο δεν είναι εργαλείο πώλησης.
+#
+# Για κάθε μέτρο και κάθε πακέτο:
+#   s: y = περιλαμβάνεται, a = χρειάζεται πρόσθετη άδεια (add-on ή standalone), n = χρειάζεται αλλαγή πακέτου
+#   t: τι ακριβώς ισχύει, όπως το λέει η Microsoft
+#   c: true = η Microsoft δεν το αναφέρει ρητά για αυτό το πακέτο. Το εργαλείο γράφει «επιβεβαίωσε με τον licensing partner».
+# kya: απαιτήσεις της ΚΥΑ 1689/2025 (κωδικοί όπως στη σελίδα /kya-1689-2025/)
+# nis2: άρθρο 21 παρ. 2 της Οδηγίας (ΕΕ) 2022/2555 · iso: controls του Annex A του ISO/IEC 27001:2022 · gdpr: όπου έχει σχέση
+# verified: ημερομηνία ελέγχου στο Microsoft Learn
+updated: '2026-10-14'
+plans:
+  - key: basic
+    name: Microsoft 365 Business Basic
+    business: true
+  - key: standard
+    name: Microsoft 365 Business Standard
+    business: true
+  - key: premium
+    name: Microsoft 365 Business Premium
+    business: true
+  - key: e3
+    name: Microsoft 365 E3
+    business: false
+  - key: e5
+    name: Microsoft 365 E5
+    business: false
+  - key: e7
+    name: Microsoft 365 E7
+    business: false
+measures:
+  - key: mfa
+    label: MFA με Conditional Access
+    kya: [13.ζ, 13.στ]
+    nis2: 21.2.ι
+    iso: A.8.5
+    feature: Microsoft Entra Conditional Access (Microsoft Entra ID P1)
+    source: https://learn.microsoft.com/entra/fundamentals/licensing
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: a, t: "Microsoft Entra ID P1 (standalone). Χωρίς αυτό υπάρχουν μόνο τα security defaults: MFA για όλους, χωρίς κανόνες και εξαιρέσεις."}
+      standard: {s: a, t: "Microsoft Entra ID P1 (standalone). Χωρίς αυτό υπάρχουν μόνο τα security defaults: MFA για όλους, χωρίς κανόνες και εξαιρέσεις."}
+      premium: {s: y, t: "Microsoft Entra ID P1."}
+      e3: {s: y, t: "Microsoft Entra ID P1."}
+      e5: {s: y, t: "Microsoft Entra ID P2, που προσθέτει και policies με βάση το sign-in risk και το user risk."}
+      e7: {s: y, t: "Microsoft Entra ID P2 και Microsoft Entra Suite."}
+  - key: devices
+    label: Διαχείριση και ρυθμίσεις συσκευών
+    kya: [11.α, 14.α, 19.δ]
+    nis2: 21.2.ε, 21.2.θ
+    iso: A.5.9, A.8.1, A.8.9
+    feature: Microsoft Intune Plan 1
+    source: https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/m365b-security-overview
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: a, t: "Microsoft Intune Plan 1 (standalone). Χωρίς αυτό υπάρχει μόνο το Basic Mobility and Security, ένα περιορισμένο υποσύνολο για κινητά."}
+      standard: {s: a, t: "Microsoft Intune Plan 1 (standalone). Χωρίς αυτό υπάρχει μόνο το Basic Mobility and Security, ένα περιορισμένο υποσύνολο για κινητά."}
+      premium: {s: y, t: "Microsoft Intune Plan 1."}
+      e3: {s: y, t: "Microsoft Intune Plan 1."}
+      e5: {s: y, t: "Microsoft Intune Plan 1."}
+      e7: {s: y, t: "Microsoft Intune Plan 1."}
+  - key: edr
+    label: Antimalware και EDR στους σταθμούς εργασίας
+    kya: [20.α]
+    nis2: 21.2.ε, 21.2.ζ
+    iso: A.8.7
+    feature: Microsoft Defender for Business, Microsoft Defender for Endpoint Plan 1 και Plan 2
+    source: https://learn.microsoft.com/defender-business/mdb-faq
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: a, t: "Microsoft Defender for Business (standalone, έως 300 χρήστες)."}
+      standard: {s: a, t: "Microsoft Defender for Business (standalone, έως 300 χρήστες)."}
+      premium: {s: y, t: "Microsoft Defender for Business, με EDR και automated investigation."}
+      e3: {s: a, t: "Το Defender for Endpoint Plan 1 δίνει antimalware και attack surface reduction, χωρίς EDR. Για EDR: Microsoft Defender Suite ή Defender for Endpoint Plan 2."}
+      e5: {s: y, t: "Microsoft Defender for Endpoint Plan 2, με EDR και advanced hunting."}
+      e7: {s: y, t: "Microsoft Defender for Endpoint Plan 2."}
+  - key: email
+    label: Safe Links, Safe Attachments και anti-phishing
+    kya: [20.γ]
+    nis2: 21.2.ζ
+    iso: A.8.7, A.8.23
+    feature: Microsoft Defender for Office 365 Plan 1
+    source: https://learn.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: a, t: "Microsoft Defender for Office 365 Plan 1 (add-on). Χωρίς αυτό υπάρχει μόνο η βασική προστασία του Exchange Online Protection."}
+      standard: {s: a, t: "Microsoft Defender for Office 365 Plan 1 (add-on). Χωρίς αυτό υπάρχει μόνο η βασική προστασία του Exchange Online Protection."}
+      premium: {s: y, t: "Microsoft Defender for Office 365 Plan 1."}
+      e3: {s: y, t: "Microsoft Defender for Office 365 Plan 1, από την 1η Ιουλίου 2026."}
+      e5: {s: y, t: "Microsoft Defender for Office 365 Plan 2."}
+      e7: {s: y, t: "Microsoft Defender for Office 365 Plan 2."}
+  - key: training
+    label: Attack simulation training
+    kya: [21.α, 21.γ, 4.β]
+    nis2: 21.2.ζ
+    iso: A.6.3
+    feature: Attack simulation training (Microsoft Defender for Office 365 Plan 2)
+    source: https://learn.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: a, t: "Microsoft Defender for Office 365 Plan 2 (add-on)."}
+      standard: {s: a, t: "Microsoft Defender for Office 365 Plan 2 (add-on)."}
+      premium: {s: a, t: "Microsoft Defender Suite for Business Premium ή Defender for Office 365 Plan 2."}
+      e3: {s: a, t: "Microsoft Defender Suite ή Defender for Office 365 Plan 2. Το Plan 1 που περιλαμβάνεται από τον Ιούλιο 2026 δεν έχει attack simulation training."}
+      e5: {s: y, t: "Microsoft Defender for Office 365 Plan 2."}
+      e7: {s: y, t: "Microsoft Defender for Office 365 Plan 2."}
+  - key: pim
+    label: Privileged Identity Management (PIM)
+    kya: [13.δ, 25.1.στ]
+    nis2: 21.2.θ
+    iso: A.8.2
+    feature: Microsoft Entra Privileged Identity Management (Microsoft Entra ID P2 ή Microsoft Entra ID Governance)
+    source: https://learn.microsoft.com/entra/id-governance/licensing-fundamentals
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: a, t: "Microsoft Entra ID P2 (standalone)."}
+      standard: {s: a, t: "Microsoft Entra ID P2 (standalone)."}
+      premium: {s: a, t: "Microsoft Defender Suite for Business Premium (περιλαμβάνει Entra ID P2) ή Entra ID P2."}
+      e3: {s: a, t: "Microsoft Defender Suite (περιλαμβάνει Entra ID P2) ή Entra ID P2."}
+      e5: {s: y, t: "Microsoft Entra ID P2."}
+      e7: {s: y, t: "Microsoft Entra ID P2 και Microsoft Entra ID Governance."}
+  - key: reviews
+    label: Access reviews
+    kya: [13.γ, 13.η, 7.γ, 12.1.δ]
+    nis2: 21.2.θ
+    iso: A.5.18
+    feature: Microsoft Entra access reviews (Microsoft Entra ID P2 ή Microsoft Entra ID Governance)
+    source: https://learn.microsoft.com/entra/id-governance/licensing-fundamentals
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: a, t: "Microsoft Entra ID P2 (standalone)."}
+      standard: {s: a, t: "Microsoft Entra ID P2 (standalone)."}
+      premium: {s: a, t: "Microsoft Defender Suite for Business Premium (περιλαμβάνει Entra ID P2) ή Entra ID P2."}
+      e3: {s: a, t: "Microsoft Defender Suite (περιλαμβάνει Entra ID P2) ή Entra ID P2."}
+      e5: {s: y, t: "Microsoft Entra ID P2."}
+      e7: {s: y, t: "Microsoft Entra ID P2 και Microsoft Entra ID Governance."}
+  - key: lifecycle
+    label: Αυτόματη αλλαγή δικαιωμάτων σε πρόσληψη, μετακίνηση και αποχώρηση
+    kya: [13.ε]
+    nis2: 21.2.θ
+    iso: A.5.18, A.6.5
+    feature: Lifecycle workflows (Microsoft Entra ID Governance)
+    source: https://learn.microsoft.com/entra/id-governance/licensing-fundamentals
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: a, t: "Microsoft Entra ID Governance, που προαπαιτεί Entra ID P1 ή P2."}
+      standard: {s: a, t: "Microsoft Entra ID Governance, που προαπαιτεί Entra ID P1 ή P2."}
+      premium: {s: a, t: "Microsoft Entra ID Governance ή Microsoft Entra Suite."}
+      e3: {s: a, t: "Microsoft Entra ID Governance ή Microsoft Entra Suite."}
+      e5: {s: a, t: "Microsoft Entra ID Governance Step Up για Entra ID P2, ή Microsoft Entra Suite."}
+      e7: {s: y, t: "Microsoft Entra ID Governance, μέσα από το Microsoft Entra Suite."}
+  - key: vuln
+    label: Διαχείριση ευπαθειών (εντοπισμός, προτεραιοποίηση, αποκατάσταση)
+    kya: [17.α, 17.β, 17.γ, 17.ε, 17.στ]
+    nis2: 21.2.ε
+    iso: A.8.8
+    feature: Core vulnerability management (Defender for Business, Defender for Endpoint Plan 2)
+    source: https://learn.microsoft.com/defender-vulnerability-management/tvm-prerequisites
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: a, t: "Microsoft Defender for Business (standalone), που περιλαμβάνει threat and vulnerability management."}
+      standard: {s: a, t: "Microsoft Defender for Business (standalone), που περιλαμβάνει threat and vulnerability management."}
+      premium: {s: y, t: "Threat and vulnerability management στο Defender for Business."}
+      e3: {s: a, t: "Microsoft Defender Vulnerability Management standalone, ή Microsoft Defender Suite (Defender for Endpoint Plan 2)."}
+      e5: {s: y, t: "Core vulnerability management στο Defender for Endpoint Plan 2."}
+      e7: {s: y, t: "Core vulnerability management στο Defender for Endpoint Plan 2."}
+  - key: baselines
+    label: Security baselines και έλεγχος επεκτάσεων browser
+    kya: [14.β, 20.δ]
+    nis2: 21.2.ε
+    iso: A.8.9
+    feature: Microsoft Defender Vulnerability Management premium (add-on ή standalone)
+    source: https://learn.microsoft.com/defender-vulnerability-management/defender-vulnerability-management-capabilities
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: a, t: "Microsoft Defender Vulnerability Management standalone. Δεν διατίθεται για πελάτες του Defender for Business."}
+      standard: {s: a, t: "Microsoft Defender Vulnerability Management standalone. Δεν διατίθεται για πελάτες του Defender for Business."}
+      premium: {s: n, c: true, t: "Η Microsoft γράφει ότι το Defender Vulnerability Management δεν διατίθεται σήμερα για το Defender for Business. Με το Defender Suite for Business Premium οι χρήστες αποκτούν Defender for Endpoint Plan 2, αλλά το Defender Suite for Business Premium δεν αναφέρεται ρητά στις βάσεις για το add-on."}
+      e3: {s: a, t: "Microsoft Defender Vulnerability Management standalone."}
+      e5: {s: a, t: "Microsoft Defender Vulnerability Management add-on."}
+      e7: {s: a, t: "Microsoft Defender Vulnerability Management add-on."}
+  - key: dlp
+    label: Sensitivity labels και DLP για email και αρχεία
+    kya: [11.β, 22.β]
+    nis2: 21.2.η, 21.2.θ
+    iso: A.5.12, A.5.13, A.8.12
+    gdpr: Άρθρα 5 παρ. 1 στ΄ και 32
+    feature: Microsoft Purview Information Protection και Data Loss Prevention
+    source: https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: n, t: "Δεν υπάρχουν sensitivity labels, DLP ούτε retention για Exchange και SharePoint (μόνο για Teams). Χρειάζεται Business Premium."}
+      standard: {s: n, t: "Δεν υπάρχουν sensitivity labels, DLP ούτε retention για Exchange και SharePoint (μόνο για Teams). Χρειάζεται Business Premium."}
+      premium: {s: y, t: "Χειροκίνητα sensitivity labels και DLP για email και αρχεία."}
+      e3: {s: y, t: "Χειροκίνητα sensitivity labels και DLP για email και αρχεία."}
+      e5: {s: y, t: "Sensitivity labels και DLP για email και αρχεία."}
+      e7: {s: y, t: "Sensitivity labels και DLP για email και αρχεία."}
+  - key: autolabel
+    label: Αυτόματη ταξινόμηση δεδομένων και Endpoint DLP
+    kya: [11.β, 22.β]
+    nis2: 21.2.η, 21.2.θ
+    iso: A.5.12, A.8.12
+    gdpr: Άρθρο 32
+    feature: Client and service-side automatic sensitivity labeling, Endpoint DLP
+    source: https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: n, t: "Χρειάζεται Business Premium με Purview Suite for Business Premium, ή E5."}
+      standard: {s: n, t: "Χρειάζεται Business Premium με Purview Suite for Business Premium, ή E5."}
+      premium: {s: a, c: true, t: "Purview Suite for Business Premium. Η Microsoft δεν το αναφέρει ρητά στους πίνακες για το auto-labeling και το Endpoint DLP."}
+      e3: {s: a, t: "Microsoft Purview Suite."}
+      e5: {s: y, t: "Περιλαμβάνεται."}
+      e7: {s: y, t: "Περιλαμβάνεται."}
+  - key: audit
+    label: Τήρηση audit log για ένα έτος
+    kya: [24.δ]
+    nis2: 21.2.β
+    iso: A.8.15
+    gdpr: Άρθρο 33 παρ. 5
+    feature: Microsoft Purview Audit (Premium)
+    source: https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: n, t: "Μόνο Audit (Standard), 180 ημέρες. Το Audit (Premium) διατίθεται με Business Premium και Purview Suite for Business Premium, ή με E5."}
+      standard: {s: n, t: "Μόνο Audit (Standard), 180 ημέρες. Το Audit (Premium) διατίθεται με Business Premium και Purview Suite for Business Premium, ή με E5."}
+      premium: {s: a, t: "Purview Suite for Business Premium. Χωρίς αυτό: Audit (Standard), 180 ημέρες."}
+      e3: {s: a, t: "Microsoft Purview Suite. Χωρίς αυτό: Audit (Standard), 180 ημέρες."}
+      e5: {s: y, t: "Audit (Premium): ένα έτος για Entra ID, Exchange και SharePoint."}
+      e7: {s: y, t: "Audit (Premium)."}
+  - key: xdr
+    label: Advanced hunting και αυτόματη διερεύνηση περιστατικών
+    kya: [24.α, 24.ε]
+    nis2: 21.2.β
+    iso: A.5.26, A.8.16
+    feature: Microsoft Defender XDR (Defender for Endpoint Plan 2, Defender for Office 365 Plan 2)
+    source: https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/add-defender-suite-business-premium
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: n, t: "Χρειάζεται Business Premium με Defender Suite for Business Premium, ή E5."}
+      standard: {s: n, t: "Χρειάζεται Business Premium με Defender Suite for Business Premium, ή E5."}
+      premium: {s: a, t: "Microsoft Defender Suite for Business Premium (Defender for Endpoint Plan 2 και Defender for Office 365 Plan 2)."}
+      e3: {s: a, t: "Microsoft Defender Suite."}
+      e5: {s: y, t: "Microsoft Defender XDR."}
+      e7: {s: y, t: "Microsoft Defender XDR."}
+  - key: identity
+    label: Παρακολούθηση του on-premises Active Directory
+    kya: [24.γ, 18.2.β]
+    nis2: 21.2.β
+    iso: A.8.16
+    feature: Microsoft Defender for Identity
+    source: https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/add-defender-suite-business-premium
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: n, t: "Χρειάζεται Business Premium με Defender Suite for Business Premium, ή E5."}
+      standard: {s: n, t: "Χρειάζεται Business Premium με Defender Suite for Business Premium, ή E5."}
+      premium: {s: a, t: "Microsoft Defender Suite for Business Premium."}
+      e3: {s: a, t: "Microsoft Defender Suite ή Defender for Identity standalone."}
+      e5: {s: y, t: "Microsoft Defender for Identity."}
+      e7: {s: y, t: "Microsoft Defender for Identity."}
+  - key: private
+    label: Απομακρυσμένη πρόσβαση χωρίς VPN και segmentation
+    kya: [19.γ, 19.ε, 19.ζ]
+    nis2: 21.2.θ
+    iso: A.8.20, A.8.22
+    feature: Microsoft Entra Private Access
+    source: https://learn.microsoft.com/entra/fundamentals/licensing
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: a, t: "Microsoft Entra Private Access ή Microsoft Entra Suite, που προαπαιτούν Entra ID P1."}
+      standard: {s: a, t: "Microsoft Entra Private Access ή Microsoft Entra Suite, που προαπαιτούν Entra ID P1."}
+      premium: {s: a, t: "Microsoft Entra Private Access ή Microsoft Entra Suite."}
+      e3: {s: a, t: "Microsoft Entra Private Access ή Microsoft Entra Suite."}
+      e5: {s: a, t: "Microsoft Entra Private Access ή Microsoft Entra Suite."}
+      e7: {s: y, t: "Microsoft Entra Private Access, μέσα από το Microsoft Entra Suite."}
+  - key: web
+    label: Φιλτράρισμα web και κακόβουλων domains
+    kya: [20.ε, 19.θ]
+    nis2: 21.2.ε
+    iso: A.8.23
+    feature: Microsoft Entra Internet Access
+    source: https://learn.microsoft.com/entra/fundamentals/licensing
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: a, t: "Microsoft Entra Internet Access ή Microsoft Entra Suite, που προαπαιτούν Entra ID P1."}
+      standard: {s: a, t: "Microsoft Entra Internet Access ή Microsoft Entra Suite, που προαπαιτούν Entra ID P1."}
+      premium: {s: a, t: "Microsoft Entra Internet Access ή Microsoft Entra Suite."}
+      e3: {s: a, t: "Microsoft Entra Internet Access ή Microsoft Entra Suite."}
+      e5: {s: a, t: "Microsoft Entra Internet Access ή Microsoft Entra Suite."}
+      e7: {s: y, t: "Microsoft Entra Internet Access, μέσα από το Microsoft Entra Suite."}
+  - key: backup
+    label: Αντίγραφα ασφαλείας Exchange, SharePoint και OneDrive
+    kya: [25.1.ε]
+    nis2: 21.2.γ
+    iso: A.8.13
+    gdpr: Άρθρο 32 παρ. 1 γ΄
+    feature: Microsoft 365 Backup (pay-as-you-go)
+    source: https://learn.microsoft.com/microsoft-365/backup/backup-setup
+    verified: 2026-10-14
+    default: true
+    plans:
+      basic: {s: a, t: "Microsoft 365 Backup, με χρέωση βάσει χρήσης μέσω Azure subscription. Δεν περιλαμβάνεται σε κανένα πακέτο."}
+      standard: {s: a, t: "Microsoft 365 Backup, με χρέωση βάσει χρήσης μέσω Azure subscription."}
+      premium: {s: a, t: "Microsoft 365 Backup, με χρέωση βάσει χρήσης μέσω Azure subscription."}
+      e3: {s: a, t: "Microsoft 365 Backup, με χρέωση βάσει χρήσης μέσω Azure subscription."}
+      e5: {s: a, t: "Microsoft 365 Backup, με χρέωση βάσει χρήσης μέσω Azure subscription."}
+      e7: {s: a, t: "Microsoft 365 Backup, με χρέωση βάσει χρήσης μέσω Azure subscription."}
+  - key: compliance
+    label: Assessment για NIS 2 ή ISO/IEC 27001 στο Compliance Manager
+    kya: [4.α, 9.α]
+    nis2: 21.2.στ
+    iso: A.5.36
+    feature: Microsoft Purview Compliance Manager, premium regulations
+    source: https://learn.microsoft.com/purview/compliance-manager-regulations-list
+    verified: 2026-10-14
+    default: false
+    plans:
+      basic: {s: a, t: "Το Compliance Manager υπάρχει, αλλά τα premium regulations (NIS 2, ISO/IEC 27001:2022) αγοράζονται ξεχωριστά."}
+      standard: {s: a, t: "Τα premium regulations αγοράζονται ξεχωριστά."}
+      premium: {s: a, t: "Τα premium regulations αγοράζονται ξεχωριστά."}
+      e3: {s: a, t: "Τα premium regulations αγοράζονται ξεχωριστά."}
+      e5: {s: y, t: "Έως τρία premium regulations χωρίς επιπλέον κόστος."}
+      e7: {s: y, t: "Όπως το E5: έως τρία premium regulations."}
