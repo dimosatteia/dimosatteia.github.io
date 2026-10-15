@@ -18,7 +18,7 @@
 #   draft:     true = καταχώρηση σε αναμονή. Δεν εμφανίζεται πουθενά (σελίδα /kql/, οδηγοί, kql-link) μέχρι να γραφτεί το query,
 #              να δοκιμαστεί και να μπει εικόνα-πειστήριο. Τότε σβήνεται το draft.
 
-updated: 2026-10-12
+updated: 2026-10-15
 
 # Οι ομάδες της σελίδας, με τη σειρά που εμφανίζονται. Εμφανίζονται μόνο όσες έχουν τουλάχιστον ένα query.
 pillars:
@@ -559,6 +559,37 @@ queries:
           LastAssessed = max(Timestamp)
           by DeviceId, DeviceName, OSPlatform
       | order by MaxImpact desc, FailedChecks desc
+
+  - id: inactive-devices
+    title: Συσκευές που σταμάτησαν να επικοινωνούν με το Defender for Endpoint
+    summary: Onboarded συσκευές που δεν έχουν αναφέρει στο Microsoft Defender for Endpoint τις τελευταίες 7 ημέρες ή έχουν sensor που δεν είναι Active, με την τελευταία επικοινωνία, το device group και τον χρήστη.
+    why: Μια συσκευή που φαίνεται onboarded αλλά δεν στέλνει δεδομένα είναι τυφλό σημείο, γιατί ό,τι συμβαίνει πάνω της δεν φτάνει ούτε στο Advanced Hunting ούτε στα alerts. Συμπληρώνει το query για την ανενεργή προστασία του antivirus. Εκεί η συσκευή επικοινωνεί αλλά είναι απροστάτευτη, εδώ η συσκευή δεν επικοινωνεί καθόλου. Ξεκίνα από την κορυφή της λίστας, που έχει τις συσκευές με την παλαιότερη τελευταία επικοινωνία. Για σταθμούς εργασίας και servers το εύρημα θέλει άμεσο έλεγχο του sensor. Για κινητά, το Inactive σημαίνει συνήθως ότι η εφαρμογή Defender δεν άνοιξε, απεγκαταστάθηκε ή ότι η συσκευή αποσύρθηκε, οπότε είτε την επαναφέρεις μέσω Intune είτε την καθαρίζεις από το inventory. Η στήλη MachineGroup δείχνει και συσκευές που δεν ανήκουν σε κανένα device group (UnassignedGroup). Το ίδιο αποτέλεσμα κρατά ενημερωμένο τον κατάλογο αγαθών.
+    pillar: endpoint
+    product: Defender for Endpoint
+    table: DeviceInfo
+    license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security) ή Microsoft Defender for Business
+    tested: 2026-10-15
+    verified: 2026-10-15
+    evidence: /images/kql/inactive-devices.webp
+    evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Μία συσκευή Android 16, onboarded στο Microsoft Defender for Endpoint, με sensor Inactive και τελευταία επικοινωνία στις 18/9/2026. Δεν ανήκει σε device group (UnassignedGroup). Το όνομα της συσκευής και ο χρήστης έχουν αφαιρεθεί.
+    map:
+      kya: ["11.α", "20.α", "24.ε"]
+      nis2: ["21.2.θ", "21.2.ε"]
+      iso: ["A.5.9", "A.8.1", "A.8.7", "A.8.16"]
+      gdpr: ["32.1.β", "32.1.δ"]
+    posts:
+      - title: "Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    query: |-
+      // Onboarded συσκευές χωρίς επικοινωνία 7+ ημέρες ή με μη ενεργό sensor
+      // ΚΥΑ 1689/2025: 11.α, 20.α, 24.ε
+      DeviceInfo
+      | where Timestamp > ago(30d)
+      | summarize arg_max(Timestamp, *) by DeviceId
+      | where OnboardingStatus == "Onboarded"
+      | where Timestamp < ago(7d) or SensorHealthState != "Active"
+      | project DeviceName, OSPlatform, OSVersion, LastSeen = Timestamp, SensorHealthState, MachineGroup, LoggedOnUsers
+      | order by LastSeen asc
 
 
   - id: exploitable-cves
