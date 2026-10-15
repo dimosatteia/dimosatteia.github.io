@@ -11,6 +11,8 @@
 #   tested:    ημερομηνία που το δοκίμασε ο Δημοσθένης (YYYY-MM-DD)
 #   verified:  ημερομηνία που ελέγχθηκαν πίνακες και στήλες στο schema του Microsoft Learn (Last verified).
 #              Μετά από 90 ημέρες εμφανίζεται ως «χρειάζεται νέο έλεγχο».
+#   added:     ημερομηνία δημοσίευσης στη βιβλιοθήκη (YYYY-MM-DD). Για 7 ημέρες μετά εμφανίζεται ⭐ δίπλα στο query
+#              και στη γραμμή «Νέο εργαλείο» της αρχικής. Μετά κρύβεται μόνο του, χωρίς νέο build.
 #   evidence:  εικόνα-πειστήριο. Χωρίς αυτήν δεν εμφανίζεται η σήμανση «Δοκιμασμένο».
 #   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso), data/gdpr.yaml (gdpr)
 #   posts:     σχετικά άρθρα του blog
@@ -570,6 +572,7 @@ queries:
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security) ή Microsoft Defender for Business
     tested: 2026-10-15
     verified: 2026-10-15
+    added: 2026-10-15
     evidence: /images/kql/inactive-devices.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Μία συσκευή Android 16, onboarded στο Microsoft Defender for Endpoint, με sensor Inactive και τελευταία επικοινωνία στις 18/9/2026. Δεν ανήκει σε device group (UnassignedGroup). Το όνομα της συσκευής και ο χρήστης έχουν αφαιρεθεί.
     map:

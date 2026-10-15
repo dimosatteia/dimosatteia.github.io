@@ -234,3 +234,16 @@
   })();
 </script>
 {{ end }}
+{{- /* ⭐ για νέα KQL queries: εμφανίζεται 7 ημέρες μετά το «added» του data/kql.yaml και κρύβεται μόνο του */ -}}
+{{- $kqlAdded := "" -}}
+{{- range site.Data.kql.queries }}{{ if and .added (not .draft) }}{{ $a := (time .added).Format "2006-01-02" }}{{ if gt $a $kqlAdded }}{{ $kqlAdded = $a }}{{ end }}{{ end }}{{ end -}}
+<script>
+(function () {
+  var latest = "{{ with $kqlAdded }}{{ ((time .).AddDate 0 0 7).Format "2006-01-02" }}{{ end }}";
+  var now = Date.now();
+  document.querySelectorAll(".kql-new-star").forEach(function (el) {
+    var until = el.getAttribute("data-until") || latest;
+    if (until && now < new Date(until + "T00:00:00+03:00").getTime()) el.hidden = false;
+  });
+})();
+</script>

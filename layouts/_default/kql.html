@@ -81,7 +81,7 @@
                     <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-3 flex flex-col md:flex-row md:items-center gap-2 hover:bg-slate-800/40 rounded-lg">
                         <div class="flex items-center gap-2 flex-1 min-w-0">
                             <span class="shrink-0 text-slate-500 text-xs transition-transform group-open/item:rotate-90" aria-hidden="true">▸</span>
-                            <h3 class="text-sm font-semibold text-slate-100">{{ .title }}</h3>
+                            <h3 class="text-sm font-semibold text-slate-100">{{ .title }}{{ with .added }}<span class="kql-new-star" hidden data-until="{{ ((time .).AddDate 0 0 7).Format "2006-01-02" }}" title="Νέο query, προστέθηκε {{ (time .).Format "02/01/2006" }}"> ⭐</span>{{ end }}</h3>
                         </div>
                         <div class="flex flex-wrap items-center gap-1.5 md:justify-end pl-5 md:pl-0">
                             {{ if and .tested .evidence }}<span class="text-[11px] font-mono border rounded px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 border-emerald-500/30" title="Δοκιμασμένο {{ (time .tested).Format "02/01/2006" }}">✓</span>{{ end }}
