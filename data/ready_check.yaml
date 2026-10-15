@@ -1,0 +1,404 @@
+# Ερωτήσεις του εργαλείου «Είναι έτοιμο το Microsoft 365 σου για τον ελεγκτή;» (/etoimotita-microsoft-365/).
+# Το shortcode ready-check διαβάζει αυτό το αρχείο. Όλος ο υπολογισμός γίνεται στον browser.
+#
+# Πεδία ανά ερώτηση:
+#   id:       μοναδικό κλειδί
+#   pillar:   ένας από τους πυλώνες του blog (ίδια κλειδιά με το data/kql.yaml)
+#   priority: high = εμφανίζεται πρώτο στα κενά
+#   q:        η ερώτηση
+#   enforced: τι σημαίνει «Επιβάλλεται» για αυτή την ερώτηση
+#   fix:      πού γίνεται η ρύθμιση
+#   evidence: τι κρατάς ως τεκμήριο για τον ελεγκτή
+#   license:  ποια άδεια χρειάζεται (κείμενο)
+#   measure:  κλειδί από το data/license_rules.yaml, όταν η ρύθμιση χρειάζεται συγκεκριμένη άδεια. Χωρίς measure = όλα τα πακέτα.
+#   upgrade:  κλειδί από το data/license_rules.yaml για προαιρετική επέκταση (π.χ. αυτοματοποίηση)
+#   kql:      ids από το data/kql.yaml. Εμφανίζονται μόνο όσα είναι δημοσιευμένα (χωρίς draft).
+#   tool:     προαιρετικά, εσωτερικό εργαλείο {url, label}
+#   map:      κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso), data/gdpr.yaml (gdpr)
+#   source:   σελίδα του Microsoft Learn για τη ρύθμιση
+
+updated: 2026-10-15
+
+levels:
+  - { v: 0, key: none,    label: "Δεν υπάρχει" }
+  - { v: 1, key: partial, label: "Μερικώς" }
+  - { v: 2, key: enforced, label: "Επιβάλλεται" }
+  - { v: 3, key: evidence, label: "Επιβάλλεται και έχω τεκμήριο" }
+
+pillars:
+  - { key: identity, name: "Identity & Access" }
+  - { key: endpoint, name: "Endpoint & Device" }
+  - { key: email, name: "Email & Collaboration" }
+  - { key: cloud, name: "Cloud Security" }
+  - { key: secops, name: "Security Operations & XDR" }
+  - { key: grc, name: "GRC & Compliance" }
+
+questions:
+
+  # ---------- Identity & Access ----------
+  - id: mfa
+    pillar: identity
+    priority: high
+    q: Όλοι οι χρήστες συνδέονται με MFA;
+    enforced: Πολιτική Conditional Access που ζητά MFA από όλους τους χρήστες σε όλες τις εφαρμογές, με εξαίρεση μόνο τους λογαριασμούς έκτακτης ανάγκης (break-glass). Αν δεν έχεις Entra ID P1, τα security defaults ενεργά.
+    fix: "Microsoft Entra admin center > Entra ID > Conditional Access > Policies. Ξεκίνα με Report-only και μετά γύρισε σε On."
+    evidence: Εξαγωγή της πολιτικής Conditional Access και αναφορά από τα sign-in logs ότι οι συνδέσεις ολοκληρώνουν MFA.
+    license: Microsoft Entra ID P1 για Conditional Access. Τα security defaults διατίθενται σε όλα τα πακέτα.
+    measure: mfa
+    kql: [spray-success]
+    map:
+      kya: ["13.ζ", "13.στ"]
+      nis2: ["21.2.ι"]
+      iso: ["A.8.5"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-mfa-strength
+
+  - id: legacy-auth
+    pillar: identity
+    priority: high
+    q: Είναι μπλοκαρισμένο το legacy authentication (IMAP, POP3, SMTP AUTH, ActiveSync με basic auth);
+    enforced: Πολιτική Conditional Access για όλους τους χρήστες, με Client apps «Exchange ActiveSync clients» και «Other clients», και Grant «Block access».
+    fix: "Microsoft Entra admin center > Entra ID > Conditional Access > Policies > New policy > Conditions > Client apps."
+    evidence: Εξαγωγή της πολιτικής και αποτέλεσμα query χωρίς επιτυχημένα sign-ins μέσω legacy πρωτοκόλλων.
+    license: Microsoft Entra ID P1 για Conditional Access. Τα security defaults το μπλοκάρουν επίσης.
+    measure: mfa
+    kql: [legacy-auth]
+    map:
+      kya: ["13.ζ", "19.η"]
+      nis2: ["21.2.ι"]
+      iso: ["A.8.5"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/entra/identity/conditional-access/policy-block-legacy-authentication
+
+  - id: admin-roles
+    pillar: identity
+    priority: high
+    q: Οι ρόλοι διαχειριστή δίνονται just-in-time και οι μόνιμοι Global Administrators είναι λίγοι;
+    enforced: Οι προνομιακοί ρόλοι ενεργοποιούνται μέσω Privileged Identity Management με χρονικό όριο και αιτιολόγηση. Οι διαχειριστές έχουν ξεχωριστό λογαριασμό από τον καθημερινό τους.
+    fix: "Microsoft Entra admin center > ID Governance > Privileged Identity Management > Microsoft Entra roles."
+    evidence: Λίστα αναθέσεων ρόλων (eligible και active) και ιστορικό ενεργοποιήσεων από το PIM.
+    license: Microsoft Entra ID P2 ή Microsoft Entra ID Governance για το PIM.
+    measure: pim
+    kql: [privileged-roles, ad-sensitive-groups]
+    map:
+      kya: ["13.δ", "13.γ"]
+      nis2: ["21.2.θ"]
+      iso: ["A.8.2", "A.5.18"]
+      gdpr: ["32.1.β", "32.4"]
+    source: https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure
+
+  - id: access-reviews
+    pillar: identity
+    priority: normal
+    q: Αναθεωρείς περιοδικά ποιος έχει πρόσβαση σε ρόλους, groups και guest λογαριασμούς;
+    enforced: Προγραμματισμένα access reviews (π.χ. ανά τρίμηνο) για προνομιακούς ρόλους, ευαίσθητα groups και guests, με αυτόματη αφαίρεση όσων δεν επιβεβαιώνονται.
+    fix: "Microsoft Entra admin center > ID Governance > Access reviews."
+    evidence: Αποτελέσματα των ολοκληρωμένων access reviews με ημερομηνία, reviewer και αποφάσεις.
+    license: Microsoft Entra ID P2 ή Microsoft Entra ID Governance.
+    measure: reviews
+    map:
+      kya: ["13.γ", "13.η"]
+      nis2: ["21.2.θ"]
+      iso: ["A.5.18"]
+      gdpr: ["32.4"]
+    source: https://learn.microsoft.com/entra/id-governance/access-reviews-overview
+
+  - id: offboarding
+    pillar: identity
+    priority: normal
+    q: Όταν αποχωρεί ένας υπάλληλος, ο λογαριασμός του απενεργοποιείται την ίδια ημέρα;
+    enforced: Γραπτή διαδικασία με το HR. Την ημέρα της αποχώρησης γίνεται Block sign-in, ανάκληση των sessions (Revoke sessions) και αφαίρεση από groups και ρόλους.
+    fix: "Microsoft 365 admin center > Users > Active users > χρήστης > Block sign-in. Στο Microsoft Entra admin center, στον χρήστη, Revoke sessions."
+    evidence: Λίστα αποχωρήσεων από το HR και αντίστοιχα audit logs με την ημερομηνία απενεργοποίησης κάθε λογαριασμού.
+    license: Όλα τα πακέτα για τη χειροκίνητη διαδικασία. Για αυτοματοποίηση, Lifecycle workflows του Microsoft Entra ID Governance.
+    upgrade: lifecycle
+    kql: [mass-download]
+    map:
+      kya: ["13.ε"]
+      nis2: ["21.2.θ"]
+      iso: ["A.5.18", "A.6.5"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/entra/id-governance/what-are-lifecycle-workflows
+
+  - id: user-consent
+    pillar: identity
+    priority: normal
+    q: Έχεις περιορίσει τη συγκατάθεση των χρηστών σε εφαρμογές τρίτων (OAuth consent);
+    enforced: User consent ρυθμισμένο σε «Do not allow user consent» ή σε «Allow user consent for apps from verified publishers, for selected permissions», με ενεργό το admin consent workflow.
+    fix: "Microsoft Entra admin center > Entra ID > Enterprise apps > Consent and permissions > User consent settings."
+    evidence: Στιγμιότυπο της ρύθμισης και λίστα των εφαρμογών με εγκεκριμένα δικαιώματα από το Enterprise apps.
+    license: Όλα τα πακέτα.
+    map:
+      kya: ["12.2.α", "13.γ"]
+      nis2: ["21.2.δ", "21.2.θ"]
+      iso: ["A.5.23", "A.5.15"]
+      gdpr: ["28.1", "32.1.β"]
+    source: https://learn.microsoft.com/entra/identity/enterprise-apps/configure-user-consent
+
+  # ---------- Endpoint & Device ----------
+  - id: device-compliance
+    pillar: endpoint
+    priority: high
+    q: Όλες οι συσκευές που έχουν πρόσβαση σε δεδομένα είναι enrolled στο Intune με compliance policy;
+    enforced: Compliance policies για κάθε πλατφόρμα και πολιτική Conditional Access με Grant «Require device to be marked as compliant».
+    fix: "Microsoft Intune admin center > Devices > Compliance. Στο Conditional Access, Grant > Require device to be marked as compliant."
+    evidence: Αναφορά compliance από το Intune και λίστα συσκευών που συγκρίνεται με τον κατάλογο αγαθών.
+    license: Microsoft Intune Plan 1 και Microsoft Entra ID P1.
+    measure: devices
+    kql: [inactive-devices]
+    map:
+      kya: ["11.α", "14.α", "19.δ"]
+      nis2: ["21.2.θ", "21.2.ε"]
+      iso: ["A.5.9", "A.8.1", "A.8.9"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/intune/device-security/compliance/overview
+
+  - id: antimalware
+    pillar: endpoint
+    priority: high
+    q: Το Microsoft Defender Antivirus και το EDR είναι ενεργά σε όλους τους σταθμούς εργασίας και τους servers, με tamper protection;
+    enforced: Real-time protection, cloud-delivered protection και tamper protection ενεργά. Όλες οι συσκευές onboarded στο Defender for Endpoint ή στο Defender for Business.
+    fix: "Microsoft Intune admin center > Endpoint security > Antivirus και Endpoint detection and response. Tamper protection στο Microsoft Defender portal > Settings > Endpoints > Advanced features."
+    evidence: Λίστα onboarded συσκευών και αποτέλεσμα query χωρίς συσκευές με κλειστό real-time protection.
+    license: Microsoft Defender for Business (Business Premium) ή Defender for Endpoint Plan 2 (E5) για EDR. Το Defender for Endpoint Plan 1 (E3) δεν έχει EDR.
+    measure: edr
+    kql: [av-disabled, inactive-devices]
+    map:
+      kya: ["20.α"]
+      nis2: ["21.2.ε"]
+      iso: ["A.8.7"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/intune/device-configuration/endpoint-security/antivirus
+
+  - id: asr
+    pillar: endpoint
+    priority: normal
+    q: Τα attack surface reduction rules τρέχουν σε Block mode;
+    enforced: ASR rules σε Block mode για όλες τις συσκευές Windows, με εξαιρέσεις μόνο ανά κανόνα και τεκμηριωμένες. Κανόνες σε Audit mode μόνο για δοκιμή.
+    fix: "Microsoft Intune admin center > Endpoint security > Attack surface reduction > Attack Surface Reduction Rules."
+    evidence: Εξαγωγή της πολιτικής ASR και η αναφορά Attack surface reduction rules από το Microsoft Defender portal.
+    license: Microsoft Defender Antivirus ως κύριο antivirus. Defender for Endpoint Plan 1 ή Plan 2, ή Defender for Business, για αναφορές και διαχείριση.
+    map:
+      kya: ["20.β", "14.β"]
+      nis2: ["21.2.ε"]
+      iso: ["A.8.7", "A.8.9"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/intune/device-configuration/endpoint-security/attack-surface-reduction
+
+  - id: patching
+    pillar: endpoint
+    priority: high
+    q: Οι ενημερώσεις ασφαλείας εγκαθίστανται με ορισμένο χρόνο και παρακολουθείς τις ευπάθειες που μένουν ανοιχτές;
+    enforced: Update rings ή Windows Autopatch με deadlines, και τακτικός έλεγχος των ευπαθειών με προτεραιότητα σε όσες έχουν δημόσιο exploit.
+    fix: "Microsoft Intune admin center > Devices > By platform > Windows > Manage updates > Windows updates > Update rings. Ευπάθειες στο Microsoft Defender portal > Exposure management > Vulnerability management."
+    evidence: Αναφορά συμμόρφωσης ενημερώσεων από το Intune και λίστα ανοιχτών ευπαθειών με τεκμηριωμένες εξαιρέσεις.
+    license: Microsoft Intune Plan 1 για τα update rings. Defender for Business ή Defender for Endpoint Plan 2 για vulnerability management.
+    measure: devices
+    upgrade: vuln
+    kql: [exploitable-cves]
+    map:
+      kya: ["17.α", "17.γ", "17.στ"]
+      nis2: ["21.2.ε"]
+      iso: ["A.8.8"]
+      gdpr: ["32.1.β", "32.1.δ"]
+    source: https://learn.microsoft.com/intune/device-updates/windows/manage-update-rings
+
+  - id: encryption
+    pillar: endpoint
+    priority: normal
+    q: Όλοι οι φορητοί και σταθεροί υπολογιστές έχουν κρυπτογραφημένο δίσκο;
+    enforced: Πολιτική BitLocker (Windows) και FileVault (macOS) από το Intune, με τα recovery keys αποθηκευμένα στο Microsoft Entra ID.
+    fix: "Microsoft Intune admin center > Endpoint security > Disk encryption."
+    evidence: Αναφορά κρυπτογράφησης από το Intune (Devices > Monitor > Encryption report).
+    license: Microsoft Intune Plan 1.
+    measure: devices
+    map:
+      kya: ["22.β"]
+      nis2: ["21.2.η"]
+      iso: ["A.8.24"]
+      gdpr: ["32.1.α"]
+    source: https://learn.microsoft.com/intune/device-configuration/endpoint-security/disk-encryption
+
+  - id: local-admins
+    pillar: endpoint
+    priority: normal
+    q: Οι χρήστες δουλεύουν χωρίς τοπικά δικαιώματα διαχειριστή και ο τοπικός admin έχει μοναδικό κωδικό ανά συσκευή;
+    enforced: Πολιτική Windows LAPS με rotation του κωδικού και backup στο Microsoft Entra ID, και πολιτική Local user group membership που ορίζει ποιοι είναι μέλη του τοπικού Administrators.
+    fix: "Microsoft Intune admin center > Endpoint security > Account protection > Local admin password solution (Windows LAPS) και Local user group membership."
+    evidence: Εξαγωγή των δύο πολιτικών και αποτέλεσμα query για προσθήκες στο τοπικό group Administrators.
+    license: Microsoft Intune Plan 1. Το Windows LAPS είναι ενσωματωμένο στα Windows.
+    measure: devices
+    kql: [local-admin-add]
+    map:
+      kya: ["13.δ", "14.β"]
+      nis2: ["21.2.θ"]
+      iso: ["A.8.2"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/intune/device-configuration/endpoint-security/account-protection
+
+  - id: removable-media
+    pillar: endpoint
+    priority: normal
+    q: Ελέγχεις ποια αφαιρούμενα μέσα (USB) επιτρέπονται στις συσκευές;
+    enforced: Πολιτική Device control που μπλοκάρει ή επιτρέπει μόνο read για τα USB storage, με εξαιρέσεις για εγκεκριμένες συσκευές.
+    fix: "Microsoft Intune admin center > Endpoint security > Attack surface reduction > Device control."
+    evidence: Εξαγωγή της πολιτικής Device control και αποτέλεσμα query για συνδέσεις USB.
+    license: Microsoft Defender for Endpoint Plan 1 ή Plan 2, ή Defender for Business, και Intune για τη διανομή της πολιτικής.
+    kql: [usb-storage]
+    map:
+      kya: ["11.δ"]
+      nis2: ["21.2.θ"]
+      iso: ["A.7.10"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/defender-endpoint/device-control-configure
+
+  # ---------- Email & Collaboration ----------
+  - id: email-protection
+    pillar: email
+    priority: high
+    q: Είναι ενεργά τα Safe Links, Safe Attachments και το anti-phishing για όλους τους παραλήπτες;
+    enforced: Preset security policy Standard ή Strict εφαρμοσμένη σε όλους τους χρήστες, ή ισοδύναμες custom πολιτικές.
+    fix: "Microsoft Defender portal > Email & collaboration > Policies & rules > Threat policies > Preset security policies."
+    evidence: Στιγμιότυπο των preset policies με τους παραλήπτες τους και αποτέλεσμα query για phishing που αφαιρέθηκε με ZAP.
+    license: Microsoft Defender for Office 365 Plan 1. Χωρίς αυτό υπάρχει μόνο το Exchange Online Protection.
+    measure: email
+    kql: [phish-zap]
+    map:
+      kya: ["20.γ"]
+      nis2: ["21.2.ζ"]
+      iso: ["A.8.7", "A.8.23"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/defender-office-365/preset-security-policies
+
+  - id: email-auth
+    pillar: email
+    priority: normal
+    q: Τα domains σου έχουν SPF, DKIM και DMARC σε πολιτική quarantine ή reject;
+    enforced: SPF που τελειώνει σε -all ή ~all, DKIM ενεργό για κάθε domain, και DMARC με p=quarantine ή p=reject και διεύθυνση για αναφορές (rua).
+    fix: "Εγγραφές DNS στον πάροχό σου. DKIM στο Microsoft Defender portal > Email & collaboration > Policies & rules > Threat policies > Email authentication settings."
+    evidence: Οι εγγραφές DNS και οι αναφορές DMARC των τελευταίων εβδομάδων.
+    license: Όλα τα πακέτα.
+    tool: { url: "elegxos-domain/", label: "Έλεγξε το domain σου" }
+    map:
+      kya: ["20.γ", "19.θ"]
+      nis2: ["21.2.ε"]
+      iso: ["A.5.14", "A.8.21"]
+      gdpr: ["32.1.β"]
+    source: https://learn.microsoft.com/defender-office-365/email-authentication-about
+
+  # ---------- Cloud Security ----------
+  - id: external-sharing
+    pillar: cloud
+    priority: normal
+    q: Η εξωτερική κοινοποίηση αρχείων στο SharePoint και στο OneDrive είναι περιορισμένη;
+    enforced: Χωρίς links «Anyone» ή με υποχρεωτική λήξη, προεπιλεγμένο link «Specific people», και εξωτερική κοινοποίηση μόνο σε όσα sites τη χρειάζονται.
+    fix: "SharePoint admin center > Policies > Sharing."
+    evidence: Στιγμιότυπο των ρυθμίσεων sharing σε επίπεδο οργανισμού και η λίστα των sites με εξωτερική κοινοποίηση.
+    license: Όλα τα πακέτα.
+    kql: [mass-download]
+    map:
+      kya: ["11.γ", "13.α"]
+      nis2: ["21.2.θ"]
+      iso: ["A.5.14", "A.8.12"]
+      gdpr: ["5.1.στ", "32.1.β"]
+    source: https://learn.microsoft.com/sharepoint/turn-external-sharing-on-or-off
+
+  - id: labels-dlp
+    pillar: cloud
+    priority: normal
+    q: Τα ευαίσθητα δεδομένα έχουν sensitivity labels και πολιτικές DLP;
+    enforced: Δημοσιευμένα sensitivity labels που αντιστοιχούν στο σχήμα ταξινόμησής σου, και πολιτικές DLP για Exchange, SharePoint και OneDrive σε κατάσταση enforcement.
+    fix: "Microsoft Purview portal > Information Protection > Sensitivity labels και Data loss prevention > Policies."
+    evidence: Λίστα labels και πολιτικών DLP, και η αναφορά Activity explorer με τα matches.
+    license: Microsoft 365 Business Premium ή E3 για βασικά labels και DLP. E5 ή Purview Suite για αυτόματη ταξινόμηση.
+    measure: dlp
+    upgrade: autolabel
+    map:
+      kya: ["11.β", "22.β"]
+      nis2: ["21.2.η", "21.2.θ"]
+      iso: ["A.5.12", "A.5.13", "A.8.12"]
+      gdpr: ["5.1.στ", "32.1.α"]
+    source: https://learn.microsoft.com/purview/sensitivity-labels
+
+  - id: backup
+    pillar: cloud
+    priority: high
+    q: Έχεις αντίγραφα ασφαλείας για Exchange, SharePoint και OneDrive, και έχεις δοκιμάσει επαναφορά;
+    enforced: Microsoft 365 Backup ή λύση τρίτου για όλα τα mailboxes και sites, με τουλάχιστον μία καταγεγραμμένη δοκιμή επαναφοράς.
+    fix: "Microsoft 365 admin center > Settings > Microsoft 365 Backup."
+    evidence: Η πολιτική backup με το εύρος της και το πρακτικό της τελευταίας δοκιμής επαναφοράς.
+    license: Microsoft 365 Backup χρεώνεται βάσει χρήσης μέσω Azure subscription. Οι λύσεις τρίτων έχουν δική τους άδεια.
+    measure: backup
+    map:
+      kya: ["25.1.ε", "25.1.ζ"]
+      nis2: ["21.2.γ"]
+      iso: ["A.8.13"]
+      gdpr: ["32.1.γ"]
+    source: https://learn.microsoft.com/microsoft-365/backup/backup-overview
+
+  # ---------- Security Operations & XDR ----------
+  - id: audit-log
+    pillar: secops
+    priority: high
+    q: Το unified audit log είναι ενεργό και ξέρεις για πόσο κρατιούνται οι καταγραφές;
+    enforced: UnifiedAuditLogIngestionEnabled = True, επιβεβαιωμένο, και ορισμένη περίοδος τήρησης που καλύπτει την πολιτική σου.
+    fix: "Microsoft Purview portal > Audit. Έλεγχος στο Exchange Online PowerShell με Get-AdminAuditLogConfig | Format-List UnifiedAuditLogIngestionEnabled."
+    evidence: Έξοδος της εντολής ή στιγμιότυπο του Audit χωρίς το banner ενεργοποίησης, και η πολιτική τήρησης.
+    license: Όλα τα πακέτα για το Audit (Standard), 180 ημέρες. Στα πακέτα Business δεν ενεργοποιείται αυτόματα. Ένα έτος με Audit (Premium).
+    upgrade: audit
+    map:
+      kya: ["24.γ", "24.δ"]
+      nis2: ["21.2.β"]
+      iso: ["A.8.15"]
+      gdpr: ["5.2", "33.5"]
+    source: https://learn.microsoft.com/purview/audit-log-enable-disable
+
+  - id: alert-review
+    pillar: secops
+    priority: high
+    q: Κάποιος ελέγχει καθημερινά τα incidents και τα alerts του Microsoft Defender, με ορισμένο υπεύθυνο;
+    enforced: Ορισμένος υπεύθυνος και αναπληρωτής, email notifications για νέα incidents, και καταγραφή κάθε incident που κλείνει με την αιτιολόγηση.
+    fix: "Microsoft Defender portal > Investigation & response > Incidents & alerts. Ειδοποιήσεις στο Settings > Microsoft Defender XDR > Email notifications."
+    evidence: Η λίστα incidents με κατάσταση, ανάθεση και σχόλια κλεισίματος, και οι ρυθμίσεις ειδοποιήσεων.
+    license: Όλα τα προϊόντα Defender δίνουν incidents και alerts. Για advanced hunting και αυτόματη διερεύνηση, Defender for Endpoint Plan 2 ή Defender for Office 365 Plan 2.
+    upgrade: xdr
+    kql: [foreign-signins, spray-success]
+    map:
+      kya: ["24.ε", "24.α"]
+      nis2: ["21.2.β"]
+      iso: ["A.8.16", "A.5.25"]
+      gdpr: ["33.1"]
+    source: https://learn.microsoft.com/defender-xdr/incidents-overview
+
+  # ---------- GRC & Compliance ----------
+  - id: awareness
+    pillar: grc
+    priority: normal
+    q: Το προσωπικό εκπαιδεύεται τακτικά και δοκιμάζεται με προσομοιώσεις phishing;
+    enforced: Πρόγραμμα εκπαίδευσης με ορισμένη συχνότητα για όλο το προσωπικό και τη διοίκηση, και προσομοιώσεις phishing με παρακολούθηση των αποτελεσμάτων.
+    fix: "Microsoft Defender portal > Email & collaboration > Attack simulation training."
+    evidence: Τα αποτελέσματα των προσομοιώσεων και οι ολοκληρώσεις εκπαίδευσης ανά χρήστη.
+    license: Attack simulation training με Microsoft Defender for Office 365 Plan 2 (E5). Η εκπαίδευση μπορεί να γίνεται και με άλλα μέσα.
+    measure: training
+    map:
+      kya: ["21.α", "21.γ"]
+      nis2: ["21.2.ζ"]
+      iso: ["A.6.3"]
+      gdpr: ["32.4"]
+    source: https://learn.microsoft.com/defender-office-365/attack-simulation-training-get-started
+
+  - id: secure-score
+    pillar: grc
+    priority: normal
+    q: Παρακολουθείς το Microsoft Secure Score και αποφασίζεις τεκμηριωμένα για κάθε recommendation;
+    enforced: Τακτική αναθεώρηση (π.χ. μηνιαία) με στόχο, και για κάθε recommendation απόφαση με σχόλιο, όπως «Risk accepted» ή «Planned», που φαίνεται στο Secure Score.
+    fix: "Microsoft Defender portal > Exposure management > Secure score."
+    evidence: Το ιστορικό του Secure Score και οι recommendations με κατάσταση και σχόλιο απόφασης.
+    license: Όλα τα πακέτα. Για assessment NIS 2 ή ISO/IEC 27001 στο Compliance Manager χρειάζεται premium regulation.
+    upgrade: compliance
+    map:
+      kya: ["9.α", "14.δ"]
+      nis2: ["21.2.στ"]
+      iso: ["A.5.36"]
+      gdpr: ["32.1.δ"]
+    source: https://learn.microsoft.com/defender-xdr/microsoft-secure-score

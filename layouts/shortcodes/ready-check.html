@@ -1,0 +1,494 @@
+{{- /* Είναι έτοιμο το Microsoft 365 σου για τον ελεγκτή;
+       Ερωτήσεις: data/ready_check.yaml. Κάλυψη αδειών: data/license_rules.yaml. Queries: data/kql.yaml.
+       Όλος ο υπολογισμός γίνεται στον browser. Δεν αποστέλλεται κανένα στοιχείο.
+       Χρήση: {{< ready-check >}} */ -}}
+{{- $d := hugo.Data.ready_check -}}
+{{- $lic := hugo.Data.license_rules -}}
+{{- $kql := dict -}}
+{{- range hugo.Data.kql.queries }}{{ if not .draft }}{{ $kql = merge $kql (dict .id .title) }}{{ end }}{{ end -}}
+{{- $data := dict "questions" $d.questions "levels" $d.levels "pillars" $d.pillars "plans" $lic.plans "measures" $lic.measures "kql" $kql "updated" $d.updated -}}
+{{- $sel := "rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500" -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="rcTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Ετοιμότητα για έλεγχο · Microsoft 365 · ΚΥΑ 1689/2025 · NIS2 · ISO/IEC 27001 · GDPR</p>
+
+    <form id="rcForm" class="flex flex-col gap-3" novalidate data-clarity-mask="true">
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">0.</span> Ποιο πακέτο Microsoft 365 έχουν οι χρήστες σου;</span>
+            <select id="rcPlan" class="{{ $sel }}">
+                <option value="">Δεν ξέρω ή έχω ανάμικτα πακέτα</option>
+                {{- range $lic.plans }}
+                <option value="{{ .key }}">{{ .name }}</option>
+                {{- end }}
+            </select>
+            <span class="text-xs text-slate-400">Με βάση αυτό, το αποτέλεσμα σού λέει για κάθε κενό αν το καλύπτει η άδειά σου ή αν χρειάζεσαι κάτι επιπλέον. Αν δεν είσαι σίγουρος, δες το <a href="{{ "poia-adeia-microsoft-365/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">εργαλείο αδειών</a>.</span>
+        </label>
+
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed">
+            <p class="font-semibold text-slate-100 mb-1">Πώς απαντάς</p>
+            <p><strong class="text-slate-100">Δεν υπάρχει:</strong> δεν το έχεις ρυθμίσει. <strong class="text-slate-100">Μερικώς:</strong> ισχύει για κάποιους χρήστες ή συσκευές, ή είναι σε Report-only ή Audit. <strong class="text-slate-100">Επιβάλλεται:</strong> ισχύει για όλους, όπως το περιγράφει το «Τι σημαίνει Επιβάλλεται». <strong class="text-slate-100">Επιβάλλεται και έχω τεκμήριο:</strong> μπορείς να το δείξεις στον ελεγκτή σήμερα, με εξαγωγή, αναφορά ή αποτέλεσμα query. Αν δεν ξέρεις, διάλεξε «Δεν ξέρω». Μετράει ως κενό, γιατί ό,τι δεν ξέρεις δεν μπορείς να το αποδείξεις.</p>
+        </div>
+
+        {{- $n := 0 -}}
+        {{- range $p := $d.pillars }}
+        {{- $items := where $d.questions "pillar" $p.key -}}
+        {{- if $items }}
+        <details class="rcGroup group scroll-mt-24 rounded-xl border border-slate-800 bg-slate-900/40" data-pillar="{{ $p.key }}">
+            <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex items-center gap-3 hover:bg-slate-800/40 rounded-xl">
+                <span class="shrink-0 text-slate-500 text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
+                <span class="flex-1 min-w-0">
+                    <span class="block text-base font-bold text-slate-100">{{ $p.name }}</span>
+                    <span class="rcGroupCount block text-[11px] font-mono text-slate-400">0 / {{ len $items }} απαντημένες</span>
+                </span>
+                <span class="flex items-center gap-2 shrink-0">
+                    <span class="hidden sm:block w-24 h-2 rounded bg-slate-800 overflow-hidden"><span class="rcGroupBar block h-full bg-rose-500 transition-all duration-300" style="width:0%"></span></span>
+                    <span class="rcGroupPct w-12 text-right text-lg font-bold font-mono text-slate-400 tabular-nums">0%</span>
+                </span>
+            </summary>
+            <div class="px-4 pb-4 flex flex-col gap-4">
+            {{- range $q := $items }}
+            {{- $n = add $n 1 }}
+            <div class="rcQ rounded-lg border border-slate-800 bg-slate-900/50 p-4" data-id="{{ $q.id }}">
+                <p class="text-sm text-slate-100 font-semibold mb-1"><span class="font-mono text-blue-400">{{ $n }}.</span> {{ $q.q }}</p>
+                <details class="text-xs text-slate-400 mb-3">
+                    <summary class="cursor-pointer hover:text-slate-300">Τι σημαίνει «Επιβάλλεται»</summary>
+                    <p class="mt-1 leading-relaxed">{{ $q.enforced }}</p>
+                </details>
+                <div class="flex flex-wrap gap-2" role="radiogroup" aria-label="{{ $q.q }}">
+                    {{- range $d.levels }}
+                    <label class="rcOpt inline-flex items-center gap-1.5 rounded-md border border-slate-700 px-2.5 py-1.5 text-xs text-slate-300 cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-500/15 has-[:checked]:text-slate-100">
+                        <input type="radio" class="sr-only" name="rc-{{ $q.id }}" value="{{ .v }}">{{ .label }}
+                    </label>
+                    {{- end }}
+                    <label class="rcOpt inline-flex items-center gap-1.5 rounded-md border border-slate-700 px-2.5 py-1.5 text-xs text-slate-400 cursor-pointer hover:border-blue-500 has-[:checked]:border-amber-400 has-[:checked]:bg-amber-400/10 has-[:checked]:text-slate-100">
+                        <input type="radio" class="sr-only" name="rc-{{ $q.id }}" value="u">Δεν ξέρω
+                    </label>
+                </div>
+            </div>
+            {{- end }}
+            </div>
+        </details>
+        {{- end }}
+        {{- end }}
+
+        <div class="sticky bottom-2 z-10 flex flex-wrap items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/90 backdrop-blur px-3 py-2">
+            <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Δες το αποτέλεσμα</button>
+            <button type="reset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>
+            <span id="rcProgress" class="text-xs font-mono text-slate-400" aria-live="polite"></span>
+            <span class="ml-auto text-sm text-slate-300">Σύνολο <span id="rcLivePct" class="text-lg font-bold font-mono tabular-nums text-slate-400">0%</span></span>
+            <span id="rcError" class="text-sm text-amber-400 hidden" role="alert"></span>
+            <span id="rcRecalc" class="basis-full text-xs text-slate-400">Αν αλλάξεις απαντήσεις, πάτα ξανά «Δες το αποτέλεσμα» για να υπολογιστεί από την αρχή.</span>
+        </div>
+    </form>
+
+    <div id="rcResult" class="hidden scroll-mt-24 mt-6 rounded-lg border border-blue-500/40 bg-slate-900/60 p-5" aria-live="polite" tabindex="-1" data-clarity-mask="true">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Αποτέλεσμα</p>
+        <div class="flex flex-wrap items-end gap-x-6 gap-y-2">
+            <p class="text-4xl font-bold text-slate-100"><span id="rcScore"></span><span class="text-xl text-slate-400">%</span></p>
+            <p class="text-sm text-slate-300 pb-1">ετοιμότητα για έλεγχο · <span id="rcEvid" class="font-semibold text-emerald-400"></span> από <span id="rcTotal"></span> με τεκμήριο</p>
+        </div>
+        <p id="rcVerdict" class="text-sm text-slate-300 leading-relaxed mt-2"></p>
+        <div id="rcCounts" class="flex flex-wrap gap-2 mt-3 text-xs font-mono"></div>
+
+        <div id="rcTopBox">
+            <p class="text-sm font-semibold text-slate-100 mt-6 mb-1">Ξεκίνα από εδώ</p>
+            <p class="text-xs text-slate-400 mb-2">Τα κενά με την υψηλότερη προτεραιότητα, από όλες τις κατηγορίες. Πάτα ένα για να πας στις λεπτομέρειες.</p>
+            <ol id="rcTop" class="list-decimal pl-5 text-sm text-slate-300 flex flex-col gap-1"></ol>
+        </div>
+
+        <p class="text-sm font-semibold text-slate-100 mt-6 mb-1">Ανά κατηγορία</p>
+        <p class="text-xs text-slate-400 mb-3">Κάθε κατηγορία με το ποσοστό της. Μέσα βλέπεις τα κενά με το πού γίνεται η ρύθμιση και τι χρειάζεται από άδεια, όσα επιβάλλονται αλλά θέλουν τεκμήριο, και όσα έχεις ήδη τεκμηριώσει. Πάτα μια κατηγορία για να την ανοίξεις.</p>
+        <div id="rcByPillar" class="flex flex-col gap-3"></div>
+
+        <p class="text-sm font-semibold text-slate-100 mt-6 mb-1">Ανά πλαίσιο συμμόρφωσης</p>
+        <p class="text-xs text-slate-400 mb-3">Οι απαιτήσεις που αγγίζουν οι ερωτήσεις, με το χαμηλότερο επίπεδο που δήλωσες για καθεμία. Κάθε κωδικός ανοίγει την απαίτηση στον αντίστοιχο οδηγό.</p>
+        <div id="rcFw" class="flex flex-col gap-4"></div>
+        <p class="text-xs text-slate-400 mt-2"><span class="text-rose-400">■</span> κενό · <span class="text-amber-300">■</span> μερικώς ή χωρίς τεκμήριο · <span class="text-emerald-400">■</span> με τεκμήριο</p>
+
+        <div class="flex flex-wrap gap-3 mt-6">
+            <button type="button" id="rcPdf" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">Κατέβασε την αναφορά (.pdf)</button>
+            <button type="button" id="rcXlsx" class="rounded-md bg-emerald-600 hover:bg-emerald-500 px-4 py-2 text-sm font-semibold text-white">Κατέβασε το πλάνο (.xlsx)</button>
+            <span id="rcXlsxErr" class="text-sm text-amber-400 hidden" role="alert"></span>
+        </div>
+
+        <p class="text-xs text-amber-300/90 leading-relaxed mt-5">Το αποτέλεσμα βασίζεται μόνο στις απαντήσεις σου. Το εργαλείο δεν συνδέεται στο tenant σου και δεν ελέγχει τις ρυθμίσεις. Δεν είναι ελεγκτική γνώμη ούτε νομική συμβουλή. Οι 22 ερωτήσεις καλύπτουν τεχνικά μέτρα στο Microsoft 365. Οι πολιτικές, οι διαδικασίες και τα οργανωτικά μέτρα ελέγχονται ξεχωριστά στους οδηγούς.</p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Οι απαντήσεις σου δεν αποστέλλονται πουθενά και δεν αποθηκεύονται: ο υπολογισμός και οι αναφορές .pdf και .xlsx γίνονται μέσα στον browser σου.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+    <script type="application/json" id="rcData">{{ $data | jsonify | safeJS }}</script>
+</div>
+<script>
+(function () {
+    var form = document.getElementById('rcForm');
+    if (!form) return;
+    function $(id) { return document.getElementById(id); }
+    var D = JSON.parse($('rcData').textContent);
+    var BASE = '{{ "" | absURL }}';
+    var FW = [
+        { key: 'kya', label: 'ΚΥΑ 1689/2025', url: '{{ "kya-1689-2025/" | relURL }}' },
+        { key: 'nis2', label: 'Οδηγία NIS2', url: '{{ "nis2/" | relURL }}' },
+        { key: 'iso', label: 'ISO/IEC 27001', url: '{{ "iso-27001/" | relURL }}' },
+        { key: 'gdpr', label: 'GDPR', url: '{{ "gdpr/" | relURL }}' }
+    ];
+    var KQL = '{{ "kql/" | relURL }}';
+    var Q = D.questions, N = Q.length;
+    var M = {}; D.measures.forEach(function (m) { M[m.key] = m; });
+    var PLAN = {}; D.plans.forEach(function (p) { PLAN[p.key] = p; });
+    var PIL = {}; D.pillars.forEach(function (p) { PIL[p.key] = p.name; });
+    var LV = {}; D.levels.forEach(function (l) { LV[l.v] = l.label; }); LV.u = 'Δεν ξέρω';
+    var box = $('rcResult'), err = $('rcError');
+    var last = null;
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function anchor(c) { return encodeURIComponent(String(c).replace(/\./g, '-')); }
+    function answers() {
+        var a = {};
+        Q.forEach(function (q) { var r = form.querySelector('input[name="rc-' + q.id + '"]:checked'); if (r) a[q.id] = r.value; });
+        return a;
+    }
+    function score(v) { return v === 'u' ? 0 : +v; }
+    function pctColor(p, n) { return !n ? 'text-slate-400' : p >= 85 ? 'text-emerald-400' : p >= 50 ? 'text-amber-300' : 'text-rose-400'; }
+    function barColor(p) { return p >= 85 ? 'bg-emerald-500' : p >= 50 ? 'bg-amber-400' : 'bg-rose-500'; }
+    // Ζωντανό ποσοστό: οι ερωτήσεις χωρίς απάντηση μετρούν 0, όπως στο τελικό αποτέλεσμα
+    function progress() {
+        var a = answers(), n = Object.keys(a).length, tot = 0;
+        Q.forEach(function (q) { if (q.id in a) tot += score(a[q.id]); });
+        var all = Math.round(tot / (3 * N) * 100);
+        $('rcProgress').textContent = n + ' / ' + N + ' απαντημένες';
+        var lp = $('rcLivePct'); lp.textContent = all + '%'; lp.className = 'text-lg font-bold font-mono tabular-nums ' + pctColor(all, n);
+        Array.prototype.forEach.call(form.querySelectorAll('.rcGroup'), function (g) {
+            var qs = Q.filter(function (q) { return q.pillar === g.getAttribute('data-pillar'); });
+            var s = 0, k = 0;
+            qs.forEach(function (q) { if (q.id in a) { s += score(a[q.id]); k++; } });
+            var pp = Math.round(s / (3 * qs.length) * 100);
+            g.querySelector('.rcGroupCount').textContent = k + ' / ' + qs.length + ' απαντημένες' + (k === qs.length ? ' ✓' : '');
+            var pc = g.querySelector('.rcGroupPct'); pc.textContent = pp + '%'; pc.className = 'rcGroupPct w-12 text-right text-lg font-bold font-mono tabular-nums ' + pctColor(pp, k);
+            var bar = g.querySelector('.rcGroupBar'); bar.style.width = pp + '%'; bar.className = 'rcGroupBar block h-full transition-all duration-300 ' + barColor(pp);
+            var sp = document.querySelector('.rcSidePil[data-pillar="' + g.getAttribute('data-pillar') + '"]');
+            if (sp) {
+                sp.querySelector('.rcSidePilPct').textContent = pp + '%';
+                var sb = sp.querySelector('.rcSidePilBar'); sb.style.width = pp + '%'; sb.className = 'rcSidePilBar block h-full transition-all duration-300 ' + barColor(pp);
+            }
+        });
+        // Γράφημα στη δεξιά στήλη (partial ready-gauge)
+        var ring = $('rcSideRing');
+        if (ring) {
+            var C = 326.73;
+            ring.style.strokeDashoffset = (C * (1 - all / 100)).toFixed(2);
+            ring.style.stroke = all >= 85 ? '#10b981' : all >= 50 ? '#fbbf24' : '#f43f5e';
+            $('rcSidePct').textContent = all + '%';
+            $('rcSideCount').textContent = n + ' / ' + N;
+            var ev = 0, gp = 0;
+            Q.forEach(function (q) { if (a[q.id] === '3') ev++; if (q.id in a && score(a[q.id]) < 2) gp++; });
+            $('rcSideEvid').textContent = ev;
+            $('rcSideGaps').textContent = gp;
+        }
+    }
+    // Η δεξιά στήλη αποδίδεται μετά το άρθρο, γι' αυτό συνδέεται όταν φορτώσει όλη η σελίδα
+    function bindSide() {
+        Array.prototype.forEach.call(document.querySelectorAll('.rcSidePil'), function (b) {
+            b.addEventListener('click', function () {
+                var g = form.querySelector('.rcGroup[data-pillar="' + b.getAttribute('data-pillar') + '"]');
+                if (!g) return;
+                g.open = true;
+                g.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        progress();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindSide); else bindSide();
+    form.addEventListener('change', function (e) {
+        progress();
+        if (!box.classList.contains('hidden')) { var rh = $('rcRecalc'); rh.textContent = 'Άλλαξες απαντήσεις μετά τον υπολογισμό. Πάτα ξανά «Δες το αποτέλεσμα» για να ενημερωθεί.'; rh.className = 'basis-full text-xs font-semibold text-amber-300'; }
+        var g = e.target.closest && e.target.closest('.rcGroup');
+        if (!g || e.target.type !== 'radio') return;
+        var a = answers();
+        var done = Q.filter(function (q) { return q.pillar === g.getAttribute('data-pillar'); }).every(function (q) { return q.id in a; });
+        // Κλείνει μόνο τη στιγμή που ολοκληρώνεται, όχι όταν ο χρήστης αλλάζει απάντηση σε ήδη ολοκληρωμένη κατηγορία
+        if (done && g.getAttribute('data-done') !== '1') {
+            g.setAttribute('data-done', '1');
+            setTimeout(function () {
+                g.open = false;
+                var groups = Array.prototype.slice.call(form.querySelectorAll('.rcGroup'));
+                var next = groups.slice(groups.indexOf(g) + 1).concat(groups.slice(0, groups.indexOf(g))).filter(function (x) { return x.getAttribute('data-done') !== '1'; })[0];
+                if (next) { next.open = true; next.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                else form.querySelector('button[type="submit"]').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 350);
+        }
+    });
+    form.addEventListener('reset', function () { box.classList.add('hidden'); err.classList.add('hidden'); Array.prototype.forEach.call(form.querySelectorAll('.rcGroup'), function (g) { g.removeAttribute('data-done'); g.open = false; }); setTimeout(progress, 0); });
+    progress();
+
+    // Κατάσταση άδειας για το πακέτο που δήλωσε ο χρήστης
+    function licLine(q, plan) {
+        var out = [];
+        function one(key, prefix) {
+            var m = M[key]; if (!m) return;
+            if (!plan) { out.push('<p class="text-xs text-slate-400">' + prefix + esc(m.feature) + '.</p>'); return; }
+            var c = m.plans[plan]; if (!c) return;
+            var cls = { y: 'text-emerald-400', a: 'text-amber-300', n: 'text-rose-400' }[c.s];
+            var w = { y: '✓ Περιλαμβάνεται στο ' + PLAN[plan].name, a: '+ Χρειάζεται πρόσθετη άδεια στο ' + PLAN[plan].name, n: '✗ Δεν διατίθεται στο ' + PLAN[plan].name + ' χωρίς άλλο πακέτο' }[c.s];
+            out.push('<p class="text-xs"><span class="' + cls + '">' + prefix + w + '.</span> <span class="text-slate-400">' + esc(c.t) + (c.c ? ' Επιβεβαίωσε με τον licensing partner.' : '') + '</span></p>');
+        }
+        if (q.measure) one(q.measure, '');
+        else if (/^Όλα τα πακέτα/.test(q.license)) out.push('<p class="text-xs text-emerald-400/90">✓ ' + esc(q.license) + '</p>');
+        else out.push('<p class="text-xs text-slate-400">Άδεια: ' + esc(q.license) + '</p>');
+        if (q.upgrade) one(q.upgrade, 'Για να πας παραπέρα: ');
+        return out.join('');
+    }
+    function licText(q, plan) {
+        var t = [];
+        function one(key, prefix) {
+            var m = M[key]; if (!m) return;
+            if (!plan) { t.push(prefix + m.feature); return; }
+            var c = m.plans[plan]; if (!c) return;
+            t.push(prefix + { y: 'Περιλαμβάνεται', a: 'Χρειάζεται πρόσθετη άδεια', n: 'Χρειάζεται άλλο πακέτο' }[c.s] + ': ' + c.t);
+        }
+        if (q.measure) one(q.measure, ''); else t.push('Όλα τα πακέτα');
+        if (q.upgrade) one(q.upgrade, 'Επέκταση: ');
+        return t.join(' | ');
+    }
+    function codes(q) {
+        return FW.map(function (f) {
+            var c = q.map[f.key] || []; if (!c.length) return '';
+            return '<span class="text-slate-500">' + esc(f.label) + '</span> ' + c.map(function (x) {
+                return '<a href="' + f.url + '#' + anchor(x) + '" class="font-mono text-blue-400 hover:text-blue-300 underline">' + esc(x) + '</a>';
+            }).join(', ');
+        }).filter(Boolean).join(' · ');
+    }
+    function kqlLinks(q) {
+        var k = (q.kql || []).filter(function (id) { return D.kql[id]; });
+        if (!k.length) return '';
+        return '<p class="text-xs mt-1"><span class="text-slate-400">🎯 Τεκμήριο από το tenant σου:</span> ' + k.map(function (id) {
+            return '<a href="' + KQL + '#' + id + '" class="text-blue-400 hover:text-blue-300 underline">' + esc(D.kql[id]) + '</a>';
+        }).join(', ') + '</p>';
+    }
+    function toolLink(q) {
+        if (!q.tool) return '';
+        return '<p class="text-xs mt-1"><a href="{{ "" | relURL }}' + esc(q.tool.url) + '" class="text-blue-400 hover:text-blue-300 underline">' + esc(q.tool.label) + '</a></p>';
+    }
+    function lvColor(v) { return v === 3 ? 'text-emerald-400' : v === 2 ? 'text-amber-300' : v === 1 ? 'text-amber-300' : 'text-rose-400'; }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var a = answers(), missing = Q.filter(function (q) { return !(q.id in a); });
+        if (missing.length) {
+            err.textContent = 'Απάντησε σε όλες τις ερωτήσεις. Λείπουν ' + missing.length + '. Αν δεν ξέρεις, διάλεξε «Δεν ξέρω».';
+            err.classList.remove('hidden');
+            var el = form.querySelector('.rcQ[data-id="' + missing[0].id + '"]');
+            if (el) { var grp = el.closest('details'); if (grp) grp.open = true; }
+            if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.add('ring-1', 'ring-amber-400'); setTimeout(function () { el.classList.remove('ring-1', 'ring-amber-400'); }, 2500); }
+            return;
+        }
+        err.classList.add('hidden');
+        var rh = $('rcRecalc'); rh.textContent = 'Αν αλλάξεις απαντήσεις, πάτα ξανά «Δες το αποτέλεσμα» για να υπολογιστεί από την αρχή.'; rh.className = 'basis-full text-xs text-slate-400';
+        var plan = $('rcPlan').value;
+        var total = 0, cnt = { 0: 0, 1: 0, 2: 0, 3: 0, u: 0 };
+        Q.forEach(function (q) { total += score(a[q.id]); cnt[a[q.id]]++; });
+        var pct = Math.round(total / (3 * N) * 100);
+        last = { a: a, plan: plan, pct: pct, cnt: cnt };
+
+        $('rcScore').textContent = pct;
+        $('rcEvid').textContent = cnt[3];
+        $('rcTotal').textContent = N;
+        var gapsN = cnt[0] + cnt[1] + cnt.u;
+        var v;
+        if (pct >= 85 && gapsN === 0) v = 'Καλή θέση. Όλα τα μέτρα επιβάλλονται. Φρόντισε να έχεις τεκμήριο για όσα δεν έχουν ακόμη, και να το ανανεώνεις πριν από κάθε έλεγχο.';
+        else if (pct >= 60) v = 'Η βάση υπάρχει, αλλά ένας ελεγκτής θα βρει ευρήματα. Ξεκίνα από τα κενά με υψηλή προτεραιότητα και μετά συγκέντρωσε τα τεκμήρια.';
+        else if (pct >= 35) v = 'Σημαντικά κενά. Πολλά βασικά μέτρα λείπουν ή εφαρμόζονται μερικώς. Φτιάξε πλάνο με ημερομηνίες για τα κενά υψηλής προτεραιότητας, γιατί και το πλάνο είναι τεκμήριο.';
+        else v = 'Δεν είσαι έτοιμος για έλεγχο. Ξεκίνα από MFA, legacy authentication, προστασία email και antimalware: είναι τα μέτρα με τη μεγαλύτερη επίπτωση και τα περισσότερα περιλαμβάνονται ήδη στην άδειά σου.';
+        $('rcVerdict').textContent = v;
+
+        var chip = function (cls, t) { return '<span class="rounded border px-2 py-0.5 ' + cls + '">' + t + '</span>'; };
+        $('rcCounts').innerHTML =
+            chip('border-emerald-500/40 text-emerald-400', cnt[3] + ' με τεκμήριο') +
+            chip('border-amber-400/40 text-amber-300', cnt[2] + ' χωρίς τεκμήριο') +
+            chip('border-amber-400/40 text-amber-300', cnt[1] + ' μερικώς') +
+            chip('border-rose-500/40 text-rose-400', cnt[0] + ' δεν υπάρχει') +
+            (cnt.u ? chip('border-slate-600 text-slate-300', cnt.u + ' δεν ξέρω') : '');
+
+        // Ανά κατηγορία: για κάθε πυλώνα κενά, χωρίς τεκμήριο και με τεκμήριο
+        function gapItem(q) {
+            var val = a[q.id], border = score(val) === 0 ? 'border-rose-500/60' : 'border-amber-400/60';
+            return '<li id="rcr-' + q.id + '" class="scroll-mt-24 border-l-2 ' + border + ' pl-3 text-sm text-slate-300 leading-relaxed">' +
+                '<p class="text-slate-100"><strong>' + esc(q.q) + '</strong> <span class="text-xs text-slate-400">(' + esc(LV[val]) + (q.priority === 'high' ? ' · υψηλή προτεραιότητα' : '') + ')</span></p>' +
+                '<p class="mt-1"><span class="text-slate-400">Στόχος:</span> ' + esc(q.enforced) + '</p>' +
+                '<p class="mt-1"><span class="text-slate-400">Πού:</span> ' + esc(q.fix) + '</p>' +
+                '<div class="mt-1">' + licLine(q, plan) + '</div>' +
+                kqlLinks(q) + toolLink(q) +
+                '<p class="text-xs text-slate-400 mt-1">' + codes(q) + ' · <a href="' + esc(q.source) + '" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">Microsoft Learn</a></p></li>';
+        }
+        function noEvItem(q) {
+            return '<li id="rcr-' + q.id + '" class="scroll-mt-24 border-l-2 border-amber-400/40 pl-3 text-sm text-slate-300 leading-relaxed"><p class="text-slate-100"><strong>' + esc(q.q) + '</strong></p><p class="mt-1"><span class="text-slate-400">Τι κρατάς:</span> ' + esc(q.evidence) + '</p>' + kqlLinks(q) + toolLink(q) + '<p class="text-xs text-slate-400 mt-1">' + codes(q) + '</p></li>';
+        }
+        function evItem(q) {
+            return '<li class="text-sm text-slate-300"><span class="text-emerald-400">✓</span> ' + esc(q.q) + '</li>';
+        }
+        var byPrio = function (x, y) {
+            return score(a[x.id]) - score(a[y.id]) || (x.priority === 'high' ? 0 : 1) - (y.priority === 'high' ? 0 : 1);
+        };
+        $('rcByPillar').innerHTML = D.pillars.map(function (p) {
+            var qs = Q.filter(function (q) { return q.pillar === p.key; }); if (!qs.length) return '';
+            var s = 0; qs.forEach(function (q) { s += score(a[q.id]); });
+            var pp = Math.round(s / (3 * qs.length) * 100);
+            var g = qs.filter(function (q) { return score(a[q.id]) < 2; }).sort(byPrio);
+            var ne = qs.filter(function (q) { return a[q.id] === '2'; });
+            var ev = qs.filter(function (q) { return a[q.id] === '3'; });
+            var sub = function (title, cls, items, fn, tag) {
+                if (!items.length) return '';
+                return '<p class="text-xs font-semibold uppercase tracking-wider ' + cls + ' mt-4 mb-2">' + title + ' (' + items.length + ')</p><' + tag + ' class="flex flex-col gap-3">' + items.map(fn).join('') + '</' + tag + '>';
+            };
+            var chips = '<span class="text-[11px] font-mono"><span class="text-rose-400">' + g.length + ' κενά</span> · <span class="text-amber-300">' + ne.length + ' χωρίς τεκμήριο</span> · <span class="text-emerald-400">' + ev.length + ' με τεκμήριο</span></span>';
+            return '<details id="rcp-' + p.key + '" class="group/p scroll-mt-24 rounded-lg border border-slate-800 bg-slate-950/40">' +
+                '<summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-3 flex items-center gap-3 hover:bg-slate-800/40 rounded-lg">' +
+                '<span class="shrink-0 text-slate-500 text-xs transition-transform group-open/p:rotate-90" aria-hidden="true">▸</span>' +
+                '<span class="flex-1 min-w-0"><span class="block text-sm font-semibold text-slate-100">' + esc(p.name) + '</span>' + chips + '</span>' +
+                '<span class="hidden sm:block w-24 h-2 rounded bg-slate-800 overflow-hidden shrink-0"><span class="block h-full ' + barColor(pp) + '" style="width:' + pp + '%"></span></span>' +
+                '<span class="w-12 text-right text-base font-bold font-mono tabular-nums ' + pctColor(pp, 1) + '">' + pp + '%</span></summary>' +
+                '<div class="px-4 pb-4">' +
+                sub('Κενά προς διόρθωση', 'text-rose-400', g, gapItem, 'ul') +
+                sub('Επιβάλλονται, αλλά χρειάζεσαι τεκμήριο', 'text-amber-300', ne, noEvItem, 'ul') +
+                sub('Με τεκμήριο', 'text-emerald-400', ev, evItem, 'ul') +
+                '</div></details>';
+        }).join('');
+
+        // Ξεκίνα από εδώ: έως 5 κενά υψηλής προτεραιότητας από όλες τις κατηγορίες
+        var top = Q.filter(function (q) { return score(a[q.id]) < 2; }).sort(function (x, y) {
+            return (x.priority === 'high' ? 0 : 1) - (y.priority === 'high' ? 0 : 1) || score(a[x.id]) - score(a[y.id]);
+        }).slice(0, 5);
+        $('rcTopBox').classList.toggle('hidden', !top.length);
+        $('rcTop').innerHTML = top.map(function (q) {
+            return '<li><a href="#rcr-' + q.id + '" data-p="' + q.pillar + '" class="rcTopLink text-blue-400 hover:text-blue-300 underline">' + esc(q.q) + '</a> <span class="text-xs text-slate-500">' + esc(PIL[q.pillar]) + '</span></li>';
+        }).join('');
+        Array.prototype.forEach.call(document.querySelectorAll('.rcTopLink'), function (l) {
+            l.addEventListener('click', function () { var d = $('rcp-' + l.getAttribute('data-p')); if (d) d.open = true; });
+        });
+
+        // Ανά πλαίσιο: χαμηλότερο επίπεδο ανά κωδικό
+        $('rcFw').innerHTML = FW.map(function (f) {
+            var worst = {}, order = [];
+            Q.forEach(function (q) {
+                (q.map[f.key] || []).forEach(function (c) {
+                    var s = score(a[q.id]);
+                    if (!(c in worst)) { worst[c] = s; order.push(c); } else if (s < worst[c]) worst[c] = s;
+                });
+            });
+            var gapsC = order.filter(function (c) { return worst[c] < 2; }).length;
+            return '<div><p class="text-xs text-slate-300 mb-1.5"><a href="' + f.url + '" class="font-semibold text-slate-100 hover:text-blue-300 underline">' + esc(f.label) + '</a> <span class="text-slate-400">· ' + order.length + ' απαιτήσεις · ' + gapsC + ' με κενό</span></p><div class="flex flex-wrap gap-1.5">' + order.map(function (c) {
+                var s = worst[c], cls = s === 3 ? 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10' : s === 2 || s === 1 ? 'border-amber-400/40 text-amber-300 bg-amber-400/10' : 'border-rose-500/40 text-rose-400 bg-rose-500/10';
+                return '<a href="' + f.url + '#' + anchor(c) + '" class="text-[11px] font-mono rounded border px-1.5 py-0.5 hover:underline ' + cls + '" title="' + esc(f.label + ' ' + c + ': ' + LV[s]) + '">' + esc(c) + '</a>';
+            }).join('') + '</div></div>';
+        }).join('');
+
+        box.classList.remove('hidden');
+        box.focus({ preventScroll: true });
+        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Αναφορά .pdf: pdfmake και το script της αναφοράς φορτώνονται μόνο όταν πατηθεί το κουμπί
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-rc="' + src + '"]')) return next();
+            var s = document.createElement('script');
+            s.src = src; s.setAttribute('data-rc', src);
+            s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    $('rcPdf').addEventListener('click', function () {
+        if (!last) return;
+        var btn = $('rcPdf'), txt = btn.textContent, e = $('rcXlsxErr');
+        btn.disabled = true; btn.textContent = 'Δημιουργία αναφοράς…'; e.classList.add('hidden');
+        loadScripts([
+            'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js',
+            '{{ "js/ready-report.js" | relURL }}'
+        ], function () {
+            try {
+                window.rcBuildPdf({ D: D, a: last.a, plan: last.plan, pct: last.pct, cnt: last.cnt, LV: LV, FW: FW, PIL: PIL, PLAN: PLAN, base: BASE, licText: licText });
+            } catch (x) { e.textContent = 'Η αναφορά δεν δημιουργήθηκε. Δοκίμασε ξανά.'; e.classList.remove('hidden'); }
+            btn.disabled = false; btn.textContent = txt;
+        }, function () {
+            e.textContent = 'Δεν φορτώθηκε η βιβλιοθήκη για το .pdf. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'; e.classList.remove('hidden');
+            btn.disabled = false; btn.textContent = txt;
+        });
+    });
+
+    // Αναφορά .xlsx: φορτώνεται η βιβλιοθήκη SheetJS μόνο όταν πατηθεί το κουμπί
+    function loadXlsx(cb) {
+        if (window.XLSX) return cb();
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+        s.onload = cb;
+        s.onerror = function () { var e = $('rcXlsxErr'); e.textContent = 'Δεν φορτώθηκε η βιβλιοθήκη για το .xlsx. Δοκίμασε ξανά ή χρησιμοποίησε την Εκτύπωση.'; e.classList.remove('hidden'); };
+        document.head.appendChild(s);
+    }
+    $('rcXlsx').addEventListener('click', function () {
+        if (!last) return;
+        loadXlsx(function () {
+            var X = window.XLSX, a = last.a, plan = last.plan;
+            var today = new Date(), d = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2) + '/' + today.getFullYear();
+            var page = BASE + 'etoimotita-microsoft-365/';
+            var info = [
+                ['Ετοιμότητα Microsoft 365 για έλεγχο: αναφορά'],
+                ['Ημερομηνία', d],
+                ['Πακέτο', plan ? PLAN[plan].name : 'Δεν δηλώθηκε'],
+                ['Ετοιμότητα', last.pct + '%'],
+                ['Με τεκμήριο', last.cnt[3] + ' από ' + N],
+                ['Χωρίς τεκμήριο', last.cnt[2]],
+                ['Μερικώς', last.cnt[1]],
+                ['Δεν υπάρχει', last.cnt[0]],
+                ['Δεν ξέρω', last.cnt.u],
+                ['Πηγή', 'Δημοσθένης Αττέια, Microsoft 365 Security Insights. Το εργαλείο: ' + page],
+                ['Αποποίηση', 'Το αποτέλεσμα βασίζεται μόνο στις απαντήσεις που δόθηκαν. Δεν είναι ελεγκτική γνώμη ούτε νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια απαίτηση, δεν αποδεικνύει από μόνη της συμμόρφωση.'],
+                [],
+                ['Πνευματικά δικαιώματα και όροι χρήσης'],
+                ['Δικαιούχος', '© ' + today.getFullYear() + ' Δημοσθένης Αττέια, thecybersec.gr. Με επιφύλαξη παντός δικαιώματος.'],
+                ['Τι προστατεύεται', 'Οι ερωτήσεις, οι περιγραφές, η αντιστοίχιση με ρυθμίσεις της Microsoft και με τις απαιτήσεις των πλαισίων, και η δομή της αναφοράς είναι πρωτότυπο έργο του συντάκτη και προστατεύονται από τον ν. 2121/1993. Τα κείμενα της ΚΥΑ 1689/2025, της Οδηγίας (ΕΕ) 2022/2555 και του Κανονισμού (ΕΕ) 2016/679 είναι δημόσια έγγραφα και δεν αποτελούν αντικείμενο αυτής της προστασίας.'],
+                ['Τι επιτρέπεται', 'Η χρήση της αναφοράς για τις εσωτερικές ανάγκες του οργανισμού σας, καθώς και η επίδειξή της σε ελεγκτές και αρμόδιες αρχές στο πλαίσιο ελέγχου.'],
+                ['Τι απαγορεύεται χωρίς γραπτή άδεια του συντάκτη', 'Η αναδημοσίευση, η αναδιανομή και η ανάρτηση της αναφοράς ή τμήματός της σε ιστότοπους, πλατφόρμες ή μέσα κοινωνικής δικτύωσης. Η εμπορική εκμετάλλευση, μαζί με την ενσωμάτωσή της σε προϊόντα, υπηρεσίες, εκπαιδευτικό υλικό ή παραδοτέα προς τρίτους. Η αφαίρεση ή η αλλοίωση της αναφοράς στον συντάκτη και στην πηγή.'],
+                ['Πώς το μοιράζεστε', 'Με παραπομπή στη σελίδα ' + page + '.'],
+                ['Επικοινωνία για άδεια χρήσης', 'Μέσω LinkedIn: https://www.linkedin.com/in/dimosthenisatteia/']
+            ];
+            var head = ['#', 'Πυλώνας', 'Ερώτηση', 'Απάντηση', 'Βαθμός (0-3)', 'Προτεραιότητα', 'Τι σημαίνει Επιβάλλεται', 'Πού ρυθμίζεται', 'Τι κρατάς ως τεκμήριο', 'Άδεια', 'Άδεια στο πακέτο σου', 'ΚΥΑ 1689/2025', 'Οδηγία NIS2 (άρθρο 21.2)', 'ISO/IEC 27001 Annex A', 'GDPR', 'KQL από τη Βιβλιοθήκη', 'Microsoft Learn', 'Υπεύθυνος', 'Ημερομηνία στόχος', 'Σχόλια'];
+            var rows = [head].concat(Q.map(function (q, i) {
+                var k = (q.kql || []).filter(function (id) { return D.kql[id]; }).map(function (id) { return BASE + 'kql/#' + id; }).join('\n');
+                return [i + 1, PIL[q.pillar], q.q, LV[a[q.id]], score(a[q.id]), q.priority === 'high' ? 'Υψηλή' : 'Κανονική', q.enforced, q.fix, q.evidence, q.license, licText(q, plan), (q.map.kya || []).join(', '), (q.map.nis2 || []).join(', '), (q.map.iso || []).join(', '), (q.map.gdpr || []).join(', '), k, q.source, '', '', ''];
+            }));
+            var fwRows = [['Πλαίσιο', 'Κωδικός', 'Χαμηλότερο επίπεδο', 'Ερωτήσεις', 'Σύνδεσμος']];
+            FW.forEach(function (f) {
+                var worst = {}, qs = {}, order = [];
+                Q.forEach(function (q, i) {
+                    (q.map[f.key] || []).forEach(function (c) {
+                        var s = score(a[q.id]);
+                        if (!(c in worst)) { worst[c] = s; qs[c] = []; order.push(c); } else if (s < worst[c]) worst[c] = s;
+                        qs[c].push(i + 1);
+                    });
+                });
+                order.forEach(function (c) { fwRows.push([f.label, c, LV[worst[c]], qs[c].join(', '), BASE + f.url.replace(/^\//, '') + '#' + String(c).replace(/\./g, '-')]); });
+            });
+            var wb = X.utils.book_new();
+            var s1 = X.utils.aoa_to_sheet(info); s1['!cols'] = [{ wch: 34 }, { wch: 110 }];
+            var s2 = X.utils.aoa_to_sheet(rows); s2['!cols'] = [4, 22, 50, 24, 10, 12, 60, 60, 50, 40, 50, 16, 16, 18, 14, 36, 50, 18, 16, 30].map(function (w) { return { wch: w }; });
+            s2['!autofilter'] = { ref: 'A1:T' + rows.length };
+            var s3 = X.utils.aoa_to_sheet(fwRows); s3['!cols'] = [{ wch: 18 }, { wch: 10 }, { wch: 28 }, { wch: 14 }, { wch: 60 }];
+            X.utils.book_append_sheet(wb, s1, 'Οδηγίες');
+            X.utils.book_append_sheet(wb, s2, 'Αποτελέσματα');
+            var pRows = [['Κατηγορία', 'Ποσοστό', 'Ερωτήσεις', 'Με τεκμήριο', 'Χωρίς τεκμήριο', 'Μερικώς', 'Δεν υπάρχει', 'Δεν ξέρω']];
+            D.pillars.forEach(function (p) {
+                var qs = Q.filter(function (q) { return q.pillar === p.key; }); if (!qs.length) return;
+                var c = { 0: 0, 1: 0, 2: 0, 3: 0, u: 0 }, sum = 0;
+                qs.forEach(function (q) { c[a[q.id]]++; sum += score(a[q.id]); });
+                pRows.push([p.name, Math.round(sum / (3 * qs.length) * 100) + '%', qs.length, c[3], c[2], c[1], c[0], c.u]);
+            });
+            var s4 = X.utils.aoa_to_sheet(pRows); s4['!cols'] = [{ wch: 28 }, { wch: 10 }, { wch: 10 }, { wch: 12 }, { wch: 14 }, { wch: 10 }, { wch: 12 }, { wch: 10 }];
+            X.utils.book_append_sheet(wb, s4, 'Ανά κατηγορία');
+            X.utils.book_append_sheet(wb, s3, 'Ανά πλαίσιο');
+            X.writeFile(wb, 'etoimotita-microsoft-365-' + today.toISOString().slice(0, 10) + '.xlsx');
+        });
+    });
+})();
+</script>

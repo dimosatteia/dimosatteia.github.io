@@ -4,6 +4,7 @@
     (dict "page" "/elegxos-domain" "name" "Έλεγχος domain" "text" "SPF, DKIM, DMARC, MTA-STS και DNSSEC για το domain σου, με τη ρύθμιση του Microsoft 365 που διορθώνει κάθε εύρημα.")
     (dict "page" "/kql" "name" "Βιβλιοθήκη KQL ανά απαίτηση" "text" "Advanced Hunting queries για το Defender XDR, αντιστοιχισμένα σε ΚΥΑ 1689/2025, NIS2 και ISO 27001, δοκιμασμένα σε πραγματικό tenant.")
     (dict "page" "/poia-adeia-microsoft-365" "name" "Ποια άδεια Microsoft 365 χρειάζομαι" "text" "διάλεξε τα μέτρα της ΚΥΑ 1689/2025 και δες ποιο πακέτο, από Business Basic έως E7, τα καλύπτει και τι χρειάζεται ως πρόσθετη άδεια. Χωρίς τιμές.")
+    (dict "page" "/etoimotita-microsoft-365" "name" "Είναι έτοιμο το Microsoft 365 σου για τον ελεγκτή;" "text" "22 ερωτήσεις για τις βασικές ρυθμίσεις ασφάλειας, με αναφορά κενών ανά απαίτηση της ΚΥΑ 1689/2025, της NIS2, του ISO/IEC 27001 και του GDPR, τα τεκμήρια που θα ζητηθούν, και αναφορά .pdf και .xlsx.")
     (dict "page" "/kostos-peristatikou" "name" "Κόστος περιστατικού: διακοπή και ransomware" "text" "δες σε ευρώ πόσο κοστίζει μία ώρα χωρίς συστήματα και ένα ransomware, πόσα γλιτώνεις με ταχύτερη επαναφορά, και το ALE, το ROSI και το ανώτατο RTO για το ISMS σου.") -}}
 {{- $any := false -}}
 {{- range $tools }}{{ if site.GetPage .page }}{{ $any = true }}{{ end }}{{ end -}}
