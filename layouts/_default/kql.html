@@ -70,7 +70,9 @@
         <details class="kql-group group glass-card rounded-xl" id="pylonas-{{ .key }}" open>
             <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex flex-wrap items-center gap-x-3 gap-y-2 hover:bg-slate-800/40 rounded-xl">
                 <span class="shrink-0 text-slate-500 text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
-                <h2 class="text-base font-bold text-slate-100 flex-1 min-w-[200px]">{{ .name }}</h2>
+                {{- $grpAdded := "" -}}
+                {{- range $items }}{{ with .added }}{{ $a := (time .).Format "2006-01-02" }}{{ if gt $a $grpAdded }}{{ $grpAdded = $a }}{{ end }}{{ end }}{{ end }}
+                <h2 class="text-base font-bold text-slate-100 flex-1 min-w-[200px]">{{ .name }}{{ with $grpAdded }}<span class="kql-new-star" hidden data-until="{{ ((time .).AddDate 0 0 7).Format "2006-01-02" }}" title="Νέο query σε αυτή την ομάδα"> ⭐</span>{{ end }}</h2>
                 <span class="text-[11px] font-mono text-slate-400">{{ len $items }} {{ if eq (len $items) 1 }}query{{ else }}queries{{ end }}</span>
             </summary>
             <div class="px-4 pb-4 flex flex-col gap-2">
