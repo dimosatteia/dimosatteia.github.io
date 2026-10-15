@@ -5,8 +5,9 @@
 */ -}}
 {{- $feed := where site.RegularPages "Type" "in" site.Params.mainSections -}}
 {{- if eq .Kind "term" }}{{ $feed = .Pages }}{{ end -}}
-{{- /* Αρχική: σελίδες με «homeFeed: true» στο front matter (π.χ. ένα νέο εργαλείο) μπαίνουν πρώτες στα «Πρόσφατα Άρθρα». Για να φύγει, σβήνεις τη γραμμή. */ -}}
-{{- if .IsHome }}{{ with where site.RegularPages "Params.homeFeed" true }}{{ $feed = union . $feed }}{{ end }}{{ end -}}
+{{- /* Αρχική: σελίδες με «homeFeed: true» στο front matter (π.χ. ένα νέο εργαλείο) μπαίνουν στα «Πρόσφατα Άρθρα» με την ίδια ταξινόμηση με τα άρθρα (weight, μετά ημερομηνία).
+       Βάλε τους και «weight: -6» για να μπουν ανάμεσα στα πρόσφατα με βάση την ημερομηνία τους. Για να φύγει, σβήνεις τη γραμμή homeFeed. */ -}}
+{{- if .IsHome }}{{ with where site.RegularPages "Params.homeFeed" true }}{{ $feed = (union . $feed).ByWeight }}{{ end }}{{ end -}}
 {{- /* Σελίδα σειράς (όχι ongoing): πρώτα τα αριθμημένα μέρη με τη σειρά ανάγνωσης, μετά τα συνοδευτικά (seriesCompanion: true) */ -}}
 {{- if and (eq .Kind "term") (eq .Data.Plural "series") (not .Params.ongoing) -}}
   {{- $parts := where .Pages.ByDate "Params.seriesCompanion" "!=" true -}}
