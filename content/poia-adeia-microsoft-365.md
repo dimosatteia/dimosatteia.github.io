@@ -12,7 +12,7 @@ menu:
     name: "🧩 Ποια άδεια Microsoft 365 χρειάζομαι"
     weight: 4
 author: "Dimosthenis Atteia"
-description: "Δωρεάν εργαλείο χωρίς τιμές: δες ποιο πακέτο Microsoft 365, από Business Basic έως E7, καλύπτει τα μέτρα της ΚΥΑ 1689/2025 και τι χρειάζεται επιπλέον."
+description: "Δωρεάν εργαλείο: δες ποιο πακέτο Microsoft 365, από Business Basic έως E7, καλύπτει τα μέτρα της ΚΥΑ 1689/2025 και της NIS2 και τι χρειάζεται επιπλέον."
 keywords:
   - ποια άδεια Microsoft 365
   - Microsoft 365 Business Premium ή E5
