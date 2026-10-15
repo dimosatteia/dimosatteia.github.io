@@ -228,6 +228,9 @@ articles:
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
     - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
+      url: /posts/homograph-attack-kyrillika-grammata/
+      page: /posts/homograph-attack-kyrillika-grammata
   - code: 21.2.η
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες σχετικά με τη χρήση κρυπτογραφίας και, κατά περίπτωση, κρυπτογράφησης.

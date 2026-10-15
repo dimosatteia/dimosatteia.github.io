@@ -641,6 +641,9 @@ articles:
       url: /posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/
     - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
+      url: /posts/homograph-attack-kyrillika-grammata/
+      page: /posts/homograph-attack-kyrillika-grammata
   - code: A.6.4
     scope: ''
     requirement: Disciplinary process
@@ -1242,6 +1245,9 @@ articles:
       url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
+    - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
+      url: /posts/homograph-attack-kyrillika-grammata/
+      page: /posts/homograph-attack-kyrillika-grammata
   - code: A.8.24
     scope: ''
     requirement: Use of cryptography
