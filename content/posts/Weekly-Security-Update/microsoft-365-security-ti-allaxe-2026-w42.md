@@ -1,8 +1,8 @@
 ---
 title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 42/2026)"
-date: 2026-10-16T08:00:00+03:00
-lastmod: 2026-10-16T08:00:00+03:00
-draft: true
+date: 2026-10-15T19:09:00+03:00
+lastmod: 2026-10-15T19:09:00+03:00
+draft: false
 keywords:
   - Microsoft 365 Security νέα
   - Search-UnifiedAuditLog retirement
