@@ -23,7 +23,18 @@
     <button class="announce-close" id="announce-close" aria-label="Κλείσιμο">&times;</button>
     <div class="announce-badge">Νέα στο blog</div>
 
-      <div class="announce-item">
+    <!-- Μόνο για τις 15/10/2026 (ώρα Ελλάδας): δείχνεται αυτό αντί για τα δύο παρακάτω. Μετά κρύβεται μόνο του. -->
+    <div class="announce-item" id="announce-today" hidden>
+    <h3>Νέο εργαλείο: Πόσο κοστίζει ένα περιστατικό;</h3>
+    <p>
+      Υπολογιστής για διακοπή λειτουργίας και ransomware. Δες σε ευρώ
+      το κόστος ανά ώρα, πόσα γλιτώνεις με ταχύτερη επαναφορά, και το
+      ALE, το ROSI και το ανώτατο RTO για το ISMS σου.
+    </p>
+    <a href="https://thecybersec.gr/kostos-peristatikou/" class="announce-cta">Δοκίμασε τον υπολογιστή →</a>
+    </div>
+
+      <div class="announce-item announce-default">
     <h3 id="announce-title">Νέο εργαλείο: Βιβλιοθήκη KQL για ΚΥΑ 1689/2025, NIS2 και ISO 27001</h3>
     <p>
       Έτοιμα Advanced Hunting queries για το Microsoft Defender XDR,
@@ -33,7 +44,7 @@
     <a href="https://thecybersec.gr/kql/" class="announce-cta">Δες τη βιβλιοθήκη →</a>
     </div>
 
-      <div class="announce-item">
+      <div class="announce-item announce-default">
     <h3>Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση</h3>
     <p>
       Το δεύτερο άρθρο της σειράς Microsoft Defender Up Close: Plan 1 και
@@ -84,6 +95,15 @@
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(128,128,128,0.25);
+  }
+  .announce-item[hidden] {
+    display: none;
+  }
+  /* Όταν φαίνεται, το στοιχείο της ημέρας είναι μόνο του στο popup */
+  #announce-today {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
   }
   .announce-item:last-child {
     margin-bottom: 0;
@@ -163,6 +183,19 @@
     var closeBtn = document.getElementById("announce-close");
 
     if (!overlay) return;
+
+    // Μόνο σήμερα (ώρα Ελλάδας): δείχνει τον υπολογιστή κόστους, με δικό του κλειδί,
+    // ώστε όσοι έκλεισαν ήδη το popup με τα δύο άρθρα να δουν κι αυτό. Από αύριο επιστρέφει μόνο του.
+    var TODAY_ONLY = "2026-10-15";
+    var athensDate = "";
+    try { athensDate = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Athens" }).format(new Date()); } catch (e) {}
+    if (athensDate === TODAY_ONLY) {
+      STORAGE_KEY = "announce_kostos_peristatikou_v1";
+      document.getElementById("announce-today").hidden = false;
+      document.getElementById("announce-title").removeAttribute("id");
+      overlay.querySelector("#announce-today h3").id = "announce-title";
+      overlay.querySelectorAll(".announce-default").forEach(function (el) { el.hidden = true; });
+    }
     if (localStorage.getItem(STORAGE_KEY)) return;
 
     function openPopup() {
