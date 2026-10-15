@@ -1,0 +1,324 @@
+{{- /* Υπολογιστής κόστους περιστατικού: διακοπή λειτουργίας ή ransomware, σε ένα εργαλείο.
+       Κόστος ανά ώρα, κόστος περιστατικού σήμερα και στον στόχο RTO, ALE και ROSI (λογική ISO 27005),
+       ανώτατο ανεκτό RTO από το όριο ζημιάς (λογική BIA). Όλος ο υπολογισμός γίνεται στον browser.
+       Δεν αποστέλλεται κανένα στοιχείο. Χρήση: {{< incident-cost >}} */ -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="incidentCost">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Υπολογιστής κόστους περιστατικού</p>
+
+    <form id="icForm" class="flex flex-col gap-6" novalidate data-clarity-mask="true">
+
+        <fieldset class="flex flex-col gap-3">
+            <legend class="text-sm font-semibold text-slate-100 mb-1"><span class="font-mono text-blue-400">1.</span> Τι σενάριο θέλεις να υπολογίσεις;</legend>
+            <div class="grid gap-2 sm:grid-cols-2">
+                <label class="flex items-start gap-2 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500">
+                    <input type="radio" name="icScenario" value="outage" class="mt-1" checked>
+                    <span><strong class="text-slate-100">Διακοπή λειτουργίας</strong><br>Βλάβη, σφάλμα ενημέρωσης, πτώση παρόχου ή cloud υπηρεσίας.</span>
+                </label>
+                <label class="flex items-start gap-2 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500">
+                    <input type="radio" name="icScenario" value="ransomware" class="mt-1">
+                    <span><strong class="text-slate-100">Ransomware</strong><br>Κρυπτογράφηση συστημάτων, με κόστος αντιμετώπισης, νομικά και γνωστοποιήσεις.</span>
+                </label>
+            </div>
+        </fieldset>
+
+        <fieldset class="flex flex-col gap-4">
+            <legend class="text-sm font-semibold text-slate-100 mb-1"><span class="font-mono text-blue-400">2.</span> Η επιχείρησή σου</legend>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Ετήσιος κύκλος εργασιών (€)</span>
+                    <input id="icTurnover" type="number" min="0" step="1000" inputmode="numeric" placeholder="π.χ. 5000000" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Ποσοστό εσόδων που σταματά (%)</span>
+                    <input id="icRevPct" type="number" min="0" max="100" step="5" value="50" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">100% για e-shop. Λιγότερο αν πουλάς, παραδίδεις ή τιμολογείς και χειροκίνητα.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Ημέρες λειτουργίας τον χρόνο</span>
+                    <input id="icDays" type="number" min="1" max="366" step="1" value="250" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Ώρες λειτουργίας την ημέρα</span>
+                    <input id="icHoursDay" type="number" min="1" max="24" step="1" value="8" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">24 αν η παραγωγή δουλεύει σε βάρδιες όλο το εικοσιτετράωρο.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Εργαζόμενοι που δεν μπορούν να δουλέψουν</span>
+                    <input id="icEmp" type="number" min="0" step="1" inputmode="numeric" placeholder="π.χ. 40" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Κόστος ανά ώρα εργασίας ενός εργαζομένου (€)</span>
+                    <input id="icRate" type="number" min="0" step="1" value="20" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Μισθός συν εργοδοτικές εισφορές, διά τις ώρες εργασίας.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Ποσοστό παραγωγικότητας που χάνεται (%)</span>
+                    <input id="icProdPct" type="number" min="0" max="100" step="5" value="75" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Επιπλέον κόστος ανά ώρα διακοπής (€), προαιρετικά</span>
+                    <input id="icExtraHr" type="number" min="0" step="10" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Υπερωρίες αναπλήρωσης, ρήτρες SLA, υλικά που χαλάνε σε γραμμή παραγωγής που σταμάτησε.</span>
+                </label>
+            </div>
+        </fieldset>
+
+        <fieldset class="flex flex-col gap-4">
+            <legend class="text-sm font-semibold text-slate-100 mb-1"><span class="font-mono text-blue-400">3.</span> Εφάπαξ κόστη του περιστατικού</legend>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Εξωτερική βοήθεια (€)</span>
+                    <input id="icIR" type="number" min="0" step="500" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Incident response, forensics, τεχνικοί του παρόχου.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Αποκατάσταση συστημάτων και εξοπλισμού (€)</span>
+                    <input id="icRecovery" type="number" min="0" step="500" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Επανεγκατάσταση, νέος εξοπλισμός, επαναφορά δεδομένων.</span>
+                </label>
+                <label class="ic-rw hidden flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Νομικά και γνωστοποιήσεις (€)</span>
+                    <input id="icLegal" type="number" min="0" step="500" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Νομική συμβουλή, ενημέρωση υποκειμένων δεδομένων, επικοινωνία με πελάτες.</span>
+                </label>
+                <label class="ic-rw hidden flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Λύτρα (€), προαιρετικά</span>
+                    <input id="icRansom" type="number" min="0" step="1000" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Άφησέ το 0. Η πληρωμή δεν εγγυάται ότι θα πάρεις πίσω τα δεδομένα και δεν μειώνει τα υπόλοιπα κόστη.</span>
+                </label>
+            </div>
+        </fieldset>
+
+        <fieldset class="flex flex-col gap-4">
+            <legend class="text-sm font-semibold text-slate-100 mb-1"><span class="font-mono text-blue-400">4.</span> Χρόνος επαναφοράς</legend>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Σε πόσες ώρες λειτουργίας θα δούλευες ξανά σήμερα;</span>
+                    <input id="icHNow" type="number" min="0" step="1" value="40" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Δική σου εκτίμηση με το σημερινό backup και τις διαδικασίες. <span id="icHNowDays" class="text-blue-300"></span></span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Σε πόσες ώρες θέλεις να επανέρχεσαι (στόχος RTO);</span>
+                    <input id="icHTarget" type="number" min="0" step="1" value="8" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400"><span id="icHTargetDays" class="text-blue-300"></span></span>
+                </label>
+            </div>
+        </fieldset>
+
+        <details class="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-slate-100"><span class="font-mono text-blue-400">5.</span> Ρίσκο και πρόληψη <span class="font-normal text-slate-400">(προαιρετικά, για ALE, ROSI και ανώτατο RTO)</span></summary>
+            <div class="grid gap-4 sm:grid-cols-2 mt-4">
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Πόσο συχνά πιστεύεις ότι θα συμβεί;</span>
+                    <select id="icAro" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                        <option value="0.1">Μία φορά στα 10 χρόνια</option>
+                        <option value="0.2" selected>Μία φορά στα 5 χρόνια</option>
+                        <option value="0.33">Μία φορά στα 3 χρόνια</option>
+                        <option value="0.5">Μία φορά στα 2 χρόνια</option>
+                        <option value="1">Μία φορά τον χρόνο</option>
+                    </select>
+                    <span class="text-xs text-slate-400">Ετήσια συχνότητα (ARO). Βάλε τη δική σου εκτίμηση από το risk register.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Ετήσιο κόστος των μέτρων για τον στόχο RTO (€)</span>
+                    <input id="icInvest" type="number" min="0" step="500" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Π.χ. immutable backup, δοκιμές επαναφοράς, EDR. Για τον υπολογισμό του ROSI.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Σημερινή ετήσια δαπάνη σε ασφάλεια (€)</span>
+                    <input id="icSecSpend" type="number" min="0" step="500" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Πόση ζημιά από ένα περιστατικό αντέχει η επιχείρηση (€);</span>
+                    <input id="icTolerance" type="number" min="0" step="1000" value="0" inputmode="numeric" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <span class="text-xs text-slate-400">Από αυτό βγαίνει το ανώτατο RTO που μπορείς να δεχτείς.</span>
+                </label>
+            </div>
+        </details>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Υπολόγισε το κόστος</button>
+            <button type="reset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>
+            <span id="icError" class="text-sm text-amber-400 hidden" role="alert"></span>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">Ο υπολογισμός γίνεται στον browser σου, μόνο με τα στοιχεία που δίνεις. Δεν αποθηκεύεται και δεν αποστέλλεται τίποτα.</p>
+    </form>
+
+    <div id="icResult" class="hidden mt-6 rounded-lg border border-slate-700 bg-slate-900/60 p-5" aria-live="polite" tabindex="-1" data-clarity-mask="true">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-3">Αποτέλεσμα · <span id="icScenarioLabel"></span></p>
+
+        <div class="grid gap-3 sm:grid-cols-3">
+            <div class="rounded-lg border border-slate-800 p-3">
+                <p class="text-xs text-slate-400">Κόστος ανά ώρα διακοπής</p>
+                <p id="icHourly" class="text-xl font-bold text-slate-100"></p>
+                <p id="icDaily" class="text-xs text-slate-400"></p>
+            </div>
+            <div class="rounded-lg border border-rose-500/40 p-3">
+                <p class="text-xs text-slate-400">Κόστος περιστατικού σήμερα</p>
+                <p id="icCostNow" class="text-xl font-bold text-rose-300"></p>
+                <p id="icCostNowSub" class="text-xs text-slate-400"></p>
+            </div>
+            <div class="rounded-lg border border-emerald-500/40 p-3">
+                <p class="text-xs text-slate-400">Με τον στόχο RTO</p>
+                <p id="icCostTarget" class="text-xl font-bold text-emerald-300"></p>
+                <p id="icSaving" class="text-xs text-slate-400"></p>
+            </div>
+        </div>
+
+        <p class="text-sm font-semibold text-slate-100 mt-6 mb-2">Από τι αποτελείται το κόστος σήμερα</p>
+        <div id="icBar" class="flex h-3 w-full overflow-hidden rounded-full bg-slate-800" role="img" aria-label="Ανάλυση κόστους"></div>
+        <ul id="icLegend" class="mt-3 grid gap-1 text-sm text-slate-300 sm:grid-cols-2"></ul>
+
+        <p class="text-sm font-semibold text-slate-100 mt-6 mb-2">Πώς αλλάζει με τη διάρκεια</p>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left border-collapse">
+                <thead>
+                    <tr class="text-slate-400 border-b border-slate-800">
+                        <th class="py-2 pr-3 font-medium">Εκτός λειτουργίας</th>
+                        <th class="py-2 pr-3 font-medium">Ώρες λειτουργίας</th>
+                        <th class="py-2 font-medium text-right">Κόστος περιστατικού</th>
+                    </tr>
+                </thead>
+                <tbody id="icTable" class="text-slate-300"></tbody>
+            </table>
+        </div>
+
+        <div id="icRisk" class="hidden mt-6">
+            <p class="text-sm font-semibold text-slate-100 mb-2">Ρίσκο και πρόληψη</p>
+            <ul id="icRiskList" class="text-sm text-slate-300 leading-relaxed list-disc pl-5 flex flex-col gap-1"></ul>
+        </div>
+
+        <div id="icRwNote" class="hidden mt-6 rounded-lg border border-amber-500/40 bg-amber-500/5 p-4 text-sm text-slate-300 leading-relaxed">
+            <p class="font-semibold text-slate-100 mb-1">Αν είσαι βασική ή σημαντική οντότητα</p>
+            <p>Ένα ransomware που διακόπτει υπηρεσίες είναι κατά κανόνα σημαντικό περιστατικό. Ο ν. 5160/2024 (άρθρο 16) ζητά έγκαιρη προειδοποίηση μέσα σε 24 ώρες, κοινοποίηση μέσα σε 72 ώρες και τελική αναφορά μέσα σε έναν μήνα. Αν θίγονται προσωπικά δεδομένα, ο GDPR (άρθρο 33) ζητά γνωστοποίηση στην Αρχή Προστασίας Δεδομένων μέσα σε 72 ώρες. <a href="https://cyber.gov.gr/kyvernoepitheseis/anafora-symvanton/" class="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener noreferrer">Φόρμες αναφοράς της Εθνικής Αρχής Κυβερνοασφάλειας</a> · <a href="/kya-1689-2025/" class="text-blue-400 hover:text-blue-300 underline">Τα μέτρα της ΚΥΑ 1689/2025</a></p>
+        </div>
+
+        <p class="text-xs text-amber-300/90 leading-relaxed mt-5">Εκτίμηση με τα δικά σου στοιχεία, χωρίς στατιστικά τρίτων. Δεν περιλαμβάνει ζημιά φήμης, πελάτες που χάνονται μόνιμα, πρόστιμα ή αύξηση ασφαλίστρων, οπότε το πραγματικό κόστος είναι συνήθως μεγαλύτερο.</p>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('incidentCost');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; }
+    var eur = new Intl.NumberFormat('el-GR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    var nf1 = new Intl.NumberFormat('el-GR', { maximumFractionDigits: 1 });
+    var form = $('icForm'), err = $('icError'), box = $('icResult');
+
+    function scenario() { var c = form.querySelector('input[name="icScenario"]:checked'); return c ? c.value : 'outage'; }
+    function daysLabel(h, hd) {
+        if (!h || !hd) return '';
+        var d = h / hd;
+        return '≈ ' + nf1.format(d) + (d === 1 ? ' ημέρα' : ' ημέρες') + ' λειτουργίας.';
+    }
+    function syncForm() {
+        var rw = scenario() === 'ransomware';
+        Array.prototype.forEach.call(root.querySelectorAll('.ic-rw'), function (el) { el.classList.toggle('hidden', !rw); });
+        if (!rw) { $('icLegal').value = 0; $('icRansom').value = 0; }
+        var hd = num('icHoursDay');
+        $('icHNowDays').textContent = daysLabel(num('icHNow'), hd);
+        $('icHTargetDays').textContent = daysLabel(num('icHTarget'), hd);
+    }
+    form.addEventListener('input', syncForm);
+    form.addEventListener('change', syncForm);
+
+    /* Ο πυρήνας του υπολογισμού, χωρίς DOM, για να ελέγχεται ανεξάρτητα. */
+    function compute(i) {
+        var revHr = (i.days > 0 && i.hoursDay > 0) ? i.turnover / (i.days * i.hoursDay) * i.revPct / 100 : 0;
+        var prodHr = i.emp * i.rate * i.prodPct / 100;
+        var hourly = revHr + prodHr + i.extraHr;
+        var oneoff = i.ir + i.recovery + i.legal;
+        var costNow = hourly * i.hNow + oneoff + i.ransom;
+        var costTarget = hourly * i.hTarget + oneoff + i.ransom;
+        var saving = hourly * Math.max(i.hNow - i.hTarget, 0);
+        var r = {
+            revHr: revHr, prodHr: prodHr, hourly: hourly, daily: hourly * i.hoursDay, oneoff: oneoff,
+            costNow: costNow, costTarget: costTarget, saving: saving,
+            parts: [
+                { label: 'Χαμένα έσοδα', value: revHr * i.hNow, cls: 'bg-blue-500' },
+                { label: 'Χαμένη παραγωγικότητα', value: prodHr * i.hNow, cls: 'bg-violet-500' },
+                { label: 'Επιπλέον κόστος ανά ώρα', value: i.extraHr * i.hNow, cls: 'bg-cyan-500' },
+                { label: 'Εξωτερική βοήθεια', value: i.ir, cls: 'bg-amber-500' },
+                { label: 'Αποκατάσταση', value: i.recovery, cls: 'bg-orange-500' },
+                { label: 'Νομικά και γνωστοποιήσεις', value: i.legal, cls: 'bg-yellow-400' },
+                { label: 'Λύτρα', value: i.ransom, cls: 'bg-rose-500' }
+            ],
+            aleNow: costNow * i.aro, aleTarget: costTarget * i.aro, riskReduction: saving * i.aro
+        };
+        r.rosi = i.invest > 0 ? (r.riskReduction - i.invest) / i.invest : null;
+        r.spendRatio = i.secSpend > 0 ? costNow / i.secSpend : null;
+        r.maxHours = (i.tolerance > 0 && hourly > 0) ? (i.tolerance - oneoff - i.ransom) / hourly : null;
+        return r;
+    }
+    window.__incidentCost = { compute: compute };
+
+    function fail(msg) { err.textContent = msg; err.classList.remove('hidden'); box.classList.add('hidden'); }
+    function li(parent, html) { var el = document.createElement('li'); el.innerHTML = html; parent.appendChild(el); }
+
+    form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        err.classList.add('hidden');
+        var i = {
+            turnover: num('icTurnover'), revPct: Math.min(num('icRevPct'), 100), days: num('icDays'), hoursDay: Math.min(num('icHoursDay'), 24),
+            emp: num('icEmp'), rate: num('icRate'), prodPct: Math.min(num('icProdPct'), 100), extraHr: num('icExtraHr'),
+            ir: num('icIR'), recovery: num('icRecovery'), legal: num('icLegal'), ransom: num('icRansom'),
+            hNow: num('icHNow'), hTarget: num('icHTarget'),
+            aro: parseFloat($('icAro').value) || 0, invest: num('icInvest'), secSpend: num('icSecSpend'), tolerance: num('icTolerance')
+        };
+        if (!i.days || !i.hoursDay) return fail('Συμπλήρωσε ημέρες και ώρες λειτουργίας.');
+        if (!i.turnover && !i.emp && !i.extraHr) return fail('Συμπλήρωσε τουλάχιστον κύκλο εργασιών ή αριθμό εργαζομένων.');
+        if (!i.hNow) return fail('Συμπλήρωσε σε πόσες ώρες θα δούλευες ξανά σήμερα.');
+        if (i.hTarget > i.hNow) return fail('Ο στόχος RTO δεν μπορεί να είναι μεγαλύτερος από τον σημερινό χρόνο επαναφοράς.');
+
+        var r = compute(i), rw = scenario() === 'ransomware';
+        $('icScenarioLabel').textContent = rw ? 'Ransomware' : 'Διακοπή λειτουργίας';
+        $('icHourly').textContent = eur.format(r.hourly);
+        $('icDaily').textContent = eur.format(r.daily) + ' ανά ημέρα λειτουργίας';
+        $('icCostNow').textContent = eur.format(r.costNow);
+        $('icCostNowSub').textContent = 'για ' + nf1.format(i.hNow) + ' ώρες εκτός (' + nf1.format(i.hNow / i.hoursDay) + ' ημέρες)';
+        $('icCostTarget').textContent = eur.format(r.costTarget);
+        $('icSaving').textContent = 'γλιτώνεις ' + eur.format(r.saving) + ' ανά περιστατικό';
+
+        var bar = $('icBar'), leg = $('icLegend');
+        bar.textContent = ''; leg.textContent = '';
+        r.parts.forEach(function (p) {
+            if (p.value <= 0 || r.costNow <= 0) return;
+            var pct = p.value / r.costNow * 100;
+            var seg = document.createElement('div');
+            seg.className = p.cls; seg.style.width = pct + '%'; seg.title = p.label;
+            bar.appendChild(seg);
+            li(leg, '<span class="inline-block h-2.5 w-2.5 rounded-sm mr-2 ' + p.cls + '"></span>' + p.label + ': <strong class="text-slate-100">' + eur.format(p.value) + '</strong> <span class="text-slate-500">(' + nf1.format(pct) + '%)</span>');
+        });
+
+        var tb = $('icTable'); tb.textContent = '';
+        [1, 3, 5, 10, 20].forEach(function (d) {
+            var h = d * i.hoursDay, tr = document.createElement('tr');
+            tr.className = 'border-b border-slate-800/60';
+            tr.innerHTML = '<td class="py-2 pr-3">' + d + (d === 1 ? ' ημέρα' : ' ημέρες') + '</td><td class="py-2 pr-3">' + nf1.format(h) + '</td><td class="py-2 text-right font-mono">' + eur.format(r.hourly * h + r.oneoff + i.ransom) + '</td>';
+            tb.appendChild(tr);
+        });
+
+        var rl = $('icRiskList'); rl.textContent = '';
+        li(rl, 'Αναμενόμενη ετήσια ζημιά (ALE) σήμερα: <strong class="text-slate-100">' + eur.format(r.aleNow) + '</strong>, με τον στόχο RTO: <strong class="text-slate-100">' + eur.format(r.aleTarget) + '</strong>. Η μείωση του ρίσκου είναι ' + eur.format(r.riskReduction) + ' τον χρόνο.');
+        if (r.rosi !== null) li(rl, 'ROSI των μέτρων: <strong class="' + (r.rosi >= 0 ? 'text-emerald-300' : 'text-rose-300') + '">' + nf1.format(r.rosi * 100) + '%</strong>. ' + (r.rosi >= 0 ? 'Τα μέτρα αποσβένονται από τη μείωση του ρίσκου.' : 'Με αυτή τη συχνότητα, τα μέτρα κοστίζουν περισσότερο από όσο μειώνουν το ρίσκο. Δες αν ο στόχος ή η εκτίμηση συχνότητας είναι ρεαλιστικά.'));
+        if (r.spendRatio !== null) li(rl, 'Ένα περιστατικό σήμερα κοστίζει όσο <strong class="text-slate-100">' + nf1.format(r.spendRatio) + ' χρόνια</strong> της σημερινής δαπάνης σε ασφάλεια.');
+        if (r.maxHours !== null) {
+            if (r.maxHours <= 0) li(rl, '<span class="text-rose-300">Τα εφάπαξ κόστη ξεπερνούν ήδη τη ζημιά που αντέχεις.</span> Χρειάζεσαι μέτρα πρόληψης ή μεταφορά ρίσκου (π.χ. ασφάλιση cyber), όχι μόνο ταχύτερη επαναφορά.');
+            else li(rl, 'Με το όριο ζημιάς που έδωσες, τα συστήματα πρέπει να επανέρχονται σε <strong class="text-slate-100">' + nf1.format(r.maxHours) + ' ώρες</strong> λειτουργίας (' + nf1.format(r.maxHours / i.hoursDay) + ' ημέρες) το πολύ. ' + (r.maxHours < i.hNow ? '<span class="text-amber-300">Ο σημερινός χρόνος επαναφοράς είναι μεγαλύτερος.</span>' : '<span class="text-emerald-300">Ο σημερινός χρόνος επαναφοράς είναι μέσα στο όριο.</span>'));
+        }
+        $('icRisk').classList.remove('hidden');
+        $('icRwNote').classList.toggle('hidden', !rw);
+
+        box.classList.remove('hidden');
+        box.focus({ preventScroll: true });
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    form.addEventListener('reset', function () {
+        setTimeout(function () { syncForm(); box.classList.add('hidden'); err.classList.add('hidden'); }, 0);
+    });
+    syncForm();
+})();
+</script>
