@@ -67,7 +67,7 @@
         {{- $pl := . -}}
         {{- $items := where $queries "pillar" .key -}}
         {{- if $items }}
-        <details class="kql-group group glass-card rounded-xl" id="pylonas-{{ .key }}" open>
+        <details class="kql-group group glass-card rounded-xl" id="pylonas-{{ .key }}">
             <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex flex-wrap items-center gap-x-3 gap-y-2 hover:bg-slate-800/40 rounded-xl">
                 <span class="shrink-0 text-slate-500 text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
                 {{- $grpAdded := "" -}}
@@ -257,7 +257,7 @@
             var visible = items.filter(function (i) { return !i.classList.contains('hidden'); });
             var open = visible.some(function (i) { return !i.open; });
             visible.forEach(function (i) { i.open = open; });
-            if (open) groups.forEach(function (g) { g.open = true; });
+            groups.forEach(function (g) { g.open = open; });
             toggle.textContent = open ? 'Κλείσιμο όλων' : 'Άνοιγμα όλων';
         });
     }
