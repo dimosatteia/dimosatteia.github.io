@@ -2,7 +2,7 @@
 title: "Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα"
 seoTitle: "Homograph attack: πώς σε ξεγελά ένα κυριλλικό «а»"
 date: 2026-10-15T20:55:00+03:00
-lastmod: 2026-10-15T20:55:00+03:00
+lastmod: 2026-10-16T14:00:00+03:00
 draft: false
 homeHighlight: true
 keywords:
@@ -48,32 +48,32 @@ verification:
     status: "Generally Available"
     license: "Microsoft Defender for Office 365 Plan 1 ή Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/anti-phishing-policies-about"
-    verified: 2026-10-15
+    verified: 2026-10-16
   - feature: "Show user impersonation unusual characters safety tip (EnableUnusualCharactersSafetyTips)"
     status: "Generally Available"
     license: "Microsoft Defender for Office 365 Plan 1 ή Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/anti-phishing-policies-mdo-configure"
-    verified: 2026-10-15
+    verified: 2026-10-16
   - feature: "Safe Links (έλεγχος τη στιγμή του κλικ)"
     status: "Generally Available"
     license: "Microsoft Defender for Office 365 Plan 1 ή Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/safe-links-about"
-    verified: 2026-10-15
+    verified: 2026-10-16
   - feature: "Edge Website Typo Protection (TyposquattingCheckerEnabled, PreventTyposquattingPromptOverride)"
     status: "Generally Available"
     license: "Χωρίς επιπλέον άδεια (Microsoft Edge)"
     source: "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies/typosquattingcheckerenabled"
-    verified: 2026-10-15
+    verified: 2026-10-16
   - feature: "Attack simulation training"
     status: "Generally Available"
     license: "Microsoft Defender for Office 365 Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-get-started"
-    verified: 2026-10-15
+    verified: 2026-10-16
   - feature: "Advanced hunting: πίνακας EmailUrlInfo (στήλη UrlDomain)"
     status: "Generally Available"
     license: "Microsoft Defender for Office 365 Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailurlinfo-table"
-    verified: 2026-10-15
+    verified: 2026-10-16
 ---
 
 Κοίτα αυτές τις δύο διευθύνσεις:
@@ -199,6 +199,8 @@ EmailUrlInfo
 **GDPR.** Ένας κωδικός που χάνεται σε ψεύτικο site είναι συχνά η αρχή μιας παραβίασης δεδομένων. Το άρθρο [32.1.β](/gdpr/#32-1-β) ζητά τη δυνατότητα διασφάλισης του απορρήτου και της ακεραιότητας των συστημάτων. Δες τον [οδηγό του GDPR](/gdpr/).
 
 Αν θέλεις να καταγράψεις την κατάσταση του οργανισμού σου, κατέβασε τα checklists: [ΚΥΑ 1689/2025](/downloads/nis2-kya-1689-2025-microsoft-365-checklist.xlsx), [Οδηγία NIS2](/downloads/nis2-directive-2022-2555-microsoft-365-checklist.xlsx), [ISO/IEC 27001](/downloads/iso-27001-2022-annex-a-microsoft-365-checklist.xlsx) και [GDPR](/downloads/gdpr-2016-679-microsoft-365-checklist.xlsx).
+
+{{< tool-link page="/kouiz-phishing" lead="Θέλεις να δοκιμάσεις αν ξεχωρίζεις μια επίθεση;" label="Παίξε το κουίζ phishing" tail="με δέκα σενάρια, από ψεύτικη τράπεζα μέχρι CEO fraud." >}}
 
 ## Το συμπέρασμα
 

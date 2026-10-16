@@ -6,7 +6,7 @@ source:
   fek: ΕΕ L 333 της 27.12.2022
   url: https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32022L2555
   of: της Οδηγίας
-updated: '2026-10-14'
+updated: '2026-10-16'
 types:
 - key: tech
   label: Τεχνικό
@@ -45,7 +45,7 @@ articles:
     type: mixed
     control: Attack simulation training στο Microsoft Defender for Office 365 Plan 2, με τα μέλη της διοίκησης ως ξεχωριστή ομάδα-στόχο.
     evidence: Αναφορές του Attack simulation training (ολοκλήρωση εκπαίδευσης ανά χρήστη). Βεβαιώσεις κατάρτισης των μελών της διοίκησης.
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Microsoft Defender for Office 365 Plan 2
     comment: Το Attack simulation training καλύπτει phishing και ευαισθητοποίηση. Η κατάρτιση της διοίκησης στην αξιολόγηση κινδύνων θέλει ξεχωριστό πρόγραμμα.
     kya:
@@ -60,6 +60,9 @@ articles:
       url: /posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/
     - title: 'Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
 - number: 21
   title: Μέτρα διαχείρισης κινδύνων στον τομέα της κυβερνοασφάλειας
   requirements:
@@ -215,7 +218,7 @@ articles:
     type: mixed
     control: Security baselines, compliance policies και update rings στο Intune. Recommendations του Secure Score. Attack simulation training στο Microsoft Defender for Office 365 Plan 2.
     evidence: 'Intune: αναφορές συμμόρφωσης συσκευών. Secure Score: κατάσταση recommendations. Αναφορές εκπαίδευσης.'
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Microsoft Defender for Office 365 Plan 2
     kya:
     - 14
@@ -231,6 +234,12 @@ articles:
     - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
       url: /posts/homograph-attack-kyrillika-grammata/
       page: /posts/homograph-attack-kyrillika-grammata
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
+    - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
+      url: /kouiz-phishing/
+      page: /kouiz-phishing
   - code: 21.2.η
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες σχετικά με τη χρήση κρυπτογραφίας και, κατά περίπτωση, κρυπτογράφησης.

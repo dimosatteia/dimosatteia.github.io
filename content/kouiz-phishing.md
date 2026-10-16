@@ -1,7 +1,7 @@
 ---
 title: "Κουίζ phishing: 10 επιθέσεις, βρες τα σημάδια και τι κάνεις"
 date: 2026-10-16T13:00:00+03:00
-lastmod: 2026-10-16T13:00:00+03:00
+lastmod: 2026-10-16T14:00:00+03:00
 draft: false
 url: "/kouiz-phishing/"
 menu:
@@ -20,6 +20,8 @@ keywords:
   - CEO fraud
   - εκπαίδευση προσωπικού ΚΥΑ 1689/2025
   - Attack simulation training
+homeFeed: true
+weight: -6
 showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false

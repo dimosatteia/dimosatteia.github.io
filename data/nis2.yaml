@@ -6,7 +6,7 @@ source:
   title: Εθνικό Πλαίσιο Απαιτήσεων Κυβερνοασφάλειας Βασικών και Σημαντικών Οντοτήτων
   fek: ΦΕΚ Β΄ 2186/6.5.2025
   url: https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf
-updated: '2026-10-14'
+updated: '2026-10-16'
 types:
 - key: tech
   label: Τεχνικό
@@ -40,13 +40,16 @@ articles:
     type: mixed
     control: Αναφορά προς το ΔΣ με Secure Score και Compliance Manager. Attack simulation training και για τα μέλη της διοίκησης (περ. βε).
     evidence: Πρακτικά ΔΣ, εγκεκριμένος προϋπολογισμός, βεβαιώσεις εκπαίδευσης μελών ΔΣ.
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Microsoft Defender for Office 365 Plan 2 (Attack simulation training)
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
     - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
       url: /posts/microsoft-secure-score-grc-programma-ciso/
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
 - number: 5
   title: Πλαίσιο διαχείρισης κινδύνων
   requirements:
@@ -987,7 +990,7 @@ articles:
     type: mixed
     control: Attack simulation training στο Microsoft Defender for Office 365 Plan 2 (προσομοιώσεις phishing και εκπαιδευτικές ενότητες). Κουμπί αναφοράς ύποπτων μηνυμάτων και αναφορά από το Teams.
     evidence: 'Defender portal: Attack simulation training, Reports (training completion). Βεβαιώσεις εκπαίδευσης.'
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Microsoft Defender for Office 365 Plan 2
     comment: Το Attack simulation training δεν καλύπτει όλη τη θεματολογία της περίπτωσης α (π.χ. ασφάλεια οικιακού δικτύου, αντίγραφα ασφαλείας). Τα υπόλοιπα θέματα θέλουν ξεχωριστό εκπαιδευτικό υλικό.
     posts:
@@ -1000,20 +1003,34 @@ articles:
     - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
       url: /posts/homograph-attack-kyrillika-grammata/
       page: /posts/homograph-attack-kyrillika-grammata
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
+    - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
+      url: /kouiz-phishing/
+      page: /kouiz-phishing
   - code: 21.β
     scope: Βασικές και σημαντικές
     requirement: Εξειδικευμένη εκπαίδευση για το τεχνικό προσωπικό, ανάλογα με τον ρόλο του.
     type: org
     control: 'Δεν καλύπτεται από ρύθμιση. Πηγές: Microsoft Learn και πιστοποιήσεις ασφάλειας.'
     evidence: Πλάνο εκπαίδευσης τεχνικού προσωπικού, πιστοποιητικά.
+    posts:
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
   - code: 21.γ
     scope: Βασικές και σημαντικές
     requirement: Αξιολόγηση και επικαιροποίηση των προγραμμάτων εκπαίδευσης.
     type: mixed
     control: Μετρικές του Attack simulation training (compromise rate, repeat offenders) ως βάση για την αναθεώρηση.
     evidence: Αναφορές προσομοιώσεων ανά περίοδο.
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Microsoft Defender for Office 365 Plan 2
+    posts:
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
 - number: 22
   title: Χρήση κρυπτογραφίας
   requirements:

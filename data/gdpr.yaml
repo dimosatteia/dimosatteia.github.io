@@ -11,7 +11,7 @@ source:
   item: υποχρέωση
   groups: άρθρα
   disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια υποχρέωση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες αποδόσεις για το ακριβές κείμενο ισχύει ο [Κανονισμός (ΕΕ) 2016/679](https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32016R0679). Στην Ελλάδα εφαρμόζεται μαζί με τον ν. 4624/2019, και η εποπτική αρχή είναι η [Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα](https://www.dpa.gr/).
-updated: '2026-10-14'
+updated: '2026-10-16'
 types:
 - key: tech
   label: Τεχνικό
@@ -88,7 +88,7 @@ articles:
     type: mixed
     control: Microsoft Purview Compliance Manager με το assessment «EU GDPR (General Data Protection Regulation)» ως μητρώο μέτρων και τεκμηρίων. Microsoft Purview Audit για το ιστορικό ενεργειών χρηστών και διαχειριστών.
     evidence: 'Compliance Manager: βαθμολογία του assessment και improvement actions με συνημμένα τεκμήρια. Purview: Audit search.'
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Το regulation «EU GDPR (General Data Protection Regulation)» είναι premium στο Compliance Manager. Με Microsoft 365 E5 επιλέγονται τρία premium regulations χωρίς χρέωση
     comment: 'Το Compliance Manager είναι αυτοαξιολόγηση και η βαθμολογία του δεν αποδεικνύει συμμόρφωση. Η λογοδοσία στηρίζεται στα έγγραφα του υπευθύνου: αρχείο δραστηριοτήτων, πολιτικές, εκτιμήσεις αντικτύπου.'
     kya:
@@ -99,6 +99,9 @@ articles:
     posts:
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
 - number: 6
   title: Νομιμότητα της επεξεργασίας
   requirements:
@@ -470,7 +473,7 @@ articles:
     type: mixed
     control: Access reviews στο Microsoft Entra ID για τον περιοδικό έλεγχο του ποιος έχει πρόσβαση. Microsoft Purview Audit για τις ενέργειες των χρηστών. Microsoft Purview Insider Risk Management για ασυνήθιστη χρήση δεδομένων.
     evidence: 'Entra: αποτελέσματα access reviews. Purview: Audit search. Δηλώσεις εμπιστευτικότητας των εργαζομένων.'
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Microsoft Entra ID P2 ή Microsoft Entra ID Governance για access reviews. Microsoft 365 E5 για Insider Risk Management
     comment: Οι εντολές και οι δεσμεύσεις εμπιστευτικότητας είναι έγγραφα και διαδικασίες. Το Insider Risk Management χρειάζεται ενημέρωση των εργαζομένων και έλεγχο αναλογικότητας, γιατί είναι κι αυτό επεξεργασία δεδομένων.
     kya:
@@ -479,6 +482,13 @@ articles:
     iso:
     - A.6.6
     - A.5.18
+    posts:
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
+    - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
+      url: /kouiz-phishing/
+      page: /kouiz-phishing
 - number: 33
   title: Γνωστοποίηση παραβίασης δεδομένων προσωπικού χαρακτήρα στην εποπτική αρχή
   requirements:

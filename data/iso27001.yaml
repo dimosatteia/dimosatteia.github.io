@@ -10,7 +10,7 @@ source:
   item: control
   groups: ενότητες
   disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία. Μια ρύθμιση υποστηρίζει ένα control, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι τίτλοι είναι οι επίσημοι του προτύπου και οι περιγραφές είναι δικές μας· το κείμενο των controls δεν αναπαράγεται. Για τη διατύπωση κάθε control ισχύει το [ISO/IEC 27001:2022](https://www.iso.org/standard/27001).
-updated: '2026-10-14'
+updated: '2026-10-16'
 types:
 - key: tech
   label: Τεχνικό
@@ -627,7 +627,7 @@ articles:
     type: mixed
     control: 'Attack simulation training στο Microsoft Defender for Office 365 Plan 2: προσομοιώσεις phishing και εκπαιδευτικές ενότητες.'
     evidence: Αναφορές ολοκλήρωσης εκπαίδευσης και αποτελεσμάτων προσομοιώσεων.
-    verified: 2026-10-14
+    verified: 2026-10-16
     license: Microsoft Defender for Office 365 Plan 2
     comment: Δεν καλύπτει όλη τη θεματολογία ενός προγράμματος εκπαίδευσης.
     kya:
@@ -644,6 +644,12 @@ articles:
     - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
       url: /posts/homograph-attack-kyrillika-grammata/
       page: /posts/homograph-attack-kyrillika-grammata
+    - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
+      url: /tekmiriosi-ekpaideysis/
+      page: /tekmiriosi-ekpaideysis
+    - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
+      url: /kouiz-phishing/
+      page: /kouiz-phishing
   - code: A.6.4
     scope: ''
     requirement: Disciplinary process

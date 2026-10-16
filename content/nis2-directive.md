@@ -1,7 +1,7 @@
 ---
 title: "Οδηγία NIS2 (ΕΕ) 2022/2555 με Microsoft 365: άρθρα 20 έως 25"
 date: 2026-10-02T19:00:00+03:00
-lastmod: 2026-10-02T19:00:00+03:00
+lastmod: 2026-10-16T14:00:00+03:00
 draft: false
 layout: "nis2"
 dataKey: "nis2directive"
@@ -35,5 +35,7 @@ checklist: "/downloads/nis2-directive-2022-2555-microsoft-365-checklist.xlsx"
 {{< tool-link page="/etoimotita-microsoft-365" lead="Πόσο έτοιμοι είστε για τον έλεγχο;" label="Κάντε τον έλεγχο ετοιμότητας του Microsoft 365" tail="σε 22 ερωτήσεις, με αναφορά κενών ανά απαίτηση." >}}
 
 {{< tool-link page="/tekmiriosi-ekpaideysis" lead="Θα ζητηθεί τεκμήριο για την εκπαίδευση του προσωπικού;" label="Δείτε αν η εκπαίδευσή σας είναι τεκμηριωμένη" tail="με φάκελο .pdf και μητρώο εκπαίδευσης .xlsx." >}}
+
+{{< tool-link page="/kouiz-phishing" lead="Χρειάζεστε υλικό για την εκπαίδευση του προσωπικού;" label="Δοκιμάστε το κουίζ phishing" tail="με δέκα σενάρια επιθέσεων." >}}
 
 {{< tool-link page="/kql" lead="Θέλετε τεκμήριο από το δικό σας tenant;" label="Δείτε τη Βιβλιοθήκη KQL" tail="με δοκιμασμένα Advanced Hunting queries ανά απαίτηση." >}}
