@@ -1,7 +1,7 @@
 ---
 title: "Εκπαίδευση προσωπικού: είναι τεκμηριωμένη για τον ελεγκτή;"
 date: 2026-10-16T10:00:00+03:00
-lastmod: 2026-10-16T14:00:00+03:00
+lastmod: 2026-10-16T14:20:00+03:00
 draft: false
 url: "/tekmiriosi-ekpaideysis/"
 # Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
@@ -21,6 +21,10 @@ keywords:
   - ISO 27001 A.6.3
   - εκπαίδευση διοίκησης NIS2 άρθρο 20
   - μητρώο εκπαίδευσης
+cover:
+  image: "/images/phishing/tekmiriosi-ekpaideysis.webp"
+  alt: "Κέντρο επιχειρήσεων ασφάλειας με checklist συμμόρφωσης και αναφορά ολοκλήρωσης εκπαίδευσης του προσωπικού"
+  maxWidth: 800
 homeFeed: true
 weight: -6
 showToc: false
