@@ -28,6 +28,8 @@ checklist: "/downloads/nis2-kya-1689-2025-microsoft-365-checklist.xlsx"
 
 {{< tool-link page="/tekmiriosi-ekpaideysis" lead="Θα ζητηθεί τεκμήριο για την εκπαίδευση του προσωπικού;" label="Δείτε αν η εκπαίδευσή σας είναι τεκμηριωμένη" tail="με φάκελο .pdf και μητρώο εκπαίδευσης .xlsx." >}}
 
+{{< tool-link page="/kouiz-phishing" lead="Χρειάζεστε υλικό για την περίπτωση 21.α;" label="Δοκιμάστε το κουίζ phishing" tail="με δέκα σενάρια επιθέσεων." >}}
+
 {{< tool-link page="/kql" lead="Θέλετε τεκμήριο από το δικό σας tenant;" label="Δείτε τη Βιβλιοθήκη KQL" tail="με δοκιμασμένα Advanced Hunting queries ανά απαίτηση." >}}
 
 {{< tool-link page="/kostos-peristatikou" lead="Θέλετε να τεκμηριώσετε το RTO στον έλεγχο;" label="Υπολογίστε το κόστος ενός περιστατικού" tail="για διακοπή λειτουργίας και ransomware, με ALE και ROSI." >}}

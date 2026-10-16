@@ -1,0 +1,214 @@
+{{- /* Κουίζ phishing: 10 σενάρια από data/phishing_quiz.yaml. Σε κάθε σενάριο ο χρήστης βρίσκει τα σημάδια και διαλέγει τι κάνει.
+       Μετά την απάντηση φωτίζονται τα σημάδια στο μήνυμα, φαίνεται η προσομοίωση, τι το σταματά στο Microsoft 365 και ποιο θέμα της ΚΥΑ 1689/2025 καλύπτει.
+       Όλα γίνονται στον browser. Δεν αποστέλλεται και δεν αποθηκεύεται τίποτα. Χρήση: {{< phishing-quiz >}} */ -}}
+{{- $d := hugo.Data.phishing_quiz -}}
+{{- $imgs := dict -}}
+{{- range $d.scenarios }}{{ $imgs = merge $imgs (dict .img (printf "images/phishing/%s.webp" .img | relURL)) }}{{ end -}}
+<style>
+#pqTool .awKbd{display:inline-block;min-width:1.4em;padding:0 .35em;border:1px solid #475569;border-bottom-width:2px;border-radius:4px;background:#0f172a;color:#e2e8f0;font-family:ui-monospace,monospace;font-size:.85em;line-height:1.5;text-align:center}
+#pqTool .pqMsg mark{background:transparent;color:inherit;border-radius:3px;padding:0 1px;transition:background-color .3s}
+#pqTool .pqMsg.revealed mark{background:#fecdd3;color:#881337;box-shadow:0 0 0 1px #fb7185}
+#pqTool .pqMsg.revealed mark.pqMissed{background:#fde68a;color:#78350f;box-shadow:0 0 0 1px #f59e0b}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="pqTool" data-clarity-mask="true">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Κουίζ phishing · 10 σενάρια · ΚΥΑ 1689/2025, 21.α</p>
+
+    <div id="pqIntro">
+        <p class="text-sm text-slate-300 leading-relaxed">Θα δεις δέκα μηνύματα: email, SMS και σελίδες. <strong class="text-slate-100">Όλα είναι επιθέσεις.</strong> Το ζητούμενο δεν είναι να μαντέψεις αν είναι ψεύτικο, αλλά να βρεις <strong class="text-slate-100">από τι το καταλαβαίνεις</strong> και να ξέρεις <strong class="text-slate-100">τι κάνεις</strong>. Γιατί στην πραγματικότητα, κανείς δεν σου λέει από πριν ότι ένα μήνυμα είναι phishing.</p>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/40 p-3 mt-4 text-xs text-slate-300 leading-relaxed">
+            <p class="font-semibold text-slate-100 mb-1">Πώς παίζεις</p>
+            <ol class="list-decimal pl-5 flex flex-col gap-1">
+                <li>Διάβασε το μήνυμα. Πρόσεξε αποστολέα, θέμα, σύνδεσμο και συνημμένο.</li>
+                <li>Στο «Ποια είναι τα σημάδια;» τσέκαρε όσα σε κάνουν να υποψιαστείς. Κάποια είναι παγίδες: μοιάζουν σημαντικά αλλά δεν λένε τίποτα.</li>
+                <li>Στο «Τι κάνεις;» διάλεξε μία ενέργεια και πάτα «Έλεγχος». Θα δεις τα σημάδια φωτισμένα πάνω στο μήνυμα και γιατί.</li>
+                <li>Με το πληκτρολόγιο: <kbd class="awKbd">Tab</kbd> για το επόμενο στοιχείο, <kbd class="awKbd">Space</kbd> για να τσεκάρεις, <kbd class="awKbd">↑</kbd> <kbd class="awKbd">↓</kbd> για να αλλάξεις ενέργεια, <kbd class="awKbd">Enter</kbd> για «Έλεγχος» και «Επόμενο».</li>
+            </ol>
+        </div>
+        <button type="button" id="pqStart" class="mt-4 rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Ξεκίνα το κουίζ</button>
+        <p class="text-xs text-slate-400 mt-3">Περίπου 5 λεπτά. Όλα τα ονόματα και οι διευθύνσεις είναι κατασκευασμένα. Οι απαντήσεις σου δεν αποστέλλονται και δεν αποθηκεύονται.</p>
+    </div>
+
+    <div id="pqQuiz" class="hidden">
+        <div class="flex items-center gap-3 mb-4">
+            <span id="pqStep" class="text-xs font-mono text-slate-400 whitespace-nowrap"></span>
+            <span class="flex-1 h-1.5 rounded bg-slate-800 overflow-hidden"><span id="pqBar" class="block h-full bg-blue-500 transition-all" style="width:0%"></span></span>
+            <span id="pqLabel" class="text-xs font-mono text-blue-300 whitespace-nowrap"></span>
+        </div>
+        <div id="pqMsgWrap"></div>
+        <form id="pqForm" class="mt-5 flex flex-col gap-5" novalidate>
+            <fieldset class="min-w-0">
+                <legend class="text-sm font-semibold text-slate-100 mb-2">Ποια είναι τα σημάδια; <span class="font-normal text-slate-400">(τσέκαρε όσα ισχύουν)</span></legend>
+                <div id="pqFlags" class="grid gap-2 sm:grid-cols-2"></div>
+            </fieldset>
+            <fieldset class="min-w-0">
+                <legend class="text-sm font-semibold text-slate-100 mb-2">Τι κάνεις; <span class="font-normal text-slate-400">(μία επιλογή)</span></legend>
+                <div id="pqActions" class="grid gap-2"></div>
+            </fieldset>
+            <div class="flex flex-wrap items-center gap-3">
+                <button type="submit" id="pqCheck" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Έλεγχος</button>
+                <button type="button" id="pqNext" class="hidden rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Επόμενο</button>
+                <span id="pqErr" class="text-sm text-amber-400 hidden" role="alert"></span>
+            </div>
+        </form>
+        <div id="pqReveal" class="hidden mt-5 flex flex-col gap-4" aria-live="polite" tabindex="-1"></div>
+    </div>
+
+    <div id="pqEnd" class="hidden" aria-live="polite" tabindex="-1"></div>
+
+    <script type="application/json" id="pqData">{{ dict "scenarios" $d.scenarios "imgs" $imgs | jsonify | safeJS }}</script>
+</div>
+
+<script>
+(function () {
+    var root = document.getElementById('pqTool'); if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    var D = JSON.parse($('pqData').textContent), S = D.scenarios, N = S.length;
+    var TOOL = '{{ "tekmiriosi-ekpaideysis/" | relURL }}', KYA = '{{ "kya-1689-2025/" | relURL }}';
+    var TOPIC = { 'αα': 'Email, phishing και κοινωνική μηχανική', 'αβ': 'Ισχυροί κωδικοί', 'αγ': 'Πολυπαραγοντική ταυτοποίηση', 'αδ': 'Ασφαλής περιήγηση', 'αε': 'Οικιακό δίκτυο και τηλεργασία', 'αστ': 'Αντίγραφα ασφαλείας', 'αζ': 'Αναγνώριση και αναφορά περιστατικού' };
+
+    // Σταθερό ανακάτεμα ανά σενάριο, ώστε τα σωστά να μη βρίσκονται πάντα στην ίδια θέση
+    function shuffle(arr, seed) {
+        var a = arr.slice(), h = 0; for (var i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+        for (var j = a.length - 1; j > 0; j--) { h = (h * 1103515245 + 12345) >>> 0; var k = h % (j + 1); var t = a[j]; a[j] = a[k]; a[k] = t; }
+        return a;
+    }
+
+    var idx = 0, res = [], form = $('pqForm');
+
+    function msgHtml(s) {
+        var head;
+        if (s.kind === 'sms') {
+            return '<div class="pqMsg mx-auto max-w-sm rounded-[1.6rem] border-4 border-slate-700 bg-slate-100 p-4 text-slate-900 shadow-lg">' +
+                '<p class="text-center text-xs text-slate-500">' + s.from + '</p><p class="text-center text-[11px] text-slate-400 mb-3">' + s.time + '</p>' +
+                '<div class="rounded-2xl rounded-tl-sm bg-white px-3 py-2 text-sm leading-relaxed shadow-sm [&_p]:mb-2 [&_p:last-child]:mb-0">' + s.body + '</div></div>';
+        }
+        head = '<div class="border-b border-slate-200 px-4 py-3">' +
+            '<p class="text-base font-semibold text-slate-900">' + s.subject + '</p>' +
+            '<p class="text-xs text-slate-600 mt-1 break-all"><span class="text-slate-400">Από:</span> ' + s.from + '</p>' +
+            '<p class="text-xs text-slate-400">' + s.time + '</p></div>';
+        var body = '<div class="px-4 py-3 text-sm leading-relaxed text-slate-800 [&_p]:mb-3 [&_p:last-child]:mb-0">' + s.body;
+        if (s.attach) body += '<p class="mt-3 inline-flex items-center gap-2 rounded border border-slate-300 bg-slate-50 px-2 py-1 text-xs text-slate-700">📎 ' + s.attach + '</p>';
+        if (s.button) body += '<p class="mt-3"><span class="inline-block rounded bg-blue-700 px-4 py-2 text-sm font-semibold text-white">' + s.button + '</span></p>' +
+            '<p class="text-[11px] text-slate-500 mt-1 break-all">Ο σύνδεσμος οδηγεί σε: ' + s.url + '</p>';
+        body += '</div>';
+        var chrome = s.kind === 'web' ? '<div class="flex items-center gap-1.5 border-b border-slate-200 bg-slate-100 px-3 py-2"><span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span><span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span><span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span><span class="ml-2 text-[11px] text-slate-500">Αλληλογραφία</span></div>' : '';
+        return '<div class="pqMsg overflow-hidden rounded-lg border border-slate-300 bg-white shadow-lg">' + chrome + head + body + '</div>';
+    }
+
+    function render() {
+        var s = S[idx];
+        $('pqStep').textContent = (idx + 1) + ' / ' + N;
+        $('pqBar').style.width = (idx / N * 100) + '%';
+        $('pqLabel').textContent = s.label;
+        $('pqMsgWrap').innerHTML = msgHtml(s);
+        $('pqFlags').innerHTML = shuffle(s.flags, s.id + 'f').map(function (f) {
+            return '<label class="pqFlag flex items-start gap-2 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500" data-k="' + esc(f.k) + '">' +
+                '<input type="checkbox" value="' + esc(f.k) + '" class="mt-1"><span>' + esc(f.t) + '<span class="pqWhy hidden block text-xs mt-1"></span></span></label>';
+        }).join('');
+        $('pqActions').innerHTML = shuffle(s.actions.map(function (a, k) { return { a: a, k: k }; }), s.id + 'a').map(function (x) {
+            return '<label class="pqAct flex items-start gap-2 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500" data-k="' + x.k + '">' +
+                '<input type="radio" name="pqAct" value="' + x.k + '" class="mt-1"><span>' + esc(x.a.t) + '<span class="pqWhy hidden block text-xs mt-1"></span></span></label>';
+        }).join('');
+        form.querySelectorAll('input').forEach(function (i) { i.disabled = false; });
+        $('pqCheck').classList.remove('hidden'); $('pqNext').classList.add('hidden'); $('pqErr').classList.add('hidden');
+        $('pqReveal').classList.add('hidden'); $('pqReveal').innerHTML = '';
+    }
+
+    form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        if (!$('pqNext').classList.contains('hidden')) { next(); return; }
+        var s = S[idx], picked = {}, act = form.querySelector('input[name=pqAct]:checked');
+        form.querySelectorAll('#pqFlags input:checked').forEach(function (i) { picked[i.value] = true; });
+        if (!Object.keys(picked).length) { $('pqErr').textContent = 'Τσέκαρε τουλάχιστον ένα σημάδι.'; $('pqErr').classList.remove('hidden'); return; }
+        if (!act) { $('pqErr').textContent = 'Διάλεξε τι κάνεις.'; $('pqErr').classList.remove('hidden'); return; }
+        $('pqErr').classList.add('hidden');
+
+        var reds = s.flags.filter(function (f) { return f.red; }), hit = 0, wrong = 0;
+        s.flags.forEach(function (f) {
+            var el = form.querySelector('.pqFlag[data-k="' + f.k + '"]'), why = el.querySelector('.pqWhy'), p = !!picked[f.k];
+            if (f.red && p) hit++; if (!f.red && p) wrong++;
+            var ok = f.red === p;
+            el.className = 'pqFlag flex items-start gap-2 rounded-lg border p-3 text-sm ' + (f.red ? (p ? 'border-emerald-500/60 bg-emerald-500/10 text-slate-200' : 'border-amber-500/60 bg-amber-500/10 text-slate-200') : (p ? 'border-rose-500/60 bg-rose-500/10 text-slate-200' : 'border-slate-700 bg-slate-900/60 text-slate-400'));
+            why.innerHTML = '<span class="font-semibold ' + (ok ? 'text-emerald-300' : (f.red ? 'text-amber-300' : 'text-rose-300')) + '">' + (f.red ? (p ? '✓ Σωστά, είναι σημάδι. ' : '! Σου ξέφυγε. ') : (p ? '✗ Παγίδα. ' : 'Παγίδα, σωστά δεν το τσέκαρες. ')) + '</span>' + esc(f.w);
+            why.classList.remove('hidden');
+        });
+        var ak = +act.value, aok = s.actions[ak].ok;
+        s.actions.forEach(function (a, k) {
+            var el = form.querySelector('.pqAct[data-k="' + k + '"]'), why = el.querySelector('.pqWhy'), mine = k === ak;
+            el.className = 'pqAct flex items-start gap-2 rounded-lg border p-3 text-sm ' + (a.ok ? 'border-emerald-500/60 bg-emerald-500/10 text-slate-200' : mine ? 'border-rose-500/60 bg-rose-500/10 text-slate-200' : 'border-slate-700 bg-slate-900/60 text-slate-400');
+            if (a.ok || mine) { why.innerHTML = '<span class="font-semibold ' + (a.ok ? 'text-emerald-300' : 'text-rose-300') + '">' + (a.ok ? '✓ ' : '✗ ') + '</span>' + esc(a.w); why.classList.remove('hidden'); }
+        });
+        form.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
+
+        // Φωτίζονται τα σημάδια πάνω στο μήνυμα. Όσα δεν βρήκε φαίνονται με κίτρινο.
+        var msg = root.querySelector('.pqMsg'); msg.classList.add('revealed');
+        msg.querySelectorAll('mark').forEach(function (m) { if (!picked[m.getAttribute('data-c')]) m.classList.add('pqMissed'); });
+
+        var fs = Math.max(0, hit - wrong) / reds.length;
+        res[idx] = { hit: hit, n: reds.length, wrong: wrong, act: aok, score: fs + (aok ? 1 : 0) };
+
+        var kya = (s.kya || []).map(function (c) { return '<a href="' + KYA + '#21-α" class="inline-block rounded border border-blue-500/40 bg-blue-500/10 px-1.5 py-0.5 font-mono text-[11px] text-blue-300 hover:underline" title="' + esc(TOPIC[c] || '') + '">21.α · ' + esc(c) + '</a>'; }).join(' ');
+        $('pqReveal').innerHTML =
+            '<div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">' +
+                '<p class="text-sm font-semibold ' + (aok && hit === reds.length && !wrong ? 'text-emerald-300' : 'text-slate-100') + '">' + (aok ? 'Σωστή ενέργεια.' : 'Η ενέργεια δεν ήταν η σωστή.') + ' Σημάδια: ' + hit + ' από ' + reds.length + (wrong ? ', ' + wrong + (wrong === 1 ? ' παγίδα' : ' παγίδες') : '') + '.</p>' +
+                '<p class="text-xs text-slate-400 mt-1">Στο μήνυμα, με κόκκινο τα σημάδια που βρήκες και με κίτρινο όσα σου ξέφυγαν.</p>' +
+            '</div>' +
+            '<div class="grid gap-3 sm:grid-cols-2">' +
+                '<div class="rounded-lg border border-slate-800 bg-slate-900/40 p-4"><p class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Τι το σταματά στο Microsoft 365</p><p class="text-sm text-slate-300 leading-relaxed">' + esc(s.m365) + '</p></div>' +
+                '<div class="rounded-lg border border-slate-800 bg-slate-900/40 p-4"><p class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Για την εκπαίδευση</p>' +
+                    '<p class="text-sm text-slate-300">Θέμα της ΚΥΑ 1689/2025: ' + kya + '</p>' +
+                    '<p class="text-sm text-slate-300 mt-2"><span class="text-slate-400">Attack simulation training:</span> ' + esc(s.technique) + '</p>' +
+                    (s.gdpr ? '<p class="text-sm text-slate-300 mt-2"><span class="text-emerald-300 font-mono text-xs">GDPR</span> Τα μισθολογικά στοιχεία είναι δεδομένα προσωπικού χαρακτήρα. Ένα τέτοιο κλικ μπορεί να γίνει παραβίαση δεδομένων.</p>' : '') +
+                '</div>' +
+            '</div>' +
+            (D.imgs[s.img] ? '<details class="rounded-lg border border-slate-800 bg-slate-900/40"><summary class="cursor-pointer p-3 text-sm font-semibold text-slate-100">Δες την ανάλυση της προσομοίωσης</summary><div class="px-3 pb-3"><img src="' + D.imgs[s.img] + '" alt="Ανάλυση προσομοίωσης phishing: ' + esc(s.title) + '" width="1024" height="559" loading="lazy" class="w-full h-auto rounded"><p class="text-xs text-slate-400 mt-2">Η εικόνα δείχνει τα σημάδια όπως τα σημειώνει μια αναφορά προσομοίωσης.</p></div></details>' : '');
+        $('pqReveal').classList.remove('hidden');
+        $('pqCheck').classList.add('hidden');
+        $('pqNext').textContent = idx === N - 1 ? 'Δες το αποτέλεσμα' : 'Επόμενο';
+        $('pqNext').classList.remove('hidden'); $('pqNext').focus({ preventScroll: true });
+        $('pqReveal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    function next() {
+        if (idx < N - 1) { idx++; render(); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+        end();
+    }
+    $('pqNext').addEventListener('click', next);
+
+    function end() {
+        $('pqQuiz').classList.add('hidden');
+        var tot = 0, acts = 0, hits = 0, flags = 0;
+        res.forEach(function (r) { tot += r.score; if (r.act) acts++; hits += r.hit; flags += r.n; });
+        var pct = Math.round(tot / (2 * N) * 100);
+        var col = pct >= 85 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#f43f5e';
+        var verdict = pct >= 85 ? 'Πολύ καλά. Βλέπεις τα σημάδια και ξέρεις τι κάνεις. Το επόμενο βήμα είναι να το κάνεις χωρίς σκέψη, και εκεί βοηθούν οι τακτικές προσομοιώσεις.'
+            : pct >= 60 ? 'Καλή βάση. Σου ξέφυγαν κάποια σημάδια ή κάποια ενέργεια. Ξαναδές τα σενάρια με κίτρινο: εκεί είναι αυτά που χρειάζεται να προσέχεις.'
+            : 'Εδώ είναι τα περισσότερα περιθώρια βελτίωσης. Θυμήσου τρία πράγματα: κοίτα το domain, μην ενεργείς βιαστικά, και αναφέρε με το Report αντί να απαντάς ή να προωθείς.';
+        var c = 2 * Math.PI * 42, off = c * (1 - pct / 100);
+        var rows = S.map(function (s, k) {
+            var r = res[k];
+            return '<li class="flex items-center gap-3 rounded-md border border-slate-800 px-3 py-2 text-sm"><span class="w-6 font-mono text-xs text-slate-500">' + (k + 1) + '</span><span class="flex-1 min-w-0 text-slate-200">' + esc(s.title) + ' <span class="text-xs text-slate-400">· ' + esc(s.label) + '</span></span>' +
+                '<span class="font-mono text-xs ' + (r.hit === r.n && !r.wrong ? 'text-emerald-300' : 'text-amber-300') + '">' + r.hit + '/' + r.n + (r.wrong ? ' −' + r.wrong : '') + '</span>' +
+                '<span class="w-5 text-center ' + (r.act ? 'text-emerald-400' : 'text-rose-400') + '" aria-label="' + (r.act ? 'σωστή ενέργεια' : 'λάθος ενέργεια') + '">' + (r.act ? '✓' : '✗') + '</span></li>';
+        }).join('');
+        $('pqEnd').innerHTML =
+            '<div class="flex flex-wrap items-center gap-5">' +
+                '<svg width="110" height="110" viewBox="0 0 100 100" role="img" aria-label="Αποτέλεσμα ' + pct + '%"><circle cx="50" cy="50" r="42" fill="none" stroke="#1e293b" stroke-width="9"/><circle cx="50" cy="50" r="42" fill="none" stroke="' + col + '" stroke-width="9" stroke-linecap="round" stroke-dasharray="' + c.toFixed(2) + '" stroke-dashoffset="' + off.toFixed(2) + '" transform="rotate(-90 50 50)"/><text x="50" y="57" text-anchor="middle" fill="#f1f5f9" font-size="22" font-weight="700">' + pct + '%</text></svg>' +
+                '<div class="flex-1 min-w-[14rem]"><p class="text-sm text-slate-300"><strong class="text-slate-100">' + acts + ' από ' + N + '</strong> σωστές ενέργειες · <strong class="text-slate-100">' + hits + ' από ' + flags + '</strong> σημάδια</p><p class="text-sm text-slate-300 mt-2 leading-relaxed">' + verdict + '</p></div>' +
+            '</div>' +
+            '<ol class="flex flex-col gap-1.5 mt-5">' + rows + '</ol>' +
+            '<div class="rounded-lg border border-blue-500/30 bg-blue-500/5 p-4 mt-5 text-sm text-slate-300 leading-relaxed">' +
+                '<p class="font-semibold text-slate-100 mb-1">Για τον οργανισμό σου</p>' +
+                '<p>Το κουίζ καλύπτει πέντε από τα επτά θέματα της ελάχιστης θεματολογίας της ΚΥΑ 1689/2025 (21.α): αα, αβ, αγ, αδ και αζ. Τα αε (τηλεργασία, οικιακό δίκτυο) και αστ (αντίγραφα ασφαλείας) θέλουν άλλο υλικό. Είναι εργαλείο μάθησης, όχι τεκμήριο: δεν κρατά ονόματα ούτε αποτελέσματα.</p>' +
+                '<p class="mt-2">Για τεκμήριο, τρέξε προσομοιώσεις με τις ίδιες τεχνικές στο Attack simulation training και πέρασε τα συγκεντρωτικά αποτελέσματα στο εργαλείο <a href="' + TOOL + '" class="text-blue-400 hover:text-blue-300 underline">Εκπαίδευση προσωπικού: είναι τεκμηριωμένη για τον ελεγκτή;</a></p>' +
+            '</div>' +
+            '<div class="flex flex-wrap gap-3 mt-5"><button type="button" id="pqAgain" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Ξαναπαίξε</button><a href="' + TOOL + '" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">Τεκμηρίωσε την εκπαίδευση</a></div>';
+        $('pqEnd').classList.remove('hidden'); $('pqEnd').focus({ preventScroll: true });
+        root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        $('pqAgain').addEventListener('click', function () { idx = 0; res = []; $('pqEnd').classList.add('hidden'); $('pqQuiz').classList.remove('hidden'); render(); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    }
+
+    $('pqStart').addEventListener('click', function () { $('pqIntro').classList.add('hidden'); $('pqQuiz').classList.remove('hidden'); idx = 0; res = []; render(); $('pqMsgWrap').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+})();
+</script>
