@@ -1,0 +1,667 @@
+{{- /* Τεκμηρίωση εκπαίδευσης προσωπικού: ΚΥΑ 1689/2025 (άρθρα 4.β και 21), Οδηγία NIS2 (20.2, 21.2.ζ), ISO/IEC 27001 (7.2, 7.3, A.6.3), GDPR (5.2, 32.4).
+       Τέσσερα βήματα: οργανισμός, κοινό και κάλυψη, θέματα και κύκλοι, αξιολόγηση και προσομοιώσεις.
+       Όλος ο υπολογισμός και οι αναφορές .pdf/.xlsx γίνονται στον browser. Δεν αποστέλλεται κανένα στοιχείο.
+       Χρήση: {{< awareness-check >}} */ -}}
+{{- $in := "rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500" -}}
+{{- $months := slice "Ιανουάριος" "Φεβρουάριος" "Μάρτιος" "Απρίλιος" "Μάιος" "Ιούνιος" "Ιούλιος" "Αύγουστος" "Σεπτέμβριος" "Οκτώβριος" "Νοέμβριος" "Δεκέμβριος" -}}
+{{- $mopts := "" -}}{{- range $k, $m := $months }}{{ $mopts = printf "%s<option value=\"%02d\">%s</option>" $mopts (add $k 1) $m }}{{ end -}}
+{{- $chk := "flex items-start gap-2 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500" -}}
+<style>#awTool .awKbd{display:inline-block;min-width:1.4em;padding:0 .35em;border:1px solid #475569;border-bottom-width:2px;border-radius:4px;background:#0f172a;color:#e2e8f0;font-family:ui-monospace,monospace;font-size:.85em;line-height:1.5;text-align:center}</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="awTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Τεκμηρίωση εκπαίδευσης προσωπικού · ΚΥΑ 1689/2025 · NIS2 · ISO/IEC 27001 · GDPR</p>
+
+
+    <form id="awForm" class="flex flex-col gap-3" novalidate data-clarity-mask="true">
+
+        <details id="awS1" class="awStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="1" open>
+            <summary class="awSum flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="awBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">1</span>
+                <span class="flex-1 min-w-0">Ο οργανισμός<span class="awSumNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="awLock text-xs font-normal text-slate-500 hidden" aria-hidden="true">🔒</span>
+                <svg class="h-4 w-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">1. Ο οργανισμός</legend>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Όνομα για την αναφορά (προαιρετικά)</span>
+                    <input id="awOrg" type="text" maxlength="80" placeholder="MyCompany" autocomplete="off" class="{{ $in }}">
+                    <span class="text-xs text-slate-400">Εμφανίζεται μόνο στο .pdf και στο .xlsx που κατεβάζεις.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Περίοδος που τεκμηριώνεις</span>
+                    <input id="awPeriod" type="text" maxlength="40" placeholder="π.χ. 2026" class="{{ $in }}">
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Υπαγωγή στον ν. 5160/2024</span>
+                    <select id="awEntity" class="{{ $in }}">
+                        <option value="important">Σημαντική οντότητα</option>
+                        <option value="essential">Βασική οντότητα</option>
+                        <option value="none">Δεν υπάγομαι ή δεν ξέρω ακόμη</option>
+                    </select>
+                    <span class="text-xs text-slate-400">Δεν ξέρεις; <a href="{{ "elegxos-ypagogis/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Έλεγχος υπαγωγής</a>.</span>
+                </label>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Microsoft Defender for Office 365 Plan 2 ή Microsoft 365 E5</span>
+                    <select id="awLic" class="{{ $in }}">
+                        <option value="all">Το έχουν όλοι οι χρήστες</option>
+                        <option value="some">Το έχουν μόνο κάποιοι χρήστες</option>
+                        <option value="none">Δεν το έχουμε</option>
+                    </select>
+                    <span class="text-xs text-slate-400">Το χρειάζεται το Attack simulation training, για κάθε χρήστη που συμμετέχει.</span>
+                </label>
+            </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="awNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="1">Επόμενο βήμα</button>
+                    <span class="awStepErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+
+        <details id="awS2" class="awStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="2">
+            <summary class="awSum flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="awBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">2</span>
+                <span class="flex-1 min-w-0">Κοινό και κάλυψη στην περίοδο<span class="awSumNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="awLock text-xs font-normal text-slate-500" aria-hidden="true">🔒</span>
+                <svg class="h-4 w-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">2. Κοινό και κάλυψη στην περίοδο</legend>
+            <p class="text-xs text-slate-400 -mt-2">Πόσοι είναι σε κάθε ομάδα και πόσοι ολοκλήρωσαν εκπαίδευση στην περίοδο. Μόνο αριθμοί, κανένα όνομα.</p>
+            <div class="grid gap-3">
+                {{- range slice (dict "k" "mgmt" "n" "Διοίκηση" "h" "Μέλη του ανώτατου οργάνου διοίκησης (ΔΣ, CEO, γενικοί διευθυντές).") (dict "k" "tech" "n" "Τεχνικό προσωπικό" "h" "Όσοι διαχειρίζονται συστήματα, δίκτυα, εφαρμογές ή OT, μαζί με εξωτερικούς διαχειριστές αν έχουν ρόλο.") (dict "k" "staff" "n" "Λοιπό προσωπικό" "h" "Όλοι οι υπόλοιποι εργαζόμενοι με πρόσβαση σε συστήματα ή δεδομένα.") }}
+                <div class="grid gap-3 sm:grid-cols-[1fr_9rem_9rem] items-end rounded-lg border border-slate-800 bg-slate-900/40 p-3">
+                    <div class="text-sm"><p class="font-semibold text-slate-100">{{ .n }}</p><p class="text-xs text-slate-400">{{ .h }}</p></div>
+                    <label class="flex flex-col gap-1 text-xs text-slate-400">Σύνολο
+                        <input id="awTot_{{ .k }}" type="number" min="0" step="1" inputmode="numeric" class="{{ $in }}">
+                    </label>
+                    <label class="flex flex-col gap-1 text-xs text-slate-400">Εκπαιδεύτηκαν
+                        <input id="awDone_{{ .k }}" type="number" min="0" step="1" inputmode="numeric" class="{{ $in }}">
+                    </label>
+                </div>
+                {{- end }}
+            </div>
+            <label class="{{ $chk }}"><input type="checkbox" id="awOnboard" class="mt-1"><span>Οι νέοι εργαζόμενοι εκπαιδεύονται κατά την πρόσληψη, πριν ή αμέσως μετά την πρόσβαση στα συστήματα.</span></label>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="awNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="2">Επόμενο βήμα</button>
+                    <span class="awStepErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+
+        <details id="awS3" class="awStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="3">
+            <summary class="awSum flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="awBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">3</span>
+                <span class="flex-1 min-w-0">Θέματα και κύκλοι<span class="awSumNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="awLock text-xs font-normal text-slate-500" aria-hidden="true">🔒</span>
+                <svg class="h-4 w-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">3. Θέματα και κύκλοι</legend>
+            <p class="text-sm text-slate-300 -mt-1">Ποια θέματα κάλυψε η εκπαίδευση <strong class="text-slate-100">όλου του προσωπικού</strong>; Τα επτά πρώτα είναι η ελάχιστη θεματολογία της ΚΥΑ 1689/2025, άρθρο 21, περίπτωση α.</p>
+            <div class="grid gap-2 sm:grid-cols-2" id="awTopics">
+                {{- range slice (dict "k" "aa" "c" "αα" "t" "Ασφαλής χρήση email, αναγνώριση phishing και κοινωνικής μηχανικής") (dict "k" "ab" "c" "αβ" "t" "Δημιουργία και διαχείριση ισχυρών κωδικών") (dict "k" "ag" "c" "αγ" "t" "Χρήση πολυπαραγοντικής ταυτοποίησης (MFA)") (dict "k" "ad" "c" "αδ" "t" "Ασφαλής περιήγηση στο διαδίκτυο") (dict "k" "ae" "c" "αε" "t" "Ασφάλεια οικιακού δικτύου, τηλεργασία και απομακρυσμένη πρόσβαση") (dict "k" "ast" "c" "αστ" "t" "Λήψη αντιγράφων ασφαλείας") (dict "k" "az" "c" "αζ" "t" "Αναγνώριση και αναφορά περιστατικού στους αρμόδιους") }}
+                <label class="{{ $chk }}"><input type="checkbox" class="awTopic mt-1" value="{{ .k }}" data-code="{{ .c }}"><span><span class="font-mono text-blue-400">{{ .c }}</span> {{ .t }}</span></label>
+                {{- end }}
+                <label class="{{ $chk }}"><input type="checkbox" id="awGdprTopic" class="mt-1"><span><span class="font-mono text-emerald-400">GDPR</span> Χειρισμός δεδομένων προσωπικού χαρακτήρα: τι μοιράζομαι, με ποιον, και τι κάνω σε παραβίαση</span></label>
+            </div>
+            <p class="text-sm text-slate-300 mt-2">Ποια θέματα κάλυψε η εκπαίδευση του <strong class="text-slate-100">τεχνικού προσωπικού</strong>; (περίπτωση β)</p>
+            <div class="grid gap-2 sm:grid-cols-3">
+                {{- range slice (dict "k" "ba" "c" "βα" "t" "Ασφαλής παραμετροποίηση και λειτουργία συσκευών, συστημάτων, εφαρμογών και δικτύων") (dict "k" "bb" "c" "ββ" "t" "Ανάλυση γνωστών απειλών και κινδύνων") (dict "k" "bg" "c" "βγ" "t" "Διαχείριση και απόκριση σε περιστατικά") }}
+                <label class="{{ $chk }}"><input type="checkbox" class="awTech mt-1" value="{{ .k }}" data-code="{{ .c }}"><span><span class="font-mono text-blue-400">{{ .c }}</span> {{ .t }}</span></label>
+                {{- end }}
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2 mt-2">
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Κάθε πότε επαναλαμβάνεται η εκπαίδευση;</span>
+                    <select id="awFreq" class="{{ $in }}">
+                        <option value="3">Κάθε 3 μήνες</option>
+                        <option value="6" selected>Κάθε 6 μήνες</option>
+                        <option value="12">Μία φορά τον χρόνο</option>
+                        <option value="0">Έγινε μία φορά, χωρίς πρόγραμμα επανάληψης</option>
+                    </select>
+                </label>
+                <div class="flex flex-col gap-1.5 text-sm text-slate-300">
+                    <span>Μήνας του τελευταίου κύκλου</span>
+                    <div class="awMonth flex gap-2" role="group" aria-label="Μήνας του τελευταίου κύκλου"><input type="hidden" id="awLast"><select class="awMm flex-1 min-w-[10.5rem] {{ $in }}" aria-label="Μήνας του τελευταίου κύκλου: μήνας"><option value="">Μήνας</option>{{ $mopts | safeHTML }}</select><select class="awMy w-28 {{ $in }}" aria-label="Μήνας του τελευταίου κύκλου: έτος"><option value="">Έτος</option></select></div>
+                    <span class="text-xs text-slate-400">Πάτα στο «Μήνας» και διάλεξε μήνα, μετά στο «Έτος» και διάλεξε έτος. Με το πληκτρολόγιο: <kbd class="awKbd">Tab</kbd> για το επόμενο πεδίο, <kbd class="awKbd">↑</kbd> <kbd class="awKbd">↓</kbd> για να αλλάξεις επιλογή. Από αυτό φαίνεται αν το πρόγραμμα τηρείται στην πράξη.</span>
+                </div>
+            </div>
+            <div class="grid gap-2">
+                <label class="{{ $chk }}"><input type="checkbox" id="awPolicy" class="mt-1"><span>Υπάρχει εγκεκριμένη <strong class="text-slate-100">Πολιτική Εκπαίδευσης και Κατάρτισης</strong> με ετήσιο πρόγραμμα (κοινό, θέματα, συχνότητα, υπεύθυνος).</span></label>
+                <label class="{{ $chk }}"><input type="checkbox" id="awMgmtRisk" class="mt-1"><span>Η εκπαίδευση της διοίκησης κάλυψε και τη <strong class="text-slate-100">διαχείριση κινδύνων</strong> και τις ευθύνες της, όχι μόνο το phishing.</span></label>
+                <label class="{{ $chk }}"><input type="checkbox" id="awEvid" class="mt-1"><span>Κρατάμε <strong class="text-slate-100">τεκμήρια ανά κύκλο</strong>: αναφορές ολοκλήρωσης, παρουσιολόγια ή βεβαιώσεις, με ημερομηνία και θέμα.</span></label>
+            </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="awNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="3">Επόμενο βήμα</button>
+                    <span class="awStepErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+
+        <details id="awS4" class="awStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="4">
+            <summary class="awSum flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="awBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">4</span>
+                <span class="flex-1 min-w-0">Αξιολόγηση και προσομοιώσεις phishing<span class="awSumNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="awLock text-xs font-normal text-slate-500" aria-hidden="true">🔒</span>
+                <svg class="h-4 w-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">4. Αξιολόγηση και προσομοιώσεις phishing</legend>
+            <p class="text-xs text-slate-400 -mt-2">Συγκεντρωτικά νούμερα από το Attack simulation training ή άλλο εργαλείο. Άφησε κενό ό,τι δεν έχεις. Έως τέσσερις κύκλοι, από τον παλαιότερο.</p>
+            <div class="overflow-x-auto rounded-lg border border-slate-800">
+                <table class="w-full text-sm text-slate-300">
+                    <thead class="text-xs text-slate-400 bg-slate-900/60">
+                        <tr><th class="text-left font-normal p-2">Κύκλος</th><th class="text-left font-normal p-2 min-w-[17rem]">Μήνας και έτος</th><th class="text-left font-normal p-2">Χρήστες</th><th class="text-left font-normal p-2">Πάτησαν</th><th class="text-left font-normal p-2">Ανέφεραν</th></tr>
+                    </thead>
+                    <tbody>
+                        {{- range seq 4 }}
+                        <tr class="border-t border-slate-800 awSim">
+                            <td class="p-2 font-mono text-blue-400 whitespace-nowrap">#{{ . }}</td>
+                            <td class="p-2"><div class="awMonth flex gap-2" role="group" aria-label="Μήνας κύκλου {{ . }}"><input type="hidden" class="awSimM"><select class="awMm w-40 {{ $in }}" aria-label="Μήνας κύκλου {{ . }}: μήνας"><option value="">Μήνας</option>{{ $mopts | safeHTML }}</select><select class="awMy w-24 {{ $in }}" aria-label="Μήνας κύκλου {{ . }}: έτος"><option value="">Έτος</option></select></div></td>
+                            <td class="p-2"><input type="number" min="0" step="1" inputmode="numeric" class="awSimN w-24 {{ $in }}" aria-label="Χρήστες στον κύκλο {{ . }}"></td>
+                            <td class="p-2"><input type="number" min="0" step="1" inputmode="numeric" class="awSimC w-24 {{ $in }}" aria-label="Χρήστες που πάτησαν στον κύκλο {{ . }}"></td>
+                            <td class="p-2"><input type="number" min="0" step="1" inputmode="numeric" class="awSimR w-24 {{ $in }}" aria-label="Χρήστες που ανέφεραν στον κύκλο {{ . }}"></td>
+                        </tr>
+                        {{- end }}
+                    </tbody>
+                </table>
+            </div>
+            <div class="rounded-lg border border-slate-800 bg-slate-900/40 p-3 text-xs text-slate-300 leading-relaxed">
+                <p class="font-semibold text-slate-100 mb-1">Πώς συμπληρώνεις τον πίνακα</p>
+                <ol class="list-decimal pl-5 flex flex-col gap-1">
+                    <li>Κάθε γραμμή είναι ένας κύκλος προσομοίωσης. Ξεκίνα από τον παλαιότερο στη γραμμή #1. Αν έχεις λιγότερους από τέσσερις, άφησε τις υπόλοιπες κενές.</li>
+                    <li>Στη στήλη «Μήνας και έτος» πάτα στο «Μήνας» και διάλεξε από τη λίστα, μετά στο «Έτος».</li>
+                    <li>Στις στήλες «Χρήστες», «Πάτησαν» και «Ανέφεραν» γράψε αριθμούς. Τα βρίσκεις στην αναφορά κάθε προσομοίωσης στο Defender portal: Email &amp; collaboration › Attack simulation training › Simulations.</li>
+                    <li>Με το πληκτρολόγιο: <kbd class="awKbd">Tab</kbd> πηγαίνει στο επόμενο πεδίο, <kbd class="awKbd">Shift</kbd> + <kbd class="awKbd">Tab</kbd> στο προηγούμενο. Σε λίστα, <kbd class="awKbd">↑</kbd> <kbd class="awKbd">↓</kbd> αλλάζουν την επιλογή ή γράφεις το πρώτο γράμμα του μήνα (π.χ. «Σ» για Σεπτέμβριο). Σε αριθμό, γράφεις τον αριθμό ή χρησιμοποιείς <kbd class="awKbd">↑</kbd> <kbd class="awKbd">↓</kbd>.</li>
+                </ol>
+            </div>
+            <p class="text-xs text-slate-400">«Πάτησαν»: άνοιξαν τον σύνδεσμο ή το συνημμένο, ή έδωσαν κωδικό. «Ανέφεραν»: πάτησαν Report στο Outlook. Στο Defender portal: Email &amp; collaboration › Attack simulation training › Simulations.</p>
+            <div class="grid gap-2">
+                <label class="{{ $chk }}"><input type="checkbox" id="awReview" class="mt-1"><span>Το πρόγραμμα <strong class="text-slate-100">αξιολογήθηκε και επικαιροποιήθηκε</strong> τους τελευταίους 12 μήνες, με βάση αποτελέσματα, νέες απειλές και αλλαγές στο πλαίσιο (περίπτωση γ).</span></label>
+                <label class="{{ $chk }}"><input type="checkbox" id="awNotice" class="mt-1"><span>Οι εργαζόμενοι <strong class="text-slate-100">ενημερώθηκαν εκ των προτέρων</strong> ότι γίνονται προσομοιώσεις και ποια δεδομένα τους καταγράφονται.</span></label>
+                <label class="{{ $chk }}"><input type="checkbox" id="awMin" class="mt-1"><span>Τα <strong class="text-slate-100">ατομικά αποτελέσματα</strong> τα βλέπουν μόνο όσοι τα χρειάζονται, η διοίκηση παίρνει συγκεντρωτικά, και ο χρόνος διατήρησης είναι ορισμένος.</span></label>
+            </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <span class="awStepErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Δες την κάλυψη</button>
+            <button type="button" id="awExample" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Γέμισε με παράδειγμα</button>
+            <button type="reset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>
+            <span id="awError" class="text-sm text-amber-400 hidden" role="alert"></span>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed -mt-3">Το παράδειγμα είναι κατασκευασμένο για την εικονική εταιρεία MyCompany.</p>
+    </form>
+
+    <div id="awResult" class="hidden mt-6 rounded-lg border border-slate-700 bg-slate-900/60 p-5" aria-live="polite" tabindex="-1" data-clarity-mask="true">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-3">Αποτέλεσμα<span id="awResOrg"></span></p>
+        <div class="flex flex-wrap items-end gap-x-6 gap-y-2">
+            <p class="text-4xl font-bold text-slate-100"><span id="awScore"></span><span class="text-xl text-slate-400">%</span></p>
+            <p class="text-sm text-slate-300 pb-1">κάλυψη απαιτήσεων · <span id="awMetCount" class="font-semibold text-emerald-400"></span> πλήρως, <span id="awPartCount" class="font-semibold text-amber-300"></span> μερικώς, <span id="awGapCount" class="font-semibold text-rose-400"></span> κενά</p>
+        </div>
+        <p id="awVerdict" class="text-sm text-slate-300 mt-3 leading-relaxed"></p>
+
+        <div id="awRings" class="grid gap-3 grid-cols-2 sm:grid-cols-4 mt-5"></div>
+
+        <p class="text-sm font-semibold text-slate-100 mt-6 mb-2">Κάλυψη ανά ομάδα</p>
+        <div id="awCov" class="flex flex-col gap-2"></div>
+
+        <div id="awSimBox" class="hidden">
+            <p class="text-sm font-semibold text-slate-100 mt-6 mb-2">Προσομοιώσεις: από κύκλο σε κύκλο</p>
+            <div id="awSimChart"></div>
+            <p id="awSimNote" class="text-xs text-slate-400 mt-2"></p>
+        </div>
+
+        <p class="text-sm font-semibold text-slate-100 mt-6 mb-2">Ανά απαίτηση</p>
+        <div id="awReqs" class="flex flex-col gap-2"></div>
+
+        <div id="awGapBox">
+            <p class="text-sm font-semibold text-slate-100 mt-6 mb-2">Τι κάνεις πρώτα</p>
+            <ol id="awActions" class="list-decimal pl-5 flex flex-col gap-2 text-sm text-slate-300"></ol>
+        </div>
+
+        <p class="text-sm font-semibold text-slate-100 mt-6 mb-2">Τι κρατάς για τον ελεγκτή</p>
+        <ul id="awEvidList" class="flex flex-col gap-1.5 text-sm text-slate-300"></ul>
+
+        <div class="flex flex-wrap items-center gap-3 mt-6">
+            <button type="button" id="awPdf" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">Κατέβασε τον φάκελο τεκμηρίωσης (.pdf)</button>
+            <button type="button" id="awXlsx" class="rounded-md bg-emerald-600 hover:bg-emerald-500 px-4 py-2 text-sm font-semibold text-white">Κατέβασε το μητρώο εκπαίδευσης (.xlsx)</button>
+            <span id="awDlErr" class="text-sm text-amber-400 hidden" role="alert"></span>
+        </div>
+    </div>
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Οι απαντήσεις σου δεν αποστέλλονται πουθενά και δεν αποθηκεύονται: ο υπολογισμός και οι αναφορές .pdf και .xlsx γίνονται μέσα στον browser σου.</p>
+</div>
+
+<script>
+(function () {
+    var root = document.getElementById('awTool');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    function int(el) { var v = parseInt(el.value, 10); return isFinite(v) && v >= 0 ? v : null; }
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function pct(x) { return Math.round(x * 100); }
+    function monthLabel(v) { if (!v) return ''; var p = v.split('-'); return p[1] + '/' + p[0]; }
+
+    var BASE = '{{ "" | absURL }}';
+    var FW = [
+        { key: 'kya', label: 'ΚΥΑ 1689/2025', url: '{{ "kya-1689-2025/" | relURL }}' },
+        { key: 'nis2', label: 'Οδηγία NIS2', url: '{{ "nis2/" | relURL }}' },
+        { key: 'iso', label: 'ISO/IEC 27001', url: '{{ "iso-27001/" | relURL }}' },
+        { key: 'gdpr', label: 'GDPR', url: '{{ "gdpr/" | relURL }}' }
+    ];
+    var FWI = {}; FW.forEach(function (f) { FWI[f.key] = f; });
+    var GROUPS = [{ k: 'mgmt', n: 'Διοίκηση' }, { k: 'tech', n: 'Τεχνικό προσωπικό' }, { k: 'staff', n: 'Λοιπό προσωπικό' }];
+    var TOPICS = [
+        { k: 'aa', c: 'αα', t: 'Email, phishing και κοινωνική μηχανική' }, { k: 'ab', c: 'αβ', t: 'Ισχυροί κωδικοί' },
+        { k: 'ag', c: 'αγ', t: 'Πολυπαραγοντική ταυτοποίηση' }, { k: 'ad', c: 'αδ', t: 'Ασφαλής περιήγηση' },
+        { k: 'ae', c: 'αε', t: 'Οικιακό δίκτυο, τηλεργασία, απομακρυσμένη πρόσβαση' }, { k: 'ast', c: 'αστ', t: 'Αντίγραφα ασφαλείας' },
+        { k: 'az', c: 'αζ', t: 'Αναγνώριση και αναφορά περιστατικού' }
+    ];
+    var TECH = [{ k: 'ba', c: 'βα', t: 'Ασφαλής παραμετροποίηση και λειτουργία' }, { k: 'bb', c: 'ββ', t: 'Γνωστές απειλές και κίνδυνοι' }, { k: 'bg', c: 'βγ', t: 'Απόκριση σε περιστατικά' }];
+    var ST = { 2: 'Καλύπτεται', 1: 'Μερικώς', 0: 'Κενό' };
+
+    function read() {
+        var i = { org: $('awOrg').value.trim(), period: $('awPeriod').value.trim(), entity: $('awEntity').value, lic: $('awLic').value, g: {} };
+        GROUPS.forEach(function (g) { i.g[g.k] = { tot: int($('awTot_' + g.k)), done: int($('awDone_' + g.k)) }; });
+        i.onboard = $('awOnboard').checked;
+        i.topics = {}; Array.prototype.forEach.call(root.querySelectorAll('.awTopic'), function (c) { i.topics[c.value] = c.checked; });
+        i.tech = {}; Array.prototype.forEach.call(root.querySelectorAll('.awTech'), function (c) { i.tech[c.value] = c.checked; });
+        i.gdprTopic = $('awGdprTopic').checked;
+        i.freq = +$('awFreq').value; i.last = $('awLast').value;
+        i.policy = $('awPolicy').checked; i.mgmtRisk = $('awMgmtRisk').checked; i.evid = $('awEvid').checked;
+        i.review = $('awReview').checked; i.notice = $('awNotice').checked; i.min = $('awMin').checked;
+        i.sims = [];
+        Array.prototype.forEach.call(root.querySelectorAll('.awSim'), function (r, k) {
+            var n = int(r.querySelector('.awSimN')), c = int(r.querySelector('.awSimC')), rp = int(r.querySelector('.awSimR')), m = r.querySelector('.awSimM').value;
+            if (n || c || rp || m) i.sims.push({ idx: k + 1, m: m, n: n, c: c, r: rp });
+        });
+        return i;
+    }
+
+    // Έλεγχος ανά βήμα: επιστρέφει μήνυμα λάθους ή κενό
+    function validateStep(i, n) {
+        if (n === 2) {
+            if (i.g.mgmt.tot === null || i.g.mgmt.tot < 1) return 'Συμπλήρωσε πόσα είναι τα μέλη της διοίκησης (τουλάχιστον 1).';
+            if (i.g.staff.tot === null && i.g.tech.tot === null) return 'Συμπλήρωσε το σύνολο για το τεχνικό ή το λοιπό προσωπικό.';
+            for (var k = 0; k < GROUPS.length; k++) {
+                var g = i.g[GROUPS[k].k];
+                if (g.done !== null && g.tot === null) return GROUPS[k].n + ': συμπλήρωσε και το σύνολο.';
+                if (g.done !== null && g.tot !== null && g.done > g.tot) return GROUPS[k].n + ': όσοι εκπαιδεύτηκαν δεν μπορεί να είναι περισσότεροι από το σύνολο.';
+            }
+        }
+        if (n === 3 && i.freq > 0 && !i.last) return 'Διάλεξε μήνα και έτος για τον τελευταίο κύκλο.';
+        if (n === 4) {
+            for (var s = 0; s < i.sims.length; s++) {
+                var x = i.sims[s];
+                if (!x.n) return 'Κύκλος #' + x.idx + ': συμπλήρωσε πόσοι χρήστες συμμετείχαν.';
+                if ((x.c || 0) > x.n || (x.r || 0) > x.n) return 'Κύκλος #' + x.idx + ': τα «Πάτησαν» και «Ανέφεραν» δεν μπορεί να ξεπερνούν τους χρήστες.';
+            }
+        }
+        return '';
+    }
+    function validate(i) {
+        for (var n = 1; n <= 4; n++) { var m = validateStep(i, n); if (m) return { n: n, msg: m }; }
+        return null;
+    }
+    function stepNote(i, n) {
+        if (n === 1) return [i.org || 'Χωρίς όνομα', { important: 'σημαντική οντότητα', essential: 'βασική οντότητα', none: 'εκτός ή άγνωστη υπαγωγή' }[i.entity], { all: 'Plan 2 ή E5 για όλους', some: 'Plan 2 ή E5 για κάποιους', none: 'χωρίς Plan 2 ή E5' }[i.lic]].join(' · ');
+        if (n === 2) return GROUPS.filter(function (g) { return i.g[g.k].tot; }).map(function (g) { return g.n + ' ' + (i.g[g.k].done || 0) + '/' + i.g[g.k].tot; }).join(' · ');
+        if (n === 3) { var t = TOPICS.filter(function (x) { return i.topics[x.k]; }).length; return t + ' από 7 θέματα · ' + (i.freq ? 'κάθε ' + i.freq + ' μήνες' : 'χωρίς επανάληψη'); }
+        return i.sims.length ? i.sims.length + (i.sims.length === 1 ? ' κύκλος' : ' κύκλοι') + ' προσομοιώσεων' : 'Χωρίς προσομοιώσεις';
+    }
+
+    function compute(i) {
+        var cov = {}, done = 0, tot = 0;
+        GROUPS.forEach(function (g) {
+            var x = i.g[g.k];
+            cov[g.k] = x.tot ? (x.done || 0) / x.tot : null;
+            if (x.tot) { tot += x.tot; done += (x.done || 0); }
+        });
+        var covAll = tot ? done / tot : 0;
+        var any = done > 0;
+        var monthsAgo = null;
+        if (i.last) { var p = i.last.split('-'), now = new Date(); monthsAgo = (now.getFullYear() - +p[0]) * 12 + (now.getMonth() + 1 - +p[1]); }
+        var onTime = i.freq > 0 && monthsAgo !== null && monthsAgo <= i.freq + 1;
+        var periodic = i.freq > 0 && onTime;
+        var nTop = TOPICS.filter(function (t) { return i.topics[t.k]; }).length;
+        var nTech = TECH.filter(function (t) { return i.tech[t.k]; }).length;
+        var ok = function (c) { return c === null || c >= 0.9; };
+        var techNA = !i.g.tech.tot;
+        var sims = i.sims.filter(function (s) { return s.n; }).map(function (s) {
+            return { idx: s.idx, m: s.m, n: s.n, c: s.c || 0, r: s.r || 0, cr: (s.c || 0) / s.n, rr: (s.r || 0) / s.n };
+        });
+        var missTop = TOPICS.filter(function (t) { return !i.topics[t.k]; }).map(function (t) { return t.c; });
+        var missTech = TECH.filter(function (t) { return !i.tech[t.k]; }).map(function (t) { return t.c; });
+
+        var R = [];
+        function add(fw, code, title, st, why, act, anchor) { R.push({ fw: fw, code: code, title: title, s: st, why: why, act: act, anchor: anchor === false ? '' : String(code).replace(/\./g, '-') }); }
+
+        // ΚΥΑ 1689/2025
+        add('kya', '21.α', 'Περιοδικά προγράμματα για όλο το προσωπικό και τη διοίκηση',
+            periodic && ok(cov.staff) && cov.mgmt === 1 ? 2 : any ? 1 : 0,
+            (i.freq ? 'Συχνότητα: κάθε ' + i.freq + ' μήνες' + (onTime ? '' : ', ο τελευταίος κύκλος είναι εκπρόθεσμος') : 'Χωρίς πρόγραμμα επανάληψης') + '. Κάλυψη προσωπικού ' + (cov.staff === null ? '–' : pct(cov.staff) + '%') + ', διοίκησης ' + pct(cov.mgmt || 0) + '%.',
+            !i.freq ? 'Όρισε συχνότητα στην Πολιτική Εκπαίδευσης (π.χ. κάθε 6 μήνες) και βάλε τους κύκλους σε ημερολόγιο.' : !onTime ? 'Τρέξε τον κύκλο που καθυστερεί. Με το Attack simulation training, ένα Training campaign στήνεται σε λίγα λεπτά.' : 'Ανέβασε την κάλυψη πάνω από 90% και συμπεριέλαβε όλα τα μέλη της διοίκησης.');
+        add('kya', '21.α', 'Ελάχιστη θεματολογία (αα έως αζ)',
+            nTop === 7 ? 2 : nTop > 0 ? 1 : 0,
+            nTop + ' από 7 θέματα' + (missTop.length ? '. Λείπουν: ' + missTop.join(', ') + '.' : '.'),
+            'Πρόσθεσε τα θέματα ' + missTop.join(', ') + '. Τα αε και αστ δεν τα καλύπτουν έτοιμα modules του Attack simulation training: θέλουν δικό σου υλικό.');
+        if (techNA) add('kya', '21.β', 'Εκπαίδευση τεχνικού προσωπικού ανά ρόλο', null, 'Δεν δηλώθηκε τεχνικό προσωπικό. Αν τα συστήματα τα διαχειρίζεται εξωτερικός συνεργάτης, η απαίτηση περνά στη σύμβαση μαζί του.', '');
+        else add('kya', '21.β', 'Εκπαίδευση τεχνικού προσωπικού ανά ρόλο',
+            ok(cov.tech) && nTech === 3 && i.freq > 0 ? 2 : (cov.tech > 0 || nTech > 0) ? 1 : 0,
+            'Κάλυψη ' + pct(cov.tech || 0) + '%, ' + nTech + ' από 3 θέματα' + (missTech.length ? ' (λείπουν: ' + missTech.join(', ') + ')' : '') + '.',
+            'Φτιάξε πλάνο ανά ρόλο για το τεχνικό προσωπικό με τα θέματα ' + (missTech.length ? missTech.join(', ') : 'βα, ββ, βγ') + '. Τα Microsoft Learn paths και οι πιστοποιήσεις μετράνε ως τεκμήριο.');
+        add('kya', '21.γ', 'Αξιολόγηση και επικαιροποίηση των προγραμμάτων',
+            i.review && (sims.length > 0 || i.evid) ? 2 : (i.review || sims.length >= 2) ? 1 : 0,
+            (i.review ? 'Έγινε αξιολόγηση τους τελευταίους 12 μήνες' : 'Δεν έγινε αξιολόγηση τους τελευταίους 12 μήνες') + '. ' + (sims.length ? sims.length + ' κύκλοι προσομοιώσεων ως μέτρηση.' : 'Χωρίς μετρήσεις από προσομοιώσεις.'),
+            i.review ? 'Στήριξε την αξιολόγηση σε μετρήσεις: τρέξε τουλάχιστον δύο κύκλους προσομοιώσεων ή κράτα τεκμήρια ανά κύκλο.' : 'Κάνε ετήσια αξιολόγηση του προγράμματος με πρακτικό: αποτελέσματα προσομοιώσεων, νέες απειλές, αλλαγές στο πλαίσιο, και τι αλλάζει.');
+        add('kya', '4.β', 'Η διοίκηση παρακολουθεί περιοδικά εκπαίδευση (περ. βε)',
+            cov.mgmt === 1 && i.mgmtRisk && i.freq > 0 ? 2 : cov.mgmt > 0 ? 1 : 0,
+            pct(cov.mgmt || 0) + '% των μελών εκπαιδεύτηκαν' + (i.mgmtRisk ? ', με θεματολογία διαχείρισης κινδύνων.' : ', χωρίς θεματολογία διαχείρισης κινδύνων.'),
+            'Κάνε ξεχωριστό briefing για τη διοίκηση: ευθύνες κατά τον ν. 5160/2024, διαχείριση κινδύνων, πώς διαβάζει το Secure Score. Κράτα παρουσιολόγιο και αναφορά στα πρακτικά.');
+        // Οδηγία NIS2
+        add('nis2', '20.2', 'Υποχρεωτική εκπαίδευση των μελών της διοίκησης',
+            cov.mgmt === 1 && i.mgmtRisk ? 2 : cov.mgmt > 0 ? 1 : 0,
+            pct(cov.mgmt || 0) + '% των μελών' + (i.mgmtRisk ? ', με εντοπισμό κινδύνων και αξιολόγηση πρακτικών.' : '. Η Οδηγία ζητά γνώσεις για εντοπισμό κινδύνων, όχι μόνο ευαισθητοποίηση.'),
+            'Η εκπαίδευση της διοίκησης πρέπει να της δίνει τη γνώση να εντοπίζει κινδύνους και να αξιολογεί τα μέτρα. Ένα phishing module δεν αρκεί.');
+        add('nis2', '21.2.ζ', 'Βασικές πρακτικές κυβερνοϋγιεινής και κατάρτιση',
+            periodic && ok(cov.staff) && ok(cov.tech) && nTop >= 5 ? 2 : any ? 1 : 0,
+            'Συνολική κάλυψη ' + pct(covAll) + '%, ' + nTop + ' από 7 θέματα κυβερνοϋγιεινής.',
+            'Ανέβασε την κάλυψη πάνω από 90% σε όλες τις ομάδες και κάλυψε τουλάχιστον τα βασικά θέματα κυβερνοϋγιεινής.');
+        // ISO/IEC 27001
+        add('iso', 'A.6.3', 'Information security awareness, education and training',
+            periodic && covAll >= 0.9 && i.evid && i.onboard && i.policy ? 2 : any ? 1 : 0,
+            [periodic ? 'περιοδικό' : 'όχι περιοδικό', 'κάλυψη ' + pct(covAll) + '%', i.onboard ? 'με εκπαίδευση πρόσληψης' : 'χωρίς εκπαίδευση πρόσληψης', i.policy ? 'με πολιτική' : 'χωρίς πολιτική', i.evid ? 'με τεκμήρια' : 'χωρίς τεκμήρια'].join(', ') + '.',
+            'Ο ελεγκτής θα ζητήσει πρόγραμμα, εκπαίδευση πρόσληψης και τεκμήρια ανά κύκλο. Συμπλήρωσε ' + [!i.policy && 'την πολιτική', !i.onboard && 'την εκπαίδευση πρόσληψης', !i.evid && 'τα τεκμήρια', !periodic && 'την περιοδικότητα', covAll < 0.9 && 'την κάλυψη'].filter(Boolean).join(', ') + '.');
+        add('iso', '7.2', 'Competence: επάρκεια όσων επηρεάζουν την ασφάλεια, με τεκμήρια',
+            (techNA || (ok(cov.tech) && nTech > 0)) && i.evid ? 2 : (cov.tech > 0 || i.evid) ? 1 : 0,
+            (techNA ? 'Χωρίς τεχνικό προσωπικό. ' : 'Κάλυψη τεχνικού ' + pct(cov.tech || 0) + '%. ') + (i.evid ? 'Υπάρχουν τεκμήρια.' : 'Δεν κρατιούνται τεκμήρια επάρκειας.'),
+            'Η ρήτρα 7.2 ζητά τεκμηριωμένη πληροφορία ως απόδειξη επάρκειας: πιστοποιητικά, βεβαιώσεις, πλάνο εκπαίδευσης ανά ρόλο.', false);
+        add('iso', '7.3', 'Awareness: γνωρίζουν την πολιτική, τη συνεισφορά τους και τις συνέπειες',
+            ok(cov.staff) && i.topics.az && i.policy ? 2 : any ? 1 : 0,
+            (i.topics.az ? 'Καλύφθηκε η αναφορά περιστατικού. ' : 'Δεν καλύφθηκε η αναφορά περιστατικού. ') + (i.policy ? 'Υπάρχει πολιτική.' : 'Δεν υπάρχει εγκεκριμένη πολιτική.'),
+            'Βάλε στην εκπαίδευση την πολιτική ασφάλειας του οργανισμού και τι κάνει ο εργαζόμενος σε περιστατικό. Το κουμπί Report στο Outlook και το Report a call/meeting στο Teams κάνουν την αναφορά ένα κλικ.', false);
+        // GDPR
+        add('gdpr', '32.4', 'Όσοι έχουν πρόσβαση σε δεδομένα ενεργούν μόνο κατ\' εντολή',
+            i.gdprTopic && ok(cov.staff) ? 2 : i.gdprTopic || any ? 1 : 0,
+            i.gdprTopic ? 'Η εκπαίδευση κάλυψε τον χειρισμό δεδομένων προσωπικού χαρακτήρα.' : 'Η εκπαίδευση δεν κάλυψε τον χειρισμό δεδομένων προσωπικού χαρακτήρα.',
+            'Πρόσθεσε ενότητα για τα δεδομένα προσωπικού χαρακτήρα: τι επιτρέπεται, sensitivity labels, τι κάνω σε παραβίαση. Τα policy tips του Microsoft Purview DLP εκπαιδεύουν τη στιγμή του λάθους.');
+        add('gdpr', '5.2', 'Λογοδοσία: μπορείς να αποδείξεις ότι το προσωπικό εκπαιδεύτηκε',
+            i.evid && i.policy ? 2 : (i.evid || i.policy) ? 1 : 0,
+            (i.evid ? 'Τεκμήρια ανά κύκλο: ναι. ' : 'Τεκμήρια ανά κύκλο: όχι. ') + (i.policy ? 'Πολιτική: ναι.' : 'Πολιτική: όχι.'),
+            'Κράτα μητρώο εκπαίδευσης (ημερομηνία, ομάδα, θέμα, ολοκλήρωση, τεκμήριο). Το .xlsx εδώ σου δίνει έτοιμη δομή.');
+        if (sims.length) add('gdpr', '5.1.α', 'Διαφάνεια στις προσομοιώσεις phishing (άρθρα 5.1.α και 13)',
+            i.notice && i.min ? 2 : (i.notice || i.min) ? 1 : 0,
+            (i.notice ? 'Οι εργαζόμενοι ενημερώθηκαν. ' : 'Οι εργαζόμενοι δεν ενημερώθηκαν. ') + (i.min ? 'Περιορισμένη πρόσβαση και ορισμένη διατήρηση.' : 'Δεν έχει οριστεί ποιος βλέπει τα ατομικά αποτελέσματα και για πόσο.'),
+            'Οι προσομοιώσεις καταγράφουν συμπεριφορά εργαζομένων. Ενημέρωσέ τους εκ των προτέρων, δώσε στη διοίκηση μόνο συγκεντρωτικά, όρισε χρόνο διατήρησης. Στόχος η μάθηση, όχι η τιμωρία.', false);
+
+        var fwScore = FW.map(function (f) {
+            var rs = R.filter(function (r) { return r.fw === f.key && r.s !== null; });
+            var s = 0; rs.forEach(function (r) { s += r.s; });
+            return { f: f, p: rs.length ? Math.round(s / (2 * rs.length) * 100) : 0, n: rs.length };
+        });
+        var rated = R.filter(function (r) { return r.s !== null; });
+        var tot2 = 0; rated.forEach(function (r) { tot2 += r.s; });
+        var score = rated.length ? Math.round(tot2 / (2 * rated.length) * 100) : 0;
+        var k = { 2: 0, 1: 0, 0: 0 }; rated.forEach(function (r) { k[r.s]++; });
+
+        var trend = null;
+        if (sims.length >= 2) { var a = sims[0], b = sims[sims.length - 1]; trend = { dc: pct(b.cr) - pct(a.cr), dr: pct(b.rr) - pct(a.rr) }; }
+
+        var verdict;
+        if (score >= 90) verdict = 'Το πρόγραμμα είναι τεκμηριωμένο. Κράτα τα τεκμήρια κάθε κύκλου στον ίδιο φάκελο και φρόντισε η αξιολόγηση να γίνεται κάθε χρόνο.';
+        else if (score >= 65 || (k[0] === 0 && score >= 50)) verdict = 'Η εκπαίδευση γίνεται, αλλά ένας ελεγκτής θα βρει ευρήματα. Συνήθως λείπουν η διοίκηση, η θεματολογία ή τα τεκμήρια. Δες «Τι κάνεις πρώτα».';
+        else if (score >= 35) verdict = 'Υπάρχει εκπαίδευση, όχι πρόγραμμα. Η ΚΥΑ 1689/2025 ζητά περιοδικότητα, όλο το προσωπικό και τη διοίκηση, και ελάχιστη θεματολογία. Ξεκίνα από την Πολιτική Εκπαίδευσης και ένα ημερολόγιο κύκλων.';
+        else verdict = 'Δεν υπάρχει τεκμηριωμένη εκπαίδευση. Ξεκίνα με μία εγκεκριμένη πολιτική, έναν πρώτο κύκλο για όλους και ένα briefing για τη διοίκηση. Και το πλάνο με ημερομηνίες είναι τεκμήριο.';
+
+        var evidList = [
+            { t: 'Εγκεκριμένη Πολιτική Εκπαίδευσης και Κατάρτισης στην Κυβερνοασφάλεια και ετήσιο πρόγραμμα', have: i.policy },
+            { t: 'Defender portal › Email & collaboration › Attack simulation training › Training: εξαγωγή του Training completion ανά campaign', have: i.lic !== 'none' && any },
+            { t: 'Αναφορά κάθε προσομοίωσης (Simulations): χρήστες, πόσοι πάτησαν, πόσοι ανέφεραν', have: sims.length > 0 },
+            { t: 'Παρουσιολόγια ή βεβαιώσεις για εκπαιδεύσεις εκτός Microsoft 365 (διοίκηση, τεχνικό προσωπικό, θέματα αε και αστ)', have: i.evid },
+            { t: 'Πρακτικό ΔΣ ή διοίκησης με την εκπαίδευση των μελών της (ΚΥΑ 1689/2025, 4.β)', have: cov.mgmt === 1 },
+            { t: 'Πρακτικό αξιολόγησης και επικαιροποίησης του προγράμματος (ΚΥΑ 1689/2025, 21.γ)', have: i.review },
+            { t: 'Ενημέρωση εργαζομένων για τις προσομοιώσεις και τα δεδομένα που καταγράφονται (GDPR)', have: i.notice, opt: !sims.length }
+        ];
+        return { i: i, cov: cov, covAll: covAll, R: R, fwScore: fwScore, score: score, k: k, sims: sims, trend: trend, verdict: verdict, evid: evidList, periodic: periodic, onTime: onTime, nTop: nTop, nTech: nTech };
+    }
+
+    function color(p) { return p >= 85 ? '#10b981' : p >= 50 ? '#f59e0b' : '#f43f5e'; }
+    function stCls(s) { return s === 2 ? 'text-emerald-300 border-emerald-500/40 bg-emerald-500/10' : s === 1 ? 'text-amber-200 border-amber-500/40 bg-amber-500/10' : s === 0 ? 'text-rose-300 border-rose-500/40 bg-rose-500/10' : 'text-slate-400 border-slate-600 bg-slate-800/40'; }
+    function ring(p, label, url) {
+        var c = 2 * Math.PI * 30, o = c * (1 - p / 100);
+        return '<a href="' + url + '" class="block rounded-lg border border-slate-800 bg-slate-900/40 p-3 text-center hover:border-blue-500">' +
+            '<svg width="84" height="84" viewBox="0 0 76 76" class="mx-auto" role="img" aria-label="' + esc(label) + ' ' + p + '%">' +
+            '<circle cx="38" cy="38" r="30" fill="none" stroke="#1e293b" stroke-width="7"/>' +
+            '<circle class="awArc" cx="38" cy="38" r="30" fill="none" stroke="' + color(p) + '" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + c.toFixed(2) + '" stroke-dashoffset="' + c.toFixed(2) + '" data-off="' + o.toFixed(2) + '" transform="rotate(-90 38 38)" style="transition: stroke-dashoffset 1s ease-out"/>' +
+            '<text x="38" y="43" text-anchor="middle" fill="#f1f5f9" font-size="15" font-weight="700" class="awNum" data-to="' + p + '">0%</text></svg>' +
+            '<p class="text-xs text-slate-300 mt-1">' + esc(label) + '</p></a>';
+    }
+    function simChart(sims) {
+        var w = 520, h = 150, pl = 34, pb = 22, pt = 10, bw = Math.min(46, (w - pl) / sims.length / 2.6);
+        var max = 100, step = (w - pl) / sims.length;
+        var s = '<svg viewBox="0 0 ' + w + ' ' + h + '" class="w-full max-w-xl" role="img" aria-label="Ποσοστό που πάτησαν και που ανέφεραν ανά κύκλο">';
+        [0, 25, 50, 75, 100].forEach(function (v) { var y = pt + (h - pt - pb) * (1 - v / max); s += '<line x1="' + pl + '" x2="' + w + '" y1="' + y + '" y2="' + y + '" stroke="#1e293b"/><text x="' + (pl - 6) + '" y="' + (y + 3) + '" text-anchor="end" font-size="9" fill="#94a3b8">' + v + '%</text>'; });
+        sims.forEach(function (x, k) {
+            var cx = pl + step * k + step / 2, H = h - pt - pb;
+            var hc = H * x.cr, hr = H * x.rr;
+            s += '<rect x="' + (cx - bw - 2) + '" y="' + (pt + H - hc) + '" width="' + bw + '" height="' + hc + '" rx="2" fill="#f43f5e"/>';
+            s += '<rect x="' + (cx + 2) + '" y="' + (pt + H - hr) + '" width="' + bw + '" height="' + hr + '" rx="2" fill="#10b981"/>';
+            s += '<text x="' + (cx - bw / 2 - 2) + '" y="' + (pt + H - hc - 3) + '" text-anchor="middle" font-size="9" fill="#fda4af">' + pct(x.cr) + '%</text>';
+            s += '<text x="' + (cx + bw / 2 + 2) + '" y="' + (pt + H - hr - 3) + '" text-anchor="middle" font-size="9" fill="#6ee7b7">' + pct(x.rr) + '%</text>';
+            s += '<text x="' + cx + '" y="' + (h - 6) + '" text-anchor="middle" font-size="9" fill="#94a3b8">#' + x.idx + (x.m ? ' · ' + monthLabel(x.m) : '') + '</text>';
+        });
+        return s + '</svg><p class="text-xs text-slate-400 mt-1"><span class="inline-block w-2.5 h-2.5 rounded-sm align-middle" style="background:#f43f5e"></span> πάτησαν &nbsp; <span class="inline-block w-2.5 h-2.5 rounded-sm align-middle" style="background:#10b981"></span> ανέφεραν</p>';
+    }
+    function animate(box) {
+        var arcs = box.querySelectorAll('.awArc'), nums = box.querySelectorAll('.awNum');
+        requestAnimationFrame(function () { Array.prototype.forEach.call(arcs, function (a) { a.style.strokeDashoffset = a.getAttribute('data-off'); }); });
+        Array.prototype.forEach.call(nums, function (n) {
+            var to = +n.getAttribute('data-to'), t0 = null;
+            requestAnimationFrame(function step(ts) { if (!t0) t0 = ts; var f = Math.min((ts - t0) / 1000, 1); n.textContent = Math.round(to * (1 - Math.pow(1 - f, 3))) + '%'; if (f < 1) requestAnimationFrame(step); });
+        });
+    }
+
+    var form = $('awForm'), box = $('awResult'), err = $('awError'), last = null;
+
+    // Επιλογή μήνα και έτους με λίστες στα Ελληνικά. Η τιμή κρατιέται στο κρυφό πεδίο ως ΕΕΕΕ-ΜΜ.
+    var Y = new Date().getFullYear();
+    Array.prototype.forEach.call(root.querySelectorAll('.awMonth'), function (w) {
+        var mm = w.querySelector('.awMm'), my = w.querySelector('.awMy'), h = w.querySelector('input[type=hidden]');
+        for (var y = Y; y >= Y - 4; y--) { var o = document.createElement('option'); o.value = o.textContent = String(y); my.appendChild(o); }
+        function sync() { h.value = mm.value && my.value ? my.value + '-' + mm.value : ''; }
+        mm.addEventListener('change', function () { if (mm.value && !my.value) my.value = String(Y); sync(); });
+        my.addEventListener('change', sync);
+    });
+    function setMonth(h, v) {
+        var w = h.closest('.awMonth'), p = (v || '').split('-');
+        h.value = v || ''; w.querySelector('.awMy').value = p[0] || ''; w.querySelector('.awMm').value = p[1] || '';
+    }
+
+    // Βήματα: κλειστά, ξεκλειδώνει το επόμενο μόλις ολοκληρωθεί το προηγούμενο
+    var steps = Array.prototype.slice.call(root.querySelectorAll('.awStep'));
+    var state = { done: {}, unlocked: { 1: true } };
+    function stepEl(n) { return steps[n - 1]; }
+    function setErr(n, msg) { var e = stepEl(n).querySelector('.awStepErr'); e.textContent = msg || ''; e.classList.toggle('hidden', !msg); }
+    function paint(n, i) {
+        var d = stepEl(n), b = d.querySelector('.awBadge'), note = d.querySelector('.awSumNote'), lock = d.querySelector('.awLock');
+        lock.classList.toggle('hidden', !!state.unlocked[n]);
+        d.classList.toggle('opacity-60', !state.unlocked[n]);
+        if (state.done[n]) {
+            b.textContent = '✓'; b.className = 'awBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-500 bg-emerald-500/15 font-mono text-xs text-emerald-300';
+            note.textContent = i ? stepNote(i, n) : note.textContent;
+        } else {
+            b.textContent = String(n); b.className = 'awBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400';
+            note.textContent = state.unlocked[n] ? '' : 'Συμπλήρωσε πρώτα το βήμα ' + (n - 1);
+        }
+    }
+    function markDone(n, i) { state.done[n] = true; state.unlocked[n] = true; if (n < 4) state.unlocked[n + 1] = true; paint(n, i); if (n < 4) paint(n + 1, i); setErr(n, ''); }
+    function openStep(n, msg) {
+        steps.forEach(function (d, k) { d.open = k === n - 1; });
+        if (msg) setErr(n, msg);
+        stepEl(n).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function resetSteps() {
+        state = { done: {}, unlocked: { 1: true } };
+        steps.forEach(function (d, k) { d.open = k === 0; setErr(k + 1, ''); });
+        for (var n = 1; n <= 4; n++) paint(n);
+    }
+    steps.forEach(function (d, k) {
+        var n = k + 1;
+        d.querySelector('summary').addEventListener('click', function (ev) {
+            if (!state.unlocked[n]) { ev.preventDefault(); var cur = 1; while (cur < 4 && state.unlocked[cur + 1]) cur++; setErr(cur, 'Ολοκλήρωσε αυτό το βήμα για να συνεχίσεις.'); openStep(cur); return; }
+            if (!d.open) { ev.preventDefault(); steps.forEach(function (o) { o.open = false; }); d.open = true; }
+        });
+    });
+    Array.prototype.forEach.call(root.querySelectorAll('.awNext'), function (btn) {
+        btn.addEventListener('click', function () {
+            var n = +btn.getAttribute('data-step'), i = read(), msg = validateStep(i, n);
+            if (msg) { setErr(n, msg); return; }
+            markDone(n, i);
+            openStep(n + 1);
+        });
+    });
+    // Αλλαγή σε ολοκληρωμένο βήμα: ενημερώνεται η σύνοψη ή χάνει το ✓ αν δεν είναι πια έγκυρο
+    form.addEventListener('change', function (ev) {
+        var d = ev.target.closest && ev.target.closest('.awStep'); if (!d) return;
+        var n = +d.getAttribute('data-step'), i = read();
+        if (!state.done[n]) return;
+        var msg = validateStep(i, n);
+        if (msg) { state.done[n] = false; paint(n); setErr(n, msg); } else paint(n, i);
+    });
+    resetSteps();
+
+    form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var i = read(), bad = validate(i);
+        if (bad) { err.textContent = 'Βήμα ' + bad.n + ': ' + bad.msg; err.classList.remove('hidden'); openStep(bad.n, bad.msg); return; }
+        err.classList.add('hidden');
+        for (var n = 1; n <= 4; n++) markDone(n, i);
+        steps.forEach(function (d) { d.open = false; });
+        var r = compute(i); last = r;
+
+        $('awResOrg').textContent = (i.org ? ' · ' + i.org : '') + (i.period ? ' · ' + i.period : '');
+        $('awScore').textContent = r.score;
+        $('awMetCount').textContent = r.k[2]; $('awPartCount').textContent = r.k[1]; $('awGapCount').textContent = r.k[0];
+        var v = r.verdict;
+        if (i.lic === 'none') v += ' Χωρίς Defender for Office 365 Plan 2 ή E5 δεν έχεις Attack simulation training: η εκπαίδευση μπορεί να γίνει με άλλο υλικό, αρκεί να κρατάς τεκμήρια.';
+        else if (i.lic === 'some') v += ' Στο Attack simulation training μπαίνουν μόνο χρήστες με άδεια: για τους υπόλοιπους χρειάζεσαι άλλο υλικό και δικά σου τεκμήρια.';
+        if (i.entity === 'none') v += ' Αν δεν υπάγεσαι στον ν. 5160/2024, οι γραμμές της ΚΥΑ και της NIS2 είναι καλή πρακτική. Το ISO/IEC 27001 και ο GDPR ισχύουν ανεξάρτητα.';
+        $('awVerdict').textContent = v;
+        $('awRings').innerHTML = r.fwScore.map(function (x) { return ring(x.p, x.f.label, x.f.url); }).join('');
+
+        $('awCov').innerHTML = GROUPS.map(function (g) {
+            var c = r.cov[g.k], x = i.g[g.k];
+            if (c === null) return '<div class="text-xs text-slate-400">' + g.n + ': δεν δηλώθηκε.</div>';
+            var p = pct(c);
+            return '<div class="flex items-center gap-3 text-sm"><span class="w-40 shrink-0 text-slate-300">' + g.n + '</span>' +
+                '<span class="flex-1 h-2.5 rounded bg-slate-800 overflow-hidden"><span class="block h-full rounded" style="width:' + p + '%;background:' + color(p) + '"></span></span>' +
+                '<span class="w-24 text-right font-mono text-xs text-slate-300">' + (x.done || 0) + '/' + x.tot + ' · ' + p + '%</span></div>';
+        }).join('');
+
+        if (r.sims.length) {
+            $('awSimBox').classList.remove('hidden');
+            $('awSimChart').innerHTML = simChart(r.sims);
+            var note = '';
+            if (r.trend) note = 'Από τον πρώτο στον τελευταίο κύκλο: όσοι πάτησαν ' + (r.trend.dc <= 0 ? 'μειώθηκαν κατά ' + (-r.trend.dc) : 'αυξήθηκαν κατά ' + r.trend.dc) + ' μονάδες, όσοι ανέφεραν ' + (r.trend.dr >= 0 ? 'αυξήθηκαν κατά ' + r.trend.dr : 'μειώθηκαν κατά ' + (-r.trend.dr)) + ' μονάδες. Αυτή η εξέλιξη είναι το τεκμήριο αποτελεσματικότητας για την περίπτωση γ.';
+            else note = 'Ένας κύκλος δεν δείχνει τάση. Με δεύτερο κύκλο φαίνεται αν η εκπαίδευση αλλάζει τη συμπεριφορά.';
+            $('awSimNote').textContent = note;
+        } else $('awSimBox').classList.add('hidden');
+
+        $('awReqs').innerHTML = FW.map(function (f) {
+            var rs = r.R.filter(function (x) { return x.fw === f.key; });
+            return '<details class="rounded-lg border border-slate-800 bg-slate-900/40"' + (rs.some(function (x) { return x.s !== null && x.s < 2; }) ? ' open' : '') + '><summary class="cursor-pointer p-3 text-sm font-semibold text-slate-100">' + esc(f.label) + ' <span class="font-normal text-xs text-slate-400">· ' + rs.length + ' απαιτήσεις</span></summary><div class="flex flex-col gap-2 px-3 pb-3">' +
+                rs.map(function (x) {
+                    return '<div class="rounded-md border border-slate-800 p-3"><div class="flex flex-wrap items-start gap-2"><a href="' + f.url + (x.anchor ? '#' + x.anchor : '') + '" class="font-mono text-xs text-blue-400 hover:text-blue-300 underline">' + esc(x.code) + '</a>' +
+                        '<span class="flex-1 min-w-0 text-sm text-slate-200">' + esc(x.title) + '</span><span class="text-[11px] font-mono rounded border px-1.5 py-0.5 ' + stCls(x.s) + '">' + (x.s === null ? 'Δεν εφαρμόζεται' : ST[x.s]) + '</span></div>' +
+                        '<p class="text-xs text-slate-400 mt-1.5">' + esc(x.why) + '</p></div>';
+                }).join('') + '</div></details>';
+        }).join('');
+
+        var gaps = r.R.filter(function (x) { return x.s !== null && x.s < 2; }).sort(function (a, b) { return a.s - b.s; });
+        var seen = {};
+        $('awActions').innerHTML = gaps.filter(function (x) { if (seen[x.act]) return false; seen[x.act] = 1; return true; }).map(function (x) {
+            return '<li><span class="font-mono text-xs ' + (x.s === 0 ? 'text-rose-400' : 'text-amber-300') + '">' + esc(FWI[x.fw].label + ' ' + x.code) + '</span> ' + esc(x.act) + '</li>';
+        }).join('');
+        $('awGapBox').classList.toggle('hidden', !gaps.length);
+
+        $('awEvidList').innerHTML = r.evid.filter(function (e) { return !e.opt; }).map(function (e) {
+            return '<li class="flex gap-2"><span class="' + (e.have ? 'text-emerald-400' : 'text-slate-500') + '">' + (e.have ? '✔' : '○') + '</span><span>' + esc(e.t) + '</span></li>';
+        }).join('');
+
+        box.classList.remove('hidden');
+        box.focus({ preventScroll: true });
+        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        animate(box);
+    });
+
+    form.addEventListener('input', function () {
+        err.classList.add('hidden');
+    });
+    form.addEventListener('reset', function () { Array.prototype.forEach.call(root.querySelectorAll('.awMonth input[type=hidden]'), function (h) { h.value = ''; }); setTimeout(function () { box.classList.add('hidden'); err.classList.add('hidden'); last = null; resetSteps(); }, 0); });
+
+    // Παράδειγμα: κατασκευασμένα στοιχεία για την εικονική εταιρεία MyCompany
+    $('awExample').addEventListener('click', function () {
+        form.reset();
+        var d = new Date(), ym = function (back) { var x = new Date(d.getFullYear(), d.getMonth() - back, 1); return x.getFullYear() + '-' + ('0' + (x.getMonth() + 1)).slice(-2); };
+        $('awOrg').value = 'MyCompany'; $('awPeriod').value = String(d.getFullYear());
+        $('awEntity').value = 'important'; $('awLic').value = 'all';
+        var g = { mgmt: [5, 4], tech: [12, 12], staff: [180, 158] };
+        Object.keys(g).forEach(function (k) { $('awTot_' + k).value = g[k][0]; $('awDone_' + k).value = g[k][1]; });
+        $('awOnboard').checked = true;
+        Array.prototype.forEach.call(root.querySelectorAll('.awTopic'), function (c) { c.checked = c.value !== 'ae' && c.value !== 'ast'; });
+        Array.prototype.forEach.call(root.querySelectorAll('.awTech'), function (c) { c.checked = c.value !== 'bb'; });
+        $('awGdprTopic').checked = true;
+        $('awFreq').value = '6'; setMonth($('awLast'), ym(2));
+        $('awPolicy').checked = true; $('awMgmtRisk').checked = false; $('awEvid').checked = true;
+        var sims = [[ym(11), 190, 34, 21], [ym(8), 192, 25, 38], [ym(5), 194, 17, 55], [ym(2), 196, 11, 71]];
+        Array.prototype.forEach.call(root.querySelectorAll('.awSim'), function (r, k) {
+            setMonth(r.querySelector('.awSimM'), sims[k][0]); r.querySelector('.awSimN').value = sims[k][1];
+            r.querySelector('.awSimC').value = sims[k][2]; r.querySelector('.awSimR').value = sims[k][3];
+        });
+        $('awReview').checked = true; $('awNotice').checked = true; $('awMin').checked = false;
+        // Μετά το setTimeout του reset, ώστε να μην κρυφτεί το αποτέλεσμα
+        setTimeout(function () { form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true })); }, 20);
+    });
+
+    // Φόρτωση βιβλιοθηκών μόνο όταν πατηθεί κουμπί λήψης
+    function loadScripts(list, cb, onerr) {
+        var k = 0;
+        (function next() {
+            if (k >= list.length) return cb();
+            var src = list[k++];
+            if (document.querySelector('script[data-aw="' + src + '"]')) return next();
+            var s = document.createElement('script'); s.src = src; s.setAttribute('data-aw', src); s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    function dlErr(t) { var e = $('awDlErr'); e.textContent = t; e.classList.remove('hidden'); }
+    function ctx() { return { r: last, FW: FW, GROUPS: GROUPS, TOPICS: TOPICS, TECH: TECH, ST: ST, base: BASE }; }
+
+    $('awPdf').addEventListener('click', function () {
+        if (!last) return;
+        var btn = this, txt = btn.textContent; btn.disabled = true; btn.textContent = 'Δημιουργία αναφοράς…'; $('awDlErr').classList.add('hidden');
+        loadScripts([
+            'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js',
+            '{{ "js/awareness-report.js" | relURL }}'
+        ], function () {
+            try { window.awBuildPdf(ctx()); } catch (x) { dlErr('Η αναφορά δεν δημιουργήθηκε. Δοκίμασε ξανά.'); }
+            btn.disabled = false; btn.textContent = txt;
+        }, function () { dlErr('Δεν φορτώθηκε η βιβλιοθήκη για το .pdf. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'); btn.disabled = false; btn.textContent = txt; });
+    });
+    $('awXlsx').addEventListener('click', function () {
+        if (!last) return;
+        $('awDlErr').classList.add('hidden');
+        loadScripts([
+            'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
+            '{{ "js/awareness-report.js" | relURL }}'
+        ], function () {
+            try { window.awBuildXlsx(ctx()); } catch (x) { dlErr('Το .xlsx δεν δημιουργήθηκε. Δοκίμασε ξανά.'); }
+        }, function () { dlErr('Δεν φορτώθηκε η βιβλιοθήκη για το .xlsx. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'); });
+    });
+})();
+</script>

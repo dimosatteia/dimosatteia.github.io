@@ -26,6 +26,8 @@ checklist: "/downloads/nis2-kya-1689-2025-microsoft-365-checklist.xlsx"
 
 {{< tool-link page="/etoimotita-microsoft-365" lead="Πόσο έτοιμοι είστε για τον έλεγχο;" label="Κάντε τον έλεγχο ετοιμότητας του Microsoft 365" tail="σε 22 ερωτήσεις, με αναφορά κενών ανά απαίτηση." >}}
 
+{{< tool-link page="/tekmiriosi-ekpaideysis" lead="Θα ζητηθεί τεκμήριο για την εκπαίδευση του προσωπικού;" label="Δείτε αν η εκπαίδευσή σας είναι τεκμηριωμένη" tail="με φάκελο .pdf και μητρώο εκπαίδευσης .xlsx." >}}
+
 {{< tool-link page="/kql" lead="Θέλετε τεκμήριο από το δικό σας tenant;" label="Δείτε τη Βιβλιοθήκη KQL" tail="με δοκιμασμένα Advanced Hunting queries ανά απαίτηση." >}}
 
 {{< tool-link page="/kostos-peristatikou" lead="Θέλετε να τεκμηριώσετε το RTO στον έλεγχο;" label="Υπολογίστε το κόστος ενός περιστατικού" tail="για διακοπή λειτουργίας και ransomware, με ALE και ROSI." >}}
