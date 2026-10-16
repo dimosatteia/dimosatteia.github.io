@@ -73,6 +73,8 @@ verification:
     license: "Microsoft Entra ID Free και πάνω"
     source: "https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-enable-passkey-fido2"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1111", "T1557", "M1032"]
 ---
 
 Θα το πω απλά, όπως θα το έλεγα σε έναν συνάδελφο μπροστά σε έναν καφέ: αν ακόμα έχετε χρήστες στο tenant σας που κάνουν MFA με SMS ή με τηλεφωνική κλήση, έχετε ακριβώς έναν χρόνο και κάτι να τους μετακομίσετε αλλού. Η Microsoft το ανακοίνωσε επίσημα και αυτή τη φορά δεν είναι απλά ένα «recommendation» σε κάποιο Ignite session. Είναι ημερομηνίες, με ρολόι που ήδη μετράει αντίστροφα.

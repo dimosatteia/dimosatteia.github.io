@@ -70,6 +70,8 @@ verification:
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/identity-inventory"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T1558.001", "T1003.006", "T1556.001", "T1098"]
 ---
 
 ## Γιατί αυτό είναι το αγαπημένο μου

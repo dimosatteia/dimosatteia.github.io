@@ -1,0 +1,10 @@
+{{- /* Γραμμή με τα MITRE ATT&CK® IDs της σελίδας (front matter: mitre). Κάθε chip πάει στη σελίδα του ID στο blog. */ -}}
+{{- with .GetTerms "mitre" -}}
+<div class="not-prose flex flex-wrap items-center gap-2 mt-2">
+  <a href="{{ "mitre/" | relLangURL }}" class="text-xs font-mono text-slate-500 hover:text-slate-300 mr-2 uppercase" title="MITRE ATT&CK®: όλες οι τεχνικές του blog">ATT&amp;CK®:</a>
+  {{- range . }}
+  {{- $id := upper .Title }}{{ $item := index hugo.Data.mitre.items $id }}
+  <a href="{{ .RelPermalink }}" class="px-2 py-1 bg-slate-900 border border-red-500/30 text-slate-300 hover:text-white hover:border-red-400 text-[10px] font-mono rounded transition-colors" title="{{ with $item }}{{ .name }} · {{ delimit (.tactics | default (slice .tactic)) ", " }}{{ end }}">{{ $id }}</a>
+  {{- end }}
+</div>
+{{- end -}}

@@ -61,6 +61,8 @@ verification:
     license: "Defender for Identity"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1047"]
 ---
 
 Όποιος έχει στήσει Defender for Identity ξέρει ότι το δύσκολο κομμάτι δεν ήταν ποτέ η εγκατάσταση του sensor. Ήταν το auditing. Ο sensor βλέπει μόνο ό,τι του δίνουν τα Windows events, και αν το Advanced Audit Policy, τα SACL στο domain ή το NTLM auditing δεν είναι σωστά ρυθμισμένα, ο Domain Controller φαίνεται «υγιής» στο portal ενώ στην πράξη μένουν τυφλά σημεία. Για αυτό ακριβώς το Defender for Identity απέκτησε πριν από λίγους μήνες health issue για τα Windows events που λείπουν, που το είχα γράψει στο [Defender for Identity: Το νέο health issue που σου λέει πότε «τυφλώνεσαι» σε έναν Domain Controller](/posts/new-features/defender-for-identity-health-issue-missing-windows-events/).

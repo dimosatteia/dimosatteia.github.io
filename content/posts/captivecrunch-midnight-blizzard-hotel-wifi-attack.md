@@ -35,7 +35,7 @@ author: "Dimosthenis Atteia"
 description: "Η Microsoft αποκάλυψε την επιχείρηση CaptiveCrunch: μια ρωσική ομάδα κατασκοπείας που χτυπά ταξιδιώτες μέσα από το Wi-Fi ξενοδοχείων και συνεδρίων, ρίχνοντας malware και κλέβοντας credentials και Microsoft 365 tokens. Εξηγώ με απλά λόγια τι συμβαίνει, πώς δουλεύει η επίθεση, ποια εργαλεία χρησιμοποιούν και τι να κάνεις για να προστατέψεις εσένα και την ομάδα σου."
 seoDescription: "Η ρωσική ομάδα κατασκοπείας πίσω από το CaptiveCrunch χτυπά ταξιδιώτες μέσω Wi-Fi ξενοδοχείων και κλέβει Microsoft 365 tokens. Πώς δουλεύει και πώς προστατεύεσαι."
 summary: "Μια ρωσική κρατική ομάδα (Midnight Blizzard / Storm-2945) παραβιάζει το Wi-Fi ξενοδοχείων και συνεδρίων για να χτυπήσει εταιρικούς ταξιδιώτες. Σου δείχνω βήμα-βήμα πώς στήνεται η παγίδα με ψεύτικα updates και ClickFix, τι κάνουν τα εργαλεία CornFlake / ChocoShell / FruitStone, γιατί η κλοπή token είναι το πραγματικό πρόβλημα, και έναν πρακτικό οδηγό προστασίας για όποιον ταξιδεύει για δουλειά."
-categories: ["Security Operations & XDR"]
+categories: ["Security Operations & XDR", "Security Awareness"]
 ShowToc: true
 TocOpen: false
 weight: -5
@@ -43,6 +43,8 @@ cover:
   image: "/images/CaptiveCrunch/captivecrunch-cover.webp"
   alt: "CaptiveCrunch: ρωσική επίθεση σε ταξιδιώτες μέσα από το Wi-Fi ξενοδοχείων και συνεδρίων"
   caption: "CaptiveCrunch — Midnight Blizzard / Storm-2945"
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1557", "T1204.002", "T1555.003", "T1539", "T1528", "T1550.004", "T1071.001"]
 ---
 
 ## Το σενάριο σε μία εικόνα

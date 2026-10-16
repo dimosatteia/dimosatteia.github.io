@@ -65,6 +65,8 @@ verification:
     license: "Defender for Endpoint P2"
     source: "https://learn.microsoft.com/en-us/defender-endpoint/live-response"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1018", "T1566", "T1684.001"]
 ---
 
 Για δεύτερη φορά ήμουν καλεσμένος στο live webinar του Χρήστου Σπανουγάκη, **[Chris Spanougakis MVP](https://www.youtube.com/@Chris_OnTechnology)**, εδώ και 26 χρόνια και MVP σε Microsoft 365 και Security. Αυτή τη φορά το θέμα ήταν πιο τεχνικό και πιο βαθύ: ολόκληρη η σουίτα **Microsoft Defender XDR**, μέσα από πραγματικά demo και στα δύο μας tenants. Το βίντεο το βρίσκετε ολόκληρο εδώ, [Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά](https://www.youtube.com/watch?v=Dq1LRbkD36g&t=2454s), και όπως πάντα σας προτείνω να κάνετε εγγραφή στο [κανάλι Chris Spanougakis MVP](https://www.youtube.com/@Chris_OnTechnology), γιατί ανεβάζει σταθερά πολύ καλό, πρακτικό υλικό γύρω από το Microsoft 365 και το Security, καθώς και να επισκεφτείτε το [Personal Webiste & Blog του](https://spanougakis.com/).

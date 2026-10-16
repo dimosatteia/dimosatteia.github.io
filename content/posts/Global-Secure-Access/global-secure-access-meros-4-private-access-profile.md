@@ -82,6 +82,8 @@ verification:
     license: "Entra Private Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/reference-private-access-sensor-release-history"
     verified: 2026-10-14
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1133", "T1021", "M1035", "M1030"]
 ---
 
 Φτάσαμε στο τέταρτο μέρος αυτής της σειράς. Στο [1ο μέρος](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία SSE, στο [2ο μέρος](/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, και στο [3ο μέρος](/posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway. Συνεχίζω με το κομμάτι που, για πολλούς οργανισμούς που ακόμα σέρνουν ένα παλιό VPN appliance, έχει την πιο άμεση πρακτική αξία: το **Private access profile**.

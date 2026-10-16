@@ -82,6 +82,8 @@ verification:
     license: "Defender for Office 365 Plan 2 ή Microsoft 365 E5"
     source: "https://learn.microsoft.com/en-us/defender-office-365/attack-simulation-training-simulations"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1566.001", "T1566.002", "T1684.001", "M1049", "M1021", "M1054"]
 ---
 
 ## Γιατί αυτό μετράει περισσότερο από τα περισσότερα

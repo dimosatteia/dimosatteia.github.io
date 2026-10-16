@@ -1,0 +1,5 @@
+{{- /* Δέχεται ένα ATT&CK ID (T1566.002, M1017) και επιστρέφει το URL του στο attack.mitre.org */ -}}
+{{- $id := upper . -}}
+{{- $url := printf "https://attack.mitre.org/techniques/%s/" (replace $id "." "/") -}}
+{{- if hasPrefix $id "M" }}{{ $url = printf "https://attack.mitre.org/mitigations/%s/" $id }}{{ end -}}
+{{- return $url -}}

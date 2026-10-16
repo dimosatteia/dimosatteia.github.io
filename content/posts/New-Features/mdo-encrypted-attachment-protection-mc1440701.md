@@ -56,6 +56,8 @@ verification:
     license: "Δεν αναφέρεται"
     source: "https://mc.merill.net/message/MC1440701"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1566.001", "T1027.013"]
 ---
 
 ## Το τυφλό σημείο που όλοι ξέραμε αλλά κάναμε πως δεν βλέπαμε

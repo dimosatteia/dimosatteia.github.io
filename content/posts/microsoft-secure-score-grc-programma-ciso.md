@@ -42,6 +42,13 @@ verification:
     license: "Περιλαμβάνεται στο Microsoft 365"
     source: "https://learn.microsoft.com/en-us/graph/api/resources/securescore"
     verified: 2026-10-13
+tags:
+  - Microsoft Secure Score
+  - Cyber GRC
+  - GRC
+  - CISO
+  - NIS2
+  - ISO 27001
 ---
 
 Πριν λίγο καιρό ήμουν καλεσμένος στο live webinar του Χρήστου Σπανουγάκη, **[Chris Spanougakis MVP](https://www.youtube.com/@Chris_OnTechnology)**, γνωστού σε πολλούς από εσάς και από το κανάλι του στο YouTube. Ο Χρήστος με κάλεσε να μιλήσω για κάτι που μέχρι τότε το είχα μοιραστεί μόνο σε κομμάτια, μέσα από άρθρα εδώ στο blog: το πώς ένα GRC πρόγραμμα που χτίσαμε πάνω στο Microsoft Secure Score κέρδισε τελικά χρυσό βραβείο στα Cyber Security Awards του 2026, στην κατηγορία Governance, Risk & Compliance. Το βίντεο της συζήτησης το βρίσκετε ολόκληρο εδώ, [Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers](https://www.youtube.com/watch?v=ouciH--n2KI&t=276s), και σας προτείνω ανεπιφύλακτα να κάνετε εγγραφή στο [κανάλι του Χρήστου](https://www.youtube.com/@Chris_OnTechnology), γιατί ανεβάζει σταθερά πολύ πρακτικό υλικό γύρω από το οικοσύστημα της Microsoft καθώς και να επισκεφτείτε το [Personal Webiste & Blog του](https://spanougakis.com/).

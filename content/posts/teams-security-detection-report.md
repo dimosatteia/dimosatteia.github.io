@@ -59,6 +59,8 @@ verification:
     license: "Δεν αναφέρεται"
     source: "https://learn.microsoft.com/en-us/microsoftteams/weaponizable-file-protection-teams"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1566.003", "T1204.001", "T1204.002"]
 ---
 
 Όσο περνάει ο καιρός, όλο και λιγότερο μιλάμε για το Teams σαν «εργαλείο συνεργασίας» και όλο και περισσότερο σαν attack surface. Δεν είναι κάτι νέο για όποιον παρακολουθεί closely το threat landscape, phishing μέσω chat, malicious links σε κανάλια, εξωτερικοί χρήστες που παριστάνουν συνάδελφο ή προμηθευτή. Αυτό που έλειπε μέχρι σήμερα ήταν ένα native, κεντρικό σημείο μέσα στο ίδιο το Teams admin center για να το βλέπεις αυτό συγκεντρωμένα, χωρίς να πηγαίνεις να ψάχνεις σε τρία διαφορετικά reports του Defender portal.

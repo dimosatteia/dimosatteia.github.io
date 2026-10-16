@@ -1,0 +1,7 @@
+{{- /* Χρήση: {{< attack "T1566.002" >}} ή {{< attack id="T1566.002" name=true >}}
+       Link στη σελίδα του ID στο attack.mitre.org, με το όνομα από το data/mitre.yaml (στο title, ή ορατό με name=true). */ -}}
+{{- $id := upper (.Get "id" | default (.Get 0)) -}}
+{{- $name := "" -}}
+{{- with index hugo.Data.mitre.items $id }}{{ $name = .name }}{{ else }}{{ warnf "attack shortcode: το %q δεν υπάρχει στο data/mitre.yaml (%s)" $id $.Position }}{{ end -}}
+<a href="{{ partial "mitre-url.html" $id }}" target="_blank" rel="noopener" class="mitre-ref" title="MITRE ATT&CK® {{ $id }}{{ with $name }}: {{ . }}{{ end }}"><code>{{ $id }}</code>{{ if and (.Get "name") $name }} {{ $name }}{{ end }}</a>
+{{- /**/ -}}

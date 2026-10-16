@@ -85,6 +85,8 @@ verification:
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/migrate-file-policies-to-purview"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1528", "T1078.004"]
 ---
 
 ## Γιατί υπάρχουν τα CASBs

@@ -56,6 +56,16 @@ verification:
     license: "Microsoft 365"
     source: "https://learn.microsoft.com/en-us/microsoft-365/enterprise/external-domain-name-system-records"
     verified: 2026-10-14
+categories: ["Email & Collaboration"]
+tags:
+  - Email Security
+  - Exchange Online
+  - Microsoft Defender for Office 365
+  - Microsoft 365 Security
+  - NIS2
+  - ISO 27001
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1684.002", "M1054"]
 ---
 
 Γράψε το domain από το οποίο στέλνεις email και δες αν μπορεί κάποιος να στείλει μηνύματα στο όνομά σου. Ο έλεγχος διαβάζει τις δημόσιες εγγραφές DNS, και για κάθε εύρημα σου δείχνει τη ρύθμιση του Microsoft 365 που το διορθώνει. Δεν χρειάζεται εγγραφή.

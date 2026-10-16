@@ -56,6 +56,8 @@ verification:
     license: "Defender for Identity"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/remediation-actions"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1078"]
 ---
 
 Ένα από τα πράγματα που μαθαίνεις γρήγορα όταν χειρίζεσαι πραγματικό incident με compromised λογαριασμό είναι πόσο χρόνο τρώει η ίδια η **μηχανική** της απόκρισης. Όχι η ανάλυση, όχι η απόφαση «ναι, αυτός ο χρήστης είναι compromised», αλλά το καθαρά επιχειρησιακό κομμάτι: να ανοίξεις το Active Directory Users and Computers για να κλειδώσεις τον λογαριασμό, μετά το Entra admin center για να κάνεις revoke τα sessions, μετά ίσως το Okta ή το SaaS console της εφαρμογής που έχει πρόσβαση ο συγκεκριμένος χρήστης. Κάθε extra κλικ, κάθε extra tab, είναι χρόνος που ο επιτιθέμενος έχει ακόμα ενεργό session κάπου.

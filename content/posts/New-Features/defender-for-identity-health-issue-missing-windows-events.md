@@ -56,6 +56,8 @@ verification:
     license: "Defender for Identity"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/health-alerts"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1047"]
 ---
 
 Ένα από τα πράγματα που μαθαίνεις γρήγορα όταν διαχειρίζεσαι Defender for Identity σε production είναι ότι το «ο sensor είναι healthy» και το «ο sensor βλέπει ό,τι πρέπει να βλέπει» δεν είναι το ίδιο πράγμα. Ο sensor μπορεί να είναι connected, updated, χωρίς κανένα κόκκινο εικονίδιο στο dashboard, και ταυτόχρονα να μην έχει λάβει ούτε ένα Windows event από έναν συγκεκριμένο Domain Controller εδώ και μέρες. Μέχρι πρόσφατα, αυτό το gap δεν είχε δικό του όνομα. Το έμαθες μόνο αν έψαχνες σκόπιμα, μέσα από query σε advanced hunting ή γιατί κάποια detection που περίμενες απλά δεν εμφανίστηκε ποτέ.

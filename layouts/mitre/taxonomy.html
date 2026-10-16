@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{- /* /mitre/: όλα τα MITRE ATT&CK® IDs του blog, ομαδοποιημένα ανά tactic, με τις σελίδες που τα καλύπτουν. */ -}}
+{{- $m := hugo.Data.mitre -}}
+<main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+  <header class="pb-4 border-b border-slate-800">
+    <h1 class="text-2xl md:text-3xl font-bold text-slate-100">MITRE ATT&amp;CK® στο thecybersec.gr</h1>
+    <p class="text-sm text-slate-400 mt-2 max-w-3xl">Κάθε άρθρο και εργαλείο του blog δείχνει ποιες τεχνικές επιτιθέμενου αντιμετωπίζει και ποια mitigations εφαρμόζει. Διάλεξε μια τεχνική για να δεις τις σελίδες που την καλύπτουν, ή άνοιξε την επίσημη περιγραφή της στο attack.mitre.org.</p>
+    <p class="text-xs font-mono text-slate-500 mt-3">{{ len .Data.Terms }} IDs · ATT&amp;CK {{ $m.version }} · Τελευταίος έλεγχος {{ $m.verified }}</p>
+  </header>
+  {{- $terms := .Data.Terms -}}
+  {{- range $m.tacticOrder }}
+  {{- $tactic := . -}}
+  {{- $rows := slice -}}
+  {{- range $terms.Alphabetical }}{{ $t := . }}{{ $id := upper .Page.Title }}{{ with index $m.items $id }}{{ if eq .tactic $tactic }}{{ $rows = $rows | append (dict "id" $id "name" .name "page" $t.Page "count" $t.Count) }}{{ end }}{{ end }}{{ end -}}
+  {{- if $rows }}
+  <section class="glass-card rounded-xl p-5">
+    <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4">{{ $tactic }}</h2>
+    <div class="flex flex-col divide-y divide-slate-800">
+      {{- range $rows }}
+      <div class="py-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <a href="{{ .page.RelPermalink }}" class="font-mono text-xs text-red-300 hover:text-white w-24">{{ .id }}</a>
+        <a href="{{ .page.RelPermalink }}" class="text-sm text-slate-200 hover:text-blue-300 flex-1 min-w-[12rem]">{{ .name }}</a>
+        <span class="text-[10px] font-mono text-slate-500 bg-slate-950 px-1.5 rounded">{{ .count }} {{ cond (eq .count 1) "σελίδα" "σελίδες" }}</span>
+        <a href="{{ partial "mitre-url.html" .id }}" target="_blank" rel="noopener" class="text-[11px] font-mono text-slate-500 hover:text-slate-300">attack.mitre.org ↗</a>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+  {{- end }}
+  <p class="text-xs text-slate-500">{{ $m.notice }} {{ $m.trademark }} Το thecybersec.gr είναι προσωπικό blog και δεν συνδέεται με τη MITRE.</p>
+</main>
+{{ end }}

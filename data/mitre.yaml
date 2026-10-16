@@ -1,0 +1,87 @@
+# MITRE ATT&CK®: ονόματα και tactics για τα IDs που χρησιμοποιούμε στο front matter (mitre:) και στο shortcode {{< attack >}}.
+# Ονόματα και tactics από τα επίσημα STIX δεδομένα της MITRE (mitre-attack/attack-stix-data, ATT&CK v20), ελεγμένα στις 2026-10-16.
+# Κανένα ID δεν είναι revoked ή deprecated (π.χ. το T1656 έγινε T1684.001 και το T1562.001 έγινε T1685 στην v20).
+# tactic: η ομάδα στη σελίδα /mitre/. tactics: όλες οι tactics του ID, όταν είναι περισσότερες από μία.
+# Νέο ID: πρόσθεσέ το εδώ πρώτα, αλλιώς το Hugo βγάζει warning και το link δεν έχει όνομα.
+version: "v20"
+verified: 2026-10-16
+notice: "© 2026 The MITRE Corporation. This work is reproduced and distributed with the permission of The MITRE Corporation."
+trademark: "MITRE ATT&CK® και ATT&CK® είναι σήματα κατατεθέντα της The MITRE Corporation."
+tacticOrder: ["Reconnaissance", "Resource Development", "Initial Access", "Execution", "Persistence", "Privilege Escalation", "Stealth", "Defense Impairment", "Credential Access", "Discovery", "Lateral Movement", "Collection", "Command and Control", "Exfiltration", "Impact", "Mobile: Initial Access", "Mitigations"]
+items:
+  "T1598":      { name: "Phishing for Information", tactic: "Reconnaissance" }
+  "T1598.003":  { name: "Phishing for Information: Spearphishing Link", tactic: "Reconnaissance" }
+  "T1583.001":  { name: "Acquire Infrastructure: Domains", tactic: "Resource Development" }
+  "T1588.004":  { name: "Obtain Capabilities: Digital Certificates", tactic: "Resource Development" }
+  "T1608.005":  { name: "Stage Capabilities: Link Target", tactic: "Resource Development" }
+  "T1566":      { name: "Phishing", tactic: "Initial Access" }
+  "T1566.001":  { name: "Phishing: Spearphishing Attachment", tactic: "Initial Access" }
+  "T1566.002":  { name: "Phishing: Spearphishing Link", tactic: "Initial Access" }
+  "T1566.003":  { name: "Phishing: Spearphishing via Service", tactic: "Initial Access" }
+  "T1566.004":  { name: "Phishing: Spearphishing Voice", tactic: "Initial Access" }
+  "T1189":      { name: "Drive-by Compromise", tactic: "Initial Access" }
+  "T1199":      { name: "Trusted Relationship", tactic: "Initial Access" }
+  "T1133":      { name: "External Remote Services", tactic: "Initial Access", tactics: ["Persistence", "Initial Access"] }
+  "T1078":      { name: "Valid Accounts", tactic: "Initial Access", tactics: ["Stealth", "Persistence", "Privilege Escalation", "Initial Access"] }
+  "T1078.003":  { name: "Valid Accounts: Local Accounts", tactic: "Initial Access", tactics: ["Stealth", "Persistence", "Privilege Escalation", "Initial Access"] }
+  "T1078.004":  { name: "Valid Accounts: Cloud Accounts", tactic: "Initial Access", tactics: ["Stealth", "Persistence", "Privilege Escalation", "Initial Access"] }
+  "T1204.001":  { name: "User Execution: Malicious Link", tactic: "Execution" }
+  "T1204.002":  { name: "User Execution: Malicious File", tactic: "Execution" }
+  "T1203":      { name: "Exploitation for Client Execution", tactic: "Execution" }
+  "T1098":      { name: "Account Manipulation", tactic: "Persistence", tactics: ["Persistence", "Privilege Escalation"] }
+  "T1068":      { name: "Exploitation for Privilege Escalation", tactic: "Privilege Escalation" }
+  "T1684.001":  { name: "Social Engineering: Impersonation", tactic: "Stealth" }
+  "T1027.013":  { name: "Obfuscated Files or Information: Encrypted/Encoded File", tactic: "Stealth" }
+  "T1070.008":  { name: "Indicator Removal: Clear Mailbox Data", tactic: "Stealth" }
+  "T1685":      { name: "Disable or Modify Tools", tactic: "Defense Impairment" }
+  "T1557":      { name: "Adversary-in-the-Middle", tactic: "Credential Access", tactics: ["Credential Access", "Collection"] }
+  "T1539":      { name: "Steal Web Session Cookie", tactic: "Credential Access" }
+  "T1555.003":  { name: "Credentials from Password Stores: Credentials from Web Browsers", tactic: "Credential Access" }
+  "T1528":      { name: "Steal Application Access Token", tactic: "Credential Access" }
+  "T1110":      { name: "Brute Force", tactic: "Credential Access" }
+  "T1111":      { name: "Multi-Factor Authentication Interception", tactic: "Credential Access" }
+  "T1558.001":  { name: "Steal or Forge Kerberos Tickets: Golden Ticket", tactic: "Credential Access" }
+  "T1558.004":  { name: "Steal or Forge Kerberos Tickets: AS-REP Roasting", tactic: "Credential Access" }
+  "T1003.001":  { name: "OS Credential Dumping: LSASS Memory", tactic: "Credential Access" }
+  "T1003.006":  { name: "OS Credential Dumping: DCSync", tactic: "Credential Access" }
+  "T1556.001":  { name: "Modify Authentication Process: Domain Controller Authentication", tactic: "Credential Access", tactics: ["Defense Impairment", "Persistence", "Credential Access"] }
+  "T1087.002":  { name: "Account Discovery: Domain Account", tactic: "Discovery" }
+  "T1018":      { name: "Remote System Discovery", tactic: "Discovery" }
+  "T1550.001":  { name: "Use Alternate Authentication Material: Application Access Token", tactic: "Lateral Movement" }
+  "T1550.002":  { name: "Use Alternate Authentication Material: Pass the Hash", tactic: "Lateral Movement" }
+  "T1550.003":  { name: "Use Alternate Authentication Material: Pass the Ticket", tactic: "Lateral Movement" }
+  "T1550.004":  { name: "Use Alternate Authentication Material: Web Session Cookie", tactic: "Lateral Movement" }
+  "T1021":      { name: "Remote Services", tactic: "Lateral Movement" }
+  "T1071.001":  { name: "Application Layer Protocol: Web Protocols", tactic: "Command and Control" }
+  "T1660":      { name: "Phishing (Mobile)", tactic: "Mobile: Initial Access" }
+  "M1017":      { name: "User Training", tactic: "Mitigations" }
+  "M1021":      { name: "Restrict Web-Based Content", tactic: "Mitigations" }
+  "M1026":      { name: "Privileged Account Management", tactic: "Mitigations" }
+  "M1030":      { name: "Network Segmentation", tactic: "Mitigations" }
+  "M1032":      { name: "Multi-factor Authentication", tactic: "Mitigations" }
+  "M1035":      { name: "Limit Access to Resource Over Network", tactic: "Mitigations" }
+  "M1040":      { name: "Behavior Prevention on Endpoint", tactic: "Mitigations" }
+  "M1043":      { name: "Credential Access Protection", tactic: "Mitigations" }
+  "M1046":      { name: "Boot Integrity", tactic: "Mitigations" }
+  "M1047":      { name: "Audit", tactic: "Mitigations" }
+  "M1049":      { name: "Antivirus/Antimalware", tactic: "Mitigations" }
+  "M1051":      { name: "Update Software", tactic: "Mitigations" }
+  "M1054":      { name: "Software Configuration", tactic: "Mitigations" }
+  "T1110.003":   { name: "Brute Force: Password Spraying", tactic: "Credential Access" }
+  "T1098.003":   { name: "Account Manipulation: Additional Cloud Roles", tactic: "Persistence", tactics: ["Persistence", "Privilege Escalation"] }
+  "T1098.007":   { name: "Account Manipulation: Additional Local or Domain Groups", tactic: "Persistence", tactics: ["Persistence", "Privilege Escalation"] }
+  "T1052.001":   { name: "Exfiltration Over Physical Medium: Exfiltration over USB", tactic: "Exfiltration" }
+  "T1091":       { name: "Replication Through Removable Media", tactic: "Initial Access", tactics: ["Lateral Movement", "Initial Access"] }
+  "T1114.003":   { name: "Email Collection: Email Forwarding Rule", tactic: "Collection" }
+  "T1530":       { name: "Data from Cloud Storage", tactic: "Collection" }
+  "T1213.002":   { name: "Data from Information Repositories: Sharepoint", tactic: "Collection" }
+  "T1021.001":   { name: "Remote Services: Remote Desktop Protocol", tactic: "Lateral Movement" }
+  "T1486":       { name: "Data Encrypted for Impact", tactic: "Impact" }
+  "T1490":       { name: "Inhibit System Recovery", tactic: "Impact" }
+  "T1684.002":   { name: "Social Engineering: Email Spoofing", tactic: "Stealth" }
+  "T1190":       { name: "Exploit Public-Facing Application", tactic: "Initial Access" }
+  "M1018":       { name: "User Account Management", tactic: "Mitigations" }
+  "M1034":       { name: "Limit Hardware Installation", tactic: "Mitigations" }
+  "M1041":       { name: "Encrypt Sensitive Information", tactic: "Mitigations" }
+  "M1053":       { name: "Data Backup", tactic: "Mitigations" }
+  "M1057":       { name: "Data Loss Prevention", tactic: "Mitigations" }

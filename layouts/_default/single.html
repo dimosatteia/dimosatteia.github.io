@@ -50,6 +50,7 @@
                         <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}" class="px-2 py-1 bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-blue-500 text-[10px] font-mono rounded transition-colors">{{ . }}</a>
                     {{ end }}
                 </div>
+                {{ partial "mitre-chips.html" . }}
             </div>
 
             <!-- Author Context (Responsive sidebar block) -->

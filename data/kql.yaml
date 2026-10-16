@@ -14,6 +14,7 @@
 #   added:     ημερομηνία δημοσίευσης στη βιβλιοθήκη (YYYY-MM-DD). Για 7 ημέρες μετά εμφανίζεται ⭐ δίπλα στο query
 #              και στη γραμμή «Νέο εργαλείο» της αρχικής. Μετά κρύβεται μόνο του, χωρίς νέο build.
 #   evidence:  εικόνα-πειστήριο. Χωρίς αυτήν δεν εμφανίζεται η σήμανση «Δοκιμασμένο».
+#   mitre:     MITRE ATT&CK® IDs που εντοπίζει το query (ονόματα στο data/mitre.yaml)
 #   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso), data/gdpr.yaml (gdpr)
 #   posts:     σχετικά άρθρα του blog
 #   query:     το KQL
@@ -46,6 +47,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/legacy-auth.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. 0 επιτυχημένες και 41 αποτυχημένες συνδέσεις μέσω «Other clients» από πέντε χώρες, δηλαδή password spray που μπλοκαρίστηκε. Τα UPN έχουν αφαιρεθεί.
+    mitre: ["T1110.003", "T1078.004"]
     map:
       kya: ["13.ζ", "19.η"]
       nis2: ["21.2.ι"]
@@ -87,6 +89,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/privileged-roles.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Μία ανάθεση ρόλου (Global Secure Access Administrator) από Service Principal, με επιτυχία. Τα UPN έχουν αφαιρεθεί.
+    mitre: ["T1098.003"]
     map:
       kya: ["13.γ", "13.δ", "24.γ"]
       nis2: ["21.2.θ"]
@@ -129,6 +132,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/phish-zap.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δύο μηνύματα phishing παραδόθηκαν στο Inbox και το ZAP τα μετέφερε σε καραντίνα περίπου 8 ώρες αργότερα (497 και 490 λεπτά), με επιτυχία. Οι διευθύνσεις έχουν αφαιρεθεί.
+    mitre: ["T1566"]
     map:
       kya: ["20.γ", "24.ε"]
       nis2: ["21.2.β"]
@@ -172,6 +176,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/usb-storage.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Το ίδιο USB stick (Generic Flash Disk) συνδέθηκε 11 φορές σε μία συσκευή μέσα σε δύο ημέρες. Οι χρήστες, οι συσκευές και ο σειριακός αριθμός έχουν αφαιρεθεί.
+    mitre: ["T1052.001", "T1091", "M1034"]
     map:
       kya: ["11.δ", "24.γ"]
       nis2: ["21.2.θ"]
@@ -218,6 +223,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/spray-success.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Ένας λογαριασμός είχε 6 αποτυχίες κωδικού και μέσα σε 33 λεπτά επιτυχημένη interactive σύνδεση στο Outlook Web από browser, από την ίδια IP στην Ελλάδα (SameIP = 1). Η σύνδεση απαίτησε και ολοκλήρωσε MFA, άρα δεν έγινε είσοδος μόνο με τον κωδικό, και η εικόνα ταιριάζει με χρήστη που πληκτρολόγησε λάθος τον κωδικό του. Τα UPN και οι IP έχουν αφαιρεθεί.
+    mitre: ["T1110.003", "T1078.004"]
     map:
       kya: ["13.ζ", "13.στ", "24.ε"]
       nis2: ["21.2.ι", "21.2.β"]
@@ -267,6 +273,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/foreign-signins.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Το query στην εικόνα είναι το κανονικό, όπως το δίνουμε εδώ. Για να τρέξει η δοκιμή αφαιρέθηκε το "GR" από τη λίστα AllowedCountries, επειδή σε αυτό το tenant τα sign-ins εκτός Ελλάδας μπλοκάρονται ήδη με Conditional Access και το αποτέλεσμα θα ήταν κενό. Γι' αυτό τα αποτελέσματα δείχνουν συνδέσεις από την Ελλάδα, όλες με multiFactorAuthentication. Στο δικό σου tenant κράτα το "GR" στη λίστα. Τα UPN και οι IP έχουν αφαιρεθεί.
+    mitre: ["T1078.004"]
     map:
       kya: ["13.α", "13.ζ", "24.ε"]
       nis2: ["21.2.θ", "21.2.ι"]
@@ -309,6 +316,7 @@ queries:
     product: Exchange Online
     table: CloudAppEvents
     license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
+    mitre: ["T1114.003"]
     map:
       kya: ["20.γ", "24.ε"]
       nis2: ["21.2.β"]
@@ -358,6 +366,7 @@ queries:
     product: Entra ID
     table: CloudAppEvents
     license: Microsoft Defender for Cloud Apps με ενεργό τον connector του Microsoft 365 (Microsoft 365 E5 ή E5 Security)
+    mitre: ["T1528"]
     map:
       kya: ["12.2.α", "13.γ"]
       nis2: ["21.2.δ", "21.2.θ"]
@@ -401,6 +410,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/mass-download.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Με το όριο των 100 downloads την ώρα το αποτέλεσμα ήταν κενό, οπότε για τη δοκιμή το Threshold κατέβηκε στο 30. Βρέθηκαν τρεις περιπτώσεις με 34 έως 47 downloads σε μία ώρα, όλες από την Ελλάδα, από το Microsoft Office και από προσωπικά OneDrive, δηλαδή κανονική εργασία και όχι διαρροή. Στη σελίδα το query μένει με όριο 100. Οι χρήστες, οι IP, τα sites και τα ονόματα αρχείων έχουν αφαιρεθεί.
+    mitre: ["T1530", "T1213.002"]
     map:
       kya: ["11.δ", "24.ε"]
       nis2: ["21.2.θ"]
@@ -448,6 +458,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/local-admin-add.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δύο προσθήκες στο τοπικό group Administrators, στις 9 και στις 12 Οκτωβρίου, και στις δύο περιπτώσεις με λογαριασμό που εμφανίζεται ως SID, δηλαδή λογαριασμό ή group του domain. Κάθε τέτοια προσθήκη ελέγχεται απέναντι σε εγκεκριμένο αίτημα. Οι συσκευές, τα SID και οι λογαριασμοί έχουν αφαιρεθεί.
+    mitre: ["T1098.007"]
     map:
       kya: ["13.δ", "24.γ"]
       nis2: ["21.2.θ"]
@@ -482,6 +493,7 @@ queries:
     product: Defender for Identity
     table: IdentityDirectoryEvents
     license: Microsoft Defender for Identity (Microsoft 365 E5, E5 Security ή EMS E5)
+    mitre: ["T1098.007"]
     map:
       kya: ["13.γ", "24.γ"]
       nis2: ["21.2.θ"]
@@ -532,6 +544,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/av-disabled.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Τρεις συσκευές με ελέγχους του antivirus που αποτυγχάνουν. Σε έναν σταθμό εργασίας Windows είναι κλειστό το real-time protection, με impact 10, που είναι το σοβαρό εύρημα και θέλει άμεση διόρθωση. Σε δύο Windows Server αποτυγχάνει μόνο το email scanning, με impact 9. Τα ονόματα των συσκευών έχουν αφαιρεθεί.
+    mitre: ["T1685"]
     map:
       kya: ["20.α", "14.β"]
       nis2: ["21.2.ε"]
@@ -575,6 +588,7 @@ queries:
     added: 2026-10-15
     evidence: /images/kql/inactive-devices.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Μία συσκευή Android 16, onboarded στο Microsoft Defender for Endpoint, με sensor Inactive και τελευταία επικοινωνία στις 18/9/2026. Δεν ανήκει σε device group (UnassignedGroup). Το όνομα της συσκευής και ο χρήστης έχουν αφαιρεθεί.
+    mitre: ["T1685"]
     map:
       kya: ["11.α", "20.α", "24.ε"]
       nis2: ["21.2.θ", "21.2.ε"]
@@ -607,6 +621,7 @@ queries:
     verified: 2026-10-14
     evidence: /images/kql/exploitable-cves.webp
     evidenceNote: Αποτέλεσμα σε πραγματικό tenant. Δέκα συνδυασμοί λογισμικού και έκδοσης με Critical ευπάθεια και δημόσια διαθέσιμο exploit, ο καθένας σε μία συσκευή, με CVSS από 9.1 έως 9.8. Οι παλαιότερες είναι ευπάθειες του Apache HTTP Server που έχουν δημοσιευτεί πάνω από 1.800 ημέρες, ενώ βρέθηκαν και Windows 11, Edge και MikroTik RouterOS. Η στήλη RecommendedUpdate είναι συμπληρωμένη μόνο για τα Windows 11, οπότε για τα υπόλοιπα η ενημέρωση αναζητείται στον κατασκευαστή. Οι εκδόσεις και τα ονόματα των συσκευών έχουν αφαιρεθεί.
+    mitre: ["T1190", "T1203", "T1068", "M1051"]
     map:
       kya: ["17.α", "17.γ", "17.στ"]
       nis2: ["21.2.ε"]
@@ -644,6 +659,7 @@ queries:
     product: Defender for Endpoint
     table: DeviceLogonEvents
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή E5 Security), ή Defender for Servers για servers στο Azure
+    mitre: ["T1021.001"]
     map:
       kya: ["19.γ", "19.η", "24.ε"]
       nis2: ["21.2.ι"]

@@ -54,6 +54,8 @@ verification:
     license: "Microsoft Entra ID P1"
     source: "https://learn.microsoft.com/en-us/entra/identity/conditional-access/deployment-guide-token-protection-windows"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1528", "T1550.001"]
 ---
 
 Τις τελευταίες εβδομάδες βλέπω όλο και περισσότερους οργανισμούς να τρέχουν projects μετάβασης από Hybrid Entra Join σε καθαρό Entra Join, συνήθως στο πλαίσιο ενός ευρύτερου cloud-native identity roadmap. Το θέμα δεν είναι καινούργιο, αλλά κάτι που έπεσε στα χέρια μου πρόσφατα, ένα πολύ αναλυτικό post του Sreejith Reghunathan Pillai στο TheTechTrails, με έβαλε σε σκέψεις που ξεπερνούν το καθαρά τεχνικό κομμάτι.

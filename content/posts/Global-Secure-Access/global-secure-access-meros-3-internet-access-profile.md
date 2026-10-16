@@ -70,6 +70,8 @@ verification:
     license: "Entra Internet Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access#licensing-overview"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1189", "M1021"]
 ---
 
 Στο [1ο μέρος](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) είδαμε τη φιλοσοφία πίσω από το SSE και το Global Secure Access γενικότερα, και στο [2ο μέρος](/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/) μπήκαμε στο Microsoft traffic profile, το θεμέλιο που φροντίζει για τη βέλτιστη δρομολόγηση της κίνησης προς Microsoft 365. Σε αυτό το τρίτο μέρος περνάμε σε αυτό που, ας είμαστε ειλικρινείς, τραβάει τη μεγαλύτερη προσοχή όταν κάποιος βλέπει το Global Secure Access για πρώτη φορά: το **Internet access profile**, το κομμάτι που λειτουργεί ως πλήρες Secure Web Gateway για ό,τι δεν καλύπτεται ήδη από το Microsoft traffic profile.

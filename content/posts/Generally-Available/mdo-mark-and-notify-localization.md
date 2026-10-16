@@ -57,6 +57,8 @@ verification:
     license: "Δεν αναφέρεται"
     source: "https://mc.merill.net/message/MC1387578"
     verified: 2026-10-16
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1566", "M1017"]
 ---
 
 Υπάρχουν features στο Message Center που διαβάζεις, λες «ωραίο», και προχωράς. Και υπάρχουν features που, όσο πιο πολύ τα σκέφτεσαι, τόσο πιο πολύ καταλαβαίνεις ότι αγγίζουν κάτι βαθύτερο από αυτό που γράφει η πρώτη γραμμή της περιγραφής. Το MC1387578 ανήκει στη δεύτερη κατηγορία, παρόλο που στην επιφάνεια μοιάζει με ένα απλό cosmetic update: το default "Mark and notify" email template στο Microsoft Defender for Office 365 θα εμφανίζεται πλέον στη γλώσσα που έχει ρυθμισμένη ο κάθε χρήστης στο Outlook του, αντί να είναι μόνιμα στα Αγγλικά.

@@ -25,6 +25,17 @@ showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+categories: ["Security Operations & XDR"]
+tags:
+  - KQL
+  - Advanced Hunting
+  - Microsoft Defender XDR
+  - Threat Hunting
+  - NIS2
+  - ISO 27001
+  - Compliance Evidence
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1110.003", "T1078.004", "T1098.003", "T1566", "T1052.001", "T1091", "M1034", "T1530", "T1213.002", "T1098.007", "T1685", "T1190", "T1203", "T1068", "M1051"]
 ---
 
 Κάθε query εδώ απαντά σε μία ερώτηση που θα σου κάνει ο ελεγκτής: «δείξε μου ότι το ελέγχεις». Το αντιγράφεις, το τρέχεις στο **Microsoft Defender portal > Hunting > Advanced hunting**, και το αποτέλεσμα είναι το τεκμήριό σου για την απαίτηση.

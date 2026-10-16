@@ -65,6 +65,8 @@ verification:
     license: "Entra Internet Access ή Entra Suite (+ Entra ID P1/P2)"
     source: "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-web-content-filtering"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1078.004", "T1550.001", "M1021"]
 ---
 
 Στα προηγούμενα τέσσερα μέρη αυτής της σειράς είδαμε τι κάνει το κάθε κομμάτι ξεχωριστά: [1ο μέρος](/posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/) τη φιλοσοφία SSE, [2ο μέρος](/posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/) το Microsoft traffic profile, [3ο μέρος](/posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/) το Internet access profile ως Secure Web Gateway, και [4ο μέρος](/posts/global-secure-access/global-secure-access-meros-4-private-access-profile/) το Private access profile ως αντικαταστάτη VPN. Σε κάθε ένα από αυτά αναφέρθηκα, λίγο πολύ, στο Conditional Access, γιατί είναι αυτό που κάνει το Global Secure Access κάτι παραπάνω από ένα ακόμα δίκτυο. Σε αυτό το πέμπτο, συμπληρωματικό μέρος, μένω αποκλειστικά εκεί, με τρία συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile, όπως τα περιγράφει η ίδια η Microsoft.

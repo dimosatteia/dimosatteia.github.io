@@ -56,6 +56,8 @@ verification:
     license: "Δεν αναφέρεται"
     source: "https://learn.microsoft.com/en-us/defender-xdr/investigate-users"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1078"]
 ---
 
 Κάθε φορά που διερευνάς μια ύποπτη ταυτότητα σοβαρά, καταλήγεις να κάνεις το ίδιο πράγμα: ανοίγεις τα sign-in logs σε ένα tab, τα audit logs σε άλλο, ίσως ένα advanced hunting query για device logons σε τρίτο, και προσπαθείς νοερά να τα βάλεις σε σειρά χρόνου για να καταλάβεις τι ακριβώς έγινε και με ποια σειρά. Δουλεύει, αλλά τρώει χρόνο, και το χειρότερο, είναι εύκολο να χάσεις τη συσχέτιση ανάμεσα σε ένα sign-in event και ένα Graph audit event που συνέβη 40 δευτερόλεπτα μετά σε διαφορετικό tab.

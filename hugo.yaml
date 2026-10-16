@@ -42,6 +42,7 @@ taxonomies:
   tag: tags
   series: series
   release: releases        # νέα taxonomy για Preview/GA status
+  mitre: mitre             # MITRE ATT&CK techniques και mitigations (ονόματα στο data/mitre.yaml)
 
 # -----------------------------------------------------------------------------
 # Permalinks — καθαρά URLs για τους πυλώνες (π.χ. /categories/identity-access/)

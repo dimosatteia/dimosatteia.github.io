@@ -61,6 +61,8 @@ verification:
     license: "Defender for Office 365"
     source: "https://learn.microsoft.com/en-us/defender-office-365/submissions-teams"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1566.003", "T1566.004", "M1017"]
 ---
 
 > **Ενημέρωση 12 Οκτωβρίου 2026:** η Γενική Διαθεσιμότητα και για τα δύο features ξεκίνησε worldwide στις αρχές Οκτωβρίου 2026, σύμφωνα με τις ανακοινώσεις MC1447673 και MC1446794. Στο [What's new in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/defender-for-office-365-whats-new) η αναφορά ομαδικών κλήσεων καταγράφεται τον Σεπτέμβριο 2026 και η αναφορά συναντήσεων τον Οκτώβριο 2026, χωρίς ένδειξη Preview. Η διάθεση γίνεται σταδιακά, οπότε μπορεί να μην τα βλέπουν ακόμα όλοι οι χρήστες σου. Το θέμα αναφέρθηκε και στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 40/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).

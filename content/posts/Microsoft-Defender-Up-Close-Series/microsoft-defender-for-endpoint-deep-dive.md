@@ -85,6 +85,8 @@ verification:
     license: "Defender for Endpoint Plan 1 (standalone ή Microsoft 365 E3)"
     source: "https://learn.microsoft.com/en-us/defender-endpoint/configure-machines-security-baseline"
     verified: 2026-10-13
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1204.002", "T1685", "M1040"]
 ---
 
 ## Σε ποιον απευθύνεται αυτό το άρθρο

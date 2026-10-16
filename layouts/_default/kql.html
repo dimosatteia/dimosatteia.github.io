@@ -116,6 +116,12 @@
                                 {{ range . }}<a href="{{ $f.url | relURL }}#{{ replace . "." "-" }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-slate-700 hover:border-blue-500 rounded px-2 py-0.5 no-underline">{{ . }}</a>{{ end }}
                             </dd>
                             {{ end }}{{ end }}
+                            {{ with .mitre }}
+                            <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-1">MITRE ATT&amp;CK®</dt>
+                            <dd class="flex flex-wrap gap-2">
+                                {{ range . }}{{ $mi := index hugo.Data.mitre.items . }}<a href="{{ partial "mitre-url.html" . }}" target="_blank" rel="noopener" title="{{ with $mi }}{{ .name }}{{ end }}" class="inline-block text-xs font-mono font-bold text-slate-100 bg-slate-800 border border-red-500/30 hover:border-red-400 rounded px-2 py-0.5 no-underline">{{ . }}{{ with $mi }} <span class="font-normal text-slate-400">{{ .name }}</span>{{ end }} ↗</a>{{ end }}
+                            </dd>
+                            {{ end }}
                             <dt class="text-[11px] font-mono uppercase tracking-wider text-slate-500 md:pt-0.5">Άδεια</dt>
                             <dd class="text-slate-300 leading-relaxed">{{ .license }}</dd>
                         </dl>

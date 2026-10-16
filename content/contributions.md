@@ -17,6 +17,10 @@ showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+tags:
+  - Microsoft 365 Security
+  - CISO
+  - GRC
 ---
 
 Όλα όσα έχω δημοσιεύσει ή παρουσιάσει για την κοινότητα του Microsoft 365 Security, μαζεμένα σε μία σελίδα. Το περιεχόμενο είναι στα ελληνικά, δωρεάν και χωρίς εγγραφή.
