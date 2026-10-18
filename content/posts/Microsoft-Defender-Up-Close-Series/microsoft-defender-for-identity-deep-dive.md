@@ -1,8 +1,8 @@
 ---
 title: "Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση"
 seoTitle: "Microsoft Defender for Identity: sensors, alerts, ρυθμίσεις"
-date: 2026-10-19T07:00:00+03:00
-lastmod: 2026-10-19T07:00:00+03:00
+date: 2026-10-18T11:00:00+03:00
+lastmod: 2026-10-18T11:00:00+03:00
 draft: false
 # Εμφανίζεται ως «Νέο άρθρο» στην αρχική, μέχρι να βγει νεότερο τεύχος της εβδομαδιαίας σύνοψης
 homeHighlight: true

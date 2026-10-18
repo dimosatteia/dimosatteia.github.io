@@ -1,7 +1,7 @@
 ---
 title: "Οδηγία NIS2 (ΕΕ) 2022/2555 με Microsoft 365: άρθρα 20 έως 25"
 date: 2026-10-02T19:00:00+03:00
-lastmod: 2026-10-18T12:00:00+03:00
+lastmod: 2026-10-18T11:00:00+03:00
 draft: false
 layout: "nis2"
 dataKey: "nis2directive"
