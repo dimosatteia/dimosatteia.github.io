@@ -38,6 +38,9 @@
         <!-- Platform Profile (Spans 1 col) -->
         {{ partial "platform-profile.html" . }}
     </section>
+
+    {{- /* Teaser «Έρχεται σύντομα» για τη σειρά Conditional Access: layouts/partials/coming-soon-ca.html */}}
+    {{ partial "coming-soon-ca.html" . }}
     {{ end }}
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
