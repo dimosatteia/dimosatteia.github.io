@@ -4,6 +4,8 @@ seoTitle: "Microsoft Defender for Identity: sensors, alerts, ρυθμίσεις"
 date: 2026-10-19T07:00:00+03:00
 lastmod: 2026-10-19T07:00:00+03:00
 draft: false
+# Εμφανίζεται ως «Νέο άρθρο» στην αρχική, μέχρι να βγει νεότερο τεύχος της εβδομαδιαίας σύνοψης
+homeHighlight: true
 keywords:
   - Microsoft Defender for Identity
   - Microsoft Defender for Identity οδηγός
@@ -15,12 +17,15 @@ keywords:
   - Honeytoken Defender for Identity
   - Pass-the-hash Golden Ticket DCSync ανίχνευση
   - Identity threat detection and response
+  - Defender for Identity Sensor Management
+  - Identity Inventory Defender
 tags:
   - Microsoft Defender for Identity
   - Microsoft Defender XDR
   - Identity Security
   - ITDR
   - Active Directory
+  - Hybrid Identity
   - Microsoft Entra ID
   - Microsoft 365 Security
 author: "Dimosthenis Atteia"
@@ -44,32 +49,47 @@ verification:
     status: "Generally Available"
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/what-is"
-    verified: 2026-10-13
+    verified: 2026-10-18
   - feature: "Sensor v3.x (Windows Server 2019+) και v2.x (2016 ή παλαιότερο)"
     status: "Generally Available"
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
-    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/deploy-defender-identity"
-    verified: 2026-10-13
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/deploy-sensor-v3"
+    verified: 2026-10-18
+  - feature: "Αυτόματη ενεργοποίηση sensor v3.x και αυτόματο Windows auditing"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor"
+    verified: 2026-10-18
+  - feature: "Sensor v3.x σε AD FS, AD CS και Microsoft Entra Connect servers"
+    status: "Public Preview"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/deploy-sensor-v3"
+    verified: 2026-10-18
+  - feature: "Onboarding sensor v3.x σε domain controller χωρίς Defender for Endpoint"
+    status: "Generally Available"
+    license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
+    source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor"
+    verified: 2026-10-18
   - feature: "Directory Service account (sensor v2.x)"
     status: "Generally Available"
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/deploy/directory-service-accounts"
-    verified: 2026-10-13
+    verified: 2026-10-18
   - feature: "Security alerts"
     status: "Generally Available"
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/alerts-overview"
-    verified: 2026-10-13
+    verified: 2026-10-18
   - feature: "Entity tags (Sensitive, Honeytoken, Exchange server)"
     status: "Generally Available"
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/entity-tags"
-    verified: 2026-10-13
+    verified: 2026-10-18
   - feature: "Identity inventory (ενιαία προβολή AD και Entra ID)"
     status: "Generally Available"
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/identity-inventory"
-    verified: 2026-10-13
+    verified: 2026-10-18
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T1558.001", "T1003.006", "T1556.001", "T1098"]
 ---
@@ -100,24 +120,23 @@ mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T
 
 Σήμερα υπάρχουν δύο εκδόσεις sensor, και η επιλογή εξαρτάται από το λειτουργικό του server:
 
-- **Sensor v3.x**: για servers με **Windows Server 2019 ή νεότερο** και το cumulative update του Ιουλίου 2026 ή μεταγενέστερο. Είναι η προτεινόμενη επιλογή. Τρέχει πάντα ως **LocalSystem** και δεν χρησιμοποιεί Directory Service account ή gMSA.
+- **Sensor v3.x**: για servers με **Windows Server 2019 ή νεότερο** και το cumulative update του Σεπτεμβρίου 2026 ή μεταγενέστερο (sensor 3.0.10 ή νεότερος). Είναι η προτεινόμενη επιλογή. Τρέχει πάντα ως **LocalSystem** και δεν χρησιμοποιεί Directory Service account ή gMSA.
 - **Sensor v2.x**: για servers με **Windows Server 2016 ή παλαιότερο**. Χρησιμοποιεί Directory Service account (με προτεινόμενο το gMSA) για να διαβάζει πληροφορίες από το AD.
 
-Οι δύο εκδόσεις συνυπάρχουν στο ίδιο workspace, οπότε ένα μικτό περιβάλλον είναι απολύτως φυσιολογικό. Δύο σημεία προσοχής: ο v3.x δεν υποστηρίζει VPN integration ούτε syslog notifications, οπότε αν τα χρειάζεστε, κρατήστε v2.x στους σχετικούς DCs. Επίσης, αν έστω και ένας sensor σας είναι v3.x, η Microsoft ζητά να επιλέξετε **Automatically use the sensor's local system account** στη σελίδα **Manage action accounts**.
+Οι δύο εκδόσεις συνυπάρχουν στο ίδιο workspace, οπότε ένα μικτό περιβάλλον είναι απολύτως φυσιολογικό. Δύο σημεία προσοχής: ο v3.x δεν υποστηρίζει VPN integration ούτε syslog notifications, οπότε αν τα χρειάζεστε, κρατήστε v2.x στους σχετικούς DCs. Επίσης, αν έστω και ένας sensor σας είναι v3.x, η Microsoft ζητά να επιλέξετε **Automatically use the sensor's local system account** στη σελίδα **Settings → Identities → Manage action accounts**.
 
-**Πού μπαίνουν sensors:** σε **όλους** τους domain controllers, συμπεριλαμβανομένων των read-only (RODC), καθώς και στους AD FS, AD CS και Microsoft Entra Connect servers που δεν είναι DCs. Ένας sensor βλέπει μόνο τον host στον οποίο τρέχει, οπότε αν παραλείψετε κάποιον, οι επιθέσεις που καταλήγουν εκεί είναι αόρατες. Η αδειοδότηση είναι ανά χρήστη και όχι ανά sensor, άρα δεν υπάρχει λόγος κόστους να παραλείψετε κάποιον.
+**Πού μπαίνουν sensors:** σε **όλους** τους domain controllers, συμπεριλαμβανομένων των read-only (RODC), καθώς και στους AD FS, AD CS και Microsoft Entra Connect servers που δεν είναι DCs. Σε αυτούς τους servers ο sensor v3.x είναι ακόμη σε Preview, και αν βάλετε v3.x μόνο σε αυτούς, χρειάζεστε και τουλάχιστον έναν v3.x σε domain controller. Ένας sensor βλέπει μόνο τον host στον οποίο τρέχει, οπότε αν παραλείψετε κάποιον, οι επιθέσεις που καταλήγουν εκεί είναι αόρατες. Η αδειοδότηση είναι ανά χρήστη και όχι ανά sensor, άρα δεν υπάρχει λόγος κόστους να παραλείψετε κάποιον.
 
 ## Η ροή ανάπτυξης, σε υψηλό επίπεδο
 
-[![Η καρτέλα Sensor management στο Defender portal](/images/Microsoft-Defender/mdi-01-sensor-management.webp)](/images/Microsoft-Defender/mdi-01-sensor-management.webp)
-> 📷 **Εικόνα 1:** Καρτέλα Sensor management στο Defender portal. Defender portal → Settings → Identities → Sensor management.
-
 **Για sensor v3.x (Windows Server 2019+):**
 
-1. **Onboarding στο Microsoft Defender for Endpoint.** Οι servers που είναι ήδη στο MDE εμφανίζονται στην καρτέλα **Sensor management** ως έτοιμοι για ενεργοποίηση. Οι AD FS, AD CS και Entra Connect servers πρέπει οπωσδήποτε να είναι στο MDE. Για domain controllers που δεν είναι στο MDE, υπάρχει ξεχωριστό onboarding package του v3.x.
-2. **Ενεργοποίηση του sensor** από την καρτέλα Sensor management, είτε ανά server είτε με την επιλογή αυτόματης ενεργοποίησης για τους DCs.
-3. **Ρύθμιση Windows event auditing και RPC auditing**, όπως περιγράφει ο οδηγός της Microsoft.
+1. **Onboarding στο Microsoft Defender for Endpoint.** Οι servers που είναι ήδη στο MDE εμφανίζονται στην καρτέλα **Sensor Management** (Settings → Identities → On-premises) ως έτοιμοι για ενεργοποίηση. Οι AD FS, AD CS και Entra Connect servers πρέπει οπωσδήποτε να είναι στο MDE. Για domain controllers που δεν είναι στο MDE, υπάρχει ξεχωριστό onboarding package του v3.x, από το **Download onboarding package**, που έγινε Generally Available τον Οκτώβριο του 2026.
+2. **Ενεργοποίηση του sensor** από την καρτέλα Sensor Management με **Activate**, ανά server. Αν θέλετε να γίνεται μόνο του, ανοίξτε το **Automatic sensor v3.x activation** στη σελίδα **Settings → Identities → Advanced features**.
+3. **Windows event auditing.** Στην ίδια σελίδα **Advanced features** ανοίξτε το **Automatic Windows auditing configuration**, ώστε να ρυθμιστεί αυτόματα. Το RPC auditing ενεργοποιείται μόνο του στους domain controllers από τον sensor 3.0.8 και μετά.
 4. **Επαλήθευση** ότι οι sensors εμφανίζονται υγιείς.
+
+> 📖 **Η αυτόματη ενεργοποίηση αναλυτικά:** τι ρυθμίζει, πότε ενεργοποιείται μόνη της και πώς κάνετε opt out, στο **[Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing](/posts/generally-available/defender-identity-sensor-v3-automatic-activation/)**.
 
 **Για sensor v2.x (Windows Server 2016 ή παλαιότερο):**
 
@@ -129,15 +148,15 @@ mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T
 
 Ξεκινήστε με έναν πιλοτικό DC, επιβεβαιώστε ότι ρέει το telemetry και μετά επεκτείνετε.
 
-[![Υγιείς sensors του Microsoft Defender for Identity](/images/Microsoft-Defender/mdi-02-sensor-health.webp)](/images/Microsoft-Defender/mdi-02-sensor-health.webp)
-> 📷 **Εικόνα 2:** Υγιείς sensors μετά την ανάπτυξη. Defender portal → Settings → Identities → Sensor management.
+[![Η καρτέλα Sensor Management με υγιείς sensors v3.x](/images/Microsoft-Defender/mdi-01-sensor-management.webp)](/images/Microsoft-Defender/mdi-01-sensor-management.webp)
+> 📷 **Εικόνα 1:** Η καρτέλα Sensor Management μετά την ανάπτυξη: όλα τα action items είναι πράσινα και οι sensors v3.x εμφανίζονται Running και Healthy. Defender portal → Settings → Identities → On-premises → Sensor Management.
 
 ## Η ενιαία προβολή AD και Microsoft Entra ID
 
 Το Microsoft Defender for Identity τροφοδοτεί με σήματα ταυτότητας το Microsoft Defender portal, όπου συσχετίζονται με δεδομένα από endpoints, email, SaaS εφαρμογές και άλλες πηγές. Το **Identity inventory** συγκεντρώνει σε ένα σημείο τους λογαριασμούς από το Active Directory και το Microsoft Entra ID.
 
 [![Ενιαία προβολή ταυτότητας AD και Microsoft Entra ID](/images/Microsoft-Defender/mdi-03-unified-identity-view.webp)](/images/Microsoft-Defender/mdi-03-unified-identity-view.webp)
-> 📷 **Εικόνα 3:** Ενιαία προβολή ταυτότητας στο Defender portal. Defender portal → Assets → Identities.
+> 📷 **Εικόνα 2:** Το Identity Inventory, καρτέλα Human Identities. Η στήλη Identity environment δείχνει λογαριασμούς On-premises και Hybrid στην ίδια λίστα. Defender portal → Assets → Identities.
 
 Το αποτέλεσμα: αποκτάτε **μία προβολή ανά χρήστη** που καλύπτει τόσο την on-prem όσο και την cloud ταυτότητα. Αυτό είναι πραγματικά χρήσιμο. Παλαιότερα, οι αναλυτές έπρεπε να μετακινούνται μεταξύ του Defender for Identity (για τα on-prem σήματα) και του Microsoft Entra ID Protection (για τα cloud σήματα). Τώρα ένα μόνο incident συσχετίζει και τις δύο επιφάνειες.
 
@@ -171,18 +190,18 @@ mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T
 Να ξέρετε ότι η Microsoft βρίσκεται σε μετάβαση προς ενιαία μορφή alerts. Γι' αυτό τα alerts του MDI εμφανίζονται σε δύο μορφές, classic και Defender-format, και κάποιες ανιχνεύσεις μπορεί να εμφανίζονται με διαφορετικό όνομα. Το πεδίο **Detection source** σας λέει ποια μορφή βλέπετε.
 
 [![Alerts ταυτότητας στο Microsoft Defender portal](/images/Microsoft-Defender/mdi-04-identity-alerts.webp)](/images/Microsoft-Defender/mdi-04-identity-alerts.webp)
-> 📷 **Εικόνα 4:** Ενεργά alerts ταυτότητας. Defender portal → Incidents & alerts → Alerts.
+> 📷 **Εικόνα 3:** Alert του Microsoft Defender for Identity στην ουρά alerts, με φίλτρο Service/detection sources: Microsoft Defender for Identity. Εδώ φαίνεται ένα «Honeytoken user attributes modified». Defender portal → Investigation & response → Incidents & alerts → Alerts.
 
-Η ειλικρινής καθοδήγηση: περιμένετε μερικά alerts χαμηλής βεβαιότητας την πρώτη εβδομάδα, τα περισσότερα αθώα. Πράγματα όπως penetration testers σε προγραμματισμένη αξιολόγηση, νόμιμα εργαλεία διαχείρισης που μοιάζουν με reconnaissance, και service accounts που κάνουν LDAP queries που φαίνονται περίεργα εκτός πλαισίου. **Ρυθμίστε τις εξαιρέσεις**, μην απενεργοποιείτε τα alerts. Για τα classic alerts οι εξαιρέσεις ορίζονται στο **Settings → Identities → Excluded entities**, ενώ για τα Defender-format alerts χρησιμοποιείτε τα **alert tuning rules** του Microsoft Defender.
+Η ειλικρινής καθοδήγηση: περιμένετε μερικά alerts χαμηλής βεβαιότητας την πρώτη εβδομάδα, τα περισσότερα αθώα. Πράγματα όπως penetration testers σε προγραμματισμένη αξιολόγηση, νόμιμα εργαλεία διαχείρισης που μοιάζουν με reconnaissance, και service accounts που κάνουν LDAP queries που φαίνονται περίεργα εκτός πλαισίου. **Ρυθμίστε τις εξαιρέσεις**, μην απενεργοποιείτε τα alerts. Για τα classic alerts οι εξαιρέσεις ορίζονται στο **Settings → Identities**, στις ενότητες **Global excluded entities** και **Exclusions by detection rule**, ενώ για τα Defender-format alerts χρησιμοποιείτε τα **alert tuning rules** του Microsoft Defender.
 
 ## Οι ρυθμίσεις που αξίζει να κάνετε
 
 **Directory Service account (μόνο για v2.x)**: με σωστά δικαιώματα από την αρχή. Μη χρησιμοποιείτε Domain Admin, αλλά το τεκμηριωμένο gMSA ελάχιστων δικαιωμάτων (least privilege). Οι sensors v3.x δεν το χρειάζονται.
 
-**Ευαίσθητοι λογαριασμοί (Entity tags)**: στο **Settings → Identities**, στην ετικέτα **Sensitive**, ορίστε ποιοι χρήστες, συσκευές και ομάδες πρέπει να αντιμετωπίζονται ως ιδιαίτερα πολύτιμοι. Ομάδες όπως οι Domain Admins, Enterprise Admins και Schema Admins θεωρούνται ευαίσθητες από προεπιλογή. Προσθέστε τους Tier 0 service accounts σας και όποιες custom ομάδες διαχειριστών διατηρείτε. Κάποιες ανιχνεύσεις, όπως οι αλλαγές σε ευαίσθητες ομάδες, βασίζονται σε αυτή την ετικέτα για να λειτουργήσουν σωστά.
+**Ευαίσθητοι λογαριασμοί (Entity tags)**: στο **Settings → Identities → Entity tags**, στην ετικέτα **Sensitive**, ορίστε ποιοι χρήστες, συσκευές και ομάδες πρέπει να αντιμετωπίζονται ως ιδιαίτερα πολύτιμοι. Ομάδες όπως οι Domain Admins, Enterprise Admins και Schema Admins θεωρούνται ευαίσθητες από προεπιλογή. Προσθέστε τους Tier 0 service accounts σας και όποιες custom ομάδες διαχειριστών διατηρείτε. Κάποιες ανιχνεύσεις, όπως οι αλλαγές σε ευαίσθητες ομάδες, βασίζονται σε αυτή την ετικέτα για να λειτουργήσουν σωστά. Για να ελέγχετε τακτικά τις αλλαγές μελών σε αυτές τις ομάδες, υπάρχει έτοιμο query στη Βιβλιοθήκη KQL: **[Αλλαγές στα ευαίσθητα groups του Active Directory](/kql/#ad-sensitive-groups)**.
 
 [![Η ετικέτα Sensitive στα entity tags του Microsoft Defender for Identity](/images/Microsoft-Defender/mdi-05-entity-tags-sensitive.webp)](/images/Microsoft-Defender/mdi-05-entity-tags-sensitive.webp)
-> 📷 **Εικόνα 5:** Entity tags, ετικέτα Sensitive. Defender portal → Settings → Identities → Sensitive.
+> 📷 **Εικόνα 4:** Entity tags, ετικέτα Sensitive, καρτέλα Users, με το κουμπί Tag users. Defender portal → Settings → Identities → Entity tags → Sensitive.
 
 **Honeytoken accounts**: από το ίδιο σημείο, με την ετικέτα **Honeytoken**, ορίζετε λογαριασμούς-δολώματα (decoy) που δεν πρέπει ποτέ να χρησιμοποιηθούν. Οποιαδήποτε σύνδεση από αυτούς προκαλεί alert. Μου αρέσουν, γιατί είναι πραγματικά χρήσιμα σήματα και το κόστος ρύθμισης είναι ελάχιστο.
 
@@ -201,6 +220,10 @@ mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T
 
 > 🔗 **Θέλετε να δείτε πώς τα σήματα ταυτότητας τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
+> 🔗 **Χρειάζεστε τεκμηρίωση συμμόρφωσης;** Οι sensors και τα alerts του Microsoft Defender for Identity στηρίζουν τις απαιτήσεις [13.δ](/kya-1689-2025/#13-δ), [24.γ](/kya-1689-2025/#24-γ) και [24.ε](/kya-1689-2025/#24-ε), όπως τις αναλύει ο **[οδηγός της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχούν στα [21.2.β](/nis2/#21-2-β) και [21.2.θ](/nis2/#21-2-θ), στο **[ISO/IEC 27001](/iso-27001/)** στα [A.8.2](/iso-27001/#A-8-2), [A.8.15](/iso-27001/#A-8-15), [A.8.16](/iso-27001/#A-8-16), [A.5.25](/iso-27001/#A-5-25) και [A.5.26](/iso-27001/#A-5-26), και στον **[GDPR](/gdpr/)** στα [32.1.β](/gdpr/#32-1-β) και [33.1](/gdpr/#33-1). Ο καθένας έχει checklist σε Excel.
+
+{{< tool-link page="/kql" lead="Θέλετε τεκμήριο από το δικό σας tenant;" label="Δείτε τη Βιβλιοθήκη KQL" tail="και το query για τις αλλαγές στα ευαίσθητα groups του Active Directory, που διαβάζει τα δεδομένα του Microsoft Defender for Identity." >}}
+
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
 ## Πηγές και επαλήθευση {#last-verified}
@@ -211,10 +234,10 @@ mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T
 
 <!--
 IMAGE NOTES
-Image 1: mdi-01-sensor-management.webp  (Defender portal → Settings → Identities → Sensor management.)
-Image 2: mdi-02-sensor-health.webp  (Defender portal → Settings → Identities → Sensor management.)
-Image 3: mdi-03-unified-identity-view.webp  (Defender portal → Assets → Identities.)
-Image 4: mdi-04-identity-alerts.webp  (Defender portal → Incidents & alerts → Alerts.)
-Image 5: mdi-05-entity-tags-sensitive.webp  (Defender portal → Settings → Identities → Sensitive.)
+Image 1: mdi-01-sensor-management.webp  (Defender portal → Settings → Identities → On-premises → Sensor Management.)
+Image 2: mdi-03-unified-identity-view.webp  (Defender portal → Assets → Identities.)
+Image 3: mdi-04-identity-alerts.webp  (Defender portal → Investigation & response → Incidents & alerts → Alerts.)
+Image 4: mdi-05-entity-tags-sensitive.webp  (Defender portal → Settings → Identities → Entity tags → Sensitive.)
+mdi-02-sensor-health.webp was identical to mdi-01, so it is not used.
 Save to content/images/Microsoft-Defender/
 -->

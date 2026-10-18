@@ -10,7 +10,7 @@ source:
   item: control
   groups: ενότητες
   disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία. Μια ρύθμιση υποστηρίζει ένα control, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι τίτλοι είναι οι επίσημοι του προτύπου και οι περιγραφές είναι δικές μας· το κείμενο των controls δεν αναπαράγεται. Για τη διατύπωση κάθε control ισχύει το [ISO/IEC 27001:2022](https://www.iso.org/standard/27001).
-updated: '2026-10-16'
+updated: '2026-10-18'
 types:
 - key: tech
   label: Τεχνικό
@@ -415,7 +415,7 @@ articles:
     type: tech
     control: Συσχέτιση alerts σε incidents, severity και classification (true positive, false positive) στο Defender XDR. Automated investigation and response.
     evidence: 'Defender XDR: ιστορικό incidents με classification και determination.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft 365 E5 ή Microsoft Defender Suite (automated investigation and response)
     kya:
     - 24
@@ -431,6 +431,8 @@ articles:
       url: /posts/teams-security-detection-report/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: A.5.26
     scope: ''
     requirement: Response to information security incidents
@@ -438,7 +440,7 @@ articles:
     type: tech
     control: 'Response actions στο Defender XDR: απομόνωση συσκευής, απενεργοποίηση χρήστη, διαγραφή κακόβουλων email. Automated investigation and response και Action center.'
     evidence: 'Action center: ιστορικό ενεργειών αποκατάστασης με χρόνο και υπεύθυνο.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft 365 E5 ή Microsoft Defender Suite (automated investigation and response, ενέργειες σε email με Defender for Office 365 Plan 2). Η απομόνωση συσκευής υπάρχει και στο Defender for Endpoint Plan 1.
     kya:
     - 24
@@ -448,6 +450,8 @@ articles:
     - *id011
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: A.5.27
     scope: ''
     requirement: Learning from information security incidents
@@ -919,13 +923,15 @@ articles:
     type: tech
     control: Privileged Identity Management με just-in-time ενεργοποίηση και έγκριση. Περιορισμός των Global Administrators. Phishing-resistant MFA για τους διαχειριστές.
     evidence: 'Entra ID: PIM assignments και ιστορικό ενεργοποιήσεων.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft Entra ID P2 (Privileged Identity Management)
     kya:
     - 13
     posts:
     - *id005
     - *id025
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: A.8.3
     scope: ''
     requirement: Information access restriction
@@ -1115,7 +1121,7 @@ articles:
     type: tech
     control: Microsoft Purview Audit (unified audit log). Sign-in και audit logs του Entra ID. Advanced hunting στο Defender XDR. Microsoft Sentinel για πηγές εκτός Microsoft και μεγαλύτερη διατήρηση.
     evidence: 'Purview: audit log search και audit retention policies. Entra ID: diagnostic settings.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft 365 E5 (Purview Audit Premium), Microsoft Sentinel. Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
     comment: Ελέγξτε την προεπιλεγμένη διατήρηση κάθε πηγής.
     kya:
@@ -1126,6 +1132,8 @@ articles:
     - *id032
     - title: 'Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing'
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: A.8.16
     scope: Νέο στην έκδοση 2022
     requirement: Monitoring activities
@@ -1133,7 +1141,7 @@ articles:
     type: tech
     control: Alerts και incidents με συσχέτιση στο Microsoft Defender XDR. Custom detection rules. Microsoft Entra ID Protection για επικίνδυνα sign-ins. Microsoft Sentinel για τις υπόλοιπες πηγές.
     evidence: 'Defender XDR: incidents και custom detection rules. Entra ID Protection: risk detections.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft Entra ID P2 (ID Protection), Microsoft Sentinel. Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
     kya:
     - 24
@@ -1145,6 +1153,8 @@ articles:
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: A.8.17
     scope: ''
     requirement: Clock synchronization

@@ -6,7 +6,7 @@ source:
   fek: ΕΕ L 333 της 27.12.2022
   url: https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32022L2555
   of: της Οδηγίας
-updated: '2026-10-16'
+updated: '2026-10-18'
 types:
 - key: tech
   label: Τεχνικό
@@ -105,7 +105,7 @@ articles:
     type: tech
     control: Incidents queue του Microsoft Defender XDR με συσχέτιση alerts από endpoints, ταυτότητες, email και cloud apps. Automated investigation and response. Advanced hunting. Microsoft Sentinel για πηγές εκτός Microsoft και μεγαλύτερη διατήρηση.
     evidence: 'Defender XDR: ιστορικό incidents με ταξινόμηση, ανάθεση και χρόνους. Action center για τις ενέργειες αποκατάστασης.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο), Microsoft Sentinel (χρέωση με βάση τον όγκο δεδομένων)
     comment: Το πλάνο αντιμετώπισης περιστατικών και οι ρόλοι είναι έγγραφο της οντότητας.
     kya:
@@ -126,6 +126,8 @@ articles:
       url: /posts/previews/isoc-integrated-security-operations-defender/
     - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
       url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: 21.2.γ
     scope: Βασικές και σημαντικές
     requirement: Επιχειρησιακή συνέχεια, όπως διαχείριση αντιγράφων ασφαλείας και αποκατάσταση έπειτα από καταστροφή, και διαχείριση των κρίσεων.
@@ -263,7 +265,7 @@ articles:
     type: mixed
     control: Conditional Access, Privileged Identity Management και access reviews στο Entra ID. Device inventory στο Microsoft Defender for Endpoint και στο Intune, software inventory στο Defender Vulnerability Management.
     evidence: 'Entra ID: πολιτικές Conditional Access, αναθέσεις ρόλων και αποτελέσματα access reviews. Εξαγωγή device inventory.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft Entra ID P2 (Privileged Identity Management, access reviews), Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο) για το software inventory
     comment: Η ασφάλεια ανθρώπινων πόρων (έλεγχοι πρόσληψης, πειθαρχική διαδικασία) δεν καλύπτεται από ρύθμιση.
     kya:
@@ -282,6 +284,8 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
       url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: 21.2.ι
     scope: Βασικές και σημαντικές
     requirement: Χρήση λύσεων πολυπαραγοντικής επαλήθευσης ταυτότητας ή συνεχούς επαλήθευσης ταυτότητας, ασφαλών φωνητικών επικοινωνιών, επικοινωνιών βίντεο και κειμένου και ασφαλών συστημάτων επικοινωνιών έκτακτης ανάγκης εντός της οντότητας, κατά περίπτωση.

@@ -11,7 +11,7 @@ source:
   item: υποχρέωση
   groups: άρθρα
   disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια υποχρέωση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες αποδόσεις για το ακριβές κείμενο ισχύει ο [Κανονισμός (ΕΕ) 2016/679](https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32016R0679). Στην Ελλάδα εφαρμόζεται μαζί με τον ν. 4624/2019, και η εποπτική αρχή είναι η [Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα](https://www.dpa.gr/).
-updated: '2026-10-16'
+updated: '2026-10-18'
 types:
 - key: tech
   label: Τεχνικό
@@ -380,7 +380,7 @@ articles:
     type: tech
     control: Conditional Access, MFA και Privileged Identity Management στο Microsoft Entra ID. Compliance policies στο Microsoft Intune ως προϋπόθεση πρόσβασης. Microsoft Defender XDR για τον εντοπισμό και την αντιμετώπιση επιθέσεων σε endpoints, ταυτότητες, email και cloud apps.
     evidence: 'Entra: πολιτικές Conditional Access, PIM assignments. Intune: device compliance report. Defender XDR: incidents. Microsoft Secure Score: βαθμολογία.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft Entra ID P2 για Privileged Identity Management. Microsoft 365 E5 ή αντίστοιχο για Microsoft Defender XDR
     comment: Η διαθεσιμότητα των ίδιων των υπηρεσιών του Microsoft 365 είναι ευθύνη της Microsoft, σύμφωνα με τους όρους της σύμβασης.
     kya:
@@ -413,6 +413,8 @@ articles:
     - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
       url: /posts/homograph-attack-kyrillika-grammata/
       page: /posts/homograph-attack-kyrillika-grammata
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.
@@ -498,7 +500,7 @@ articles:
     type: mixed
     control: Incidents του Microsoft Defender XDR, που καταγράφουν πότε ξεκίνησε η δραστηριότητα και πότε εντοπίστηκε, για τον υπολογισμό των 72 ωρών. Τα alerts του Microsoft Purview DLP εμφανίζονται στην ίδια ουρά incidents.
     evidence: 'Defender XDR: incident με χρονολόγιο, ανάθεση και ταξινόμηση. Γνωστοποίηση προς την Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα με ημερομηνία και ώρα.'
-    verified: 2026-10-14
+    verified: 2026-10-18
     license: Microsoft 365 E5 ή αντίστοιχο για Microsoft Defender XDR
     comment: Στην Ελλάδα η γνωστοποίηση γίνεται στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα. Για τις βασικές και σημαντικές οντότητες, το ίδιο περιστατικό μπορεί να θέλει και αναφορά βάσει του ν. 5160/2024, με διαφορετικές προθεσμίες και αποδέκτη.
     kya:
@@ -517,6 +519,8 @@ articles:
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: '33.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Ο εκτελών ενημερώνει τον υπεύθυνο χωρίς αδικαιολόγητη καθυστέρηση μόλις αντιληφθεί παραβίαση δεδομένων προσωπικού χαρακτήρα.

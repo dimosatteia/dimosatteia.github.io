@@ -1,7 +1,7 @@
 ---
 title: "GDPR με Microsoft 365: ο Κανονισμός (ΕΕ) 2016/679 ανά υποχρέωση"
 date: 2026-10-12T12:00:00+03:00
-lastmod: 2026-10-16T14:00:00+03:00
+lastmod: 2026-10-18T12:00:00+03:00
 draft: false
 layout: "nis2"
 dataKey: "gdpr"

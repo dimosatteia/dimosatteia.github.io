@@ -21,7 +21,7 @@
 #   draft:     true = καταχώρηση σε αναμονή. Δεν εμφανίζεται πουθενά (σελίδα /kql/, οδηγοί, kql-link) μέχρι να γραφτεί το query,
 #              να δοκιμαστεί και να μπει εικόνα-πειστήριο. Τότε σβήνεται το draft.
 
-updated: 2026-10-15
+updated: 2026-10-18
 
 # Οι ομάδες της σελίδας, με τη σειρά που εμφανίζονται. Εμφανίζονται μόνο όσες έχουν τουλάχιστον ένα query.
 pillars:
@@ -502,6 +502,8 @@ queries:
     posts:
       - title: "Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing"
         url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+      - title: "Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
     tested: 2026-10-14
     verified: 2026-10-14
     evidence: /images/kql/ad-sensitive-groups.webp
