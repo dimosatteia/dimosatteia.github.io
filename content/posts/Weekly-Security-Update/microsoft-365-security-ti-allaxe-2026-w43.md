@@ -1,8 +1,8 @@
 ---
 title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 43/2026)"
-date: 2026-10-23T08:00:00+03:00
-lastmod: 2026-10-23T08:00:00+03:00
-draft: true
+date: 2026-10-22T19:40:00+03:00
+lastmod: 2026-10-22T19:40:00+03:00
+draft: false
 keywords:
   - Microsoft Defender νέα
   - Teams user reporting Defender for Office 365
