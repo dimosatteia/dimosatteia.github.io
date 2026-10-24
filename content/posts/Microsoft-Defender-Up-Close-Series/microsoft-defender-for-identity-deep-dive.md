@@ -218,6 +218,10 @@ mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T
 
 > 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**. Ακολουθεί το **Microsoft Defender for Cloud Apps**, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
+{{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive" >}}
+> 🔗 **Νέο στη σειρά:** **[Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)**.
+{{< /if-published >}}
+
 > 🔗 **Θέλετε να δείτε πώς τα σήματα ταυτότητας τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
 > 🔗 **Χρειάζεστε τεκμηρίωση συμμόρφωσης;** Οι sensors και τα alerts του Microsoft Defender for Identity στηρίζουν τις απαιτήσεις [13.δ](/kya-1689-2025/#13-δ), [24.γ](/kya-1689-2025/#24-γ) και [24.ε](/kya-1689-2025/#24-ε), όπως τις αναλύει ο **[οδηγός της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχούν στα [21.2.β](/nis2/#21-2-β) και [21.2.θ](/nis2/#21-2-θ), στο **[ISO/IEC 27001](/iso-27001/)** στα [A.8.2](/iso-27001/#A-8-2), [A.8.15](/iso-27001/#A-8-15), [A.8.16](/iso-27001/#A-8-16), [A.5.25](/iso-27001/#A-5-25) και [A.5.26](/iso-27001/#A-5-26), και στον **[GDPR](/gdpr/)** στα [32.1.β](/gdpr/#32-1-β) και [33.1](/gdpr/#33-1). Ο καθένας έχει checklist σε Excel.

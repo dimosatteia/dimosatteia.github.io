@@ -217,6 +217,10 @@ mitre: ["T1566.001", "T1566.002", "T1684.001", "M1049", "M1021", "M1054"]
 
 > 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)**. Ακολουθεί το **Microsoft Defender for Cloud Apps**, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
+{{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive" >}}
+> 🔗 **Νέο στη σειρά:** **[Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)**.
+{{< /if-published >}}
+
 > 🔗 **Θέλετε να δείτε πώς η παραμετροποίηση του Microsoft Defender for Office 365 αντιστοιχίζεται σε controls του ISO 27001 και του NIS2;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
 > 🔗 **Χρειάζεστε τεκμηρίωση συμμόρφωσης;** Το φιλτράρισμα μηνυμάτων και κακόβουλων ιστοτόπων καλύπτει τις απαιτήσεις [20.γ](/kya-1689-2025/#20-γ) και [20.ε](/kya-1689-2025/#20-ε), όπως τις αναλύει ο **[οδηγός της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Δείτε και τους οδηγούς για την **[Οδηγία NIS2](/nis2/)** και το **[ISO/IEC 27001](/iso-27001/)**. Ο καθένας έχει checklist σε Excel.

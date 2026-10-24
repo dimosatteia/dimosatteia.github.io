@@ -1,9 +1,11 @@
 ---
 title: "Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB"
 seoTitle: "Microsoft Defender for Cloud Apps: πρακτικός οδηγός CASB"
-date: 2026-10-26T07:00:00+02:00
-lastmod: 2026-10-26T07:00:00+02:00
+date: 2026-10-24T13:00:00+03:00
+lastmod: 2026-10-24T13:00:00+03:00
 draft: false
+# Εμφανίζεται ως «Νέο άρθρο» στην αρχική, μέχρι να βγει νεότερο τεύχος της εβδομαδιαίας σύνοψης
+homeHighlight: true
 keywords:
   - Microsoft Defender for Cloud Apps
   - Microsoft Defender for Cloud Apps οδηγός
@@ -112,10 +114,10 @@ mitre: ["T1528", "T1078.004"]
 
 Κάθε εφαρμογή στον κατάλογο έχει ένα **risk score** (0 έως 10) που υπολογίζεται από περισσότερους από 90 παράγοντες κινδύνου: κρυπτογράφηση δεδομένων σε ηρεμία (at rest), συμμόρφωση με τον GDPR, πιστοποίηση SOC 2, πολιτικές διατήρησης δεδομένων, υποστήριξη SSO, υποστήριξη SAML κ.ο.κ. Μπορείτε να προσαρμόσετε τα βάρη της βαθμολόγησης αν ο οργανισμός σας έχει συγκεκριμένες προτεραιότητες.
 
-**Ο ευκολότερος τρόπος να ενεργοποιήσετε το discovery** είναι μέσω της ενσωμάτωσης με το Microsoft Defender for Endpoint. Δεν απαιτεί καμία αλλαγή στο δίκτυο, αλλά έχει προαπαιτούμενα: **Microsoft Defender for Endpoint Plan 2** (ή Microsoft Defender for Business) και συσκευές που έχουν γίνει onboarding. Την ενεργοποιείτε στο Defender portal, στο **Settings → Endpoints → Optional features**, με τον διακόπτη **Microsoft Defender for Cloud Apps**. Τα δεδομένα εμφανίζονται μέσα σε περίπου δύο ώρες.
+**Ο ευκολότερος τρόπος να ενεργοποιήσετε το discovery** είναι μέσω της ενσωμάτωσης με το Microsoft Defender for Endpoint. Δεν απαιτεί καμία αλλαγή στο δίκτυο, αλλά έχει προαπαιτούμενα: **Microsoft Defender for Endpoint Plan 2** (ή Microsoft Defender for Business) και συσκευές που έχουν γίνει onboarding. Την ενεργοποιείτε στο Defender portal, στο **Settings → Endpoints → General → Advanced features**, με τον διακόπτη **Microsoft Defender for Cloud Apps**. Τα δεδομένα εμφανίζονται μέσα σε περίπου δύο ώρες.
 
 [![Ο διακόπτης Microsoft Defender for Cloud Apps στο Defender portal](/images/Microsoft-Defender/mdca-02-cloud-apps-optional-feature.webp)](/images/Microsoft-Defender/mdca-02-cloud-apps-optional-feature.webp)
-> 📷 **Εικόνα 2:** Διακόπτης ενσωμάτωσης Microsoft Defender for Cloud Apps. Defender portal → Settings → Endpoints → Optional features.
+> 📷 **Εικόνα 2:** Διακόπτης ενσωμάτωσης Microsoft Defender for Cloud Apps. Defender portal → Settings → Endpoints → General → Advanced features.
 
 **Τι να κάνετε με τα αποτελέσματα του discovery:** δουλέψτε τις 20 πρώτες μη εγκεκριμένες εφαρμογές με βάση τη χρήση και αποφασίστε ποιες θα **εγκρίνετε (sanction)**, ποιες θα **απορρίψετε (unsanction)** και ποιες θα **διερευνήσετε περαιτέρω**. Για να μπλοκάρεται πραγματικά η πρόσβαση στις απορριφθείσες εφαρμογές μέσω του Defender for Endpoint, πρέπει το **network protection** να είναι ενεργοποιημένο σε **block mode**. Είναι συνεχής διαδικασία, όχι εφάπαξ «καθάρισμα».
 
@@ -126,7 +128,7 @@ mitre: ["T1528", "T1078.004"]
 Το **[App governance στο Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/app-governance-manage-app-governance)** σας δίνει ορατότητα και έλεγχο στις OAuth εφαρμογές που είναι καταχωρημένες στο Microsoft Entra ID, στο Google και στο Salesforce.
 
 [![Επισκόπηση OAuth apps στο app governance](/images/Microsoft-Defender/mdca-03-oauth-apps.webp)](/images/Microsoft-Defender/mdca-03-oauth-apps.webp)
-> 📷 **Εικόνα 3:** Επισκόπηση OAuth apps. Defender portal → Cloud apps → OAuth apps.
+> 📷 **Εικόνα 3:** Επισκόπηση OAuth εφαρμογών στο App governance. Defender portal → Cloud apps → App governance → Entra ID.
 
 Τι να αναζητήσετε:
 
@@ -136,6 +138,8 @@ mitre: ["T1528", "T1078.004"]
 - **Εφαρμογές που έχουν επισημανθεί από το threat intelligence της Microsoft**: το portal τις σημειώνει άμεσα
 
 Τα alerts του app governance εμφανίζονται στη λίστα alerts του Microsoft Defender με **Detection source: App Governance**. Ελέγχετε τις επισημασμένες εφαρμογές εβδομαδιαία και ανακαλείτε ή περιορίζετε όσες δεν έχουν επιχειρηματική αιτιολόγηση.
+
+{{< kql-link id="oauth-consent" lead="Θέλετε τεκμήριο από το δικό σας tenant;" label="Τρέξτε το KQL για τις συγκαταθέσεις σε εφαρμογές OAuth" tail="στο Advanced Hunting." >}}
 
 ## Δυνατότητα 3: Conditional Access App Control
 
@@ -158,7 +162,7 @@ mitre: ["T1528", "T1078.004"]
 
 Το τελευταίο επίπεδο είναι οι κανόνες ανίχνευσης που ενεργοποιούνται από τη συμπεριφορά χρηστών στις συνδεδεμένες cloud εφαρμογές σας.
 
-Η Microsoft παρέχει ένα σύνολο προεπιλεγμένων **anomaly detection policies** που είναι **ήδη ενεργοποιημένα**: impossible travel, ransomware activity, mass delete, suspicious inbox forwarding. Μην τα ξαναεφεύρετε. Απλώς ελέγξτε τα και βεβαιωθείτε ότι οι αποδέκτες των alerts είναι σωστοί.
+Η Microsoft παρέχει ένα σύνολο προεπιλεγμένων **anomaly detection policies** που είναι **ήδη ενεργοποιημένα**: Impossible travel, Ransomware activity, Unusual file deletion activity, Suspicious inbox forwarding. Μην τα ξαναεφεύρετε. Απλώς ελέγξτε τα και βεβαιωθείτε ότι οι αποδέκτες των alerts είναι σωστοί.
 
 Πάνω σε αυτά μπορείτε να φτιάξετε δικά σας **[activity policies](https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies)** για ό,τι έχει σημασία στο δικό σας περιβάλλον. Για παράδειγμα:
 
@@ -166,6 +170,8 @@ mitre: ["T1528", "T1078.004"]
 - Μαζική λήψη αρχείων από έναν χρήστη μέσα σε σύντομο χρονικό διάστημα
 - Σύνδεση από χώρα όπου ο οργανισμός δεν δραστηριοποιείται
 - Δραστηριότητα διαχειριστή από λογαριασμό που δεν αναμένεται να την κάνει
+
+{{< kql-link id="mass-download" lead="Θέλετε να δείτε αν συμβαίνει ήδη;" label="Τρέξτε το KQL για τα μαζικά downloads" tail="από SharePoint και OneDrive στο Advanced Hunting." >}}
 
 [![Διαχείριση policies στο Microsoft Defender for Cloud Apps](/images/Microsoft-Defender/mdca-05-policy-management.webp)](/images/Microsoft-Defender/mdca-05-policy-management.webp)
 > 📷 **Εικόνα 5:** Σελίδα επισκόπησης policies. Defender portal → Cloud apps → Policies → Policy management.
@@ -187,6 +193,8 @@ mitre: ["T1528", "T1078.004"]
 
 > 🔗 **Θέλετε να δείτε πώς τα σήματα των cloud εφαρμογών τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
+> 🔗 **Χρειάζεστε τεκμηρίωση συμμόρφωσης;** Το Cloud Discovery, το App governance, τα session policies και οι activity policies του Microsoft Defender for Cloud Apps στηρίζουν τις απαιτήσεις [11.α](/kya-1689-2025/#11-α), [11.γ](/kya-1689-2025/#11-γ), [12.1.γ](/kya-1689-2025/#12-1-γ), [13.γ](/kya-1689-2025/#13-γ) και [24.ε](/kya-1689-2025/#24-ε), όπως τις αναλύει ο **[οδηγός της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.δ](/nis2/#21-2-δ), [21.2.θ](/nis2/#21-2-θ) και [21.3](/nis2/#21-3), στο **[ISO/IEC 27001](/iso-27001/)** στα [A.5.9](/iso-27001/#A-5-9), [A.5.10](/iso-27001/#A-5-10), [A.5.18](/iso-27001/#A-5-18), [A.5.19](/iso-27001/#A-5-19), [A.5.23](/iso-27001/#A-5-23), [A.8.12](/iso-27001/#A-8-12) και [A.8.16](/iso-27001/#A-8-16), και στον **[GDPR](/gdpr/)** στα [28.1](/gdpr/#28-1) και [44](/gdpr/#44). Ο καθένας έχει checklist σε Excel.
+
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
 ## Πηγές και επαλήθευση {#last-verified}
@@ -198,8 +206,8 @@ mitre: ["T1528", "T1078.004"]
 <!--
 IMAGE NOTES
 Image 1: mdca-01-discovered-apps.webp  (Defender portal → Cloud apps → Cloud Discovery → Discovered apps.)
-Image 2: mdca-02-cloud-apps-optional-feature.webp  (Defender portal → Settings → Endpoints → Optional features.)
-Image 3: mdca-03-oauth-apps.webp  (Defender portal → Cloud apps → OAuth apps.)
+Image 2: mdca-02-cloud-apps-optional-feature.webp  (Defender portal → Settings → Endpoints → General → Advanced features.)
+Image 3: mdca-03-oauth-apps.webp  (Defender portal → Cloud apps → App governance → Entra ID.)
 Image 4: mdca-04-session-policy.webp  (Defender portal → Cloud apps → Policies → Policy management → Conditional Access → Create policy → Session policy.)
 Image 5: mdca-05-policy-management.webp  (Defender portal → Cloud apps → Policies → Policy management.)
 Save to content/images/Microsoft-Defender/

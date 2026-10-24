@@ -288,6 +288,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
       url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 11.β
     scope: Βασικές και σημαντικές
     requirement: Ταξινόμηση δεδομένων και αγαθών σε επίπεδα, με βάση εμπιστευτικότητα, ακεραιότητα και διαθεσιμότητα.
@@ -311,6 +314,9 @@ articles:
       url: /posts/purview-autolabeling-500k-scale-increase/
     - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
       url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 11.δ
     scope: Βασικές και σημαντικές
     requirement: Γραπτή πολιτική για την ασφαλή διαχείριση αφαιρούμενων μέσων αποθήκευσης.
@@ -352,6 +358,9 @@ articles:
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - title: 'Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες'
       url: /posts/gsa-mcp-firewall/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 12.1.δ
     scope: Βασικές και σημαντικές
     requirement: 'Ελάχιστο περιεχόμενο συμβάσεων: απαιτήσεις ασφάλειας, συστήματα και δεδομένα στα οποία αποκτά πρόσβαση ο προμηθευτής, δικαίωμα ελέγχου, ασφαλής λήξη.'
@@ -431,6 +440,9 @@ articles:
       url: /posts/previews/ad-group-enforcement-cloud-sync/
     - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
       url: /posts/entra-tenant-governance-ga/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 13.δ
     scope: Βασικές και σημαντικές
     requirement: Περιορισμός των προνομιούχων λογαριασμών και των δικαιωμάτων διαχείρισης στο απολύτως απαραίτητο.
@@ -1217,6 +1229,9 @@ articles:
       url: /posts/previews/isoc-integrated-security-operations-defender/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 24.στ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών απόκρισης.

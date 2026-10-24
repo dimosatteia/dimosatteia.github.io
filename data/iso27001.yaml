@@ -158,6 +158,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
       url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: A.5.10
     scope: ''
     requirement: Acceptable use of information and other associated assets
@@ -172,6 +175,9 @@ articles:
     - &id001
       title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
       url: /posts/purview-autolabeling-500k-scale-increase/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: A.5.11
     scope: ''
     requirement: Return of assets
@@ -304,6 +310,9 @@ articles:
       title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
       url: /posts/entra-tenant-governance-ga/
     - *id005
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: A.5.19
     scope: ''
     requirement: Information security in supplier relationships
@@ -320,6 +329,9 @@ articles:
     - &id006
       title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: A.5.20
     scope: ''
     requirement: Addressing information security within supplier agreements
@@ -388,6 +400,9 @@ articles:
     - *id006
     - *id007
     - *id008
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: A.5.24
     scope: ''
     requirement: Information security incident management planning and preparation
@@ -1090,6 +1105,9 @@ articles:
     - *id001
     - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
       url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: A.8.13
     scope: ''
     requirement: Information backup
@@ -1155,6 +1173,9 @@ articles:
       url: /posts/previews/isoc-integrated-security-operations-defender/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: A.8.17
     scope: ''
     requirement: Clock synchronization

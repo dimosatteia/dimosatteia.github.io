@@ -375,6 +375,9 @@ queries:
     posts:
       - title: "Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)"
         url: /posts/microsoft-entra-architecture-guide-defender/
+      - title: "Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+        page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
     verified: 2026-10-14
     query: |-
       // Συγκαταθέσεις χρηστών σε εφαρμογές OAuth, τελευταίες 30 ημέρες
@@ -419,6 +422,9 @@ queries:
     posts:
       - title: "Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου"
         url: /posts/purview-autolabeling-500k-scale-increase/
+      - title: "Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB"
+        url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+        page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
     query: |-
       // Μαζικά downloads από SharePoint και OneDrive ανά χρήστη και ώρα, τελευταίες 7 ημέρες
       // ΚΥΑ 1689/2025: 11.δ, 24.ε

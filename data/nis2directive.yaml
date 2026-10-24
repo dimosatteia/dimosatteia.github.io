@@ -128,6 +128,9 @@ articles:
       url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 21.2.γ
     scope: Βασικές και σημαντικές
     requirement: Επιχειρησιακή συνέχεια, όπως διαχείριση αντιγράφων ασφαλείας και αποκατάσταση έπειτα από καταστροφή, και διαχείριση των κρίσεων.
@@ -159,6 +162,9 @@ articles:
     - &id007
       title: 'Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες'
       url: /posts/gsa-mcp-firewall/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 21.2.ε
     scope: Βασικές και σημαντικές
     requirement: Ασφάλεια στην απόκτηση, ανάπτυξη και συντήρηση συστημάτων δικτύου και πληροφοριών, συμπεριλαμβανομένου του χειρισμού και της γνωστοποίησης ευπαθειών.
@@ -286,6 +292,9 @@ articles:
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: 21.2.ι
     scope: Βασικές και σημαντικές
     requirement: Χρήση λύσεων πολυπαραγοντικής επαλήθευσης ταυτότητας ή συνεχούς επαλήθευσης ταυτότητας, ασφαλών φωνητικών επικοινωνιών, επικοινωνιών βίντεο και κειμένου και ασφαλών συστημάτων επικοινωνιών έκτακτης ανάγκης εντός της οντότητας, κατά περίπτωση.
@@ -320,6 +329,9 @@ articles:
       title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - *id007
+    - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
   - code: '21.4'
     scope: Βασικές και σημαντικές
     requirement: Η οντότητα που διαπιστώνει ότι δεν συμμορφώνεται με τα μέτρα της παραγράφου 2 λαμβάνει αμελλητί όλα τα αναγκαία, κατάλληλα και αναλογικά διορθωτικά μέτρα.
