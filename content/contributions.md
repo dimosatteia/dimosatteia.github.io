@@ -70,6 +70,7 @@ Live webinar, δεύτερη συμμετοχή στο ίδιο κανάλι. Τ
 
 ## Διακρίσεις
 
+- **Αναφορά από την [Εθνική Αρχή Κυβερνοασφάλειας](https://cyber.gov.gr/microsoft-365-kai-apaitiseis-kyvernoasfaleias-ena-dorean-diadiktyako-ergaleio-gia-na-epilexete-tin-katallili-adeia-gia-tin-kya-1689-2025-kai-tin-odigia-nis2/)** (16 Οκτωβρίου 2026), που παρουσίασε το δωρεάν εργαλείο [Ποια άδεια Microsoft 365 χρειάζομαι](/poia-adeia-microsoft-365/) για την ΚΥΑ 1689/2025.
 - **Gold Award στα [Cyber Security Awards 2026](https://cybersecurityawards.boussiasevents.gr/winners_2026-45/)**, για το πρόγραμμα GRC πάνω στο Microsoft Secure Score.
 - **Bronze Award στα [BITE Awards 2026](https://businessitawards.boussiasevents.gr/winners_2026-113/)**, στην κατηγορία IT Security / Cyber Security, για το έργο Proofpoint Email Security.
 - **[CISO 50 Powerlist 2025](https://netweek.gr/ciso-50-powerlist-2025/#powerlist)**.
