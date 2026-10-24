@@ -46,47 +46,52 @@ verification:
     status: "Generally Available"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps"
-    verified: 2026-10-13
+    verified: 2026-10-24
   - feature: "Cloud Discovery"
     status: "Generally Available"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/set-up-cloud-discovery"
-    verified: 2026-10-13
+    verified: 2026-10-24
   - feature: "App risk score (0 έως 10, πάνω από 90 παράγοντες)"
     status: "Generally Available"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/risk-score"
-    verified: 2026-10-13
+    verified: 2026-10-24
   - feature: "Ενσωμάτωση με Defender for Endpoint"
     status: "Generally Available"
     license: "Defender for Cloud Apps + MDE Plan 2 ή Defender for Business"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/mde-integration"
-    verified: 2026-10-13
+    verified: 2026-10-24
+  - feature: "Μπλοκάρισμα unsanctioned εφαρμογών μέσω Defender for Endpoint"
+    status: "Generally Available"
+    license: "Defender for Cloud Apps + MDE Plan 2 ή Defender for Business"
+    source: "https://learn.microsoft.com/en-us/defender-cloud-apps/mde-govern"
+    verified: 2026-10-24
   - feature: "App governance (Entra ID, Google, Salesforce)"
     status: "Generally Available"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/app-governance-manage-app-governance"
-    verified: 2026-10-13
+    verified: 2026-10-24
   - feature: "Conditional Access App Control"
     status: "Generally Available"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone) + Entra ID P1"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/proxy-intro-aad"
-    verified: 2026-10-13
+    verified: 2026-10-24
   - feature: "Session policies"
     status: "Generally Available"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone) + Entra ID P1"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/session-policy-aad"
-    verified: 2026-10-13
+    verified: 2026-10-24
   - feature: "Activity policies"
     status: "Generally Available"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/user-activity-policies"
-    verified: 2026-10-13
+    verified: 2026-10-24
   - feature: "Απόσυρση file policies (6 Ιανουαρίου 2027)"
-    status: "Generally Available"
+    status: "Retirement"
     license: "Defender for Cloud Apps (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/migrate-file-policies-to-purview"
-    verified: 2026-10-13
+    verified: 2026-10-24
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1528", "T1078.004"]
 ---
@@ -119,7 +124,7 @@ mitre: ["T1528", "T1078.004"]
 [![Ο διακόπτης Microsoft Defender for Cloud Apps στο Defender portal](/images/Microsoft-Defender/mdca-02-cloud-apps-optional-feature.webp)](/images/Microsoft-Defender/mdca-02-cloud-apps-optional-feature.webp)
 > 📷 **Εικόνα 2:** Διακόπτης ενσωμάτωσης Microsoft Defender for Cloud Apps. Defender portal → Settings → Endpoints → General → Advanced features.
 
-**Τι να κάνετε με τα αποτελέσματα του discovery:** δουλέψτε τις 20 πρώτες μη εγκεκριμένες εφαρμογές με βάση τη χρήση και αποφασίστε ποιες θα **εγκρίνετε (sanction)**, ποιες θα **απορρίψετε (unsanction)** και ποιες θα **διερευνήσετε περαιτέρω**. Για να μπλοκάρεται πραγματικά η πρόσβαση στις απορριφθείσες εφαρμογές μέσω του Defender for Endpoint, πρέπει το **network protection** να είναι ενεργοποιημένο σε **block mode**. Είναι συνεχής διαδικασία, όχι εφάπαξ «καθάρισμα».
+**Τι να κάνετε με τα αποτελέσματα του discovery:** δουλέψτε τις 20 πρώτες μη εγκεκριμένες εφαρμογές με βάση τη χρήση και αποφασίστε ποιες θα **εγκρίνετε (sanction)**, ποιες θα **απορρίψετε (unsanction)** και ποιες θα **διερευνήσετε περαιτέρω**. Για να μπλοκάρεται πραγματικά η πρόσβαση στις απορριφθείσες εφαρμογές μέσω του Defender for Endpoint χρειάζονται τρία πράγματα: το **Enforce app access** στο **Settings → Cloud Apps → Cloud Discovery → Microsoft Defender for Endpoint**, τα **Custom network indicators** ενεργά στο **Settings → Endpoints → General → Advanced features**, και το **network protection** σε **block mode** στις συσκευές. Είναι συνεχής διαδικασία, όχι εφάπαξ «καθάρισμα».
 
 ## Δυνατότητα 2: OAuth app governance
 
