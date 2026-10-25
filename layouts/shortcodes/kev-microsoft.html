@@ -52,7 +52,7 @@
 
     <div class="mt-6 flex flex-col gap-3" data-clarity-mask="true">
         <p class="text-sm font-semibold text-slate-100">Αναζήτηση στον κατάλογο</p>
-        <div class="grid gap-3 sm:grid-cols-[1fr_14rem]">
+        <div class="grid items-end gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_12rem_9rem_9rem]">
             <label class="flex flex-col gap-1.5 text-sm text-slate-300">
                 <span>CVE ή λέξη (π.χ. Exchange, SharePoint, CVE-2025)</span>
                 <input id="kevQ" type="search" autocomplete="off" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
@@ -66,10 +66,31 @@
                     {{- end }}
                 </select>
             </label>
+            <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                <span>Βαθμολογία CVSS</span>
+                <select id="kevS" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <option value="">Όλες</option>
+                    {{- range slice 9.5 9.0 8.5 8.0 7.5 7.0 6.0 5.0 4.0 }}
+                    {{- $t := . }}{{ $n := 0 }}{{ range $d.items }}{{ with .cvss }}{{ if ge .score $t }}{{ $n = add $n 1 }}{{ end }}{{ end }}{{ end }}
+                    <option value="{{ $t }}">{{ printf "%.1f" $t }}+ ({{ $n }})</option>
+                    {{- end }}
+                </select>
+            </label>
+            <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                <span>Σοβαρότητα</span>
+                <select id="kevV" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <option value="">Όλες</option>
+                    {{- range slice "CRITICAL" "HIGH" "MEDIUM" "LOW" }}
+                    {{- $k := . }}{{ $n := 0 }}{{ range $d.items }}{{ with .cvss }}{{ if eq .sev $k }}{{ $n = add $n 1 }}{{ end }}{{ end }}{{ end }}
+                    {{- if $n }}<option value="{{ $k }}">{{ index $sevName $k }} ({{ $n }})</option>{{ end }}
+                    {{- end }}
+                </select>
+            </label>
         </div>
         <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
             <label class="flex items-center gap-2 cursor-pointer"><input id="kevR" type="checkbox"> Μόνο με γνωστή χρήση σε ransomware</label>
             <label class="flex items-center gap-2 cursor-pointer"><input id="kev90" type="checkbox"> Μόνο τις τελευταίες 90 ημέρες</label>
+            <button type="button" id="kevClear" class="hidden text-sm text-blue-300 underline-offset-2 hover:underline">Καθαρισμός φίλτρων</button>
         </div>
         <p class="text-xs text-slate-400" id="kevCount" aria-live="polite"></p>
     </div>
@@ -102,6 +123,7 @@
     try { items = JSON.parse(document.getElementById('kevData').textContent); } catch (e) { return; }
 
     var q = document.getElementById('kevQ'), p = document.getElementById('kevP'),
+        sMin = document.getElementById('kevS'), sev = document.getElementById('kevV'), clear = document.getElementById('kevClear'),
         r = document.getElementById('kevR'), r90 = document.getElementById('kev90'),
         list = document.getElementById('kevList'), more = document.getElementById('kevMore'),
         count = document.getElementById('kevCount'), kqlBtn = document.getElementById('kevKql'),
@@ -160,14 +182,17 @@
         return li;
     }
     function apply() {
-        var term = q.value.trim().toLowerCase(), prod = p.value;
+        var term = q.value.trim().toLowerCase(), prod = p.value, min = sMin.value ? parseFloat(sMin.value) : null, sv = sev.value;
         current = items.filter(function (i) {
             if (prod && i.product !== prod) return false;
+            if (min !== null && !(i.cvss && i.cvss.score >= min)) return false;
+            if (sv && !(i.cvss && i.cvss.sev === sv)) return false;
             if (r.checked && !i.ransomware) return false;
             if (r90.checked && i.added < cutoffStr) return false;
             if (term && (i.cve + ' ' + i.product + ' ' + i.name + ' ' + i.desc).toLowerCase().indexOf(term) === -1) return false;
             return true;
         });
+        clear.classList.toggle('hidden', !(term || prod || min !== null || sv || r.checked || r90.checked));
         render();
     }
     function render() {
@@ -175,10 +200,16 @@
         current.slice(0, shown).forEach(function (i) { list.appendChild(card(i)); });
         count.textContent = current.length === items.length
             ? 'Εμφανίζονται ' + Math.min(shown, current.length) + ' από ' + items.length + ' ευπάθειες, οι πιο πρόσφατες πρώτα.'
+            : !current.length ? 'Καμία ευπάθεια δεν ταιριάζει στα φίλτρα. Δοκίμασε λιγότερα φίλτρα ή πάτα «Καθαρισμός φίλτρων».'
+            : current.length === 1 ? '1 ευπάθεια ταιριάζει στα φίλτρα.'
             : current.length + ' ευπάθειες ταιριάζουν στα φίλτρα' + (current.length > shown ? ', εμφανίζονται οι ' + shown + ' πρώτες.' : '.');
         more.classList.toggle('hidden', current.length <= shown);
     }
-    [q, p, r, r90].forEach(function (x) {
+    clear.addEventListener('click', function () {
+        q.value = ''; p.value = ''; sMin.value = ''; sev.value = ''; r.checked = false; r90.checked = false;
+        shown = PAGE; apply(); q.focus();
+    });
+    [q, p, sMin, sev, r, r90].forEach(function (x) {
         x.addEventListener(x === q ? 'input' : 'change', function () { shown = PAGE; apply(); });
     });
     more.addEventListener('click', function () { shown += PAGE; render(); });
