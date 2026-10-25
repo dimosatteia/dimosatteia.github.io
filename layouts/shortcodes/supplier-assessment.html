@@ -1,0 +1,429 @@
+{{- /* Εργαλείο «Αξιολόγηση προμηθευτή», ερωτηματολόγιο ασφάλειας προσαρμοσμένο στον προμηθευτή: ΚΥΑ 1689/2025 (άρθρο 12), Οδηγία NIS2 (21.2.δ, 21.3),
+       Εκτελεστικός Κανονισμός (ΕΕ) 2024/2690 (5.1.4), ISO/IEC 27001 (A.5.19 έως A.5.23), GDPR (άρθρο 28).
+       Τρία βήματα: ο προμηθευτής, ο τύπος του, η κρισιμότητά του. Οι ερωτήσεις και οι όροι έρχονται από το data/supplier_assessment.yaml.
+       Το .xlsx και το .pdf δημιουργούνται στον browser (static/js/supplier-export.js). Δεν αποστέλλεται κανένα στοιχείο.
+       Χρήση: {{< supplier-assessment >}} */ -}}
+{{- $D := site.Data.supplier_assessment -}}
+{{- $in := "rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500" -}}
+{{- $card := "flex items-start gap-3 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500 has-[:checked]:bg-blue-500/10" -}}
+{{- $chev := `<svg class="h-4 w-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>` -}}
+<style>
+#saTool .saKbd{display:inline-block;min-width:1.4em;padding:0 .35em;border:1px solid #475569;border-bottom-width:2px;border-radius:4px;background:#0f172a;color:#e2e8f0;font-family:ui-monospace,monospace;font-size:.85em;line-height:1.5;text-align:center}
+#saTool .saStep[data-locked] > summary{cursor:not-allowed;opacity:.6}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="saTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Αξιολόγηση προμηθευτή · ΚΥΑ 1689/2025 · NIS2 · ISO/IEC 27001 · GDPR</p>
+    <p class="text-xs text-slate-400 mb-4">Τρία βήματα. Κάθε βήμα ανοίγει αφού ολοκληρώσεις το προηγούμενο. Με <span class="saKbd">Tab</span> πας στο επόμενο πεδίο, με <span class="saKbd">Space</span> τσεκάρεις μια επιλογή και με <span class="saKbd">Enter</span> πατάς το κουμπί που είναι επιλεγμένο.</p>
+
+    <form id="saForm" class="flex flex-col gap-3" novalidate data-clarity-mask="true" autocomplete="off">
+
+        <details id="saS1" class="saStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="1" open>
+            <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="saBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">1</span>
+                <span class="flex-1 min-w-0">Ο προμηθευτής<span class="saNote block text-xs font-normal text-slate-400"></span></span>
+                {{ $chev | safeHTML }}
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">1. Ο προμηθευτής</legend>
+                <p class="text-xs text-slate-400 -mt-2">Όλα τα πεδία είναι προαιρετικά. Εμφανίζονται μόνο στα αρχεία που κατεβάζεις, ώστε ο προμηθευτής να ξέρει ποιος ρωτά και ως πότε απαντά.</p>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <label class="flex flex-col gap-1.5 text-sm text-slate-300"><span>Η επωνυμία σου</span>
+                        <input id="saOrg" type="text" maxlength="80" placeholder="π.χ. MyCompany" class="{{ $in }}"></label>
+                    <label class="flex flex-col gap-1.5 text-sm text-slate-300"><span>Ο προμηθευτής</span>
+                        <input id="saSup" type="text" maxlength="80" placeholder="π.χ. Προμηθευτής Α" class="{{ $in }}"></label>
+                    <label class="flex flex-col gap-1.5 text-sm text-slate-300 sm:col-span-2"><span>Η υπηρεσία ή το προϊόν που σου παρέχει</span>
+                        <input id="saSvc" type="text" maxlength="120" placeholder="π.χ. Υποστήριξη του δικτύου και των servers" class="{{ $in }}"></label>
+                    <label class="flex flex-col gap-1.5 text-sm text-slate-300"><span>Ποιος ρόλος δέχεται τις απαντήσεις</span>
+                        <input id="saRole" type="text" maxlength="60" placeholder="π.χ. CISO" class="{{ $in }}">
+                        <span class="text-xs text-slate-400">Μόνο ο ρόλος, χωρίς όνομα.</span></label>
+                    <label class="flex flex-col gap-1.5 text-sm text-slate-300"><span>Email για τις απαντήσεις</span>
+                        <input id="saMail" type="email" maxlength="80" placeholder="π.χ. security@mycompany.gr" class="{{ $in }}"></label>
+                    <label class="flex flex-col gap-1.5 text-sm text-slate-300"><span>Απάντηση έως</span>
+                        <input id="saDue" type="text" inputmode="numeric" maxlength="10" placeholder="ηη/μμ/εεεε" aria-label="Απάντηση έως (ηη/μμ/εεεε)" aria-describedby="saDueHint" class="{{ $in }} font-mono">
+                        <span id="saDueHint" class="text-xs text-slate-400">Μορφή ηη/μμ/εεεε, από σήμερα έως έναν χρόνο μετά. Συνήθως δύο έως τέσσερις εβδομάδες.</span>
+                        <span id="saDueErr" class="hidden text-xs text-rose-400" role="alert"></span></label>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="saNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="1">Επόμενο βήμα</button>
+                </div>
+            </fieldset>
+        </details>
+
+        <details id="saS2" class="saStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="2" data-locked>
+            <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="saBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">2</span>
+                <span class="flex-1 min-w-0">Τύπος προμηθευτή<span class="saNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="saLock text-xs font-normal text-slate-500" aria-hidden="true">🔒</span>
+                {{ $chev | safeHTML }}
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">2. Τύπος προμηθευτή</legend>
+                <div class="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Τύπος προμηθευτή">
+                    {{- range $D.types }}
+                    <label class="{{ $card }}">
+                        <input type="radio" name="saType" value="{{ .key }}" class="mt-1 accent-blue-500" data-defaults="{{ delimit .defaults " " }}">
+                        <span><span class="block font-semibold text-slate-100">{{ .icon }} {{ .name }}</span><span class="block text-xs text-slate-400 mt-0.5">{{ .hint }}</span></span>
+                    </label>
+                    {{- end }}
+                </div>
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Τι ισχύει για αυτόν τον προμηθευτή; <span class="text-xs text-slate-400">Τα πιο συνηθισμένα τσεκάρονται με τον τύπο. Άλλαξέ τα αν χρειάζεται.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2">
+                        {{- range $D.flags }}
+                        <label class="{{ $card }}">
+                            <input type="checkbox" name="saFlag" value="{{ .key }}" class="mt-1 accent-blue-500">
+                            <span><span class="block text-slate-100">{{ .name }}</span><span class="block text-xs text-slate-400 mt-0.5">{{ .hint }}</span></span>
+                        </label>
+                        {{- end }}
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="saNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="2">Επόμενο βήμα</button>
+                    <span class="saErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+
+        <details id="saS3" class="saStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="3" data-locked>
+            <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="saBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">3</span>
+                <span class="flex-1 min-w-0">Κρισιμότητα<span class="saNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="saLock text-xs font-normal text-slate-500" aria-hidden="true">🔒</span>
+                {{ $chev | safeHTML }}
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">3. Κρισιμότητα</legend>
+                <p class="text-xs text-slate-400 -mt-2">Απάντησε σε τέσσερις ερωτήσεις και το εργαλείο προτείνει κρισιμότητα. Μπορείς να διαλέξεις άλλη, αν ξέρεις κάτι που δεν φαίνεται εδώ.</p>
+                <div class="flex flex-col gap-2">
+                    {{- range $D.crit }}
+                    <label class="{{ $card }}">
+                        <input type="checkbox" name="saCrit" value="{{ .key }}" data-w="{{ .w }}" class="mt-1 accent-blue-500">
+                        <span class="text-slate-100">{{ .text }}</span>
+                    </label>
+                    {{- end }}
+                </div>
+                <p id="saSuggest" class="text-sm text-slate-300"></p>
+                <div class="grid gap-2 sm:grid-cols-3" role="radiogroup" aria-label="Κρισιμότητα">
+                    {{- range $D.levels }}
+                    <label class="{{ $card }}">
+                        <input type="radio" name="saLevel" value="{{ .key }}" class="mt-1 accent-blue-500">
+                        <span><span class="block font-semibold text-slate-100">{{ .name }}</span><span class="block text-xs text-slate-400 mt-0.5">{{ .hint }}</span></span>
+                    </label>
+                    {{- end }}
+                </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="saNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="3">Δημιουργία ερωτηματολογίου</button>
+                    <button type="reset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>
+                    <span class="saErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+    </form>
+
+    <section id="saOut" class="hidden mt-5 flex flex-col gap-5 scroll-mt-24" tabindex="-1" aria-live="polite" data-clarity-mask="true">
+        <div class="rounded-lg border border-blue-500/40 bg-slate-900/60 p-4">
+            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Το ερωτηματολόγιό σου</p>
+            <p id="saHead" class="text-lg font-semibold text-slate-100"></p>
+            <div id="saStats" class="mt-3 grid gap-3 grid-cols-2 sm:grid-cols-4"></div>
+            <p id="saLevelNote" class="mt-3 text-sm text-slate-300 leading-relaxed"></p>
+            <div class="mt-4 flex flex-wrap gap-3">
+                <button type="button" id="saXlsx" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">📥 Ερωτηματολόγιο για τον προμηθευτή (.xlsx)</button>
+                <button type="button" id="saPdf" class="rounded-md border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800">📄 Φάκελος αξιολόγησης (.pdf)</button>
+            </div>
+            <p class="mt-2 text-xs text-slate-400">Το .xlsx το στέλνεις στον προμηθευτή. Έχει οδηγίες, τις ερωτήσεις με λίστα απαντήσεων, τους όρους που θα ζητήσεις στη σύμβαση και στήλη για τη δική σου αξιολόγηση. Το .pdf είναι για τον φάκελο του ISMS και τον ελεγκτή.</p>
+            <p id="saExpErr" class="mt-2 text-sm text-amber-400 hidden" role="alert"></p>
+        </div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-2">Οι ερωτήσεις, ανά ενότητα</h3>
+            <p class="text-xs text-slate-400 mb-3">Με ★ οι κρίσιμες ερωτήσεις: ένα «Όχι» εκεί είναι λόγος να μη συνεχίσεις, ή να το καλύψεις με όρο στη σύμβαση.</p>
+            <div id="saQs" class="flex flex-col gap-2"></div>
+        </div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-2">Checklist συμβατικών όρων</h3>
+            <p class="text-xs text-slate-400 mb-3">Οι όροι του σημείου 5.1.4 του Εκτελεστικού Κανονισμού (ΕΕ) 2024/2690 και του άρθρου 12.1.δ της ΚΥΑ 1689/2025, προσαρμοσμένοι σε αυτόν τον προμηθευτή. Τσέκαρε όσους έχει ήδη η σύμβασή σου. Οι επιλογές δεν αποθηκεύονται.</p>
+            <ul id="saTerms" class="flex flex-col gap-2"></ul>
+        </div>
+
+        <div id="saNextSteps" class="rounded-lg border border-slate-700 bg-slate-900/40 p-4 text-sm text-slate-300 leading-relaxed"></div>
+    </section>
+</div>
+
+<script>
+(function () {
+    'use strict';
+    var D = {{ $D | jsonify | safeJS }};
+    var BASE = {{ "" | absURL }};
+    var FW = [
+        { key: 'kya', label: 'ΚΥΑ 1689/2025', url: BASE + 'kya-1689-2025/' },
+        { key: 'nis2', label: 'Οδηγία NIS2', url: BASE + 'nis2/' },
+        { key: 'iso', label: 'ISO/IEC 27001', url: BASE + 'iso-27001/' },
+        { key: 'gdpr', label: 'GDPR', url: BASE + 'gdpr/' }
+    ];
+    // Οι απαιτήσεις που υπηρετεί η ίδια η αξιολόγηση, ανεξάρτητα από τις ερωτήσεις
+    var BASEMAP = { kya: ['12.1.γ', '12.1.δ'], nis2: ['21.2.δ', '21.3'], iso: ['A.5.19', 'A.5.20'], gdpr: [] };
+
+    var $ = function (id) { return document.getElementById(id); };
+    var form = $('saForm'), out = $('saOut'), last = null;
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function picked(name) { return Array.prototype.map.call(form.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }); }
+    function byKey(list, k) { for (var i = 0; i < list.length; i++) if (String(list[i].key) === String(k)) return list[i]; return null; }
+
+    // Βήματα: κάθε βήμα ανοίγει αφού ολοκληρωθεί το προηγούμενο
+    var steps = Array.prototype.slice.call(form.querySelectorAll('.saStep'));
+    var done = 0;
+    steps.forEach(function (st) {
+        st.querySelector('summary').addEventListener('click', function (e) { if (st.hasAttribute('data-locked')) e.preventDefault(); });
+    });
+    function unlock(n) {
+        var st = steps[n - 1]; if (!st) return;
+        st.removeAttribute('data-locked');
+        var l = st.querySelector('.saLock'); if (l) l.classList.add('hidden');
+    }
+    function err(step, msg) {
+        var e = steps[step - 1].querySelector('.saErr');
+        if (!e) return;
+        e.textContent = msg || ''; e.classList.toggle('hidden', !msg);
+    }
+    function note(step, msg) { steps[step - 1].querySelector('.saNote').textContent = msg; }
+
+    // Ημερομηνία πάντα ηη/μμ/εεεε, ανεξάρτητα από τις ρυθμίσεις του browser (όπως στον οδηγό αναφοράς περιστατικού).
+    // Το πεδίο δέχεται μόνο ψηφία που μπορούν να δώσουν έγκυρη τιμή (π.χ. όχι 4 στην πρώτη θέση της ημέρας, όχι 13ο μήνα, έτος 20εε).
+    function okDatePrefix(ds) {
+        var i, c;
+        for (i = 0; i < ds.length; i++) {
+            c = +ds[i];
+            if (i === 0 && c > 3) return false;                                                   // ημέρα: 0-3
+            if (i === 1 && ((+ds[0] === 3 && c > 1) || (+ds[0] === 0 && c === 0))) return false; // 01-31
+            if (i === 2 && c > 1) return false;                                                   // μήνας: 0-1
+            if (i === 3 && ((+ds[2] === 1 && c > 2) || (+ds[2] === 0 && c === 0))) return false; // 01-12
+        }
+        // Έτος: μόνο το τρέχον ή το επόμενο, αφού η προθεσμία είναι από σήμερα έως έναν χρόνο μετά
+        if (ds.length > 4) {
+            var y = ds.slice(4), Y = new Date().getFullYear();
+            if (String(Y).indexOf(y) !== 0 && String(Y + 1).indexOf(y) !== 0) return false;
+        }
+        return true;
+    }
+    var due = $('saDue'), dueErr = $('saDueErr');
+    function dueIssue() {
+        var d = due.value;
+        if (!d) return '';
+        if (d.length < 10) return 'Συμπλήρωσε την ημερομηνία ως ηη/μμ/εεεε.';
+        var m = d.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+        var x = new Date(+m[3], +m[2] - 1, +m[1]);
+        if (x.getDate() !== +m[1] || x.getMonth() !== +m[2] - 1) return 'Η ημερομηνία ' + d + ' δεν υπάρχει.';
+        var t = new Date(); t.setHours(0, 0, 0, 0);
+        if (x < t) return 'Η προθεσμία δεν μπορεί να είναι πριν από σήμερα.';
+        var max = new Date(t.getTime()); max.setFullYear(max.getFullYear() + 1);
+        if (x > max) return 'Η προθεσμία είναι πάνω από έναν χρόνο μακριά. Συνήθως αρκούν δύο έως τέσσερις εβδομάδες.';
+        return '';
+    }
+    function showDue(force) {
+        var issue = (force || due.value.length === 10) ? dueIssue() : '';
+        dueErr.textContent = issue; dueErr.classList.toggle('hidden', !issue);
+        due.classList.toggle('border-rose-500', !!issue);
+        return !dueIssue();
+    }
+    due.addEventListener('input', function () {
+        var raw = this.value.replace(/\D/g, ''), keep = '';
+        for (var i = 0; i < raw.length && keep.length < 8; i++) { if (okDatePrefix(keep + raw[i])) keep += raw[i]; else break; }
+        this.value = keep.slice(0, 2) + (keep.length > 2 ? '/' + keep.slice(2, 4) : '') + (keep.length > 4 ? '/' + keep.slice(4, 8) : '');
+        showDue(false);
+    });
+    due.addEventListener('blur', function () { showDue(true); });
+
+    function validate(n) {
+        if (n === 1 && !showDue(true)) { due.focus(); return false; }
+        if (n === 2 && !picked('saType').length) { err(2, 'Διάλεξε τον τύπο του προμηθευτή.'); return false; }
+        if (n === 3 && !picked('saLevel').length) { err(3, 'Διάλεξε κρισιμότητα.'); return false; }
+        err(n, ''); return true;
+    }
+    function summaryNote(n) {
+        if (n === 1) {
+            var s = $('saSup').value.trim(), v = $('saSvc').value.trim();
+            note(1, [s, v].filter(Boolean).join(' · ') || 'Χωρίς στοιχεία, θα χρησιμοποιηθούν γενικές διατυπώσεις');
+        }
+        if (n === 2) {
+            var t = byKey(D.types, picked('saType')[0]), f = picked('saFlag').length;
+            note(2, t.name + (f ? ' · ' + f + (f === 1 ? ' χαρακτηριστικό' : ' χαρακτηριστικά') : ''));
+        }
+        if (n === 3) note(3, byKey(D.levels, picked('saLevel')[0]).name);
+    }
+    Array.prototype.forEach.call(form.querySelectorAll('.saNext'), function (b) {
+        b.addEventListener('click', function () {
+            var n = +b.getAttribute('data-step');
+            if (!validate(n)) return;
+            summaryNote(n);
+            done = Math.max(done, n);
+            if (n < 3) {
+                unlock(n + 1);
+                steps[n - 1].open = false;
+                steps[n].open = true;
+                steps[n].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                var f = steps[n].querySelector('input'); if (f) f.focus({ preventScroll: true });
+            } else build();
+        });
+    });
+
+    // Ο τύπος τσεκάρει τα συνηθισμένα χαρακτηριστικά του
+    Array.prototype.forEach.call(form.querySelectorAll('input[name="saType"]'), function (r) {
+        r.addEventListener('change', function () {
+            var d = (r.getAttribute('data-defaults') || '').split(' ').filter(Boolean);
+            Array.prototype.forEach.call(form.querySelectorAll('input[name="saFlag"]'), function (c) { c.checked = d.indexOf(c.value) >= 0; });
+            err(2, '');
+            if (done >= 3) build(true);
+        });
+    });
+
+    // Πρόταση κρισιμότητας
+    var userLevel = false;
+    function suggest() {
+        var s = 0;
+        Array.prototype.forEach.call(form.querySelectorAll('input[name="saCrit"]:checked'), function (c) { s += +c.getAttribute('data-w'); });
+        var lv = s >= 3 ? 3 : s >= 1 ? 2 : 1, L = byKey(D.levels, lv);
+        $('saSuggest').innerHTML = 'Προτεινόμενη κρισιμότητα: <strong class="text-slate-100">' + esc(L.name) + '</strong>.';
+        if (!userLevel) { var r = form.querySelector('input[name="saLevel"][value="' + lv + '"]'); if (r) r.checked = true; }
+        return lv;
+    }
+    Array.prototype.forEach.call(form.querySelectorAll('input[name="saCrit"]'), function (c) { c.addEventListener('change', function () { suggest(); if (done >= 3) build(true); }); });
+    Array.prototype.forEach.call(form.querySelectorAll('input[name="saLevel"]'), function (r) { r.addEventListener('change', function () { userLevel = true; err(3, ''); if (done >= 3) build(true); }); });
+    Array.prototype.forEach.call(form.querySelectorAll('input[name="saFlag"]'), function (c) { c.addEventListener('change', function () { if (done >= 3) build(true); }); });
+    suggest();
+
+    form.addEventListener('reset', function () {
+        setTimeout(function () {
+            userLevel = false; done = 0; last = null;
+            steps.forEach(function (st, i) { if (i) { st.setAttribute('data-locked', ''); st.open = false; var l = st.querySelector('.saLock'); if (l) l.classList.remove('hidden'); } note(i + 1, ''); });
+            steps[0].open = true; out.classList.add('hidden'); suggest(); showDue(false);
+        }, 0);
+    });
+
+    // Επιλογή ερωτήσεων και όρων
+    function applies(item, type, flags) {
+        if (item.types !== 'all' && item.types.indexOf(type) < 0) return false;
+        if (item['if'] && flags.indexOf(item['if']) < 0) return false;
+        return true;
+    }
+    function select() {
+        var type = picked('saType')[0], flags = picked('saFlag'), lv = +picked('saLevel')[0];
+        var qs = D.questions.filter(function (q) { return q.lvl <= lv && applies(q, type, flags); });
+        var n = 0;
+        var groups = D.domains.map(function (d) {
+            var list = qs.filter(function (q) { return q.domain === d.key; }).map(function (q) {
+                return { q: q, n: ++n, key: !!q.key && q.key <= lv };
+            });
+            return { d: d, list: list };
+        }).filter(function (g) { return g.list.length; });
+        var terms = D.terms.filter(function (t) {
+            if (t.show > lv) return false;
+            if (t.id === 'T6' && lv >= 3) return applies({ types: t.types }, type, flags); // υπεργολάβοι: πάντα για κρίσιμο προμηθευτή
+            return applies(t, type, flags);
+        }).map(function (t) { return { t: t, need: t.need <= lv }; });
+        // Κάλυψη ανά πλαίσιο: κωδικοί με τις ερωτήσεις που τους υπηρετούν
+        var cover = FW.map(function (f) {
+            var m = {}, order = [];
+            function add(c, ref) { if (!(c in m)) { m[c] = []; order.push(c); } if (ref && m[c].indexOf(ref) < 0) m[c].push(ref); }
+            (BASEMAP[f.key] || []).forEach(function (c) { add(c); });
+            groups.forEach(function (g) { g.list.forEach(function (it) { ((it.q.map || {})[f.key] || []).forEach(function (c) { add(String(c), 'Ε' + it.n); }); }); });
+            terms.forEach(function (x) { ((x.t.map || {})[f.key] || []).forEach(function (c) { add(String(c), x.t.id.replace('T', 'Ο')); }); });
+            return { f: f, codes: order.sort(codeSort), refs: m };
+        }).filter(function (c) { return c.codes.length; });
+        return {
+            type: byKey(D.types, type), flags: flags.map(function (k) { return byKey(D.flags, k); }), level: byKey(D.levels, lv), lv: lv,
+            groups: groups, count: n, keys: qs.filter(function (q) { return q.key && q.key <= lv; }).length, terms: terms, cover: cover,
+            org: $('saOrg').value.trim(), sup: $('saSup').value.trim(), svc: $('saSvc').value.trim(),
+            role: $('saRole').value.trim(), mail: $('saMail').value.trim(), due: dueIssue() ? '' : due.value
+        };
+    }
+    function codeSort(a, b) {
+        var pa = a.replace(/^A\./, '').split('.'), pb = b.replace(/^A\./, '').split('.');
+        for (var i = 0; i < Math.max(pa.length, pb.length); i++) {
+            var x = pa[i], y = pb[i];
+            if (x === undefined) return -1; if (y === undefined) return 1;
+            var nx = parseInt(x, 10), ny = parseInt(y, 10);
+            if (!isNaN(nx) && !isNaN(ny) && nx !== ny) return nx - ny;
+            if (isNaN(nx) || isNaN(ny)) { var c = x.localeCompare(y, 'el'); if (c) return c; }
+        }
+        return 0;
+    }
+
+    function stat(n, l) { return '<div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><p class="text-2xl font-bold text-slate-100 font-mono">' + n + '</p><p class="text-xs text-slate-400">' + l + '</p></div>'; }
+    function chips(map) {
+        return FW.map(function (f) {
+            var c = (map || {})[f.key]; if (!c || !c.length) return '';
+            return '<span class="inline-block mr-1 mt-1 px-1.5 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] font-mono text-slate-400">' + esc(f.label) + ' ' + esc(c.join(', ')) + '</span>';
+        }).join('');
+    }
+
+    function build(quiet) {
+        var r = select(); last = r;
+        var who = r.sup || 'Ο προμηθευτής σου';
+        $('saHead').textContent = who + ' · ' + r.type.name + ' · κρισιμότητα ' + r.level.name.toLowerCase();
+        $('saStats').innerHTML = stat(r.count, 'ερωτήσεις') + stat(r.keys, 'κρίσιμες ★') + stat(r.groups.length, 'ενότητες') + stat(r.terms.filter(function (t) { return t.need; }).length + '/' + r.terms.length, 'απαραίτητοι όροι');
+        $('saLevelNote').innerHTML = '<strong class="text-slate-100">Τεκμήρια:</strong> ' + esc(r.level.evidence) + ' <strong class="text-slate-100">Επανεξέταση:</strong> ' + esc(r.level.review);
+
+        $('saQs').innerHTML = r.groups.map(function (g, gi) {
+            return '<details class="group rounded-lg border border-slate-700 bg-slate-900/40"' + (gi ? '' : ' open') + '>' +
+                '<summary class="flex items-center gap-3 cursor-pointer list-none p-3 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">' +
+                '<span class="flex-1">' + esc(g.d.name) + ' <span class="text-xs font-normal text-slate-400">(' + g.list.length + ')</span></span>' + {{ $chev }} + '</summary>' +
+                '<ol class="px-3 pb-3 flex flex-col gap-3">' + g.list.map(function (it) {
+                    return '<li class="text-sm text-slate-300 border-t border-slate-800 pt-3"><p><span class="font-mono text-xs text-slate-500 mr-1">Ε' + it.n + '</span>' + (it.key ? '<span class="text-amber-300" title="Κρίσιμη ερώτηση">★ </span>' : '') + esc(it.q.text) + '</p>' +
+                        '<p class="text-xs text-slate-400 mt-1">Τεκμήριο: ' + esc(it.q.evidence) + '</p><p>' + chips(it.q.map) + '</p></li>';
+                }).join('') + '</ol></details>';
+        }).join('');
+
+        $('saTerms').innerHTML = r.terms.map(function (x) {
+            var t = x.t;
+            return '<li><label class="flex items-start gap-3 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-emerald-500/60">' +
+                '<input type="checkbox" class="mt-1 accent-emerald-500">' +
+                '<span class="min-w-0"><span class="font-semibold text-slate-100">' + esc(t.name) + '</span> ' +
+                (x.need ? '<span class="ml-1 text-[10px] font-mono uppercase px-1.5 py-0.5 rounded border border-amber-500/50 text-amber-300">απαραίτητο</span>' : '<span class="ml-1 text-[10px] font-mono uppercase px-1.5 py-0.5 rounded border border-slate-600 text-slate-400">συνιστάται</span>') +
+                '<span class="block mt-1">' + esc(t.text) + (t.link ? ' <a class="text-blue-400 underline" href="' + BASE + t.link.replace(/^\//, '') + '">Οδηγός αναφοράς περιστατικού</a>.' : '') + '</span>' +
+                '<span class="block text-xs text-slate-500 mt-1">' + esc(t.src) + '</span></span></label></li>';
+        }).join('');
+
+        var kyaLink = '<a class="text-blue-400 underline" href="' + BASE + 'kya-1689-2025/">ΚΥΑ 1689/2025</a>';
+        $('saNextSteps').innerHTML = '<p class="font-semibold text-slate-100 mb-2">Τι κάνεις μετά</p><ol class="list-decimal pl-5 flex flex-col gap-1.5">' +
+            '<li>Στείλε το .xlsx στον προμηθευτή, με την προθεσμία που όρισες.</li>' +
+            '<li>Όταν επιστρέψει, συμπλήρωσε τη στήλη «Αξιολόγηση». Ξεκίνα από τις ερωτήσεις με ★. Το φύλλο «Σύνοψη» μετρά μόνο του τις απαντήσεις.</li>' +
+            '<li>Για κάθε κενό, αποφάσισε: αποδοχή του κινδύνου, διορθωτική ενέργεια με προθεσμία, ή όρος στη σύμβαση.</li>' +
+            '<li>Πέρασε τους όρους που λείπουν στη σύμβαση ή σε παράρτημά της.</li>' +
+            '<li>Κράτα τον φάκελο .pdf, τις απαντήσεις και τα τεκμήρια στο μητρώο προμηθευτών. Αυτά θα ζητήσει ο ελεγκτής για το άρθρο 12 της ' + kyaLink + '.</li>' +
+            '<li>' + esc(r.level.review) + '</li></ol>';
+
+        out.classList.remove('hidden');
+        if (!quiet) { out.focus({ preventScroll: true }); out.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+
+    // Εξαγωγές: οι βιβλιοθήκες φορτώνονται μόνο όταν πατηθεί το κουμπί
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-sa="' + src + '"]')) return next();
+            var s = document.createElement('script');
+            s.src = src; s.setAttribute('data-sa', src); s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    var EXPORT = '{{ "js/supplier-export.js" | relURL }}';
+    function run(btn, libs, fn) {
+        if (!last) return;
+        var txt = btn.textContent, e = $('saExpErr');
+        btn.disabled = true; btn.textContent = 'Δημιουργία…'; e.classList.add('hidden');
+        function fail(m) { e.textContent = m; e.classList.remove('hidden'); btn.disabled = false; btn.textContent = txt; }
+        loadScripts(libs.concat([EXPORT]), function () {
+            Promise.resolve().then(function () { return window.SupplierExport[fn]({ r: last, FW: FW, base: BASE }); })
+                .then(function () { btn.disabled = false; btn.textContent = txt; })
+                .catch(function () { fail('Το αρχείο δεν δημιουργήθηκε. Δοκίμασε ξανά.'); });
+        }, function () { fail('Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'); });
+    }
+    $('saXlsx').addEventListener('click', function () { run(this, ['{{ "js/exceljs/exceljs.min.js" | relURL }}'], 'xlsx'); });
+    $('saPdf').addEventListener('click', function () {
+        run(this, ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'], 'pdf');
+    });
+})();
+</script>

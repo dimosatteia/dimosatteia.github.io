@@ -1,4 +1,6 @@
-{{- /* Οδηγός αναφοράς περιστατικού στην ΕΑΚ (έγκαιρη προειδοποίηση 24 ωρών).
+{{- /* Οδηγός αναφοράς περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών ή αναλυτική φόρμα (72 ωρών, ενδιάμεση, τελική, εθελοντική).
+       Η επιλογή «rep» (24 ή 72) δείχνει τα πεδία με class r24 ή r72. Τα ονόματα των πεδίων είναι τα κελιά της φόρμας 24 ωρών,
+       ώστε ένας φάκελος περιστατικού από τις 24 ώρες να ανοίγει και για τις 72. Τα πεδία μόνο της φόρμας 72 ωρών έχουν όνομα F72_<κελί>.
        Συμπληρώνει το επίσημο πρότυπο της ΕΑΚ (static/downloads/eak/) μέσα στον browser.
        Λογική αρχείου: static/js/incident-report.js · JSZip: static/js/jszip/
        Κανένα στοιχείο δεν αποστέλλεται πουθενά. Χρήση: {{< incident-report >}} */ -}}
@@ -13,6 +15,21 @@
             <label class="rounded border border-slate-700 px-3 py-1.5 font-mono text-slate-300 hover:border-blue-500 cursor-pointer">📂 Άνοιξε φάκελο περιστατικού<input type="file" id="irLoad" accept=".json,application/json" class="sr-only"></label>
             <button type="reset" class="rounded border border-slate-700 px-3 py-1.5 font-mono text-slate-300 hover:border-blue-500">Καθαρισμός</button>
         </div>
+
+        <fieldset class="rounded-xl border border-blue-500/40 bg-slate-900/60 p-4">
+            <legend class="px-1 text-sm font-semibold text-slate-100">Ποια αναφορά ετοιμάζεις;</legend>
+            <div class="grid gap-2 sm:grid-cols-2 mt-1">
+                <label class="flex items-start gap-3 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500 has-[:checked]:bg-blue-500/10">
+                    <input type="radio" name="rep" value="24" class="mt-1" checked>
+                    <span><span class="block font-semibold text-slate-100">Έγκαιρη προειδοποίηση 24 ωρών</span><span class="block text-xs text-slate-400 mt-0.5">Η πρώτη αναφορά, με όσα ξέρεις τώρα. Και για near miss ή κυβερνοαπειλή.</span></span>
+                </label>
+                <label class="flex items-start gap-3 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500 has-[:checked]:bg-blue-500/10">
+                    <input type="radio" name="rep" value="72" class="mt-1">
+                    <span><span class="block font-semibold text-slate-100">Γνωστοποίηση 72 ωρών και τελική έκθεση</span><span class="block text-xs text-slate-400 mt-0.5">Η αναλυτική φόρμα της ΕΑΚ: 72 ωρών, ενδιάμεση, τελική ή εθελοντική αναφορά περιστατικού.</span></span>
+                </label>
+            </div>
+            <p class="r72 hidden text-xs text-slate-400 mt-3">Έστειλες ήδη τη φόρμα 24 ωρών με αυτό το εργαλείο; Άνοιξε τον φάκελο περιστατικού που κράτησες, από το κουμπί «📂 Άνοιξε φάκελο περιστατικού» πάνω δεξιά. Τα στοιχεία περνούν μόνα τους και συμπληρώνεις μόνο όσα προστέθηκαν.</p>
+        </fieldset>
 
         {{- /* ΒΗΜΑ 1 */ -}}
         <section class="irStep rounded-xl border border-slate-800 bg-slate-900/40 transition-opacity" data-step="1">
@@ -120,7 +137,8 @@
         <section class="irStep rounded-xl border border-slate-800 bg-slate-900/40 transition-opacity" data-step="3">
             <h3 class="m-0"><button type="button" class="irHead w-full flex items-center gap-3 p-4 text-left rounded-xl hover:bg-slate-800/40 disabled:cursor-not-allowed disabled:hover:bg-transparent" aria-expanded="false" aria-controls="irB3"><span class="irNum flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-sm text-blue-400">3</span><span id="irS3" class="flex-1 text-base font-semibold text-slate-100">Περιγραφή περιστατικού</span><span class="irState text-xs font-mono text-slate-500"></span><span class="irChev text-slate-500 transition-transform" aria-hidden="true">▾</span></button></h3>
             <div id="irB3" class="irBody hidden px-4 pb-4 flex flex-col gap-5" role="region" aria-labelledby="irS3">
-            <label class="{{ $lbl }}"><span>Τύπος αναφοράς <span class="text-xs text-slate-400">(συμπληρώθηκε από το βήμα 1, μπορείς να τον αλλάξεις)</span></span><select name="B4" class="{{ $in }}" data-list="B4"></select></label>
+            <label class="r24 {{ $lbl }}"><span>Τύπος αναφοράς <span class="text-xs text-slate-400">(συμπληρώθηκε από το βήμα 1, μπορείς να τον αλλάξεις)</span></span><select name="B4" class="{{ $in }}" data-list="B4"></select></label>
+            <label class="r72 hidden {{ $lbl }}"><span>Τύπος αναφοράς <span class="text-xs text-slate-400">(συμπληρώθηκε από το βήμα 1, άλλαξέ τον σε ενδιάμεση ή τελική όταν χρειαστεί)</span></span><select name="F72_B5" class="{{ $in }}" data-list72="B5"></select></label>
             <div class="{{ $lbl }}"><span>Πότε εκτιμάς ότι ξεκίνησε; <span class="text-xs text-slate-400">(αν το ξέρεις, αλλιώς άφησέ το κενό)</span></span>
                 <div class="flex flex-wrap items-center gap-2" data-dt="started">
                     <input name="started_d" inputmode="numeric" maxlength="10" placeholder="ηη/μμ/εεεε" aria-label="Ημερομηνία (ηη/μμ/εεεε)" class="{{ $in }} w-36 font-mono">
@@ -134,6 +152,7 @@
                 <div class="flex flex-wrap gap-4" data-group="status"></div>
                 <div class="mt-2" data-group="recurring"></div>
             </fieldset>
+            <label class="r72 hidden {{ $lbl }}"><span>Πληροφορίες για το περιστατικό <span class="text-xs text-slate-400">Τι έχεις μάθει από την έγκαιρη προειδοποίηση και μετά: πώς εξελίχθηκε, τι επιβεβαιώθηκε, τι διορθώνεις.</span></span><textarea name="F72_B24" rows="3" class="{{ $in }}"></textarea></label>
             <label class="{{ $lbl }}"><span>Τεχνικές λεπτομέρειες και IoCs <span class="text-xs text-slate-400">IP, URL, domains, hashes, λειτουργικό σύστημα, υλικό. Μόνο όσα έχεις συλλέξει.</span></span><textarea name="B24" rows="3" class="{{ $in }} font-mono text-xs"></textarea></label>
             <label class="{{ $lbl }}"><span>Κωδικός περιστατικού στον οργανισμό σας</span><input name="B25" class="{{ $in }} sm:max-w-xs font-mono"></label>
             <div class="flex flex-wrap items-center gap-3 pt-1">
@@ -156,7 +175,25 @@
             </div>
             <fieldset class="text-sm text-slate-300"><legend class="mb-2">Έχει διασυνοριακό αντίκτυπο σε χώρες του ΕΟΧ (Ευρωπαϊκός Οικονομικός Χώρος); <span class="text-xs text-amber-300">(δεν έχει προεπιλογή)</span></legend><div class="flex flex-wrap gap-4" data-group="crossBorder"></div></fieldset>
             <label data-show="crossBorder=yes" class="hidden {{ $lbl }}"><span>Σε ποιες χώρες;</span><input name="B33" class="{{ $in }}" placeholder="π.χ. Κύπρος, Βουλγαρία"></label>
+            <label class="r72 hidden {{ $lbl }}"><span>Εξαρτώμενες οντότητες <span class="text-xs text-slate-400">Πελάτες, συνεργάτες ή άλλες οντότητες που εξαρτώνται από τις υπηρεσίες σου και επηρεάστηκαν.</span></span><textarea name="F72_B31" rows="2" class="{{ $in }}"></textarea></label>
             <label class="{{ $lbl }}"><span>Τι κάνει το περιστατικό σημαντικό; <span class="text-xs text-slate-400">Συμπληρώθηκε από τις απαντήσεις του βήματος 1. Γράψε συγκεκριμένα: τι σταμάτησε, για πόσο, ποιους αφορά.</span></span><textarea name="B34" rows="3" class="{{ $in }}"></textarea></label>
+            <div class="r72 hidden flex flex-col gap-5">
+            <fieldset class="text-sm text-slate-300"><legend class="mb-2">Είδος αντικτύπου <span class="text-xs text-slate-400">(ένα ή περισσότερα)</span></legend><div class="grid gap-2 sm:grid-cols-3" data-group="impactType"></div></fieldset>
+            <fieldset class="text-sm text-slate-300"><legend class="mb-2">Πόροι που επηρεάστηκαν</legend><div class="grid gap-2 sm:grid-cols-3" data-group="resources"></div></fieldset>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="{{ $lbl }}"><span>Διάρκεια μη διαθεσιμότητας</span><input name="F72_B39" class="{{ $in }}" placeholder="π.χ. 6 ώρες για το ERP, 2 ημέρες για τη γραμμή 2"></label>
+                <label class="{{ $lbl }}"><span>Αριθμός και ποσοστό χρηστών που επηρεάστηκαν</span><input name="F72_B40" class="{{ $in }}" placeholder="π.χ. 120 χρήστες, 40%"></label>
+                <label class="{{ $lbl }}"><span>Οικονομική ζημία</span><input name="F72_B41" class="{{ $in }}" placeholder="π.χ. εκτίμηση 25.000 €"></label>
+                <label class="{{ $lbl }}"><span>Επιπτώσεις στη φήμη</span><input name="F72_B42" class="{{ $in }}"></label>
+                <label class="{{ $lbl }}"><span>Επιπτώσεις στην υγεία</span><input name="F72_B43" class="{{ $in }}"></label>
+                <label class="{{ $lbl }}"><span>Υλικές ζημίες</span><input name="F72_B44" class="{{ $in }}"></label>
+                <label class="{{ $lbl }} sm:col-span-2"><span>Γεωγραφική έκταση</span><input name="F72_B45" class="{{ $in }}" placeholder="π.χ. δύο εγκαταστάσεις στη Βόρεια Ελλάδα"></label>
+                <label class="{{ $lbl }}"><span>Κλίμακα επιπτώσεων</span><select name="F72_B46" class="{{ $in }}" data-list72="B46"><option value="">Διάλεξε…</option></select></label>
+                <label class="{{ $lbl }}"><span>Κλίμακα δυνητικών επιπτώσεων</span><select name="F72_B47" class="{{ $in }}" data-list72="B47"><option value="">Διάλεξε…</option></select></label>
+            </div>
+            <label class="{{ $lbl }}"><span>Περιγραφή αντικτύπου <span class="text-xs text-slate-400">Τι συνέβη στην πράξη.</span></span><textarea name="F72_B48" rows="3" class="{{ $in }}"></textarea></label>
+            <label class="{{ $lbl }}"><span>Περιγραφή δυνητικού αντικτύπου <span class="text-xs text-slate-400">Τι θα μπορούσε να συμβεί αν δεν το είχες σταματήσει.</span></span><textarea name="F72_B49" rows="3" class="{{ $in }}"></textarea></label>
+            </div>
             <div class="flex flex-wrap items-center gap-3 pt-1">
                 <button type="button" data-next="4" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Επόμενο βήμα →</button>
                 <span data-err="4" class="text-sm text-amber-400 hidden" role="alert"></span>
@@ -172,12 +209,21 @@
                 <fieldset class="text-sm text-slate-300"><legend class="mb-2">Ενεργοποιήσατε το σχέδιο επιχειρησιακής συνέχειας (BCP); <span class="text-xs text-amber-300">(διάλεξε)</span></legend><div class="flex gap-4" data-group="bcp"></div></fieldset>
                 <fieldset class="text-sm text-slate-300"><legend class="mb-2">Ενεργοποιήσατε το σχέδιο ανάκαμψης (DRP); <span class="text-xs text-amber-300">(διάλεξε)</span></legend><div class="flex gap-4" data-group="drp"></div></fieldset>
             </div>
-            <label class="{{ $lbl }}"><span>Μέτρα ανάκτησης που εφαρμόσατε</span><textarea name="B38" rows="3" class="{{ $in }}" placeholder="π.χ. απομόνωση των επηρεαζόμενων συστημάτων, αλλαγή κωδικών, επαναφορά από αντίγραφα"></textarea></label>
+            <div class="r72 hidden {{ $lbl }}"><span>Πότε αποκαταστάθηκε; <span class="text-xs text-slate-400">(αν έχει αποκατασταθεί, αλλιώς άφησέ το κενό)</span></span>
+                <div class="flex flex-wrap items-center gap-2" data-dt="recovered">
+                    <input name="recovered_d" inputmode="numeric" maxlength="10" placeholder="ηη/μμ/εεεε" aria-label="Ημερομηνία αποκατάστασης (ηη/μμ/εεεε)" class="{{ $in }} w-36 font-mono">
+                    <input name="recovered_t" inputmode="numeric" maxlength="5" placeholder="ωω:λλ" aria-label="Ώρα αποκατάστασης (24ωρη, ωω:λλ)" class="{{ $in }} w-24 font-mono">
+                    <button type="button" data-now class="rounded border border-slate-700 px-3 py-2 text-xs font-mono text-slate-300 hover:border-blue-500">Τώρα</button>
+                </div>
+            </div>
+            <label class="{{ $lbl }}"><span><span class="r24">Μέτρα ανάκτησης που εφαρμόσατε</span><span class="r72 hidden">Αντίμετρα (βραχυπρόθεσμα)</span></span><textarea name="B38" rows="3" class="{{ $in }}" placeholder="π.χ. απομόνωση των επηρεαζόμενων συστημάτων, αλλαγή κωδικών, επαναφορά από αντίγραφα"></textarea></label>
+            <label class="r72 hidden {{ $lbl }}"><span>Αντίμετρα (μακροπρόθεσμα) <span class="text-xs text-slate-400">Τι αλλάζεις ώστε να μην ξανασυμβεί.</span></span><textarea name="F72_B55" rows="3" class="{{ $in }}" placeholder="π.χ. MFA παντού, διαχωρισμός δικτύου OT, αντίγραφα offline"></textarea></label>
+            <label class="r72 hidden {{ $lbl }}"><span>Περιγραφή τρέχουσας κατάστασης</span><textarea name="F72_B56" rows="3" class="{{ $in }}"></textarea></label>
             <fieldset class="text-sm text-slate-300"><legend class="mb-2">Σε ποιες άλλες αρχές το αναφέρατε;</legend><div class="grid gap-2 sm:grid-cols-2" data-group="authorities"></div></fieldset>
             <fieldset class="text-sm text-slate-300"><legend class="mb-2">Ποιους ενημερώσατε;</legend><div class="flex flex-wrap gap-4" data-group="stakeholders"></div></fieldset>
             <fieldset class="text-sm text-slate-300"><legend class="mb-2">Χρειάζεστε υποστήριξη από την CSIRT; <span class="text-xs text-amber-300">(δεν έχει προεπιλογή, διάλεξε)</span></legend><div class="flex gap-4" data-group="csirt"></div></fieldset>
             <div class="flex flex-wrap items-center gap-3 pt-1">
-                <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">⬇️ Κατέβασε τη φόρμα της ΕΑΚ συμπληρωμένη</button>
+                <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">⬇️ Κατέβασε τη φόρμα <span class="r24">24 ωρών</span><span class="r72 hidden">72 ωρών</span> της ΕΑΚ συμπληρωμένη</button>
                 <button type="button" id="irSave" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">💾 Φάκελος περιστατικού</button>
             </div>
             </div>
@@ -194,15 +240,22 @@
     <p class="text-xs text-slate-400 leading-relaxed mt-4">Τίποτα δεν αποστέλλεται πουθενά. Η φόρμα συμπληρώνεται μέσα στον browser σου και την αποστέλλεις εσύ. Ο «φάκελος περιστατικού» είναι ένα αρχείο που κρατάς εσύ, για να συνεχίσεις αργότερα χωρίς να ξαναγράψεις τα ίδια.</p>
     <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
 </div>
+{{- /* ?v=<hash>: ο browser φορτώνει πάντα την τρέχουσα έκδοση του script, όχι μια παλιά από την cache */ -}}
 <script src="{{ "js/jszip/jszip.min.js" | relURL }}"></script>
-<script src="{{ "js/incident-report.js" | relURL }}"></script>
+<script src="{{ "js/incident-report.js" | relURL }}?v={{ readFile "static/js/incident-report.js" | md5 | truncate 8 "" }}"></script>
 <script>
 (function () {
     'use strict';
     var form = document.getElementById('irForm');
     if (!form || !window.EakForm24 || !window.JSZip) return;
-    var F = window.EakForm24;
+    var F = window.EakForm24, F72 = window.EakForm72;
+    // Αν ο browser έχει ακόμη παλιό script χωρίς τη φόρμα 72 ωρών, το εργαλείο δουλεύει κανονικά με τη φόρμα 24 ωρών
+    if (!F72) {
+        var o72 = form.querySelector('input[name="rep"][value="72"]'); if (o72) o72.closest('label').remove();
+        F72 = { CONTROLS: { impactType: { multi: true }, resources: { multi: true } }, LISTS: { B5: ['', '', '', ''], B7: F.LISTS.B6, B8: F.LISTS.B7, B46: [], B47: [] } };
+    }
     var TEMPLATE = '{{ "downloads/eak/eak-forma-anaforas-24-oron.xlsx" | relURL }}';
+    var TEMPLATE72 = '{{ "downloads/eak/eak-forma-anaforas-72-oron.xlsx" | relURL }}';
     var STORE = 'irEntity_v1';
     function $(id) { return document.getElementById(id); }
     function q(n) { return form.elements[n]; }
@@ -222,7 +275,10 @@
         drp: [['yes', 'Ναι'], ['no', 'Όχι']],
         authorities: [['elcsirt', 'EL-CSIRT (ΕΑΚ)'], ['nationalcert', 'Εθνικό CERT'], ['cybercrime', 'Διεύθυνση Δίωξης Κυβερνοεγκλήματος'], ['dpa', 'Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ)'], ['adae', 'ΑΔΑΕ'], ['bog', 'Τράπεζα της Ελλάδος'], ['hcmc', 'Επιτροπή Κεφαλαιαγοράς'], ['cyberdefence', 'Διεύθυνση Κυβερνοάμυνας (ΓΕΕΘΑ/ΔΙΚΥΒ)'], ['caa', 'Αρχή Πολιτικής Αεροπορίας'], ['other', 'Άλλη']],
         stakeholders: [['users', 'Χρήστες που επηρεάστηκαν'], ['public', 'Το κοινό'], ['crossborder', 'Διασυνοριακή ενημέρωση']],
-        csirt: [['yes', 'Ναι'], ['no', 'Όχι']]
+        csirt: [['yes', 'Ναι'], ['no', 'Όχι']],
+        // Μόνο στη φόρμα 72 ωρών
+        impactType: [['resources', 'Πόροι'], ['users', 'Χρήστες'], ['reputation', 'Φήμη'], ['health', 'Επιπτώσεις στην υγεία'], ['financial', 'Οικονομική ζημία'], ['material', 'Υλικές ζημίες'], ['geo', 'Γεωγραφική έκταση']],
+        resources: [['servers', 'Servers ή domain controllers'], ['workstations', 'Σταθμοί εργασίας'], ['application', 'Εφαρμογή'], ['website', 'Ιστότοπος'], ['mailbox', 'Mailbox'], ['switches', 'Switches ή routers'], ['industrial', 'Βιομηχανικά συστήματα (OT)'], ['physsec', 'Συστήματα φυσικής ασφάλειας'], ['backuppower', 'Εφεδρική τροφοδοσία'], ['atm', 'ATM ή POS'], ['mobilebase', 'Σταθμοί βάσης κινητής'], ['submarine', 'Υποθαλάσσια καλώδια'], ['underground', 'Υπόγεια καλώδια'], ['other', 'Άλλο']]
     };
     // Ομάδες που πρέπει να απαντηθούν ρητά, γιατί το πρότυπο της ΕΑΚ έχει προεπιλογή.
     var REQUIRED_RADIO = { status: 'την κατάσταση (βήμα 3)', crossBorder: 'τον διασυνοριακό αντίκτυπο (βήμα 4)', bcp: 'το BCP (βήμα 5)', drp: 'το DRP (βήμα 5)', csirt: 'την υποστήριξη από CSIRT (βήμα 5)' };
@@ -230,7 +286,7 @@
 
     Object.keys(OPTS).forEach(function (g) {
         var box = form.querySelector('[data-group="' + g + '"]'); if (!box) return;
-        var multi = F.CONTROLS[g].multi;
+        var multi = (F.CONTROLS[g] || F72.CONTROLS[g]).multi;
         box.innerHTML = OPTS[g].map(function (o) {
             return '<label class="flex items-start gap-2"><input type="' + (multi ? 'checkbox' : 'radio') + '" name="g_' + g + '" value="' + o[0] + '" class="mt-1"><span>' + esc(o[1]) + '</span></label>';
         }).join('');
@@ -238,6 +294,21 @@
     Array.prototype.forEach.call(form.querySelectorAll('select[data-list]'), function (s) {
         F.LISTS[s.getAttribute('data-list')].forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = LIST_LABEL[v] || v; s.appendChild(o); });
     });
+    Array.prototype.forEach.call(form.querySelectorAll('select[data-list72]'), function (s) {
+        F72.LISTS[s.getAttribute('data-list72')].forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = LIST_LABEL[v] || v; s.appendChild(o); });
+    });
+    // Επιλογή φόρμας: 24 ωρών ή αναλυτική (72 ωρών, ενδιάμεση, τελική, εθελοντική)
+    function is72() { return val('rep') === '72'; }
+    function applyMode() {
+        var m72 = is72();
+        Array.prototype.forEach.call(form.querySelectorAll('.r72'), function (e) { e.classList.toggle('hidden', !m72); });
+        Array.prototype.forEach.call(form.querySelectorAll('.r24'), function (e) { e.classList.toggle('hidden', m72); });
+        $('irDone').classList.add('hidden');
+    }
+    Array.prototype.forEach.call(form.querySelectorAll('input[name="rep"]'), function (r) {
+        r.addEventListener('change', function () { applyMode(); if (!$('irVerdict').classList.contains('hidden')) verdict(true); });
+    });
+    applyMode();
     function picked(g) { return Array.prototype.filter.call(form.querySelectorAll('[name="g_' + g + '"]'), function (e) { return e.checked; }).map(function (e) { return e.value; }); }
 
     // ── Βήματα: ένα ανοιχτό τη φορά, το επόμενο ξεκλειδώνει όταν ολοκληρωθεί το προηγούμενο ──
@@ -363,6 +434,11 @@
         if (x === 'nodate') return 'Η ημερομηνία ' + d + ' δεν υπάρχει.';
         if (x.getFullYear() < MIN_YEAR) return 'Η ημερομηνία είναι πολύ παλιά.';
         if (x.getTime() > Date.now() + 5 * 60e3) return 'Η ημερομηνία και η ώρα δεν μπορεί να είναι στο μέλλον.';
+        if (n === 'recovered') {
+            var dr = parseDt('detected'), sr = parseDt('started');
+            if (dr instanceof Date && x < dr) return 'Η αποκατάσταση δεν μπορεί να είναι πριν από τη στιγμή που το αντιλήφθηκες (' + fmt(dr) + ').';
+            if (sr instanceof Date && x < sr) return 'Η αποκατάσταση δεν μπορεί να είναι πριν από την έναρξη (' + fmt(sr) + ').';
+        }
         if (n === 'started') {
             var det = parseDt('detected');
             if (det instanceof Date && x > det) return 'Η έναρξη δεν μπορεί να είναι μετά τη στιγμή που το αντιλήφθηκες (' + fmt(det) + ').';
@@ -395,7 +471,7 @@
                 ? keep.slice(0, 2) + (keep.length > 2 ? '/' + keep.slice(2, 4) : '') + (keep.length > 4 ? '/' + keep.slice(4, 8) : '')
                 : keep.slice(0, 2) + (keep.length > 2 ? ':' + keep.slice(2, 4) : '');
             showDtIssue(n, false);
-            if (n === 'detected') showDtIssue('started', false);
+            if (n === 'detected') { showDtIssue('started', false); showDtIssue('recovered', false); }
         });
         inp.addEventListener('blur', function () {
             setTimeout(function () {
@@ -409,14 +485,14 @@
             var n = b.parentNode.getAttribute('data-dt'), now = new Date();
             q(n + '_d').value = pad(now.getDate()) + '/' + pad(now.getMonth() + 1) + '/' + now.getFullYear();
             q(n + '_t').value = pad(now.getHours()) + ':' + pad(now.getMinutes());
-            showDtIssue(n, true); showDtIssue('started', false);
+            showDtIssue(n, true); showDtIssue('started', false); showDtIssue('recovered', false);
         });
     });
     function addMonth(d) { var x = new Date(d.getTime()); x.setMonth(x.getMonth() + 1); return x; }
 
     var deadlines = [];
     openStep(1, false);
-    function verdict() {
+    function verdict(quiet) {
         var entity = val('entity'), what = val('what'), det = dt('detected');
         var miss = [];
         if (!entity) miss.push('τι είναι ο οργανισμός');
@@ -433,10 +509,17 @@
         var yes = sig.indexOf('yes') >= 0, unk = sig.indexOf('unknown') >= 0;
         var pub = val('publicBody') === '1';
         var to = pub ? 'στην CSIRT της Εθνικής Υπηρεσίας Πληροφοριών (ΕΥΠ), με ταυτόχρονη ενημέρωση της ΕΑΚ' : 'στην ΕΑΚ, στο <a href="mailto:incident@cyber.gov.gr" class="text-blue-400 underline">incident@cyber.gov.gr</a>';
-        var title, body = [], type = F.LISTS.B4[0], mandatory = false, showRest = true;
-        var LATER = 'Για εθελοντική αναφορά περιστατικού η ΕΑΚ χρησιμοποιεί την αναλυτική φόρμα (72 ωρών και τελικής έκθεσης), που θα προστεθεί σε επόμενη έκδοση του εργαλείου.';
+        var m72 = is72();
+        var title, body = [], type = F.LISTS.B4[0], type72 = F72.LISTS.B5[0], mandatory = false, showRest = true;
+        var LATER = m72
+            ? 'Αν θέλεις, το αναφέρεις εθελοντικά με την αναλυτική φόρμα, στα επόμενα βήματα.'
+            : 'Για εθελοντική αναφορά περιστατικού η ΕΑΚ χρησιμοποιεί την αναλυτική φόρμα. Διάλεξε «Γνωστοποίηση 72 ωρών και τελική έκθεση» στην αρχή του εργαλείου.';
 
-        if (what === 'threat') {
+        if (m72 && (what === 'threat' || what === 'nearmiss')) {
+            title = what === 'threat' ? 'Η κυβερνοαπειλή αναφέρεται με τη φόρμα 24 ωρών' : 'Το near miss αναφέρεται με τη φόρμα 24 ωρών';
+            showRest = false;
+            body.push('Η αναλυτική φόρμα της ΕΑΚ έχει τύπους μόνο για περιστατικά. Για ' + (what === 'threat' ? 'κυβερνοαπειλή' : 'παρ\' ολίγον περιστατικό') + ' διάλεξε «Έγκαιρη προειδοποίηση 24 ωρών» στην αρχή του εργαλείου.');
+        } else if (what === 'threat') {
             title = 'Εθελοντική αναφορά κυβερνοαπειλής';
             type = F.LISTS.B4[2];
             body.push('Δεν υπάρχει υποχρέωση ούτε προθεσμία. Η ΕΑΚ δέχεται όμως αναφορές για απειλές από κάθε φορέα, και η πληροφορία σου βοηθά άλλους. Στείλε τη φόρμα ' + to + '.');
@@ -446,19 +529,20 @@
             body.push('Ένα παρ\' ολίγον περιστατικό δεν έχει υποχρέωση αναφοράς. Η ΕΑΚ το δέχεται εθελοντικά με την ίδια φόρμα. Στείλε τη φόρμα ' + to + '.');
         } else if (entity === 'out') {
             title = 'Δεν έχεις υποχρέωση αναφοράς';
-            showRest = false;
+            showRest = m72; type72 = F72.LISTS.B5[3];
             body.push('Η υποχρέωση του άρθρου 16 ισχύει για βασικές και σημαντικές οντότητες. Μπορείς όμως να αναφέρεις το περιστατικό εθελοντικά. ' + LATER);
         } else if (yes) {
-            title = 'Ναι. Στείλε έγκαιρη προειδοποίηση μέσα σε 24 ώρες';
+            title = m72 ? 'Ναι. Στείλε τη γνωστοποίηση μέσα σε 72 ώρες' : 'Ναι. Στείλε έγκαιρη προειδοποίηση μέσα σε 24 ώρες';
             mandatory = true;
             body.push('Απάντησες «Ναι» σε τουλάχιστον ένα κριτήριο, άρα το περιστατικό είναι σημαντικό κατά το άρθρο 16 του ν. 5160/2024. Η αναφορά γίνεται ' + to + '.');
         } else if (unk) {
             title = 'Πιθανώς. Μην περιμένεις να το επιβεβαιώσεις';
             mandatory = true;
-            body.push('Δεν μπορείς ακόμη να αποκλείσεις ότι είναι σημαντικό. Η έγκαιρη προειδοποίηση ζητά μόνο όσα ξέρεις τώρα και μπορεί να διορθωθεί στην αναφορά των 72 ωρών. Αν τελικά δεν είναι σημαντικό, το λες τότε. Η αναφορά γίνεται ' + to + '.');
+            if (m72) body.push('Δεν μπορείς ακόμη να αποκλείσεις ότι είναι σημαντικό. Στη γνωστοποίηση των 72 ωρών δίνεις την αρχική σου αξιολόγηση για τη σοβαρότητα και τον αντίκτυπο, με όσα ξέρεις. Η αναφορά γίνεται ' + to + '.');
+            else body.push('Δεν μπορείς ακόμη να αποκλείσεις ότι είναι σημαντικό. Η έγκαιρη προειδοποίηση ζητά μόνο όσα ξέρεις τώρα και μπορεί να διορθωθεί στην αναφορά των 72 ωρών. Αν τελικά δεν είναι σημαντικό, το λες τότε. Η αναφορά γίνεται ' + to + '.');
         } else {
             title = 'Όχι, με βάση όσα απάντησες';
-            showRest = false;
+            showRest = m72; type72 = F72.LISTS.B5[3];
             body.push('Απάντησες «Όχι» και στα τρία κριτήρια. Κράτα την αιτιολόγηση στο αρχείο περιστατικών σου, γιατί ο ελεγκτής θα ρωτήσει γιατί δεν το ανέφερες. Αν η εικόνα αλλάξει, οι 24 ώρες μετράνε από τη στιγμή που αντιλαμβάνεσαι ότι είναι σημαντικό. ' + LATER);
         }
         if (entity === 'unknown' && what === 'incident' && mandatory)
@@ -467,8 +551,8 @@
         deadlines = [];
         if (mandatory && det) {
             var d24 = new Date(det.getTime() + 24 * 3600e3), d72 = new Date(det.getTime() + 72 * 3600e3);
-            deadlines = [['Έγκαιρη προειδοποίηση (24 ωρών)', d24, 'Φόρμα 24 ωρών. Αυτή που συμπληρώνεις εδώ.'],
-                ['Γνωστοποίηση περιστατικού (72 ωρών)', d72, 'Αναλυτική φόρμα της ΕΑΚ, με αρχική αξιολόγηση σοβαρότητας και αντικτύπου.'],
+            deadlines = [['Έγκαιρη προειδοποίηση (24 ωρών)', d24, m72 ? 'Φόρμα 24 ωρών. Αν δεν την έχεις στείλει, στείλ\' την πρώτα, από την επιλογή «Έγκαιρη προειδοποίηση 24 ωρών».' : 'Φόρμα 24 ωρών. Αυτή που συμπληρώνεις εδώ.'],
+                ['Γνωστοποίηση περιστατικού (72 ωρών)', d72, m72 ? 'Αναλυτική φόρμα της ΕΑΚ. Αυτή που συμπληρώνεις εδώ, με τύπο «Αναφορά 72 ωρών».' : 'Αναλυτική φόρμα της ΕΑΚ, με αρχική αξιολόγηση σοβαρότητας και αντικτύπου.'],
                 ['Τελική έκθεση', addMonth(d72), 'Εντός ενός μήνα από τη γνωστοποίηση των 72 ωρών. Αν το περιστατικό είναι ακόμη σε εξέλιξη, στέλνεις έκθεση προόδου και την τελική μέσα σε έναν μήνα από τον χειρισμό του.']];
             $('irDList').innerHTML = deadlines.map(function (x) {
                 var late = x[1] < new Date();
@@ -479,6 +563,9 @@
 
         // Συμπλήρωση πεδίων από τις απαντήσεις
         q('B4').value = type;
+        // Ο τύπος της αναλυτικής φόρμας αλλάζει αυτόματα μόνο αν ο χρήστης δεν τον έχει γυρίσει σε ενδιάμεση ή τελική
+        var t72 = q('F72_B5').value;
+        if (!t72 || t72 === F72.LISTS.B5[0] || t72 === F72.LISTS.B5[3]) q('F72_B5').value = type72;
         var cons = [];
         if (sig[0] === 'yes') cons.push('Σοβαρή διατάραξη στη λειτουργία των υπηρεσιών.');
         if (sig[1] === 'yes') cons.push('Σοβαρή οικονομική ζημία για τον οργανισμό.');
@@ -494,10 +581,11 @@
         if (!showRest) lockAfter1();
         $('irGo2').classList.toggle('hidden', !showRest);
         render(1);
+        if (quiet === true) return;
         $('irVerdict').focus({ preventScroll: true });
         $('irVerdict').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    $('irCheck').addEventListener('click', verdict);
+    $('irCheck').addEventListener('click', function () { verdict(); });
     q('B34').addEventListener('input', function () { this.removeAttribute('data-auto'); });
 
     function download(blob, name) {
@@ -534,6 +622,26 @@
         return { cells: cells, controls: controls };
     }
 
+    // Ίδια δεδομένα, γραμμένα στα κελιά της αναλυτικής φόρμας (μία γραμμή κάτω, και τα πεδία που έχει μόνο αυτή)
+    function collect72() {
+        var entity = val('entity');
+        var det = dt('detected'), st = dt('started'), rc = dt('recovered');
+        var cells = {
+            B4: fmt(new Date()).slice(0, 10), B5: val('F72_B5'),
+            B7: { essential: F72.LISTS.B7[0], important: F72.LISTS.B7[0], out: F72.LISTS.B7[1], unknown: F72.LISTS.B7[2] }[entity] || '',
+            B8: { essential: F72.LISTS.B8[0], important: F72.LISTS.B8[1], unknown: F72.LISTS.B8[2] }[entity] || '',
+            B9: val('B8'), B10: val('B9'), B11: val('B10'), B12: val('B11'), B13: val('B12'), B14: val('B13'), B15: val('B14'), B16: val('B15'), B17: val('B16'),
+            B19: det instanceof Date ? fmt(det) : '', B20: st instanceof Date ? fmt(st) : 'Άγνωστο',
+            B22: val('B21'), B23: val('B22'), B24: val('F72_B24'), B25: val('B24'), B26: val('B25'),
+            B31: val('F72_B31'), B32: val('B30'), B33: val('B31'),
+            B35: picked('crossBorder')[0] === 'yes' ? val('B33') : '', B36: val('B34'),
+            B53: rc instanceof Date ? fmt(rc) : '', B54: val('B38'), B55: val('F72_B55'), B56: val('F72_B56')
+        };
+        ['B39', 'B40', 'B41', 'B42', 'B43', 'B44', 'B45', 'B46', 'B47', 'B48', 'B49'].forEach(function (k) { cells[k] = val('F72_' + k); });
+        var controls = {}; Object.keys(OPTS).forEach(function (g) { controls[g] = picked(g); });
+        return { cells: cells, controls: controls };
+    }
+
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         var err = $('irErr'), miss = [];
@@ -542,6 +650,8 @@
         var dd = dt('detected'), ds = dt('started');
         if (!dd || dd === 'bad') miss.push('πότε το αντιλήφθηκες, ως ηη/μμ/εεεε και ωω:λλ (βήμα 1)');
         if (ds === 'bad') miss.push('σωστή ώρα έναρξης ή άφησέ την κενή (βήμα 3)');
+        if (is72() && dt('recovered') === 'bad') { showDtIssue('recovered', true); miss.push('σωστή ώρα αποκατάστασης ή άφησέ την κενή (βήμα 5)'); }
+        if (is72() && !val('F72_B5')) miss.push('τον τύπο αναφοράς (βήμα 3)');
         if (!picked('rootCause').length) miss.push('τη βασική αιτία');
         if (!val('B21')) miss.push('τον τύπο περιστατικού');
         if (!val('B22')) miss.push('τη σύντομη περιγραφή');
@@ -549,24 +659,28 @@
         if (miss.length) { err.textContent = 'Συμπλήρωσε ' + miss.join(', ') + '.'; err.classList.remove('hidden'); return; }
         err.classList.add('hidden');
         rememberEntity();
-        var data = collect();
-        fetch(TEMPLATE).then(function (r) { if (!r.ok) throw new Error('Δεν φορτώθηκε το πρότυπο της ΕΑΚ.'); return r.arrayBuffer(); })
-            .then(function (buf) { return F.fill(window.JSZip, buf, data); })
+        var m72 = is72(), data = m72 ? collect72() : collect();
+        fetch(m72 ? TEMPLATE72 : TEMPLATE).then(function (r) { if (!r.ok) throw new Error('Δεν φορτώθηκε το πρότυπο της ΕΑΚ.'); return r.arrayBuffer(); })
+            .then(function (buf) { return (m72 ? F72 : F).fill(window.JSZip, buf, data); })
             .then(function (blob) {
                 var ref = val('B25');
-                download(blob, 'EAK-Forma-24oron-' + safeName(ref) + '.xlsx');
+                download(blob, (m72 ? 'EAK-Forma-72oron-' : 'EAK-Forma-24oron-') + safeName(ref) + '.xlsx');
                 var pub = val('publicBody') === '1', ctrl = data.controls, n = [];
-                var subj = 'Έγκαιρη προειδοποίηση 24 ωρών · ' + val('B10') + ' · ' + ref;
+                var subj = (m72 ? val('F72_B5') : 'Έγκαιρη προειδοποίηση 24 ωρών') + ' · ' + val('B10') + ' · ' + ref;
                 n.push('<p><strong class="text-slate-100">1. Έλεγξε το αρχείο.</strong> Άνοιξέ το στο Excel και δες ότι όλα είναι σωστά. Τα checkboxes και οι επιλογές είναι ήδη τσεκαρισμένα.</p>');
                 n.push(pub
                     ? '<p><strong class="text-slate-100">2. Στείλ\' το</strong> στην CSIRT της ΕΥΠ, με ταυτόχρονη ενημέρωση της ΕΑΚ στο <a class="text-blue-400 underline" href="mailto:incident@cyber.gov.gr?subject=' + encodeURIComponent(subj) + '">incident@cyber.gov.gr</a>. Επισύναψε το αρχείο.</p>'
                     : '<p><strong class="text-slate-100">2. Στείλ\' το</strong> στο <a class="text-blue-400 underline" href="mailto:incident@cyber.gov.gr?subject=' + encodeURIComponent(subj) + '">incident@cyber.gov.gr</a> και επισύναψε το αρχείο. Ο σύνδεσμος ανοίγει νέο email με έτοιμο θέμα.</p>');
-                n.push('<p><strong class="text-slate-100">3. Κράτα τον φάκελο περιστατικού.</strong> Πάτησε «💾 Φάκελος περιστατικού». Θα τον χρειαστείς για την αναφορά των 72 ωρών.</p>');
+                n.push(m72
+                    ? '<p><strong class="text-slate-100">3. Κράτα τον φάκελο περιστατικού.</strong> Πάτησε «💾 Φάκελος περιστατικού». Για την ενδιάμεση ή την τελική έκθεση τον ανοίγεις ξανά, αλλάζεις τον τύπο αναφοράς στο βήμα 3 και ενημερώνεις όσα άλλαξαν.</p>'
+                    : '<p><strong class="text-slate-100">3. Κράτα τον φάκελο περιστατικού.</strong> Πάτησε «💾 Φάκελος περιστατικού». Για την αναφορά των 72 ωρών τον ανοίγεις ξανά και διαλέγεις «Γνωστοποίηση 72 ωρών και τελική έκθεση».</p>');
                 if (ctrl.dataTypes.indexOf('personal') >= 0 || ctrl.dataTypes.indexOf('sensitive') >= 0)
                     n.push('<p class="text-amber-300">Τέθηκαν σε κίνδυνο προσωπικά δεδομένα. Αν πρόκειται για παραβίαση δεδομένων προσωπικού χαρακτήρα, ο υπεύθυνος επεξεργασίας τη γνωστοποιεί χωριστά στην ΑΠΔΠΧ μέσα σε 72 ώρες (άρθρο 33 GDPR). Η αναφορά στην ΕΑΚ δεν την αντικαθιστά.</p>');
                 if (ctrl.rootCause.indexOf('malicious') >= 0 && ctrl.authorities.indexOf('cybercrime') < 0)
                     n.push('<p>Αν υπάρχει υπόνοια ποινικού αδικήματος, η ΕΑΚ σε καθοδηγεί για την αναφορά στην εισαγγελία ή στην αρμόδια Διεύθυνση της Ελληνικής Αστυνομίας. Μπορείς να το ζητήσεις όταν τη στείλεις.</p>');
-                if (deadlines.length > 1) n.push('<p>Επόμενη προθεσμία: <strong class="text-slate-100">γνωστοποίηση 72 ωρών έως ' + esc(fmtLong(deadlines[1][1])) + '</strong>.</p>');
+                if (deadlines.length > 1) n.push(m72
+                    ? '<p>Επόμενη προθεσμία: <strong class="text-slate-100">τελική έκθεση έως ' + esc(fmtLong(deadlines[2][1])) + '</strong>, με τύπο «Τελική Μηνιαία Αναφορά».</p>'
+                    : '<p>Επόμενη προθεσμία: <strong class="text-slate-100">γνωστοποίηση 72 ωρών έως ' + esc(fmtLong(deadlines[1][1])) + '</strong>.</p>');
                 $('irNext').innerHTML = n.join('');
                 $('irDone').classList.remove('hidden');
                 $('irDone').focus({ preventScroll: true });
@@ -591,13 +705,16 @@
         rd.onload = function () {
             try {
                 var o = JSON.parse(rd.result); if (!o || o.tool !== 'thecybersec.gr/anafora-peristatikou') throw 0;
+                // Αν ο χρήστης διάλεξε ήδη την αναλυτική φόρμα, μένει σε αυτήν, ακόμη κι αν ο φάκελος σώθηκε στις 24 ώρες
+                var keep72 = is72();
                 Array.prototype.forEach.call(form.elements, function (e) {
                     if (!e.name || !(e.name in o.fields)) { if (e.type === 'radio' || e.type === 'checkbox') if (e.name && e.name !== 'irRemember') e.checked = false; return; }
                     var v = o.fields[e.name];
                     if (e.type === 'radio' || e.type === 'checkbox') e.checked = [].concat(v).indexOf(e.value) >= 0;
                     else e.value = v;
                 });
-                updateShow(); verdict();
+                if (keep72) form.querySelector('input[name="rep"][value="72"]').checked = true;
+                applyMode(); updateShow(); verdict();
                 if (canLeave1) { var k = 1; while (k < STEPS.length && advance(k, false)) k++; openStep(Math.min(k, STEPS.length), true); }
             } catch (ex) { $('irErr').textContent = 'Το αρχείο δεν είναι φάκελος περιστατικού αυτού του εργαλείου.'; $('irErr').classList.remove('hidden'); }
         };
@@ -605,7 +722,7 @@
     });
 
     form.addEventListener('reset', function () {
-        setTimeout(function () { ['irVerdict', 'irGo2', 'irDone', 'irErr', 'irCheckErr'].forEach(function (id) { $(id).classList.add('hidden'); }); deadlines = []; canLeave1 = false; lockAfter1(); updateShow(); openStep(1, false); }, 0);
+        setTimeout(function () { ['irVerdict', 'irGo2', 'irDone', 'irErr', 'irCheckErr'].forEach(function (id) { $(id).classList.add('hidden'); }); deadlines = []; canLeave1 = false; lockAfter1(); applyMode(); updateShow(); openStep(1, false); }, 0);
     });
 })();
 </script>

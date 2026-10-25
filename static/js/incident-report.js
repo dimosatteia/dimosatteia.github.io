@@ -1,7 +1,7 @@
 /* Οδηγός αναφοράς περιστατικού στην ΕΑΚ · thecybersec.gr
- * Συμπληρώνει το επίσημο πρότυπο «Φόρμα Αναφοράς 24ωρών» της Εθνικής Αρχής
- * Κυβερνοασφάλειας (έκδοση 260706) μέσα στον browser. Κανένα στοιχείο δεν
- * αποστέλλεται πουθενά.
+ * Συμπληρώνει τα επίσημα πρότυπα της Εθνικής Αρχής Κυβερνοασφάλειας (έκδοση 260706)
+ * μέσα στον browser: «Φόρμα Αναφοράς 24ωρών» (EakForm24) και «Φόρμα Αναφοράς 72ωρών
+ * & Τελικής Έκθεσης» (EakForm72). Κανένα στοιχείο δεν αποστέλλεται πουθενά.
  *
  * Γράφει κείμενο στα κελιά της στήλης B και αλλάζει την κατάσταση των
  * checkboxes και radio buttons της φόρμας (xl/ctrlProps και vmlDrawing1.vml).
@@ -44,6 +44,35 @@
         B31: ['Επηρεάστηκε σε μεγάλο βαθμό', 'Επηρεάστηκε μερικώς', 'Δεν επηρεάστηκε', 'Άγωστο']
     };
 
+    // ── Φόρμα 72 ωρών και τελικής έκθεσης: ίδια λογική, άλλα κελιά (μετατοπισμένα κατά μία γραμμή) και περισσότερα στοιχεία ελέγχου.
+    // Τα ctrlProp και τα VML shape ids βγήκαν από το xl/worksheets/sheet1.xml (<controls>) και το vmlDrawing1.vml του προτύπου.
+    var CONTROLS72 = {
+        rootCause: { row: 21, multi: true, opts: [['malicious', 73, 12521], ['malfunction', 74, 12522], ['human', 75, 12523], ['natural', 76, 12524], ['unknown', 77, 12525]] },
+        status: { row: 24, multi: false, opts: [['ongoing', 71, 12508], ['completed', 72, 12509]] },
+        recurring: { row: 24, multi: true, opts: [['yes', 69, 12506]] },
+        cia: { row: 28, multi: true, opts: [['c', 1, 12382], ['i', 2, 12383], ['a', 3, 12384]] },
+        dataTypes: { row: 29, multi: true, opts: [['public', 4, 12385], ['personal', 5, 12386], ['sensitive', 6, 12387], ['classified', 7, 12388], ['unknown', 8, 12389]] },
+        sectors: { row: 30, multi: true, opts: [['energy', 9, 12390], ['transport', 10, 12391], ['banking', 11, 12392], ['fmi', 12, 12393], ['health', 13, 12394], ['water', 14, 12395], ['wastewater', 15, 12396], ['digital', 16, 12397], ['ictb2b', 17, 12398], ['publicadmin', 18, 12399], ['space', 19, 12400], ['postal', 20, 12401], ['waste', 21, 12402], ['chemicals', 22, 12403], ['food', 23, 12404], ['manufacturing', 24, 12405], ['digitalproviders', 25, 12406], ['research', 26, 12407], ['unknown', 27, 12408]] },
+        crossBorder: { row: 34, multi: false, opts: [['yes', 66, 12503], ['no', 67, 12504], ['unknown', 68, 12505]] },
+        impactType: { row: 37, multi: true, opts: [['resources', 28, 12410], ['users', 29, 12418], ['reputation', 30, 12419], ['health', 31, 12420], ['financial', 32, 12421], ['material', 33, 12422], ['geo', 34, 12423]] },
+        resources: { row: 38, multi: true, opts: [['atm', 42, 12466], ['backuppower', 43, 12468], ['physsec', 44, 12469], ['mailbox', 45, 12471], ['mobilebase', 46, 12472], ['servers', 47, 12473], ['submarine', 48, 12474], ['switches', 49, 12475], ['underground', 50, 12476], ['website', 51, 12477], ['industrial', 52, 12485], ['application', 53, 12486], ['workstations', 54, 12490], ['other', 55, 12491]] },
+        bcp: { row: 51, multi: false, opts: [['yes', 60, 12497], ['no', 61, 12498]] },
+        drp: { row: 52, multi: false, opts: [['yes', 63, 12500], ['no', 64, 12501]] },
+        authorities: { row: 57, multi: true, opts: [['nationalcert', 83, 12533], ['elcsirt', 78, 12527], ['cybercrime', 39, 12455], ['dpa', 40, 12456], ['adae', 38, 12454], ['bog', 79, 12528], ['hcmc', 82, 12532], ['cyberdefence', 80, 12530], ['caa', 81, 12531], ['other', 41, 12457]] },
+        stakeholders: { row: 58, multi: true, opts: [['users', 35, 12450], ['public', 36, 12451], ['crossborder', 37, 12452]] },
+        csirt: { row: 59, multi: false, opts: [['yes', 57, 12494], ['no', 58, 12495]] }
+    };
+    // Το πρότυπο έχει ενδεικτικό κείμενο («16/9/2025 και ώρα 2:30 μμ») στα B19, B20 και B53. Γράφονται πάντα, ώστε να σβήνει.
+    var CELLS72 = ['B4', 'B5', 'B7', 'B8', 'B9', 'B10', 'B11', 'B12', 'B13', 'B14', 'B15', 'B16', 'B17',
+        'B19', 'B20', 'B22', 'B23', 'B24', 'B25', 'B26', 'B31', 'B32', 'B33', 'B35', 'B36',
+        'B39', 'B40', 'B41', 'B42', 'B43', 'B44', 'B45', 'B46', 'B47', 'B48', 'B49', 'B53', 'B54', 'B55', 'B56'];
+    var LISTS72 = {
+        B5: ['Αναφορά 72 ωρών', 'Ενδιάμεση Αναφορά κατόπιν αιτήματος της ΕΑΚ', 'Τελική Μηνιαία Αναφορά', 'Εθελοντική Αναφορά Περιστατικού'],
+        B7: LISTS.B6, B8: LISTS.B7, B9: LISTS.B8, B22: LISTS.B21, B32: LISTS.B30, B33: LISTS.B31,
+        B46: ['Χωρίς αντίκτυπο', 'Μικρό αντίκτυπο', 'Μεγάλο αντίκτυπο', 'Πολύ μεγάλο αντίκτυπο'],
+        B47: ['Χωρίς αντίκτυπο', 'Μικρό αντίκτυπο', 'Μεγάλο αντίκτυπο', 'Πολύ μεγάλο αντίκτυπο']
+    };
+
     function xmlEsc(s) {
         return String(s == null ? '' : s)
             .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '')
@@ -81,7 +110,8 @@
      * data.controls: { rootCause: ['malicious'], status: ['ongoing'], ... }
      * Επιστρέφει Promise με Blob (browser) ή Uint8Array (Node).
      */
-    function fill(JSZip, template, data) {
+    function fillWith(spec, JSZip, template, data) {
+        var CELLS = spec.CELLS, LISTS = spec.LISTS, CONTROLS = spec.CONTROLS;
         return JSZip.loadAsync(template).then(function (zip) {
             var sheetPath = 'xl/worksheets/sheet1.xml', vmlPath = 'xl/drawings/vmlDrawing1.vml';
             return Promise.all([zip.file(sheetPath).async('string'), zip.file(vmlPath).async('string')]).then(function (r) {
@@ -111,7 +141,10 @@
         });
     }
 
-    var api = { CONTROLS: CONTROLS, CELLS: CELLS, LISTS: LISTS, fill: fill };
-    if (typeof module !== 'undefined' && module.exports) module.exports = api;
-    else root.EakForm24 = api;
+    var api = { CONTROLS: CONTROLS, CELLS: CELLS, LISTS: LISTS };
+    api.fill = function (JSZip, template, data) { return fillWith(api, JSZip, template, data); };
+    var api72 = { CONTROLS: CONTROLS72, CELLS: CELLS72, LISTS: LISTS72 };
+    api72.fill = function (JSZip, template, data) { return fillWith(api72, JSZip, template, data); };
+    if (typeof module !== 'undefined' && module.exports) module.exports = { EakForm24: api, EakForm72: api72 };
+    else { root.EakForm24 = api; root.EakForm72 = api72; }
 })(typeof window !== 'undefined' ? window : this);
