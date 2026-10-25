@@ -73,6 +73,11 @@
             <fieldset class="flex flex-col gap-3 px-3 sm:px-4 pb-4 pt-1 min-w-0">
                 <legend class="sr-only">{{ $n }}. {{ $g.name }}</legend>
                 <p class="text-xs text-slate-400 -mt-2">{{ $g.hint }} <span class="prNaNote"></span></p>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3 rounded-lg border border-blue-500/30 bg-blue-500/5 px-3 py-2.5">
+                    <label for="prOwnAll-{{ $g.key }}" class="text-sm text-slate-200 sm:whitespace-nowrap">Υπεύθυνος (owner) σε όλα τα παρακάτω</label>
+                    <select id="prOwnAll-{{ $g.key }}" class="prOwnAll {{ $in }} sm:w-48" data-group="{{ $g.key }}"><option value="">Διάλεξε ρόλο</option>{{ range $D.roles }}<option>{{ . }}</option>{{ end }}</select>
+                    <span class="prOwnAllMsg text-xs text-emerald-300 sm:max-w-xs" role="status"></span>
+                </div>
                 {{- range where $D.items "group" $g.key }}
                 {{- $it := . }}
                 <div class="prItem rounded-lg border border-slate-700 bg-slate-950/40 p-3 min-w-0" id="pr-{{ $it.id }}" data-id="{{ $it.id }}"{{ if $it.board }} data-board{{ end }} data-scope="{{ $it.scope }}">
@@ -306,6 +311,14 @@
     form.addEventListener('focusout', function (e) { if (e.target.classList && e.target.classList.contains('prDate')) showItemErr(e.target.closest('.prItem'), true); });
     form.addEventListener('change', function (e) {
         var t = e.target;
+        // Ένας υπεύθυνος για όλα τα έγγραφα του βήματος. Μετά αλλάζεις όποιο θέλεις ξεχωριστά.
+        if (t.classList.contains('prOwnAll')) {
+            var stp = t.closest('.prStep'), msg = stp.querySelector('.prOwnAllMsg'), v = t.value, n = 0;
+            if (v) Array.prototype.forEach.call(stp.querySelectorAll('.prItem:not([data-na]) .prOwner'), function (o) { o.value = v; n++; });
+            msg.textContent = v ? 'Ορίστηκε ο ρόλος ' + v + ' σε ' + n + (n === 1 ? ' έγγραφο' : ' έγγραφα') + '. Μπορείς να αλλάξεις όποιο θέλεις ξεχωριστά.' : '';
+            changed();
+            return;
+        }
         if (t.name === 'prEnt') { applyEntity(); err(1, ''); }
         if (t.name && t.name.indexOf('pr-st-') === 0) {
             var box = t.closest('.prItem'); box.setAttribute('data-st', t.value); showItemErr(box, false);
@@ -401,6 +414,7 @@
             done = 0; last = null;
             Array.prototype.forEach.call(form.querySelectorAll('.prItem'), function (b) { b.removeAttribute('data-st'); b.querySelector('[data-f="next"]').removeAttribute('data-manual'); showItemErr(b, false); });
             steps.forEach(function (st, i) { if (i) { st.setAttribute('data-locked', ''); st.open = false; var l = st.querySelector('.prLock'); if (l) l.classList.remove('hidden'); } note(i + 1, ''); err(i + 1, ''); });
+            Array.prototype.forEach.call(form.querySelectorAll('.prOwnAllMsg'), function (m) { m.textContent = ''; });
             steps[0].open = true; out.classList.add('hidden'); applyEntity(); impMsg(''); side();
         }, 0);
     });
