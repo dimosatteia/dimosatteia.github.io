@@ -2,6 +2,9 @@
        .github/workflows/kev-microsoft.yml από το cisagov/kev-data (CC0 1.0). Ο browser του επισκέπτη
        δεν καλεί καμία εξωτερική υπηρεσία: όλα τα δεδομένα είναι μέσα στη σελίδα. Χρήση: {{< kev-microsoft >}} */ -}}
 {{- $d := site.Data.kev_microsoft -}}
+{{- /* Χρώματα και ονόματα για τη σοβαρότητα CVSS (κλίμακα NVD). Τα ίδια στο JavaScript πιο κάτω. */ -}}
+{{- $sevCls := dict "CRITICAL" "border-red-400 bg-red-600/30 text-red-100 font-semibold" "HIGH" "border-orange-500/60 bg-orange-500/15 text-orange-200" "MEDIUM" "border-yellow-500/60 bg-yellow-500/10 text-yellow-200" "LOW" "border-emerald-500/60 bg-emerald-500/10 text-emerald-200" "NONE" "border-slate-600 text-slate-300" -}}
+{{- $sevName := dict "CRITICAL" "Κρίσιμη" "HIGH" "Υψηλή" "MEDIUM" "Μεσαία" "LOW" "Χαμηλή" "NONE" "Καμία" -}}
 {{- if not $d -}}
 <p>Τα δεδομένα του καταλόγου δεν είναι διαθέσιμα αυτή τη στιγμή.</p>
 {{- else -}}
@@ -75,7 +78,7 @@
         {{- /* Αρχικό περιεχόμενο χωρίς JavaScript: οι 10 πιο πρόσφατες. */ -}}
         {{- range first 10 $d.items }}
         <li class="rounded-lg border border-slate-700 bg-slate-900/60 p-4 text-sm">
-            <p class="font-mono text-blue-300"><a href="{{ .msrc }}" rel="noopener" target="_blank">{{ .cve }}</a> · <span class="text-slate-300">{{ .product }}</span></p>
+            <p class="font-mono text-blue-300"><a href="{{ .msrc }}" rel="noopener" target="_blank">{{ .cve }}</a>{{ with .cvss }} <span class="ml-1 rounded border px-1.5 py-0.5 text-[11px] {{ index $sevCls .sev }}">CVSS {{ .v }} {{ printf "%.1f" .score }} {{ index $sevName .sev }}</span>{{ end }} · <span class="text-slate-300">{{ .product }}</span></p>
             <p class="text-slate-100 mt-1">{{ .name }}</p>
             <p class="text-xs text-slate-400 mt-1">Προστέθηκε {{ .added }} · Προθεσμία CISA {{ .due }}{{ if .ransomware }} · Ransomware: γνωστή χρήση{{ end }}</p>
         </li>
@@ -87,7 +90,7 @@
         <span id="kevKqlMsg" class="self-center text-xs text-slate-400" aria-live="polite"></span>
     </div>
 
-    <p class="mt-5 text-xs text-slate-400">Πηγή: <a class="underline hover:text-blue-300" href="{{ $d.catalog }}" rel="noopener" target="_blank">CISA Known Exploited Vulnerabilities Catalog</a>, μέσω του επίσημου mirror <a class="underline hover:text-blue-300" href="{{ $d.source }}" rel="noopener" target="_blank">cisagov/kev-data</a> · Άδεια {{ $d.license }}. Οι περιγραφές είναι της CISA, στα Αγγλικά. Το thecybersec.gr δεν συνδέεται με την CISA ή τη Microsoft.</p>
+    <p class="mt-5 text-xs text-slate-400">Πηγή: <a class="underline hover:text-blue-300" href="{{ $d.catalog }}" rel="noopener" target="_blank">CISA Known Exploited Vulnerabilities Catalog</a>, μέσω του επίσημου mirror <a class="underline hover:text-blue-300" href="{{ $d.source }}" rel="noopener" target="_blank">cisagov/kev-data</a> · Άδεια {{ $d.license }}. Η βαθμολογία CVSS είναι από το <a class="underline hover:text-blue-300" href="{{ $d.cvssSource }}" rel="noopener" target="_blank">CVE List</a>: της Microsoft ως CNA, ή του CISA ADP όπου η Microsoft δεν έδωσε. Οι περιγραφές είναι της CISA, στα Αγγλικά. Το thecybersec.gr δεν συνδέεται με την CISA ή τη Microsoft.</p>
 </div>
 
 <script type="application/json" id="kevData">{{ $d.items | jsonify | safeJS }}</script>
@@ -104,6 +107,13 @@
         count = document.getElementById('kevCount'), kqlBtn = document.getElementById('kevKql'),
         kqlMsg = document.getElementById('kevKqlMsg');
     var PAGE = 20, shown = PAGE, current = [];
+    var SEV = {
+        CRITICAL: ['border-red-400 bg-red-600/30 text-red-100 font-semibold', 'Κρίσιμη'],
+        HIGH: ['border-orange-500/60 bg-orange-500/15 text-orange-200', 'Υψηλή'],
+        MEDIUM: ['border-yellow-500/60 bg-yellow-500/10 text-yellow-200', 'Μεσαία'],
+        LOW: ['border-emerald-500/60 bg-emerald-500/10 text-emerald-200', 'Χαμηλή'],
+        NONE: ['border-slate-600 text-slate-300', 'Καμία']
+    };
     var months = ['Ιαν', 'Φεβ', 'Μαρ', 'Απρ', 'Μαΐ', 'Ιουν', 'Ιουλ', 'Αυγ', 'Σεπ', 'Οκτ', 'Νοε', 'Δεκ'];
     var cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 90);
     var cutoffStr = cutoff.toISOString().slice(0, 10);
@@ -129,6 +139,12 @@
         var a = el('a', 'text-blue-300 underline-offset-2 hover:underline', i.cve);
         a.href = i.msrc; a.target = '_blank'; a.rel = 'noopener';
         head.appendChild(a);
+        if (i.cvss) {
+            var sv = SEV[i.cvss.sev] || SEV.NONE;
+            var b = el('span', 'rounded border px-1.5 py-0.5 text-[11px] ' + sv[0], 'CVSS ' + i.cvss.v + ' ' + Number(i.cvss.score).toFixed(1) + ' ' + sv[1]);
+            b.title = (i.cvss.vector || '') + ' · Βαθμολογία από ' + (i.cvss.by === 'CNA' ? 'τη Microsoft (CNA)' : 'το CISA ADP (Vulnrichment)');
+            head.appendChild(b);
+        }
         head.appendChild(el('span', 'text-slate-500', '·'));
         head.appendChild(el('span', 'text-slate-300', i.product));
         if (i.ransomware) head.appendChild(el('span', 'ml-1 rounded bg-red-500/15 px-1.5 py-0.5 text-[11px] text-red-300 font-sans', 'Ransomware'));

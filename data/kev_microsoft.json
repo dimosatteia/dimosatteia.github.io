@@ -4,13 +4,15 @@
  "license": "CC0 1.0",
  "catalogVersion": "2026.10.23",
  "dateReleased": "2026-10-23T19:30:18.9209Z",
- "generated": "2026-10-25T06:58:37Z",
+ "generated": "2026-10-25T14:33:28Z",
  "totalAll": 1756,
  "totalMicrosoft": 390,
  "ransomwareKnown": 117,
  "added30": 2,
  "added90": 8,
  "addedThisYear": 40,
+ "cvssSource": "https://github.com/CVEProject/cvelistV5",
+ "withCvss": 390,
  "products": [
   {
    "name": "Windows",
@@ -309,7 +311,14 @@
    "cwes": [
     "CWE-77"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-96951"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-96951",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-65660",
@@ -322,7 +331,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-65660"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-65660",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-85880",
@@ -336,7 +352,14 @@
     "CWE-122",
     "CWE-908"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-85880"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-85880",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-81963",
@@ -350,7 +373,14 @@
     "CWE-59",
     "CWE-284"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-81963"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-81963",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2019-1068",
@@ -361,7 +391,14 @@
    "ransomware": false,
    "desc": "Microsoft SQL Server contains a remote code execution vulnerability that could allow an attacker to execute code in the context of the SQL Server Database Engine service account.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1068"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1068",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2026-55040",
@@ -374,7 +411,14 @@
    "cwes": [
     "CWE-1390"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-55040"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-55040",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.1,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-33824",
@@ -387,7 +431,14 @@
    "cwes": [
     "CWE-415"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-33824"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-33824",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-68820",
@@ -400,7 +451,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-68820"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-68820",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-50522",
@@ -413,7 +471,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50522"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50522",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-58644",
@@ -426,7 +491,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-58644"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-58644",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-56164",
@@ -439,7 +511,14 @@
    "cwes": [
     "CWE-306"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-56164"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-56164",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.3,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-56155",
@@ -452,7 +531,14 @@
    "cwes": [
     "CWE-1220"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-56155"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-56155",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-45659",
@@ -465,7 +551,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-45659"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-45659",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-45498",
@@ -476,7 +569,14 @@
    "ransomware": false,
    "desc": "Microsoft Defender contains an unspecified vulnerability that allows for denial of service.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-45498"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-45498",
+   "cvss": {
+    "v": "3.1",
+    "score": 4.0,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-41091",
@@ -489,7 +589,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-41091"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-41091",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2010-0806",
@@ -502,7 +609,14 @@
    "cwes": [
     "CWE-399"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-0806"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-0806",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2010-0249",
@@ -515,7 +629,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-0249"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-0249",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2009-1537",
@@ -526,7 +647,14 @@
    "ransomware": false,
    "desc": "Microsoft DirectX contains a NULL byte overwrite vulnerability in the QuickTime Movie Parser Filter in quartz.dll in DirectShow which could allow remote attackers to execute arbitrary code via a crafted QuickTime media file.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-1537"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-1537",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2008-4250",
@@ -539,7 +667,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2008-4250"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2008-4250",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2026-42897",
@@ -552,7 +687,14 @@
    "cwes": [
     "CWE-79"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-42897"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-42897",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-32202",
@@ -565,7 +707,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-32202"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-32202",
+   "cvss": {
+    "v": "3.1",
+    "score": 4.3,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-33825",
@@ -578,7 +727,14 @@
    "cwes": [
     "CWE-1220"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-33825"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-33825",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-32201",
@@ -591,7 +747,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-32201"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-32201",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2009-0238",
@@ -604,7 +767,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0238"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0238",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2025-60710",
@@ -617,7 +787,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-60710"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-60710",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36424",
@@ -630,7 +807,14 @@
    "cwes": [
     "CWE-125"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2023-36424"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2023-36424",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-21529",
@@ -643,7 +827,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-21529"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-21529",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2012-1854",
@@ -656,7 +847,14 @@
    "cwes": [
     "CWE-426"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-1854"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-1854",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2026-20963",
@@ -669,7 +867,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-20963"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-20963",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2008-0015",
@@ -680,7 +885,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Video ActiveX Control contains a remote code execution vulnerability. An attacker could exploit the vulnerability by constructing a specially crafted Web page. When a user views the Web page, the vulnerability could allow remote code execution. An attacker who successfully exploited this vulnerability could gain the same user rights as the logged-on user.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2008-0015"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2008-0015",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2024-43468",
@@ -693,7 +905,14 @@
    "cwes": [
     "CWE-89"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43468"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43468",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-21533",
@@ -706,7 +925,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21533"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21533",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-21525",
@@ -719,7 +945,14 @@
    "cwes": [
     "CWE-476"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21525"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21525",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.2,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-21519",
@@ -732,7 +965,14 @@
    "cwes": [
     "CWE-843"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21519"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21519",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-21514",
@@ -745,7 +985,14 @@
    "cwes": [
     "CWE-807"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21514"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21514",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-21513",
@@ -758,7 +1005,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/advisory/CVE-2026-21513"
+   "msrc": "https://msrc.microsoft.com/update-guide/advisory/CVE-2026-21513",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-21510",
@@ -771,7 +1025,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21510"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21510",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-21509",
@@ -784,7 +1045,14 @@
    "cwes": [
     "CWE-807"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21509"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21509",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2026-20805",
@@ -797,7 +1065,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-20805"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-20805",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2009-0556",
@@ -810,7 +1085,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0556"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0556",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2025-62221",
@@ -823,7 +1105,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-62221"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-62221",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-62215",
@@ -836,7 +1125,14 @@
    "cwes": [
     "CWE-362"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-62215"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-62215",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-59287",
@@ -849,7 +1145,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-59287"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-59287",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-33073",
@@ -862,7 +1165,14 @@
    "cwes": [
     "CWE-284"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-33073"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-33073",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-59230",
@@ -875,7 +1185,14 @@
    "cwes": [
     "CWE-284"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-59230"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-59230",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24990",
@@ -888,7 +1205,14 @@
    "cwes": [
     "CWE-822"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24990"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24990",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-43226",
@@ -899,7 +1223,14 @@
    "ransomware": true,
    "desc": "Microsoft Windows Common Log File System Driver contains a privilege escalation vulnerability that could allow a local, privileged attacker to bypass certain security mechanisms.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-43226"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-43226",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2013-3918",
@@ -910,7 +1241,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows contains an out-of-bounds write vulnerability in the InformationCardSigninHelper Class ActiveX control, icardie.dll. An attacker could exploit the vulnerability by constructing a specially crafted webpage. When a user views the webpage, the vulnerability could allow remote code execution. An attacker who successfully exploited this vulnerability could gain the same user rights as the current user. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3918"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3918",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2011-3402",
@@ -921,7 +1259,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Kernel contains an unspecified vulnerability in the TrueType font parsing engine in win32k.sys in the kernel-mode drivers that allows remote attackers to execute arbitrary code via crafted font data in a Word document or web page.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2011-3402"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2011-3402",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2010-3962",
@@ -932,7 +1277,14 @@
    "ransomware": false,
    "desc": "Microsoft Internet Explorer contains an uninitialized memory corruption vulnerability that could allow for remote code execution. The impacted product could be end-of-life (EoL) and/or end-of-service (EoS). Users should discontinue product utilization.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-3962"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-3962",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-3893",
@@ -945,7 +1297,14 @@
    "cwes": [
     "CWE-399"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3893"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3893",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2007-0671",
@@ -956,7 +1315,14 @@
    "ransomware": false,
    "desc": "Microsoft Office Excel contains a remote code execution vulnerability that can be exploited when a specially crafted Excel file is opened. This malicious file could be delivered as an email attachment or hosted on a malicious website. An attacker could leverage this vulnerability by creating a specially crafted Excel file, which, when opened, allowing an attacker to execute remote code on the affected system.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2007-0671"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2007-0671",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2025-49706",
@@ -969,7 +1335,14 @@
    "cwes": [
     "CWE-287"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-49706"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-49706",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-49704",
@@ -982,7 +1355,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-49704"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-49704",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-53770",
@@ -995,7 +1375,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-53770"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-53770",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:F/RL:W/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-33053",
@@ -1008,7 +1395,14 @@
    "cwes": [
     "CWE-73"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-33053"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-33053",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-32709",
@@ -1021,7 +1415,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32709"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32709",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-32706",
@@ -1034,7 +1435,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32706"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32706",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-32701",
@@ -1047,7 +1455,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32701"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-32701",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-30400",
@@ -1060,7 +1475,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30400"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30400",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-30397",
@@ -1073,7 +1495,14 @@
    "cwes": [
     "CWE-843"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30397"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-30397",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24054",
@@ -1086,7 +1515,14 @@
    "cwes": [
     "CWE-73"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-24054"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-24054",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-29824",
@@ -1099,7 +1535,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-29824"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-29824",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-26633",
@@ -1112,7 +1555,14 @@
    "cwes": [
     "CWE-707"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-26633"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-26633",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24993",
@@ -1125,7 +1575,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24993"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24993",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24991",
@@ -1138,7 +1595,14 @@
    "cwes": [
     "CWE-125"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24991"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24991",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24985",
@@ -1152,7 +1616,14 @@
     "CWE-190",
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24985"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24985",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24984",
@@ -1165,7 +1636,14 @@
    "cwes": [
     "CWE-532"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24984"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24984",
+   "cvss": {
+    "v": "3.1",
+    "score": 4.6,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24983",
@@ -1178,7 +1656,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24983"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-24983",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2018-8639",
@@ -1191,7 +1676,14 @@
    "cwes": [
     "CWE-404"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2018-8639"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2018-8639",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.4,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2024-49035",
@@ -1204,7 +1696,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-49035"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-49035",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.7,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-24989",
@@ -1217,7 +1716,14 @@
    "cwes": [
     "CWE-284"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-24989"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2025-24989",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.2,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-21418",
@@ -1230,7 +1736,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21418"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21418",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-21391",
@@ -1243,7 +1756,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21391"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21391",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-21413",
@@ -1256,7 +1776,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21413"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21413",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-29059",
@@ -1269,7 +1796,14 @@
    "cwes": [
     "CWE-209"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-29059"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-29059",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-21335",
@@ -1282,7 +1816,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-21335"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-21335",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-21334",
@@ -1295,7 +1836,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-21334"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-21334",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2025-21333",
@@ -1308,7 +1856,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-21333"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2025-21333",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-35250",
@@ -1321,7 +1876,14 @@
    "cwes": [
     "CWE-822"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-35250"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-35250",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-49138",
@@ -1334,7 +1896,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-49138"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-49138",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-49039",
@@ -1347,7 +1916,14 @@
    "cwes": [
     "CWE-287"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-49039"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-49039",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-43451",
@@ -1360,7 +1936,14 @@
    "cwes": [
     "CWE-73"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43451"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43451",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38094",
@@ -1373,7 +1956,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38094"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38094",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.2,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-30088",
@@ -1386,7 +1976,14 @@
    "cwes": [
     "CWE-367"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-30088"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-30088",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-43573",
@@ -1399,7 +1996,14 @@
    "cwes": [
     "CWE-79"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43573"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43573",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-43572",
@@ -1412,7 +2016,14 @@
    "cwes": [
     "CWE-707"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/advisory/CVE-2024-43572"
+   "msrc": "https://msrc.microsoft.com/update-guide/advisory/CVE-2024-43572",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-0618",
@@ -1425,7 +2036,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2020-0618"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2020-0618",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2024-43461",
@@ -1438,7 +2056,14 @@
    "cwes": [
     "CWE-451"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43461"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-43461",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38226",
@@ -1451,7 +2076,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38226"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38226",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.3,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38217",
@@ -1464,7 +2096,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38217"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38217",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.4,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38014",
@@ -1477,7 +2116,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38014"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38014",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31196",
@@ -1488,7 +2134,14 @@
    "ransomware": false,
    "desc": "Microsoft Exchange Server contains an information disclosure vulnerability that allows for remote code execution.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2021-31196"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2021-31196",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.2,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38213",
@@ -1501,7 +2154,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38213"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38213",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38193",
@@ -1514,7 +2174,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38193"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38193",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38189",
@@ -1527,7 +2194,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38189"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38189",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38178",
@@ -1540,7 +2214,14 @@
    "cwes": [
     "CWE-843"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38178"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38178",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38107",
@@ -1553,7 +2234,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38107"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38107",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38106",
@@ -1566,7 +2254,14 @@
    "cwes": [
     "CWE-591"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38106"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38106",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2018-0824",
@@ -1579,7 +2274,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2018-0824"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/advisory/CVE-2018-0824",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2012-4792",
@@ -1592,7 +2294,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-4792"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-4792",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2024-38112",
@@ -1605,7 +2314,14 @@
    "cwes": [
     "CWE-451"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38112"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38112",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-38080",
@@ -1618,7 +2334,14 @@
    "cwes": [
     "CWE-190"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-38080"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-38080",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-26169",
@@ -1631,7 +2354,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-26169"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-26169",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-30051",
@@ -1644,7 +2374,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30051"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30051",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-30040",
@@ -1657,7 +2394,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30040"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30040",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-29988",
@@ -1670,7 +2414,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-29988"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-29988",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-38028",
@@ -1681,7 +2432,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Print Spooler service contains a privilege escalation vulnerability. An attacker may modify a JavaScript constraints file and execute it with SYSTEM-level permissions.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-38028"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-38028",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-24955",
@@ -1694,7 +2452,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-24955"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-24955",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.2,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-21338",
@@ -1707,7 +2472,14 @@
    "cwes": [
     "CWE-822"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21338"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21338",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-29360",
@@ -1720,7 +2492,14 @@
    "cwes": [
     "CWE-822"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-29360"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-29360",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.4,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-21410",
@@ -1733,7 +2512,14 @@
    "cwes": [
     "CWE-287"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21410"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21410",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-21412",
@@ -1746,7 +2532,14 @@
    "cwes": [
     "CWE-693"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-21412"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-21412",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2024-21351",
@@ -1759,7 +2552,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-21351"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2024-21351",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.6,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:H/A:L/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-29357",
@@ -1772,7 +2572,14 @@
    "cwes": [
     "CWE-303"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-29357"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-29357",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36584",
@@ -1783,7 +2590,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Mark of the Web (MOTW) contains a security feature bypass vulnerability resulting in a limited loss of integrity and availability of security features.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36584"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36584",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.4,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36036",
@@ -1796,7 +2610,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36036"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36036",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36033",
@@ -1809,7 +2630,14 @@
    "cwes": [
     "CWE-822"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36033"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36033",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36025",
@@ -1820,7 +2648,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows SmartScreen contains a security feature bypass vulnerability that could allow an attacker to bypass Windows Defender SmartScreen checks and their associated prompts.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36025"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36025",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-41763",
@@ -1833,7 +2668,14 @@
    "cwes": [
     "CWE-918"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-41763"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-41763",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.3,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36563",
@@ -1846,7 +2688,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36563"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36563",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-28229",
@@ -1859,7 +2708,14 @@
    "cwes": [
     "CWE-591"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-28229"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-28229",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36802",
@@ -1872,7 +2728,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36802"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36802",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36761",
@@ -1885,7 +2748,14 @@
    "cwes": [
     "CWE-668"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36761"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36761",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-38180",
@@ -1896,7 +2766,14 @@
    "ransomware": false,
    "desc": "Microsoft .NET Core and Visual Studio contain an unspecified vulnerability that allows for denial-of-service (DoS).",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-38180"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-38180",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36884",
@@ -1909,7 +2786,14 @@
    "cwes": [
     "CWE-362"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36884"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-36884",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-36874",
@@ -1922,7 +2806,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36874"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-36874",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-35311",
@@ -1935,7 +2826,14 @@
    "cwes": [
     "CWE-367"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-35311"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-35311",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-32049",
@@ -1946,7 +2844,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Defender SmartScreen contains a security feature bypass vulnerability that allows an attacker to bypass the Open File - Security Warning prompt.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-32049"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-32049",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-32046",
@@ -1957,7 +2862,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows MSHTML Platform contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-32046"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-32046",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2016-0165",
@@ -1970,7 +2882,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0165"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0165",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2023-29336",
@@ -1983,7 +2902,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-29336"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-29336",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-28252",
@@ -1996,7 +2922,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-28252"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-28252",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2019-1388",
@@ -2009,7 +2942,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1388"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1388",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-3163",
@@ -2022,7 +2962,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3163"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3163",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2023-24880",
@@ -2035,7 +2982,14 @@
    "cwes": [
     "CWE-863"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-24880"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-24880",
+   "cvss": {
+    "v": "3.1",
+    "score": 4.4,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-23397",
@@ -2048,7 +3002,14 @@
    "cwes": [
     "CWE-294"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-23397"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-23397",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-23376",
@@ -2061,7 +3022,14 @@
    "cwes": [
     "CWE-122"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-23376"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-23376",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-21823",
@@ -2074,7 +3042,14 @@
    "cwes": [
     "CWE-190"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21823"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21823",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:H/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-21715",
@@ -2087,7 +3062,14 @@
    "cwes": [
     "CWE-863"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21715"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21715",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.3,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2023-21674",
@@ -2100,7 +3082,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21674"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21674",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41080",
@@ -2111,7 +3100,14 @@
    "ransomware": true,
    "desc": "Microsoft Exchange Server contains an unspecified vulnerability that allows for privilege escalation. This vulnerability is chainable with CVE-2022-41082, which allows for remote code execution.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-41080"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-41080",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-44698",
@@ -2124,7 +3120,14 @@
    "cwes": [
     "CWE-755"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-44698"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-44698",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.4,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41049",
@@ -2137,7 +3140,14 @@
    "cwes": [
     "CWE-274"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-41049"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-41049",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.4,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41128",
@@ -2150,7 +3160,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41128"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41128",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41125",
@@ -2163,7 +3180,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41125"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41125",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41091",
@@ -2176,7 +3200,14 @@
    "cwes": [
     "CWE-863"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41091"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41091",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.4,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41073",
@@ -2189,7 +3220,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41073"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41073",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41033",
@@ -2202,7 +3240,14 @@
    "cwes": [
     "CWE-843"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-41033"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-41033",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41082",
@@ -2215,7 +3260,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41082"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41082",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-41040",
@@ -2228,7 +3280,14 @@
    "cwes": [
     "CWE-918"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41040"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41040",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2010-2568",
@@ -2241,7 +3300,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-2568"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-2568",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2022-37969",
@@ -2255,7 +3321,14 @@
     "CWE-20",
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-37969"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-37969",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-26923",
@@ -2268,7 +3341,14 @@
    "cwes": [
     "CWE-295"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-26923"
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2022-26923",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-21971",
@@ -2281,7 +3361,14 @@
    "cwes": [
     "CWE-824"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21971"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21971",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-34713",
@@ -2292,7 +3379,14 @@
    "ransomware": false,
    "desc": "A remote code execution vulnerability exists when Microsoft Windows MSDT is called using the URL protocol from a calling application.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-34713"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-34713",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-22047",
@@ -2305,7 +3399,14 @@
    "cwes": [
     "CWE-426"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-22047"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-22047",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-26925",
@@ -2318,7 +3419,14 @@
    "cwes": [
     "CWE-306"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-26925"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-26925",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-30190",
@@ -2331,7 +3439,14 @@
    "cwes": [
     "CWE-610"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-30190"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-30190",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2013-1331",
@@ -2344,7 +3459,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-1331"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-1331",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2012-4969",
@@ -2355,7 +3477,14 @@
    "ransomware": false,
    "desc": "Microsoft Internet Explorer contains a use-after-free vulnerability that allows remote attackers to execute code via a crafted web site.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-4969"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-4969",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2012-1889",
@@ -2368,7 +3497,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-1889"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-1889",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2012-0151",
@@ -2381,7 +3517,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-0151"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-0151",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2010-2572",
@@ -2394,7 +3537,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-2572"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-2572",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2009-0563",
@@ -2407,7 +3557,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0563"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0563",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2009-0557",
@@ -2420,7 +3577,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0557"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-0557",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2006-2492",
@@ -2433,7 +3597,14 @@
    "cwes": [
     "CWE-120"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2006-2492"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2006-2492",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-7256",
@@ -2446,7 +3617,14 @@
    "cwes": [
     "CWE-284"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7256"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7256",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-3393",
@@ -2459,7 +3637,14 @@
    "cwes": [
     "CWE-284"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3393"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3393",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0034",
@@ -2472,7 +3657,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0034"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0034",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-6175",
@@ -2485,7 +3677,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-6175"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-6175",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2425",
@@ -2498,7 +3697,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2425"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2425",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2360",
@@ -2511,7 +3717,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2360"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2360",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-1769",
@@ -2524,7 +3737,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1769"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1769",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.6,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-1671",
@@ -2537,7 +3757,14 @@
    "cwes": [
     "CWE-19"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1671"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1671",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-0071",
@@ -2550,7 +3777,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-0071"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-0071",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-0016",
@@ -2563,7 +3797,14 @@
    "cwes": [
     "CWE-22"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-0016"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-0016",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-4148",
@@ -2576,7 +3817,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4148"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4148",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-4123",
@@ -2589,7 +3837,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4123"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4123",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-4077",
@@ -2602,7 +3857,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4077"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4077",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-2817",
@@ -2615,7 +3877,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-2817"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-2817",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-7331",
@@ -2628,7 +3897,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-7331"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-7331",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-3896",
@@ -2641,7 +3917,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3896"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3896",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-0074",
@@ -2652,7 +3935,14 @@
    "ransomware": true,
    "desc": "Microsoft Silverlight does not properly validate pointers during HTML object rendering, which allows remote attackers to execute code via a crafted Silverlight application.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-0074"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-0074",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8611",
@@ -2665,7 +3955,14 @@
    "cwes": [
     "CWE-404"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8611"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8611",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-8543",
@@ -2678,7 +3975,14 @@
    "cwes": [
     "CWE-281"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8543"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8543",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0210",
@@ -2689,7 +3993,14 @@
    "ransomware": false,
    "desc": "A privilege escalation vulnerability exists when Internet Explorer does not properly enforce cross-domain policies, which could allow an attacker to access information.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0210"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0210",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0149",
@@ -2702,7 +4013,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0149"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0149",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0147",
@@ -2715,7 +4033,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0147"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0147",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0022",
@@ -2728,7 +4053,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0022"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0022",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0005",
@@ -2741,7 +4073,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0005"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0005",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-3351",
@@ -2754,7 +4093,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3351"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3351",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-3298",
@@ -2767,7 +4113,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3298"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3298",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0162",
@@ -2780,7 +4133,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0162"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0162",
+   "cvss": {
+    "v": "3.1",
+    "score": 4.3,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-1027",
@@ -2793,7 +4153,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1027"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1027",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0638",
@@ -2804,7 +4171,14 @@
    "ransomware": true,
    "desc": "Microsoft Update Notification Manager contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0638"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0638",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1385",
@@ -2817,7 +4191,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1385"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1385",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1130",
@@ -2830,7 +4211,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1130"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1130",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0880",
@@ -2841,7 +4229,14 @@
    "ransomware": false,
    "desc": "A local elevation of privilege vulnerability exists in how splwow64.exe handles certain calls. An attacker who successfully exploited the vulnerability could elevate privileges on an affected system from low-integrity to medium-integrity.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0880"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0880",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0703",
@@ -2852,7 +4247,14 @@
    "ransomware": false,
    "desc": "An information disclosure vulnerability exists in the way that the Windows SMB Server handles certain requests, which could lead to information disclosure from the server.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0703"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0703",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0676",
@@ -2863,7 +4265,14 @@
    "ransomware": false,
    "desc": "An information disclosure vulnerability exists when Internet Explorer improperly handles objects in memory. An attacker who successfully exploited this vulnerability could test for the presence of files on disk.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0676"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0676",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8589",
@@ -2874,7 +4283,14 @@
    "ransomware": false,
    "desc": "A privilege escalation vulnerability exists when Windows improperly handles calls to Win32k.sys. An attacker who successfully exploited this vulnerability could run remote code in the security context of the local system.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8589"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8589",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-4113",
@@ -2887,7 +4303,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4113"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4113",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-0322",
@@ -2900,7 +4323,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-0322"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-0322",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2022-26904",
@@ -2913,7 +4343,14 @@
    "cwes": [
     "CWE-362"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-26904"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-26904",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-21919",
@@ -2926,7 +4363,14 @@
    "cwes": [
     "CWE-1386"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21919"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21919",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-41357",
@@ -2937,7 +4381,14 @@
    "ransomware": false,
    "desc": "Microsoft Win32k contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-41357"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-41357",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-40450",
@@ -2948,7 +4399,14 @@
    "ransomware": false,
    "desc": "Microsoft Win32k contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-40450"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-40450",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-22718",
@@ -2959,7 +4417,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Print Spooler contains an unspecified vulnerability which allow for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-22718"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-22718",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2022-24521",
@@ -2973,7 +4438,14 @@
     "CWE-787",
     "CWE-1285"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-24521"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-24521",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2015-2502",
@@ -2986,7 +4458,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2502"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2502",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2021-42287",
@@ -2999,7 +4478,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42287"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42287",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-42278",
@@ -3012,7 +4498,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42278"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42278",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31166",
@@ -3025,7 +4518,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31166"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31166",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2017-0148",
@@ -3038,7 +4538,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0148"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0148",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2021-34484",
@@ -3051,7 +4558,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34484"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34484",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-38646",
@@ -3062,7 +4576,14 @@
    "ransomware": true,
    "desc": "Microsoft Office Access Connectivity Engine contains an unspecified vulnerability which can allow for remote code execution.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38646"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38646",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-34486",
@@ -3075,7 +4596,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34486"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34486",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2018-8440",
@@ -3086,7 +4614,14 @@
    "ransomware": true,
    "desc": "An elevation of privilege vulnerability exists when Windows improperly handles calls to Advanced Local Procedure Call (ALPC).",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8440"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8440",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8406",
@@ -3099,7 +4634,14 @@
    "cwes": [
     "CWE-404"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8406"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8406",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8405",
@@ -3112,7 +4654,14 @@
    "cwes": [
     "CWE-404"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8405"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8405",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0213",
@@ -3123,7 +4672,14 @@
    "ransomware": true,
    "desc": "Microsoft Windows COM Aggregate Marshaler allows for privilege escalation when an attacker runs a specially crafted application.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0213"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0213",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.3,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0059",
@@ -3136,7 +4692,14 @@
    "cwes": [
     "CWE-200"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0059"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0059",
+   "cvss": {
+    "v": "3.1",
+    "score": 4.3,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0037",
@@ -3149,7 +4712,14 @@
    "cwes": [
     "CWE-704"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0037"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0037",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-7201",
@@ -3162,7 +4732,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7201"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7201",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-7200",
@@ -3175,7 +4752,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7200"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7200",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0189",
@@ -3188,7 +4772,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0189"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0189",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0151",
@@ -3201,7 +4792,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0151"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0151",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0040",
@@ -3214,7 +4812,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0040"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0040",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2426",
@@ -3227,7 +4832,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2426"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2426",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2419",
@@ -3240,7 +4852,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2419"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2419",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-1770",
@@ -3253,7 +4872,14 @@
    "cwes": [
     "CWE-19"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1770"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1770",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-3660",
@@ -3266,7 +4892,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3660"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3660",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-2551",
@@ -3279,7 +4912,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-2551"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-2551",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2012-2539",
@@ -3292,7 +4932,14 @@
    "cwes": [
     "CWE-399"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-2539"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-2539",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2011-2005",
@@ -3305,7 +4952,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2011-2005"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2011-2005",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2010-4398",
@@ -3318,7 +4972,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-4398"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-4398",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2022-21999",
@@ -3332,7 +4993,14 @@
     "CWE-40",
     "CWE-1386"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21999"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21999",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2019-0903",
@@ -3343,7 +5011,14 @@
    "ransomware": false,
    "desc": "A remote code execution vulnerability exists in the way that the Windows Graphics Device Interface (GDI) handles objects in the memory. An attacker who successfully exploited this vulnerability could take control of the affected system.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0903"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0903",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8414",
@@ -3356,7 +5031,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8414"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8414",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8373",
@@ -3369,7 +5051,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8373"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8373",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0146",
@@ -3382,7 +5071,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0146"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0146",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-6332",
@@ -3395,7 +5091,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-6332"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-6332",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-6324",
@@ -3408,7 +5111,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-6324"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-6324",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1405",
@@ -3419,7 +5129,14 @@
    "ransomware": true,
    "desc": "A privilege escalation vulnerability exists when the Windows UPnP service improperly allows COM object creation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1405"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1405",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1322",
@@ -3430,7 +5147,14 @@
    "ransomware": true,
    "desc": "A privilege escalation vulnerability exists when Windows improperly handles authentication requests. An attacker who successfully exploited this vulnerability could run processes in an elevated context.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1322"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1322",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1315",
@@ -3443,7 +5167,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1315"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1315",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1253",
@@ -3456,7 +5187,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1253"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1253",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1132",
@@ -3467,7 +5205,14 @@
    "ransomware": false,
    "desc": "A privilege escalation vulnerability exists in Windows when the Win32k component fails to properly handle objects in memory.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1132"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1132",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1129",
@@ -3480,7 +5225,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1129"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1129",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1069",
@@ -3493,7 +5245,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1069"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1069",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2019-1064",
@@ -3506,7 +5265,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1064"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1064",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2019-0841",
@@ -3519,7 +5285,14 @@
    "cwes": [
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0841"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0841",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0543",
@@ -3532,7 +5305,14 @@
    "cwes": [
     "CWE-287"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0543"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0543",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8120",
@@ -3545,7 +5325,14 @@
    "cwes": [
     "CWE-404"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8120"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8120",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0101",
@@ -3558,7 +5345,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0101"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0101",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-3309",
@@ -3571,7 +5365,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3309"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3309",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2546",
@@ -3584,7 +5385,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2546"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2546",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.2,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2021-41379",
@@ -3597,7 +5405,14 @@
    "cwes": [
     "CWE-1386"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-41379"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-41379",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2019-1297",
@@ -3608,7 +5423,14 @@
    "ransomware": false,
    "desc": "A remote code execution vulnerability exists in Microsoft Excel when the software fails to properly handle objects in memory.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1297"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1297",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8581",
@@ -3619,7 +5441,14 @@
    "ransomware": true,
    "desc": "A privilege escalation vulnerability exists in Microsoft Exchange Server. An attacker who successfully exploited this vulnerability could attempt to impersonate any other user of the Exchange server.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8581"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8581",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.4,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-8540",
@@ -3632,7 +5461,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8540"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8540",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-11826",
@@ -3645,7 +5481,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-11826"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-11826",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0261",
@@ -3658,7 +5501,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0261"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0261",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0001",
@@ -3669,7 +5519,14 @@
    "ransomware": false,
    "desc": "The Graphics Device Interface (GDI) in Microsoft Windows Vista SP2; Windows Server 2008 SP2 and R2 SP1; Windows 7 SP1; Windows 8.1; Windows Server 2012 Gold and R2; Windows RT 8.1; and Windows 10 Gold, 1511, and 1607 allows local users to gain privileges",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0001"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0001",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-7262",
@@ -3682,7 +5539,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7262"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7262",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-7193",
@@ -3695,7 +5559,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7193"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7193",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0099",
@@ -3708,7 +5579,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0099"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0099",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2545",
@@ -3721,7 +5599,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2545"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2545",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2424",
@@ -3734,7 +5619,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2424"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2424",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-2387",
@@ -3747,7 +5639,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2387"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-2387",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-1701",
@@ -3760,7 +5659,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1701"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1701",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-1642",
@@ -3773,7 +5679,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1642"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1642",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-4114",
@@ -3786,7 +5699,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4114"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-4114",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-5065",
@@ -3799,7 +5719,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-5065"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-5065",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-3897",
@@ -3812,7 +5739,14 @@
    "cwes": [
     "CWE-399"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3897"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3897",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-1347",
@@ -3825,7 +5759,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-1347"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-1347",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2012-1856",
@@ -3838,7 +5779,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-1856"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-1856",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2011-1889",
@@ -3851,7 +5799,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2011-1889"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2011-1889",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2010-3333",
@@ -3864,7 +5819,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-3333"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-3333",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2010-0232",
@@ -3877,7 +5839,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-0232"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2010-0232",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2009-3129",
@@ -3890,7 +5859,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-3129"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-3129",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2009-1123",
@@ -3903,7 +5879,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-1123"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2009-1123",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2004-0210",
@@ -3916,7 +5899,14 @@
    "cwes": [
     "CWE-120"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2004-0210"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2004-0210",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2002-0367",
@@ -3927,7 +5917,14 @@
    "ransomware": false,
    "desc": "smss.exe debugging subsystem in Microsoft Windows does not properly authenticate programs that connect to other programs, which allows local users to gain administrator or SYSTEM privileges.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2002-0367"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2002-0367",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-8570",
@@ -3938,7 +5935,14 @@
    "ransomware": false,
    "desc": "A remote code execution vulnerability exists in Microsoft Office software when it fails to properly handle objects in memory.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8570"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8570",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0222",
@@ -3951,7 +5955,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0222"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0222",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-6352",
@@ -3964,7 +5975,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-6352"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-6352",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0752",
@@ -3977,7 +5995,14 @@
    "cwes": [
     "CWE-843"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0752"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0752",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8174",
@@ -3990,7 +6015,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8174"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8174",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-1761",
@@ -4003,7 +6035,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-1761"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-1761",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-3906",
@@ -4016,7 +6055,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3906"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3906",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2021-36934",
@@ -4029,7 +6075,14 @@
    "cwes": [
     "CWE-1220"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36934"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36934",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:T/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-0796",
@@ -4042,7 +6095,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0796"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0796",
+   "cvss": {
+    "v": "3.1",
+    "score": 10.0,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-8464",
@@ -4053,7 +6113,14 @@
    "ransomware": false,
    "desc": "Windows Shell in multiple versions of Microsoft Windows allows local users or remote attackers to execute arbitrary code via a crafted .LNK file",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8464"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8464",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0263",
@@ -4066,7 +6133,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0263"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0263",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0262",
@@ -4077,7 +6151,14 @@
    "ransomware": false,
    "desc": "A remote code execution vulnerability exists in Microsoft Office.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0262"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0262",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0145",
@@ -4090,7 +6171,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0145"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0145",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0144",
@@ -4103,7 +6191,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0144"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0144",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-1635",
@@ -4116,7 +6211,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1635"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1635",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2022-21882",
@@ -4129,7 +6231,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21882"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21882",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-0787",
@@ -4143,7 +6252,14 @@
     "CWE-269",
     "CWE-59"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0787"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0787",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-1776",
@@ -4156,7 +6272,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-1776"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-1776",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8453",
@@ -4169,7 +6292,14 @@
    "cwes": [
     "CWE-404"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8453"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8453",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2021-33766",
@@ -4182,7 +6312,14 @@
    "cwes": [
     "CWE-287"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33766"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33766",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.3,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2019-1458",
@@ -4193,7 +6330,14 @@
    "ransomware": true,
    "desc": "A privilege escalation vulnerability exists in Windows when the Win32k component fails to properly handle objects in memory, aka 'Win32k EoP.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1458"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1458",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2013-3900",
@@ -4206,7 +6350,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3900"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3900",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-43890",
@@ -4217,7 +6368,14 @@
    "ransomware": true,
    "desc": "Microsoft Windows AppX Installer contains a spoofing vulnerability which has a high impacts to confidentiality, integrity, and availability.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-43890"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-43890",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-42321",
@@ -4231,7 +6389,14 @@
     "CWE-184",
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42321"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42321",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-42292",
@@ -4244,7 +6409,14 @@
    "cwes": [
     "CWE-357"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42292"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42292",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-40449",
@@ -4257,7 +6429,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-40449"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-40449",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-40444",
@@ -4270,7 +6449,14 @@
    "cwes": [
     "CWE-22"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-40444"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-40444",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-38649",
@@ -4281,7 +6467,14 @@
    "ransomware": false,
    "desc": "Microsoft Open Management Infrastructure (OMI) within Azure VM Management Extensions contains an unspecified vulnerability allowing privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38649"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38649",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-38648",
@@ -4294,7 +6487,14 @@
    "cwes": [
     "CWE-1390"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38648"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38648",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-38647",
@@ -4307,7 +6507,14 @@
    "cwes": [
     "CWE-1390"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38647"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38647",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-38645",
@@ -4318,7 +6525,14 @@
    "ransomware": false,
    "desc": "Microsoft Open Management Infrastructure (OMI) within Azure VM Management Extensions contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38645"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-38645",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-36955",
@@ -4329,7 +6543,14 @@
    "ransomware": true,
    "desc": "Microsoft Windows Common Log File System (CLFS) driver contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36955"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36955",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-36948",
@@ -4340,7 +6561,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Update Medic Service contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36948"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36948",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-36942",
@@ -4353,7 +6581,14 @@
    "cwes": [
     "CWE-749"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36942"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-36942",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-34527",
@@ -4366,7 +6601,14 @@
    "cwes": [
     "CWE-269"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34527"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34527",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-34523",
@@ -4379,7 +6621,14 @@
    "cwes": [
     "CWE-287"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34523"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34523",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.0,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-34473",
@@ -4392,7 +6641,14 @@
    "cwes": [
     "CWE-918"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34473"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34473",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.1,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-34448",
@@ -4405,7 +6661,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34448"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-34448",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.8,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-33771",
@@ -4418,7 +6681,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33771"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33771",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-33742",
@@ -4432,7 +6702,14 @@
     "CWE-787",
     "CWE-823"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33742"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33742",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-33739",
@@ -4443,7 +6720,14 @@
    "ransomware": false,
    "desc": "Microsoft Desktop Window Manager (DWM) Core Library contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33739"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-33739",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.4,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31979",
@@ -4456,7 +6740,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31979"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31979",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31956",
@@ -4470,7 +6761,14 @@
     "CWE-191",
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31956"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31956",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31955",
@@ -4483,7 +6781,14 @@
    "cwes": [
     "CWE-497"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31955"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31955",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31207",
@@ -4497,7 +6802,14 @@
     "CWE-20",
     "CWE-434"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31207"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31207",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.6,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31201",
@@ -4508,7 +6820,14 @@
    "ransomware": false,
    "desc": "Microsoft Enhanced Cryptographic Provider contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31201"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31201",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.2,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-31199",
@@ -4519,7 +6838,14 @@
    "ransomware": false,
    "desc": "Microsoft Enhanced Cryptographic Provider contains an unspecified vulnerability that allows for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31199"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-31199",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.2,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-28310",
@@ -4532,7 +6858,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-28310"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-28310",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-27085",
@@ -4543,7 +6876,14 @@
    "ransomware": false,
    "desc": "Microsoft Internet Explorer contains an unspecified vulnerability that allows for remote code execution.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27085"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27085",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-27065",
@@ -4556,7 +6896,14 @@
    "cwes": [
     "CWE-39"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27065"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27065",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-27059",
@@ -4567,7 +6914,14 @@
    "ransomware": false,
    "desc": "Microsoft Office contains an unspecified vulnerability that allows for remote code execution.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27059"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-27059",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.6,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-26858",
@@ -4578,7 +6932,14 @@
    "ransomware": true,
    "desc": "Microsoft Exchange Server contains an unspecified vulnerability that allows for remote code execution. This vulnerability is part of the ProxyLogon exploit chain.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26858"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26858",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-26857",
@@ -4591,7 +6952,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26857"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26857",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-26855",
@@ -4604,7 +6972,14 @@
    "cwes": [
     "CWE-918"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26855"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26855",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.1,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-26411",
@@ -4617,7 +6992,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26411"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-26411",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-1732",
@@ -4630,7 +7012,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1732"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1732",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-1675",
@@ -4643,7 +7032,14 @@
    "cwes": [
     "CWE-285"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1675"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1675",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:U/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2021-1647",
@@ -4657,7 +7053,14 @@
     "CWE-122",
     "CWE-1285"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1647"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1647",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-17144",
@@ -4670,7 +7073,14 @@
    "cwes": [
     "CWE-502"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-17144"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-17144",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.4,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-17087",
@@ -4683,7 +7093,14 @@
    "cwes": [
     "CWE-131"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-17087"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-17087",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-1472",
@@ -4696,7 +7113,14 @@
    "cwes": [
     "CWE-330"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1472"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1472",
+   "cvss": {
+    "v": "3.1",
+    "score": 5.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-1464",
@@ -4709,7 +7133,14 @@
    "cwes": [
     "CWE-347"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1464"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1464",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-1380",
@@ -4722,7 +7153,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1380"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1380",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-1350",
@@ -4733,7 +7171,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows DNS Servers fail to properly handle requests, allowing an attacker to perform remote code execution in the context of the Local System Account. The vulnerability is also known under the moniker of SIGRed.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1350"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1350",
+   "cvss": {
+    "v": "3.1",
+    "score": 10.0,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-1147",
@@ -4744,7 +7189,14 @@
    "ransomware": false,
    "desc": "Microsoft .NET Framework, Microsoft SharePoint, and Visual Studio contain a remote code execution vulnerability when the software fails to check the source markup of XML file input. Successful exploitation allows an attacker to execute code in the context of the process responsible for deserialization of the XML content.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1147"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1147",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-1054",
@@ -4757,7 +7209,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1054"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1054",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.0,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-1040",
@@ -4770,7 +7229,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1040"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1040",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.0,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-1020",
@@ -4783,7 +7249,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1020"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1020",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0986",
@@ -4796,7 +7269,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0986"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0986",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0968",
@@ -4809,7 +7289,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0968"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0968",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0938",
@@ -4822,7 +7309,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0938"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0938",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0878",
@@ -4835,7 +7329,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0878"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0878",
+   "cvss": {
+    "v": "3.1",
+    "score": 4.2,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N/E:P/RL:O/RC:C",
+    "by": "CNA"
+   }
   },
   {
    "cve": "CVE-2020-0688",
@@ -4848,7 +7349,14 @@
    "cwes": [
     "CWE-287"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0688"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0688",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0683",
@@ -4859,7 +7367,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Installer contains a privilege escalation vulnerability when MSI packages process symbolic links, which allows attackers to bypass access restrictions to add or remove files.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0683"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0683",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0674",
@@ -4872,7 +7387,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0674"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0674",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0646",
@@ -4885,7 +7407,14 @@
    "cwes": [
     "CWE-91"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0646"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0646",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2020-0601",
@@ -4898,7 +7427,14 @@
    "cwes": [
     "CWE-295"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0601"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-0601",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.1,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1429",
@@ -4912,7 +7448,14 @@
     "CWE-416",
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1429"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1429",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1367",
@@ -4925,7 +7468,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1367"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1367",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1215",
@@ -4936,7 +7486,14 @@
    "ransomware": true,
    "desc": "Microsoft Windows contains an unspecified vulnerability due to the way ws2ifsl.sys (Winsock) handles objects in memory, allowing for privilege escalation. Successful exploitation allows an attacker to execute code with elevated privileges.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1215"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1215",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-1214",
@@ -4947,7 +7504,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Common Log File System (CLFS) driver improperly handles objects in memory which can allow for privilege escalation.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1214"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-1214",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0863",
@@ -4958,7 +7522,14 @@
    "ransomware": false,
    "desc": "Microsoft Windows Error Reporting (WER) contains a privilege escalation vulnerability due to the way it handles files, allowing for code execution in kernel mode.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0863"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0863",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0859",
@@ -4969,7 +7540,14 @@
    "ransomware": true,
    "desc": "Microsoft Win32k fails to properly handle objects in memory causing privilege escalation. Successful exploitation allows an attacker to run code in kernel mode.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0859"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0859",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0808",
@@ -4980,7 +7558,14 @@
    "ransomware": false,
    "desc": "Microsoft Win32k contains a privilege escalation vulnerability due to the component failing to properly handle objects in memory. Successful exploitation allows an attacker to run code in kernel mode.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0808"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0808",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0803",
@@ -4991,7 +7576,14 @@
    "ransomware": true,
    "desc": "Microsoft Win32k contains an unspecified vulnerability due to it failing to properly handle objects in memory causing privilege escalation. Successful exploitation allows an attacker to run code in kernel mode.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0803"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0803",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0797",
@@ -5002,7 +7594,14 @@
    "ransomware": false,
    "desc": "Microsoft Win32k contains a privilege escalation vulnerability when the Win32k component fails to properly handle objects in memory. Successful exploitation allows an attacker to execute code in kernel mode.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0797"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0797",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0708",
@@ -5015,7 +7614,14 @@
    "cwes": [
     "CWE-416"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0708"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0708",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0604",
@@ -5028,7 +7634,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0604"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0604",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2019-0541",
@@ -5041,7 +7654,14 @@
    "cwes": [
     "CWE-77"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0541"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0541",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-8653",
@@ -5054,7 +7674,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8653"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-8653",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.5,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-0802",
@@ -5067,7 +7694,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-0802"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-0802",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2018-0798",
@@ -5080,7 +7714,14 @@
    "cwes": [
     "CWE-787"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-0798"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2018-0798",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-8759",
@@ -5093,7 +7734,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8759"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-8759",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-7269",
@@ -5106,7 +7754,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-7269"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-7269",
+   "cvss": {
+    "v": "3.1",
+    "score": 9.8,
+    "sev": "CRITICAL",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-11882",
@@ -5119,7 +7774,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-11882"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-11882",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-11774",
@@ -5132,7 +7794,14 @@
    "cwes": [
     "CWE-119"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-11774"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-11774",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0199",
@@ -5143,7 +7812,14 @@
    "ransomware": true,
    "desc": "Microsoft Office and WordPad contain an unspecified vulnerability due to the way the applications parse specially crafted files. Successful exploitation allows for remote code execution.",
    "cwes": [],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0199"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0199",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2017-0143",
@@ -5156,7 +7832,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0143"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2017-0143",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-7255",
@@ -5169,7 +7852,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7255"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-7255",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-3235",
@@ -5182,7 +7872,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3235"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-3235",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0185",
@@ -5195,7 +7892,14 @@
    "cwes": [
     "CWE-20"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0185"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0185",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2016-0167",
@@ -5208,7 +7912,14 @@
    "cwes": [
     "CWE-264"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0167"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2016-0167",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2015-1641",
@@ -5221,7 +7932,14 @@
    "cwes": [
     "CWE-399"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1641"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2015-1641",
+   "cvss": {
+    "v": "3.1",
+    "score": 7.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2014-1812",
@@ -5234,7 +7952,14 @@
    "cwes": [
     "CWE-255"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-1812"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2014-1812",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   },
   {
    "cve": "CVE-2012-0158",
@@ -5247,7 +7972,14 @@
    "cwes": [
     "CWE-94"
    ],
-   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-0158"
+   "msrc": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2012-0158",
+   "cvss": {
+    "v": "3.1",
+    "score": 8.8,
+    "sev": "HIGH",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "by": "CISA-ADP"
+   }
   }
  ]
 }

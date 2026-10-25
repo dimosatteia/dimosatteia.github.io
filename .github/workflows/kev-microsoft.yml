@@ -2,6 +2,7 @@ name: Update CISA KEV (Microsoft)
 
 # Διαβάζει τον κατάλογο CISA KEV από το επίσημο mirror της CISA στο GitHub (cisagov/kev-data, CC0 1.0),
 # κρατά μόνο τις ευπάθειες Microsoft και ενημερώνει το data/kev_microsoft.json για τη σελίδα /kev-microsoft/.
+# Το CVSS κάθε CVE έρχεται από το CVE List (CVEProject/cvelistV5): η βαθμολογία της Microsoft ως CNA, αλλιώς του CISA ADP.
 # Η CISA ενημερώνει τον κατάλογο τις εργάσιμες σε ώρες US Eastern, οπότε δύο φορές την ημέρα αρκούν.
 
 on:
@@ -32,9 +33,11 @@ jobs:
 
       - name: Commit if the catalog changed
         run: |
-          # Το πεδίο "generated" αλλάζει σε κάθε run. Κάνουμε commit μόνο όταν αλλάξει η έκδοση του καταλόγου.
-          new=$(python3 -c "import json;print(json.load(open('data/kev_microsoft.json'))['catalogVersion'])")
-          old=$(git show HEAD:data/kev_microsoft.json 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin)['catalogVersion'])" 2>/dev/null || echo none)
+          # Το πεδίο "generated" αλλάζει σε κάθε run. Κάνουμε commit μόνο όταν αλλάξει η έκδοση του καταλόγου
+          # ή όταν απέκτησαν CVSS ευπάθειες που δεν είχαν (η Microsoft ή η CISA μπορεί να το δημοσιεύσουν αργότερα).
+          sig='import json,sys;d=json.load(open(sys.argv[1]) if len(sys.argv)>1 else sys.stdin);print(d["catalogVersion"], d.get("withCvss",0))'
+          new=$(python3 -c "$sig" data/kev_microsoft.json)
+          old=$(git show HEAD:data/kev_microsoft.json 2>/dev/null | python3 -c "$sig" 2>/dev/null || echo none)
           if [ "$new" = "$old" ]; then
             echo "Ο κατάλογος δεν άλλαξε ($new)."
             exit 0
