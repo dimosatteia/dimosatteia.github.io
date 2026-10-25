@@ -409,7 +409,8 @@
             document.head.appendChild(s);
         })();
     }
-    var EXPORT = '{{ "js/supplier-export.js" | relURL }}';
+    // ?v=<hash>: ο browser φορτώνει πάντα την τρέχουσα έκδοση του script, όχι μια παλιά από την cache
+    var EXPORT = '{{ "js/supplier-export.js" | relURL }}?v={{ readFile "static/js/supplier-export.js" | md5 | truncate 8 "" }}';
     function run(btn, libs, fn) {
         if (!last) return;
         var txt = btn.textContent, e = $('saExpErr');
@@ -421,7 +422,7 @@
                 .catch(function () { fail('Το αρχείο δεν δημιουργήθηκε. Δοκίμασε ξανά.'); });
         }, function () { fail('Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'); });
     }
-    $('saXlsx').addEventListener('click', function () { run(this, ['{{ "js/exceljs/exceljs.min.js" | relURL }}'], 'xlsx'); });
+    $('saXlsx').addEventListener('click', function () { run(this, ['{{ "js/exceljs/exceljs.min.js" | relURL }}', '{{ "js/jszip/jszip.min.js" | relURL }}'], 'xlsx'); });
     $('saPdf').addEventListener('click', function () {
         run(this, ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'], 'pdf');
     });

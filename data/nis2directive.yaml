@@ -39,6 +39,9 @@ articles:
     - &id017
       title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
       url: /posts/microsoft-secure-score-grc-programma-ciso/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: '20.2'
     scope: Βασικές και σημαντικές
     requirement: Τα μέλη της ανώτατης διοίκησης υποχρεούνται να παρακολουθούν εκπαίδευση. Οι οντότητες ενθαρρύνονται να προσφέρουν παρόμοια κατάρτιση στους υπαλλήλους τους σε τακτική βάση, ώστε να εντοπίζουν τους κινδύνους και να αξιολογούν τις πρακτικές διαχείρισης κινδύνων.
@@ -99,6 +102,9 @@ articles:
     - *id002
     - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 21.2.β
     scope: Βασικές και σημαντικές
     requirement: Χειρισμός περιστατικών.

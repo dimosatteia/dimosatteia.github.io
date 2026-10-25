@@ -102,6 +102,9 @@ articles:
     - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
       url: /tekmiriosi-ekpaideysis/
       page: /tekmiriosi-ekpaideysis
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
 - number: 6
   title: Νομιμότητα της επεξεργασίας
   requirements:
@@ -255,6 +258,9 @@ articles:
       url: /posts/secure-score-grc-part-0-intro/
     - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
       url: /posts/secure-score-defender-praktikos-odigos/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
 - number: 25
   title: Προστασία των δεδομένων ήδη από το σχεδιασμό και εξ ορισμού
   requirements:

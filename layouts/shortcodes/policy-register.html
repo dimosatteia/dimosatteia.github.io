@@ -1,0 +1,666 @@
+{{- /* Εργαλείο «Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025» (Policy Gap & Register).
+       Ο ΥΑΣΠΕ δηλώνει για κάθε υποχρεωτικό έγγραφο αν υπάρχει, σε ποια κατάσταση είναι και πότε αναθεωρήθηκε,
+       και παίρνει ποσοστό κάλυψης, κενά με προτεραιότητα και μητρώο έτοιμο για τον έλεγχο (.xlsx και .pdf).
+       Τα έγγραφα έρχονται από το data/policy_register.yaml. Οι εξαγωγές από το static/js/policy-register-export.js.
+       Δεν αποστέλλεται και δεν αποθηκεύεται κανένα στοιχείο. Χρήση: {{< policy-register >}} */ -}}
+{{- $D := site.Data.policy_register -}}
+{{- /* Για κάθε κωδικό της ΚΥΑ: αν ισχύει μόνο για βασικές οντότητες (από τον οδηγό /kya-1689-2025/) */ -}}
+{{- $ess := slice -}}
+{{- range site.Data.nis2.articles }}{{ range .requirements }}{{ if eq .scope "Μόνο βασικές" }}{{ $ess = $ess | append (string .code) }}{{ end }}{{ end }}{{ end -}}
+{{- $in := "w-full rounded-md border border-slate-700 bg-slate-900 px-2.5 py-1.5 text-sm text-slate-100 focus:outline-none focus:border-blue-500" -}}
+{{- $card := "flex items-start gap-3 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500 has-[:checked]:bg-blue-500/10" -}}
+{{- $chev := `<svg class="h-4 w-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>` -}}
+{{- $stCls := dict "approved" "has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500/10" "draft" "has-[:checked]:border-amber-400 has-[:checked]:bg-amber-400/10" "none" "has-[:checked]:border-rose-500 has-[:checked]:bg-rose-500/10" "unknown" "has-[:checked]:border-slate-400 has-[:checked]:bg-slate-400/10" -}}
+<style>
+#prTool .prKbd{display:inline-block;min-width:1.4em;padding:0 .35em;border:1px solid #475569;border-bottom-width:2px;border-radius:4px;background:#0f172a;color:#e2e8f0;font-family:ui-monospace,monospace;font-size:.85em;line-height:1.5;text-align:center}
+#prTool .prStep[data-locked] > summary{cursor:not-allowed;opacity:.6}
+#prTool .prItem[data-na]{display:none}
+#prTool .prItem:not([data-st]) .prFields{display:none}
+#prTool .prItem:not([data-st="approved"]) .prOnlyOk{display:none}
+#prTool .prItem[data-st="approved"] .prOnlyGap{display:none}
+#prTool .prItem:not([data-board]) .prOnlyBoard{display:none}
+#prTool .prRing{transition:stroke-dashoffset .8s ease}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-4 sm:p-5" id="prTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Μητρώο πολιτικών · ΚΥΑ 1689/2025 · NIS2 · ISO/IEC 27001 · GDPR</p>
+    <p class="text-xs text-slate-400 mb-4">Έξι βήματα. Κάθε βήμα ανοίγει αφού ολοκληρώσεις το προηγούμενο. Με <span class="prKbd">Tab</span> πας στο επόμενο πεδίο, με τα <span class="prKbd">←</span> <span class="prKbd">→</span> αλλάζεις κατάσταση σε ένα έγγραφο και με <span class="prKbd">Enter</span> πατάς το κουμπί που είναι επιλεγμένο. Οι ημερομηνίες γράφονται ηη/μμ/εεεε.</p>
+
+    <form id="prForm" class="flex flex-col gap-3" novalidate data-clarity-mask="true" autocomplete="off">
+
+        <details class="prStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="1" open>
+            <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="prBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">1</span>
+                <span class="flex-1 min-w-0">Η οντότητα<span class="prNote block text-xs font-normal text-slate-400"></span></span>
+                {{ $chev | safeHTML }}
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">1. Η οντότητα</legend>
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Τι είδους οντότητα είσαι; <span class="text-xs text-slate-400">Δύο έγγραφα τα ζητά η ΚΥΑ μόνο από τις βασικές. Αν δεν ξέρεις, δες τον <a href="{{ "elegxos-ypagogis/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">έλεγχο υπαγωγής</a>.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Είδος οντότητας">
+                        <label class="{{ $card }}"><input type="radio" name="prEnt" value="essential" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Βασική οντότητα</span><span class="block text-xs text-slate-400 mt-0.5">Όλα τα έγγραφα, μαζί με τον ανεξάρτητο έλεγχο και τη διαχείριση κρίσεων.</span></span></label>
+                        <label class="{{ $card }}"><input type="radio" name="prEnt" value="important" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Σημαντική οντότητα</span><span class="block text-xs text-slate-400 mt-0.5">Όλα τα έγγραφα, εκτός από όσα η ΚΥΑ ζητά μόνο από τις βασικές.</span></span></label>
+                    </div>
+                </div>
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300 sm:max-w-sm"><span>Η επωνυμία σου <span class="text-xs text-slate-400">(προαιρετικά, εμφανίζεται μόνο στα αρχεία)</span></span>
+                    <input id="prOrg" type="text" maxlength="80" placeholder="π.χ. MyCompany" class="{{ $in }}"></label>
+                <div class="rounded-lg border border-slate-800 bg-slate-950/40 p-3 text-sm text-slate-300">
+                    <p class="font-semibold text-slate-100 mb-1">Έχεις ήδη μητρώο από αυτό το εργαλείο;</p>
+                    <p class="text-xs text-slate-400 mb-2">Φόρτωσε το .xlsx που κατέβασες την προηγούμενη φορά, ακόμη κι αν το άλλαξες στο Excel. Το εργαλείο διαβάζει το φύλλο «Μητρώο πολιτικών» και συμπληρώνει τα βήματα. Το αρχείο ανοίγει μόνο μέσα στον browser σου.</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <label class="rounded-md border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800 cursor-pointer focus-within:ring-2 focus-within:ring-blue-400">📂 Φόρτωση μητρώου (.xlsx)<input id="prImport" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="sr-only"></label>
+                        <button type="button" id="prDemo" class="rounded-md border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800">👀 Δες ένα παράδειγμα (MyCompany)</button>
+                        <span id="prImpMsg" class="text-xs hidden" role="status"></span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="prNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="1">Επόμενο βήμα</button>
+                    <span class="prErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+
+        {{- range $gi, $g := $D.groups }}
+        {{- $n := add $gi 2 }}
+        {{- $last := eq $n (add (len $D.groups) 1) }}
+        <details class="prStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="{{ $n }}" data-group="{{ $g.key }}" data-locked>
+            <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="prBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">{{ $n }}</span>
+                <span class="flex-1 min-w-0">{{ $g.name }}<span class="prNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="prLock text-xs font-normal text-slate-500" aria-hidden="true">🔒</span>
+                {{ $chev | safeHTML }}
+            </summary>
+            <fieldset class="flex flex-col gap-3 px-3 sm:px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">{{ $n }}. {{ $g.name }}</legend>
+                <p class="text-xs text-slate-400 -mt-2">{{ $g.hint }} <span class="prNaNote"></span></p>
+                {{- range where $D.items "group" $g.key }}
+                {{- $it := . }}
+                <div class="prItem rounded-lg border border-slate-700 bg-slate-950/40 p-3 min-w-0" id="pr-{{ $it.id }}" data-id="{{ $it.id }}"{{ if $it.board }} data-board{{ end }} data-scope="{{ $it.scope }}">
+                    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                        <span class="font-mono text-xs text-slate-500">{{ $it.id }}</span>
+                        <span class="text-sm font-semibold text-slate-100">{{ $it.title }}</span>
+                    </div>
+                    <p class="mt-1 flex flex-wrap gap-1.5 text-[10px] font-mono">
+                        <span class="rounded border border-slate-700 px-1.5 py-0.5 text-slate-400">{{ index $D.kinds $it.kind }}</span>
+                        <span class="rounded border border-slate-700 px-1.5 py-0.5 text-slate-400">ΚΥΑ: {{ $it.kya }}</span>
+                        {{- if $it.board }}<span class="rounded border border-blue-500/50 px-1.5 py-0.5 text-blue-300" title="Η ΚΥΑ ζητά ρητά έγκριση ή αξιολόγηση από το ανώτατο όργανο διοίκησης">Έγκριση ΔΣ</span>{{ end }}
+                        {{- if eq $it.scope "essential" }}<span class="rounded border border-slate-600 px-1.5 py-0.5 text-slate-400">Μόνο βασικές</span>{{ end }}
+                    </p>
+                    <details class="group/i mt-2 text-xs text-slate-400">
+                        <summary class="cursor-pointer list-none text-blue-400 hover:text-blue-300 [&::-webkit-details-marker]:hidden">Τι πρέπει να περιέχει και τι θα ζητήσει ο ελεγκτής</summary>
+                        <p class="mt-1.5 text-slate-300">{{ $it.what }}</p>
+                        <p class="mt-1"><span class="text-slate-500">Τεκμήριο:</span> {{ $it.evidence }}</p>
+                        <p class="prChips mt-1" data-id="{{ $it.id }}"></p>
+                        {{- with $it.mitre }}<p class="mt-1"><span class="text-slate-500">MITRE ATT&amp;CK®:</span> {{ range $i, $m := . }}{{ if $i }} · {{ end }}<a href="{{ partial "mitre-url.html" $m }}" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300 underline font-mono">{{ $m }}</a> {{ with index hugo.Data.mitre.items $m }}{{ .name }}{{ end }}{{ end }}</p>{{ end }}
+                        {{- with $it.tool }}<p class="mt-1">Δωρεάν εργαλείο: <a href="{{ .url | relURL }}" class="text-blue-400 hover:text-blue-300 underline">{{ .label }}</a></p>{{ end }}
+                    </details>
+                    <div class="mt-2 flex flex-wrap gap-1.5" role="radiogroup" aria-label="Κατάσταση: {{ $it.title }}">
+                        {{- range $D.statuses }}
+                        <label class="inline-flex items-center rounded-md border border-slate-700 px-2.5 py-1.5 text-xs text-slate-300 cursor-pointer hover:border-blue-500 has-[:checked]:text-slate-100 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-blue-400 {{ index $stCls .key }}">
+                            <input type="radio" class="sr-only" name="pr-st-{{ $it.id }}" value="{{ .key }}">{{ .label }}
+                        </label>
+                        {{- end }}
+                    </div>
+                    <div class="prFields mt-3 grid gap-3 grid-cols-2 lg:grid-cols-4">
+                        <label class="flex flex-col gap-1 text-xs text-slate-400 min-w-0"><span>Υπεύθυνος (owner)</span>
+                            <select class="prOwner {{ $in }}" aria-label="Υπεύθυνος: {{ $it.title }}"><option value="">Διάλεξε ρόλο</option>{{ range $D.roles }}<option>{{ . }}</option>{{ end }}</select></label>
+                        <label class="prOnlyOk flex flex-col gap-1 text-xs text-slate-400 min-w-0"><span>Έκδοση</span>
+                            <input type="text" class="prVer {{ $in }} font-mono" maxlength="10" placeholder="π.χ. 2.1" aria-label="Έκδοση: {{ $it.title }}"></label>
+                        <label class="prOnlyOk prOnlyBoard flex flex-col gap-1 text-xs text-slate-400 min-w-0"><span>Έγκριση από το ΔΣ</span>
+                            <input type="text" inputmode="numeric" maxlength="10" placeholder="ηη/μμ/εεεε" data-date="past" data-f="board" class="prDate {{ $in }} font-mono" aria-label="Ημερομηνία έγκρισης από το ανώτατο όργανο διοίκησης: {{ $it.title }}"></label>
+                        <label class="prOnlyOk flex flex-col gap-1 text-xs text-slate-400 min-w-0"><span>Τελευταία αναθεώρηση</span>
+                            <input type="text" inputmode="numeric" maxlength="10" placeholder="ηη/μμ/εεεε" data-date="past" data-f="last" class="prDate {{ $in }} font-mono" aria-label="Τελευταία αναθεώρηση: {{ $it.title }}"></label>
+                        <label class="prOnlyOk flex flex-col gap-1 text-xs text-slate-400 min-w-0"><span>Επόμενη αναθεώρηση <span class="text-slate-500">(ανά {{ $it.cycle }} μήνες)</span></span>
+                            <input type="text" inputmode="numeric" maxlength="10" placeholder="αυτόματα" data-date="any" data-f="next" data-cycle="{{ $it.cycle }}" class="prDate {{ $in }} font-mono" aria-label="Επόμενη αναθεώρηση: {{ $it.title }}"></label>
+                        <label class="prOnlyGap flex flex-col gap-1 text-xs text-slate-400 min-w-0"><span>Ημερομηνία στόχος</span>
+                            <input type="text" inputmode="numeric" maxlength="10" placeholder="ηη/μμ/εεεε" data-date="future" data-f="target" class="prDate {{ $in }} font-mono" aria-label="Ημερομηνία στόχος: {{ $it.title }}"></label>
+                        <label class="col-span-2 flex flex-col gap-1 text-xs text-slate-400 min-w-0"><span>Παρατηρήσεις</span>
+                            <input type="text" class="prNotes {{ $in }}" maxlength="200" placeholder="π.χ. ενότητα 4 της γενικής πολιτικής" aria-label="Παρατηρήσεις: {{ $it.title }}"></label>
+                        <span class="prDateErr col-span-2 lg:col-span-4 hidden text-xs text-rose-400" role="alert"></span>
+                    </div>
+                </div>
+                {{- end }}
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="prNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="{{ $n }}">{{ if $last }}Δημιουργία μητρώου{{ else }}Επόμενο βήμα{{ end }}</button>
+                    {{- if $last }}<button type="reset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>{{ end }}
+                    <span class="prErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+        {{- end }}
+    </form>
+
+    <section id="prOut" class="hidden mt-5 flex flex-col gap-5 scroll-mt-24" tabindex="-1" aria-live="polite" data-clarity-mask="true">
+        <div class="rounded-lg border border-blue-500/40 bg-slate-900/60 p-4">
+            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-3">Το μητρώο σου</p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="relative h-28 w-28 shrink-0 self-center">
+                    <svg viewBox="0 0 120 120" class="h-28 w-28 -rotate-90" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="#1e293b" stroke-width="12"/><circle id="prRing" class="prRing" cx="60" cy="60" r="52" fill="none" stroke="#f43f5e" stroke-width="12" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center"><span id="prPct" class="text-2xl font-bold font-mono text-slate-100">0%</span><span class="text-[10px] text-slate-400">κάλυψη</span></div>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p id="prHead" class="text-lg font-semibold text-slate-100"></p>
+                    <p id="prVerdict" class="mt-1 text-sm text-slate-300 leading-relaxed"></p>
+                </div>
+            </div>
+            <div id="prStats" class="mt-4 grid gap-3 grid-cols-2 sm:grid-cols-4"></div>
+            <div class="mt-4 flex flex-wrap gap-3">
+                <button type="button" id="prXlsx" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">📥 Μητρώο πολιτικών (.xlsx)</button>
+                <button type="button" id="prPdf" class="rounded-md border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800">📄 Αναφορά για τη διοίκηση και τον ελεγκτή (.pdf)</button>
+            </div>
+            <p class="mt-2 text-xs text-slate-400">Το .xlsx είναι το μητρώο που κρατάς και ενημερώνεις: λίστες επιλογών, ημερομηνίες που αναθεωρούνται μόνες τους, φύλλο κενών με υπεύθυνο και προθεσμία. Την επόμενη φορά το φορτώνεις εδώ και συνεχίζεις. Το .pdf είναι για το ΔΣ και τον φάκελο του ελέγχου, με θέσεις υπογραφής.</p>
+            <p id="prExpErr" class="mt-2 text-sm text-amber-400 hidden" role="alert"></p>
+        </div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-2">Ανά ενότητα</h3>
+            <div id="prBars" class="flex flex-col gap-2"></div>
+        </div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-1">Τα κενά, με σειρά προτεραιότητας</h3>
+            <p class="text-xs text-slate-400 mb-3">Κρίσιμα είναι όσα ελέγχονται πρώτα: η γενική πολιτική, το πρόγραμμα και η έγκρισή του, ο ΥΑΣΠΕ, η εκτίμηση κινδύνων και η διαχείριση περιστατικών. Πάτα ένα κενό για να πας στο έγγραφο.</p>
+            <div id="prGaps" class="flex flex-col gap-3"></div>
+        </div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-1">Το μητρώο</h3>
+            <p class="text-xs text-slate-400 mb-3">Όπως θα το δει ο ελεγκτής. Στο .xlsx έχει και τις στήλες για τα τέσσερα πλαίσια.</p>
+            <div class="overflow-x-auto rounded-lg border border-slate-800"><table class="w-full min-w-[720px] text-xs text-slate-300"><thead class="bg-slate-900 text-slate-400"><tr><th class="p-2 text-left font-mono">Κωδ.</th><th class="p-2 text-left">Έγγραφο</th><th class="p-2 text-left">Κατάσταση</th><th class="p-2 text-left">Owner</th><th class="p-2 text-left">Έγκριση ΔΣ</th><th class="p-2 text-left">Τελευταία αναθ.</th><th class="p-2 text-left">Επόμενη αναθ.</th></tr></thead><tbody id="prTable"></tbody></table></div>
+        </div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-1">Ανά πλαίσιο συμμόρφωσης</h3>
+            <p class="text-xs text-slate-400 mb-3">Οι απαιτήσεις που τεκμηριώνουν τα έγγραφα του μητρώου, με την κατάσταση του πιο αδύναμου εγγράφου για καθεμία. Κάθε κωδικός ανοίγει την απαίτηση στον αντίστοιχο οδηγό.</p>
+            <div id="prFw" class="flex flex-col gap-4"></div>
+            <p class="text-xs text-slate-400 mt-2"><span class="text-rose-400">■</span> λείπει · <span class="text-amber-300">■</span> σε σχέδιο ή με εύρημα · <span class="text-emerald-400">■</span> σε τάξη</p>
+        </div>
+
+        <div id="prNextSteps" class="rounded-lg border border-slate-700 bg-slate-900/40 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <p class="text-xs text-amber-300/90 leading-relaxed">Το αποτέλεσμα βασίζεται μόνο σε όσα δήλωσες. Το εργαλείο δεν διαβάζει τα έγγραφά σου και δεν κρίνει το περιεχόμενό τους. Δεν είναι ελεγκτική γνώμη ούτε νομική συμβουλή.</p>
+    </section>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Όσα γράφεις δεν αποστέλλονται πουθενά και δεν αποθηκεύονται: ο υπολογισμός και τα αρχεία .xlsx και .pdf γίνονται μέσα στον browser σου. Αν κλείσεις τη σελίδα, κράτα το .xlsx για να συνεχίσεις.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+</div>
+
+<script>
+(function () {
+    'use strict';
+    var D = {{ $D | jsonify | safeJS }};
+    var ESS = {{ $ess | jsonify | safeJS }};
+    var BASE = {{ "" | absURL }};
+    var KYA_DATE = new Date(2025, 4, 6); // ΦΕΚ Β΄ 2186/06.05.2025
+    var FW = [
+        { key: 'kya', label: 'ΚΥΑ 1689/2025', url: BASE + 'kya-1689-2025/' },
+        { key: 'nis2', label: 'Οδηγία NIS2', url: BASE + 'nis2/' },
+        { key: 'iso', label: 'ISO/IEC 27001', url: BASE + 'iso-27001/' },
+        { key: 'gdpr', label: 'GDPR', url: BASE + 'gdpr/' }
+    ];
+    var PRIO = [
+        { key: 'critical', label: 'Κρίσιμη', cls: 'border-rose-500/60 text-rose-300', dot: 'text-rose-400' },
+        { key: 'high', label: 'Υψηλή', cls: 'border-amber-500/60 text-amber-300', dot: 'text-amber-400' },
+        { key: 'medium', label: 'Μεσαία', cls: 'border-sky-500/60 text-sky-300', dot: 'text-sky-400' },
+        { key: 'low', label: 'Χαμηλή', cls: 'border-slate-500 text-slate-300', dot: 'text-slate-400' }
+    ];
+    var PRIDX = { critical: 0, high: 1, medium: 2, low: 3 };
+    var ST = {}; D.statuses.forEach(function (s) { ST[s.key] = s.label; });
+    var GR = {}; D.groups.forEach(function (g) { GR[g.key] = g; });
+    var IT = {}; D.items.forEach(function (i) { IT[i.id] = i; });
+
+    var $ = function (id) { return document.getElementById(id); };
+    var form = $('prForm'), out = $('prOut'), last = null;
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function anchor(c) { return encodeURIComponent(String(c).replace(/\./g, '-')); }
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function fmt(d) { return d ? pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear() : ''; }
+    function parse(s) {
+        var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(s || ''); if (!m) return null;
+        var d = new Date(+m[3], +m[2] - 1, +m[1]);
+        return d.getDate() === +m[1] && d.getMonth() === +m[2] - 1 ? d : null;
+    }
+    function addMonths(d, n) {
+        var x = new Date(d.getFullYear(), d.getMonth() + n, 1), last = new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate();
+        x.setDate(Math.min(d.getDate(), last)); return x;
+    }
+    function today() { var t = new Date(); t.setHours(0, 0, 0, 0); return t; }
+    function ent() { var r = form.querySelector('input[name="prEnt"]:checked'); return r ? r.value : ''; }
+    function applies(it, e) { return it.scope !== 'essential' || e === 'essential'; }
+    function codeApplies(c, e) { return e === 'essential' || ESS.indexOf(String(c)) < 0; }
+
+    // ---------- Βήματα ----------
+    var steps = Array.prototype.slice.call(form.querySelectorAll('.prStep')), NS = steps.length, done = 0;
+    steps.forEach(function (st) { st.querySelector('summary').addEventListener('click', function (e) { if (st.hasAttribute('data-locked')) e.preventDefault(); }); });
+    function unlock(n) { var st = steps[n - 1]; if (!st) return; st.removeAttribute('data-locked'); var l = st.querySelector('.prLock'); if (l) l.classList.add('hidden'); }
+    function err(n, msg) { var e = steps[n - 1].querySelector('.prErr'); e.textContent = msg || ''; e.classList.toggle('hidden', !msg); }
+    function note(n, msg) { steps[n - 1].querySelector('.prNote').textContent = msg || ''; }
+
+    // ---------- Ημερομηνίες: πάντα ηη/μμ/εεεε, μόνο έγκυρες τιμές ----------
+    function yRange(kind) {
+        var Y = new Date().getFullYear();
+        return kind === 'past' ? [1990, Y] : kind === 'future' ? [Y, Y + 2] : [1990, Y + 3];
+    }
+    function okPrefix(ds, kind) {
+        for (var i = 0; i < ds.length && i < 4; i++) {
+            var c = +ds[i];
+            if (i === 0 && c > 3) return false;
+            if (i === 1 && ((+ds[0] === 3 && c > 1) || (+ds[0] === 0 && c === 0))) return false;
+            if (i === 2 && c > 1) return false;
+            if (i === 3 && ((+ds[2] === 1 && c > 2) || (+ds[2] === 0 && c === 0))) return false;
+        }
+        if (ds.length > 4) {
+            var y = ds.slice(4), r = yRange(kind), ok = false;
+            for (var Y = r[0]; Y <= r[1] && !ok; Y++) if (String(Y).indexOf(y) === 0) ok = true;
+            if (!ok) return false;
+        }
+        return true;
+    }
+    function dateIssue(inp) {
+        var v = inp.value, kind = inp.getAttribute('data-date');
+        if (!v) return '';
+        if (v.length < 10) return 'Συμπλήρωσε την ημερομηνία ως ηη/μμ/εεεε.';
+        var d = parse(v); if (!d) return 'Η ημερομηνία ' + v + ' δεν υπάρχει.';
+        var t = today();
+        if (kind === 'past' && d > t) return 'Η ημερομηνία ' + v + ' είναι στο μέλλον. Γράψε πότε έγινε πραγματικά.';
+        if (kind === 'future') { var mx = new Date(t.getTime()); mx.setFullYear(mx.getFullYear() + 2); if (d > mx) return 'Η ημερομηνία στόχος ' + v + ' είναι πάνω από δύο χρόνια μακριά.'; }
+        var f = inp.getAttribute('data-f'), box = inp.closest('.prItem');
+        if (f === 'next') {
+            var l = parse(box.querySelector('[data-f="last"]').value);
+            if (l && d <= l) return 'Η επόμενη αναθεώρηση πρέπει να είναι μετά την τελευταία.';
+        }
+        return '';
+    }
+    function showItemErr(box, force) {
+        var msgs = [];
+        var st = box.getAttribute('data-st') || '';
+        Array.prototype.forEach.call(box.querySelectorAll('.prDate'), function (inp) {
+            var f = inp.getAttribute('data-f');
+            var used = f === 'target' ? (st && st !== 'approved') : st === 'approved' && (f !== 'board' || box.hasAttribute('data-board'));
+            var m = (used && !box.hasAttribute('data-na') && (force || inp.value.length === 10)) ? dateIssue(inp) : '';
+            inp.classList.toggle('border-rose-500', !!m);
+            if (m) msgs.push(m);
+        });
+        var e = box.querySelector('.prDateErr'); e.textContent = msgs.join(' '); e.classList.toggle('hidden', !msgs.length);
+        return !msgs.length;
+    }
+    function autoNext(box) {
+        var nx = box.querySelector('[data-f="next"]');
+        if (nx.getAttribute('data-manual') === '1') return;
+        var l = parse(box.querySelector('[data-f="last"]').value), b = box.hasAttribute('data-board') ? parse(box.querySelector('[data-f="board"]').value) : null;
+        var base = l && b ? (l > b ? l : b) : (l || b);
+        nx.value = base ? fmt(addMonths(base, +nx.getAttribute('data-cycle'))) : '';
+    }
+    form.addEventListener('input', function (e) {
+        var inp = e.target;
+        if (inp.classList.contains('prDate')) {
+            var raw = inp.value.replace(/\D/g, ''), keep = '', kind = inp.getAttribute('data-date');
+            for (var i = 0; i < raw.length && keep.length < 8; i++) { if (okPrefix(keep + raw[i], kind)) keep += raw[i]; else break; }
+            inp.value = keep.slice(0, 2) + (keep.length > 2 ? '/' + keep.slice(2, 4) : '') + (keep.length > 4 ? '/' + keep.slice(4, 8) : '');
+            var box = inp.closest('.prItem');
+            if (inp.getAttribute('data-f') === 'next') inp.setAttribute('data-manual', inp.value ? '1' : '0');
+            else autoNext(box);
+            showItemErr(box, false);
+        }
+        changed();
+    });
+    form.addEventListener('focusout', function (e) { if (e.target.classList && e.target.classList.contains('prDate')) showItemErr(e.target.closest('.prItem'), true); });
+    form.addEventListener('change', function (e) {
+        var t = e.target;
+        if (t.name === 'prEnt') { applyEntity(); err(1, ''); }
+        if (t.name && t.name.indexOf('pr-st-') === 0) {
+            var box = t.closest('.prItem'); box.setAttribute('data-st', t.value); showItemErr(box, false);
+            var st = box.closest('.prStep'); err(+st.getAttribute('data-step'), '');
+        }
+        changed();
+    });
+    function changed() { if (done >= NS) build(true); side(); }
+
+    // ---------- Ζωντανό γράφημα στη δεξιά στήλη (partial policy-gauge, με policyGauge: true) ----------
+    function barColor(p) { return p >= 85 ? 'bg-emerald-500' : p >= 50 ? 'bg-amber-400' : 'bg-rose-500'; }
+    function side() {
+        var ring = $('prSideRing'); if (!ring) return;
+        var r = collect(), set = r.rows.filter(function (x) { return x.set; });
+        var gaps = set.reduce(function (n, x) { return n + x.f.length; }, 0);
+        ring.style.strokeDashoffset = (326.73 * (1 - r.pct / 100)).toFixed(2);
+        ring.style.stroke = !set.length ? '#475569' : r.pct >= 85 ? '#10b981' : r.pct >= 50 ? '#fbbf24' : '#f43f5e';
+        $('prSidePct').textContent = r.pct + '%';
+        $('prSideCount').textContent = set.length + ' / ' + r.N;
+        $('prSideOk').textContent = set.filter(function (x) { return x.ok; }).length;
+        $('prSideGaps').textContent = gaps;
+        $('prSideEnt').textContent = r.entity ? (r.entity === 'essential' ? 'Βασική οντότητα' : 'Σημαντική οντότητα') + ' · ' + r.N + ' υποχρεωτικά έγγραφα' : 'Διάλεξε είδος οντότητας στο βήμα 1.';
+        Array.prototype.forEach.call(document.querySelectorAll('.prSideGrp'), function (b) {
+            var g = r.groups.filter(function (x) { return x.g.key === b.getAttribute('data-group'); })[0];
+            var n = g ? g.n : 0, ok = g ? g.ok : 0, p = n ? Math.round(ok / n * 100) : 0;
+            b.querySelector('.prSideGrpPct').textContent = ok + '/' + n;
+            var bar = b.querySelector('.prSideGrpBar'); bar.style.width = p + '%'; bar.className = 'prSideGrpBar block h-full transition-all duration-300 ' + barColor(p);
+        });
+    }
+    // Η δεξιά στήλη αποδίδεται μετά το άρθρο, γι' αυτό συνδέεται όταν φορτώσει όλη η σελίδα
+    function bindSide() {
+        Array.prototype.forEach.call(document.querySelectorAll('.prSideGrp'), function (b) {
+            b.addEventListener('click', function () {
+                var st = form.querySelector('.prStep[data-group="' + b.getAttribute('data-group') + '"]');
+                if (!st) return;
+                if (st.hasAttribute('data-locked')) st = steps.filter(function (x) { return !x.hasAttribute('data-locked'); }).pop();
+                st.open = true;
+                st.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        side();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindSide); else bindSide();
+
+    function applyEntity() {
+        var e = ent();
+        Array.prototype.forEach.call(form.querySelectorAll('.prItem'), function (b) {
+            if (applies(IT[b.getAttribute('data-id')], e)) b.removeAttribute('data-na'); else b.setAttribute('data-na', '');
+        });
+        steps.slice(1).forEach(function (st) {
+            var g = st.getAttribute('data-group'), na = D.items.filter(function (i) { return i.group === g && !applies(i, e); }).length;
+            st.querySelector('.prNaNote').textContent = na ? (na === 1 ? 'Ένα έγγραφο ισχύει μόνο για τις βασικές οντότητες και δεν εμφανίζεται.' : na + ' έγγραφα ισχύουν μόνο για τις βασικές οντότητες και δεν εμφανίζονται.') : '';
+        });
+    }
+
+    function itemsOf(n) { return Array.prototype.filter.call(steps[n - 1].querySelectorAll('.prItem'), function (b) { return !b.hasAttribute('data-na'); }); }
+    function validate(n) {
+        if (n === 1) { if (!ent()) { err(1, 'Διάλεξε αν είσαι βασική ή σημαντική οντότητα.'); return false; } err(1, ''); return true; }
+        var boxes = itemsOf(n), miss = boxes.filter(function (b) { return !b.getAttribute('data-st'); });
+        if (miss.length) {
+            err(n, miss.length === 1 ? 'Διάλεξε κατάσταση και για το ' + miss[0].getAttribute('data-id') + '.' : 'Διάλεξε κατάσταση για ' + miss.length + ' έγγραφα ακόμα. Αν δεν ξέρεις, διάλεξε «Δεν ξέρω».');
+            miss[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;
+        }
+        var bad = boxes.filter(function (b) { return !showItemErr(b, true); });
+        if (bad.length) { err(n, 'Διόρθωσε τις ημερομηνίες που είναι με κόκκινο.'); bad[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
+        err(n, ''); return true;
+    }
+    function stepNote(n) {
+        if (n === 1) { note(1, (ent() === 'essential' ? 'Βασική οντότητα' : 'Σημαντική οντότητα') + ($('prOrg').value.trim() ? ' · ' + $('prOrg').value.trim() : '')); return; }
+        var b = itemsOf(n), ok = b.filter(function (x) { return x.getAttribute('data-st') === 'approved'; }).length;
+        note(n, ok + ' από ' + b.length + ' εγκεκριμένα');
+    }
+    function go(n) {
+        done = Math.max(done, n);
+        if (n < NS) {
+            unlock(n + 1); steps[n - 1].open = false; steps[n].open = true;
+            steps[n].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            var f = steps[n].querySelector('.prItem:not([data-na]) input[type="radio"]'); if (f) f.focus({ preventScroll: true });
+        } else build();
+    }
+    Array.prototype.forEach.call(form.querySelectorAll('.prNext'), function (b) {
+        b.addEventListener('click', function () { var n = +b.getAttribute('data-step'); if (!validate(n)) return; stepNote(n); go(n); });
+    });
+
+    form.addEventListener('reset', function () {
+        setTimeout(function () {
+            done = 0; last = null;
+            Array.prototype.forEach.call(form.querySelectorAll('.prItem'), function (b) { b.removeAttribute('data-st'); b.querySelector('[data-f="next"]').removeAttribute('data-manual'); showItemErr(b, false); });
+            steps.forEach(function (st, i) { if (i) { st.setAttribute('data-locked', ''); st.open = false; var l = st.querySelector('.prLock'); if (l) l.classList.remove('hidden'); } note(i + 1, ''); err(i + 1, ''); });
+            steps[0].open = true; out.classList.add('hidden'); applyEntity(); impMsg(''); side();
+        }, 0);
+    });
+
+    // ---------- Συμπλήρωση από δεδομένα (παράδειγμα ή .xlsx) ----------
+    function fill(state, msg) {
+        form.reset();
+        setTimeout(function () {
+            var er = form.querySelector('input[name="prEnt"][value="' + state.entity + '"]'); if (er) er.checked = true;
+            $('prOrg').value = state.org || '';
+            applyEntity();
+            Object.keys(state.items).forEach(function (id) {
+                var v = state.items[id], box = $('pr-' + id); if (!box) return;
+                var r = box.querySelector('input[value="' + v.st + '"]'); if (r) { r.checked = true; box.setAttribute('data-st', v.st); }
+                box.querySelector('.prOwner').value = D.roles.indexOf(v.owner) >= 0 ? v.owner : '';
+                box.querySelector('.prVer').value = v.ver || '';
+                box.querySelector('.prNotes').value = v.notes || '';
+                ['board', 'last', 'next', 'target'].forEach(function (f) { box.querySelector('[data-f="' + f + '"]').value = v[f] || ''; });
+                var nx = box.querySelector('[data-f="next"]');
+                if (v.next) nx.setAttribute('data-manual', '1'); else { nx.removeAttribute('data-manual'); autoNext(box); }
+            });
+            for (var n = 1; n <= NS; n++) { unlock(n); stepNote(n); steps[n - 1].open = false; }
+            done = NS;
+            Array.prototype.forEach.call(form.querySelectorAll('.prItem'), function (b) { showItemErr(b, true); });
+            build();
+            impMsg(msg);
+        }, 0);
+    }
+    function impMsg(m, bad) { var e = $('prImpMsg'); e.textContent = m || ''; e.className = 'text-xs ' + (bad ? 'text-amber-400' : 'text-emerald-400') + (m ? '' : ' hidden'); }
+
+    $('prDemo').addEventListener('click', function () {
+        var t = today(), Y = t.getFullYear();
+        function ago(m, d) { var x = addMonths(t, -m); x.setDate(Math.min(d || 15, 28)); return fmt(x); }
+        var it = {
+            'POL-00': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '3.0', board: ago(5, 12), last: ago(5, 12) },
+            'GOV-01': { st: 'approved', owner: 'CEO', ver: '1.0', board: ago(5, 12), last: ago(5, 12) },
+            'GOV-02': { st: 'approved', owner: 'CEO', ver: '1.1', board: ago(16, 20), last: ago(16, 20) },
+            'RSK-01': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '1.0', last: ago(8, 3) },
+            'RSK-02': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '2.0', last: ago(4, 9) },
+            'RSK-03': { st: 'draft', owner: 'ΥΑΣΠΕ', target: fmt(addMonths(t, 1)) },
+            'POL-01': { st: 'approved', owner: 'IT', ver: '2.0', board: ago(5, 12), last: ago(5, 12) },
+            'POL-02': { st: 'approved', owner: 'IT', ver: '1.0', last: ago(9, 1), notes: 'Εγκρίθηκε από τον CIO, όχι από το ΔΣ' },
+            'POL-03': { st: 'approved', owner: 'HR', ver: '1.2', board: '20/03/2024', last: '20/03/2024' },
+            'POL-04': { st: 'none', owner: 'IT', target: fmt(addMonths(t, 2)) },
+            'POL-05': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '2.1', board: ago(5, 12), last: ago(5, 12) },
+            'POL-06': { st: 'draft', owner: 'Legal', target: fmt(addMonths(t, 1)) },
+            'POL-07': { st: 'approved', owner: 'IT', ver: '1.0', board: ago(5, 12), last: ago(5, 12) },
+            'POL-08': { st: 'none', owner: 'ΥΑΣΠΕ' },
+            'POL-09': { st: 'approved', owner: 'IT', ver: '1.3', board: ago(5, 12), last: ago(5, 12) },
+            'POL-10': { st: 'draft', owner: 'CISO' },
+            'POL-11': { st: 'approved', owner: 'Facilities', ver: '1.0', board: ago(5, 12), last: ago(5, 12) },
+            'PRC-01': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '1.0', last: ago(3, 2) },
+            'PRC-02': { st: 'approved', owner: 'HR', ver: '1.0', last: ago(14, 10) },
+            'PRC-03': { st: 'draft', owner: 'IT' },
+            'PRC-04': { st: 'unknown' },
+            'PRC-05': { st: 'approved', owner: 'IT', ver: '2.0', last: ago(6, 5) },
+            'PRC-06': { st: 'approved', owner: 'IT', ver: '1.1', last: ago(7, 22) },
+            'PRC-07': { st: 'approved', owner: 'HR', ver: '1.0', last: ago(2, 14) },
+            'PRC-08': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '1.0', last: ago(5, 12) },
+            'PLN-01': { st: 'draft', owner: 'COO', target: fmt(addMonths(t, 3)) },
+            'PLN-02': { st: 'none' }, 'PLN-03': { st: 'none' },
+            'REG-01': { st: 'approved', owner: 'IT', ver: '—', last: ago(1, 30) },
+            'REG-02': { st: 'approved', owner: 'Legal', ver: '—', last: ago(3, 18) },
+            'REG-03': { st: 'none', owner: 'IT' },
+            'REG-04': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: String(Y - 1), last: ago(10, 28) }
+        };
+        fill({ entity: 'important', org: 'MyCompany', items: it }, 'Φορτώθηκε το παράδειγμα της MyCompany, μιας φανταστικής σημαντικής οντότητας. Όλα τα στοιχεία είναι κατασκευασμένα.');
+    });
+
+    // ---------- Εξαγωγές και εισαγωγή: οι βιβλιοθήκες φορτώνονται μόνο όταν χρειαστούν ----------
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-pr="' + src + '"]')) return next();
+            var s = document.createElement('script'); s.src = src; s.setAttribute('data-pr', src); s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    var EXCEL = '{{ "js/exceljs/exceljs.min.js" | relURL }}', JSZIP = '{{ "js/jszip/jszip.min.js" | relURL }}';
+    var EXPORT = '{{ "js/policy-register-export.js" | relURL }}?v={{ readFile "static/js/policy-register-export.js" | md5 | truncate 8 "" }}';
+    var PDFLIB = ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'];
+
+    $('prImport').addEventListener('change', function () {
+        var f = this.files && this.files[0], inp = this; if (!f) return;
+        if (f.size > 5 * 1024 * 1024) { impMsg('Το αρχείο είναι πολύ μεγάλο για μητρώο από αυτό το εργαλείο.', true); inp.value = ''; return; }
+        impMsg('Ανάγνωση…');
+        loadScripts([EXCEL, EXPORT], function () {
+            f.arrayBuffer().then(function (buf) { return window.PolicyRegisterExport.read(buf, D); })
+                .then(function (state) {
+                    var n = Object.keys(state.items).length;
+                    if (!n) throw new Error('empty');
+                    fill(state, 'Φορτώθηκαν ' + n + ' έγγραφα από το ' + f.name + '. Έλεγξε τις ημερομηνίες και ενημέρωσε ό,τι άλλαξε.');
+                })
+                .catch(function () { impMsg('Δεν βρήκα φύλλο «Μητρώο πολιτικών» με κωδικούς εγγράφων. Φόρτωσε ένα .xlsx που κατέβασες από αυτό το εργαλείο.', true); })
+                .then(function () { inp.value = ''; });
+        }, function () { impMsg('Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.', true); inp.value = ''; });
+    });
+
+    // ---------- Υπολογισμός ----------
+    function down(p) { return p === 'critical' ? 'high' : p === 'high' ? 'medium' : 'low'; }
+    function collect() {
+        var e = ent(), t = today(), rows = [];
+        D.items.forEach(function (it) {
+            if (!applies(it, e)) return;
+            var box = $('pr-' + it.id), set = !!box.getAttribute('data-st'), st = box.getAttribute('data-st') || 'unknown';
+            function val(f) { var i = box.querySelector('[data-f="' + f + '"]'); return i && !dateIssue(i) ? i.value : ''; }
+            var r = {
+                it: it, set: set, st: st, owner: box.querySelector('.prOwner').value, ver: box.querySelector('.prVer').value.trim(), notes: box.querySelector('.prNotes').value.trim(),
+                board: st === 'approved' && it.board ? val('board') : '', last: st === 'approved' ? val('last') : '', next: st === 'approved' ? val('next') : '',
+                nextAuto: box.querySelector('[data-f="next"]').getAttribute('data-manual') !== '1', target: st !== 'approved' ? val('target') : '', f: []
+            };
+            function add(p, text, action) { r.f.push({ p: p, text: text, action: action }); }
+            var boardWho = 'το ανώτατο όργανο διοίκησης';
+            if (st === 'none' || st === 'unknown') {
+                add(it.priority, st === 'none' ? 'Δεν υπάρχει.' : 'Δεν ξέρεις αν υπάρχει. Ό,τι δεν μπορείς να δείξεις, για τον ελεγκτή δεν υπάρχει.',
+                    (it.kind === 'register' ? 'Δημιούργησε και κράτα ενημερωμένο το μητρώο.' : it.kind === 'decision' ? 'Ετοίμασε την εισήγηση και πάρε απόφαση από ' + boardWho + '.' : 'Γράψε το έγγραφο') + (it.board && it.kind !== 'decision' ? ' και πάρε έγκριση από ' + boardWho + '.' : it.kind === 'register' || it.kind === 'decision' ? '' : ' και ενέκρινέ το.'));
+            } else if (st === 'draft') {
+                add(down(it.priority), 'Σε σχέδιο, χωρίς έγκριση.', 'Ολοκλήρωσε το σχέδιο και πάρε έγκριση' + (it.board ? ' από ' + boardWho : '') + '.');
+            } else {
+                var b = parse(r.board), l = parse(r.last), eff = l && b ? (l > b ? l : b) : (l || b);
+                var nx = parse(r.next) || (eff ? addMonths(eff, it.cycle) : null);
+                if (it.board && !b) add(it.id === 'POL-00' || it.id === 'GOV-01' ? 'critical' : 'high', 'Δεν έχει ημερομηνία έγκρισης από ' + boardWho + ', που ζητά ρητά η ΚΥΑ (' + it.kya + ').', 'Φέρε το έγγραφο στο επόμενο ΔΣ και κράτα το πρακτικό της έγκρισης.');
+                if (!l) add('medium', 'Χωρίς ημερομηνία τελευταίας αναθεώρησης. Ο ελεγκτής δεν μπορεί να δει ότι αξιολογείται σε προγραμματισμένα διαστήματα.', 'Γράψε στο έγγραφο ιστορικό εκδόσεων με ημερομηνίες.');
+                if (eff && eff < KYA_DATE) add('medium', 'Η τελευταία αναθεώρηση (' + fmt(eff) + ') είναι πριν από τη δημοσίευση της ΚΥΑ στις 06/05/2025.', 'Αναθεώρησέ το με βάση το ελάχιστο περιεχόμενο που ορίζει η ΚΥΑ (' + it.kya + ').');
+                else if (nx && nx < t) add('medium', 'Η αναθεώρηση έπρεπε να γίνει έως ' + fmt(nx) + '.', 'Αναθεώρησέ το και ενημέρωσε την ημερομηνία' + (it.board ? ', με νέα έγκριση από ' + boardWho + ' αν άλλαξε.' : '.'));
+                r.nextShown = nx ? fmt(nx) : '';
+            }
+            if (!r.owner) add('low', 'Χωρίς υπεύθυνο (owner).', 'Όρισε τον ρόλο που κρατά το έγγραφο ενημερωμένο.');
+            if (r.target && parse(r.target) < t) add('low', 'Η ημερομηνία στόχος ' + r.target + ' πέρασε.', 'Όρισε νέα ημερομηνία στόχο ή κλείσε το κενό.');
+            r.worst = r.f.length ? r.f.reduce(function (m, x) { return Math.min(m, PRIDX[x.p]); }, 9) : 9;
+            r.ok = st === 'approved' && !r.f.length;
+            r.level = st === 'none' || st === 'unknown' ? 0 : r.ok ? 2 : 1;
+            rows.push(r);
+        });
+        var N = rows.length, cnt = { approved: 0, draft: 0, none: 0, unknown: 0 }, ready = 0;
+        rows.forEach(function (r) { cnt[r.st]++; if (r.ok) ready++; });
+        var groups = D.groups.map(function (g) {
+            var rs = rows.filter(function (r) { return r.it.group === g.key; });
+            return { g: g, n: rs.length, ok: rs.filter(function (r) { return r.st === 'approved'; }).length, ready: rs.filter(function (r) { return r.ok; }).length };
+        }).filter(function (x) { return x.n; });
+        var gaps = [];
+        rows.forEach(function (r) { r.f.forEach(function (f) { gaps.push({ r: r, f: f }); }); });
+        gaps.sort(function (a, b) { return PRIDX[a.f.p] - PRIDX[b.f.p] || D.items.indexOf(a.r.it) - D.items.indexOf(b.r.it); });
+        var cover = FW.map(function (fw) {
+            var lv = {}, refs = {}, order = [];
+            rows.forEach(function (r) {
+                (r.it.map[fw.key] || []).forEach(function (c) {
+                    c = String(c); if (fw.key === 'kya' && !codeApplies(c, e)) return;
+                    if (!(c in lv)) { lv[c] = r.level; refs[c] = []; order.push(c); } else lv[c] = Math.min(lv[c], r.level);
+                    refs[c].push(r.it.id);
+                });
+            });
+            return { f: fw, codes: order.sort(codeSort), lv: lv, refs: refs };
+        });
+        return {
+            entity: e, org: $('prOrg').value.trim(), date: fmt(t), rows: rows, N: N, cnt: cnt, ready: ready,
+            pct: N ? Math.round(cnt.approved / N * 100) : 0, groups: groups, gaps: gaps, cover: cover,
+            crit: gaps.filter(function (x) { return x.f.p === 'critical'; }).length
+        };
+    }
+    function codeSort(a, b) {
+        var pa = a.replace(/^A\./, '').split('.'), pb = b.replace(/^A\./, '').split('.');
+        for (var i = 0; i < Math.max(pa.length, pb.length); i++) {
+            var x = pa[i], y = pb[i];
+            if (x === undefined) return -1; if (y === undefined) return 1;
+            var nx = parseInt(x, 10), ny = parseInt(y, 10);
+            if (!isNaN(nx) && !isNaN(ny) && nx !== ny) return nx - ny;
+            if (isNaN(nx) || isNaN(ny)) { var c = x.localeCompare(y, 'el'); if (c) return c; }
+        }
+        return 0;
+    }
+
+    // ---------- Εμφάνιση ----------
+    function stat(n, l, cls) { return '<div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><p class="text-2xl font-bold font-mono ' + (cls || 'text-slate-100') + '">' + n + '</p><p class="text-xs text-slate-400">' + l + '</p></div>'; }
+    function chips(map) {
+        return FW.map(function (f) {
+            var c = (map || {})[f.key]; if (!c || !c.length) return '';
+            return '<span class="inline-block mr-1 mt-1 px-1.5 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] font-mono text-slate-400">' + esc(f.label) + ' ' + c.map(function (x) { return '<a class="hover:text-blue-300 underline" href="' + f.url + '#' + anchor(x) + '">' + esc(x) + '</a>'; }).join(', ') + '</span>';
+        }).join('');
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('#prTool .prChips'), function (p) {
+        var it = IT[p.getAttribute('data-id')], h = chips(it.map);
+        if (it.clause) h += '<span class="inline-block mr-1 mt-1 px-1.5 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] font-mono text-slate-400">ISO/IEC 27001 ' + esc(it.clause) + '</span>';
+        p.innerHTML = h;
+    });
+    var stTxt = { approved: 'text-emerald-400', draft: 'text-amber-300', none: 'text-rose-400', unknown: 'text-slate-400' };
+
+    function build(quiet) {
+        var r = collect(); last = r; side();
+        var C = 326.73;
+        $('prRing').style.strokeDashoffset = (C * (1 - r.pct / 100)).toFixed(2);
+        $('prRing').style.stroke = r.pct >= 85 ? '#10b981' : r.pct >= 50 ? '#fbbf24' : '#f43f5e';
+        $('prPct').textContent = r.pct + '%';
+        $('prHead').textContent = (r.org || 'Η οντότητά σου') + ' · ' + (r.entity === 'essential' ? 'βασική' : 'σημαντική') + ' οντότητα · ' + r.date;
+        $('prVerdict').innerHTML = esc(r.cnt.approved + ' από τα ' + r.N + ' υποχρεωτικά έγγραφα είναι εγκεκριμένα, και ' + r.ready + ' από αυτά είναι σε τάξη για τον έλεγχο: με έγκριση όπου τη ζητά η ΚΥΑ, με αναθεώρηση στην ώρα της και με υπεύθυνο.') +
+            (r.crit ? ' <span class="text-rose-300">Υπάρχουν ' + r.crit + (r.crit === 1 ? ' κρίσιμο κενό' : ' κρίσιμα κενά') + ': ξεκίνα από εκεί.</span>' : r.gaps.length ? '' : ' <span class="text-emerald-300">Δεν βρέθηκε κανένα κενό.</span>');
+        $('prStats').innerHTML = stat(r.cnt.approved + '/' + r.N, 'εγκεκριμένα', 'text-emerald-400') + stat(r.cnt.draft, 'σε σχέδιο', 'text-amber-300') + stat(r.cnt.none + r.cnt.unknown, 'λείπουν ή δεν ξέρεις', 'text-rose-400') + stat(r.ready, 'σε τάξη για τον έλεγχο');
+
+        $('prBars').innerHTML = r.groups.map(function (x) {
+            var p = Math.round(x.ok / x.n * 100), q = Math.round(x.ready / x.n * 100);
+            return '<div><div class="flex justify-between text-xs text-slate-300 mb-1"><span>' + esc(x.g.name) + '</span><span class="font-mono text-slate-400">' + x.ok + '/' + x.n + ' εγκεκριμένα · ' + x.ready + ' σε τάξη</span></div>' +
+                '<div class="relative h-2.5 rounded bg-slate-800 overflow-hidden"><div class="absolute inset-y-0 left-0 bg-amber-400/70" style="width:' + p + '%"></div><div class="absolute inset-y-0 left-0 bg-emerald-500" style="width:' + q + '%"></div></div></div>';
+        }).join('') + '<p class="text-xs text-slate-400 mt-1"><span class="text-emerald-400">■</span> σε τάξη · <span class="text-amber-300">■</span> εγκεκριμένο, με εύρημα</p>';
+
+        $('prGaps').innerHTML = r.gaps.length ? PRIO.map(function (p) {
+            var list = r.gaps.filter(function (x) { return x.f.p === p.key; }); if (!list.length) return '';
+            return '<div><p class="text-xs font-mono uppercase tracking-wider mb-1.5 ' + p.dot + '">' + p.label + ' προτεραιότητα · ' + list.length + '</p><ul class="flex flex-col gap-1.5">' + list.map(function (x) {
+                return '<li class="rounded-md border-l-2 ' + p.cls + ' bg-slate-950/40 px-3 py-2 text-sm"><a href="#pr-' + x.r.it.id + '" data-go="' + x.r.it.id + '" class="prGo font-semibold text-slate-100 hover:text-blue-300 underline"><span class="font-mono text-xs text-slate-500 mr-1">' + x.r.it.id + '</span>' + esc(x.r.it.title) + '</a>' +
+                    '<p class="text-slate-300 mt-0.5">' + esc(x.f.text) + '</p><p class="text-xs text-slate-400 mt-0.5">→ ' + esc(x.f.action) + (x.r.owner ? ' <span class="text-slate-500">· ' + esc(x.r.owner) + '</span>' : '') + '</p></li>';
+            }).join('') + '</ul></div>';
+        }).join('') : '<p class="text-sm text-emerald-300">Κανένα κενό. Κράτα τις ημερομηνίες αναθεώρησης και φόρτωσε ξανά το μητρώο πριν από τον επόμενο έλεγχο.</p>';
+
+        $('prTable').innerHTML = r.rows.map(function (x) {
+            return '<tr class="border-t border-slate-800 align-top"><td class="p-2 font-mono text-slate-500">' + x.it.id + '</td><td class="p-2">' + esc(x.it.title) + (x.f.length ? ' <span class="' + PRIO[Math.min(x.worst, 3)].dot + '" title="' + x.f.length + ' εύρημα">●</span>' : '') + '</td>' +
+                '<td class="p-2 ' + stTxt[x.st] + '">' + esc(ST[x.st]) + '</td><td class="p-2">' + esc(x.owner || '—') + '</td><td class="p-2 font-mono">' + (x.it.board ? esc(x.board || '—') : '<span class="text-slate-600">δεν απαιτείται</span>') + '</td>' +
+                '<td class="p-2 font-mono">' + esc(x.last || '—') + '</td><td class="p-2 font-mono">' + esc(x.nextShown || x.target && 'στόχος ' + x.target || '—') + '</td></tr>';
+        }).join('');
+
+        var LVC = ['border-rose-500/60 text-rose-300', 'border-amber-500/60 text-amber-300', 'border-emerald-500/60 text-emerald-300'], LVT = ['λείπει', 'σε σχέδιο ή με εύρημα', 'σε τάξη'];
+        $('prFw').innerHTML = r.cover.map(function (c) {
+            var gaps = c.codes.filter(function (k) { return c.lv[k] < 2; }).length;
+            return '<div><p class="text-xs text-slate-300 mb-1.5"><a href="' + c.f.url + '" class="font-semibold text-slate-100 hover:text-blue-300 underline">' + esc(c.f.label) + '</a> <span class="text-slate-400">· ' + c.codes.length + ' απαιτήσεις · ' + gaps + ' με κενό</span></p><div class="flex flex-wrap gap-1.5">' + c.codes.map(function (k) {
+                return '<a href="' + c.f.url + '#' + anchor(k) + '" class="text-[11px] font-mono rounded border px-1.5 py-0.5 hover:underline ' + LVC[c.lv[k]] + '" title="' + esc(c.f.label + ' ' + k + ': ' + LVT[c.lv[k]] + ' (' + c.refs[k].join(', ') + ')') + '">' + esc(k) + '</a>';
+            }).join('') + '</div></div>';
+        }).join('');
+
+        var kya = '<a class="text-blue-400 underline" href="' + BASE + 'kya-1689-2025/">ΚΥΑ 1689/2025</a>';
+        $('prNextSteps').innerHTML = '<p class="font-semibold text-slate-100 mb-2">Τι κάνεις μετά</p><ol class="list-decimal pl-5 flex flex-col gap-1.5">' +
+            '<li>Κατέβασε το .xlsx και συμπλήρωσε στο φύλλο «Κενά και ενέργειες» υπεύθυνο και προθεσμία για κάθε κενό.</li>' +
+            '<li>Ξεκίνα από τα κρίσιμα. Χωρίς γενική πολιτική, πρόγραμμα εγκεκριμένο από το ΔΣ και ΥΑΣΠΕ, ο ελεγκτής δεν προχωρά στα υπόλοιπα.</li>' +
+            '<li>Μάζεψε τις πολιτικές που θέλουν έγκριση από το ανώτατο όργανο διοίκησης και φέρε τες μαζί στο επόμενο ΔΣ, με το .pdf ως εισήγηση. Το πρακτικό είναι τεκμήριο κατά το άρθρο 3 παρ. 3 της ' + kya + '.</li>' +
+            '<li>Αναθεώρησε κάθε έγγραφο μετά από σοβαρό περιστατικό ή σημαντική αλλαγή, όχι μόνο στην προγραμματισμένη ημερομηνία.</li>' +
+            '<li>Φόρτωσε ξανά το .xlsx εδώ πριν από κάθε έλεγχο ή αναφορά προς το ΔΣ, για να δεις τι έληξε στο μεταξύ.</li>' +
+            '<li>Για την τεχνική πλευρά, συνέχισε με το <a class="text-blue-400 underline" href="' + BASE + 'etoimotita-microsoft-365/">«Είναι έτοιμο το Microsoft 365 σου για τον ελεγκτή;»</a>.</li></ol>';
+
+        out.classList.remove('hidden');
+        if (!quiet) { out.focus({ preventScroll: true }); out.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+
+    // Από ένα κενό στο έγγραφο: ανοίγει το βήμα του
+    out.addEventListener('click', function (e) {
+        var a = e.target.closest('.prGo'); if (!a) return;
+        e.preventDefault();
+        var box = $('pr-' + a.getAttribute('data-go')), st = box.closest('.prStep');
+        st.open = true;
+        box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        box.classList.add('ring-1', 'ring-amber-400'); setTimeout(function () { box.classList.remove('ring-1', 'ring-amber-400'); }, 2500);
+        var r = box.querySelector('input:checked') || box.querySelector('input'); if (r) r.focus({ preventScroll: true });
+    });
+
+    function run(btn, libs, fn) {
+        if (!last) return;
+        var txt = btn.textContent, e = $('prExpErr');
+        btn.disabled = true; btn.textContent = 'Δημιουργία…'; e.classList.add('hidden');
+        function fail(m) { e.textContent = m; e.classList.remove('hidden'); btn.disabled = false; btn.textContent = txt; }
+        loadScripts(libs.concat([EXPORT]), function () {
+            Promise.resolve().then(function () { return window.PolicyRegisterExport[fn]({ r: collect(), D: D, FW: FW, PRIO: PRIO, base: BASE }); })
+                .then(function () { btn.disabled = false; btn.textContent = txt; })
+                .catch(function () { fail('Το αρχείο δεν δημιουργήθηκε. Δοκίμασε ξανά.'); });
+        }, function () { fail('Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'); });
+    }
+    $('prXlsx').addEventListener('click', function () { run(this, [EXCEL, JSZIP], 'xlsx'); });
+    $('prPdf').addEventListener('click', function () { run(this, PDFLIB, 'pdf'); });
+
+    applyEntity();
+})();
+</script>

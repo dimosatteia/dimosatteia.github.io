@@ -206,8 +206,38 @@
         });
 
         wb.views = [{ activeTab: 0 }];
-        return wb.xlsx.writeBuffer().then(function (buf) {
+        wb.calcProperties = { fullCalcOnLoad: true };
+        return wb.xlsx.writeBuffer().then(fixValidations).then(function (buf) {
             save(new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), fileName(r, 'xlsx'));
+        });
+    }
+
+    // Το ExcelJS (4.4) ενώνει τα data validations ταξινομώντας τις διευθύνσεις ως κείμενο (G10 πριν από το G2),
+    // και γράφει περιοχές που επικαλύπτονται, π.χ. G10:G31 και G2:G31. Το Excel τότε ζητά «επιδιόρθωση» του αρχείου.
+    // Εδώ κρατάμε μόνο τη μεγαλύτερη από όσες είναι ίδιες και η μία περιέχει την άλλη. Χρειάζεται το JSZip.
+    function rng(sq) {
+        var m = /^([A-Z]+)(\d+)(?::([A-Z]+)(\d+))?$/.exec(sq); if (!m) return null;
+        function cn(l) { var n = 0; for (var i = 0; i < l.length; i++) n = n * 26 + l.charCodeAt(i) - 64; return n; }
+        return { c1: cn(m[1]), r1: +m[2], c2: cn(m[3] || m[1]), r2: +(m[4] || m[2]) };
+    }
+    function inside(a, b) { return a && b && a.c1 >= b.c1 && a.c2 <= b.c2 && a.r1 >= b.r1 && a.r2 <= b.r2; }
+    function fixValidations(buf) {
+        var JSZip = window.JSZip; if (!JSZip) return buf;
+        return JSZip.loadAsync(buf).then(function (zip) {
+            var names = Object.keys(zip.files).filter(function (n) { return /^xl\/worksheets\/sheet\d+\.xml$/.test(n); });
+            return Promise.all(names.map(function (n) {
+                return zip.file(n).async('string').then(function (xml) {
+                    var out = xml.replace(/<dataValidations[^>]*>([\s\S]*?)<\/dataValidations>/, function (all, inner) {
+                        var nodes = inner.match(/<dataValidation [\s\S]*?<\/dataValidation>/g) || [];
+                        var list = nodes.map(function (x) { var sq = (/ sqref="([^"]+)"/.exec(x) || [])[1]; return { x: x, key: x.replace(/ sqref="[^"]*"/, ''), r: rng(sq), sq: sq }; });
+                        var keep = list.filter(function (a, i) {
+                            return !list.some(function (b, j) { return j !== i && b.key === a.key && inside(a.r, b.r) && (b.sq !== a.sq || j < i); });
+                        });
+                        return '<dataValidations count="' + keep.length + '">' + keep.map(function (k) { return k.x; }).join('') + '</dataValidations>';
+                    });
+                    zip.file(n, out);
+                });
+            })).then(function () { return zip.generateAsync({ type: 'arraybuffer', compression: 'DEFLATE' }); });
         });
     }
 

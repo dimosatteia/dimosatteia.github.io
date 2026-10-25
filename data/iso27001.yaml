@@ -41,6 +41,9 @@ articles:
       url: /posts/secure-score-grc-part-0-intro/
     - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
       url: /posts/microsoft-secure-score-grc-programma-ciso/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: A.5.2
     scope: ''
     requirement: Information security roles and responsibilities
