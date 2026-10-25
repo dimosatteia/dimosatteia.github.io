@@ -3,94 +3,77 @@
  "license": "CC BY-NC 4.0",
  "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
  "units": "bytes",
- "start": "2026-10-24T19:00:00Z",
- "end": "2026-10-25T19:00:00Z",
- "lastUpdated": "2026-10-25T18:15:00Z",
- "generated": "2026-10-25T19:44:42Z",
+ "start": "2026-10-24T22:00:00Z",
+ "end": "2026-10-25T22:00:00Z",
+ "lastUpdated": "2026-10-25T20:15:00Z",
+ "generated": "2026-10-25T22:38:58Z",
  "vectors": [
   {
    "name": "SYN Flood",
-   "pct": 95.4
-  },
-  {
-   "name": "UDP Flood",
-   "pct": 1.7
-  },
-  {
-   "name": "SYN-ACK Flood",
-   "pct": 1.3
-  },
-  {
-   "name": "TCP Flags Flood",
-   "pct": 0.9
+   "pct": 93.4
   },
   {
    "name": "ACK Flood",
-   "pct": 0.6
+   "pct": 2.9
+  },
+  {
+   "name": "UDP Flood",
+   "pct": 1.6
+  },
+  {
+   "name": "SYN-ACK Flood",
+   "pct": 1.2
+  },
+  {
+   "name": "TCP Flags Flood",
+   "pct": 0.8
   }
  ],
  "verticals": [
   {
    "name": "Τυχερά παιχνίδια",
    "en": "Gambling",
-   "pct": 53.6
+   "pct": 54.0
   },
   {
    "name": "Υπολογιστές και ηλεκτρονικά",
    "en": "Computer and Electronics",
-   "pct": 31.4
+   "pct": 31.9
   },
   {
    "name": "Διαδίκτυο και τηλεπικοινωνίες",
    "en": "Internet and Telecom",
-   "pct": 14.2
+   "pct": 13.4
   },
   {
    "name": "Παιχνίδια",
    "en": "Games",
-   "pct": 0.6
+   "pct": 0.4
   },
   {
-   "name": "Επιχειρήσεις και βιομηχανία",
-   "en": "Business and Industry",
-   "pct": 0.1
+   "name": "Χρηματοοικονομικά",
+   "en": "Finance",
+   "pct": 0.2
   }
  ],
  "origins": [
   {
    "code": "BG",
    "name": "Βουλγαρία",
-   "pct": 87.3
+   "pct": 88.4
   },
   {
    "code": "HK",
    "name": "Χονγκ Κονγκ",
-   "pct": 9.2
+   "pct": 8.7
   },
   {
    "code": "TR",
    "name": "Τουρκία",
-   "pct": 3.0
-  },
-  {
-   "code": "NL",
-   "name": "Ολλανδία",
-   "pct": 0.4
+   "pct": 2.9
   }
  ],
  "series": [
-  {
-   "t": "2026-10-24T19:00:00Z",
-   "v": 0.1471
-  },
-  {
-   "t": "2026-10-24T20:00:00Z",
-   "v": 0.3235
-  },
-  {
-   "t": "2026-10-24T21:00:00Z",
-   "v": 0.1176
-  },
   {
    "t": "2026-10-24T22:00:00Z",
    "v": 0.2941
@@ -170,6 +153,14 @@
   {
    "t": "2026-10-25T17:00:00Z",
    "v": 0.1765
+  },
+  {
+   "t": "2026-10-25T18:00:00Z",
+   "v": 0.7647
+  },
+  {
+   "t": "2026-10-25T19:00:00Z",
+   "v": 0.3706
   }
  ],
  "peak": "2026-10-25T13:00:00Z"
