@@ -200,10 +200,31 @@
         current.slice(0, shown).forEach(function (i) { list.appendChild(card(i)); });
         count.textContent = current.length === items.length
             ? 'Εμφανίζονται ' + Math.min(shown, current.length) + ' από ' + items.length + ' ευπάθειες, οι πιο πρόσφατες πρώτα.'
-            : !current.length ? 'Καμία ευπάθεια δεν ταιριάζει στα φίλτρα. Δοκίμασε λιγότερα φίλτρα ή πάτα «Καθαρισμός φίλτρων».'
+            : !current.length ? 'Καμία ευπάθεια δεν ταιριάζει στα φίλτρα.'
             : current.length === 1 ? '1 ευπάθεια ταιριάζει στα φίλτρα.'
             : current.length + ' ευπάθειες ταιριάζουν στα φίλτρα' + (current.length > shown ? ', εμφανίζονται οι ' + shown + ' πρώτες.' : '.');
         more.classList.toggle('hidden', current.length <= shown);
+        // Κανένα αποτέλεσμα: έντονο μήνυμα στη θέση της λίστας, ώστε ο χρήστης να δει αμέσως τι συμβαίνει και τι να κάνει
+        var none = !current.length;
+        count.className = none ? 'text-sm font-semibold text-amber-300' : 'text-xs text-slate-400';
+        kqlBtn.disabled = none; kqlBtn.classList.toggle('opacity-50', none); kqlBtn.classList.toggle('cursor-not-allowed', none);
+        if (none) {
+            var box = el('li', 'rounded-lg border border-amber-500/60 bg-amber-500/10 p-4 text-sm');
+            box.setAttribute('role', 'status');
+            box.appendChild(el('p', 'font-semibold text-amber-200', '⚠️ Κανένα αποτέλεσμα με αυτόν τον συνδυασμό φίλτρων'));
+            // Αν η σοβαρότητα και η βαθμολογία αποκλείουν η μία την άλλη, το λέμε συγκεκριμένα
+            var MAX = { CRITICAL: 10, HIGH: 8.9, MEDIUM: 6.9, LOW: 3.9 }, NAME = { CRITICAL: 'Κρίσιμη', HIGH: 'Υψηλή', MEDIUM: 'Μεσαία', LOW: 'Χαμηλή' };
+            var min = sMin.value ? parseFloat(sMin.value) : null, sv = sev.value;
+            var why = sv && min !== null && MAX[sv] < min
+                ? 'Η σοβαρότητα «' + NAME[sv] + '» σημαίνει βαθμολογία έως ' + MAX[sv].toFixed(1) + ', οπότε δεν συνδυάζεται με ' + min.toFixed(1) + '+. Άλλαξε το ένα από τα δύο.'
+                : 'Δεν έκανες κάτι λάθος: απλώς καμία ευπάθεια δεν ικανοποιεί όλα τα φίλτρα μαζί. Βγάλε ένα φίλτρο ή ξεκίνα από την αρχή.';
+            box.appendChild(el('p', 'mt-1 text-slate-300', why));
+            var btn = el('button', 'mt-3 rounded-md bg-amber-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-amber-400', 'Καθαρισμός φίλτρων');
+            btn.type = 'button';
+            btn.addEventListener('click', function () { clear.click(); });
+            box.appendChild(btn);
+            list.appendChild(box);
+        }
     }
     clear.addEventListener('click', function () {
         q.value = ''; p.value = ''; sMin.value = ''; sev.value = ''; r.checked = false; r90.checked = false;
