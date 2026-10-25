@@ -316,23 +316,29 @@
     function changed() { if (done >= NS) build(true); side(); }
 
     // ---------- Ζωντανό γράφημα στη δεξιά στήλη (partial policy-gauge, με policyGauge: true) ----------
-    function barColor(p) { return p >= 85 ? 'bg-emerald-500' : p >= 50 ? 'bg-amber-400' : 'bg-rose-500'; }
     function side() {
         var ring = $('prSideRing'); if (!ring) return;
         var r = collect(), set = r.rows.filter(function (x) { return x.set; });
         var gaps = set.reduce(function (n, x) { return n + x.f.length; }, 0);
+        // Εξωτερικό δαχτυλίδι: τα εγκεκριμένα (ο αριθμός στη μέση). Εσωτερικό, μικρότερο: όσα είναι σε σχέδιο.
+        var proj = r.N ? Math.round((r.cnt.approved + r.cnt.draft) / r.N * 100) : 0, dp = r.N ? r.cnt.draft / r.N : 0;
         ring.style.strokeDashoffset = (326.73 * (1 - r.pct / 100)).toFixed(2);
-        ring.style.stroke = !set.length ? '#475569' : r.pct >= 85 ? '#10b981' : r.pct >= 50 ? '#fbbf24' : '#f43f5e';
+        $('prSideDraftRing').style.strokeDashoffset = (276.46 * (1 - dp)).toFixed(2);
         $('prSidePct').textContent = r.pct + '%';
+        $('prSideDraft').textContent = r.cnt.draft;
+        var pj = $('prSideProj');
+        pj.textContent = r.cnt.draft ? '+ ' + r.cnt.draft + ' σε σχέδιο: αν εγκριθούν, η κάλυψη πάει στο ' + proj + '%.' : '';
+        pj.classList.toggle('hidden', !r.cnt.draft);
         $('prSideCount').textContent = set.length + ' / ' + r.N;
         $('prSideOk').textContent = set.filter(function (x) { return x.ok; }).length;
         $('prSideGaps').textContent = gaps;
         $('prSideEnt').textContent = r.entity ? (r.entity === 'essential' ? 'Βασική οντότητα' : 'Σημαντική οντότητα') + ' · ' + r.N + ' υποχρεωτικά έγγραφα' : 'Διάλεξε είδος οντότητας στο βήμα 1.';
         Array.prototype.forEach.call(document.querySelectorAll('.prSideGrp'), function (b) {
             var g = r.groups.filter(function (x) { return x.g.key === b.getAttribute('data-group'); })[0];
-            var n = g ? g.n : 0, ok = g ? g.ok : 0, p = n ? Math.round(ok / n * 100) : 0;
-            b.querySelector('.prSideGrpPct').textContent = ok + '/' + n;
-            var bar = b.querySelector('.prSideGrpBar'); bar.style.width = p + '%'; bar.className = 'prSideGrpBar block h-full transition-all duration-300 ' + barColor(p);
+            var n = g ? g.n : 0, ok = g ? g.ok : 0, dr = g ? g.draft : 0, p = n ? Math.round(ok / n * 100) : 0, pd = n ? Math.round((ok + dr) / n * 100) : 0;
+            b.querySelector('.prSideGrpPct').textContent = ok + '/' + n + (dr ? ' · +' + dr + ' σχέδ.' : '');
+            b.querySelector('.prSideGrpBar').style.width = p + '%';
+            b.querySelector('.prSideGrpDraft').style.width = pd + '%';
         });
     }
     // Η δεξιά στήλη αποδίδεται μετά το άρθρο, γι' αυτό συνδέεται όταν φορτώσει όλη η σελίδα
@@ -535,7 +541,7 @@
         rows.forEach(function (r) { cnt[r.st]++; if (r.ok) ready++; });
         var groups = D.groups.map(function (g) {
             var rs = rows.filter(function (r) { return r.it.group === g.key; });
-            return { g: g, n: rs.length, ok: rs.filter(function (r) { return r.st === 'approved'; }).length, ready: rs.filter(function (r) { return r.ok; }).length };
+            return { g: g, n: rs.length, ok: rs.filter(function (r) { return r.st === 'approved'; }).length, draft: rs.filter(function (r) { return r.st === 'draft'; }).length, ready: rs.filter(function (r) { return r.ok; }).length };
         }).filter(function (x) { return x.n; });
         var gaps = [];
         rows.forEach(function (r) { r.f.forEach(function (f) { gaps.push({ r: r, f: f }); }); });
@@ -596,10 +602,11 @@
         $('prStats').innerHTML = stat(r.cnt.approved + '/' + r.N, 'εγκεκριμένα', 'text-emerald-400') + stat(r.cnt.draft, 'σε σχέδιο', 'text-amber-300') + stat(r.cnt.none + r.cnt.unknown, 'λείπουν ή δεν ξέρεις', 'text-rose-400') + stat(r.ready, 'σε τάξη για τον έλεγχο');
 
         $('prBars').innerHTML = r.groups.map(function (x) {
-            var p = Math.round(x.ok / x.n * 100), q = Math.round(x.ready / x.n * 100);
-            return '<div><div class="flex justify-between text-xs text-slate-300 mb-1"><span>' + esc(x.g.name) + '</span><span class="font-mono text-slate-400">' + x.ok + '/' + x.n + ' εγκεκριμένα · ' + x.ready + ' σε τάξη</span></div>' +
-                '<div class="relative h-2.5 rounded bg-slate-800 overflow-hidden"><div class="absolute inset-y-0 left-0 bg-amber-400/70" style="width:' + p + '%"></div><div class="absolute inset-y-0 left-0 bg-emerald-500" style="width:' + q + '%"></div></div></div>';
-        }).join('') + '<p class="text-xs text-slate-400 mt-1"><span class="text-emerald-400">■</span> σε τάξη · <span class="text-amber-300">■</span> εγκεκριμένο, με εύρημα</p>';
+            var p = Math.round(x.ok / x.n * 100), q = Math.round(x.ready / x.n * 100), d = Math.round((x.ok + x.draft) / x.n * 100);
+            return '<div><div class="flex justify-between gap-2 text-xs text-slate-300 mb-1"><span>' + esc(x.g.name) + '</span><span class="font-mono text-slate-400 text-right">' + x.ok + '/' + x.n + ' εγκεκριμένα · ' + x.ready + ' σε τάξη' + (x.draft ? ' · ' + x.draft + ' σε σχέδιο' : '') + '</span></div>' +
+                '<div class="relative h-2.5 rounded bg-slate-800 overflow-hidden"><div class="absolute inset-y-0 left-0 bg-amber-400/75" style="width:' + d + '%"></div><div class="absolute inset-y-0 left-0 bg-emerald-800" style="width:' + p + '%"></div><div class="absolute inset-y-0 left-0 bg-emerald-500" style="width:' + q + '%"></div></div></div>';
+        }).join('') + '<p class="text-xs text-slate-400 mt-1"><span class="text-emerald-400">■</span> σε τάξη · <span class="text-emerald-700">■</span> εγκεκριμένο, με εύρημα · <span class="text-amber-300">■</span> σε σχέδιο</p>' +
+            '<p class="text-xs text-slate-400 mt-2 leading-relaxed"><span class="text-slate-200">Πότε ένα έγγραφο είναι «σε τάξη»:</span> όταν είναι εγκεκριμένο και ισχύουν όλα μαζί: ημερομηνία έγκρισης από το ΔΣ, όπου τη ζητά ρητά η ΚΥΑ (γενική πολιτική, πρόγραμμα, ρόλοι και ΥΑΣΠΕ, οι 11 θεματικές), τελευταία αναθεώρηση μετά τις 06/05/2025, επόμενη αναθεώρηση που δεν έχει περάσει, και υπεύθυνος (owner). Τα σχέδια δεν μετρούν στην κάλυψη, γιατί ο ελεγκτής δέχεται μόνο έγγραφα σε ισχύ.</p>';
 
         $('prGaps').innerHTML = r.gaps.length ? PRIO.map(function (p) {
             var list = r.gaps.filter(function (x) { return x.f.p === p.key; }); if (!list.length) return '';

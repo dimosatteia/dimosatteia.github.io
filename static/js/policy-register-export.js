@@ -287,10 +287,11 @@
         var ST = {}; D.statuses.forEach(function (s) { ST[s.key] = s.label; });
         var STC = { approved: C.green, draft: C.amber, none: C.red, unknown: C.muted };
         function h1(t, brk, orient) { return { text: t, style: 'h1', pageBreak: brk ? 'before' : undefined, pageOrientation: orient }; }
-        function bar(w, pctA, pctB) {
+        function bar(w, pctDraft, pctA, pctB) {
             return { canvas: [
                 { type: 'rect', x: 0, y: 0, w: w, h: 7, r: 2, color: '#e2e8f0' },
-                { type: 'rect', x: 0, y: 0, w: Math.max(0.01, w * pctA), h: 7, r: 2, color: '#fbbf24' },
+                { type: 'rect', x: 0, y: 0, w: Math.max(0.01, w * pctDraft), h: 7, r: 2, color: '#fbbf24' },
+                { type: 'rect', x: 0, y: 0, w: Math.max(0.01, w * pctA), h: 7, r: 2, color: '#a7f3d0' },
                 { type: 'rect', x: 0, y: 0, w: Math.max(0.01, w * pctB), h: 7, r: 2, color: '#10b981' }
             ] };
         }
@@ -330,11 +331,11 @@
             (r.gaps.length ? 'Βρέθηκαν ' + r.gaps.length + ' κενά' + (r.crit ? ', από τα οποία ' + r.crit + ' κρίσιμα' : '') + '.' : 'Δεν βρέθηκε κανένα κενό.'), style: 'p' });
         content.push({ text: 'Ανά ενότητα', style: 'h2' });
         content.push({
-            table: { widths: [170, 200, '*'], body: r.groups.map(function (g) {
-                return [{ text: g.g.name, fontSize: 9 }, { stack: [bar(195, g.ok / g.n, g.ready / g.n)], margin: [0, 3, 0, 0] }, { text: g.ok + '/' + g.n + ' εγκεκριμένα · ' + g.ready + ' σε τάξη', fontSize: 8, color: C.muted }];
+            table: { widths: [150, 170, '*'], body: r.groups.map(function (g) {
+                return [{ text: g.g.name, fontSize: 9 }, { stack: [bar(165, (g.ok + g.draft) / g.n, g.ok / g.n, g.ready / g.n)], margin: [0, 3, 0, 0] }, { text: g.ok + '/' + g.n + ' εγκεκριμένα · ' + g.ready + ' σε τάξη' + (g.draft ? ' · ' + g.draft + ' σε σχέδιο' : ''), fontSize: 8, color: C.muted }];
             }) }, layout: 'noBorders', margin: [0, 0, 0, 4]
         });
-        content.push(legend([['#10b981', 'σε τάξη'], ['#fbbf24', 'εγκεκριμένο, με εύρημα']], 8));
+        content.push(legend([['#10b981', 'σε τάξη'], ['#a7f3d0', 'εγκεκριμένο, με εύρημα'], ['#fbbf24', 'σε σχέδιο']], 8));
 
         // Κενά
         content.push(h1('Τα κενά, με σειρά προτεραιότητας'));
