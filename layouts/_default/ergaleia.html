@@ -1,0 +1,140 @@
+{{ define "main" }}
+{{- /*
+  Σελίδα «Εργαλεία» (/ergaleia/): όλα τα εργαλεία του blog σε tiles.
+  Η λίστα χτίζεται ΑΥΤΟΜΑΤΑ από τα παιδιά του μενού «tools». Κάθε νέο εργαλείο που έχει στο front matter
+    menu: main: parent: tools
+  εμφανίζεται εδώ μόνο του, μόλις δημοσιευτεί (draft: false). Δεν χρειάζεται καμία αλλαγή σε αυτό το αρχείο.
+  Emoji και σύντομο όνομα tile: από το name του μενού. Κείμενο: από το description της σελίδας.
+  Προαιρετικά στο front matter του εργαλείου: toolBlurb (πιο σύντομο κείμενο για το tile).
+  Badge «Νέο»: για όσες ημέρες ορίζει το newDays στο front matter αυτής της σελίδας (προεπιλογή 14).
+*/ -}}
+{{- $newDays := .Params.newDays | default 14 -}}
+{{- $items := slice -}}
+{{- range site.Menus.main -}}
+  {{- if eq .Identifier "tools" -}}
+    {{- range .Children -}}
+      {{- $m := . -}}
+      {{- with .Page -}}
+        {{- $parts := split $m.Name " " -}}
+        {{- $emoji := index $parts 0 -}}
+        {{- $short := delimit (after 1 $parts) " " -}}
+        {{- $items = $items | append (dict "m" $m "p" . "emoji" $emoji "short" $short) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- /* Κατηγορίες για τα φίλτρα, με τη σειρά που εμφανίζονται */ -}}
+{{- $cats := slice -}}
+{{- range $items }}{{ range .p.Params.categories }}{{ if not (in $cats .) }}{{ $cats = $cats | append . }}{{ end }}{{ end }}{{ end -}}
+{{- $total := len $items -}}
+
+<main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+
+    <header>
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2">Δωρεάν · Στα Ελληνικά · Χωρίς εγγραφή</p>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-100 mb-3 leading-tight">{{ .Title }}</h1>
+        {{ with .Description }}<p class="text-sm text-slate-400 max-w-3xl leading-relaxed">{{ . }}</p>{{ end }}
+    </header>
+
+    {{ with .Content }}
+    <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300">
+        {{ . }}
+    </div>
+    {{ end }}
+
+    {{ if gt (len $cats) 1 }}
+    <!-- Φίλτρα κατηγορίας (ενεργοποιούνται με JavaScript, χωρίς αυτό φαίνονται απλώς όλα τα tiles) -->
+    <section id="toolFilters" class="glass-card rounded-xl p-4 hidden" aria-label="Φίλτρα εργαλείων">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3">
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Κατηγορία">
+                <button type="button" data-cat="all" aria-pressed="true" class="tool-f px-3 py-1.5 rounded border text-xs font-mono border-blue-500 text-white bg-slate-800">Όλα ({{ $total }})</button>
+                {{ range $cats }}<button type="button" data-cat="{{ . | urlize }}" aria-pressed="false" class="tool-f px-3 py-1.5 rounded border text-xs font-mono border-slate-700 text-slate-300 bg-slate-900">{{ . }}</button>{{ end }}
+            </div>
+            <div class="lg:ml-auto w-full lg:w-auto">
+                <label for="toolSearch" class="sr-only">Αναζήτηση στα εργαλεία</label>
+                <input type="search" id="toolSearch" placeholder="Αναζήτηση, π.χ. phishing, άδεια, DMARC" autocomplete="off"
+                       class="w-full lg:w-72 bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-md py-1.5 px-3 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+            </div>
+        </div>
+    </section>
+    {{ end }}
+
+    <section aria-label="Εργαλεία">
+        <ul id="toolGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+            {{ range $items }}
+            {{ $p := .p }}
+            {{ $isNew := lt (div (now.Sub $p.Date).Hours 24) $newDays }}
+            {{ $catKeys := slice }}{{ range $p.Params.categories }}{{ $catKeys = $catKeys | append (. | urlize) }}{{ end }}
+            <li class="tool-tile" data-cats="{{ delimit $catKeys " " }}" data-text="{{ printf "%s %s %s" .short $p.Title $p.Description }}">
+                <a href="{{ $p.RelPermalink }}" class="tool-card group glass-card rounded-xl p-6 h-full flex flex-col gap-4 no-underline">
+                    <div class="flex items-start justify-between gap-3">
+                        <span class="tool-emoji" aria-hidden="true">{{ .emoji }}</span>
+                        {{ if $isNew }}<span class="text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded border border-emerald-500/50 text-emerald-300 bg-emerald-500/10">🆕 Νέο</span>{{ end }}
+                    </div>
+                    <div class="flex flex-col gap-2 flex-grow">
+                        <h2 class="text-base font-semibold text-slate-100 leading-snug m-0 group-hover:text-white">{{ .short }}</h2>
+                        <p class="text-sm text-slate-400 leading-relaxed m-0">{{ $p.Params.toolBlurb | default $p.Description }}</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 mt-auto pt-2">
+                        {{ range $p.Params.categories }}<span class="px-2 py-0.5 bg-slate-900 border border-slate-700 text-slate-400 text-[10px] font-mono rounded">{{ . }}</span>{{ end }}
+                        <span class="ml-auto text-xs font-mono text-blue-400 group-hover:text-blue-300 whitespace-nowrap">Άνοιγμα →</span>
+                    </div>
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+        <p id="toolEmpty" class="hidden text-sm text-slate-400 text-center py-10">Δεν βρέθηκε εργαλείο με αυτά τα κριτήρια.</p>
+    </section>
+
+    {{ with .Params.tags }}
+    <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-mono text-slate-500 mr-2 uppercase">Tags:</span>
+        {{ range . }}
+        <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}" class="px-2 py-1 bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-blue-500 text-[10px] font-mono rounded transition-colors">{{ . }}</a>
+        {{ end }}
+    </div>
+    {{ end }}
+</main>
+
+<style>
+.tool-card { transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.tool-card:hover, .tool-card:focus-visible { transform: translateY(-3px); border-color: rgba(59,130,246,.6); box-shadow: 0 12px 32px -12px rgba(59,130,246,.35); outline: none; }
+.tool-emoji { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; font-size: 1.6rem; line-height: 1; border-radius: .75rem; background: rgba(30,41,59,.7); border: 1px solid #1e293b; }
+@media (prefers-reduced-motion: reduce) { .tool-card { transition: none; } .tool-card:hover { transform: none; } }
+</style>
+
+<script>
+(function () {
+    var box = document.getElementById("toolFilters");
+    if (!box) return;
+    box.classList.remove("hidden");
+    var btns = box.querySelectorAll(".tool-f"), q = document.getElementById("toolSearch"),
+        tiles = document.querySelectorAll(".tool-tile"), empty = document.getElementById("toolEmpty"), cat = "all";
+    // Αναζήτηση χωρίς τόνους και κεφαλαία: «αδεια» βρίσκει «Άδεια»
+    function norm(x) { return (x || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
+    tiles.forEach(function (t) { t.dataset.text = norm(t.dataset.text); });
+    function apply() {
+        var term = norm(q.value).trim(), shown = 0;
+        tiles.forEach(function (t) {
+            var ok = (cat === "all" || (" " + t.dataset.cats + " ").indexOf(" " + cat + " ") > -1) &&
+                     (!term || t.dataset.text.indexOf(term) > -1);
+            t.hidden = !ok; if (ok) shown++;
+        });
+        empty.classList.toggle("hidden", shown > 0);
+    }
+    btns.forEach(function (b) {
+        b.addEventListener("click", function () {
+            cat = b.dataset.cat;
+            btns.forEach(function (x) {
+                var on = x === b;
+                x.setAttribute("aria-pressed", on);
+                x.classList.toggle("border-blue-500", on); x.classList.toggle("text-white", on); x.classList.toggle("bg-slate-800", on);
+                x.classList.toggle("border-slate-700", !on); x.classList.toggle("text-slate-300", !on); x.classList.toggle("bg-slate-900", !on);
+            });
+            apply();
+        });
+    });
+    q.addEventListener("input", apply);
+})();
+</script>
+{{ end }}

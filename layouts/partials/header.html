@@ -136,8 +136,9 @@
                 {{ $currentPage := . }}
                 {{ range site.Menus.main }}
                     {{ if and .Params.noLink (not .HasChildren) }}{{ continue }}{{ end }}
-                    {{ $active := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
-                    {{ if .HasChildren }}
+                    {{ $active := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) (eq $currentPage.RelPermalink .URL) }}
+                    {{- /* params.flat: η ομάδα δείχνεται ως απλό link χωρίς dropdown (π.χ. «Εργαλεία» → /ergaleia/ με tiles) */}}
+                    {{ if and .HasChildren (not .Params.flat) }}
                     <div class="relative group flex items-center h-full">
                         {{ if .Params.noLink }}
                         <button type="button" aria-haspopup="true" class="flex items-center gap-1 h-full cursor-default hover:text-white transition-colors {{ if $active }}border-b-2 border-blue-500 text-white{{ end }}">
@@ -200,14 +201,14 @@
                 {{ $cp := . }}
                 {{ range site.Menus.main }}
                 {{ if and .Params.noLink (not .HasChildren) }}{{ continue }}{{ end }}
-                {{ $active := or ($cp.IsMenuCurrent "main" .) ($cp.HasMenuCurrent "main" .) }}
+                {{ $active := or ($cp.IsMenuCurrent "main" .) ($cp.HasMenuCurrent "main" .) (eq $cp.RelPermalink .URL) }}
                 <li>
                     {{ if .Params.noLink }}
                     <span class="block px-4 py-3 border-l-2 {{ if $active }}border-blue-500 text-white bg-slate-900{{ else }}border-transparent text-slate-300{{ end }}">{{ .Name }}</span>
                     {{ else }}
                     <a href="{{ .URL }}" class="block px-4 py-3 border-l-2 {{ if $active }}border-blue-500 text-white bg-slate-900{{ else }}border-transparent text-slate-300 hover:text-white hover:bg-slate-900{{ end }}">{{ .Name }}</a>
                     {{ end }}
-                    {{ if .HasChildren }}
+                    {{ if and .HasChildren (not .Params.flat) }}
                     <ul class="pb-1">
                         {{ range .Children }}
                         <li><a href="{{ .URL }}" class="mobile-sub block pl-8 pr-4 py-2 text-xs text-slate-400 hover:text-white hover:bg-slate-900">{{ .Name }}</a></li>

@@ -154,6 +154,8 @@ params:
 
       %%HIGHLIGHTS%%
 
+      **🆕 Νέο εργαλείο:** [Αναφορά περιστατικού στην ΕΑΚ: σημαντικό ή όχι, προθεσμίες και η φόρμα 24 ωρών συμπληρωμένη](/anafora-peristatikou/)<br>
+
       **🆕 Νέο εργαλείο:** [Κουίζ phishing: 10 επιθέσεις, βρες τα σημάδια και τι κάνεις](/kouiz-phishing/)<br>
 
       **🆕 Νέο εργαλείο:** [Εκπαίδευση προσωπικού: είναι τεκμηριωμένη για τον ελεγκτή; Φάκελος PDF και μητρώο εκπαίδευσης](/tekmiriosi-ekpaideysis/)<br>
@@ -221,12 +223,14 @@ menu:
       name: "⚖️ ΚΥΑ 1689/2025 με Microsoft 365"
       url: /kya-1689-2025/
       weight: 1
-    # Ομάδα «Εργαλεία»: τα παιδιά ορίζονται στο front matter των σελίδων τους. Χωρίς δημοσιευμένο παιδί, η ομάδα δεν εμφανίζεται.
+    # Ομάδα «Εργαλεία»: τα παιδιά ορίζονται στο front matter των σελίδων τους (parent: tools).
+    # Δεν ανοίγει dropdown: το κλικ πάει στη σελίδα /ergaleia/, που δείχνει όλα τα δημοσιευμένα παιδιά σε tiles.
     - identifier: tools
       name: Εργαλεία
+      url: /ergaleia/
       weight: 28
       params:
-        noLink: true
+        flat: true
     - identifier: releases-new
       parent: releases
       name: "🆕 Νέα Χαρακτηριστικά (New Features)"
