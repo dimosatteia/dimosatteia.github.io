@@ -54,12 +54,17 @@ items:
   "T1021":      { name: "Remote Services", tactic: "Lateral Movement" }
   "T1071.001":  { name: "Application Layer Protocol: Web Protocols", tactic: "Command and Control" }
   "T1660":      { name: "Phishing (Mobile)", tactic: "Mobile: Initial Access" }
+  "T1498":      { name: "Network Denial of Service", tactic: "Impact" }
+  "T1498.001":  { name: "Network Denial of Service: Direct Network Flood", tactic: "Impact" }
+  "T1498.002":  { name: "Network Denial of Service: Reflection Amplification", tactic: "Impact" }
+  "M1016":      { name: "Vulnerability Scanning", tactic: "Mitigations" }
   "M1017":      { name: "User Training", tactic: "Mitigations" }
   "M1021":      { name: "Restrict Web-Based Content", tactic: "Mitigations" }
   "M1026":      { name: "Privileged Account Management", tactic: "Mitigations" }
   "M1030":      { name: "Network Segmentation", tactic: "Mitigations" }
   "M1032":      { name: "Multi-factor Authentication", tactic: "Mitigations" }
   "M1035":      { name: "Limit Access to Resource Over Network", tactic: "Mitigations" }
+  "M1037":      { name: "Filter Network Traffic", tactic: "Mitigations" }
   "M1040":      { name: "Behavior Prevention on Endpoint", tactic: "Mitigations" }
   "M1043":      { name: "Credential Access Protection", tactic: "Mitigations" }
   "M1046":      { name: "Boot Integrity", tactic: "Mitigations" }

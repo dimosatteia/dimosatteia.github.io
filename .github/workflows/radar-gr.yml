@@ -1,0 +1,53 @@
+name: Update Cloudflare Radar (Greece)
+
+# Διαβάζει από το Cloudflare Radar API τις επιθέσεις Layer 3/4 προς την Ελλάδα (τελευταίες 24 ώρες)
+# και ενημερώνει το data/radar_gr.json για τη σελίδα /cloudflare-radar/.
+# Το token είναι στο secret CLOUDFLARE_RADAR_TOKEN, με δικαίωμα μόνο Account > Radar > Read.
+
+on:
+  schedule:
+    - cron: "25 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write   # για να ξεκινήσει το deploy: ένα push από το GITHUB_TOKEN δεν ενεργοποιεί το hugo.yml
+
+concurrency:
+  group: radar-gr
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Radar data
+        env:
+          CLOUDFLARE_RADAR_TOKEN: ${{ secrets.CLOUDFLARE_RADAR_TOKEN }}
+        run: python3 .github/scripts/radar_gr.py data/radar_gr.json
+
+      - name: Commit if Radar data changed
+        id: commit
+        run: |
+          # Το πεδίο "generated" αλλάζει σε κάθε run. Κάνουμε commit μόνο όταν η Cloudflare έχει νεότερα δεδομένα.
+          new=$(python3 -c "import json;print(json.load(open('data/radar_gr.json'))['lastUpdated'])")
+          old=$(git show HEAD:data/radar_gr.json 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin)['lastUpdated'])" 2>/dev/null || echo none)
+          if [ "$new" = "$old" ]; then
+            echo "Δεν υπάρχουν νεότερα δεδομένα ($new)."
+            exit 0
+          fi
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/radar_gr.json
+          git commit -m "Update Cloudflare Radar data for Greece ($new)"
+          git pull --rebase origin main
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy the site
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run hugo.yml --ref main

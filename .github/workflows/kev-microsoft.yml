@@ -1,0 +1,55 @@
+name: Update CISA KEV (Microsoft)
+
+# Διαβάζει τον κατάλογο CISA KEV από το επίσημο mirror της CISA στο GitHub (cisagov/kev-data, CC0 1.0),
+# κρατά μόνο τις ευπάθειες Microsoft και ενημερώνει το data/kev_microsoft.json για τη σελίδα /kev-microsoft/.
+# Η CISA ενημερώνει τον κατάλογο τις εργάσιμες σε ώρες US Eastern, οπότε δύο φορές την ημέρα αρκούν.
+
+on:
+  schedule:
+    - cron: "17 6,18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write   # για να ξεκινήσει το deploy: ένα push από το GITHUB_TOKEN δεν ενεργοποιεί το hugo.yml
+
+concurrency:
+  group: kev-microsoft
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch KEV and filter Microsoft
+        run: |
+          curl -sSfL --retry 3 \
+            "https://raw.githubusercontent.com/cisagov/kev-data/main/known_exploited_vulnerabilities.json" \
+            -o "$RUNNER_TEMP/kev.json"
+          python3 .github/scripts/kev_microsoft.py "$RUNNER_TEMP/kev.json" data/kev_microsoft.json
+
+      - name: Commit if the catalog changed
+        run: |
+          # Το πεδίο "generated" αλλάζει σε κάθε run. Κάνουμε commit μόνο όταν αλλάξει η έκδοση του καταλόγου.
+          new=$(python3 -c "import json;print(json.load(open('data/kev_microsoft.json'))['catalogVersion'])")
+          old=$(git show HEAD:data/kev_microsoft.json 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin)['catalogVersion'])" 2>/dev/null || echo none)
+          if [ "$new" = "$old" ]; then
+            echo "Ο κατάλογος δεν άλλαξε ($new)."
+            exit 0
+          fi
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/kev_microsoft.json
+          git commit -m "Update CISA KEV Microsoft data ($new)"
+          git pull --rebase origin main
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+        id: commit
+
+      - name: Deploy the site
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run hugo.yml --ref main

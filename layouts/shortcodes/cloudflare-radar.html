@@ -1,0 +1,91 @@
+{{- /* Επιθέσεις Layer 3/4 (DDoS) προς την Ελλάδα, τελευταίες 24 ώρες. Δεδομένα: data/radar_gr.json, που ενημερώνει
+       το .github/workflows/radar-gr.yml από το Cloudflare Radar API (CC BY-NC 4.0). Ο browser του επισκέπτη δεν καλεί
+       καμία εξωτερική υπηρεσία: όλα τα δεδομένα είναι μέσα στη σελίδα. Χρήση: {{< cloudflare-radar >}} */ -}}
+{{- $d := site.Data.radar_gr -}}
+{{- if not $d -}}
+<p>Τα δεδομένα του Cloudflare Radar δεν είναι διαθέσιμα αυτή τη στιγμή.</p>
+{{- else -}}
+{{- $topV := index $d.vectors 0 -}}
+{{- $topO := index $d.origins 0 -}}
+{{- $topS := index $d.verticals 0 -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="radarGr">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400">Cloudflare Radar · Ελλάδα · τελευταίες 24 ώρες</p>
+        <p class="text-xs text-slate-400">Ενημέρωση Cloudflare: <time id="radarUpd" datetime="{{ $d.lastUpdated }}">{{ $d.lastUpdated }}</time></p>
+    </div>
+
+    {{ partial "radar-map.html" $d }}
+
+    <div class="mt-4 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <p class="text-xs text-slate-400">Κυρίαρχο είδος επίθεσης</p>
+            <p class="text-lg font-semibold text-slate-100 mt-1">{{ $topV.name }}</p>
+            <p class="text-sm font-mono text-blue-300">{{ lang.FormatNumber 1 $topV.pct }}%</p>
+        </div>
+        <div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <p class="text-xs text-slate-400">Κλάδος με τη μεγαλύτερη κίνηση επιθέσεων</p>
+            <p class="text-lg font-semibold text-slate-100 mt-1">{{ $topS.name }}</p>
+            <p class="text-sm font-mono text-blue-300">{{ lang.FormatNumber 1 $topS.pct }}%</p>
+        </div>
+        <div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <p class="text-xs text-slate-400">Κύρια χώρα προέλευσης</p>
+            <p class="text-lg font-semibold text-slate-100 mt-1">{{ $topO.name }}</p>
+            <p class="text-sm font-mono text-blue-300">{{ lang.FormatNumber 1 $topO.pct }}%</p>
+        </div>
+    </div>
+
+    <div class="mt-6">
+        <p class="text-sm font-semibold text-slate-100">Ένταση ανά ώρα</p>
+        <p class="text-xs text-slate-400 mb-3">Σχετική κλίμακα: η πιο έντονη ώρα του 24ώρου είναι 100%.</p>
+        <div class="flex h-28 items-end gap-[3px] border-b border-slate-700" role="img" aria-label="Ένταση επιθέσεων ανά ώρα, τελευταίες 24 ώρες">
+            {{- range $d.series }}
+            {{- $h := mul .v 100 -}}
+            <span class="radar-bar flex-1 rounded-t-sm {{ if eq .t $d.peak }}bg-blue-400{{ else }}bg-blue-500/50{{ end }}" style="height: {{ if lt $h 2.0 }}2{{ else }}{{ $h }}{{ end }}%" data-t="{{ .t }}" title="{{ .t }} · {{ math.Round $h }}%"></span>
+            {{- end }}
+        </div>
+        <div class="mt-1 flex justify-between text-[11px] font-mono text-slate-500">
+            <span class="radar-tick" data-t="{{ (index $d.series 0).t }}">{{ (index $d.series 0).t }}</span>
+            <span>Κορύφωση: <span class="radar-tick text-blue-300" data-t="{{ $d.peak }}">{{ $d.peak }}</span></span>
+            <span class="radar-tick" data-t="{{ (index $d.series (sub (len $d.series) 1)).t }}">{{ (index $d.series (sub (len $d.series) 1)).t }}</span>
+        </div>
+    </div>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-3">
+        {{- range $block := slice (dict "title" "Είδη επιθέσεων" "items" $d.vectors) (dict "title" "Κλάδοι-στόχοι" "items" $d.verticals) (dict "title" "Χώρες προέλευσης" "items" $d.origins) }}
+        <div>
+            <p class="text-sm font-semibold text-slate-100 mb-3">{{ $block.title }}</p>
+            <ul class="flex flex-col gap-2.5">
+                {{- range $block.items }}
+                <li class="text-sm">
+                    <div class="flex justify-between gap-3"><span class="text-slate-300">{{ .name }}</span><span class="font-mono text-slate-300">{{ lang.FormatNumber 1 .pct }}%</span></div>
+                    <span class="mt-1 block h-1.5 rounded-full bg-slate-800 overflow-hidden"><span class="block h-full rounded-full bg-blue-500" style="width: {{ if lt .pct 1.0 }}1{{ else }}{{ .pct }}{{ end }}%"></span></span>
+                </li>
+                {{- end }}
+            </ul>
+        </div>
+        {{- end }}
+    </div>
+
+    <p class="mt-5 text-xs text-slate-400">Τα ποσοστά υπολογίζονται επί του όγκου της κίνησης (bytes) που μετρίασε το δίκτυο της Cloudflare για στόχους στην Ελλάδα. Δεν δείχνουν όλες τις επιθέσεις της χώρας.</p>
+    <p class="mt-2 text-xs text-slate-400">Πηγή: <a class="underline hover:text-blue-300" href="{{ $d.source }}" rel="noopener" target="_blank">Cloudflare Radar</a> · Άδεια <a class="underline hover:text-blue-300" href="{{ $d.licenseUrl }}" rel="noopener license" target="_blank">{{ $d.license }}</a>. Το thecybersec.gr δεν συνδέεται με την Cloudflare.</p>
+</div>
+<script>
+(function () {
+    // Οι ώρες μετατρέπονται σε ώρα Ελλάδας στον browser.
+    var f = function (iso, withDate) {
+        try {
+            return new Date(iso).toLocaleString('el-GR', withDate
+                ? { timeZone: 'Europe/Athens', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }
+                : { timeZone: 'Europe/Athens', hour: '2-digit', minute: '2-digit' });
+        } catch (e) { return iso; }
+    };
+    var u = document.getElementById('radarUpd');
+    if (u) u.textContent = f(u.getAttribute('datetime'), true);
+    document.querySelectorAll('#radarGr .radar-tick').forEach(function (e) { e.textContent = f(e.getAttribute('data-t'), false); });
+    document.querySelectorAll('#radarGr .radar-bar').forEach(function (e) {
+        var pct = (e.getAttribute('title') || '').split('·')[1] || '';
+        e.setAttribute('title', f(e.getAttribute('data-t'), true) + ' ·' + pct);
+    });
+})();
+</script>
+{{- end -}}

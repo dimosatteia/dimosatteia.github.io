@@ -1,0 +1,197 @@
+{{- /* CISA KEV φιλτραρισμένο για Microsoft. Δεδομένα: data/kev_microsoft.json, που ενημερώνει το
+       .github/workflows/kev-microsoft.yml από το cisagov/kev-data (CC0 1.0). Ο browser του επισκέπτη
+       δεν καλεί καμία εξωτερική υπηρεσία: όλα τα δεδομένα είναι μέσα στη σελίδα. Χρήση: {{< kev-microsoft >}} */ -}}
+{{- $d := site.Data.kev_microsoft -}}
+{{- if not $d -}}
+<p>Τα δεδομένα του καταλόγου δεν είναι διαθέσιμα αυτή τη στιγμή.</p>
+{{- else -}}
+{{- $months := slice "Ιανουαρίου" "Φεβρουαρίου" "Μαρτίου" "Απριλίου" "Μαΐου" "Ιουνίου" "Ιουλίου" "Αυγούστου" "Σεπτεμβρίου" "Οκτωβρίου" "Νοεμβρίου" "Δεκεμβρίου" -}}
+{{- $rel := time $d.dateReleased -}}
+{{- $relStr := printf "%d %s %d" $rel.Day (index $months (sub (int $rel.Month) 1)) $rel.Year -}}
+{{- $maxP := (index $d.products 0).count -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="kevMs">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400">CISA KEV · Microsoft</p>
+        <p class="text-xs text-slate-400">Έκδοση καταλόγου {{ $d.catalogVersion }} · ενημέρωση CISA {{ $relStr }}</p>
+    </div>
+
+    <div class="grid gap-3 grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <p class="text-2xl font-semibold text-slate-100">{{ $d.totalMicrosoft }}</p>
+            <p class="text-xs text-slate-400 mt-1">ευπάθειες Microsoft στο KEV, από {{ $d.totalAll }} συνολικά ({{ int (div (mul $d.totalMicrosoft 100.0) $d.totalAll) }}%)</p>
+        </div>
+        <div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <p class="text-2xl font-semibold text-slate-100">{{ $d.addedThisYear }}</p>
+            <p class="text-xs text-slate-400 mt-1">προστέθηκαν μέσα στο {{ now.Year }}</p>
+        </div>
+        <div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <p class="text-2xl font-semibold text-slate-100" id="kevAdded30">{{ $d.added30 }}</p>
+            <p class="text-xs text-slate-400 mt-1">προστέθηκαν τις τελευταίες 30 ημέρες</p>
+        </div>
+        <div class="rounded-lg border border-red-500/40 bg-red-500/5 p-4">
+            <p class="text-2xl font-semibold text-red-300">{{ $d.ransomwareKnown }}</p>
+            <p class="text-xs text-slate-400 mt-1">με γνωστή χρήση σε ransomware</p>
+        </div>
+    </div>
+
+    <div class="mt-6">
+        <p class="text-sm font-semibold text-slate-100 mb-3">Προϊόντα με τις περισσότερες ευπάθειες</p>
+        <ul class="flex flex-col gap-2">
+            {{- range first 8 $d.products }}
+            <li class="grid grid-cols-[9rem_1fr_2.5rem] sm:grid-cols-[12rem_1fr_3rem] items-center gap-3 text-sm">
+                <button type="button" class="kev-prod text-left text-slate-300 hover:text-blue-300 truncate" data-product="{{ .name }}" title="Φίλτρο: {{ .name }}">{{ .name }}</button>
+                <span class="h-2 rounded-full bg-slate-800 overflow-hidden"><span class="block h-full rounded-full bg-blue-500" style="width: {{ div (mul .count 100) $maxP }}%"></span></span>
+                <span class="text-right font-mono text-slate-300">{{ .count }}</span>
+            </li>
+            {{- end }}
+        </ul>
+    </div>
+
+    <div class="mt-6 flex flex-col gap-3" data-clarity-mask="true">
+        <p class="text-sm font-semibold text-slate-100">Αναζήτηση στον κατάλογο</p>
+        <div class="grid gap-3 sm:grid-cols-[1fr_14rem]">
+            <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                <span>CVE ή λέξη (π.χ. Exchange, SharePoint, CVE-2025)</span>
+                <input id="kevQ" type="search" autocomplete="off" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+            </label>
+            <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+                <span>Προϊόν</span>
+                <select id="kevP" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
+                    <option value="">Όλα τα προϊόντα</option>
+                    {{- range $d.products }}
+                    <option value="{{ .name }}">{{ .name }} ({{ .count }})</option>
+                    {{- end }}
+                </select>
+            </label>
+        </div>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
+            <label class="flex items-center gap-2 cursor-pointer"><input id="kevR" type="checkbox"> Μόνο με γνωστή χρήση σε ransomware</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input id="kev90" type="checkbox"> Μόνο τις τελευταίες 90 ημέρες</label>
+        </div>
+        <p class="text-xs text-slate-400" id="kevCount" aria-live="polite"></p>
+    </div>
+
+    <ol id="kevList" class="mt-4 flex flex-col gap-3">
+        {{- /* Αρχικό περιεχόμενο χωρίς JavaScript: οι 10 πιο πρόσφατες. */ -}}
+        {{- range first 10 $d.items }}
+        <li class="rounded-lg border border-slate-700 bg-slate-900/60 p-4 text-sm">
+            <p class="font-mono text-blue-300"><a href="{{ .msrc }}" rel="noopener" target="_blank">{{ .cve }}</a> · <span class="text-slate-300">{{ .product }}</span></p>
+            <p class="text-slate-100 mt-1">{{ .name }}</p>
+            <p class="text-xs text-slate-400 mt-1">Προστέθηκε {{ .added }} · Προθεσμία CISA {{ .due }}{{ if .ransomware }} · Ransomware: γνωστή χρήση{{ end }}</p>
+        </li>
+        {{- end }}
+    </ol>
+    <div class="mt-4 flex flex-wrap gap-3">
+        <button type="button" id="kevMore" class="hidden rounded-md border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:border-blue-500">Δείξε περισσότερες</button>
+        <button type="button" id="kevKql" class="rounded-md border border-blue-500/60 bg-blue-500/10 px-4 py-2 text-sm text-blue-200 hover:bg-blue-500/20">📋 Αντιγραφή KQL για Advanced Hunting</button>
+        <span id="kevKqlMsg" class="self-center text-xs text-slate-400" aria-live="polite"></span>
+    </div>
+
+    <p class="mt-5 text-xs text-slate-400">Πηγή: <a class="underline hover:text-blue-300" href="{{ $d.catalog }}" rel="noopener" target="_blank">CISA Known Exploited Vulnerabilities Catalog</a>, μέσω του επίσημου mirror <a class="underline hover:text-blue-300" href="{{ $d.source }}" rel="noopener" target="_blank">cisagov/kev-data</a> · Άδεια {{ $d.license }}. Οι περιγραφές είναι της CISA, στα Αγγλικά. Το thecybersec.gr δεν συνδέεται με την CISA ή τη Microsoft.</p>
+</div>
+
+<script type="application/json" id="kevData">{{ $d.items | jsonify | safeJS }}</script>
+<script>
+(function () {
+    var root = document.getElementById('kevMs');
+    if (!root) return;
+    var items = [];
+    try { items = JSON.parse(document.getElementById('kevData').textContent); } catch (e) { return; }
+
+    var q = document.getElementById('kevQ'), p = document.getElementById('kevP'),
+        r = document.getElementById('kevR'), r90 = document.getElementById('kev90'),
+        list = document.getElementById('kevList'), more = document.getElementById('kevMore'),
+        count = document.getElementById('kevCount'), kqlBtn = document.getElementById('kevKql'),
+        kqlMsg = document.getElementById('kevKqlMsg');
+    var PAGE = 20, shown = PAGE, current = [];
+    var months = ['Ιαν', 'Φεβ', 'Μαρ', 'Απρ', 'Μαΐ', 'Ιουν', 'Ιουλ', 'Αυγ', 'Σεπ', 'Οκτ', 'Νοε', 'Δεκ'];
+    var cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 90);
+    var cutoffStr = cutoff.toISOString().slice(0, 10);
+
+    // Οι μετρήσεις 30 ημερών υπολογίζονται ξανά στον browser, ώστε να μη μένουν πίσω ανάμεσα στα builds.
+    var c30 = new Date(); c30.setDate(c30.getDate() - 30);
+    var c30s = c30.toISOString().slice(0, 10);
+    document.getElementById('kevAdded30').textContent = items.filter(function (i) { return i.added >= c30s; }).length;
+
+    function fmt(d) {
+        var x = d.split('-');
+        return x.length === 3 ? parseInt(x[2], 10) + ' ' + months[parseInt(x[1], 10) - 1] + ' ' + x[0] : d;
+    }
+    function el(tag, cls, text) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text !== undefined) e.textContent = text;
+        return e;
+    }
+    function card(i) {
+        var li = el('li', 'rounded-lg border ' + (i.ransomware ? 'border-red-500/40' : 'border-slate-700') + ' bg-slate-900/60 p-4 text-sm');
+        var head = el('p', 'flex flex-wrap items-center gap-x-2 gap-y-1 font-mono');
+        var a = el('a', 'text-blue-300 underline-offset-2 hover:underline', i.cve);
+        a.href = i.msrc; a.target = '_blank'; a.rel = 'noopener';
+        head.appendChild(a);
+        head.appendChild(el('span', 'text-slate-500', '·'));
+        head.appendChild(el('span', 'text-slate-300', i.product));
+        if (i.ransomware) head.appendChild(el('span', 'ml-1 rounded bg-red-500/15 px-1.5 py-0.5 text-[11px] text-red-300 font-sans', 'Ransomware'));
+        li.appendChild(head);
+        li.appendChild(el('p', 'text-slate-100 mt-1', i.name));
+        li.appendChild(el('p', 'text-xs text-slate-400 mt-1', 'Προστέθηκε ' + fmt(i.added) + ' · Προθεσμία CISA ' + fmt(i.due) + (i.cwes && i.cwes.length ? ' · ' + i.cwes.join(', ') : '')));
+        if (i.desc) {
+            var det = el('details', 'mt-2');
+            det.appendChild(el('summary', 'cursor-pointer text-xs text-slate-400 hover:text-slate-200', 'Περιγραφή της CISA'));
+            det.appendChild(el('p', 'mt-1 text-xs text-slate-300', i.desc));
+            li.appendChild(det);
+        }
+        return li;
+    }
+    function apply() {
+        var term = q.value.trim().toLowerCase(), prod = p.value;
+        current = items.filter(function (i) {
+            if (prod && i.product !== prod) return false;
+            if (r.checked && !i.ransomware) return false;
+            if (r90.checked && i.added < cutoffStr) return false;
+            if (term && (i.cve + ' ' + i.product + ' ' + i.name + ' ' + i.desc).toLowerCase().indexOf(term) === -1) return false;
+            return true;
+        });
+        render();
+    }
+    function render() {
+        list.textContent = '';
+        current.slice(0, shown).forEach(function (i) { list.appendChild(card(i)); });
+        count.textContent = current.length === items.length
+            ? 'Εμφανίζονται ' + Math.min(shown, current.length) + ' από ' + items.length + ' ευπάθειες, οι πιο πρόσφατες πρώτα.'
+            : current.length + ' ευπάθειες ταιριάζουν στα φίλτρα' + (current.length > shown ? ', εμφανίζονται οι ' + shown + ' πρώτες.' : '.');
+        more.classList.toggle('hidden', current.length <= shown);
+    }
+    [q, p, r, r90].forEach(function (x) {
+        x.addEventListener(x === q ? 'input' : 'change', function () { shown = PAGE; apply(); });
+    });
+    more.addEventListener('click', function () { shown += PAGE; render(); });
+    root.querySelectorAll('.kev-prod').forEach(function (b) {
+        b.addEventListener('click', function () {
+            p.value = b.getAttribute('data-product'); shown = PAGE; apply();
+            p.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    });
+
+    // KQL για Microsoft Defender XDR Advanced Hunting, με τα CVE που ταιριάζουν στα τρέχοντα φίλτρα.
+    kqlBtn.addEventListener('click', function () {
+        var cves = current.map(function (i) { return '"' + i.cve + '"'; });
+        var kql = '// CISA KEV · Microsoft (' + cves.length + ' CVE) · thecybersec.gr/kev-microsoft/\n' +
+            'let KevCves = dynamic([' + cves.join(', ') + ']);\n' +
+            'DeviceTvmSoftwareVulnerabilities\n' +
+            '| where CveId in (KevCves)\n' +
+            '| summarize Devices = dcount(DeviceId), DeviceNames = make_set(DeviceName, 20) by CveId, SoftwareName, VulnerabilitySeverityLevel, RecommendedSecurityUpdate\n' +
+            '| order by Devices desc';
+        function ok() { kqlMsg.textContent = 'Αντιγράφηκε. Επικόλλησέ το στο Advanced Hunting του Microsoft Defender.'; }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(kql).then(ok, function () { kqlMsg.textContent = 'Η αντιγραφή απέτυχε. Δοκίμασε ξανά.'; });
+        } else {
+            var t = el('textarea'); t.value = kql; document.body.appendChild(t); t.select();
+            try { document.execCommand('copy'); ok(); } catch (e) {} document.body.removeChild(t);
+        }
+    });
+
+    apply();
+})();
+</script>
+{{- end -}}
