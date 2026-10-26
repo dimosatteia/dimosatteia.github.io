@@ -216,6 +216,10 @@ mitre: ["T1087.002", "T1018", "T1110", "T1558.004", "T1550.002", "T1550.003", "T
 
 ## Πού να συνεχίσετε από εδώ
 
+{{< if-published page="/posts/alysida-epithesis-3d-microsoft-defender" >}}
+> 🔗 **Θέλετε να δείτε το προϊόν μέσα σε μια πραγματική επίθεση;** Δείτε **[την αλυσίδα μιας επίθεσης σε 3D](/posts/alysida-epithesis-3d-microsoft-defender/)**, με τρία σενάρια και το βήμα όπου τη σταματά το Microsoft Defender.
+{{< /if-published >}}
+
 > 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**. Ακολουθεί το **Microsoft Defender for Cloud Apps**, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
 {{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive" >}}

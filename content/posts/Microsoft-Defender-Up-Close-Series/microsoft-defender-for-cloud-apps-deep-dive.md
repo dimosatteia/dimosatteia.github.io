@@ -194,6 +194,10 @@ mitre: ["T1528", "T1078.004"]
 
 ## Πού να συνεχίσετε από εδώ
 
+{{< if-published page="/posts/alysida-epithesis-3d-microsoft-defender" >}}
+> 🔗 **Θέλετε να δείτε το προϊόν μέσα σε μια πραγματική επίθεση;** Δείτε **[την αλυσίδα μιας επίθεσης σε 3D](/posts/alysida-epithesis-3d-microsoft-defender/)**, με τρία σενάρια και το βήμα όπου τη σταματά το Microsoft Defender.
+{{< /if-published >}}
+
 > 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)** και **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)**.
 
 > 🔗 **Θέλετε να δείτε πώς τα σήματα των cloud εφαρμογών τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.

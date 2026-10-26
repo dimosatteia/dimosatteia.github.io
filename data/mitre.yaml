@@ -86,6 +86,10 @@ items:
   "T1490":       { name: "Inhibit System Recovery", tactic: "Impact" }
   "T1684.002":   { name: "Social Engineering: Email Spoofing", tactic: "Stealth" }
   "T1190":       { name: "Exploit Public-Facing Application", tactic: "Initial Access" }
+  "T1586.002":   { name: "Compromise Accounts: Email Accounts", tactic: "Resource Development" }
+  "T1564.008":   { name: "Hide Artifacts: Email Hiding Rules", tactic: "Stealth" }
+  "T1534":       { name: "Internal Spearphishing", tactic: "Lateral Movement" }
+  "T1657":       { name: "Financial Theft", tactic: "Impact" }
   "M1018":       { name: "User Account Management", tactic: "Mitigations" }
   "M1034":       { name: "Limit Hardware Installation", tactic: "Mitigations" }
   "M1041":       { name: "Encrypt Sensitive Information", tactic: "Mitigations" }

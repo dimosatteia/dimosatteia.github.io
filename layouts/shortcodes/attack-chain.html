@@ -1,0 +1,447 @@
+{{- /* 3D αλυσίδα επίθεσης: σενάρια από το data/attack_chains.yaml, σκηνή στο static/js/attack-chain/scene.js.
+       Χωρίς JavaScript ή WebGL μένουν ορατά τα βήματα και ένα στατικό διάγραμμα SVG. Χρήση: {{< attack-chain >}}
+       Προαιρετικά: {{< attack-chain scenario="edge" >}} για να ανοίγει σε άλλο σενάριο. */ -}}
+{{- $d := hugo.Data.attack_chains -}}
+{{- $kqlPage := site.GetPage "/kql" -}}
+{{- $start := .Get "scenario" | default (index $d.scenarios 0).id -}}
+{{- /* Προβολή του 3D χώρου σε 2D για το στατικό διάγραμμα */ -}}
+{{- $proj := dict -}}
+{{- range $id, $n := $d.nodes -}}
+  {{- $x := index $n.pos 0 -}}{{- $y := index $n.pos 1 -}}{{- $z := index $n.pos 2 -}}
+  {{- $sx := add 470.0 (mul (sub $x (mul $z 0.32)) 58.0) -}}
+  {{- $sy := add (sub 270.0 (mul $y 45.0)) (mul $z 28.0) -}}
+  {{- $proj = merge $proj (dict $id (slice $sx $sy)) -}}
+{{- end -}}
+{{- $js := dict "nodes" $d.nodes "products" $d.products "scenarios" (slice) -}}
+{{- $scen := slice -}}
+{{- range $d.scenarios -}}
+  {{- $steps := slice -}}
+  {{- range .steps }}{{ $steps = $steps | append (dict "id" .id "path" .path "product" .defense.product "stops" (.stops | default false) "title" .title "impact" (or (in .mitre "T1486") (in .mitre "T1657")) "outcome" (.outcome | default "detect") "fan" (and (in .mitre "T1486") (gt (len .path) 2))) }}{{ end -}}
+  {{- $scen = $scen | append (dict "id" .id "steps" $steps) -}}
+{{- end -}}
+{{- $js = merge $js (dict "scenarios" $scen) -}}
+<div class="not-prose ac" data-ac data-start="{{ $start }}">
+  <div class="ac-grid" data-ac-grid>
+    <div class="ac-slot" data-ac-slot>
+    <div class="ac-stage-wrap" data-ac-float>
+      <div class="ac-bar">
+        <div class="ac-tabs" role="tablist" aria-label="Σενάρια επίθεσης">
+          {{- range $i, $s := $d.scenarios }}
+          <button type="button" role="tab" id="ac-tab-{{ $s.id }}" aria-controls="ac-panel-{{ $s.id }}" aria-selected="{{ eq $s.id $start }}" data-ac-tab="{{ $s.id }}">{{ $s.tab }}</button>
+          {{- end }}
+        </div>
+        <div class="ac-mode" role="group" aria-label="Με ή χωρίς Microsoft Defender">
+          <button type="button" data-ac-mode="without" aria-pressed="false">Χωρίς Defender</button><button type="button" data-ac-mode="with" aria-pressed="true">🛡️ Με Defender</button>
+        </div>
+      </div>
+      <div class="ac-stage" data-ac-stage>
+        <svg class="ac-svg" data-ac-svg viewBox="0 0 800 400" role="img" aria-label="Διάγραμμα της εικονικής εταιρείας MyCompany με τους κόμβους της επίθεσης">
+          <rect x="6" y="6" width="150" height="388" rx="14" class="ac-zone-net"/>
+          <text x="20" y="28" class="ac-zone-t">Internet</text>
+          <text x="640" y="80" class="ac-zone-t" text-anchor="middle">Microsoft 365 / cloud</text>
+          <text x="600" y="392" class="ac-zone-t" text-anchor="middle">Γραφείο MyCompany</text>
+          {{- range $sc := $d.scenarios }}{{ range $st := $sc.steps }}
+          {{- $pts := slice }}{{ range $st.path }}{{ $p := index $proj . }}{{ $pts = $pts | append (printf "%.0f,%.0f" (index $p 0) (index $p 1)) }}{{ end }}
+          {{- if gt (len $pts) 1 }}<polyline class="ac-svg-path" data-ac-svgstep="{{ $st.id }}" points="{{ delimit $pts " " }}"/>{{ end }}
+          {{- end }}{{ end }}
+          {{- range $id, $n := $d.nodes }}{{ $p := index $proj $id }}
+          <g class="ac-svg-node" data-ac-svgnode="{{ $id }}">
+            <circle cx="{{ printf "%.0f" (index $p 0) }}" cy="{{ printf "%.0f" (index $p 1) }}" r="{{ if eq $n.kind "xdr" }}15{{ else }}11{{ end }}"/>
+            <text x="{{ printf "%.0f" (index $p 0) }}" y="{{ printf "%.0f" (add (index $p 1) 27) }}" text-anchor="middle">{{ $n.label }}</text>
+          </g>
+          {{- end }}
+        </svg>
+        <div class="ac-hud" aria-live="polite">
+          <p class="ac-hud-step" data-ac-hud-step></p>
+          <p class="ac-hud-title" data-ac-hud-title></p>
+        </div>
+        <div class="ac-nav">
+          <button type="button" class="ac-play" data-ac-play aria-pressed="false">▶ Αναπαραγωγή</button>
+          <button type="button" data-ac-prev aria-label="Προηγούμενο βήμα">‹</button>
+          <button type="button" data-ac-next aria-label="Επόμενο βήμα">›</button>
+        </div>
+        <p class="ac-outcome" data-ac-outcome aria-live="polite"></p>
+        <p class="ac-hint" data-ac-hint hidden>Πάτα ▶ ή κάνε scroll στα βήματα · σύρε για περιστροφή</p>
+      </div>
+      <p class="ac-legend"><span class="ac-dot ac-dot-red"></span>Παραβιάστηκε <span class="ac-dot ac-dot-green"></span>Μπλοκαρίστηκε ή περιορίστηκε <span class="ac-dot ac-dot-amber"></span>Εντοπίστηκε <span class="ac-dot ac-dot-blue"></span>Σήμα προς Defender XDR</p>
+    </div>
+    </div>
+
+    <div class="ac-steps">
+      {{- range $s := $d.scenarios }}
+      <section class="ac-panel" role="tabpanel" id="ac-panel-{{ $s.id }}" aria-labelledby="ac-tab-{{ $s.id }}" data-ac-panel="{{ $s.id }}"{{ if ne $s.id $start }} hidden{{ end }}>
+        <h3 class="ac-panel-title">{{ $s.title }}</h3>
+        <p class="ac-panel-intro">{{ $s.intro }}</p>
+        <ol class="ac-list">
+          {{- range $i, $st := $s.steps }}
+          {{- $prod := index $d.products $st.defense.product }}
+          <li class="ac-step" id="{{ $st.id }}" data-ac-step="{{ $i }}" tabindex="0">
+            <p class="ac-step-n">Βήμα {{ add $i 1 }} / {{ len $s.steps }}{{ if $st.stops }}<span class="ac-stop">🛡️ Εδώ κόβεται η αλυσίδα</span>{{ end }}<span class="ac-after" data-ac-after>Δεύτερη γραμμή άμυνας</span></p>
+            <h4 class="ac-step-title">{{ $st.title }}</h4>
+            <p class="ac-attack"><span class="ac-k">Επίθεση.</span> {{ $st.attack }}</p>
+            <div class="ac-defense" style="--c: {{ $prod.color }}">
+              {{- $out := $st.outcome | default "detect" }}{{ $outL := index (dict "block" "Μπλοκάρεται" "contain" "Περιορίζεται αυτόματα" "detect" "Εντοπίζεται" "none" "Κανένα προϊόν δεν το σταματά") $out }}
+              <p class="ac-prod"><span class="ac-chip">{{ $prod.short }}</span>{{ $prod.name }}<span class="ac-out ac-out-{{ $out }}">{{ $outL }}</span></p>
+              <p>{{ $st.defense.what }}</p>
+            </div>
+            {{- with $st.mitre }}
+            <p class="ac-meta"><span class="ac-k">ATT&amp;CK®</span>
+              {{- range . }}{{ $item := index hugo.Data.mitre.items . }}
+              <a href="{{ partial "mitre-url.html" . }}" target="_blank" rel="noopener" class="ac-mitre" title="MITRE ATT&CK® {{ . }}{{ with $item }}: {{ .name }}{{ end }}">{{ . }}</a>
+              {{- end }}
+            </p>
+            {{- end }}
+            <p class="ac-meta"><span class="ac-k">Συμμόρφωση</span>
+              {{- range $st.kya }}<a href="/kya-1689-2025/#{{ replace . "." "-" }}" class="ac-fw" title="ΚΥΑ 1689/2025, απαίτηση {{ . }}">ΚΥΑ {{ . }}</a>{{ end }}
+              {{- range $st.nis2 }}<a href="/nis2/#{{ replace . "." "-" }}" class="ac-fw" title="Οδηγία NIS2, άρθρο {{ . }}">NIS2 {{ . }}</a>{{ end }}
+              {{- range $st.iso }}<a href="/iso-27001/#{{ replace . "." "-" }}" class="ac-fw" title="ISO/IEC 27001:2022, {{ . }}">ISO {{ . }}</a>{{ end }}
+              {{- range $st.gdpr }}<a href="/gdpr/#{{ replace . "." "-" }}" class="ac-fw" title="GDPR, άρθρο {{ . }}">GDPR {{ . }}</a>{{ end }}
+            </p>
+            {{- with $st.kql }}{{ $kid := . }}{{ with $kqlPage }}{{ $kp := . }}{{ range where hugo.Data.kql.queries "id" $kid }}{{ if not .draft }}
+            <p class="ac-meta"><span class="ac-k">KQL</span><a href="{{ $kp.RelPermalink }}#{{ $kid }}" class="ac-kql">🔎 {{ .title }}</a></p>
+            {{- end }}{{ end }}{{ end }}{{ end }}
+          </li>
+          {{- end }}
+        </ol>
+      </section>
+      {{- end }}
+    </div>
+  </div>
+  <script type="application/json" data-ac-data>{{ $js | jsonify | safeJS }}</script>
+</div>
+
+<style>
+.ac{--ac-bg:#0b1220;--ac-panel:#0f172a;--ac-line:#1e293b;--ac-text:#cbd5e1;--ac-dim:#94a3b8;--ac-red:#f87171;--ac-amber:#fbbf24;--ac-blue:#60a5fa;margin:2rem 0;container-type:inline-size;color:var(--ac-text);font-family:system-ui,-apple-system,sans-serif}
+.ac button{font:inherit;cursor:pointer}
+.ac-bar{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.ac-tabs{display:flex;flex-wrap:wrap;gap:.4rem}
+.ac-tabs button{border:1px solid #334155;background:var(--ac-panel);color:var(--ac-dim);border-radius:9999px;padding:.4rem .85rem;font-size:.8rem;font-weight:600}
+.ac-tabs button[aria-selected="true"]{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+.ac-mode{display:flex;border:1px solid #334155;border-radius:9999px;overflow:hidden;background:var(--ac-panel)}
+.ac-mode button{border:0;background:transparent;color:var(--ac-dim);padding:.4rem .8rem;font-size:.78rem;font-weight:600}
+.ac-mode button[aria-pressed="true"]{background:#334155;color:#fff}
+.ac-mode button[data-ac-mode="without"][aria-pressed="true"]{background:#7f1d1d;color:#fff}
+.ac-tabs button:focus-visible,.ac-mode button:focus-visible,.ac-nav button:focus-visible,.ac-step:focus-visible{outline:2px solid var(--ac-blue);outline-offset:2px}
+.ac-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+.ac-slot{position:relative;align-self:start;min-width:0}
+.ac-stage-wrap{position:relative;z-index:2;background:#020617;padding-bottom:.4rem;border-radius:0 0 14px 14px}
+/* Η σκηνή «αιωρείται» κάτω από το header όσο ο αναγνώστης βρίσκεται στα βήματα (το βάζει το script). */
+.ac-stage-wrap.is-float{position:fixed;z-index:40;box-shadow:0 12px 32px rgba(2,6,23,.75);padding-top:.4rem}
+.ac-stage{position:relative;height:clamp(220px,40vh,380px);border:1px solid #1e293b;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at 50% 38%,#10224a 0%,#071229 48%,#020617 100%);box-shadow:inset 0 0 80px rgba(2,6,23,.9);touch-action:pan-y}
+.ac-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .6s}
+.ac-stage.is-3d canvas{opacity:1}
+.ac-stage.is-3d .ac-svg{display:none}
+.ac-svg{position:absolute;inset:0;width:100%;height:100%}
+.ac-zone-net{fill:rgba(248,113,113,.06);stroke:rgba(248,113,113,.25)}
+.ac-zone-t{fill:#64748b;font:600 12px system-ui,sans-serif}
+.ac-svg-node circle{fill:#1e293b;stroke:#475569;stroke-width:2;transition:fill .3s,stroke .3s}
+.ac-svg-node text{fill:#94a3b8;font:600 11px system-ui,sans-serif}
+.ac-svg-node.is-hit circle{fill:#7f1d1d;stroke:var(--ac-red)}
+.ac-svg-node.is-det circle{fill:#78350f;stroke:var(--ac-amber)}
+.ac-svg-node.is-ok circle{fill:#14532d;stroke:#22c55e}
+.ac-svg-node.is-dim{opacity:.35}
+.ac-svg-path{fill:none;stroke:var(--ac-red);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:8 7;opacity:0;transition:opacity .3s}
+.ac-svg-path.is-on{opacity:1}
+.ac-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ac-label{position:absolute;left:0;top:0;white-space:nowrap;font:600 10.5px system-ui,sans-serif;letter-spacing:.01em;color:#cbd5e1;background:rgba(2,6,23,.72);border:1px solid rgba(148,163,184,.18);border-radius:6px;padding:1px 7px;translate:-50% 6px;backdrop-filter:blur(4px);transition:opacity .25s,color .3s,border-color .3s}
+.ac-label.is-hit{color:#fecdd3;border-color:rgba(244,63,94,.55)}.ac-label.is-det{color:#fde68a;border-color:rgba(245,158,11,.55)}.ac-label.is-dim{opacity:.35!important}.ac-label.is-ok{color:#bbf7d0;border-color:rgba(34,197,94,.55)}
+.ac-label.is-mini{visibility:hidden}
+.ac-badge{position:absolute;left:0;top:0;translate:-50% -135%;padding:2px 8px;border-radius:9999px;font:800 10px ui-monospace,monospace;letter-spacing:.04em;color:#020617;background:var(--c,#60a5fa);box-shadow:0 0 0 2px rgba(2,6,23,.85),0 0 16px var(--c,#60a5fa);transition:opacity .3s,scale .3s;opacity:0;scale:.6}
+.ac-badge.is-on{opacity:1;scale:1}
+.ac-hud{position:absolute;left:.75rem;top:.6rem;right:12rem;pointer-events:none}
+.ac-hud p{margin:0}
+.ac-hud-step{font:600 10px ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:#64748b}
+.ac-hud-title{font-weight:700;font-size:.9rem;color:#e2e8f0;text-shadow:0 0 6px #0b1220;margin-top:.1rem!important}
+.ac-nav{position:absolute;right:.6rem;top:.6rem;display:flex;gap:.3rem;z-index:2}
+.ac-nav button{width:30px;height:30px;border-radius:8px;border:1px solid #334155;background:rgba(11,18,32,.85);color:#e2e8f0;font-size:1.1rem;line-height:1}
+.ac-nav button:disabled{opacity:.35;cursor:default}
+.ac-nav .ac-play{width:auto;padding:0 .7rem;font:700 .75rem system-ui,sans-serif;background:#1d4ed8;border-color:#3b82f6;color:#fff}
+.ac-nav .ac-play[aria-pressed="true"]{background:#334155;border-color:#475569}
+.ac-outcome{position:absolute;left:50%;bottom:1.7rem;translate:-50% 0;margin:0;max-width:calc(100% - 1.5rem);padding:.35rem .8rem;border-radius:9999px;font:700 .8rem system-ui,sans-serif;color:#f8fafc;background:rgba(2,6,23,.82);border:1px solid var(--oc,#334155);box-shadow:0 0 18px color-mix(in srgb,var(--oc,#334155) 45%,transparent);text-align:center;opacity:0;transition:opacity .35s,border-color .3s;pointer-events:none}
+.ac-outcome.is-on{opacity:1}
+.ac-hint{position:absolute;left:.75rem;bottom:.5rem;margin:0;font-size:10px;color:#64748b;pointer-events:none}
+.ac-legend{display:flex;flex-wrap:wrap;gap:.3rem .9rem;align-items:center;font-size:.72rem;color:var(--ac-dim);margin:.5rem .2rem 0}
+.ac-dot{display:inline-block;width:.6rem;height:.6rem;border-radius:9999px;margin-right:.3rem;vertical-align:-1px}
+.ac-dot-red{background:var(--ac-red)}.ac-dot-green{background:#22c55e}.ac-dot-amber{background:var(--ac-amber)}.ac-dot-blue{background:var(--ac-blue)}
+.ac-panel-title{font-size:1.15rem;font-weight:700;color:#f1f5f9;margin:.2rem 0 .4rem}
+.ac-panel-intro{font-size:.9rem;color:var(--ac-dim);margin:0 0 1rem;line-height:1.6}
+.ac-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.8rem}
+.ac-step{border:1px solid var(--ac-line);border-left:3px solid #334155;border-radius:12px;background:rgba(15,23,42,.7);padding:.9rem 1rem;cursor:pointer;transition:border-color .25s,background .25s,opacity .25s;opacity:.72}
+.ac-step.is-active{opacity:1;border-color:#334155;border-left-color:var(--ac-red);background:rgba(15,23,42,.95)}
+.ac[data-mode="with"] .ac-step.is-active{border-left-color:var(--ac-amber)}
+.ac-step p{margin:0}
+.ac-step-n{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font:600 10px ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:#64748b}
+.ac-stop,.ac-after{font-family:system-ui,sans-serif;letter-spacing:0;text-transform:none;font-size:.7rem;padding:.1rem .45rem;border-radius:9999px}
+.ac-stop{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.4)}
+.ac-after{display:none;background:rgba(148,163,184,.12);color:#cbd5e1;border:1px solid #334155}
+.ac[data-mode="with"] .ac-step.is-after .ac-after{display:inline-block}
+.ac[data-mode="without"] .ac-stop{opacity:.5}
+.ac-step-title{font-size:.98rem;font-weight:700;color:#f1f5f9;margin:.35rem 0 .45rem}
+.ac-attack{font-size:.86rem;line-height:1.6}
+.ac-k{font-weight:700;color:#fca5a5;margin-right:.25rem}
+.ac-defense{margin-top:.6rem;border-radius:10px;border:1px solid color-mix(in srgb,var(--c) 35%,transparent);background:color-mix(in srgb,var(--c) 8%,transparent);padding:.6rem .75rem;font-size:.86rem;line-height:1.6;transition:opacity .25s}
+.ac[data-mode="without"] .ac-defense{opacity:.55}
+.ac-out{margin-left:auto;font:700 .68rem system-ui,sans-serif;padding:.1rem .5rem;border-radius:9999px;border:1px solid}
+.ac-out-block,.ac-out-contain{color:#86efac;border-color:rgba(34,197,94,.45);background:rgba(34,197,94,.1)}.ac-out-detect{color:#fcd34d;border-color:rgba(245,158,11,.45);background:rgba(245,158,11,.1)}.ac-out-none{color:#fda4af;border-color:rgba(244,63,94,.45);background:rgba(244,63,94,.1)}
+.ac-prod{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;font-weight:700;color:#f1f5f9;margin-bottom:.25rem!important}
+.ac-chip{font:700 10px ui-monospace,monospace;color:#0b1220;background:var(--c);padding:.1rem .4rem;border-radius:6px}
+.ac-meta{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin-top:.55rem!important;font-size:.75rem}
+.ac-meta .ac-k{color:#64748b;font:600 10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.05em}
+.ac-mitre,.ac-fw,.ac-kql{display:inline-block;padding:.1rem .45rem;border-radius:6px;font:600 11px ui-monospace,monospace;text-decoration:none;border:1px solid #334155;color:#cbd5e1;background:#0b1220}
+.ac-mitre{border-color:rgba(239,68,68,.35)}
+.ac-mitre:hover,.ac-fw:hover,.ac-kql:hover{color:#fff;border-color:var(--ac-blue)}
+.ac-kql{font-family:system-ui,sans-serif;border-color:rgba(59,130,246,.4)}
+@container (max-width: 520px){
+  /* Στο κινητό οι καρτέλες πιάνουν μία σειρά με οριζόντιο scroll, ώστε το floating μπλοκ να μένει χαμηλό. */
+  .ac-bar{flex-wrap:nowrap;gap:.35rem;margin-bottom:.35rem}
+  .ac-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
+  .ac-tabs::-webkit-scrollbar{display:none}
+  .ac-tabs button{white-space:nowrap;padding:.3rem .6rem;font-size:.7rem}
+  .ac-mode button{padding:.3rem .5rem;font-size:.68rem;white-space:nowrap}
+  .ac-stage{height:clamp(200px,36vh,300px)}
+  .ac-outcome{font-size:.7rem;padding:.25rem .6rem;bottom:1.5rem}
+  .ac-hud-title{font-size:.78rem}
+  .ac-nav .ac-play{padding:0 .5rem;font-size:.7rem}
+  .ac-legend{font-size:.66rem;gap:.2rem .6rem}
+  .ac-hint{display:none}
+}
+/* Η σκηνή μένει πάνω από τα βήματα σε όλο το πλάτος. Δίπλα-δίπλα μόνο σε πολύ φαρδιά στήλη. */
+@container (min-width: 640px){ .ac-stage{height:clamp(300px,46vh,480px)} }
+@container (min-width: 1150px){
+  .ac-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:start}
+  .ac-slot{order:2}
+  .ac-steps{order:1}
+  .ac-stage{height:clamp(360px,64vh,600px)}
+}
+@media (prefers-reduced-motion:reduce){.ac-step,.ac-badge,.ac-svg-path{transition:none}}
+</style>
+<script>
+(function () {
+  // Το script τρέχει αμέσως μετά το δικό του [data-ac], οπότε αυτό είναι το τελευταίο στη σελίδα μέχρι εδώ.
+  var all = document.querySelectorAll('[data-ac]'), root = all[all.length - 1];
+  if (!root || root.dataset.acInit) return; root.dataset.acInit = '1';
+  var data = JSON.parse(root.querySelector('[data-ac-data]').textContent);
+  // Αιωρούμενη σκηνή: όσο τα βήματα είναι στην οθόνη, η σκηνή μένει σταθερή κάτω από το header του site.
+  // Γίνεται με position: fixed και όχι με sticky, ώστε να δουλεύει όποιο στοιχείο κι αν κάνει scroll.
+  (function () {
+    var slot = root.querySelector('[data-ac-slot]'), wrap = root.querySelector('[data-ac-float]'), grid = root.querySelector('[data-ac-grid]');
+    var header = document.querySelector('header'), queued = false;
+    function headerBottom() {
+      if (!header) return 0;
+      var pos = getComputedStyle(header).position;
+      return pos === 'sticky' || pos === 'fixed' ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+    }
+    function place() {
+      queued = false;
+      var top = headerBottom() + 8, sr = slot.getBoundingClientRect(), gr = grid.getBoundingClientRect();
+      var wh = wrap.offsetHeight;
+      if (sr.top < top && gr.bottom > top + 60) {
+        slot.style.height = wh + 'px';
+        wrap.classList.add('is-float');
+        wrap.style.left = sr.left + 'px';
+        wrap.style.width = sr.width + 'px';
+        // Στο τέλος των βημάτων η σκηνή ανεβαίνει μαζί τους αντί να τα σκεπάζει.
+        wrap.style.top = Math.min(top, gr.bottom - wh) + 'px';
+      } else if (wrap.classList.contains('is-float')) {
+        wrap.classList.remove('is-float');
+        wrap.style.left = wrap.style.width = wrap.style.top = '';
+        slot.style.height = '';
+      }
+    }
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(place); } }
+    document.addEventListener('scroll', queue, { capture: true, passive: true });
+    window.addEventListener('resize', queue);
+    if ('ResizeObserver' in window) new ResizeObserver(queue).observe(grid);
+    queue();
+  })();
+  var stage = root.querySelector('[data-ac-stage]');
+  var hudStep = root.querySelector('[data-ac-hud-step]'), hudTitle = root.querySelector('[data-ac-hud-title]');
+  var prev = root.querySelector('[data-ac-prev]'), next = root.querySelector('[data-ac-next]');
+  var state = { s: 0, i: 0, mode: 'with' };
+  var api = null, lock = 0;
+  var scenIndex = {}; data.scenarios.forEach(function (s, k) { scenIndex[s.id] = k; });
+
+  function stopIndex(sc) { for (var k = 0; k < sc.steps.length; k++) if (sc.steps[k].stops) return k; return -1; }
+  function panel() { return root.querySelector('[data-ac-panel="' + data.scenarios[state.s].id + '"]'); }
+
+  // Στατικό διάγραμμα: χρωματίζει τους κόμβους μέχρι το τρέχον βήμα.
+  var OUT = { block: 'Μπλοκαρίστηκε', contain: 'Περιορίστηκε αυτόματα', detect: 'Εντοπίστηκε', none: 'Κανένα προϊόν δεν το σταματά' };
+  // Κατάσταση κάθε κόμβου μέχρι το τρέχον βήμα: hit (παραβιάστηκε), ok (μπλοκαρίστηκε/περιορίστηκε), det (εντοπίστηκε).
+  function nodeStates() {
+    var sc = data.scenarios[state.s], st = {};
+    for (var k = 0; k <= state.i; k++) {
+      var step = sc.steps[k], last = step.path[step.path.length - 1];
+      step.path.forEach(function (n) {
+        if (n === 'xdr' || n === 'attacker') return;
+        if (state.mode === 'without' || step.outcome === 'none') { st[n] = 'hit'; return; }
+        if (n !== last && !step.fan) return;
+        st[n] = step.outcome === 'detect' ? 'det' : 'ok';
+      });
+    }
+    return st;
+  }
+  function paintSvg() {
+    var sc = data.scenarios[state.s], used = {}, st = nodeStates();
+    sc.steps.forEach(function (x) { x.path.forEach(function (n) { used[n] = 1; }); });
+    root.querySelectorAll('[data-ac-svgstep]').forEach(function (e) { e.classList.remove('is-on'); });
+    var p = root.querySelector('[data-ac-svgstep="' + sc.steps[state.i].id + '"]'); if (p) p.classList.add('is-on');
+    root.querySelectorAll('[data-ac-svgnode]').forEach(function (g) {
+      var id = g.getAttribute('data-ac-svgnode');
+      g.classList.toggle('is-hit', st[id] === 'hit');
+      g.classList.toggle('is-ok', st[id] === 'ok');
+      g.classList.toggle('is-det', st[id] === 'det');
+      g.classList.toggle('is-dim', !used[id]);
+    });
+  }
+  var outEl = root.querySelector('[data-ac-outcome]'), outT = 0;
+  function paintOutcome() {
+    var sc = data.scenarios[state.s], step = sc.steps[state.i], prod = data.products[step.product];
+    var last = step.path[step.path.length - 1], node = data.nodes[last];
+    var txt, col;
+    if (state.mode === 'without') {
+      txt = last === 'xdr' ? '✖ Χωρίς Defender: σκόρπια alerts, κανένα ενιαίο incident'
+        : step.fan ? '✖ Χωρίς Defender: το ransomware απλώθηκε σε ' + (step.path.length - 1) + ' συσκευές'
+        : last === 'attacker' ? '✖ Χωρίς Defender: τα χρήματα πήγαν στον επιτιθέμενο'
+        : '✖ Χωρίς Defender: παραβιάστηκε ' + (node ? node.label : '');
+      col = '#f43f5e';
+    } else if (step.outcome === 'none') {
+      txt = '⚠ ' + OUT.none + (step.product === 'process' ? ': εδώ σε σώζει η διαδικασία' : '');
+      col = '#f43f5e';
+    } else {
+      txt = '🛡 ' + (prod ? prod.name : 'Defender') + ': ' + OUT[step.outcome];
+      col = step.outcome === 'detect' ? '#f59e0b' : '#22c55e';
+    }
+    outEl.textContent = txt; outEl.style.setProperty('--oc', col);
+    outEl.classList.remove('is-on');
+    clearTimeout(outT);
+    // Εμφανίζεται όταν ο επιτιθέμενος φτάσει στον στόχο του βήματος.
+    outT = setTimeout(function () { outEl.classList.add('is-on'); }, api && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 1700 : 0);
+  }
+  function render(fromScroll) {
+    var sc = data.scenarios[state.s], step = sc.steps[state.i], st = stopIndex(sc);
+    root.dataset.mode = state.mode;
+    hudStep.textContent = 'Βήμα ' + (state.i + 1) + ' / ' + sc.steps.length;
+    hudTitle.textContent = step.title;
+    prev.disabled = state.i === 0; next.disabled = state.i === sc.steps.length - 1;
+    panel().querySelectorAll('[data-ac-step]').forEach(function (li, k) {
+      li.classList.toggle('is-active', k === state.i);
+      li.classList.toggle('is-after', st >= 0 && k > st);
+    });
+    paintSvg();
+    paintOutcome();
+    if (api) api.show(state.s, state.i, state.mode);
+    if (!fromScroll) {
+      var li = panel().querySelector('[data-ac-step="' + state.i + '"]');
+      if (li) { lock = Date.now(); li.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }); }
+    }
+  }
+
+  function setScenario(k, keepHash) {
+    if (typeof stopPlay === 'function') stopPlay();
+    state.s = k; state.i = 0;
+    root.querySelectorAll('[data-ac-tab]').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-ac-tab') === data.scenarios[k].id)); });
+    root.querySelectorAll('[data-ac-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-ac-panel') !== data.scenarios[k].id; });
+    observe();
+    render(true);
+    if (!keepHash) try { history.replaceState(null, '', '#' + data.scenarios[k].id); } catch (e) {}
+  }
+
+  root.querySelectorAll('[data-ac-tab]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      setScenario(scenIndex[b.getAttribute('data-ac-tab')]);
+      // Αν η σκηνή αιωρείται, πήγαινε στο πρώτο βήμα του νέου σεναρίου, ακριβώς κάτω από αυτήν.
+      var w = root.querySelector('[data-ac-float]');
+      if (w.classList.contains('is-float')) {
+        lock = Date.now();
+        var gap = panel().getBoundingClientRect().top - (w.getBoundingClientRect().bottom + 12);
+        window.scrollBy({ top: gap, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }
+    });
+    b.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var n = data.scenarios.length, k = (state.s + (e.key === 'ArrowRight' ? 1 : n - 1)) % n;
+      setScenario(k); root.querySelector('[data-ac-tab="' + data.scenarios[k].id + '"]').focus();
+    });
+  });
+  root.querySelectorAll('[data-ac-mode]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.mode = b.getAttribute('data-ac-mode');
+      root.querySelectorAll('[data-ac-mode]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      render(true);
+    });
+  });
+  // Αυτόματη αναπαραγωγή όλων των βημάτων του σεναρίου.
+  var playBtn = root.querySelector('[data-ac-play]'), playT = null;
+  function stopPlay() {
+    if (!playT) return;
+    clearInterval(playT); playT = null;
+    playBtn.textContent = '▶ Αναπαραγωγή'; playBtn.setAttribute('aria-pressed', 'false');
+  }
+  function startPlay() {
+    var n = data.scenarios[state.s].steps.length;
+    if (state.i >= n - 1) state.i = 0;
+    render();
+    playBtn.textContent = '❚❚ Παύση'; playBtn.setAttribute('aria-pressed', 'true');
+    playT = setInterval(function () {
+      if (state.i < data.scenarios[state.s].steps.length - 1) { state.i++; render(); } else stopPlay();
+    }, 4300);
+  }
+  playBtn.addEventListener('click', function () { if (playT) stopPlay(); else startPlay(); });
+  prev.addEventListener('click', function () { stopPlay(); if (state.i > 0) { state.i--; render(); } });
+  next.addEventListener('click', function () { stopPlay(); if (state.i < data.scenarios[state.s].steps.length - 1) { state.i++; render(); } });
+  root.querySelectorAll('[data-ac-step]').forEach(function (li) {
+    function go() { stopPlay(); state.i = +li.getAttribute('data-ac-step'); render(true); }
+    li.addEventListener('click', function (e) { if (e.target.closest('a')) return; go(); });
+    li.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+  });
+  // Link μέσα στη σελίδα προς σενάριο (π.χ. #edge): ανοίγει το σενάριο και πηγαίνει στη σκηνή.
+  window.addEventListener('hashchange', function () {
+    var id = (location.hash || '').slice(1);
+    if (!scenIndex.hasOwnProperty(id)) return;
+    setScenario(scenIndex[id], true);
+    root.scrollIntoView({ block: 'start' });
+  });
+
+  // Το βήμα που βρίσκεται στη μέση της οθόνης γίνεται το ενεργό.
+  var io = null;
+  function observe() {
+    if (!('IntersectionObserver' in window)) return;
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (es) {
+      if (Date.now() - lock < 1500) return;
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var k = +en.target.getAttribute('data-ac-step');
+        if (k !== state.i) { state.i = k; render(true); }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    panel().querySelectorAll('[data-ac-step]').forEach(function (li) { io.observe(li); });
+  }
+
+  var h = (location.hash || '').slice(1);
+  var startId = scenIndex.hasOwnProperty(h) ? h : root.getAttribute('data-start');
+  setScenario(scenIndex[startId] || 0, true);
+  // Link σε συγκεκριμένο βήμα (π.χ. #aitm-4)
+  var stepEl = h && document.getElementById(h);
+  if (stepEl && stepEl.hasAttribute('data-ac-step')) {
+    var pid = stepEl.closest('[data-ac-panel]').getAttribute('data-ac-panel');
+    setScenario(scenIndex[pid], true); state.i = +stepEl.getAttribute('data-ac-step'); render(false);
+  }
+
+  function webgl() { try { var c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } }
+  if (!webgl() || !('ResizeObserver' in window) || !('IntersectionObserver' in window)) return;
+  var started = false;
+  function start() {
+    if (started) return; started = true;
+    // Το ?v= αλλάζει σε κάθε αλλαγή του scene.js, ώστε ο browser να μην κρατά παλιά έκδοση στην cache.
+    import({{ printf "%s?v=%s" ("js/attack-chain/scene.js" | relURL) (substr (os.ReadFile "static/js/attack-chain/scene.js" | md5) 0 8) }}).then(function (m) {
+      api = m.init(stage, data);
+      stage.classList.add('is-3d');
+      root.querySelector('[data-ac-hint]').hidden = false;
+      api.show(state.s, state.i, state.mode);
+    }).catch(function (e) { if (window.console) console.warn('attack-chain', e); });
+  }
+  var vio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { vio.disconnect(); start(); } }, { rootMargin: '300px' });
+  vio.observe(stage);
+})();
+</script>

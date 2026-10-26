@@ -82,6 +82,9 @@ articles:
       url: /posts/purview-autolabeling-500k-scale-increase/
     - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
       url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
+    - title: 'Microsoft Entra Conditional Access Μέρος 1: Τι είναι, πώς αποφασίζει και γιατί είναι ο πυρήνας του Zero Trust'
+      url: /posts/conditional-access-series/conditional-access-meros-1-themeliodeis-ennoies/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-1-themeliodeis-ennoies
   - code: '5.2'
     scope: Υπεύθυνος επεξεργασίας
     requirement: '«Λογοδοσία»: ο υπεύθυνος επεξεργασίας φέρει την ευθύνη και είναι σε θέση να αποδείξει τη συμμόρφωση με τις αρχές της παραγράφου 1.'
@@ -421,6 +424,24 @@ articles:
       page: /posts/homograph-attack-kyrillika-grammata
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Microsoft Entra Conditional Access Μέρος 1: Τι είναι, πώς αποφασίζει και γιατί είναι ο πυρήνας του Zero Trust'
+      url: /posts/conditional-access-series/conditional-access-meros-1-themeliodeis-ennoies/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-1-themeliodeis-ennoies
+    - title: 'Microsoft Entra Conditional Access Μέρος 2: Η ανατομία μιας πολιτικής, από τα Assignments ως τα Session controls'
+      url: /posts/conditional-access-series/conditional-access-meros-2-politikes-kai-mixanismoi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-2-politikes-kai-mixanismoi
+    - title: 'Microsoft Entra Conditional Access Μέρος 3: Από τον σχεδιασμό στις πρώτες πολιτικές, με ασφάλεια'
+      url: /posts/conditional-access-series/conditional-access-meros-3-ylopoiisi-stin-praxi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-3-ylopoiisi-stin-praxi
+    - title: 'Microsoft Entra Conditional Access Μέρος 4: Advanced Identity Security, από τα passkeys ως τα workload identities'
+      url: /posts/conditional-access-series/conditional-access-meros-4-advanced-identity-security/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-4-advanced-identity-security
+    - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
+      url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.
@@ -435,6 +456,13 @@ articles:
     iso:
     - A.8.13
     - A.5.30
+    posts:
+    - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
+      url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 32.1.δ
     scope: Υπεύθυνος και εκτελών
     requirement: Διαδικασία για την τακτική δοκιμή, εκτίμηση και αξιολόγηση της αποτελεσματικότητας των τεχνικών και οργανωτικών μέτρων για τη διασφάλιση της ασφάλειας της επεξεργασίας.
@@ -464,6 +492,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: αποκατάσταση, baselines και ενσωμάτωση'
       url: /posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/04-mdvm-remediation-baselines-and-integration
+    - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
+      url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
   - code: '32.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Το κατάλληλο επίπεδο ασφάλειας εκτιμάται με βάση τους κινδύνους της επεξεργασίας, ιδίως από τυχαία ή παράνομη καταστροφή, απώλεια, αλλοίωση, άνευ αδείας κοινολόγηση ή πρόσβαση.
@@ -527,6 +558,9 @@ articles:
       url: /posts/previews/isoc-integrated-security-operations-defender/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: '33.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Ο εκτελών ενημερώνει τον υπεύθυνο χωρίς αδικαιολόγητη καθυστέρηση μόλις αντιληφθεί παραβίαση δεδομένων προσωπικού χαρακτήρα.

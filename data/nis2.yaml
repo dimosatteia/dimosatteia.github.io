@@ -409,6 +409,9 @@ articles:
       url: /posts/entra-tenant-governance-ga/
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Microsoft Entra Conditional Access Μέρος 2: Η ανατομία μιας πολιτικής, από τα Assignments ως τα Session controls'
+      url: /posts/conditional-access-series/conditional-access-meros-2-politikes-kai-mixanismoi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-2-politikes-kai-mixanismoi
   - code: 12.2.β
     scope: Μόνο βασικές
     requirement: Επέκταση της διαχείρισης κινδύνων σε όλη την εφοδιαστική αλυσίδα, και σε υπεργολάβους.
@@ -428,6 +431,12 @@ articles:
     posts:
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Microsoft Entra Conditional Access Μέρος 1: Τι είναι, πώς αποφασίζει και γιατί είναι ο πυρήνας του Zero Trust'
+      url: /posts/conditional-access-series/conditional-access-meros-1-themeliodeis-ennoies/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-1-themeliodeis-ennoies
+    - title: 'Microsoft Entra Conditional Access Μέρος 2: Η ανατομία μιας πολιτικής, από τα Assignments ως τα Session controls'
+      url: /posts/conditional-access-series/conditional-access-meros-2-politikes-kai-mixanismoi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-2-politikes-kai-mixanismoi
   - code: 13.β
     scope: Βασικές και σημαντικές
     requirement: Μοναδική ταυτότητα για κάθε χρήστη και σύστημα, ώστε να υπάρχει λογοδοσία.
@@ -473,6 +482,12 @@ articles:
       url: /posts/secure-score-grc-part-1-anatomy/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Microsoft Entra Conditional Access Μέρος 3: Από τον σχεδιασμό στις πρώτες πολιτικές, με ασφάλεια'
+      url: /posts/conditional-access-series/conditional-access-meros-3-ylopoiisi-stin-praxi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-3-ylopoiisi-stin-praxi
+    - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
+      url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
   - code: 13.ε
     scope: Βασικές και σημαντικές
     requirement: Προσαρμογή δικαιωμάτων πρόσβασης όταν αλλάζει ή διακόπτεται η απασχόληση.
@@ -508,6 +523,21 @@ articles:
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
+    - title: 'Microsoft Entra Conditional Access Μέρος 1: Τι είναι, πώς αποφασίζει και γιατί είναι ο πυρήνας του Zero Trust'
+      url: /posts/conditional-access-series/conditional-access-meros-1-themeliodeis-ennoies/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-1-themeliodeis-ennoies
+    - title: 'Microsoft Entra Conditional Access Μέρος 2: Η ανατομία μιας πολιτικής, από τα Assignments ως τα Session controls'
+      url: /posts/conditional-access-series/conditional-access-meros-2-politikes-kai-mixanismoi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-2-politikes-kai-mixanismoi
+    - title: 'Microsoft Entra Conditional Access Μέρος 3: Από τον σχεδιασμό στις πρώτες πολιτικές, με ασφάλεια'
+      url: /posts/conditional-access-series/conditional-access-meros-3-ylopoiisi-stin-praxi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-3-ylopoiisi-stin-praxi
+    - title: 'Microsoft Entra Conditional Access Μέρος 4: Advanced Identity Security, από τα passkeys ως τα workload identities'
+      url: /posts/conditional-access-series/conditional-access-meros-4-advanced-identity-security/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-4-advanced-identity-security
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 13.η
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση πολιτικών και διαδικασιών ελέγχου πρόσβασης.
@@ -520,6 +550,12 @@ articles:
     posts:
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+    - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
+      url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
+    - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
+      url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
 - number: 14
   title: Ασφαλής παραμετροποίηση υλικού, λογισμικού, υπηρεσιών και δικτύων
   requirements:
@@ -635,6 +671,15 @@ articles:
       url: /posts/entra-token-protection-bulk-enrollment-limitation/
     - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
       url: /posts/entra-connect-mandatory-upgrade-2026/
+    - title: 'Microsoft Entra Conditional Access Μέρος 3: Από τον σχεδιασμό στις πρώτες πολιτικές, με ασφάλεια'
+      url: /posts/conditional-access-series/conditional-access-meros-3-ylopoiisi-stin-praxi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-3-ylopoiisi-stin-praxi
+    - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
+      url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
+    - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
+      url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
   - code: 16.β
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών διαχείρισης αλλαγών.
@@ -695,6 +740,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: αποκατάσταση, baselines και ενσωμάτωση'
       url: /posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/04-mdvm-remediation-baselines-and-integration
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 17.δ
     scope: Βασικές και σημαντικές
     requirement: Δοκιμή των ενημερώσεων σε ελεγχόμενο περιβάλλον πριν από την παραγωγή, όπου απαιτείται.
@@ -840,6 +888,9 @@ articles:
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
     - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
       url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+    - title: 'Microsoft Entra Conditional Access Μέρος 3: Από τον σχεδιασμό στις πρώτες πολιτικές, με ασφάλεια'
+      url: /posts/conditional-access-series/conditional-access-meros-3-ylopoiisi-stin-praxi/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-3-ylopoiisi-stin-praxi
   - code: 19.δ
     scope: Βασικές και σημαντικές
     requirement: Αποτροπή σύνδεσης μη εξουσιοδοτημένων συσκευών στο εσωτερικό δίκτυο.
@@ -883,6 +934,9 @@ articles:
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
     - title: 'Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft'
       url: /posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/
+    - title: 'Microsoft Entra Conditional Access Μέρος 4: Advanced Identity Security, από τα passkeys ως τα workload identities'
+      url: /posts/conditional-access-series/conditional-access-meros-4-advanced-identity-security/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-4-advanced-identity-security
   - code: 19.η
     scope: Βασικές και σημαντικές
     requirement: Περιορισμός ανοικτών θυρών, πρωτοκόλλων και δικτυακών υπηρεσιών στο απολύτως απαραίτητο.
@@ -944,6 +998,9 @@ articles:
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/
     - title: 'Preview: AI agent runtime protection, το Defender for Endpoint σταματά το prompt injection στους τοπικούς AI agents'
       url: /posts/previews/defender-endpoint-ai-agent-runtime-protection-intune/
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 20.β
     scope: Βασικές και σημαντικές
     requirement: Έλεγχος της εκτέλεσης εφαρμογών και ανίχνευση μη εξουσιοδοτημένου λογισμικού.
@@ -982,6 +1039,9 @@ articles:
     - title: 'Homograph attack: Δύο διευθύνσεις που φαίνονται ίδιες, αλλά η μία είναι παγίδα'
       url: /posts/homograph-attack-kyrillika-grammata/
       page: /posts/homograph-attack-kyrillika-grammata
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 20.δ
     scope: Βασικές και σημαντικές
     requirement: Χρήση μόνο υποστηριζόμενων browsers, τακτική ενημέρωσή τους και περιορισμός των επεκτάσεων τρίτων.
@@ -1173,6 +1233,9 @@ articles:
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 24.β
     scope: Βασικές και σημαντικές
     requirement: Ορισμός τουλάχιστον ενός υπαλλήλου που συντονίζει (ή επιβλέπει, αν υπάρχει εξωτερικός ανάδοχος) την απόκριση σε περιστατικά.
@@ -1205,6 +1268,9 @@ articles:
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
+      url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
   - code: 24.δ
     scope: Βασικές και σημαντικές
     requirement: Συλλογή και τήρηση των καταγραφών για προκαθορισμένο χρόνο, με προστασία από μη εξουσιοδοτημένη πρόσβαση και παραποίηση.
@@ -1247,6 +1313,9 @@ articles:
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+    - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
+      url: /posts/alysida-epithesis-3d-microsoft-defender/
+      page: /posts/alysida-epithesis-3d-microsoft-defender
   - code: 24.στ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών απόκρισης.
@@ -1262,6 +1331,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Εγκεκριμένο BCP και DRP.
+    posts:
+    - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
+      url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
+      page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
   - code: 25.1.β
     scope: Βασικές και σημαντικές
     requirement: Ανάλυση επιχειρηματικών επιπτώσεων (business impact analysis) και απαιτήσεις συνέχειας για τα συστήματα.

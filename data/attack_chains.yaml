@@ -1,0 +1,329 @@
+# Σενάρια για την 3D αλυσίδα επίθεσης (shortcode {{< attack-chain >}}, static/js/attack-chain/scene.js).
+# Όλα τα παραδείγματα είναι κατασκευασμένα: εταιρεία «MyCompany», μόνο ρόλοι, χωρίς ονόματα προσώπων.
+# Κάθε βήμα:
+#   path:     οι κόμβοι της σκηνής από όπου περνά ο επιτιθέμενος (ids από το 'nodes')
+#   mitre:    IDs που υπάρχουν στο data/mitre.yaml
+#   defense:  τι κάνει το Microsoft Defender σε αυτό το βήμα (product: key από το 'products')
+#   stops:    true στο βήμα όπου, σε σωστά ρυθμισμένο tenant, η αλυσίδα κόβεται για πρώτη φορά
+#   outcome:  block (μπλοκάρεται) | contain (περιορίζεται αυτόματα) | detect (εντοπίζεται) | none (κανένα προϊόν)
+#   kya/nis2/iso/gdpr: κωδικοί που υπάρχουν στα data/nis2.yaml, nis2directive.yaml, iso27001.yaml, gdpr.yaml
+#   kql:      id από το data/kql.yaml (προαιρετικό, εμφανίζεται μόνο αν το query είναι δημοσιευμένο)
+verified: 2026-10-26
+
+products:
+  mdo:      { name: "Defender for Office 365", short: "MDO",  color: "#38bdf8" }
+  mde:      { name: "Defender for Endpoint",   short: "MDE",  color: "#a78bfa" }
+  mdi:      { name: "Defender for Identity",   short: "MDI",  color: "#34d399" }
+  mdca:     { name: "Defender for Cloud Apps", short: "MDCA", color: "#fbbf24" }
+  idp:      { name: "Entra ID Protection",     short: "IDP",  color: "#60a5fa" }
+  xdr:      { name: "Defender XDR",            short: "XDR",  color: "#3b82f6" }
+  dvm:      { name: "Defender Vulnerability Management", short: "DVM", color: "#f472b6" }
+  process:  { name: "Διαδικασία, όχι προϊόν",  short: "ΔΙΑΔ", color: "#94a3b8" }
+
+# Κόμβοι της σκηνής. pos: [x, y, z]. zone: internet | cloud | office
+nodes:
+  attacker:  { label: "Επιτιθέμενος",                 zone: internet, kind: attacker, pos: [-5.6, 0.0, -0.6] }
+  supplier:  { label: "Mailbox προμηθευτή",           zone: internet, kind: mail,     pos: [-5.5, 0.0, 2.9] }
+  edge:      { label: "VPN / firewall",                zone: office,   kind: edge,     pos: [-3.4, 0.0, 1.2] }
+  mail:      { label: "Exchange Online",               zone: cloud,    kind: mail,     pos: [-1.6, 2.3, -2.0] }
+  identity:  { label: "Entra ID",                      zone: cloud,    kind: identity, pos: [0.9, 2.3, -2.0] }
+  sharepoint: { label: "SharePoint / OneDrive",        zone: cloud,    kind: cloud,    pos: [3.4, 2.3, -2.0] }
+  laptop_cfo: { label: "Laptop CFO",                   zone: office,   kind: laptop,   pos: [-1.2, 0.0, 1.6] }
+  laptop_it:  { label: "Laptop IT",                    zone: office,   kind: laptop,   pos: [1.0, 0.0, 2.6] }
+  server:    { label: "App server",                    zone: office,   kind: server,   pos: [0.6, 0.0, 0.4] }
+  dc:        { label: "Domain Controller",             zone: office,   kind: server,   pos: [2.8, 0.0, 1.0] }
+  files:     { label: "File server",                   zone: office,   kind: server,   pos: [4.4, 0.0, 2.2] }
+  xdr:       { label: "Defender XDR",                  zone: cloud,    kind: xdr,      pos: [5.8, 3.4, 0.0] }
+
+scenarios:
+  - id: aitm
+    tab: "AiTM → BEC → ransomware"
+    title: "Από ένα link σε ransomware: AiTM, απάτη BEC και κρυπτογράφηση"
+    intro: "Ο επιτιθέμενος ξεκινά με ένα email προς τον CFO και τελειώνει με κρυπτογραφημένους servers. Ενδιάμεσα κλέβει το session, στήνει απάτη με τιμολόγια από το mailbox του CFO και περνά στο Active Directory."
+    steps:
+      - id: aitm-1
+        title: "Email με link σε ψεύτικη σελίδα σύνδεσης"
+        attack: "Ο CFO λαμβάνει email «Εκκρεμεί υπογραφή εγγράφου». Το link οδηγεί σε σελίδα που μοιάζει με τη σύνδεση του Microsoft 365."
+        path: [attacker, mail, laptop_cfo]
+        mitre: ["T1566.002"]
+        outcome: block
+        defense:
+          product: mdo
+          what: "Το Safe Links ελέγχει το link τη στιγμή του κλικ και το μπλοκάρει αν η φήμη του είναι κακή. Αν το email κριθεί phishing μετά την παράδοση, το ZAP το αφαιρεί από το mailbox."
+        stops: true
+        kql: phish-zap
+        kya: ["20.γ", "20.ε", "21.α"]
+        nis2: ["21.2.ζ"]
+        iso: ["A.6.3", "A.8.7", "A.8.23"]
+        gdpr: ["32.1.β", "32.4"]
+      - id: aitm-2
+        title: "Ο reverse proxy κλέβει κωδικό, MFA και session cookie"
+        attack: "Η ψεύτικη σελίδα είναι reverse proxy ανάμεσα στον CFO και στο Entra ID. Ο CFO βάζει κωδικό και εγκρίνει το MFA. Ο επιτιθέμενος κρατά το session cookie που εκδίδεται."
+        path: [laptop_cfo, attacker, identity]
+        mitre: ["T1557", "T1539"]
+        outcome: detect
+        defense:
+          product: idp
+          what: "Το Entra ID Protection σημαίνει τον χρήστη ως High risk με την ανίχνευση «Attacker in the Middle». Ένα risk-based Conditional Access policy ζητά επαναφορά κωδικού ή μπλοκάρει. Τα passkeys και η απαίτηση για compliant device κάνουν το κλεμμένο cookie άχρηστο από την αρχή."
+        kql: foreign-signins
+        kya: ["13.στ", "13.ζ"]
+        nis2: ["21.2.ι"]
+        iso: ["A.5.17", "A.8.5"]
+        gdpr: ["32.1.β"]
+      - id: aitm-3
+        title: "Είσοδος στο mailbox με το κλεμμένο cookie"
+        attack: "Ο επιτιθέμενος φορτώνει το cookie στον δικό του browser και μπαίνει στο Outlook του CFO χωρίς κωδικό και χωρίς MFA."
+        path: [attacker, identity, mail]
+        mitre: ["T1550.004", "T1078.004"]
+        outcome: contain
+        defense:
+          product: xdr
+          what: "Με τον connector του Office 365 στο Defender for Cloud Apps, το Defender XDR βγάζει alerts όπως «Stolen session cookie was used». Η automatic attack disruption ανακαλεί τα sessions του χρήστη και τον αναστέλλει στο Entra ID."
+        kya: ["24.γ", "24.ε"]
+        nis2: ["21.2.β"]
+        iso: ["A.8.15", "A.8.16"]
+        gdpr: ["32.1.β", "33.1"]
+      - id: aitm-4
+        title: "Κρυφός κανόνας inbox και απάτη BEC με «νέο IBAN»"
+        attack: "Ο επιτιθέμενος φτιάχνει κανόνα που μεταφέρει τις απαντήσεις για πληρωμές σε φάκελο RSS. Από το mailbox του CFO στέλνει σε πελάτες τιμολόγια με «νέο IBAN»."
+        path: [attacker, mail]
+        mitre: ["T1564.008", "T1114.003", "T1657"]
+        outcome: contain
+        defense:
+          product: xdr
+          what: "Το Defender XDR εντοπίζει ύποπτους κανόνες inbox που μετακινούν ή διαγράφουν μηνύματα. Στο BEC, η automatic attack disruption δημιουργεί incident «BEC financial fraud attack launched from a compromised account» και περιορίζει τον λογαριασμό."
+        kql: inbox-forward
+        kya: ["24.ε"]
+        nis2: ["21.2.β"]
+        iso: ["A.5.25", "A.8.16"]
+        gdpr: ["33.1", "34.1"]
+      - id: aitm-5
+        title: "Εσωτερικό email με κακόβουλο συνημμένο προς το IT"
+        attack: "Ο επιτιθέμενος στέλνει από το mailbox του CFO ένα «επείγον Excel» στο IT. Το IT το ανοίγει γιατί έρχεται από συνάδελφο."
+        path: [mail, laptop_it]
+        mitre: ["T1534", "T1204.002"]
+        outcome: block
+        defense:
+          product: mde
+          what: "Το ASR rule «Block executable content from email client and webmail» και το Defender Antivirus σταματούν την εκτέλεση. Το EDR του Defender for Endpoint καταγράφει κάθε process που ξεκινά από το συνημμένο."
+        kya: ["20.α", "20.β"]
+        nis2: ["21.2.ζ"]
+        iso: ["A.8.7"]
+        gdpr: ["32.1.β"]
+      - id: aitm-6
+        title: "Pass-the-hash και DCSync στο Active Directory"
+        attack: "Από το laptop του IT, ο επιτιθέμενος κάνει pass-the-hash προς τους servers και μετά ζητά από τον Domain Controller τα hashes όλων των λογαριασμών με DCSync."
+        path: [laptop_it, server, dc]
+        mitre: ["T1550.002", "T1003.006", "T1087.002"]
+        outcome: contain
+        defense:
+          product: mdi
+          what: "Το Defender for Identity βγάζει τα alerts «Suspected identity theft (pass-the-hash)» και «DCSync attack (replication of directory services)». Η attack disruption απενεργοποιεί τον λογαριασμό στο Active Directory."
+        kql: ad-sensitive-groups
+        kya: ["13.δ", "24.ε"]
+        nis2: ["21.2.θ", "21.2.β"]
+        iso: ["A.8.2", "A.8.16"]
+        gdpr: ["32.1.β"]
+      - id: aitm-7
+        title: "Απενεργοποίηση του antivirus και ransomware"
+        attack: "Με δικαιώματα Domain Admin, ο επιτιθέμενος προσπαθεί να σβήσει το Defender Antivirus, διαγράφει τα shadow copies και κρυπτογραφεί τους servers."
+        path: [dc, files, server]
+        mitre: ["T1685", "T1490", "T1486"]
+        outcome: block
+        defense:
+          product: mde
+          what: "Το tamper protection εμποδίζει την απενεργοποίηση του antivirus. Το ASR rule «Use advanced protection against ransomware» και το controlled folder access προστατεύουν τα αρχεία. Η attack disruption κάνει contain τις συσκευές και τον χρήστη, ώστε η κρυπτογράφηση να μη φτάσει στο δίκτυο."
+        kql: av-disabled
+        kya: ["20.α", "25.1.ε"]
+        nis2: ["21.2.γ"]
+        iso: ["A.8.7", "A.8.13"]
+        gdpr: ["32.1.γ"]
+      - id: aitm-8
+        title: "Ένα incident, μία ιστορία, και οι προθεσμίες αναφοράς"
+        attack: "Το περιστατικό αφορά email, ταυτότητα, endpoints και Active Directory. Αν το βλέπεις σε τέσσερις κονσόλες, χάνεις τις ώρες που μετράνε για την αναφορά."
+        path: [xdr]
+        mitre: []
+        outcome: detect
+        defense:
+          product: xdr
+          what: "Το Defender XDR ενώνει όλα τα alerts σε ένα incident με attack story. Με το Microsoft Sentinel στο Defender portal προσθέτεις και τα logs του firewall. Από εκεί ξεκινάς την έγκαιρη προειδοποίηση των 24 ωρών και την αναφορά των 72 ωρών."
+        kya: ["24.α", "24.β"]
+        nis2: ["23.4.α", "23.4.β"]
+        iso: ["A.5.24", "A.5.26"]
+        gdpr: ["33.1", "33.5"]
+
+  - id: promitheytis
+    tab: "Παραβιασμένος προμηθευτής"
+    title: "Ο προμηθευτής σου έχει παραβιαστεί: απάτη με τιμολόγιο και malware"
+    intro: "Ο επιτιθέμενος δεν χρειάζεται να μπει στο δικό σου Microsoft 365. Μπαίνει στο mailbox ενός πραγματικού προμηθευτή και απαντά μέσα σε μια συνομιλία που ήδη έχεις μαζί του."
+    steps:
+      - id: prom-1
+        title: "Ο επιτιθέμενος μπαίνει στο mailbox του προμηθευτή"
+        attack: "Ο προμηθευτής δεν έχει MFA. Ο επιτιθέμενος μπαίνει με κωδικό από infostealer και διαβάζει για εβδομάδες τις συνομιλίες για παραγγελίες και πληρωμές."
+        path: [attacker, supplier]
+        mitre: ["T1586.002"]
+        outcome: none
+        defense:
+          product: process
+          what: "Κανένα προϊόν στο δικό σου tenant δεν το βλέπει, γιατί συμβαίνει στο tenant του προμηθευτή. Εδώ μετράει η αξιολόγηση προμηθευτή: ρωτάς αν έχει MFA, ποιος διαχειρίζεται το email του και πώς σε ενημερώνει για περιστατικά."
+        kya: ["12.1.γ", "12.2.β"]
+        nis2: ["21.2.δ", "21.3"]
+        iso: ["A.5.19", "A.5.21"]
+        gdpr: ["28.1"]
+      - id: prom-2
+        title: "Πρώτο email: απάντηση στη συνομιλία με μολυσμένο συνημμένο"
+        attack: "Από τον πραγματικό λογαριασμό του προμηθευτή φτάνει απάντηση στη συνομιλία για το τιμολόγιο, με συνημμένο «Τιμολόγιο Οκτωβρίου». Το συνημμένο κατεβάζει malware."
+        path: [supplier, mail, laptop_cfo]
+        mitre: ["T1199", "T1566.001"]
+        outcome: block
+        defense:
+          product: mdo
+          what: "Το impersonation protection και το mailbox intelligence δεν βοηθούν εδώ, γιατί ο αποστολέας είναι πραγματικός και έχεις ξαναμιλήσει μαζί του. Το Safe Attachments όμως ανοίγει το συνημμένο σε sandbox πριν το παραδώσει και, με την ενέργεια Block, βάζει όλο το email σε καραντίνα. Αν κριθεί κακόβουλο αργότερα, το ZAP το αφαιρεί από το mailbox."
+        stops: true
+        kql: phish-zap
+        kya: ["20.γ"]
+        nis2: ["21.2.δ"]
+        iso: ["A.5.19", "A.8.7"]
+        gdpr: ["32.1.β"]
+      - id: prom-3
+        title: "Αν το συνημμένο περνούσε: ο CFO το ανοίγει"
+        attack: "Κανένα φίλτρο δεν πιάνει το 100%. Αν το συνημμένο έφτανε, ο CFO το ανοίγει, κατεβαίνει loader και ο επιτιθέμενος αποκτά πρόσβαση στο laptop του."
+        path: [mail, laptop_cfo]
+        mitre: ["T1204.002"]
+        outcome: block
+        defense:
+          product: mde
+          what: "Το ASR rule «Block executable content from email client and webmail», το Defender Antivirus και το EDR του Defender for Endpoint σταματούν και καταγράφουν την εκτέλεση."
+        kya: ["20.α", "20.β"]
+        nis2: ["21.2.ζ"]
+        iso: ["A.8.7"]
+        gdpr: ["32.1.β"]
+      - id: prom-4
+        title: "Δεύτερο email, χωρίς συνημμένο: «αλλάξαμε IBAN»"
+        attack: "Λίγες μέρες μετά, από τον ίδιο λογαριασμό, φτάνει σκέτο κείμενο: «Αλλάξαμε τράπεζα, στείλτε την επόμενη πληρωμή σε αυτόν τον IBAN». Δεν έχει link ούτε συνημμένο. Το λογιστήριο αλλάζει τον IBAN στο ERP και η πληρωμή πάει στον επιτιθέμενο."
+        path: [supplier, mail, laptop_cfo, attacker]
+        mitre: ["T1657"]
+        outcome: none
+        defense:
+          product: process
+          what: "Εδώ δεν υπάρχει κάτι κακόβουλο να μπλοκάρει το Defender for Office 365: ο αποστολέας είναι πραγματικός, περνά SPF, DKIM και DMARC, και το email δεν έχει link ή συνημμένο. Η ανάλυση περιεχομένου του MDO με LLM μπορεί να το επισημάνει, αλλά δεν μπορείς να βασιστείς σε αυτό. Και κανένα εργαλείο δεν ξέρει ποιος είναι ο σωστός IBAN. Σε σώζει η διαδικασία: κάθε αλλαγή τραπεζικού λογαριασμού επιβεβαιώνεται τηλεφωνικά σε γνωστό αριθμό του προμηθευτή, όχι σε αριθμό από το email."
+        kya: ["12.1.δ", "21.α"]
+        nis2: ["21.2.δ", "21.2.ζ"]
+        iso: ["A.5.20", "A.6.3"]
+        gdpr: ["32.4"]
+      - id: prom-5
+        title: "Από το laptop του CFO στα αρχεία του SharePoint"
+        attack: "Με το session του CFO, ο επιτιθέμενος κατεβάζει μαζικά οικονομικά αρχεία και συμβάσεις από το SharePoint και το OneDrive."
+        path: [laptop_cfo, identity, sharepoint, attacker]
+        mitre: ["T1213.002", "T1530"]
+        outcome: detect
+        defense:
+          product: mdca
+          what: "Το Defender for Cloud Apps εντοπίζει «Unusual multiple file download activities» με βάση τη συνηθισμένη συμπεριφορά του χρήστη. Ένα session policy μπορεί να μπλοκάρει τα downloads από μη διαχειριζόμενες συσκευές."
+        kql: mass-download
+        kya: ["11.β", "24.ε"]
+        nis2: ["21.2.θ"]
+        iso: ["A.5.12", "A.8.12"]
+        gdpr: ["33.1", "34.1"]
+      - id: prom-6
+        title: "Incident, ενημέρωση προμηθευτή και αρχών"
+        attack: "Έχεις απάτη, πιθανή διαρροή προσωπικών δεδομένων και παραβιασμένο προμηθευτή. Πρέπει να ενημερώσεις τον προμηθευτή, την ΕΑΚ και, αν διέρρευσαν προσωπικά δεδομένα, την ΑΠΔΠ."
+        path: [xdr]
+        mitre: []
+        outcome: detect
+        defense:
+          product: xdr
+          what: "Το Defender XDR ενώνει email, endpoint και cloud apps σε ένα incident. Από το attack story βγάζεις το χρονολόγιο για την αναφορά των 24 και 72 ωρών και για τη γνωστοποίηση του GDPR."
+        kya: ["24.α", "12.1.δ"]
+        nis2: ["23.1", "23.2"]
+        iso: ["A.5.24", "A.5.26"]
+        gdpr: ["33.1", "33.3"]
+
+  - id: edge
+    tab: "Ευπάθεια σε VPN / firewall"
+    title: "Ευπάθεια στο VPN: από το internet στο Domain Controller χωρίς κανένα email"
+    intro: "Ο επιτιθέμενος βρίσκει ότι το VPN σου έχει ευπάθεια από τον κατάλογο CISA KEV. Δεν στέλνει phishing. Μπαίνει κατευθείαν στο δίκτυο και κινείται χειροκίνητα προς το Active Directory."
+    steps:
+      - id: edge-1
+        title: "Η ευπάθεια φαινόταν πριν από την επίθεση"
+        attack: "Ο κατασκευαστής έχει βγάλει ενημέρωση εδώ και εβδομάδες. Η ευπάθεια είναι στον κατάλογο CISA KEV, άρα ήδη αξιοποιείται ενεργά. Το VPN σου δεν έχει ενημερωθεί."
+        path: [attacker, edge]
+        mitre: ["T1190"]
+        outcome: detect
+        defense:
+          product: dvm
+          what: "Με τα authenticated network scans του Defender for Endpoint, το firewall και το VPN gateway εμφανίζονται στο device inventory με τις ευπάθειές τους. Στο Exposure Management, η ενότητα Resolve Now βάζει πρώτα τα patches για συσκευές εκτεθειμένες στο internet."
+        stops: true
+        kql: exploitable-cves
+        kya: ["17.β", "17.γ", "17.στ"]
+        nis2: ["21.2.ε"]
+        iso: ["A.8.8"]
+        gdpr: ["32.1.δ"]
+      - id: edge-2
+        title: "Εκμετάλλευση της ευπάθειας και σύνδεση στο VPN"
+        attack: "Ο επιτιθέμενος εκμεταλλεύεται την ευπάθεια, παίρνει τα credentials που είναι αποθηκευμένα στη συσκευή και συνδέεται στο VPN σαν κανονικός χρήστης."
+        path: [attacker, edge, server]
+        mitre: ["T1190", "T1133", "T1078"]
+        outcome: detect
+        defense:
+          product: xdr
+          what: "Η ίδια η συσκευή VPN δεν έχει agent του Defender. Αν στέλνεις τα logs της στο Microsoft Sentinel μέσα στο Defender portal, οι συνδέσεις από ασυνήθιστες χώρες ή ώρες συσχετίζονται με τα υπόλοιπα alerts του incident."
+        kya: ["19.ζ", "24.γ"]
+        nis2: ["21.2.ι", "21.2.β"]
+        iso: ["A.8.15", "A.8.20"]
+        gdpr: ["32.1.β"]
+      - id: edge-3
+        title: "RDP σε server και κλοπή credentials από τη μνήμη"
+        attack: "Από τη σύνδεση VPN κάνει RDP στον application server και προσπαθεί να διαβάσει τη μνήμη του LSASS για να πάρει hashes διαχειριστών."
+        path: [edge, server]
+        mitre: ["T1021.001", "T1003.001"]
+        outcome: block
+        defense:
+          product: mde
+          what: "Το ASR rule «Block credential stealing from the Windows local security authority subsystem» ανήκει στους standard protection κανόνες και μπλοκάρει την ανάγνωση του LSASS. Το EDR του Defender for Endpoint βγάζει alert για την προσπάθεια."
+        kql: rdp-logons
+        kya: ["19.ζ", "20.β"]
+        nis2: ["21.2.θ"]
+        iso: ["A.8.7", "A.8.16"]
+        gdpr: ["32.1.β"]
+      - id: edge-4
+        title: "Από τον server στον Domain Controller"
+        attack: "Με τα hashes ενός διαχειριστή κάνει pass-the-hash στον Domain Controller, προσθέτει δικό του λογαριασμό στους Domain Admins και κάνει DCSync."
+        path: [server, dc]
+        mitre: ["T1550.002", "T1098", "T1003.006"]
+        outcome: contain
+        defense:
+          product: mdi
+          what: "Το Defender for Identity βγάζει alerts για pass-the-hash, για την αλλαγή στα ευαίσθητα groups και για το DCSync. Η attack disruption απενεργοποιεί τον λογαριασμό, και ο Domain Controller γίνεται contain επιλεκτικά ώστε να συνεχίσει να εξυπηρετεί."
+        kql: ad-sensitive-groups
+        kya: ["13.δ", "24.ε"]
+        nis2: ["21.2.θ"]
+        iso: ["A.8.2", "A.8.16"]
+        gdpr: ["32.1.β"]
+      - id: edge-5
+        title: "Ransomware σε όλο το domain"
+        attack: "Μέσω Group Policy, ο επιτιθέμενος προσπαθεί να απενεργοποιήσει το antivirus σε όλους τους servers και να τρέξει το ransomware ταυτόχρονα."
+        path: [dc, server, files, laptop_it, laptop_cfo]
+        mitre: ["T1685", "T1490", "T1486"]
+        outcome: contain
+        defense:
+          product: mde
+          what: "Το tamper protection εμποδίζει την απενεργοποίηση. Η automatic attack disruption κάνει contain τις συσκευές και τον χρήστη, και το predictive shielding μπορεί να εφαρμόσει GPO hardening. Τα αρχεία που πρόλαβαν να κρυπτογραφηθούν επιστρέφουν μόνο από backup."
+        kql: av-disabled
+        kya: ["20.α", "25.1.ε", "25.1.ζ"]
+        nis2: ["21.2.γ"]
+        iso: ["A.8.7", "A.8.13"]
+        gdpr: ["32.1.γ"]
+      - id: edge-6
+        title: "Αποκατάσταση και αναφορά"
+        attack: "Η παραγωγή σταμάτησε. Πρέπει να επαναφέρεις τα συστήματα από backup και να κάνεις έγκαιρη προειδοποίηση στην ΕΑΚ μέσα σε 24 ώρες."
+        path: [xdr]
+        mitre: []
+        outcome: detect
+        defense:
+          product: xdr
+          what: "Το incident του Defender XDR δείχνει ποιες συσκευές και λογαριασμοί επηρεάστηκαν, άρα τι επαναφέρεις και με ποια σειρά. Το ίδιο χρονολόγιο τροφοδοτεί την αναφορά προς την ΕΑΚ."
+        kya: ["24.α", "25.1.α", "25.2.α"]
+        nis2: ["21.2.γ", "23.4.α"]
+        iso: ["A.5.26", "A.5.29"]
+        gdpr: ["32.1.γ", "33.1"]

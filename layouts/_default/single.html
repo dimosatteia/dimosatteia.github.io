@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="flex-1 flex flex-col{{ if not (or .Params.readyGauge .Params.policyGauge) }} overflow-y-auto{{ end }}">
+<main class="flex-1 flex flex-col{{ if not (or .Params.readyGauge .Params.policyGauge .Params.attackChain) }} overflow-y-auto{{ end }}">
     <div class="p-6 max-w-[1400px] w-full mx-auto flex flex-col gap-6">
         
         <!-- Breadcrumbs & Header -->
@@ -124,4 +124,4 @@
 
     </div>
 </main>
-{{ end }}
+{{ end }}
