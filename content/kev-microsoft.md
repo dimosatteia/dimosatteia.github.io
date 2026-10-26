@@ -1,7 +1,7 @@
 ---
 title: "CISA KEV για Microsoft: ποιες ευπάθειες αξιοποιούνται ενεργά τώρα"
 date: 2026-10-25T08:45:00+02:00
-lastmod: 2026-10-26T10:45:00+02:00
+lastmod: 2026-10-26T14:15:00+02:00
 draft: false
 url: "/kev-microsoft/"
 # Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
@@ -31,12 +31,12 @@ verification:
     status: "Ενημερώνεται συνεχώς"
     license: "CC0 1.0"
     source: "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
-    verified: 2026-10-25
+    verified: 2026-10-26
   - feature: "cisagov/kev-data: επίσημο mirror της CISA στο GitHub με τα αρχεία JSON και CSV του καταλόγου"
     status: "Ενημερώνεται λίγα λεπτά μετά το cisa.gov"
     license: "CC0 1.0"
     source: "https://github.com/cisagov/kev-data"
-    verified: 2026-10-25
+    verified: 2026-10-26
   - feature: "Κριτήρια ένταξης στο KEV: CVE ID, αξιόπιστα στοιχεία ενεργής αξιοποίησης, σαφής διορθωτική ενέργεια"
     status: "Ισχύει"
     license: "Δημόσια πληροφορία CISA"
@@ -51,17 +51,17 @@ verification:
     status: "Ενημερώνεται συνεχώς"
     license: "CVE Terms of Use"
     source: "https://github.com/CVEProject/cvelistV5"
-    verified: 2026-10-25
+    verified: 2026-10-26
   - feature: "DeviceTvmSoftwareVulnerabilities: πίνακας του Advanced Hunting με τις ευπάθειες του εγκατεστημένου λογισμικού"
     status: "GA"
     license: "Microsoft Defender for Endpoint Plan 2 ή Microsoft Defender Vulnerability Management"
     source: "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicetvmsoftwarevulnerabilities-table"
-    verified: 2026-10-25
+    verified: 2026-10-26
   - feature: "ΚΥΑ 1689/2025 (ΦΕΚ Β΄ 2186/06.05.2025), άρθρο 17: Διαχείριση και γνωστοποίηση ευπαθειών"
     status: "Ισχύει"
     license: "Άρθρο 17"
     source: "https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf"
-    verified: 2026-10-20
+    verified: 2026-10-26
 categories: ["Security Operations & XDR"]
 tags:
   - Vulnerability Management
