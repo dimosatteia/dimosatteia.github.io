@@ -99,7 +99,7 @@
         {{- /* Αρχικό περιεχόμενο χωρίς JavaScript: οι 10 πιο πρόσφατες. */ -}}
         {{- range first 10 $d.items }}
         <li class="rounded-lg border border-slate-700 bg-slate-900/60 p-4 text-sm">
-            <p class="font-mono text-blue-300"><a href="{{ .msrc }}" rel="noopener" target="_blank">{{ .cve }}</a>{{ with .cvss }} <span class="ml-1 rounded border px-1.5 py-0.5 text-[11px] {{ index $sevCls .sev }}">CVSS {{ .v }} {{ printf "%.1f" .score }} {{ index $sevName .sev }}</span>{{ end }} · <span class="text-slate-300">{{ .product }}</span></p>
+            <p class="font-mono text-blue-300"><a href="{{ .msrc }}" rel="noopener" target="_blank" title="Microsoft Security Response Center">{{ .cve }}</a> <a class="text-[11px] font-sans text-slate-400 underline hover:text-blue-300" href="https://nvd.nist.gov/vuln/detail/{{ .cve }}" rel="noopener" target="_blank" title="Η εγγραφή στο National Vulnerability Database του NIST">NVD ↗</a>{{ with .cvss }} <span class="ml-1 rounded border px-1.5 py-0.5 text-[11px] {{ index $sevCls .sev }}">CVSS {{ .v }} {{ printf "%.1f" .score }} {{ index $sevName .sev }}</span>{{ end }} · <span class="text-slate-300">{{ .product }}</span></p>
             <p class="text-slate-100 mt-1">{{ .name }}</p>
             <p class="text-xs text-slate-400 mt-1">Προστέθηκε {{ .added }} · Προθεσμία CISA {{ .due }}{{ if .ransomware }} · Ransomware: γνωστή χρήση{{ end }}</p>
         </li>
@@ -159,8 +159,12 @@
         var li = el('li', 'rounded-lg border ' + (i.ransomware ? 'border-red-500/40' : 'border-slate-700') + ' bg-slate-900/60 p-4 text-sm');
         var head = el('p', 'flex flex-wrap items-center gap-x-2 gap-y-1 font-mono');
         var a = el('a', 'text-blue-300 underline-offset-2 hover:underline', i.cve);
-        a.href = i.msrc; a.target = '_blank'; a.rel = 'noopener';
+        a.href = i.msrc; a.target = '_blank'; a.rel = 'noopener'; a.title = 'Microsoft Security Response Center';
         head.appendChild(a);
+        var nvd = el('a', 'text-[11px] font-sans text-slate-400 underline hover:text-blue-300', 'NVD ↗');
+        nvd.href = 'https://nvd.nist.gov/vuln/detail/' + encodeURIComponent(i.cve); nvd.target = '_blank'; nvd.rel = 'noopener';
+        nvd.title = 'Η εγγραφή στο National Vulnerability Database του NIST';
+        head.appendChild(nvd);
         if (i.cvss) {
             var sv = SEV[i.cvss.sev] || SEV.NONE;
             var b = el('span', 'rounded border px-1.5 py-0.5 text-[11px] ' + sv[0], 'CVSS ' + i.cvss.v + ' ' + Number(i.cvss.score).toFixed(1) + ' ' + sv[1]);
