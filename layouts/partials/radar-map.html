@@ -4,8 +4,20 @@
        ξεκινούν από την άκρη, στη σωστή κατεύθυνση). Χρήση: {{ partial "radar-map.html" $d }} */ -}}
 {{- $m := site.Data.radar_map -}}
 {{- $tx := index $m.target 0 -}}{{- $ty := index $m.target 1 -}}
-<figure class="radar-map overflow-hidden rounded-lg border border-slate-700 bg-[#0b1220]">
-<svg viewBox="0 0 {{ $m.w }} {{ $m.h }}" class="block h-auto w-full" role="img" aria-labelledby="radarMapTitle">
+<figure class="radar-map relative overflow-hidden rounded-lg border border-slate-700 bg-[#0b1220]" data-rg>
+{{- /* 3D υδρόγειος (static/js/radar-globe/globe.js). Εμφανίζεται μόνο αν ο browser έχει WebGL και φορτωθεί σωστά.
+       Αλλιώς μένει ο 2D χάρτης SVG παρακάτω, όπως πριν. */ -}}
+<div class="rg-switch" data-rg-switch hidden role="group" aria-label="Προβολή χάρτη">
+<button type="button" data-rg-mode="3d" aria-pressed="true">🌐 3D</button><button type="button" data-rg-mode="2d" aria-pressed="false">🗺️ 2D</button>
+</div>
+<div class="rg-stage" data-rg-stage hidden>
+<p class="rg-hint">Σύρε για περιστροφή · διπλό κλικ, Ctrl + τροχός ή τσίμπημα για zoom</p>
+<div class="rg-zoom" role="group" aria-label="Zoom υδρογείου">
+<button type="button" data-rg-zoom="in" aria-label="Μεγέθυνση">+</button><button type="button" data-rg-zoom="out" aria-label="Σμίκρυνση">−</button><button type="button" data-rg-zoom="reset" aria-label="Επαναφορά προβολής">⟲</button>
+</div>
+</div>
+<script type="application/json" data-rg-data>{{ .origins | jsonify | safeJS }}</script>
+<svg data-rg-svg viewBox="0 0 {{ $m.w }} {{ $m.h }}" class="block h-auto w-full" role="img" aria-labelledby="radarMapTitle">
 <title id="radarMapTitle">Χάρτης: από πού ήρθε η κίνηση των επιθέσεων DDoS προς την Ελλάδα τις τελευταίες 24 ώρες</title>
 <defs>
 <radialGradient id="rmGlow"><stop offset="0" stop-color="#60a5fa" stop-opacity=".55"/><stop offset="1" stop-color="#60a5fa" stop-opacity="0"/></radialGradient>
@@ -49,5 +61,66 @@
 @keyframes rmFlow{to{stroke-dashoffset:-17}}
 @keyframes rmPulse{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.4);opacity:0}}
 @media (prefers-reduced-motion:reduce){.radar-map .rm-arc-flow,.radar-map .rm-pulse{animation:none}}
+.radar-map .rg-stage{position:relative;aspect-ratio:800/520;touch-action:pan-y;cursor:grab;background:radial-gradient(ellipse at 50% 45%,#13213d 0%,#0b1220 70%)}
+.radar-map .rg-stage.is-drag{cursor:grabbing}
+.radar-map .rg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .8s ease}
+.radar-map .rg-stage.is-ready .rg-canvas{opacity:1}
+.radar-map .rg-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.radar-map .rg-label{position:absolute;left:0;top:0;margin:-26px 0 0 8px;white-space:nowrap;font:600 12px ui-sans-serif,system-ui,sans-serif;color:#e2e8f0;text-shadow:0 0 3px #0b1220,0 0 6px #0b1220;transition:opacity .3s}
+.radar-map .rg-label-gr{color:#bfdbfe;margin:10px 0 0 -58px}
+.radar-map .rg-label.rg-left{translate:calc(-100% - 4px) 34px}
+.radar-map .rg-hint{position:absolute;z-index:1;left:12px;bottom:8px;margin:0;font:11px ui-sans-serif,system-ui,sans-serif;color:#64748b;pointer-events:none}
+.radar-map .rg-zoom{position:absolute;right:8px;bottom:8px;z-index:2;display:flex;flex-direction:column;border:1px solid #334155;border-radius:8px;overflow:hidden;background:rgba(11,18,32,.85)}
+.radar-map .rg-zoom button{width:30px;height:28px;font:600 15px/1 ui-sans-serif,system-ui,sans-serif;color:#cbd5e1;background:transparent;border:0;cursor:pointer}
+.radar-map .rg-zoom button+button{border-top:1px solid #334155}
+.radar-map .rg-zoom button:hover{background:#1e293b;color:#fff}
+.radar-map .rg-zoom button:focus-visible{outline:2px solid #60a5fa;outline-offset:-2px}
+.radar-map .rg-switch{position:absolute;top:8px;right:8px;z-index:2;display:flex;border:1px solid #334155;border-radius:9999px;overflow:hidden;background:rgba(11,18,32,.85)}
+.radar-map .rg-switch button{font:600 11px ui-sans-serif,system-ui,sans-serif;color:#94a3b8;padding:4px 10px;background:transparent;border:0;cursor:pointer}
+.radar-map .rg-switch button[aria-pressed="true"]{background:#1d4ed8;color:#fff}
+.radar-map .rg-switch button:focus-visible{outline:2px solid #60a5fa;outline-offset:-2px}
+@media (max-width:640px){.radar-map .rg-stage{aspect-ratio:1/1}.radar-map .rg-hint{right:52px;font-size:10px}.radar-map .rg-label{font-size:11px}}
 </style>
+<script>
+(function () {
+  var fig = document.currentScript.closest('[data-rg]');
+  if (!fig) return;
+  var stage = fig.querySelector('[data-rg-stage]'), svg = fig.querySelector('[data-rg-svg]'), sw = fig.querySelector('[data-rg-switch]');
+  function webgl() { try { var c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } }
+  if (!webgl() || !('IntersectionObserver' in window) || !('ResizeObserver' in window)) return;
+  var KEY = 'rg-mode', api = null, started = false;
+  function mode(m) {
+    stage.hidden = m !== '3d'; svg.style.display = m === '3d' ? 'none' : '';
+    sw.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-rg-mode') === m)); });
+    try { localStorage.setItem(KEY, m); } catch (e) {}
+    if (m === '3d' && api) api.wake();
+  }
+  sw.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { mode(b.getAttribute('data-rg-mode')); }); });
+  stage.querySelectorAll('[data-rg-zoom]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!api) return;
+      var a = b.getAttribute('data-rg-zoom');
+      if (a === 'in') api.zoomIn(); else if (a === 'out') api.zoomOut(); else api.reset();
+    });
+  });
+  var saved = '3d'; try { saved = localStorage.getItem(KEY) || '3d'; } catch (e) {}
+  function start() {
+    if (started) return; started = true;
+    var origins = JSON.parse(fig.querySelector('[data-rg-data]').textContent || '[]');
+    import({{ "js/radar-globe/globe.js" | relURL }}).then(function (m) {
+      return m.init(stage, origins, { landUrl: {{ "js/radar-globe/land.json" | relURL }} });
+    }).then(function (a) { api = a; }).catch(function () {
+      // Αποτυχία: πίσω στον 2D χάρτη, χωρίς διακόπτη.
+      stage.hidden = true; svg.style.display = ''; sw.hidden = true;
+      var c = stage.querySelector('canvas'); if (c) c.remove();
+    });
+  }
+  sw.hidden = false;
+  mode(saved);
+  // Φόρτωση μόνο όταν ο χάρτης πλησιάσει την οθόνη.
+  var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); start(); } }, { rootMargin: '200px' });
+  io.observe(fig);
+  sw.addEventListener('click', start);
+})();
+</script>
 </figure>
