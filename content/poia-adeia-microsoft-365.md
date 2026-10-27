@@ -141,3 +141,4 @@ verification:
 Το αποτέλεσμα είναι ενδεικτικό. Δεν είναι προσφορά, νομική συμβουλή ή δεσμευτική πληροφορία αδειοδότησης. Για κάθε αγορά ισχύουν οι [Microsoft Product Terms](https://www.microsoft.com/licensing/terms) και η επιβεβαίωση του licensing partner σου. Το thecybersec.gr είναι προσωπικό blog και δεν εκπροσωπεί τη Microsoft ή την Εθνική Αρχή Κυβερνοασφάλειας.
 
 {{< tool-link page="/kql" lead="Έχεις ήδη την άδεια;" label="Δες τη Βιβλιοθήκη KQL" tail="για τεκμήρια από το δικό σου tenant." >}}
+{{< tool-link page="/politikes-conditional-access" lead="Βρήκες την άδειά σου;" label="Δες ποιες πολιτικές Conditional Access σου ταιριάζουν" tail="με σειρά ενεργοποίησης και έτοιμο JSON." >}}

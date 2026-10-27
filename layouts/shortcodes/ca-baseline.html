@@ -1,0 +1,642 @@
+{{- /* Εργαλείο «Βασικό σύνολο πολιτικών Conditional Access».
+       Ο επισκέπτης δηλώνει άδειες και περιβάλλον και παίρνει το σύνολο πολιτικών που του ταιριάζει, με σειρά ενεργοποίησης,
+       JSON για «Upload policy file» στο Microsoft Entra admin center, KQL για τον έλεγχο σε Report-only,
+       αντιστοίχιση σε ΚΥΑ 1689/2025, NIS2, ISO/IEC 27001 και GDPR, και εξαγωγές .zip, .xlsx και .pdf.
+       Οι πολιτικές έρχονται από το data/ca_baseline.yaml. Οι εξαγωγές από το static/js/ca-baseline-export.js.
+       Δεν αποστέλλεται και δεν αποθηκεύεται κανένα στοιχείο. Χρήση: {{< ca-baseline >}} */ -}}
+{{- $D := site.Data.ca_baseline -}}
+{{- $in := "w-full rounded-md border border-slate-700 bg-slate-900 px-2.5 py-1.5 text-sm text-slate-100 focus:outline-none focus:border-blue-500" -}}
+{{- $card := "flex items-start gap-3 rounded-lg border border-slate-700 bg-slate-900/60 p-3 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500 has-[:checked]:bg-blue-500/10" -}}
+{{- $chev := `<svg class="h-4 w-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>` -}}
+<style>
+#caTool .caKbd{display:inline-block;min-width:1.4em;padding:0 .35em;border:1px solid #475569;border-bottom-width:2px;border-radius:4px;background:#0f172a;color:#e2e8f0;font-family:ui-monospace,monospace;font-size:.85em;line-height:1.5;text-align:center}
+#caTool .caStep[data-locked] > summary{cursor:not-allowed;opacity:.6}
+#caTool pre{white-space:pre;overflow:auto;max-height:22rem}
+#caTool .caHide{display:none}
+/* Ο δακτύλιος του αποτελέσματος: ίδιο γραφικό και ίδια κίνηση με το layouts/partials/hub-rings.html */
+#caTool .caRing{width:11rem;height:11rem;flex:none}
+#caTool .caSeg{stroke-dasharray:var(--len) calc(100 - var(--len));transition:stroke-dasharray 1.2s cubic-bezier(.3,.7,.2,1)}
+#caTool .caRingNum{font-size:30px;font-weight:700;fill:#f8fafc;font-variant-numeric:tabular-nums;dominant-baseline:middle}
+#caTool .caRingUnit{font-size:9px;fill:#94a3b8}
+#caTool .caSegLink{cursor:pointer}
+#caTool .caSegLink:hover,#caTool .caSegLink:focus-visible{stroke-width:14;outline:none}
+#caTool details.caFlash{box-shadow:0 0 0 3px rgba(96,165,250,.6);transition:box-shadow .3s}
+#caTool .caDot{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;margin-right:.4rem;vertical-align:middle}
+@media (prefers-reduced-motion: reduce){#caTool .caSeg{transition:none}}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-4 sm:p-5" id="caTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Conditional Access · Microsoft Entra ID · ΚΥΑ 1689/2025 · NIS2 · ISO/IEC 27001 · GDPR</p>
+    <p class="text-xs text-slate-400 mb-4">Τρία βήματα. Κάθε βήμα ανοίγει αφού ολοκληρώσεις το προηγούμενο. Με <span class="caKbd">Tab</span> πας στην επόμενη ερώτηση, με τα <span class="caKbd">←</span> <span class="caKbd">→</span> αλλάζεις επιλογή μέσα σε μία ερώτηση, με το <span class="caKbd">Space</span> τσεκάρεις ένα κουτάκι και με <span class="caKbd">Enter</span> πατάς το κουμπί που είναι επιλεγμένο.</p>
+
+    <form id="caForm" class="flex flex-col gap-3" novalidate data-clarity-mask="true" autocomplete="off">
+
+        <!-- Βήμα 1: άδειες -->
+        <details class="caStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="1" open>
+            <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">1</span>
+                <span class="flex-1 min-w-0">Οι άδειές σου<span class="caNote block text-xs font-normal text-slate-400"></span></span>
+                {{ $chev | safeHTML }}
+            </summary>
+            <fieldset class="flex flex-col gap-4 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">1. Οι άδειές σου</legend>
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Ποιες άδειες έχουν οι χρήστες σου; <span class="text-xs text-slate-400">Τσέκαρε όλες όσες έχεις, π.χ. Microsoft 365 E3 μαζί με EMS E5. Αν δεν ξέρεις τι περιλαμβάνει η καθεμία, δες το <a href="{{ "poia-adeia-microsoft-365/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Ποια άδεια Microsoft 365 χρειάζομαι</a>.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2" role="group" aria-label="Άδειες">
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="bp" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft 365 Business Premium</span><span class="block text-xs text-slate-400 mt-0.5">Entra ID P1 και Intune. Έως 300 χρήστες.</span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="defsuite" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft Defender Suite for Business Premium</span><span class="block text-xs text-slate-400 mt-0.5">Add-on στο Business Premium: Entra ID P2, Defender for Cloud Apps, Defender for Identity.</span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="e3" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft 365 E3</span><span class="block text-xs text-slate-400 mt-0.5">Entra ID P1 και Intune.</span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="e5" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft 365 E5</span><span class="block text-xs text-slate-400 mt-0.5">Entra ID P2, Defender for Cloud Apps και Purview Insider Risk Management.</span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="e7" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft 365 E7</span><span class="block text-xs text-slate-400 mt-0.5">Ό,τι έχει το E5, μαζί με το Microsoft Entra Suite.</span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="ems3" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Enterprise Mobility + Security E3</span><span class="block text-xs text-slate-400 mt-0.5">Entra ID P1 και Intune, συνήθως μαζί με Office 365.</span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="ems5" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Enterprise Mobility + Security E5</span><span class="block text-xs text-slate-400 mt-0.5">Entra ID P2, Defender for Cloud Apps και Intune. Όχι Insider Risk Management.</span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caLic" value="entrap2" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft Entra ID P2</span><span class="block text-xs text-slate-400 mt-0.5">Standalone ή add-on. Περιλαμβάνει ό,τι έχει το P1, μαζί με ID Protection και PIM.</span></span></label>
+                    </div>
+                </div>
+                <div id="caAddons" class="caHide">
+                    <p class="text-sm text-slate-300 mb-2">Ποιες από αυτές τις δυνατότητες διαθέτεις <strong>και</strong> έχεις ενεργοποιήσει; <span class="text-xs text-slate-400">Τσεκάραμε όσες περιλαμβάνει το πακέτο σου. Ξετσέκαρε όσες δεν έχεις ρυθμίσει ακόμη και τσέκαρε όσες έχεις αγοράσει ξεχωριστά.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2">
+                        <label class="{{ $card }}"><input type="checkbox" name="caAdd" value="mdca" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft Defender for Cloud Apps</span><span class="block text-xs text-slate-400 mt-0.5">Αγοράζεται με αυτό το όνομα. Περιλαμβάνεται στο Defender Suite for Business Premium, στο EMS E5, στο E5 και στο E7.</span><span class="caInc block text-[11px] font-mono mt-1" data-inc="mdca"></span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caAdd" value="irm" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft Purview Insider Risk Management</span><span class="block text-xs text-slate-400 mt-0.5">Αγοράζεται ως Microsoft Purview Suite ή Microsoft 365 E5 Insider Risk Management. Περιλαμβάνεται στο E5 και στο E7. Θέλει ενεργό Adaptive Protection.</span><span class="caInc block text-[11px] font-mono mt-1" data-inc="irm"></span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caAdd" value="gsa" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft Entra Internet Access</span><span class="block text-xs text-slate-400 mt-0.5">Ή Microsoft Entra Suite, που περιλαμβάνεται στο E7. Θέλει τον client του Global Secure Access στις συσκευές.</span><span class="caInc block text-[11px] font-mono mt-1" data-inc="gsa"></span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caAdd" value="wid" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft Entra Workload ID</span><span class="block text-xs text-slate-400 mt-0.5">Η άδεια Workload ID Premium, για εφαρμογές και scripts που συνδέονται με δικό τους secret ή πιστοποιητικό.</span><span class="caInc block text-[11px] font-mono mt-1" data-inc="wid"></span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caAdd" value="pim" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Privileged Identity Management (PIM)</span><span class="block text-xs text-slate-400 mt-0.5">Δεν πωλείται χωριστά: έρχεται με Microsoft Entra ID P2 ή Microsoft Entra ID Governance. Οι ρόλοι διαχείρισης ενεργοποιούνται just-in-time.</span><span class="caInc block text-[11px] font-mono mt-1" data-inc="pim"></span></span></label>
+                        <label class="{{ $card }}"><input type="checkbox" name="caAdd" value="pa" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Microsoft Entra Private Access</span><span class="block text-xs text-slate-400 mt-0.5">Ή Microsoft Entra Suite, που περιλαμβάνεται στο E7. Εσωτερικές εφαρμογές και file servers μέσω Global Secure Access, αντί για VPN.</span><span class="caInc block text-[11px] font-mono mt-1" data-inc="pa"></span></span></label>
+                    </div>
+                </div>
+                <div class="rounded-lg border border-slate-800 bg-slate-950/40 p-3 text-sm text-slate-300">
+                    <p class="text-xs text-slate-400 mb-2">Θέλεις να δεις πρώτα πώς βγαίνει το αποτέλεσμα;</p>
+                    <button type="button" id="caDemo" class="rounded-md border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800">👀 Δες ένα παράδειγμα (MyCompany)</button>
+                    <span id="caDemoMsg" class="ml-2 text-xs text-emerald-300 hidden" role="status"></span>
+                    <p class="mt-2 text-xs text-slate-400">Αντικαθιστά τις απαντήσεις σου με ένα έτοιμο σενάριο.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="caNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="1">Επόμενο βήμα</button>
+                    <span class="caErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+
+        <!-- Βήμα 2: περιβάλλον -->
+        <details class="caStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="2" data-locked>
+            <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">2</span>
+                <span class="flex-1 min-w-0">Το περιβάλλον σου<span class="caNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="caLock text-xs font-normal text-slate-500">🔒</span>
+                {{ $chev | safeHTML }}
+            </summary>
+            <fieldset class="flex flex-col gap-5 px-4 pb-4 pt-1 min-w-0">
+                <legend class="sr-only">2. Το περιβάλλον σου</legend>
+
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Έχεις λογαριασμούς έκτακτης ανάγκης (break-glass); <span class="text-xs text-slate-400">Δύο cloud-only λογαριασμοί με Global Administrator, χωρίς άδεια, που εξαιρούνται από όλες τις πολιτικές. Χωρίς αυτούς, ένα λάθος στο Conditional Access κλειδώνει έξω όλους τους διαχειριστές.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Λογαριασμοί έκτακτης ανάγκης">
+                        <label class="{{ $card }}"><input type="radio" name="caBg" value="yes" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Ναι, σε μία ομάδα</span><span class="block text-xs text-slate-400 mt-0.5">Θα εξαιρεθεί από όλες τις πολιτικές.</span></span></label>
+                        <label class="{{ $card }}"><input type="radio" name="caBg" value="no" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Όχι ακόμη</span><span class="block text-xs text-slate-400 mt-0.5">Θα σου πούμε πώς τους φτιάχνεις πριν από οτιδήποτε άλλο.</span></span></label>
+                    </div>
+                    <label id="caBgIdBox" class="caHide mt-3 flex flex-col gap-1.5 text-sm text-slate-300 sm:max-w-md"><span>Object ID της ομάδας <span class="text-xs text-slate-400">(προαιρετικά: Entra ID &gt; Groups &gt; η ομάδα &gt; Object ID. Μπαίνει στο JSON ως εξαίρεση.)</span></span>
+                        <input id="caBgId" type="text" maxlength="36" inputmode="text" spellcheck="false" placeholder="00000000-0000-0000-0000-000000000000" class="{{ $in }} font-mono"></label>
+                    <p id="caBgIdErr" class="mt-1 text-xs text-amber-400 hidden" role="alert"></p>
+                </div>
+
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Συγχρονίζεις χρήστες από on-premises Active Directory; <span class="text-xs text-slate-400">Με Microsoft Entra Connect ή Cloud Sync.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Hybrid identity">
+                        <label class="{{ $card }}"><input type="radio" name="caHybrid" value="yes" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Ναι, hybrid identity</span><span class="block text-xs text-slate-400 mt-0.5">Ο λογαριασμός συγχρονισμού εξαιρείται από τις πολιτικές για όλους τους χρήστες.</span></span></label>
+                        <label class="{{ $card }}"><input type="radio" name="caHybrid" value="no" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Όχι, μόνο cloud</span><span class="block text-xs text-slate-400 mt-0.5">Όλοι οι χρήστες είναι στο Microsoft Entra ID.</span></span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Από ποιες συσκευές έχουν πρόσβαση οι χρήστες;</p>
+                    <div class="grid gap-2" role="radiogroup" aria-label="Συσκευές">
+                        <label class="{{ $card }}"><input type="radio" name="caDev" value="all" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Μόνο από εταιρικές συσκευές, όλες στο Intune με compliance policy</span><span class="block text-xs text-slate-400 mt-0.5">Μαζί με τα κινητά. Καμία προσωπική συσκευή.</span></span></label>
+                        <label class="{{ $card }}"><input type="radio" name="caDev" value="mixed" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Εταιρικές στο Intune, και προσωπικές (BYOD)</span><span class="block text-xs text-slate-400 mt-0.5">Για παράδειγμα Outlook και Teams στο προσωπικό κινητό, ή webmail από το σπίτι.</span></span></label>
+                        <label class="{{ $card }}"><input type="radio" name="caDev" value="none" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Δεν χρησιμοποιούμε ακόμη compliance policies στο Intune</span><span class="block text-xs text-slate-400 mt-0.5">Οι πολιτικές συσκευών θα περιμένουν. Ξεκινάς από το MFA.</span></span></label>
+                    </div>
+                </div>
+
+                <div id="caMobileBox" class="caHide">
+                    <p class="text-sm text-slate-300 mb-2">Χρησιμοποιούν οι χρήστες Outlook, Teams ή OneDrive στο προσωπικό τους κινητό;</p>
+                    <div class="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Προσωπικά κινητά">
+                        <label class="{{ $card }}"><input type="radio" name="caMobile" value="yes" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Ναι</span><span class="block text-xs text-slate-400 mt-0.5">Θα χρειαστεί app protection policy στο Intune.</span></span></label>
+                        <label class="{{ $card }}"><input type="radio" name="caMobile" value="no" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Όχι</span><span class="block text-xs text-slate-400 mt-0.5">Τα κινητά είναι εταιρικά ή δεν έχουν πρόσβαση.</span></span></label>
+                    </div>
+                </div>
+
+                <div id="caPlatBox" class="caHide">
+                    <p class="text-sm text-slate-300 mb-2">Ποιες πλατφόρμες χρησιμοποιείτε; <span class="text-xs text-slate-400">Όσες δεν τσεκάρεις μπλοκάρονται από την πολιτική CA011, μαζί με όσες δεν αναγνωρίζονται.</span></p>
+                    <div class="flex flex-wrap gap-2">
+                        {{- range slice (slice "windows" "Windows") (slice "macOS" "macOS") (slice "iOS" "iOS και iPadOS") (slice "android" "Android") (slice "linux" "Linux") }}
+                        <label class="flex items-center gap-2 rounded-md border border-slate-700 bg-slate-900/60 px-3 py-1.5 text-sm text-slate-300 cursor-pointer has-[:checked]:border-blue-500 has-[:checked]:bg-blue-500/10"><input type="checkbox" name="caPlat" value="{{ index . 0 }}" class="accent-blue-500">{{ index . 1 }}</label>
+                        {{- end }}
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Έχεις επισκέπτες (guests) ή εξωτερικούς συνεργάτες στο tenant; <span class="text-xs text-slate-400">Για παράδειγμα σε Teams ή σε κοινόχρηστα αρχεία του SharePoint.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Επισκέπτες">
+                        <label class="{{ $card }}"><input type="radio" name="caGuests" value="yes" class="mt-1 accent-blue-500"><span class="font-semibold text-slate-100">Ναι</span></label>
+                        <label class="{{ $card }}"><input type="radio" name="caGuests" value="no" class="mt-1 accent-blue-500"><span class="font-semibold text-slate-100">Όχι</span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-sm text-slate-300 mb-2">Έχουν όλοι οι διαχειριστές phishing-resistant μέθοδο; <span class="text-xs text-slate-400">FIDO2 security key, passkey στο Microsoft Authenticator, Windows Hello for Business ή πιστοποιητικό.</span></p>
+                    <div class="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Phishing-resistant MFA για διαχειριστές">
+                        <label class="{{ $card }}"><input type="radio" name="caAdminPR" value="yes" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Ναι, όλοι</span><span class="block text-xs text-slate-400 mt-0.5">Οι πολιτικές των διαχειριστών θα δέχονται μόνο αυτές τις μεθόδους.</span></span></label>
+                        <label class="{{ $card }}"><input type="radio" name="caAdminPR" value="no" class="mt-1 accent-blue-500"><span><span class="block font-semibold text-slate-100">Όχι ακόμη</span><span class="block text-xs text-slate-400 mt-0.5">Ξεκινάς με MFA και αναβαθμίζεις όταν τις καταχωρίσουν.</span></span></label>
+                    </div>
+                </div>
+
+                <label class="flex flex-col gap-1.5 text-sm text-slate-300 sm:max-w-sm"><span>Η επωνυμία σου <span class="text-xs text-slate-400">(προαιρετικά, εμφανίζεται μόνο στα αρχεία)</span></span>
+                    <input id="caOrg" type="text" maxlength="80" placeholder="π.χ. MyCompany" class="{{ $in }}"></label>
+
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <button type="button" class="caNext rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400" data-step="2">Δες τις πολιτικές σου</button>
+                    <span class="caErr text-sm text-amber-400 hidden" role="alert"></span>
+                </div>
+            </fieldset>
+        </details>
+    </form>
+
+    <!-- Βήμα 3: αποτέλεσμα -->
+    <section id="caOut" data-clarity-mask="true" class="hidden mt-5 flex flex-col gap-6 scroll-mt-24" aria-live="polite">
+        <div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-3">3 · Το σύνολο πολιτικών σου</p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <svg id="caRing" class="caRing shrink-0 self-center" viewBox="0 0 120 120" role="img" aria-label="">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#1e293b" stroke-width="11"/>
+                    <g id="caSegs"></g>
+                    <text x="60" y="55" text-anchor="middle" class="caRingNum" id="caCount">0</text>
+                    <text x="60" y="79" text-anchor="middle" class="caRingUnit">πολιτικές</text>
+                </svg>
+                <div class="min-w-0 flex-1">
+                    <p id="caHead" class="text-lg font-semibold text-slate-100"></p>
+                    <p id="caSub" class="mt-1 text-sm text-slate-300 leading-relaxed"></p>
+                </div>
+            </div>
+            <div id="caStats" class="mt-4 grid gap-3 grid-cols-2 sm:grid-cols-4"></div>
+            <div class="mt-4 flex flex-wrap gap-3">
+                <button type="button" id="caZip" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">📦 Οι πολιτικές σε JSON (.zip)</button>
+                <button type="button" id="caXlsx" class="rounded-md border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800">📥 Πλάνο ενεργοποίησης (.xlsx)</button>
+                <button type="button" id="caPdf" class="rounded-md border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800">📄 Αναφορά για τη διοίκηση και τον ελεγκτή (.pdf)</button>
+            </div>
+            <p class="mt-2 text-xs text-slate-400">Το .zip έχει ένα αρχείο JSON ανά πολιτική, σε Report-only, για το «Upload policy file» στο Microsoft Entra admin center. Το .xlsx είναι το πλάνο που ενημερώνεις καθώς ενεργοποιείς κάθε πολιτική. Το .pdf είναι για τη διοίκηση και τον φάκελο του ελέγχου.</p>
+            <p id="caExpErr" class="mt-2 text-sm text-amber-400 hidden" role="alert"></p>
+        </div>
+
+        <div id="caWarn" class="flex flex-col gap-3"></div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-1">Οι πολιτικές, με σειρά ενεργοποίησης</h3>
+            <p class="text-xs text-slate-400 mb-3">Όλες ξεκινούν σε Report-only: η πολιτική αξιολογείται σε κάθε σύνδεση και γράφεται στα sign-in logs τι θα έκανε, χωρίς να το κάνει. Πάτα μια πολιτική για να δεις γιατί υπάρχει, τις ρυθμίσεις, το JSON και το KQL.</p>
+            <div id="caList" class="flex flex-col gap-5"></div>
+        </div>
+
+        <div>
+            <h3 class="text-base font-semibold text-slate-100 mb-1">Ανά πλαίσιο συμμόρφωσης</h3>
+            <p class="text-xs text-slate-400 mb-3">Οι απαιτήσεις που υλοποιούν οι πολιτικές σου, και ποιες πολιτικές τις καλύπτουν. Κάθε κωδικός ανοίγει την απαίτηση στον αντίστοιχο οδηγό.</p>
+            <div id="caFw" class="flex flex-col gap-4"></div>
+        </div>
+
+        <div id="caNextSteps" class="rounded-lg border border-slate-700 bg-slate-900/40 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <p class="text-xs text-amber-300/90 leading-relaxed">Οι πολιτικές βασίζονται στα templates και στις οδηγίες της Microsoft και σε όσα δήλωσες. Δοκίμασέ τες πάντα σε Report-only και με το What If πριν από το On. Το εργαλείο δεν συνδέεται στο tenant σου και δεν βλέπει τις υπάρχουσες πολιτικές σου.</p>
+    </section>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Όσα δηλώνεις δεν αποστέλλονται πουθενά και δεν αποθηκεύονται: οι πολιτικές, το JSON και τα αρχεία .zip, .xlsx και .pdf δημιουργούνται μέσα στον browser σου.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+</div>
+
+<script>
+(function () {
+    'use strict';
+    var D = {{ $D | jsonify | safeJS }};
+    var BASE = {{ "" | absURL }};
+    var FW = [
+        { key: 'kya', label: 'ΚΥΑ 1689/2025', url: BASE + 'kya-1689-2025/' },
+        { key: 'nis2', label: 'Οδηγία NIS2', url: BASE + 'nis2/' },
+        { key: 'iso', label: 'ISO/IEC 27001', url: BASE + 'iso-27001/' },
+        { key: 'gdpr', label: 'GDPR', url: BASE + 'gdpr/' }
+    ];
+    // Κάθε άδεια: τι επίπεδο Entra ID δίνει και ποιες δυνατότητες του εργαλείου περιλαμβάνει. Ο χρήστης τσεκάρει όσες έχει.
+    var LIC = {
+        bp: { label: 'Microsoft 365 Business Premium', p: 1, add: [] },
+        defsuite: { label: 'Microsoft Defender Suite for Business Premium', p: 2, add: ['mdca', 'pim'], needs: 'bp' },
+        e3: { label: 'Microsoft 365 E3', p: 1, add: [] },
+        e5: { label: 'Microsoft 365 E5', p: 2, add: ['mdca', 'irm', 'pim'] },
+        e7: { label: 'Microsoft 365 E7', p: 2, add: ['mdca', 'irm', 'gsa', 'pim', 'pa'] },
+        ems3: { label: 'Enterprise Mobility + Security E3', p: 1, add: [] },
+        ems5: { label: 'Enterprise Mobility + Security E5', p: 2, add: ['mdca', 'pim'] },
+        entrap2: { label: 'Microsoft Entra ID P2', p: 2, add: ['pim'] }
+    };
+    function licAdd(lic) { var a = []; lic.forEach(function (k) { LIC[k].add.forEach(function (x) { if (a.indexOf(x) < 0) a.push(x); }); }); return a; }
+    function licLabel(lic) { return lic.map(function (k) { return LIC[k].label; }).join(' + '); }
+    var LV = {}; D.levels.forEach(function (l) { LV[l.key] = l; });
+    var WV = {}; D.waves.forEach(function (w) { WV[w.n] = w; });
+    var GUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    var PLAT = { windows: 'Windows', macOS: 'macOS', iOS: 'iOS', android: 'Android', linux: 'Linux' };
+
+    var $ = function (id) { return document.getElementById(id); };
+    var form = $('caForm'), out = $('caOut'), last = null;
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function anchor(c) { return encodeURIComponent(String(c).replace(/\./g, '-')); }
+    function val(n) { var r = form.querySelector('input[name="' + n + '"]:checked'); return r ? r.value : ''; }
+    function vals(n) { return Array.prototype.map.call(form.querySelectorAll('input[name="' + n + '"]:checked'), function (x) { return x.value; }); }
+    function setRadio(n, v) { var r = form.querySelector('input[name="' + n + '"][value="' + v + '"]'); if (r) r.checked = true; }
+    function show(el, on) { el.classList.toggle('caHide', !on); }
+
+    // ---------- Βήματα ----------
+    var steps = Array.prototype.slice.call(form.querySelectorAll('.caStep')), done = 0;
+    steps.forEach(function (st) { st.querySelector('summary').addEventListener('click', function (e) { if (st.hasAttribute('data-locked')) e.preventDefault(); }); });
+    function unlock(n) { var st = steps[n - 1]; if (!st) return; st.removeAttribute('data-locked'); var l = st.querySelector('.caLock'); if (l) l.classList.add('hidden'); }
+    function err(n, msg) { var e = steps[n - 1].querySelector('.caErr'); e.textContent = msg || ''; e.classList.toggle('hidden', !msg); }
+    function note(n, msg) { steps[n - 1].querySelector('.caNote').textContent = msg || ''; }
+
+    function state() {
+        var lic = vals('caLic'), add = vals('caAdd');
+        return {
+            lic: lic, p2: lic.some(function (k) { return LIC[k].p === 2; }),
+            mdca: add.indexOf('mdca') >= 0, irm: add.indexOf('irm') >= 0, gsa: add.indexOf('gsa') >= 0, wid: add.indexOf('wid') >= 0,
+            pim: add.indexOf('pim') >= 0, pa: add.indexOf('pa') >= 0,
+            bg: val('caBg'), bgId: ($('caBgId').value || '').trim(), hybrid: val('caHybrid') === 'yes',
+            dev: val('caDev'), mobile: val('caMobile') === 'yes', plat: vals('caPlat'),
+            guests: val('caGuests') === 'yes', adminPR: val('caAdminPR') === 'yes',
+            org: ($('caOrg').value || '').trim()
+        };
+    }
+    // Δίπλα σε κάθε δυνατότητα: αν την περιλαμβάνει το πακέτο που διάλεξες ή αν θέλει πρόσθετη άδεια.
+    function markIncluded(lic) {
+        var inc = licAdd(lic);
+        Array.prototype.forEach.call(form.querySelectorAll('.caInc'), function (el) {
+            var k = el.getAttribute('data-inc'), y = inc.indexOf(k) >= 0;
+            var from = lic.filter(function (l) { return LIC[l].add.indexOf(k) >= 0; }).map(function (l) { return LIC[l].label; });
+            el.textContent = !lic.length ? '' : y ? '✓ Περιλαμβάνεται στο ' + from.join(' και στο ') : '+ Πρόσθετη άδεια';
+            el.className = 'caInc block text-[11px] font-mono mt-1 ' + (y ? 'text-emerald-400' : 'text-slate-500');
+        });
+    }
+    function applyVisibility() {
+        var s = state();
+        markIncluded(s.lic);
+        show($('caAddons'), s.lic.length > 0);
+        show($('caBgIdBox'), s.bg === 'yes');
+        show($('caMobileBox'), s.dev === 'mixed' || s.dev === 'none');
+        show($('caPlatBox'), s.dev === 'all' || s.dev === 'mixed');
+    }
+    function check1() {
+        var lic = vals('caLic');
+        if (!lic.length) return 'Τσέκαρε τουλάχιστον μία άδεια.';
+        for (var i = 0; i < lic.length; i++) { var n = LIC[lic[i]].needs; if (n && lic.indexOf(n) < 0) return 'Το ' + LIC[lic[i]].label + ' είναι add-on: τσέκαρε και το ' + LIC[n].label + '.'; }
+        return '';
+    }
+    function check2() {
+        var s = state(), miss = [];
+        if (!s.bg) miss.push('τους λογαριασμούς έκτακτης ανάγκης');
+        if (!val('caHybrid')) miss.push('το hybrid identity');
+        if (!s.dev) miss.push('τις συσκευές');
+        if ((s.dev === 'mixed' || s.dev === 'none') && !val('caMobile')) miss.push('τα προσωπικά κινητά');
+        if ((s.dev === 'all' || s.dev === 'mixed') && !s.plat.length) miss.push('τις πλατφόρμες');
+        if (!val('caGuests')) miss.push('τους επισκέπτες');
+        if (!val('caAdminPR')) miss.push('τις μεθόδους των διαχειριστών');
+        if (miss.length) return 'Απάντησε ακόμη για ' + miss.join(', ') + '.';
+        if (s.bg === 'yes' && s.bgId && !GUID.test(s.bgId)) return 'Το Object ID της ομάδας δεν έχει τη μορφή GUID. Διόρθωσέ το ή άφησέ το κενό.';
+        return '';
+    }
+    function noteText1(s) {
+        var a = [licLabel(s.lic)];
+        ['mdca', 'irm', 'gsa', 'wid', 'pim', 'pa'].forEach(function (k) { if (s[k]) a.push(LV[k].label); });
+        return a.join(' · ');
+    }
+    function noteText2(s) {
+        var d = { all: 'μόνο εταιρικές συσκευές', mixed: 'εταιρικές και BYOD', none: 'χωρίς compliance policies' }[s.dev];
+        return [d, s.guests ? 'με επισκέπτες' : 'χωρίς επισκέπτες', s.hybrid ? 'hybrid identity' : 'μόνο cloud', s.bg === 'yes' ? 'με break-glass' : 'χωρίς break-glass'].join(' · ');
+    }
+
+    form.addEventListener('change', function (e) {
+        var t = e.target;
+        if (t.name === 'caLic') {
+            var pre = licAdd(vals('caLic'));
+            Array.prototype.forEach.call(form.querySelectorAll('input[name="caAdd"]'), function (c) { c.checked = pre.indexOf(c.value) >= 0; });
+            err(1, '');
+        }
+        if (t.closest('[data-step="2"]')) err(2, '');
+        applyVisibility();
+        if (done >= 2) { if (check1() || check2()) return; build(); }
+    });
+    $('caBgId').addEventListener('input', function () {
+        var v = this.value.trim(), e = $('caBgIdErr');
+        var bad = v.length === 36 && !GUID.test(v);
+        e.textContent = bad ? 'Αυτό δεν είναι έγκυρο Object ID. Αντίγραψέ το από τη σελίδα της ομάδας.' : '';
+        e.classList.toggle('hidden', !bad);
+        this.classList.toggle('border-rose-500', bad);
+        if (done >= 2 && !check2()) build();
+    });
+    $('caOrg').addEventListener('input', function () { if (done >= 2 && last) last.org = this.value.trim(); });
+
+    Array.prototype.forEach.call(form.querySelectorAll('.caNext'), function (b) {
+        b.addEventListener('click', function () {
+            var n = +b.getAttribute('data-step'), m = n === 1 ? check1() : check2();
+            err(n, m); if (m) return;
+            var s = state();
+            note(n, n === 1 ? noteText1(s) : noteText2(s));
+            steps[n - 1].open = false;
+            if (n === 1) {
+                unlock(2); steps[1].open = true; done = Math.max(done, 1);
+                var f = steps[1].querySelector('input'); if (f) f.focus();
+                steps[1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                done = 2; build();
+                out.classList.remove('hidden');
+                out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    $('caDemo').addEventListener('click', function () {
+        Array.prototype.forEach.call(form.querySelectorAll('input[name="caLic"]'), function (c) { c.checked = c.value === 'bp'; });
+        Array.prototype.forEach.call(form.querySelectorAll('input[name="caAdd"]'), function (c) { c.checked = false; });
+        setRadio('caBg', 'yes'); $('caBgId').value = '';
+        setRadio('caHybrid', 'yes'); setRadio('caDev', 'mixed'); setRadio('caMobile', 'yes');
+        Array.prototype.forEach.call(form.querySelectorAll('input[name="caPlat"]'), function (c) { c.checked = ['windows', 'iOS', 'android'].indexOf(c.value) >= 0; });
+        setRadio('caGuests', 'yes'); setRadio('caAdminPR', 'no');
+        $('caOrg').value = 'MyCompany';
+        applyVisibility();
+        var s = state();
+        unlock(2); note(1, noteText1(s)); note(2, noteText2(s));
+        steps[0].open = false; steps[1].open = false; err(1, ''); err(2, '');
+        done = 2; build();
+        var m = $('caDemoMsg'); m.textContent = 'Φορτώθηκε η MyCompany: Business Premium, hybrid identity, εταιρικοί υπολογιστές και προσωπικά κινητά, με επισκέπτες. Όλα τα στοιχεία είναι κατασκευασμένα.'; m.classList.remove('hidden');
+        out.classList.remove('hidden');
+        out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ---------- Επιλογή πολιτικών ----------
+    function wanted(p, s) {
+        switch (p.rule) {
+            case 'always': return true;
+            case 'devices-partial': return s.dev !== 'all';
+            case 'devices-all': return s.dev === 'all';
+            case 'devices-mixed': return s.dev === 'mixed';
+            case 'devices-managed': return s.dev !== 'none';
+            case 'guests': return s.guests;
+            case 'mobile': return s.mobile && s.dev !== 'all';
+            case 'unmanaged': return s.dev === 'mixed';
+            case 'p2': return s.p2;
+            case 'mdca': return s.mdca && s.dev === 'mixed';
+            case 'irm': return s.irm;
+            case 'gsa': return s.gsa;
+            case 'wid': return s.wid;
+            case 'pim': return s.pim;
+            case 'pa': return s.pa;
+            case 'tokenprot': return s.dev !== 'none' && s.plat.indexOf('windows') >= 0;
+        }
+        return false;
+    }
+    var GUEST_ALL = 'internalGuest,b2bCollaborationGuest,b2bCollaborationMember,b2bDirectConnectUser,otherExternalUser,serviceProvider';
+    function guests(types) { return { guestOrExternalUserTypes: types, externalTenants: { '@odata.type': '#microsoft.graph.conditionalAccessAllExternalTenants', membershipKind: 'all' } }; }
+    function fill(x, s) {
+        if (Array.isArray(x)) return x.map(function (v) { return fill(v, s); });
+        if (x && typeof x === 'object') { var o = {}; Object.keys(x).forEach(function (k) { o[k] = fill(x[k], s); }); return o; }
+        if (x === 'ADMIN_ROLES') return D.adminRoles.map(function (r) { return r.id; });
+        if (x === 'STRENGTH_ADMIN') return s.adminPR ? D.strengths.phish : D.strengths.mfa;
+        if (x === 'STRENGTH_MFA') return D.strengths.mfa;
+        if (x === 'GUEST_TYPES') return guests(GUEST_ALL);
+        if (x === 'GUEST_TYPES_IRM') return guests('b2bDirectConnectUser,otherExternalUser,serviceProvider');
+        if (x === 'PLATFORMS') return s.plat.slice();
+        return x;
+    }
+    function policyJson(p, s) {
+        var g = fill(p.graph, s), u = g.conditions.users;
+        if (u) {
+            if (s.bg === 'yes' && GUID.test(s.bgId)) u.excludeGroups = [s.bgId];
+            if (s.hybrid && p.scope === 'all') u.excludeRoles = [D.dirSyncRole];
+        }
+        var j = { displayName: (s.adminPR && p.namePR) || p.name, state: 'enabledForReportingButNotEnforced', conditions: g.conditions };
+        if (g.grantControls) j.grantControls = g.grantControls;
+        if (g.sessionControls) j.sessionControls = g.sessionControls;
+        return j;
+    }
+    function kql(name) {
+        return [
+            '// ' + name + ': τι θα έκανε η πολιτική τις τελευταίες 7 ημέρες (Report-only)',
+            '// reportOnlyFailure = θα μπλοκαριζόταν · reportOnlyInterrupted = θα του ζητούσε κάτι επιπλέον, π.χ. MFA',
+            'EntraIdSignInEvents',
+            '| where Timestamp > ago(7d)',
+            '| where ConditionalAccessPolicies has "' + name + '"',
+            '| mv-expand Policy = parse_json(ConditionalAccessPolicies)',
+            '| where tostring(Policy.displayName) == "' + name + '"',
+            '| extend Result = tostring(Policy.result)',
+            '| where Result in ("reportOnlyFailure", "reportOnlyInterrupted")',
+            '| summarize SignIns = count(), LastSeen = max(Timestamp), Apps = make_set(Application, 5),',
+            '    Clients = make_set(ClientAppUsed, 5), Platforms = make_set(OSPlatform, 5) by AccountUpn, Result',
+            '| order by SignIns desc'
+        ].join('\n');
+    }
+
+    function build() {
+        var s = state(), pol = [];
+        D.policies.forEach(function (p) {
+            if (!wanted(p, s)) return;
+            var pr = s.adminPR && p.namePR;
+            pol.push({
+                code: p.code, name: pr ? p.namePR : p.name, title: pr ? p.titlePR : p.title, why: pr ? p.whyPR : p.why,
+                settings: (pr ? p.settingsPR : p.settings).map(function (x) {
+                    if (p.code === 'CA011') return x.replace('όσες χρησιμοποιείς', s.plat.map(function (k) { return PLAT[k]; }).join(', '));
+                    return x;
+                }),
+                prereq: p.prereq || '', level: p.level, wave: p.wave, template: p.template, source: p.source,
+                map: p.map, mitre: p.mitre || [], json: policyJson(p, s), kql: kql(pr ? p.namePR : p.name)
+            });
+        });
+        last = { s: s, org: s.org, tier: licLabel(s.lic), policies: pol, D: D, FW: FW, warnings: warnings(s, pol) };
+        render(last);
+        note(1, noteText1(s)); note(2, noteText2(s));
+    }
+
+    function warnings(s, pol) {
+        var w = [];
+        if (s.bg !== 'yes') w.push({ k: 'red', t: 'Φτιάξε πρώτα λογαριασμούς έκτακτης ανάγκης', b: 'Δύο cloud-only λογαριασμοί (onmicrosoft.com) με Global Administrator, πολύ μεγάλους κωδικούς ή FIDO2 key, σε μία ομάδα που εξαιρείται από κάθε πολιτική, και ειδοποίηση σε κάθε σύνδεσή τους. Το JSON δεν έχει εξαίρεση: πρόσθεσε την ομάδα σε κάθε πολιτική πριν από το On.' });
+        else if (!GUID.test(s.bgId)) w.push({ k: 'amber', t: 'Η ομάδα έκτακτης ανάγκης δεν είναι στο JSON', b: 'Δεν έδωσες το Object ID της ομάδας, οπότε τα αρχεία JSON δεν την εξαιρούν. Μετά το upload, άνοιξε κάθε πολιτική και πρόσθεσέ την στο Exclude, ή γράψε το Object ID στο βήμα 2 και κατέβασε ξανά το .zip.' });
+        if (!s.p2) w.push({ k: 'sky', t: 'Το KQL θέλει Entra ID P2', b: 'Ο πίνακας EntraIdSignInEvents του Advanced Hunting γεμίζει μόνο με Microsoft Entra ID P2. Με P1 βλέπεις το ίδιο αποτέλεσμα στο Microsoft Entra admin center > Sign-in logs > καρτέλα Report-only, και στο Policy impact κάθε πολιτικής.' });
+        if (s.dev === 'none') w.push({ k: 'sky', t: 'Οι πολιτικές συσκευών περιμένουν το Intune', b: 'Χωρίς compliance policies, η CA007 λειτουργεί στην πράξη ως MFA για όλους. Όταν φτιάξεις compliance policies στο Intune, ξανατρέξε το εργαλείο με «Εταιρικές στο Intune, και προσωπικές» για να πάρεις και τις πολιτικές των διαχειριστών και των πλατφορμών.' });
+        pol.forEach(function (p) {
+            if (p.code === 'CA024') w.push({ k: 'amber', t: 'Η CA024 θέλει authentication context', b: 'Φτιάξε το authentication context c1 (π.χ. «PIM activation») στο Conditional Access > Authentication context πριν από το upload, και όρισέ το στο PIM μόνο αφού η πολιτική γίνει On. Αν το c1 χρησιμοποιείται ήδη, άλλαξέ το στο JSON.' });
+            if (p.code === 'CA025') w.push({ k: 'amber', t: 'Η CA025 θέλει το ID της εφαρμογής', b: 'Στο JSON της CA025 αντικατέστησε το REPLACE-PRIVATE-ACCESS-APP-ID με το Application (client) ID της εφαρμογής Quick Access ή του Private Access. Χωρίς αυτό, το upload θα απορριφθεί.' });
+        });
+        pol.forEach(function (p) { if (p.code === 'CA020') w.push({ k: 'amber', t: 'Η CA020 θέλει ένα ID πριν από το upload', b: 'Στο JSON της CA020 αντικατέστησε το REPLACE-COMPLIANT-NETWORK-LOCATION-ID με το ID της τοποθεσίας «All Compliant Network locations» (Conditional Access > Named locations). Χωρίς αυτό, το upload θα απορριφθεί.' }); });
+        return w;
+    }
+
+    // ---------- Εμφάνιση ----------
+    var WCLS = { red: 'border-rose-500/50 bg-rose-500/10 text-rose-200', amber: 'border-amber-500/50 bg-amber-500/10 text-amber-100', sky: 'border-sky-500/40 bg-sky-500/10 text-sky-100' };
+    function chips(map) {
+        return FW.map(function (f) {
+            var c = (map[f.key] || []).map(function (x) { return '<a href="' + f.url + '#' + anchor(x) + '" class="text-[11px] font-mono rounded border border-slate-600 px-1.5 py-0.5 text-slate-300 hover:underline hover:text-blue-300" title="' + esc(f.label + ' ' + x) + '">' + esc(x) + '</a>'; }).join(' ');
+            return c ? '<span class="text-[11px] text-slate-500 mr-1">' + esc(f.label) + '</span>' + c : '';
+        }).filter(Boolean).join('<span class="mx-2 text-slate-700">·</span>');
+    }
+    function mitre(ids) {
+        return ids.map(function (id) { return '<a href="' + BASE + 'mitre/' + id.toLowerCase() + '/" class="text-[11px] font-mono rounded border border-red-500/40 px-1.5 py-0.5 text-red-300 hover:underline">' + esc(id) + '</a>'; }).join(' ');
+    }
+    // ---------- Δακτύλιος: τμήματα ανά άδεια, σχεδίαση και μέτρημα όπως στους οδηγούς (hub-rings) ----------
+    // Ένα χρώμα ανά άδεια: το ίδιο στο κομμάτι του δακτυλίου, στη σήμανση και στο αριστερό περίγραμμα της πολιτικής.
+    var LC = { p1: '#10b981', p2: '#3b82f6', mdca: '#06b6d4', irm: '#f43f5e', gsa: '#a855f7', wid: '#f59e0b', pim: '#84cc16', pa: '#ec4899' };
+    var ADD = ['pim', 'mdca', 'irm', 'gsa', 'pa', 'wid'], DUR = 1200;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function addN(byL) { return ADD.reduce(function (n, k) { return n + (byL[k] || 0); }, 0); }
+    function countUp(el, to) {
+        if (still) { el.textContent = to; return; }
+        var start = performance.now();
+        (function tick(now) {
+            var k = Math.min(1, (now - start) / DUR), e = 1 - Math.pow(1 - k, 3);
+            el.textContent = Math.round(e * to);
+            if (k < 1) requestAnimationFrame(tick);
+        })(start);
+    }
+    function play() {
+        var svg = $('caRing'), segs = svg.querySelectorAll('.caSeg');
+        countUp($('caCount'), +$('caCount').getAttribute('data-count'));
+        if (still) return;
+        segs.forEach(function (c) { c.style.transition = 'none'; c.style.strokeDasharray = '0 100'; });
+        void svg.getBoundingClientRect();
+        segs.forEach(function (c) { c.style.transition = ''; c.style.strokeDasharray = ''; });
+    }
+    function ring(pol) {
+        var tot = pol.length || 1, cum = 0, h = '', lab = [];
+        ['p1', 'p2'].concat(ADD).forEach(function (k) {
+            var ps = pol.filter(function (p) { return p.level === k; }), n = ps.length;
+            if (!n) return;
+            var pct = 100 * n / tot, add = ADD.indexOf(k) >= 0, name = LV[k].label;
+            lab.push(n + ' με ' + name);
+            // Τα κομμάτια των πρόσθετων δυνατοτήτων είναι links προς την πολιτική τους στο κύμα 4.
+            h += '<circle class="caSeg' + (add ? ' caSegLink' : '') + '" cx="60" cy="60" r="50" fill="none" stroke="' + LC[k] + '" stroke-width="11" pathLength="100" transform="rotate(-90 60 60)" style="--len:' + pct.toFixed(3) + ';stroke-dashoffset:-' + cum.toFixed(3) + '"' +
+                (add ? ' data-go="' + ps[0].code + '" tabindex="0" role="link" aria-label="' + esc(name + ': ' + ps[0].code + ' ' + ps[0].title) + '"' : '') + '>' +
+                '<title>' + esc(name + (add ? ': ' + ps[0].code + ' ' + ps[0].title + '. Πάτα για να πας στην πολιτική.' : ': ' + n + (n === 1 ? ' πολιτική' : ' πολιτικές'))) + '</title></circle>';
+            cum += pct;
+        });
+        $('caSegs').innerHTML = h;
+        $('caCount').setAttribute('data-count', pol.length);
+        $('caRing').setAttribute('aria-label', pol.length + ' πολιτικές: ' + lab.join(', '));
+        // Η ενότητα του αποτελέσματος εμφανίζεται αμέσως μετά το build: η κίνηση ξεκινά στο επόμενο frame, πριν ζωγραφιστεί.
+        requestAnimationFrame(play);
+    }
+    function goTo(code) {
+        var d = $('ca-' + code); if (!d) return;
+        d.open = true;
+        d.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
+        d.classList.add('caFlash'); setTimeout(function () { d.classList.remove('caFlash'); }, 1600);
+        var s = d.querySelector('summary'); if (s) s.focus({ preventScroll: true });
+    }
+    $('caSegs').addEventListener('click', function (e) { var c = e.target.closest('[data-go]'); if (c) goTo(c.getAttribute('data-go')); });
+    $('caSegs').addEventListener('keydown', function (e) { var c = e.target.closest('[data-go]'); if (c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); goTo(c.getAttribute('data-go')); } });
+    var lastPlay = 0;
+    // Η κίνηση ξαναπαίζει όταν ο δείκτης μπαίνει στον δακτύλιο, εκτός αν μπαίνει κατευθείαν σε κομμάτι-link, ώστε να μη χάνεται κάτω από τον δείκτη.
+    $('caRing').addEventListener('pointerover', function (e) {
+        if (e.relatedTarget && this.contains(e.relatedTarget)) return;
+        if (e.target.closest && e.target.closest('.caSegLink')) return;
+        var now = performance.now(); if (now - lastPlay < DUR) return; lastPlay = now; play();
+    });
+
+    function render(r) {
+        var pol = r.policies, s = r.s;
+        ring(pol);
+        $('caHead').textContent = pol.length + ' πολιτικές για ' + (r.org || 'τον οργανισμό σου') + ', σε ' + new Set(pol.map(function (p) { return p.wave; })).size + ' κύματα ενεργοποίησης';
+        $('caSub').textContent = r.tier + '. ' + (s.adminPR ? 'Οι διαχειριστές με phishing-resistant MFA. ' : 'Οι διαχειριστές με MFA, με στόχο το phishing-resistant. ') + 'Όλες ξεκινούν σε Report-only.';
+        var byL = {}; pol.forEach(function (p) { byL[p.level] = (byL[p.level] || 0) + 1; });
+        var addOn = ADD.filter(function (k) { return byL[k]; });
+        var stats = [['Entra ID P1', byL.p1 || 0, ['p1']], ['Entra ID P2', byL.p2 || 0, ['p2']], ['Πρόσθετες δυνατότητες', addN(byL), addOn], ['Πρότυπα της Microsoft', pol.filter(function (p) { return p.template.indexOf('Custom') !== 0; }).length, []]];
+        $('caStats').innerHTML = stats.map(function (x) {
+            var dots = x[2].map(function (k) { return '<span class="caDot" style="background:' + LC[k] + '" title="' + esc(LV[k].label) + '" aria-hidden="true"></span>'; }).join('');
+            return '<div class="rounded-lg border border-slate-800 bg-slate-950/40 p-3"><p class="text-2xl font-bold font-mono text-slate-100">' + x[1] + '</p><p class="text-xs text-slate-400">' + dots + esc(x[0]) + '</p></div>';
+        }).join('');
+        $('caWarn').innerHTML = r.warnings.map(function (w) { return '<div class="rounded-lg border p-3 text-sm leading-relaxed ' + WCLS[w.k] + '"><p class="font-semibold mb-1">' + esc(w.t) + '</p><p class="text-xs opacity-90">' + esc(w.b) + '</p></div>'; }).join('');
+
+        var html = '';
+        [1, 2, 3, 4].forEach(function (n) {
+            var ps = pol.filter(function (p) { return p.wave === n; }); if (!ps.length) return;
+            html += '<div><p class="text-sm font-semibold text-slate-100">' + esc(WV[n].label) + ' <span class="text-xs font-normal text-slate-400">(' + ps.length + ')</span></p><p class="text-xs text-slate-400 mb-2">' + esc(WV[n].text) + '</p><div class="flex flex-col gap-2">';
+            ps.forEach(function (p) {
+                var js = JSON.stringify(p.json, null, 2);
+                var addL = ADD.indexOf(p.level) >= 0;
+                html += '<details class="group rounded-lg border border-slate-700 bg-slate-900/50 open:border-blue-500/50 scroll-mt-24" id="ca-' + p.code + '"' + (addL ? ' style="border-left:4px solid ' + LC[p.level] + '"' : '') + '>' +
+                    '<summary class="flex flex-wrap items-center gap-2 cursor-pointer list-none p-3 [&::-webkit-details-marker]:hidden">' +
+                    '<span class="font-mono text-xs text-blue-400 shrink-0">' + p.code + '</span>' +
+                    '<span class="flex-1 min-w-0 text-sm font-semibold text-slate-100">' + esc(p.title) + '<span class="block font-mono text-[11px] font-normal text-slate-400 break-all">' + esc(p.name) + '</span></span>' +
+                    '<span class="text-[10px] font-mono rounded border px-1.5 py-0.5" style="border-color:' + LC[p.level] + ';color:' + LC[p.level] + '">' + esc(LV[p.level].label) + '</span>' + {{ $chev | jsonify | safeJS }} + '</summary>' +
+                    '<div class="px-3 pb-3 flex flex-col gap-3 text-sm text-slate-300">' +
+                    '<p class="leading-relaxed">' + esc(p.why) + '</p>' +
+                    '<ul class="list-disc pl-5 text-xs text-slate-300 space-y-0.5">' + p.settings.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '<li>Κατάσταση: Report-only</li></ul>' +
+                    (p.prereq ? '<p class="rounded-md border border-amber-500/40 bg-amber-500/10 p-2 text-xs text-amber-100 leading-relaxed"><strong>Πριν από το On:</strong> ' + esc(p.prereq) + '</p>' : '') +
+                    '<p class="text-xs text-slate-400">Άδεια: ' + esc(LV[p.level].text) + '. Template: <a href="' + esc(p.source) + '" class="text-blue-400 hover:text-blue-300 underline" rel="noopener" target="_blank">' + esc(p.template) + '</a></p>' +
+                    '<div class="flex flex-wrap items-center gap-1">' + chips(p.map) + '</div>' +
+                    '<div class="flex flex-wrap items-center gap-1"><span class="text-[11px] text-slate-500 mr-1">MITRE ATT&amp;CK®</span>' + mitre(p.mitre) + '</div>' +
+                    '<div class="flex flex-wrap gap-2"><button type="button" class="caCopy rounded-md border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800" data-kind="json" data-code="' + p.code + '">📋 Αντιγραφή JSON</button><button type="button" class="caCopy rounded-md border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800" data-kind="kql" data-code="' + p.code + '">📋 Αντιγραφή KQL</button><span class="caCopyMsg text-xs text-emerald-300 self-center" role="status"></span></div>' +
+                    '<details class="rounded-md border border-slate-800 bg-slate-950/60"><summary class="cursor-pointer p-2 text-xs text-slate-400">JSON της πολιτικής</summary><pre class="p-2 text-[11px] text-slate-300 font-mono">' + esc(js) + '</pre></details>' +
+                    '<details class="rounded-md border border-slate-800 bg-slate-950/60"><summary class="cursor-pointer p-2 text-xs text-slate-400">KQL για το Advanced Hunting</summary><pre class="p-2 text-[11px] text-slate-300 font-mono">' + esc(p.kql) + '</pre></details>' +
+                    '</div></details>';
+            });
+            html += '</div></div>';
+        });
+        $('caList').innerHTML = html;
+
+        // Ανά πλαίσιο
+        $('caFw').innerHTML = FW.map(function (f) {
+            var m = {};
+            pol.forEach(function (p) { (p.map[f.key] || []).forEach(function (c) { (m[c] = m[c] || []).push(p.code); }); });
+            var codes = Object.keys(m).sort(function (a, b) { return a.localeCompare(b, 'el', { numeric: true }); });
+            return '<div><p class="text-sm font-semibold text-slate-100 mb-1"><a href="' + f.url + '" class="hover:text-blue-300">' + esc(f.label) + '</a></p><div class="flex flex-col gap-1">' +
+                codes.map(function (c) { return '<p class="text-xs text-slate-300"><a href="' + f.url + '#' + anchor(c) + '" class="font-mono text-blue-400 hover:text-blue-300 underline">' + esc(c) + '</a> <span class="text-slate-500">←</span> ' + m[c].map(function (x) { return '<a href="#ca-' + x + '" class="font-mono text-slate-400 hover:text-slate-200">' + x + '</a>'; }).join(', ') + '</p>'; }).join('') + '</div></div>';
+        }).join('');
+
+        $('caNextSteps').innerHTML = '<p class="font-semibold text-slate-100 mb-2">Τι κάνεις τώρα</p><ol class="list-decimal pl-5 space-y-1">' +
+            (s.bg !== 'yes' ? '<li>Φτιάξε τους λογαριασμούς έκτακτης ανάγκης και την ομάδα τους.</li>' : '') +
+            '<li>Κατέβασε το .zip. Στο Microsoft Entra admin center > Entra ID > Conditional Access > Policies, πάτα «Upload policy file» για κάθε αρχείο JSON. Όλες ανεβαίνουν σε Report-only.</li>' +
+            '<li>Άφησέ τες σε Report-only για όσο λέει το κύμα τους. Τρέξε το KQL κάθε πολιτικής ή δες την καρτέλα Report-only στα Sign-in logs, και διόρθωσε εξαιρέσεις πριν από το On.</li>' +
+            '<li>Γύρνα σε On ένα κύμα τη φορά. Σημείωσε στο .xlsx την ημερομηνία, ώστε ο ελεγκτής να βλέπει πότε επιβλήθηκε κάθε μέτρο.</li>' +
+            '<li>Κράτα εξαγωγή των πολιτικών και των αποτελεσμάτων του Report-only ως τεκμήριο για τα άρθρα 13 και 14 της <a href="' + BASE + 'kya-1689-2025/" class="text-blue-400 hover:text-blue-300 underline">ΚΥΑ 1689/2025</a>.</li>' +
+            '<li>Δες αν οι υπόλοιπες ρυθμίσεις του tenant είναι έτοιμες για τον έλεγχο με το <a href="' + BASE + 'etoimotita-microsoft-365/" class="text-blue-400 hover:text-blue-300 underline">«Είναι έτοιμο το Microsoft 365 σου για τον ελεγκτή;»</a>.</li></ol>';
+    }
+
+    // ---------- Αντιγραφή ----------
+    function copy(text, msgEl) {
+        function ok() { msgEl.textContent = 'Αντιγράφηκε.'; setTimeout(function () { msgEl.textContent = ''; }, 2000); }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, function () { msgEl.textContent = 'Η αντιγραφή απέτυχε. Δοκίμασε ξανά.'; });
+        else { var t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); ok(); } catch (e) {} document.body.removeChild(t); }
+    }
+    $('caList').addEventListener('click', function (e) {
+        var b = e.target.closest('.caCopy'); if (!b || !last) return;
+        var p = last.policies.filter(function (x) { return x.code === b.getAttribute('data-code'); })[0]; if (!p) return;
+        copy(b.getAttribute('data-kind') === 'json' ? JSON.stringify(p.json, null, 2) : p.kql, b.parentNode.querySelector('.caCopyMsg'));
+    });
+
+    // ---------- Εξαγωγές: οι βιβλιοθήκες φορτώνονται μόνο όταν χρειαστούν ----------
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-ca="' + src + '"]')) return next();
+            var s = document.createElement('script'); s.src = src; s.setAttribute('data-ca', src); s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    var EXCEL = '{{ "js/exceljs/exceljs.min.js" | relURL }}', JSZIP = '{{ "js/jszip/jszip.min.js" | relURL }}';
+    var EXPORT = '{{ "js/ca-baseline-export.js" | relURL }}?v={{ readFile "static/js/ca-baseline-export.js" | md5 | truncate 8 "" }}';
+    var PDFLIB = ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'];
+    function run(btn, libs, kind) {
+        if (!last) return;
+        var e = $('caExpErr'), txt = btn.textContent; e.classList.add('hidden');
+        btn.disabled = true; btn.textContent = 'Δημιουργία…';
+        last.org = ($('caOrg').value || '').trim();
+        loadScripts(libs.concat([EXPORT]), function () {
+            Promise.resolve().then(function () { return window.CaBaselineExport[kind](last); })
+                .catch(function () { e.textContent = 'Δεν δημιουργήθηκε το αρχείο. Δοκίμασε ξανά.'; e.classList.remove('hidden'); })
+                .then(function () { btn.disabled = false; btn.textContent = txt; });
+        }, function () { e.textContent = 'Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'; e.classList.remove('hidden'); btn.disabled = false; btn.textContent = txt; });
+    }
+    $('caZip').addEventListener('click', function () { run(this, [JSZIP], 'zip'); });
+    $('caXlsx').addEventListener('click', function () { run(this, [EXCEL, JSZIP], 'xlsx'); });
+    $('caPdf').addEventListener('click', function () { run(this, PDFLIB, 'pdf'); });
+
+    applyVisibility();
+})();
+</script>

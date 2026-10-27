@@ -1,0 +1,713 @@
+# Εργαλείο «Βασικό σύνολο πολιτικών Conditional Access» (/politikes-conditional-access/).
+# Κάθε πολιτική: κωδικός, όνομα με σταθερή ονοματολογία, πότε προτείνεται (rule), άδεια, κύμα ενεργοποίησης,
+# αντιστοίχιση με ΚΥΑ 1689/2025, Οδηγία NIS2, ISO/IEC 27001:2022 και GDPR, MITRE ATT&CK®, και το JSON της πολιτικής
+# στο σχήμα του Microsoft Graph (conditionalAccessPolicy), έτοιμο για «Upload policy file» στο Microsoft Entra admin center.
+# Το JavaScript του shortcode προσθέτει: state = Report-only, εξαίρεση της ομάδας break-glass (αν δοθεί),
+# εξαίρεση του ρόλου Directory Synchronization Accounts (αν υπάρχει hybrid identity) και τις πλατφόρμες που χρησιμοποιούνται.
+# Ρυθμίσεις από τις σελίδες των templates στο Microsoft Learn, ελεγμένες στις 27/10/2026.
+# scope: all = όλοι οι χρήστες, admins = ρόλοι διαχείρισης, guests = επισκέπτες, sp = service principals.
+# level: p1 = Entra ID P1 (Business Premium, E3), p2 = Entra ID P2, mdca / irm / gsa / wid = πρόσθετη δυνατότητα.
+
+verified: 2026-10-27
+
+adminRoles:
+  - { id: "62e90394-69f5-4237-9190-012177145e10", name: "Global Administrator" }
+  - { id: "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3", name: "Application Administrator" }
+  - { id: "c4e39bd9-1100-46d3-8c65-fb160da0071f", name: "Authentication Administrator" }
+  - { id: "b0f54661-2d74-4c50-afa3-1ec803f12efe", name: "Billing Administrator" }
+  - { id: "158c047a-c907-4556-b7ef-446551a6b5f7", name: "Cloud Application Administrator" }
+  - { id: "b1be1c3e-b65d-4f19-8427-f6fa0d97feb9", name: "Conditional Access Administrator" }
+  - { id: "29232cdf-9323-42fd-ade2-1d097af3e4de", name: "Exchange Administrator" }
+  - { id: "729827e3-9c14-49f7-bb1b-9608f156bbb8", name: "Helpdesk Administrator" }
+  - { id: "966707d0-3269-4727-9be2-8c3a10f19b9d", name: "Password Administrator" }
+  - { id: "7be44c8a-adaf-4e2a-84d6-ab2649e08a13", name: "Privileged Authentication Administrator" }
+  - { id: "e8611ab8-c189-46e8-94e1-60213ab1f814", name: "Privileged Role Administrator" }
+  - { id: "194ae4cb-b126-40b2-bd5b-6091b380977d", name: "Security Administrator" }
+  - { id: "f28a1f50-f6e7-4571-818b-6a12f2af6b6c", name: "SharePoint Administrator" }
+  - { id: "fe930be7-5e62-47db-91af-98c3a49a38b1", name: "User Administrator" }
+
+dirSyncRole: "d29b2b05-8046-44ba-8758-1e26182fcf32"
+
+strengths:
+  mfa: "00000000-0000-0000-0000-000000000002"
+  phish: "00000000-0000-0000-0000-000000000004"
+
+levels:
+  - { key: p1, label: "Entra ID P1", text: "Microsoft 365 Business Premium, E3, E5, E7, EMS E3, EMS E5 ή Microsoft Entra ID P1" }
+  - { key: p2, label: "Entra ID P2", text: "Microsoft Defender Suite for Business Premium, EMS E5, E5, E7 ή Microsoft Entra ID P2" }
+  - { key: mdca, label: "Defender for Cloud Apps", text: "Microsoft Defender for Cloud Apps, ή μέσα σε Defender Suite for Business Premium, EMS E5, E5, E7" }
+  - { key: irm, label: "Purview Insider Risk Management", text: "Microsoft Purview Suite ή Microsoft 365 E5 Insider Risk Management, ή μέσα σε E5, E7, με Adaptive Protection ενεργό" }
+  - { key: gsa, label: "Entra Internet Access", text: "Microsoft Entra Internet Access ή Microsoft Entra Suite (περιλαμβάνεται στο E7)" }
+  - { key: wid, label: "Entra Workload ID", text: "Microsoft Entra Workload ID (Workload ID Premium)" }
+  - { key: pim, label: "Privileged Identity Management", text: "Microsoft Entra ID P2 (Defender Suite for Business Premium, EMS E5, E5, E7) ή Microsoft Entra ID Governance, με τους ρόλους διαχείρισης ως eligible στο PIM" }
+  - { key: pa, label: "Entra Private Access", text: "Microsoft Entra Private Access ή Microsoft Entra Suite (περιλαμβάνεται στο E7)" }
+
+waves:
+  - { n: 1, label: "Κύμα 1: διαχειριστές και τα εύκολα", text: "Δεν αγγίζουν την καθημερινή δουλειά των χρηστών. Μία εβδομάδα σε Report-only, έλεγχος, και μετά On." }
+  - { n: 2, label: "Κύμα 2: όλοι οι χρήστες", text: "MFA για όλους, επισκέπτες και κίνδυνος. Δύο εβδομάδες σε Report-only, ενημέρωση των χρηστών πριν από το On." }
+  - { n: 3, label: "Κύμα 3: συσκευές", text: "Θέλουν έτοιμες compliance και app protection policies στο Intune. Ενεργοποίηση ανά ομάδα χρηστών." }
+  - { n: 4, label: "Κύμα 4: προχωρημένα", text: "Session control, insider risk, compliant network και workload identities, αφού σταθεροποιηθούν τα προηγούμενα." }
+
+policies:
+
+  - code: CA001
+    name: "CA001-Admins-AllResources-RequireMFA"
+    namePR: "CA001-Admins-AllResources-RequirePhishResistantMFA"
+    title: "MFA για τους διαχειριστές"
+    titlePR: "Phishing-resistant MFA για τους διαχειριστές"
+    rule: always
+    level: p1
+    wave: 1
+    scope: admins
+    template: "Require multifactor authentication for admins"
+    why: "Οι λογαριασμοί με ρόλους διαχείρισης είναι ο πρώτος στόχος. Η πολιτική ζητά MFA από τους 14 ρόλους που προτείνει η Microsoft, σε κάθε εφαρμογή."
+    whyPR: "Οι λογαριασμοί με ρόλους διαχείρισης είναι ο πρώτος στόχος, και το MFA με κωδικό ή push μπορεί να υποκλαπεί από ένα AiTM phishing. Η πολιτική δέχεται για τους 14 ρόλους μόνο phishing-resistant μεθόδους: FIDO2 security key, passkey, Windows Hello for Business ή πιστοποιητικό."
+    settings:
+      - "Χρήστες: οι 14 ρόλοι διαχείρισης που προτείνει η Microsoft"
+      - "Πόροι: όλοι"
+      - "Grant: authentication strength «Multifactor authentication»"
+    settingsPR:
+      - "Χρήστες: οι 14 ρόλοι διαχείρισης που προτείνει η Microsoft"
+      - "Πόροι: όλοι"
+      - "Grant: authentication strength «Phishing-resistant MFA»"
+    prereq: "Οι πολιτικές Conditional Access εφαρμόζονται μόνο σε built-in ρόλους, όχι σε custom ρόλους ή σε ρόλους με εμβέλεια administrative unit."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin"
+    map: { kya: ["13.δ", "13.ζ"], nis2: ["21.2.ι"], iso: ["A.8.2", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "T1110.003", "M1032", "M1026"]
+    graph:
+      conditions:
+        users: { includeRoles: ADMIN_ROLES }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_ADMIN" } }
+
+  - code: CA002
+    name: "CA002-Admins-AdminPortals-RequireMFA"
+    namePR: "CA002-Admins-AdminPortals-RequirePhishResistantMFA"
+    title: "MFA στα Microsoft admin portals"
+    titlePR: "Phishing-resistant MFA στα Microsoft admin portals"
+    rule: always
+    level: p1
+    wave: 1
+    scope: admins
+    template: "Require multifactor authentication for admins accessing Microsoft admin portals"
+    why: "Καλύπτει ρητά τα Microsoft admin portals (Entra, Microsoft 365 admin center, Defender, Intune, Exchange, Purview, Azure portal) με το ίδιο MFA, ώστε να μη μείνει κενό αν κάποιος αλλάξει αργότερα την πρώτη πολιτική."
+    whyPR: "Καλύπτει ρητά τα Microsoft admin portals (Entra, Microsoft 365 admin center, Defender, Intune, Exchange, Purview, Azure portal) με phishing-resistant MFA, ώστε να μη μείνει κενό αν κάποιος αλλάξει αργότερα την πρώτη πολιτική."
+    settings:
+      - "Χρήστες: οι 14 ρόλοι διαχείρισης"
+      - "Πόροι: Microsoft Admin Portals"
+      - "Grant: authentication strength «Multifactor authentication»"
+    settingsPR:
+      - "Χρήστες: οι 14 ρόλοι διαχείρισης"
+      - "Πόροι: Microsoft Admin Portals"
+      - "Grant: authentication strength «Phishing-resistant MFA»"
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-admin-portals"
+    map: { kya: ["13.δ", "13.ζ"], nis2: ["21.2.ι"], iso: ["A.8.2", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "T1098.003", "M1032", "M1026"]
+    graph:
+      conditions:
+        users: { includeRoles: ADMIN_ROLES }
+        applications: { includeApplications: ["MicrosoftAdminPortals"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_ADMIN" } }
+
+  - code: CA003
+    name: "CA003-AllUsers-AllResources-RequireMFA"
+    title: "MFA για όλους τους χρήστες"
+    rule: always
+    level: p1
+    wave: 2
+    scope: all
+    template: "Require multifactor authentication for all users"
+    why: "Η πολιτική με το μεγαλύτερο όφελος. Ένας κωδικός που διέρρευσε ή μάντεψε κάποιος με password spraying δεν αρκεί για να μπει."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι"
+      - "Grant: authentication strength «Multifactor authentication»"
+    prereq: "Οι χρήστες πρέπει να έχουν καταχωρίσει μέθοδο MFA πριν από το On. Ενημέρωσέ τους και δώσε Temporary Access Pass σε όσους δεν έχουν."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-mfa-strength"
+    map: { kya: ["13.ζ", "13.στ"], nis2: ["21.2.ι"], iso: ["A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "T1110.003", "M1032"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_MFA" } }
+
+  - code: CA004
+    name: "CA004-AllUsers-AllResources-BlockLegacyAuth"
+    title: "Μπλοκάρισμα legacy authentication"
+    rule: always
+    level: p1
+    wave: 1
+    scope: all
+    template: "Block legacy authentication"
+    why: "Τα παλιά πρωτόκολλα (IMAP, POP3, SMTP AUTH, ActiveSync με basic auth) δεν υποστηρίζουν MFA. Χωρίς αυτή την πολιτική, το MFA παρακάμπτεται από την πίσω πόρτα."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι"
+      - "Client apps: Exchange ActiveSync clients και Other clients"
+      - "Grant: Block access"
+    prereq: "Πριν από το On, βρες με το KQL ποιοι λογαριασμοί και ποιες συσκευές (πολυμηχανήματα, εφαρμογές) συνδέονται ακόμη με legacy πρωτόκολλα."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-block-legacy-authentication"
+    map: { kya: ["13.ζ", "19.η"], nis2: ["21.2.ι"], iso: ["A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1110.003", "T1078.004", "M1032"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["exchangeActiveSync", "other"]
+      grantControls: { operator: "OR", builtInControls: ["block"] }
+
+  - code: CA005
+    name: "CA005-AllUsers-SecurityInfoRegistration-RequireMFA"
+    title: "Προστασία της καταχώρισης μεθόδων MFA"
+    rule: always
+    level: p1
+    wave: 1
+    scope: all
+    template: "Securing security info registration"
+    why: "Ένας επιτιθέμενος με τον κωδικό του χρήστη προσπαθεί πρώτα να καταχωρίσει τη δική του μέθοδο MFA. Η πολιτική ζητά MFA για την καταχώριση, εκτός αν γίνεται από αξιόπιστη τοποθεσία."
+    settings:
+      - "Χρήστες: όλοι, εκτός από επισκέπτες και λογαριασμούς έκτακτης ανάγκης"
+      - "User action: Register security information"
+      - "Network: οποιαδήποτε τοποθεσία, εκτός από τις αξιόπιστες"
+      - "Grant: authentication strength «Multifactor authentication»"
+    prereq: "Οι νέοι χρήστες χρειάζονται Temporary Access Pass για την πρώτη καταχώριση. Από τις 6 Ιουλίου 2026 η πολιτική εφαρμόζεται και στην καταχώριση Windows Hello for Business και macOS Platform SSO."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-security-info-registration"
+    map: { kya: ["13.στ", "13.ζ"], nis2: ["21.2.ι"], iso: ["A.5.17", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1098", "T1078.004", "M1032"]
+    graph:
+      conditions:
+        users:
+          includeUsers: ["All"]
+          excludeGuestsOrExternalUsers: GUEST_TYPES
+        applications: { includeApplications: [], includeUserActions: ["urn:user:registersecurityinfo"] }
+        clientAppTypes: ["all"]
+        locations: { includeLocations: ["All"], excludeLocations: ["AllTrusted"] }
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_MFA" } }
+
+  - code: CA006
+    name: "CA006-AllUsers-AzureManagement-RequireMFA"
+    title: "MFA για τη διαχείριση του Azure"
+    rule: always
+    level: p1
+    wave: 1
+    scope: all
+    template: "Require multifactor authentication for Azure management"
+    why: "Καλύπτει το Azure portal, το Azure PowerShell και το Azure CLI για κάθε χρήστη, όχι μόνο για όσους έχουν ρόλο στο Entra ID. Ένας ρόλος Owner σε subscription δεν φαίνεται στους ρόλους του Entra."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: Windows Azure Service Management API"
+      - "Grant: authentication strength «Multifactor authentication»"
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-azure-mgmt"
+    map: { kya: ["13.δ", "13.ζ"], nis2: ["21.2.ι"], iso: ["A.8.2", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "M1032", "M1026"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["797f4846-ba00-4fd7-ba43-dac1f8f63013"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_MFA" } }
+
+  - code: CA007
+    name: "CA007-AllUsers-AllResources-RequireCompliantOrHybridOrMFA"
+    title: "Διαχειριζόμενη συσκευή ή MFA"
+    rule: devices-partial
+    level: p1
+    wave: 3
+    scope: all
+    template: "Require compliant or Microsoft Entra hybrid joined device or multifactor authentication for all users"
+    why: "Από εταιρική συσκευή (compliant στο Intune ή hybrid joined) ο χρήστης μπαίνει χωρίς επιπλέον βήμα. Από οποιαδήποτε άλλη, του ζητείται MFA. Είναι η ενδιάμεση λύση όταν δεν είναι όλες οι συσκευές στο Intune."
+    settings:
+      - "Χρήστες: όλοι, εκτός από λογαριασμούς έκτακτης ανάγκης και Directory Synchronization Accounts"
+      - "Πόροι: όλοι"
+      - "Grant (ένα από τα τρία): compliant device, hybrid joined device ή MFA"
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-alt-all-users-compliant-hybrid-or-mfa"
+    map: { kya: ["13.ζ", "14.α"], nis2: ["21.2.ι", "21.2.θ"], iso: ["A.8.1", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "M1032"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", builtInControls: ["compliantDevice", "domainJoinedDevice", "mfa"] }
+
+  - code: CA008
+    name: "CA008-AllUsers-AllResources-RequireCompliantDevice"
+    title: "Μόνο από compliant συσκευή"
+    rule: devices-all
+    level: p1
+    wave: 3
+    scope: all
+    template: "Require compliant device"
+    why: "Όταν όλες οι συσκευές που έχουν πρόσβαση είναι στο Intune, η πρόσβαση επιτρέπεται μόνο από συσκευή που περνά τις compliance policies. Ένα κλεμμένο password μαζί με MFA δεν αρκεί από τον υπολογιστή του επιτιθέμενου."
+    settings:
+      - "Χρήστες: όλοι, εκτός από λογαριασμούς έκτακτης ανάγκης και Directory Synchronization Accounts"
+      - "Πόροι: όλοι"
+      - "Grant: Require device to be marked as compliant"
+    prereq: "Χωρίς compliance policy στο Intune η πολιτική δεν λειτουργεί σωστά. Φτιάξε πρώτα τις compliance policies για κάθε πλατφόρμα και βεβαιώσου ότι υπάρχουν compliant συσκευές."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-device-compliance"
+    map: { kya: ["11.α", "14.α", "19.δ", "13.α"], nis2: ["21.2.θ", "21.2.ι"], iso: ["A.8.1", "A.5.15"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "T1539", "M1035"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", builtInControls: ["compliantDevice"] }
+
+  - code: CA009
+    name: "CA009-Admins-AllResources-RequireCompliantOrHybridDevice"
+    title: "Οι διαχειριστές μόνο από εταιρική συσκευή"
+    rule: devices-mixed
+    level: p1
+    wave: 3
+    scope: admins
+    template: "Require compliant or Microsoft Entra hybrid joined device for administrators"
+    why: "Ακόμη κι αν οι χρήστες δουλεύουν και από προσωπικές συσκευές, οι διαχειριστές δεν πρέπει. Η πολιτική επιτρέπει στους 14 ρόλους πρόσβαση μόνο από compliant ή hybrid joined συσκευή."
+    settings:
+      - "Χρήστες: οι 14 ρόλοι διαχείρισης"
+      - "Πόροι: όλοι"
+      - "Grant (ένα από τα δύο): compliant device ή hybrid joined device"
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-alt-admin-device-compliand-hybrid"
+    map: { kya: ["13.δ", "14.α"], nis2: ["21.2.ι"], iso: ["A.8.2", "A.8.1"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "M1026"]
+    graph:
+      conditions:
+        users: { includeRoles: ADMIN_ROLES }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", builtInControls: ["compliantDevice", "domainJoinedDevice"] }
+
+  - code: CA010
+    name: "CA010-AllUsers-AllResources-BlockDeviceCodeFlow"
+    title: "Μπλοκάρισμα του device code flow"
+    rule: always
+    level: p1
+    wave: 1
+    scope: all
+    template: "Block authentication flows (device code flow)"
+    why: "Στο device code phishing ο επιτιθέμενος στέλνει έναν κωδικό και ο χρήστης τον πληκτρολογεί σε γνήσια σελίδα της Microsoft, δίνοντας token στον επιτιθέμενο. Οι περισσότεροι οργανισμοί δεν χρειάζονται αυτή τη ροή, οπότε μπλοκάρεται."
+    settings:
+      - "Χρήστες: όλοι, εκτός από λογαριασμούς έκτακτης ανάγκης και όσους τη χρειάζονται"
+      - "Πόροι: όλοι"
+      - "Authentication flows: Device code flow"
+      - "Grant: Block access"
+    prereq: "Αν έχεις Teams Rooms, Surface Hub ή άλλες συσκευές χωρίς πληκτρολόγιο που συνδέονται με device code, εξαίρεσε τους λογαριασμούς τους. Το KQL δείχνει ποιοι τη χρησιμοποιούν σήμερα."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-block-authentication-flows"
+    map: { kya: ["13.στ"], nis2: ["21.2.ι"], iso: ["A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1528", "T1566.002", "M1054"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        authenticationFlows: { transferMethods: "deviceCodeFlow" }
+      grantControls: { operator: "OR", builtInControls: ["block"] }
+
+  - code: CA011
+    name: "CA011-AllUsers-AllResources-BlockUnknownPlatforms"
+    title: "Μπλοκάρισμα άγνωστων πλατφορμών"
+    rule: devices-managed
+    level: p1
+    wave: 2
+    scope: all
+    template: "Block access for unknown or unsupported device platform"
+    why: "Οι πολιτικές συσκευών βασίζονται στην πλατφόρμα. Ένα script ή ένα εργαλείο επίθεσης με άγνωστο user agent θα ξέφευγε από όλες. Η πολιτική μπλοκάρει κάθε πλατφόρμα που δεν χρησιμοποιείς."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι"
+      - "Device platforms: όλες, εκτός από όσες χρησιμοποιείς"
+      - "Grant: Block access"
+    prereq: "Η πλατφόρμα αναγνωρίζεται από το user agent, που μπορεί να πλαστογραφηθεί. Γι' αυτό η πολιτική συνοδεύει πάντα μια πολιτική compliance ή app protection και δεν αρκεί μόνη της."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-device-unknown-unsupported"
+    map: { kya: ["19.δ", "14.β"], nis2: ["21.2.ι"], iso: ["A.8.1", "A.5.15"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "M1035"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        platforms: { includePlatforms: ["all"], excludePlatforms: PLATFORMS }
+      grantControls: { operator: "OR", builtInControls: ["block"] }
+
+  - code: CA012
+    name: "CA012-Guests-AllResources-RequireMFA"
+    title: "MFA για επισκέπτες και εξωτερικούς χρήστες"
+    rule: guests
+    level: p1
+    wave: 2
+    scope: guests
+    template: "Require multifactor authentication for guest access"
+    why: "Συνεργάτες, προμηθευτές και σύμβουλοι μπαίνουν στο Teams και στο SharePoint σου με λογαριασμό που δεν ελέγχεις. Η πολιτική ζητά MFA και από αυτούς."
+    settings:
+      - "Χρήστες: όλοι οι τύποι επισκεπτών και εξωτερικών χρηστών"
+      - "Πόροι: όλοι"
+      - "Grant: Require multifactor authentication"
+    prereq: "Αν εμπιστεύεσαι το MFA του tenant ενός συνεργάτη, ενεργοποίησέ το στα cross-tenant access settings, ώστε να μη του ζητείται δεύτερη φορά."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-old-require-mfa-guest"
+    map: { kya: ["13.α", "13.ζ"], nis2: ["21.2.δ", "21.2.ι"], iso: ["A.5.19", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1199", "T1078.004", "M1032"]
+    graph:
+      conditions:
+        users: { includeGuestsOrExternalUsers: GUEST_TYPES }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", builtInControls: ["mfa"] }
+
+  - code: CA013
+    name: "CA013-AllUsers-AllResources-RequireAppProtection-iOSAndroid"
+    title: "App protection στα κινητά"
+    rule: mobile
+    level: p1
+    wave: 3
+    scope: all
+    template: "Require approved client apps or app protection policies"
+    why: "Στα προσωπικά κινητά δεν διαχειρίζεσαι τη συσκευή, διαχειρίζεσαι την εφαρμογή. Η πολιτική επιτρέπει πρόσβαση από iOS και Android μόνο με εφαρμογές που έχουν Intune app protection policy, ώστε τα εταιρικά δεδομένα να μένουν στις εταιρικές εφαρμογές."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι"
+      - "Device platforms: iOS και Android"
+      - "Grant (ένα από τα δύο): approved client app ή app protection policy"
+    prereq: "Φτιάξε πρώτα τις app protection policies για iOS και Android στο Intune. Οι συσκευές πρέπει να καταχωρίζονται στο Microsoft Entra ID, κάτι που γίνεται μέσω του Microsoft Authenticator ή του Company Portal."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-approved-app-or-app-protection"
+    map: { kya: ["11.γ", "14.α"], nis2: ["21.2.θ", "21.2.ι"], iso: ["A.8.1", "A.8.12"], gdpr: ["32.1.β"] }
+    mitre: ["T1530", "M1057"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        platforms: { includePlatforms: ["android", "iOS"] }
+      grantControls: { operator: "OR", builtInControls: ["approvedApplication", "compliantApplication"] }
+
+  - code: CA014
+    name: "CA014-AllUsers-AllResources-SessionUnmanaged-NoPersistentBrowser"
+    title: "Χωρίς μόνιμη σύνδεση σε μη διαχειριζόμενες συσκευές"
+    rule: unmanaged
+    level: p1
+    wave: 3
+    scope: all
+    template: "No persistent browser session"
+    why: "Σε έναν υπολογιστή που δεν ελέγχεις, ο browser δεν κρατά τη σύνδεση όταν κλείσει, και ζητείται νέα σύνδεση κάθε μία ώρα. Περιορίζει τη ζημιά από ένα ξεχασμένο session ή ένα κλεμμένο cookie."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι"
+      - "Filter for devices: όσες δεν είναι hybrid joined ή δεν είναι compliant"
+      - "Session: sign-in frequency 1 ώρα και persistent browser session «Never persistent»"
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser"
+    map: { kya: ["13.στ", "11.γ"], nis2: ["21.2.ι"], iso: ["A.8.1", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1539", "T1550.004", "M1035"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        devices: { deviceFilter: { mode: "include", rule: "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True" } }
+      sessionControls:
+        signInFrequency: { isEnabled: true, type: "hours", value: 1, frequencyInterval: "timeBased", authenticationType: "primaryAndSecondaryAuthentication" }
+        persistentBrowser: { isEnabled: true, mode: "never" }
+
+  - code: CA015
+    name: "CA015-AllUsers-Office365-AppEnforcedRestrictions"
+    title: "Περιορισμοί του Office 365 σε μη διαχειριζόμενες συσκευές"
+    rule: unmanaged
+    level: p1
+    wave: 3
+    scope: all
+    template: "Use application enforced restrictions for unmanaged devices"
+    why: "Από μη διαχειριζόμενη συσκευή, ο χρήστης βλέπει τα αρχεία του SharePoint και του OneDrive και τα συνημμένα του Outlook στον browser, αλλά δεν μπορεί να τα κατεβάσει, να τα εκτυπώσει ή να τα συγχρονίσει."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: Office 365"
+      - "Session: Use app enforced restrictions"
+    prereq: "Η πολιτική μόνη της δεν περιορίζει τίποτα. Ενεργοποίησε και τον έλεγχο πρόσβασης από μη διαχειριζόμενες συσκευές στο SharePoint admin center («Allow limited, web-only access») και το OwaMailboxPolicy στο Exchange Online."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-app-enforced-restrictions"
+    map: { kya: ["11.γ"], nis2: ["21.2.θ"], iso: ["A.8.12", "A.5.10"], gdpr: ["32.1.β"] }
+    mitre: ["T1530", "T1213.002", "M1057"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["Office365"] }
+        clientAppTypes: ["all"]
+      sessionControls:
+        applicationEnforcedRestrictions: { isEnabled: true }
+
+  - code: CA016
+    name: "CA016-AllUsers-AllResources-SignInRisk-RequireMFA"
+    title: "MFA σε ύποπτη σύνδεση"
+    rule: p2
+    level: p2
+    wave: 2
+    scope: all
+    template: "Require multifactor authentication for risky sign-ins"
+    why: "Το Microsoft Entra ID Protection βαθμολογεί κάθε σύνδεση: anonymous IP, αδύνατο ταξίδι, γνωστές κακόβουλες IP, token από AiTM. Όταν ο κίνδυνος είναι μέτριος ή υψηλός, ζητείται ξανά MFA εκείνη τη στιγμή, ακόμα κι αν ο χρήστης το είχε περάσει πριν από λίγο."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι"
+      - "Sign-in risk: High και Medium"
+      - "Grant: authentication strength «Multifactor authentication»"
+      - "Session: sign-in frequency «Every time»"
+    prereq: "Όποιος δεν έχει καταχωρίσει MFA μπλοκάρεται σε ύποπτη σύνδεση (σφάλμα AADSTS53004), γιατί η πολιτική δεν τον αφήνει να καταχωρίσει μέθοδο εκείνη τη στιγμή."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-sign-in"
+    map: { kya: ["13.στ", "13.ζ", "24.ε"], nis2: ["21.2.ι", "21.2.β"], iso: ["A.8.5", "A.5.7", "A.8.16"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "T1110.003", "T1557", "M1032"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        signInRiskLevels: ["high", "medium"]
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_MFA" } }
+      sessionControls:
+        signInFrequency: { isEnabled: true, frequencyInterval: "everyTime", authenticationType: "primaryAndSecondaryAuthentication" }
+
+  - code: CA017
+    name: "CA017-AllUsers-AllResources-UserRisk-RequireRemediation"
+    title: "Αυτόματη αποκατάσταση για παραβιασμένους λογαριασμούς"
+    rule: p2
+    level: p2
+    wave: 2
+    scope: all
+    template: "Require password change for high-risk users (risk remediation)"
+    why: "Όταν ο ίδιος ο λογαριασμός κρίνεται παραβιασμένος, για παράδειγμα επειδή τα credentials εντοπίστηκαν σε leak, ο χρήστης περνά ισχυρή αυθεντικοποίηση και αποκαθιστά τον λογαριασμό μόνος του. Καλύπτει χρήστες με και χωρίς password."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι"
+      - "User risk: High"
+      - "Grant: Require risk remediation μαζί με authentication strength «Multifactor authentication»"
+      - "Session: sign-in frequency «Every time» (υποχρεωτικό)"
+    prereq: "Για χρήστες με password, η αποκατάσταση είναι ασφαλής αλλαγή κωδικού. Με hybrid identity ενεργοποίησε το password writeback στο Microsoft Entra Connect."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-user"
+    map: { kya: ["13.στ", "13.ε", "24.ε"], nis2: ["21.2.ι", "21.2.β"], iso: ["A.5.17", "A.8.5", "A.5.26"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "M1032", "M1018"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        userRiskLevels: ["high"]
+      grantControls: { operator: "AND", builtInControls: ["riskRemediation"], authenticationStrength: { id: "STRENGTH_MFA" } }
+      sessionControls:
+        signInFrequency: { isEnabled: true, frequencyInterval: "everyTime", authenticationType: "primaryAndSecondaryAuthentication" }
+
+  - code: CA018
+    name: "CA018-AllUsers-Office365-SessionUnmanaged-BlockDownloads"
+    title: "Session control μέσω Defender for Cloud Apps"
+    rule: mdca
+    level: mdca
+    wave: 4
+    scope: all
+    template: "Custom: Conditional Access App Control"
+    why: "Από μη διαχειριζόμενη συσκευή, η συνεδρία στον browser περνά από το Microsoft Defender for Cloud Apps: ο χρήστης δουλεύει κανονικά, αλλά δεν μπορεί να κατεβάσει αρχεία, και όλη η δραστηριότητα καταγράφεται."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: Office 365"
+      - "Client apps: Browser"
+      - "Filter for devices: όσες δεν είναι hybrid joined ή δεν είναι compliant"
+      - "Session: Conditional Access App Control «Block downloads»"
+    prereq: "Το Defender for Cloud Apps πρέπει να είναι ενεργό. Με «Block downloads» η πολιτική λειτουργεί χωρίς άλλη ρύθμιση. Για πιο λεπτομερείς κανόνες, άλλαξέ το σε «Use custom policy» και φτιάξε session policy στο Defender portal."
+    source: "https://learn.microsoft.com/defender-cloud-apps/proxy-deployment-aad"
+    map: { kya: ["11.γ", "24.ε"], nis2: ["21.2.θ", "21.2.ι"], iso: ["A.8.12", "A.8.16"], gdpr: ["32.1.β"] }
+    mitre: ["T1530", "T1213.002", "M1057"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["Office365"] }
+        clientAppTypes: ["browser"]
+        devices: { deviceFilter: { mode: "include", rule: "device.trustType -ne \"ServerAD\" -or device.isCompliant -ne True" } }
+      sessionControls:
+        cloudAppSecurity: { isEnabled: true, cloudAppSecurityType: "blockDownloads" }
+
+  - code: CA019
+    name: "CA019-AllUsers-AllResources-InsiderRisk-Block"
+    title: "Μπλοκάρισμα χρηστών με αυξημένο insider risk"
+    rule: irm
+    level: irm
+    wave: 4
+    scope: all
+    template: "Block access for users with insider risk"
+    why: "Το Adaptive Protection του Microsoft Purview βαθμολογεί τη συμπεριφορά κάθε χρήστη με βάση τα δεδομένα: μαζικό κατέβασμα, αντιγραφή σε USB, αποστολή σε προσωπικό email, ειδικά πριν από αποχώρηση. Όταν ο κίνδυνος είναι αυξημένος (Elevated), η πρόσβαση κόβεται αυτόματα."
+    settings:
+      - "Χρήστες: όλοι, εκτός από λογαριασμούς έκτακτης ανάγκης και B2B direct connect, service provider και other external users"
+      - "Πόροι: όλοι"
+      - "Insider risk: Elevated"
+      - "Grant: Block access"
+    prereq: "Ενεργοποίησε πρώτα το Adaptive Protection στο Microsoft Purview Insider Risk Management, αλλιώς η πολιτική δεν παίρνει σήμα."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-insider-block"
+    map: { kya: ["11.γ", "13.γ"], nis2: ["21.2.ι", "21.2.θ"], iso: ["A.8.12", "A.8.16"], gdpr: ["32.1.β"] }
+    mitre: ["T1530", "T1052.001", "M1057"]
+    graph:
+      conditions:
+        users:
+          includeUsers: ["All"]
+          excludeGuestsOrExternalUsers: GUEST_TYPES_IRM
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        insiderRiskLevels: "elevated"
+      grantControls: { operator: "OR", builtInControls: ["block"] }
+
+  - code: CA020
+    name: "CA020-AllUsers-AllResources-RequireCompliantNetwork"
+    title: "Πρόσβαση μόνο μέσω Global Secure Access"
+    rule: gsa
+    level: gsa
+    wave: 4
+    scope: all
+    template: "Compliant network check (Global Secure Access)"
+    why: "Η πρόσβαση επιτρέπεται μόνο όταν η κίνηση περνά από το Global Secure Access του δικού σου tenant. Ένα κλεμμένο token που ξαναπαίζεται από τον υπολογιστή του επιτιθέμενου απορρίπτεται, χωρίς να συντηρείς λίστες IP."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: όλοι, εκτός από Microsoft Intune και Microsoft Intune Enrollment"
+      - "Network: οποιαδήποτε τοποθεσία, εκτός από «All Compliant Network locations»"
+      - "Grant: Block access"
+    prereq: "Ενεργοποίησε πρώτα το Conditional Access signaling στο Global Secure Access > Settings > Session management > Adaptive access. Πριν από το upload, αντικατέστησε στο JSON το REPLACE-COMPLIANT-NETWORK-LOCATION-ID με το ID της τοποθεσίας «All Compliant Network locations» από τα Named locations. Οι χρήστες χωρίς τον client του Global Secure Access μπλοκάρονται."
+    source: "https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network"
+    map: { kya: ["19.γ", "19.ζ", "13.α"], nis2: ["21.2.ι"], iso: ["A.8.20", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1539", "T1550.001", "T1550.004", "T1557", "M1035"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["All"], excludeApplications: ["0000000a-0000-0000-c000-000000000000", "d4ebce55-015a-49b5-a083-c84d1797ae8c"] }
+        clientAppTypes: ["all"]
+        locations: { includeLocations: ["All"], excludeLocations: ["REPLACE-COMPLIANT-NETWORK-LOCATION-ID"] }
+      grantControls: { operator: "OR", builtInControls: ["block"] }
+
+  - code: CA021
+    name: "CA021-ServicePrincipals-AllResources-HighRisk-Block"
+    title: "Μπλοκάρισμα service principals υψηλού κινδύνου"
+    rule: wid
+    level: wid
+    wave: 4
+    scope: sp
+    template: "Custom: Conditional Access for workload identities"
+    why: "Οι εφαρμογές και τα scripts που συνδέονται με δικό τους secret ή πιστοποιητικό δεν περνούν MFA. Όταν το Entra ID Protection κρίνει ότι ένα service principal παραβιάστηκε, η πολιτική το μπλοκάρει."
+    settings:
+      - "Workload identities: όλα τα service principals του tenant"
+      - "Πόροι: όλοι"
+      - "Service principal risk: High"
+      - "Grant: Block access"
+    prereq: "Ισχύει μόνο για single-tenant service principals που έχεις καταχωρίσει εσύ, όχι για managed identities ή multitenant εφαρμογές τρίτων."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/workload-identity"
+    map: { kya: ["13.β", "13.δ"], nis2: ["21.2.ι"], iso: ["A.5.16", "A.8.2"], gdpr: ["32.1.β"] }
+    mitre: ["T1078.004", "T1528", "M1026"]
+    graph:
+      conditions:
+        clientApplications: { includeServicePrincipals: ["ServicePrincipalsInMyTenant"] }
+        applications: { includeApplications: ["All"] }
+        clientAppTypes: ["all"]
+        servicePrincipalRiskLevels: ["high"]
+      grantControls: { operator: "OR", builtInControls: ["block"] }
+
+  - code: CA022
+    name: "CA022-AllUsers-RegisterOrJoinDevices-RequireMFA"
+    title: "MFA για την καταχώριση ή το join συσκευής"
+    rule: always
+    level: p1
+    wave: 1
+    scope: all
+    template: "Require multifactor authentication for device registration"
+    why: "Ένας επιτιθέμενος με κλεμμένο κωδικό καταχωρίζει δική του συσκευή στο Entra ID, για να περάσει τις πολιτικές συσκευών ή για να κρατήσει πρόσβαση. Η πολιτική ζητά MFA κάθε φορά που κάποιος καταχωρίζει ή κάνει join μια συσκευή."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "User action: Register or join devices"
+      - "Grant: authentication strength «Multifactor authentication»"
+    prereq: "Στο Entra ID > Devices > Device settings, η ρύθμιση «Require Multifactor Authentication to register or join devices with Microsoft Entra» πρέπει να γίνει «No». Αλλιώς η πολιτική δεν εφαρμόζεται σωστά."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-device-registration"
+    map: { kya: ["13.στ", "19.δ"], nis2: ["21.2.ι"], iso: ["A.8.5", "A.8.1"], gdpr: ["32.1.β"] }
+    mitre: ["T1098", "T1078.004", "M1032"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: [], includeUserActions: ["urn:user:registerdevice"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_MFA" } }
+
+  - code: CA023
+    name: "CA023-AllUsers-EXO-SPO-Teams-RequireTokenProtection-Windows"
+    title: "Token Protection στα Windows"
+    rule: tokenprot
+    level: p1
+    wave: 3
+    scope: all
+    template: "Require token protection for sign-in sessions"
+    why: "Το token της σύνδεσης δένεται κρυπτογραφικά με τη συσκευή. Ένα token που κλέβει ένα infostealer ή ένα AiTM phishing δεν δουλεύει από άλλο υπολογιστή, για το Exchange Online, το SharePoint Online και το Teams."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης (ξεκίνα με ομάδα pilot)"
+      - "Πόροι: Office 365 Exchange Online, Office 365 SharePoint Online, Microsoft Teams Services"
+      - "Device platforms: Windows"
+      - "Client apps: μόνο Mobile apps and desktop clients"
+      - "Session: Require token protection for sign-in sessions"
+    prereq: "Θέλει Windows 10 ή νεότερα, Entra joined, hybrid joined ή registered. Ξεκίνα με μια μικρή ομάδα pilot αντί για όλους. Μην αλλάξεις τους πόρους σε «Office 365» και μην προσθέσεις Browser στα client apps, γιατί μπλοκάρονται εφαρμογές όπως το Teams Web. Το JSON χρησιμοποιεί το secureSignInSession του Microsoft Graph beta."
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/deployment-guide-token-protection-windows"
+    map: { kya: ["13.στ"], nis2: ["21.2.ι"], iso: ["A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1528", "T1550.001", "T1557"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["00000002-0000-0ff1-ce00-000000000000", "00000003-0000-0ff1-ce00-000000000000", "cc15fd57-2c6c-4117-a88c-83b1d56b4bbe"] }
+        clientAppTypes: ["mobileAppsAndDesktopClients"]
+        platforms: { includePlatforms: ["windows"] }
+      sessionControls:
+        secureSignInSession: { isEnabled: true }
+
+  - code: CA024
+    name: "CA024-AllUsers-AuthContextPIM-RequireMFA"
+    namePR: "CA024-AllUsers-AuthContextPIM-RequirePhishResistantMFA"
+    title: "Ισχυρή αυθεντικοποίηση στην ενεργοποίηση ρόλου (PIM)"
+    titlePR: "Phishing-resistant MFA στην ενεργοποίηση ρόλου (PIM)"
+    rule: pim
+    level: pim
+    wave: 1
+    scope: all
+    template: "PIM: On activation, require Conditional Access authentication context"
+    why: "Όταν κάποιος ενεργοποιεί ρόλο διαχειριστή στο Privileged Identity Management, του ζητείται ξανά αυθεντικοποίηση εκείνη τη στιγμή, ακόμη κι αν είχε περάσει MFA πριν από λίγο. Ένα κλεμμένο session δεν αρκεί για να πάρει δικαιώματα Global Administrator."
+    whyPR: "Όταν κάποιος ενεργοποιεί ρόλο διαχειριστή στο Privileged Identity Management, του ζητείται ξανά phishing-resistant αυθεντικοποίηση εκείνη τη στιγμή. Ένα κλεμμένο session ή ένα AiTM phishing δεν αρκεί για να πάρει δικαιώματα Global Administrator."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: authentication context c1 (π.χ. «PIM activation»)"
+      - "Grant: authentication strength «Multifactor authentication»"
+      - "Session: sign-in frequency «Every time»"
+    settingsPR:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: authentication context c1 (π.χ. «PIM activation»)"
+      - "Grant: authentication strength «Phishing-resistant MFA»"
+      - "Session: sign-in frequency «Every time»"
+    prereq: "Φτιάξε πρώτα το authentication context στο Conditional Access > Authentication context, με «Publish to apps». Αν το c1 χρησιμοποιείται ήδη, άλλαξε το c1 στο JSON. Όρισε το authentication context στις ρυθμίσεις ρόλων του PIM μόνο αφού η πολιτική γίνει On: όσο είναι σε Report-only, η ενεργοποίηση ρόλου δεν προστατεύεται ούτε από το εφεδρικό MFA του PIM. Ο χρήστης δεν έχει ακόμη τον ρόλο τη στιγμή της ενεργοποίησης, γι' αυτό η πολιτική στοχεύει όλους και όχι ρόλους."
+    source: "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings"
+    map: { kya: ["13.δ", "13.ζ"], nis2: ["21.2.ι"], iso: ["A.8.2", "A.8.5"], gdpr: ["32.1.β"] }
+    mitre: ["T1098.003", "T1078.004", "M1026", "M1032"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeAuthenticationContextClassReferences: ["c1"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", authenticationStrength: { id: "STRENGTH_ADMIN" } }
+      sessionControls:
+        signInFrequency: { isEnabled: true, frequencyInterval: "everyTime", authenticationType: "primaryAndSecondaryAuthentication" }
+
+  - code: CA025
+    name: "CA025-AllUsers-PrivateAccessApps-RequireCompliantOrHybridOrMFA"
+    title: "Εσωτερικές εφαρμογές μέσω Entra Private Access"
+    rule: pa
+    level: pa
+    wave: 4
+    scope: all
+    template: "Apply Conditional Access policies to Private Access apps"
+    why: "Οι εσωτερικές εφαρμογές και οι file servers που δημοσιεύεις με το Entra Private Access αντί για VPN περνούν από το Conditional Access όπως κάθε εφαρμογή cloud. Η πολιτική ζητά εταιρική συσκευή ή MFA πριν ανοίξει το tunnel προς την εφαρμογή."
+    settings:
+      - "Χρήστες: όλοι, εκτός από τους λογαριασμούς έκτακτης ανάγκης"
+      - "Πόροι: η εφαρμογή Quick Access ή οι εφαρμογές του Private Access"
+      - "Grant (ένα από τα τρία): MFA, compliant device ή hybrid joined device"
+    prereq: "Πριν από το upload, αντικατέστησε στο JSON το REPLACE-PRIVATE-ACCESS-APP-ID με το Application (client) ID της εφαρμογής Quick Access ή της εφαρμογής του Private Access (Global Secure Access > Applications > Enterprise applications). Για κάθε επιπλέον εφαρμογή πρόσθεσε το ID της στη λίστα."
+    source: "https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-private-access-apps"
+    map: { kya: ["19.γ", "19.ζ", "13.α"], nis2: ["21.2.ι"], iso: ["A.8.20", "A.5.15"], gdpr: ["32.1.β"] }
+    mitre: ["T1133", "T1021", "M1035", "M1032"]
+    graph:
+      conditions:
+        users: { includeUsers: ["All"] }
+        applications: { includeApplications: ["REPLACE-PRIVATE-ACCESS-APP-ID"] }
+        clientAppTypes: ["all"]
+      grantControls: { operator: "OR", builtInControls: ["mfa", "compliantDevice", "domainJoinedDevice"] }
