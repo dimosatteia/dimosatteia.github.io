@@ -29,6 +29,10 @@ ShowBreadCrumbs: false
 hideMeta: true
 # Γράφημα στη δεξιά στήλη, κάτω από το Table of Contents, όταν αναλυθεί ένα αρχείο
 ssGauge: true
+cover:
+  image: "/images/tools/secure-score-symmorfosi.webp"
+  alt: "Οι συστάσεις του Microsoft Secure Score από ένα αρχείο CSV αντιστοιχίζονται σε απαιτήσεις της ΚΥΑ 1689/2025, της Οδηγίας NIS2, του ISO/IEC 27001 και του GDPR"
+  maxWidth: 800
 categories: ["GRC & Compliance"]
 tags:
   - Microsoft Secure Score

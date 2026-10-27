@@ -54,6 +54,10 @@ verification:
     license: "Microsoft Purview Compliance Manager"
     source: "https://learn.microsoft.com/purview/compliance-manager-improvement-actions#storing-evidence"
     verified: 2026-10-25
+cover:
+  image: "/images/tools/mitroo-politikon.webp"
+  alt: "Μητρώο πολιτικών της ΚΥΑ 1689/2025 με κατάσταση κάθε πολιτικής, δακτύλιο κάλυψης των 32 εγγράφων και ημερομηνία επόμενης αναθεώρησης"
+  maxWidth: 800
 categories: ["GRC & Compliance"]
 tags:
   - ΚΥΑ 1689/2025
