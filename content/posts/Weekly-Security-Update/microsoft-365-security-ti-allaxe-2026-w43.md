@@ -78,6 +78,8 @@ verification:
 
 **Τι να κάνεις.** Πριν από τις 25 Οκτωβρίου άνοιξε το Defender portal → Settings → Email & collaboration → **Teams user reported settings** και αποφάσισε τον προορισμό: Microsoft only, My reporting mailbox only, ή και τα δύο. Αν ο DPO έχει αντίρρηση για αποστολή περιεχομένου chat εκτός ΕΕ, διάλεξε My reporting mailbox only και υπέβαλε στη Microsoft μόνο ό,τι κρίνεις εσύ. Ενημέρωσε το SOC και το help desk ότι θα έρθουν αναφορές από το Teams, και τους χρήστες για το πώς κάνουν report. Το Teams admin center ελέγχει αν οι χρήστες βλέπουν καν την επιλογή. Η αναφορά κλήσεων ήταν στο [τεύχος 40](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w40/).
 
+**Αναλυτικά:** [Generally Available: Το Teams user reporting του Defender for Office 365 ενεργοποιείται από προεπιλογή](/posts/generally-available/defender-office-365-teams-user-reporting-default/)
+
 **Πηγή:** [User reported settings in Microsoft Teams](https://learn.microsoft.com/en-us/defender-office-365/submissions-teams) · Message Center [MC1478463](https://mc.merill.net/message/MC1478463) (αρχείο mc.merill.net, δημοσιεύθηκε στις 24 Σεπτεμβρίου 2026, ενημερώθηκε στις 25 Σεπτεμβρίου 2026)
 
 ### 2. Defender for Cloud: διαχείριση plans στο Defender portal, χρέωση σε DWU και αλλαγή στο Defender for Servers
@@ -89,6 +91,8 @@ verification:
 Ξεχωριστά, από την **1η Νοεμβρίου 2026** τα desktops, όπως Windows 10 και 11, δεν χρεώνονται πια ως servers στο Defender for Servers Plan 1. Ταυτόχρονα αλλάζει, και για τα δύο plans, ο τρόπος που αναγνωρίζονται οι billable servers, κάτι που μπορεί να αλλάξει τον αριθμό servers στον λογαριασμό σου. Συσκευές που δεν αναγνωρίζονται καθαρά ως desktop θα χρεώνονται ως servers.
 
 **Τι να κάνεις.** Μην μεταφέρεις παραγωγικά subscriptions σε preview χωρίς σχέδιο. Πρώτα κατέγραψε ποια resources έχουν ρυθμίσεις plan ανά resource, γιατί θα χαθούν. Βάλε τα σημερινά σου resources στο Cloud Security Cost Estimator και σύγκρινε το κόστος σε DWU με το σημερινό. Για το Defender for Servers, κράτησε τον λογαριασμό του Οκτωβρίου και σύγκρινέ τον με του Νοεμβρίου. Αν έχεις virtual desktops ή VDI με Windows multi-session, έλεγξε πώς ταξινομούνται.
+
+**Αναλυτικά:** [Preview: Τα plans του Defender for Cloud περνούν στο Defender portal, με χρέωση σε Defender Workload Units](/posts/previews/defender-for-cloud-plans-defender-portal-dwu/)
 
 **Πηγή:** [What changes when managing cloud security plans in the Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/plan-management-changes-defender-portal) · [Estimate and track Cloud security cost](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/estimate-track-costs) · [What's new in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes)
 
@@ -107,6 +111,8 @@ verification:
 
 **Τι να κάνεις.** Δες ποιοι διαχειρίζονται σήμερα το App Governance μέσω Compliance Administrator ή Compliance Data Administrator. Αν πρέπει να συνεχίσουν, δώσε τους άλλον υποστηριζόμενο ρόλο ή custom Unified RBAC role, με least privilege. Έλεγξε επίσης ποιοι έχουν Cloud App Security Administrator, αφού ο ρόλος αποκτά περισσότερα δικαιώματα. Για το προϊόν, δες την [πρακτική περιήγηση στο Defender for Cloud Apps](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/).
 
+**Αναλυτικά:** [Generally Available: Αλλάζουν τα δικαιώματα των ρόλων του Entra στο App Governance του Defender for Cloud Apps](/posts/generally-available/defender-cloud-apps-app-governance-roles-unified-rbac/)
+
 **Πηγή:** [Turn on app governance: Required roles](https://learn.microsoft.com/en-us/defender-cloud-apps/app-governance-get-started#required-roles) · [App governance FAQ](https://learn.microsoft.com/en-us/defender-cloud-apps/app-governance-faq) · Message Center [MC1479503](https://mc.merill.net/message/MC1479503) (αρχείο mc.merill.net, δημοσιεύθηκε στις 25 Σεπτεμβρίου 2026, ενημερώθηκε στις 20 Οκτωβρίου 2026)
 
 ### 4. Defender for Identity: sensor v3.x χωρίς Defender for Endpoint σε GA, και νέα alerts για καταχώριση MFA
@@ -119,6 +125,8 @@ verification:
 
 **Τι να κάνεις.** Αν δεν έχεις βάλει τον Defender for Identity σε κάποιους domain controllers επειδή δεν ήθελες πλήρες Defender for Endpoint εκεί, τώρα δεν υπάρχει αυτό το εμπόδιο. Δες στο Secure Score τη σύσταση για unmonitored domain controllers και κάλυψέ τους. Ενημέρωσε το SOC για τα νέα alerts καταχώρισης MFA, γιατί αυτό είναι το βήμα που ακολουθεί συχνά μια παραβίαση λογαριασμού. Για το προϊόν, δες το [deep dive στο Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/).
 
+**Αναλυτικά:** [Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing](/posts/generally-available/defender-identity-sensor-v3-automatic-activation/)
+
 **Πηγή:** [Activate the Microsoft Defender for Identity sensor v3.x](https://learn.microsoft.com/en-us/defender-for-identity/deploy/activate-sensor) · [Deploy the sensor v3.x: licensing requirements](https://learn.microsoft.com/en-us/defender-for-identity/deploy/deploy-sensor-v3) · [What's new in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/whats-new)
 
 ### 5. Unified SecOps: Simple Flows στα automation rules και detection source στα alert tuning rules
@@ -130,6 +138,8 @@ verification:
 Η δεύτερη αλλαγή αφορά τα **alert tuning rules** του Defender XDR. Σύμφωνα με την ανακοίνωση, μπορείς πλέον να περιορίσεις έναν κανόνα σε συγκεκριμένες detection sources. Η επιλογή εμφανίζεται από τα μέσα Οκτωβρίου και εφαρμόζεται από τις αρχές Νοεμβρίου. Κανόνες που δεν αλλάζεις συνεχίζουν να ισχύουν για όλες τις detection sources, και για τα custom detections.
 
 **Τι να κάνεις.** Για μικρό SOC, τα Simple Flows είναι ο γρήγορος τρόπος για δύο πράγματα: email στον υπεύθυνο βάρδιας όταν δημιουργείται case υψηλής σοβαρότητας, και ένα σταθερό checklist tasks όταν το case περνά σε Investigating. Επειδή τα emails δεν καταγράφονται στο case, μην τα χρησιμοποιείς ως τεκμήριο ειδοποίησης. Για τα alert tuning rules, ξαναδές όσους κανόνες έχεις και αποφάσισε αν πρέπει να καλύπτουν και τα custom detections σου. Ένας πολύ πλατύς κανόνας μπορεί να κρύβει alerts που θέλεις να δεις.
+
+**Αναλυτικά:** [Preview: Simple Flows στα automation rules και detection source στα alert tuning rules του Defender](/posts/previews/defender-simple-flows-alert-tuning-detection-source/)
 
 **Πηγή:** [Create basic automation rules with Simple Flows in the Microsoft Defender portal](https://learn.microsoft.com/en-us/azure/sentinel/automation/create-basic-automation-rules-simple-flows) · Message Center [MC1481318](https://mc.merill.net/message/MC1481318) (αρχείο mc.merill.net, δημοσιεύθηκε στις 28 Σεπτεμβρίου 2026)
 
