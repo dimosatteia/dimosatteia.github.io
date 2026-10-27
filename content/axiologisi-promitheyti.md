@@ -47,6 +47,10 @@ verification:
     license: "Άρθρο 28"
     source: "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
     verified: 2026-10-14
+cover:
+  image: "/images/tools/axiologisi-promitheyti.webp"
+  alt: "Επιλογή τύπου και κρισιμότητας προμηθευτή, ερωτηματολόγιο ασφάλειας ανά ενότητα και checklist συμβατικών όρων για ΚΥΑ 1689/2025, NIS2, ISO/IEC 27001 και GDPR"
+  maxWidth: 800
 categories: ["GRC & Compliance"]
 tags:
   - Supply Chain
