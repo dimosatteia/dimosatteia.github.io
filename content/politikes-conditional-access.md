@@ -131,6 +131,11 @@ verification:
     license: "Microsoft Entra ID P2"
     source: "https://learn.microsoft.com/defender-xdr/advanced-hunting-entraidsigninevents-table"
     verified: 2026-10-27
+  - feature: "KQL του εργαλείου δοκιμασμένο σε production tenant: στήλη ConditionalAccessPolicies του EntraIdSignInEvents, πεδία displayName και result, τιμές reportOnlyFailure και reportOnlyInterrupted"
+    status: "Δοκιμασμένο σε production"
+    license: "Microsoft Entra ID P2"
+    source: "https://learn.microsoft.com/defender-xdr/advanced-hunting-entraidsigninevents-table"
+    verified: 2026-10-27
 ---
 
 Το Conditional Access είναι το «φανάρι» του Microsoft Entra ID: σε κάθε σύνδεση αποφασίζει αν ο χρήστης μπαίνει, αν του ζητείται κάτι επιπλέον, ή αν μπλοκάρεται. Η Microsoft έχει έτοιμα templates για τις πολιτικές που χρειάζεται κάθε οργανισμός. Το ερώτημα είναι ποιες ταιριάζουν στις δικές σου άδειες και στον τρόπο που δουλεύουν οι χρήστες σου, και με ποια σειρά τις ενεργοποιείς χωρίς να κλειδώσεις κανέναν έξω.

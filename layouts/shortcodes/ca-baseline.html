@@ -462,7 +462,6 @@
             if (p.code === 'CA024') w.push({ k: 'amber', t: 'Η CA024 θέλει authentication context', b: 'Φτιάξε το authentication context c1 (π.χ. «PIM activation») στο Conditional Access > Authentication context πριν από το upload, και όρισέ το στο PIM μόνο αφού η πολιτική γίνει On. Αν το c1 χρησιμοποιείται ήδη, άλλαξέ το στο JSON.' });
             if (p.code === 'CA025') w.push({ k: 'amber', t: 'Η CA025 θέλει το ID της εφαρμογής', b: 'Στο JSON της CA025 αντικατέστησε το REPLACE-PRIVATE-ACCESS-APP-ID με το Application (client) ID της εφαρμογής Quick Access ή του Private Access. Χωρίς αυτό, το upload θα απορριφθεί.' });
         });
-        pol.forEach(function (p) { if (p.code === 'CA020') w.push({ k: 'amber', t: 'Η CA020 θέλει ένα ID πριν από το upload', b: 'Στο JSON της CA020 αντικατέστησε το REPLACE-COMPLIANT-NETWORK-LOCATION-ID με το ID της τοποθεσίας «All Compliant Network locations» (Conditional Access > Named locations). Χωρίς αυτό, το upload θα απορριφθεί.' }); });
         return w;
     }
 

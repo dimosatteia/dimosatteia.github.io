@@ -563,7 +563,7 @@ policies:
       - "Πόροι: όλοι, εκτός από Microsoft Intune και Microsoft Intune Enrollment"
       - "Network: οποιαδήποτε τοποθεσία, εκτός από «All Compliant Network locations»"
       - "Grant: Block access"
-    prereq: "Ενεργοποίησε πρώτα το Conditional Access signaling στο Global Secure Access > Settings > Session management > Adaptive access. Πριν από το upload, αντικατέστησε στο JSON το REPLACE-COMPLIANT-NETWORK-LOCATION-ID με το ID της τοποθεσίας «All Compliant Network locations» από τα Named locations. Οι χρήστες χωρίς τον client του Global Secure Access μπλοκάρονται."
+    prereq: "Ενεργοποίησε πρώτα το Conditional Access signaling στο Global Secure Access > Settings > Session management > Adaptive access. Η τοποθεσία «All Compliant Network locations» δημιουργείται τότε αυτόματα, με το ίδιο ID σε κάθε tenant, που το JSON έχει ήδη. Οι χρήστες χωρίς τον client του Global Secure Access μπλοκάρονται."
     source: "https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network"
     map: { kya: ["19.γ", "19.ζ", "13.α"], nis2: ["21.2.ι"], iso: ["A.8.20", "A.8.5"], gdpr: ["32.1.β"] }
     mitre: ["T1539", "T1550.001", "T1550.004", "T1557", "M1035"]
@@ -572,7 +572,7 @@ policies:
         users: { includeUsers: ["All"] }
         applications: { includeApplications: ["All"], excludeApplications: ["0000000a-0000-0000-c000-000000000000", "d4ebce55-015a-49b5-a083-c84d1797ae8c"] }
         clientAppTypes: ["all"]
-        locations: { includeLocations: ["All"], excludeLocations: ["REPLACE-COMPLIANT-NETWORK-LOCATION-ID"] }
+        locations: { includeLocations: ["All"], excludeLocations: ["3d46dbda-8382-466a-856d-eb00cbc6b910"] }
       grantControls: { operator: "OR", builtInControls: ["block"] }
 
   - code: CA021
