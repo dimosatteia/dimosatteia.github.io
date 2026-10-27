@@ -230,6 +230,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 21.2.στ
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες για την αξιολόγηση της αποτελεσματικότητας των μέτρων διαχείρισης κινδύνων στον τομέα της κυβερνοασφάλειας.

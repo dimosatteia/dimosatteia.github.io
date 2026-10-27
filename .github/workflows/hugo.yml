@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  # Καθημερινό rebuild στις 09:45 ώρα Ελλάδας (07:45 UTC τον χειμώνα, 10:45 Ελλάδας με θερινή ώρα),
+  # ώστε τα άρθρα με μελλοντική ημερομηνία να εμφανίζονται χωρίς push
+  schedule:
+    - cron: "45 7 * * *"
   workflow_dispatch:
 
 permissions:

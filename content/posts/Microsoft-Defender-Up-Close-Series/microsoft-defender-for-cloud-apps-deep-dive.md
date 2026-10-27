@@ -200,6 +200,10 @@ mitre: ["T1528", "T1078.004"]
 
 > 🔗 **Διαβάστε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)** και **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)**.
 
+{{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive" >}}
+> 🔗 **Νέο στη σειρά:** **[Microsoft Defender for Cloud](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/)**, το CNAPP της Microsoft για Azure, AWS και GCP: CSPM, regulatory compliance για NIS2 και ISO 27001, και Defender for Servers.
+{{< /if-published >}}
+
 > 🔗 **Θέλετε να δείτε πώς τα σήματα των cloud εφαρμογών τροφοδοτούν την τεκμηρίωση συμμόρφωσης;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
 > 🔗 **Χρειάζεστε τεκμηρίωση συμμόρφωσης;** Το Cloud Discovery, το App governance, τα session policies και οι activity policies του Microsoft Defender for Cloud Apps στηρίζουν τις απαιτήσεις [11.α](/kya-1689-2025/#11-α), [11.γ](/kya-1689-2025/#11-γ), [12.1.γ](/kya-1689-2025/#12-1-γ), [13.γ](/kya-1689-2025/#13-γ) και [24.ε](/kya-1689-2025/#24-ε), όπως τις αναλύει ο **[οδηγός της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.δ](/nis2/#21-2-δ), [21.2.θ](/nis2/#21-2-θ) και [21.3](/nis2/#21-3), στο **[ISO/IEC 27001](/iso-27001/)** στα [A.5.9](/iso-27001/#A-5-9), [A.5.10](/iso-27001/#A-5-10), [A.5.18](/iso-27001/#A-5-18), [A.5.19](/iso-27001/#A-5-19), [A.5.23](/iso-27001/#A-5-23), [A.8.12](/iso-27001/#A-8-12) και [A.8.16](/iso-27001/#A-8-16), και στον **[GDPR](/gdpr/)** στα [28.1](/gdpr/#28-1) και [44](/gdpr/#44). Ο καθένας έχει checklist σε Excel.

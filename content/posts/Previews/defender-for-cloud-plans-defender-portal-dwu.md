@@ -133,6 +133,10 @@ mitre: ["T1190", "T1530", "M1047", "M1054"]
 
 > 📖 **Θέλεις όλη την εικόνα;** Το Defender for Cloud ως μέρος της οικογένειας Defender: **[Microsoft Defender Demystified](/series/microsoft-defender-demystified/)**.
 
+{{< if-published page="/posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive" >}}
+> 📖 **Αναλυτικά:** CSPM, regulatory compliance, Defender for Servers και plans στο Defender portal: **[Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/)**.
+{{< /if-published >}}
+
 ---
 
 ## Πηγές και επαλήθευση {#last-verified}

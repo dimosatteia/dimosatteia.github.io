@@ -495,6 +495,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
       url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
       page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: '32.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Το κατάλληλο επίπεδο ασφάλειας εκτιμάται με βάση τους κινδύνους της επεξεργασίας, ιδίως από τυχαία ή παράνομη καταστροφή, απώλεια, αλλοίωση, άνευ αδείας κοινολόγηση ή πρόσβαση.

@@ -573,6 +573,9 @@ articles:
       url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
     - title: 'Generally Available: Το Defender for Identity ενεργοποιεί μόνο του τον sensor v3.x και το Windows auditing'
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 14.β
     scope: Βασικές και σημαντικές
     requirement: Ασφαλής παραμετροποίηση (secure configuration) με πρότυπα κατασκευαστών ή ανεξάρτητων οργανισμών, και αρχές least functionality και least privilege.
@@ -771,6 +774,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: εντοπισμός συσκευών και συνεχής αξιολόγηση'
       url: /posts/microsoft-defender-vulnerability-management-series/02-mdvm-discovery-and-continuous-assessment/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/02-mdvm-discovery-and-continuous-assessment
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 17.στ
     scope: Βασικές και σημαντικές
     requirement: Αποκατάσταση ευπαθειών σε εύλογο χρόνο με πλάνο προτεραιοποίησης. Τεκμηρίωση όσων δεν αποκαθίστανται.
@@ -1001,6 +1007,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 20.β
     scope: Βασικές και σημαντικές
     requirement: Έλεγχος της εκτέλεσης εφαρμογών και ανίχνευση μη εξουσιοδοτημένου λογισμικού.

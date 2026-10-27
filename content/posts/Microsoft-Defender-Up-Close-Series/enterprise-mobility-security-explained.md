@@ -1,8 +1,8 @@
 ---
 title: "Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσετε"
 seoTitle: "Enterprise Mobility + Security: EMS E3 vs E5, πότε αξίζει"
-date: 2026-11-02T07:00:00+02:00
-lastmod: 2026-11-02T07:00:00+02:00
+date: 2026-11-09T07:00:00+02:00
+lastmod: 2026-11-09T07:00:00+02:00
 draft: false
 keywords:
   - Enterprise Mobility + Security
@@ -207,7 +207,7 @@ verification:
 > 🔗 **Το τελευταίο άρθρο της σειράς:** δείτε **[την αλυσίδα μιας επίθεσης σε 3D](/posts/alysida-epithesis-3d-microsoft-defender/)**, όπου τα Defender for Endpoint, Office 365, Identity και Cloud Apps δουλεύουν μαζί μέσα σε τρία σενάρια επίθεσης.
 {{< /if-published >}}
 
-> 🔗 **Διαβάστε τη σειρά Microsoft Defender Up Close**: τα **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)** και **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)** περιλαμβάνονται στο EMS E5, ενώ τα **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)** συμπληρώνουν τη στοίβα μέσω του Microsoft 365.
+> 🔗 **Διαβάστε τη σειρά Microsoft Defender Up Close**: τα **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)** και **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)** περιλαμβάνονται στο EMS E5, ενώ τα **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)** και **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)** συμπληρώνουν τη στοίβα μέσω του Microsoft 365. Το **[Microsoft Defender for Cloud](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/)** δεν ανήκει σε καμία από τις δύο σουίτες: χρεώνεται ανά resource μέσα από το Azure subscription.
 
 > 🔗 **Θέλετε να δείτε πώς μετατρέπετε οποιοδήποτε από αυτά σε μετρήσιμη συμμόρφωση;** Διαβάστε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 

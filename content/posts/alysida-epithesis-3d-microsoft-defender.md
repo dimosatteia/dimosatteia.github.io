@@ -1,8 +1,8 @@
 ---
 title: "Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender"
 seoTitle: "Αλυσίδα επίθεσης σε 3D με Microsoft Defender XDR"
-date: 2026-11-09T07:00:00+02:00
-lastmod: 2026-11-09T07:00:00+02:00
+date: 2026-11-16T07:00:00+02:00
+lastmod: 2026-11-16T07:00:00+02:00
 draft: false
 # Εμφανίζεται ως «Νέο άρθρο» στην αρχική, μέχρι να βγει νεότερο τεύχος της εβδομαδιαίας σύνοψης
 homeHighlight: true
@@ -173,7 +173,7 @@ mitre: ["T1566.002", "T1566.001", "T1557", "T1539", "T1550.004", "T1078.004", "T
 
 ## Πού να συνεχίσεις από εδώ
 
-> 🔗 **Αυτό είναι το τελευταίο άρθρο της σειράς Microsoft Defender Up Close.** Αν θέλεις να δεις κάθε προϊόν αναλυτικά, διάβασε τα προηγούμενα: **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)** **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)** και **[Enterprise Mobility + Security](/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/)**, όλα στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
+> 🔗 **Αυτό είναι το τελευταίο άρθρο της σειράς Microsoft Defender Up Close.** Αν θέλεις να δεις κάθε προϊόν αναλυτικά, διάβασε τα προηγούμενα: **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)**, **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)**, **[Microsoft Defender for Cloud](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/)** και **[Enterprise Mobility + Security](/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/)**, όλα στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
 > 🔗 **Θέλεις να ελέγξεις τους χρήστες σου;** Δοκίμασε το **[κουίζ phishing](/kouiz-phishing/)** και τρέξε τα ερωτήματα της **[βιβλιοθήκης KQL](/kql/)** στο δικό σου tenant.
 
