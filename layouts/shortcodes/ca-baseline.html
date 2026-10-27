@@ -444,7 +444,7 @@
                     return x;
                 }),
                 prereq: p.prereq || '', level: p.level, wave: p.wave, template: p.template, source: p.source,
-                map: p.map, mitre: p.mitre || [], json: policyJson(p, s), kql: kql(pr ? p.namePR : p.name)
+                map: p.map, mitre: p.mitre || [], json: policyJson(p, s), kql: p.noKql ? '' : kql(pr ? p.namePR : p.name), noKql: p.noKql || ''
             });
         });
         last = { s: s, org: s.org, tier: licLabel(s.lic), policies: pol, D: D, FW: FW, warnings: warnings(s, pol) };
@@ -568,9 +568,10 @@
                     '<p class="text-xs text-slate-400">Άδεια: ' + esc(LV[p.level].text) + '. Template: <a href="' + esc(p.source) + '" class="text-blue-400 hover:text-blue-300 underline" rel="noopener" target="_blank">' + esc(p.template) + '</a></p>' +
                     '<div class="flex flex-wrap items-center gap-1">' + chips(p.map) + '</div>' +
                     '<div class="flex flex-wrap items-center gap-1"><span class="text-[11px] text-slate-500 mr-1">MITRE ATT&amp;CK®</span>' + mitre(p.mitre) + '</div>' +
-                    '<div class="flex flex-wrap gap-2"><button type="button" class="caCopy rounded-md border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800" data-kind="json" data-code="' + p.code + '">📋 Αντιγραφή JSON</button><button type="button" class="caCopy rounded-md border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800" data-kind="kql" data-code="' + p.code + '">📋 Αντιγραφή KQL</button><span class="caCopyMsg text-xs text-emerald-300 self-center" role="status"></span></div>' +
+                    '<div class="flex flex-wrap gap-2"><button type="button" class="caCopy rounded-md border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800" data-kind="json" data-code="' + p.code + '">📋 Αντιγραφή JSON</button>' + (p.kql ? '<button type="button" class="caCopy rounded-md border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800" data-kind="kql" data-code="' + p.code + '">📋 Αντιγραφή KQL</button>' : '') + '<span class="caCopyMsg text-xs text-emerald-300 self-center" role="status"></span></div>' +
                     '<details class="rounded-md border border-slate-800 bg-slate-950/60"><summary class="cursor-pointer p-2 text-xs text-slate-400">JSON της πολιτικής</summary><pre class="p-2 text-[11px] text-slate-300 font-mono">' + esc(js) + '</pre></details>' +
-                    '<details class="rounded-md border border-slate-800 bg-slate-950/60"><summary class="cursor-pointer p-2 text-xs text-slate-400">KQL για το Advanced Hunting</summary><pre class="p-2 text-[11px] text-slate-300 font-mono">' + esc(p.kql) + '</pre></details>' +
+                    (p.kql ? '<details class="rounded-md border border-slate-800 bg-slate-950/60"><summary class="cursor-pointer p-2 text-xs text-slate-400">KQL για το Advanced Hunting</summary><pre class="p-2 text-[11px] text-slate-300 font-mono">' + esc(p.kql) + '</pre></details>'
+                        : '<p class="rounded-md border border-slate-800 bg-slate-950/60 p-2 text-xs text-slate-300 leading-relaxed"><strong>Έλεγχος του Report-only:</strong> ' + esc(p.noKql) + '</p>') +
                     '</div></details>';
             });
             html += '</div></div>';

@@ -591,6 +591,8 @@ policies:
       - "Grant: Block access"
     prereq: "Ισχύει μόνο για single-tenant service principals που έχεις καταχωρίσει εσύ, όχι για managed identities ή multitenant εφαρμογές τρίτων."
     source: "https://learn.microsoft.com/entra/identity/conditional-access/workload-identity"
+    # Οι συνδέσεις των service principals δεν είναι στο EntraIdSignInEvents, και το EntraIdSpnSignInEvents δεν έχει ConditionalAccessPolicies: χωρίς KQL.
+    noKql: "Οι συνδέσεις των service principals δεν φαίνονται στον πίνακα του Advanced Hunting που χρησιμοποιούν οι άλλες πολιτικές. Το Report-only αυτής της πολιτικής φαίνεται στο Microsoft Entra admin center > Entra ID > Monitoring & health > Sign-in logs > Service principal sign-ins, στην καρτέλα Conditional Access κάθε σύνδεσης."
     map: { kya: ["13.β", "13.δ"], nis2: ["21.2.ι"], iso: ["A.5.16", "A.8.2"], gdpr: ["32.1.β"] }
     mitre: ["T1078.004", "T1528", "M1026"]
     graph:
