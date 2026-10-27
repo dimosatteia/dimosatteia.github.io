@@ -13,6 +13,7 @@ menu:
     weight: 4
 author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: δες ποιο πακέτο Microsoft 365, από Business Basic έως E7, καλύπτει τα μέτρα της ΚΥΑ 1689/2025 και της NIS2 και τι χρειάζεται επιπλέον."
+seoTitle: "Ποια άδεια Microsoft 365 για την ΚΥΑ 1689/2025;"
 keywords:
   - ποια άδεια Microsoft 365
   - Microsoft 365 Business Premium ή E5

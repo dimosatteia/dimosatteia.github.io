@@ -1,4 +1,44 @@
-{{- if .IsPage }}
+{{- /* JSON-LD. Εργαλεία (παιδιά του μενού «tools»): WebApplication + BreadcrumbList.
+       Σελίδα /ergaleia/: CollectionPage με ItemList όλων των εργαλείων. Υπόλοιπες σελίδες: BlogPosting. */ -}}
+{{- $tools := slice -}}
+{{- range site.Menus.main }}{{ if eq .Identifier "tools" }}{{ range .Children }}{{ with .Page }}{{ $tools = $tools | append . }}{{ end }}{{ end }}{{ end }}{{ end -}}
+{{- $isTool := false -}}
+{{- range $tools }}{{ if eq .RelPermalink $.RelPermalink }}{{ $isTool = true }}{{ end }}{{ end -}}
+{{- $desc := .Params.seoDescription | default .Description | default (.Summary | plainify) -}}
+{{- $author := dict "@type" "Person" "name" "Dimosthenis Atteia" "url" "https://thecybersec.gr" "jobTitle" "Chief Information Security Officer" -}}
+{{- $publisher := dict "@type" "Organization" "name" "TheCyberSec" "logo" (dict "@type" "ImageObject" "url" "https://thecybersec.gr/android-chrome-512x512.png") -}}
+{{- if and .IsPage $isTool }}
+{{- $app := dict
+    "@context" "https://schema.org"
+    "@type" "WebApplication"
+    "name" (.Params.seoTitle | default .Title)
+    "headline" .Title
+    "description" $desc
+    "url" .Permalink
+    "applicationCategory" "SecurityApplication"
+    "operatingSystem" "Any"
+    "browserRequirements" "Requires JavaScript and a modern web browser"
+    "isAccessibleForFree" true
+    "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "EUR")
+    "inLanguage" "el"
+    "author" $author
+    "publisher" $publisher
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+-}}
+{{- with .Params.cover.image }}{{ $app = merge $app (dict "image" (. | absURL)) }}{{ end -}}
+{{- with (.Params.keywords | default .Params.tags) }}{{ $app = merge $app (dict "keywords" (delimit . ", ")) }}{{ end -}}
+{{- $tp := site.GetPage "/ergaleia" -}}
+{{- $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" "Αρχική" "item" site.Home.Permalink) -}}
+{{- with $tp }}{{ $crumbs = $crumbs | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink) }}{{ end -}}
+{{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" (.Params.seoTitle | default .Title) "item" .Permalink) }}
+<script type="application/ld+json">{{ $app | jsonify | safeJS }}</script>
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $crumbs | jsonify | safeJS }}</script>
+{{- else if and .IsPage (eq .Layout "ergaleia") }}
+{{- $items := slice -}}
+{{- range $i, $p := $tools }}{{ $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "url" $p.Permalink "name" ($p.Params.seoTitle | default $p.Title)) }}{{ end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "CollectionPage" "name" .Title "description" $desc "url" .Permalink "inLanguage" "el" "author" $author "publisher" $publisher "mainEntity" (dict "@type" "ItemList" "numberOfItems" (len $items) "itemListElement" $items) | jsonify | safeJS }}</script>
+{{- else if .IsPage }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

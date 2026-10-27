@@ -13,6 +13,8 @@ menu:
     weight: 8
 author: "Dimosthenis Atteia"
 description: "Ο κατάλογος CISA KEV φιλτραρισμένος για Microsoft: ποιες ευπάθειες Windows, Exchange, SharePoint και Office αξιοποιούνται ενεργά, με αναζήτηση, ένδειξη ransomware και έτοιμο KQL για το Microsoft Defender."
+seoTitle: "CISA KEV: ευπάθειες Microsoft που αξιοποιούνται τώρα"
+seoDescription: "Οι ευπάθειες Microsoft του καταλόγου CISA KEV που αξιοποιούνται ενεργά, με αναζήτηση, ένδειξη ransomware και έτοιμο KQL για το Microsoft Defender."
 keywords:
   - CISA KEV Microsoft
   - Known Exploited Vulnerabilities

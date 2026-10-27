@@ -13,6 +13,8 @@ menu:
     weight: 9
 author: "Dimosthenis Atteia"
 description: "Επιθέσεις DDoS προς την Ελλάδα τις τελευταίες 24 ώρες, με δεδομένα από το Cloudflare Radar: είδη επιθέσεων, κλάδοι-στόχοι, χώρες προέλευσης και ένταση ανά ώρα, με αντιστοίχιση στην ΚΥΑ 1689/2025."
+seoTitle: "Επιθέσεις DDoS προς την Ελλάδα: Cloudflare Radar"
+seoDescription: "Οι επιθέσεις DDoS προς την Ελλάδα τις τελευταίες 24 ώρες από το Cloudflare Radar: είδη επιθέσεων, κλάδοι-στόχοι, χώρες προέλευσης και προστασία στο Azure."
 keywords:
   - Cloudflare Radar Ελλάδα
   - επιθέσεις DDoS Ελλάδα

@@ -22,8 +22,10 @@
   {{- /* Προαιρετικό seoTitle στο front matter: σύντομος τίτλος για Google/κάρτες, το H1 μένει ο πλήρης τίτλος */ -}}
   {{- $title = .Params.seoTitle | default .Title -}}
 {{- else -}}
-  {{- $title = printf "%s%s | %s" .Title $suffix site.Title -}}
+  {{- /* Προαιρετικό seoTitle και εδώ (π.χ. σελίδες εργαλείων): σύντομος τίτλος για Google/κάρτες, το H1 μένει ο πλήρης τίτλος */ -}}
+  {{- $t := .Params.seoTitle | default .Title -}}
+  {{- $title = printf "%s%s | %s" $t $suffix site.Title -}}
   {{- /* Αν ξεπερνά τους 65 χαρακτήρες, παραλείπεται η κατάληξη με το όνομα του site */ -}}
-  {{- if gt (strings.RuneCount $title) 65 }}{{ $title = printf "%s%s" .Title $suffix }}{{ end -}}
+  {{- if gt (strings.RuneCount $title) 65 }}{{ $title = printf "%s%s" $t $suffix }}{{ end -}}
 {{- end -}}
 {{- return (dict "num" $num "url" $url "title" $title) -}}

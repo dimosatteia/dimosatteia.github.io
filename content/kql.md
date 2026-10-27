@@ -14,6 +14,7 @@ menu:
     weight: 3
 author: "Dimosthenis Atteia"
 description: "Advanced Hunting queries για το Microsoft Defender XDR, αντιστοιχισμένα στις απαιτήσεις της ΚΥΑ 1689/2025, της Οδηγίας NIS2 και του ISO/IEC 27001. Κάθε query έχει δοκιμαστεί σε πραγματικό tenant."
+seoDescription: "Advanced Hunting queries για το Microsoft Defender XDR ανά απαίτηση της ΚΥΑ 1689/2025, της NIS2 και του ISO 27001, δοκιμασμένα σε πραγματικό tenant."
 keywords:
   - KQL ΚΥΑ 1689/2025
   - Advanced Hunting queries

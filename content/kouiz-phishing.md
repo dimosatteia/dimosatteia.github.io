@@ -12,6 +12,7 @@ menu:
     weight: 7
 author: "Dimosthenis Atteia"
 description: "Δωρεάν κουίζ phishing στα Ελληνικά: δέκα πραγματικά σενάρια επιθέσεων με email, SMS και ψεύτικες σελίδες. Βρες τα σημάδια, διάλεξε τι κάνεις και δες τι το σταματά στο Microsoft 365."
+seoDescription: "Δέκα σενάρια phishing με email, SMS και ψεύτικες σελίδες: βρες τα σημάδια, διάλεξε τι κάνεις και δες τι το σταματά στο Microsoft 365."
 keywords:
   - κουίζ phishing
   - αναγνώριση phishing

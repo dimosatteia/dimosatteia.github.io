@@ -13,6 +13,8 @@ menu:
     weight: 12
 author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: δήλωσε άδειες και περιβάλλον και πάρε το βασικό σύνολο πολιτικών Conditional Access του Microsoft Entra ID, με σειρά ενεργοποίησης, JSON για upload, KQL για το Report-only και αντιστοίχιση σε ΚΥΑ 1689/2025, NIS2, ISO 27001 και GDPR."
+seoTitle: "Βασικό σύνολο πολιτικών Conditional Access"
+seoDescription: "Δήλωσε άδειες και περιβάλλον και πάρε 9 έως 24 πολιτικές Conditional Access σε JSON, με σειρά ενεργοποίησης και KQL για το Report-only."
 toolBlurb: "πες ποιες άδειες έχεις και πώς δουλεύουν οι χρήστες σου, και πάρε 9 έως 24 πολιτικές Conditional Access σε JSON, με σειρά ενεργοποίησης, KQL και αντιστοίχιση στα τέσσερα πλαίσια."
 keywords:
   - πολιτικές Conditional Access

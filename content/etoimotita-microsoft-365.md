@@ -13,6 +13,7 @@ menu:
     weight: 5
 author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: 22 ερωτήσεις για τις ρυθμίσεις ασφάλειας του Microsoft 365, με αναφορά κενών ανά απαίτηση της ΚΥΑ 1689/2025, της NIS2, του ISO/IEC 27001 και του GDPR, και τα τεκμήρια που θα ζητήσει ο ελεγκτής."
+seoDescription: "22 ερωτήσεις για τις ρυθμίσεις ασφάλειας του Microsoft 365, με κενά ανά απαίτηση της ΚΥΑ 1689/2025, της NIS2, του ISO 27001 και του GDPR. Δωρεάν."
 keywords:
   - έλεγχος ρυθμίσεων Microsoft 365
   - Microsoft 365 audit readiness
