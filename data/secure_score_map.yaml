@@ -1,0 +1,403 @@
+# Αντιστοίχιση των συστάσεων του Microsoft Secure Score στα τέσσερα πλαίσια, για το εργαλείο
+# «Από το Secure Score στη συμμόρφωση» (/secure-score-symmorfosi/). Το shortcode secure-score-map διαβάζει αυτό το αρχείο.
+# Όλη η επεξεργασία του CSV γίνεται στον browser του επισκέπτη. Τίποτα δεν αποστέλλεται.
+#
+# Πώς αντιστοιχίζεται μια σύσταση:
+#   1. Ο τίτλος της ελέγχεται με τη σειρά απέναντι στα patterns των themes. Το πρώτο που ταιριάζει κερδίζει,
+#      γι' αυτό τα πιο ειδικά themes είναι πιο πάνω (π.χ. το mfa-admin πριν από το mfa, τα ASR πριν από το app-consent).
+#   2. Αν δεν ταιριάξει κανένα, ελέγχεται η στήλη Product με τα product_rules.
+#   3. Αν ούτε αυτό ταιριάξει, η στήλη Category (Identity, Device, Apps, Data) με τα category_fallback.
+#   Το εργαλείο δείχνει στον επισκέπτη με ποιον από τους τρεις τρόπους έγινε η αντιστοίχιση.
+#
+# Πεδία ανά theme:
+#   id, name:  κλειδί και τίτλος στα Ελληνικά
+#   cat:       κατηγορία του Secure Score όταν λείπει από το CSV (Identity, Device, Apps, Data)
+#   high:      true = ανεβαίνει στη σειρά προτεραιότητας των κενών
+#   patterns:  regular expressions (JavaScript, χωρίς διάκριση πεζών-κεφαλαίων) πάνω στον τίτλο της σύστασης
+#   map:       κωδικοί ακριβώς όπως στα data/nis2.yaml (kya), data/nis2directive.yaml (nis2), data/iso27001.yaml (iso), data/gdpr.yaml (gdpr)
+#   evidence:  τι θα ζητήσει ο ελεγκτής για να δεχτεί ότι το μέτρο εφαρμόζεται
+#   kql:       ids από το data/kql.yaml. Εμφανίζονται μόνο όσα είναι δημοσιευμένα.
+#   tool:      προαιρετικά, εσωτερικό εργαλείο {url, label}
+
+updated: 2026-10-27
+
+# Ονόματα στηλών του CSV που αναγνωρίζονται αυτόματα. Το export των Recommended actions από το
+# Microsoft Defender portal έχει, μεταξύ άλλων, τις στήλες Rank, Recommended action, Score impact,
+# Points achieved, Status, Regressed, Have license, Category, Product, Last synced.
+# Αν κάποια στήλη δεν αναγνωριστεί, ο επισκέπτης τη διαλέγει από λίστα.
+columns:
+  title: ["recommended action", "improvement action", "recommendation", "title", "action", "control", "συνιστώμενη ενέργεια", "προτεινόμενη ενέργεια", "ενέργεια"]
+  points: ["points achieved", "points", "score", "achieved", "πόντοι", "βαθμοί", "βαθμολογία"]
+  max: ["max score", "maximum score", "max points", "μέγιστο"]
+  status: ["status", "state", "implementation status", "κατάσταση"]
+  category: ["category", "κατηγορία"]
+  product: ["product", "service", "προϊόν", "υπηρεσία"]
+  license: ["have license?", "have license", "license", "licensed", "άδεια"]
+  rank: ["rank", "κατάταξη"]
+  impact: ["score impact", "impact", "επίπτωση"]
+  regressed: ["regressed", "υποχώρηση"]
+
+# Οι καταστάσεις του Secure Score. Το εργαλείο τις αναγνωρίζει και στα Ελληνικά, με λέξεις-κλειδιά.
+statuses:
+  - { key: completed, label: "Ολοκληρώθηκε", match: 'complet|ολοκληρ' }
+  - { key: thirdparty, label: "Καλύπτεται από τρίτο εργαλείο", match: 'third|τρίτ' }
+  - { key: alternate, label: "Εναλλακτικό μέτρο", match: 'alternate|alternative|εναλλακτ' }
+  - { key: risk, label: "Αποδοχή κινδύνου", match: 'risk|κινδύν' }
+  - { key: planned, label: "Προγραμματισμένη", match: 'plan|προγραμματ|σχεδ' }
+  - { key: toaddress, label: "Προς αντιμετώπιση", match: 'address|αντιμετώπ|αντιμετωπ' }
+
+themes:
+
+  # ---------- Identity ----------
+  - id: mfa-admin
+    name: MFA και ισχυρή αυθεντικοποίηση για διαχειριστές
+    cat: Identity
+    high: true
+    patterns: ['(mfa|multi.?factor).*(admin|privileg|role)', 'phishing.resistant', 'authentication strength']
+    map: { kya: ["13.ζ", "13.στ", "13.δ"], nis2: ["21.2.ι", "21.2.θ"], iso: ["A.8.5", "A.8.2"], gdpr: ["32.1.β"] }
+    evidence: Εξαγωγή της πολιτικής Conditional Access που ζητά MFA (ή authentication strength) από όλους τους ρόλους διαχειριστή, και αναφορά από τα sign-in logs ότι οι συνδέσεις των διαχειριστών ολοκληρώνουν MFA.
+    kql: [privileged-roles]
+    tool: { url: "/politikes-conditional-access/", label: "Βασικό σύνολο πολιτικών Conditional Access" }
+
+  - id: risk
+    name: Πολιτικές κινδύνου χρήστη και σύνδεσης (Identity Protection)
+    cat: Identity
+    high: true
+    patterns: ['risk polic', 'identity protection', 'sign-in risk', 'user risk', 'risky']
+    map: { kya: ["13.στ", "24.ε"], nis2: ["21.2.ι", "21.2.β"], iso: ["A.8.5", "A.8.16"], gdpr: ["32.1.β"] }
+    evidence: Εξαγωγή των πολιτικών Conditional Access με συνθήκη sign-in risk και user risk, και αναφορά Risky users ή Risk detections με το πώς χειρίστηκες τα ευρήματα.
+    kql: [foreign-signins]
+    tool: { url: "/politikes-conditional-access/", label: "Βασικό σύνολο πολιτικών Conditional Access" }
+
+  - id: protocols
+    name: Παλαιά πρωτόκολλα, signing και κρυπτογράφηση στη μεταφορά
+    cat: Device
+    patterns: ['smb', 'ntlm', 'lan manager', '\blm\b', 'winrm', 'llmnr', 'netbios', 'wdigest', 'legacy protocol', 'weak cipher', 'cipher', '\btls\b', '\bssl\b', 'digitally sign', 'signing', 'anonymous (enumeration|access|sid|logon)', 'print spooler', 'remote desktop', '\brdp\b', 'remote assistance']
+    map: { kya: ["19.η", "14.β", "22.γ"], nis2: ["21.2.ε", "21.2.η"], iso: ["A.8.9", "A.8.20", "A.8.24"], gdpr: ["32.1.β"] }
+    evidence: Η ρύθμιση από το Intune ή το Group Policy (εξαγωγή του profile ή του GPO) και η λίστα συσκευών της σύστασης στο Microsoft Defender Vulnerability Management, με τις εξαιρέσεις τεκμηριωμένες.
+    kql: [rdp-logons]
+
+  - id: legacy-auth
+    name: Μπλοκάρισμα legacy authentication
+    cat: Identity
+    high: true
+    patterns: ['legacy auth', 'basic auth', 'modern auth', 'smtp auth', '\bimap\b', '\bpop3?\b', 'activesync']
+    map: { kya: ["13.ζ", "19.η"], nis2: ["21.2.ι"], iso: ["A.8.5"], gdpr: ["32.1.β"] }
+    evidence: Εξαγωγή της πολιτικής Conditional Access που μπλοκάρει τα legacy client apps, και αποτέλεσμα query χωρίς επιτυχημένα sign-ins μέσω legacy πρωτοκόλλων τις τελευταίες 30 ημέρες.
+    kql: [legacy-auth]
+    tool: { url: "/politikes-conditional-access/", label: "Βασικό σύνολο πολιτικών Conditional Access" }
+
+  - id: session
+    name: Conditional Access, συνεδρίες και ροές σύνδεσης
+    cat: Identity
+    patterns: ['conditional access', 'sign-in frequency', 'session', 'persistent', 'device code', 'idle', 'trusted location', 'named location']
+    map: { kya: ["13.α", "13.στ"], nis2: ["21.2.θ", "21.2.ι"], iso: ["A.5.15", "A.8.5"], gdpr: ["32.1.β"] }
+    evidence: Εξαγωγή των πολιτικών Conditional Access (JSON ή στιγμιότυπο), με τις ομάδες, τις εξαιρέσεις και την κατάσταση On, και έγκριση της πολιτικής ελέγχου πρόσβασης που τις περιγράφει.
+    tool: { url: "/politikes-conditional-access/", label: "Βασικό σύνολο πολιτικών Conditional Access" }
+
+  - id: mfa
+    name: MFA για όλους τους χρήστες
+    cat: Identity
+    high: true
+    patterns: ['\bmfa\b', 'multi.?factor', 'security defaults', 'authenticator', 'number matching', 'mfa fatigue', 'passwordless', 'passkey', 'fido']
+    map: { kya: ["13.ζ", "13.στ"], nis2: ["21.2.ι"], iso: ["A.8.5"], gdpr: ["32.1.β"] }
+    evidence: Εξαγωγή της πολιτικής Conditional Access για MFA σε όλους τους χρήστες, η αναφορά «User registration details» με τους χρήστες που έχουν καταχωρίσει μέθοδο, και τεκμηριωμένες εξαιρέσεις (break-glass).
+    kql: [spray-success]
+    tool: { url: "/politikes-conditional-access/", label: "Βασικό σύνολο πολιτικών Conditional Access" }
+
+  # ---------- Device ----------
+  - id: uac
+    name: User Account Control και ανύψωση δικαιωμάτων
+    cat: Device
+    patterns: ['\buac\b', 'user account control', 'elevat']
+    map: { kya: ["14.β", "13.δ"], nis2: ["21.2.ε", "21.2.θ"], iso: ["A.8.9", "A.8.2"], gdpr: ["32.1.β"] }
+    evidence: Το configuration profile ή το GPO με τις ρυθμίσεις UAC και η λίστα συσκευών της σύστασης στο Defender Vulnerability Management.
+
+  - id: local-admin
+    name: Τοπικοί διαχειριστές και LAPS
+    cat: Device
+    high: true
+    patterns: ['\blaps\b', 'local admin', 'local administrator', 'local account']
+    map: { kya: ["13.δ", "14.β", "14.γ"], nis2: ["21.2.θ"], iso: ["A.8.2", "A.5.17"], gdpr: ["32.1.β"] }
+    evidence: Η πολιτική Windows LAPS στο Intune ή στο Group Policy, αναφορά ότι οι συσκευές έχουν κωδικό που αλλάζει, και η λίστα μελών του τοπικού group Administrators.
+    kql: [local-admin-add]
+
+  - id: ad
+    name: Active Directory και Microsoft Defender for Identity
+    cat: Identity
+    high: true
+    patterns: ['defender for identity', 'domain controller', 'sid history', 'lateral movement', 'delegation', 'dormant', 'sensitive (group|entit|account)', 'krbtgt', 'dcsync', 'clear.?text', 'unsecure', 'insecure (domain|account)', 'kerberos', 'adcs', 'ad cs', '\besc\d', 'certificate template', 'gmsa', 'service account', 'active directory']
+    map: { kya: ["13.δ", "14.β", "24.ε"], nis2: ["21.2.θ", "21.2.β"], iso: ["A.8.2", "A.8.9", "A.8.16"], gdpr: ["32.1.β"] }
+    evidence: Η σελίδα Identities > Health issues του Defender for Identity με τους sensors σε όλους τους domain controllers, και η αναφορά της σύστασης (Exposed entities) με την ημερομηνία που διορθώθηκαν ή την τεκμηριωμένη εξαίρεση.
+    kql: [ad-sensitive-groups]
+
+  - id: onboarding
+    name: Κατάλογος συσκευών και onboarding στο Defender for Endpoint
+    cat: Device
+    high: true
+    patterns: ['onboard', 'sensor health', 'inventory', 'discover(ed)? devices', 'unmanaged device', 'device discovery']
+    map: { kya: ["11.α", "20.α", "24.γ"], nis2: ["21.2.θ", "21.2.ε"], iso: ["A.5.9", "A.8.1", "A.8.7"], gdpr: ["32.1.β"] }
+    evidence: "Εξαγωγή του Device inventory με την κατάσταση onboarding, και σύγκριση με τον κατάλογο αγαθών: κάθε συσκευή που λείπει από το Defender είναι εξαίρεση με αιτιολόγηση."
+    kql: [inactive-devices]
+
+  - id: antimalware
+    name: Microsoft Defender Antivirus και Tamper Protection
+    cat: Device
+    high: true
+    patterns: ['antivirus', 'anti-virus', 'real.?time', 'cloud.?delivered', 'cloud protection', '\bpua\b', 'potentially unwanted', 'tamper', 'edr in block', 'behavio(u)?r monitoring', 'sample submission', 'security intelligence', 'signature', 'scan']
+    map: { kya: ["20.α"], nis2: ["21.2.ε"], iso: ["A.8.7"], gdpr: ["32.1.β"] }
+    evidence: Η αναφορά Device health > Microsoft Defender Antivirus (real-time, cloud protection, έκδοση security intelligence) και η πολιτική antivirus του Intune με Tamper Protection ενεργό.
+    kql: [av-disabled]
+
+  - id: vbs
+    name: "Ασφάλεια υλικού: VBS, HVCI, Credential Guard, TPM"
+    cat: Device
+    patterns: ['virtualization.based', '\bvbs\b', '\bhvci\b', 'memory integrity', 'credential guard', 'secure boot', '\btpm\b', 'lsa protection', 'local security authority \(lsa\)', '\buefi\b', 'kernel dma']
+    map: { kya: ["14.β", "20.β"], nis2: ["21.2.ε"], iso: ["A.8.9", "A.8.7"], gdpr: ["32.1.β"] }
+    evidence: Το profile του Intune (Endpoint security > Account protection ή Device Guard) και η λίστα συσκευών που δεν το υποστηρίζουν, με τεκμηριωμένο αντισταθμιστικό μέτρο για τις παλιές συσκευές.
+
+  - id: patching
+    name: Ενημερώσεις και ευπάθειες λογισμικού
+    cat: Device
+    high: true
+    patterns: ['^update ', 'security update', 'patch', 'vulnerab', 'end.of.support', 'unsupported', 'outdated', 'end.of.life', '\beol\b', '^upgrade ', 'windows update']
+    map: { kya: ["17.α", "17.γ", "17.στ"], nis2: ["21.2.ε"], iso: ["A.8.8"], gdpr: ["32.1.β", "32.1.δ"] }
+    evidence: Η σελίδα Weaknesses ή Recommendations του Defender Vulnerability Management με την ημερομηνία, τα update rings του Intune και η τεκμηριωμένη πολιτική για τον χρόνο εγκατάστασης ανά κρισιμότητα.
+    kql: [exploitable-cves]
+    tool: { url: "/kev-microsoft/", label: "CISA KEV για Microsoft" }
+
+  - id: web
+    name: Φιλτράρισμα web, Network Protection και SmartScreen
+    cat: Device
+    patterns: ['network protection', 'smartscreen', 'web content filter', 'web protection', 'malicious (site|domain|url)', 'url filter']
+    map: { kya: ["20.ε", "20.δ"], nis2: ["21.2.ε"], iso: ["A.8.23"], gdpr: ["32.1.β"] }
+    evidence: Η πολιτική Network Protection σε Block mode και το Web content filtering του Defender for Endpoint, με αναφορά των αποκλεισμένων συνδέσεων.
+
+  - id: asr
+    name: Attack surface reduction και έλεγχος εφαρμογών
+    cat: Device
+    high: true
+    patterns: ['attack surface reduction', '\basr\b', '^block ', 'child process', 'obfuscat', 'executable content', 'executable files', 'credential stealing', 'lsass', '\bwmi\b', 'psexec', 'macro', 'win32 api', 'ransomware', 'controlled folder', 'exploit protection', 'application guard', 'application control', '\bwdac\b', 'applocker', 'vulnerable signed driver']
+    map: { kya: ["20.β", "14.β"], nis2: ["21.2.ε"], iso: ["A.8.7", "A.8.9", "A.8.19"], gdpr: ["32.1.β"] }
+    evidence: Η πολιτική Attack surface reduction του Intune με τους κανόνες σε Block, η αναφορά ASR rules του Defender με τα ευρήματα και τα τεκμηριωμένα exclusions.
+
+  - id: encryption
+    name: Κρυπτογράφηση δίσκων
+    cat: Device
+    high: true
+    patterns: ['bitlocker', 'encrypt', 'filevault', 'cryptograph']
+    map: { kya: ["22.β"], nis2: ["21.2.η"], iso: ["A.8.24"], gdpr: ["32.1.α"] }
+    evidence: Η αναφορά Encryption του Intune ανά συσκευή και η απόδειξη ότι τα recovery keys φυλάσσονται στο Entra ID.
+
+  - id: firewall
+    name: Τείχος προστασίας συσκευών
+    cat: Device
+    patterns: ['firewall', 'inbound connection', 'listening port', 'open port']
+    map: { kya: ["19.β", "19.η"], nis2: ["21.2.ε"], iso: ["A.8.20"], gdpr: ["32.1.β"] }
+    evidence: Η πολιτική Firewall του Intune για τα profiles Domain, Private και Public, και η λίστα συσκευών όπου η σύσταση είναι ανοιχτή.
+
+  - id: removable
+    name: Αφαιρούμενα μέσα και AutoRun
+    cat: Device
+    patterns: ['removable', '\busb\b', 'autorun', 'autoplay', 'device control']
+    map: { kya: ["11.δ"], nis2: ["21.2.θ"], iso: ["A.7.10"], gdpr: ["32.1.β"] }
+    evidence: Η πολιτική Device control ή οι ρυθμίσεις AutoPlay/AutoRun στο Intune, και αποτέλεσμα query για τη χρήση USB.
+    kql: [usb-storage]
+
+  - id: device-mgmt
+    name: Διαχείριση και συμμόρφωση συσκευών (Intune)
+    cat: Device
+    patterns: ['intune', 'compliance polic', 'enrol', 'mobile', 'app protection', '\bmam\b', '\bmdm\b', 'device compliance', 'jailbr', 'rooted', 'screen lock', 'lock screen']
+    map: { kya: ["11.α", "14.α", "19.δ"], nis2: ["21.2.θ", "21.2.ε"], iso: ["A.5.9", "A.8.1", "A.8.9"], gdpr: ["32.1.β"] }
+    evidence: Οι compliance policies του Intune με την αναφορά Device compliance, και η πολιτική Conditional Access που ζητά συμβατή συσκευή.
+    tool: { url: "/politikes-conditional-access/", label: "Βασικό σύνολο πολιτικών Conditional Access" }
+
+  - id: browser
+    name: Browsers και επεκτάσεις
+    cat: Device
+    patterns: ['browser', '\bedge\b', 'chrome', 'firefox', 'extension', 'internet explorer', '\bflash\b']
+    map: { kya: ["20.δ"], nis2: ["21.2.ε"], iso: ["A.8.19", "A.8.8"], gdpr: ["32.1.β"] }
+    evidence: Η πολιτική του Intune για τον Microsoft Edge με τη λίστα επιτρεπόμενων επεκτάσεων και η αναφορά Browser extensions του Defender Vulnerability Management.
+
+  # ---------- Apps ----------
+  - id: email-auth
+    name: SPF, DKIM και DMARC
+    cat: Apps
+    high: true
+    patterns: ['\bdkim\b', '\bdmarc\b', '\bspf\b']
+    map: { kya: ["20.γ", "19.θ"], nis2: ["21.2.ε"], iso: ["A.5.14", "A.8.21"], gdpr: ["32.1.β"] }
+    evidence: Τα DNS records SPF, DKIM και DMARC κάθε domain, με την πολιτική DMARC σε quarantine ή reject, και οι αναφορές DMARC που παρακολουθείς.
+    tool: { url: "/elegxos-domain/", label: "Έλεγχος domain" }
+
+  - id: forwarding
+    name: Αυτόματη προώθηση email εκτός οργανισμού
+    cat: Apps
+    high: true
+    patterns: ['forward', 'transport rule', 'mail flow rule', 'auto.?reply', 'remote domain']
+    map: { kya: ["11.γ", "20.γ"], nis2: ["21.2.θ"], iso: ["A.5.14", "A.8.12"], gdpr: ["5.1.στ", "32.1.β"] }
+    evidence: Η outbound spam policy με την αυτόματη προώθηση σε Off, η λίστα των transport rules, και αποτέλεσμα query για κανόνες inbox που προωθούν εκτός οργανισμού.
+    kql: [inbox-forward]
+
+  - id: email-protection
+    name: "Προστασία email: phishing, Safe Links, Safe Attachments"
+    cat: Apps
+    high: true
+    patterns: ['safe links', 'safe attachments', 'phish', 'spoof', 'impersonat', 'spam', 'malware', 'attachment', 'zero.hour', '\bzap\b', 'quarantine', 'mailbox intelligence', 'safety tip', 'connection filter', 'allow list', 'bulk', 'priority account', 'defender for office']
+    map: { kya: ["20.γ"], nis2: ["21.2.ζ", "21.2.ε"], iso: ["A.8.7", "A.8.23"], gdpr: ["32.1.β"] }
+    evidence: Εξαγωγή των πολιτικών anti-phishing, anti-spam, anti-malware, Safe Links και Safe Attachments (ή στιγμιότυπο του Configuration analyzer) και η αναφορά Threat protection status.
+    kql: [phish-zap]
+
+  - id: audit
+    name: Audit log και καταγραφή δραστηριότητας
+    cat: Apps
+    high: true
+    patterns: ['audit', 'logging', 'log search', 'log retention', 'diagnostic setting']
+    map: { kya: ["24.γ", "24.δ"], nis2: ["21.2.β"], iso: ["A.8.15"], gdpr: ["5.2", "33.5"] }
+    evidence: Στιγμιότυπο του Microsoft Purview > Audit με την καταγραφή ενεργή, η πολιτική διατήρησης των καταγραφών, και ένα δείγμα αναζήτησης στο audit log.
+
+  - id: dlp
+    name: Ταξινόμηση, sensitivity labels και DLP
+    cat: Data
+    high: true
+    patterns: ['\bdlp\b', 'data loss', 'sensitivity label', 'label', 'classif', 'information protection', 'insider risk', 'purview', 'message encryption', 'rights management', '\birm\b', 'sensitive info']
+    map: { kya: ["11.β", "22.β"], nis2: ["21.2.η", "21.2.θ"], iso: ["A.5.12", "A.5.13", "A.8.12"], gdpr: ["5.1.στ", "32.1.α"] }
+    evidence: Το σχήμα ταξινόμησης εγκεκριμένο από τη διοίκηση, οι δημοσιευμένες sensitivity labels και πολιτικές DLP, και η αναφορά Activity explorer με τα ευρήματα.
+
+  - id: lockbox
+    name: Πρόσβαση της Microsoft στα δεδομένα (Customer Lockbox)
+    cat: Apps
+    patterns: ['lockbox']
+    map: { kya: ["12.2.α", "13.γ"], nis2: ["21.2.δ"], iso: ["A.5.23", "A.5.19"], gdpr: ["28.1", "32.1.β"] }
+    evidence: Στιγμιότυπο της ρύθμισης Customer Lockbox και το ιστορικό αιτημάτων πρόσβασης με τις εγκρίσεις ή απορρίψεις.
+
+  - id: teams
+    name: "Microsoft Teams: εξωτερική πρόσβαση και συσκέψεις"
+    cat: Apps
+    patterns: ['teams admin', '\bteams\b.*(external|guest|anonymous|federat|chat|meeting)', 'meeting', 'lobby', 'skype']
+    map: { kya: ["13.α", "11.γ"], nis2: ["21.2.θ"], iso: ["A.5.14", "A.5.15"], gdpr: ["32.1.β"] }
+    evidence: Στιγμιότυπα ή εξαγωγή (PowerShell) των ρυθμίσεων External access, Guest access και Meeting policies του Teams admin center.
+
+  - id: sharing
+    name: Εξωτερική κοινοποίηση αρχείων (SharePoint, OneDrive)
+    cat: Apps
+    high: true
+    patterns: ['\bshar(e|ed|ing)\b', 'anyone link', 'anonymous link', 'onedrive sync', 'sync client', 'calendar', 'external content']
+    map: { kya: ["11.γ", "13.α"], nis2: ["21.2.θ"], iso: ["A.5.14", "A.8.12"], gdpr: ["5.1.στ", "32.1.β"] }
+    evidence: Στιγμιότυπο του SharePoint admin center > Policies > Sharing (επίπεδο οργανισμού και sites με διαφορετική ρύθμιση) και αναφορά των links «Anyone» που υπάρχουν.
+    kql: [mass-download]
+
+  - id: guest
+    name: Guest χρήστες και εξωτερική συνεργασία
+    cat: Identity
+    patterns: ['guest', 'external (user|collaboration|identit|access)', '\bb2b\b', 'cross-tenant', 'invitation', 'invite']
+    map: { kya: ["13.α", "13.γ", "12.1.δ"], nis2: ["21.2.θ", "21.2.δ"], iso: ["A.5.15", "A.5.18", "A.5.19"], gdpr: ["28.1", "32.1.β"] }
+    evidence: Στιγμιότυπο των External collaboration settings και των Cross-tenant access settings του Entra ID, και η λίστα guest χρηστών με το αποτέλεσμα της τελευταίας αναθεώρησης.
+
+  - id: app-consent
+    name: Συγκατάθεση σε εφαρμογές τρίτων (OAuth) και add-ins
+    cat: Identity
+    high: true
+    patterns: ['consent', 'oauth', 'third.party (integrated )?app', 'integrated app', 'app registration', 'enterprise app', 'add-in', 'add in', 'app governance', 'application']
+    map: { kya: ["12.2.α", "13.γ"], nis2: ["21.2.δ", "21.2.θ"], iso: ["A.5.23", "A.5.15"], gdpr: ["28.1", "32.1.β"] }
+    evidence: Στιγμιότυπο των User consent settings και του admin consent workflow, και η λίστα Enterprise applications με τα δικαιώματα που έχουν δοθεί.
+    kql: [oauth-consent]
+
+  - id: privileged
+    name: Προνομιακοί ρόλοι και λογαριασμοί διαχειριστών
+    cat: Identity
+    high: true
+    patterns: ['global admin', 'admin(istrat\w*)? (role|account)s?', 'administrators?\b', 'privileg', 'least privilege', '\bpim\b', 'cloud.only', 'emergency access', 'break.?glass', 'admin center', 'role assignment']
+    map: { kya: ["13.δ", "13.γ"], nis2: ["21.2.θ"], iso: ["A.8.2", "A.5.18"], gdpr: ["32.1.β", "32.4"] }
+    evidence: Η λίστα αναθέσεων ρόλων (eligible και active) από το PIM ή το Entra ID, με τους Global Administrators μεταξύ δύο και τεσσάρων, και ιστορικό ενεργοποιήσεων.
+    kql: [privileged-roles]
+
+  - id: passwords
+    name: Κωδικοί πρόσβασης και επαναφορά κωδικού
+    cat: Identity
+    patterns: ['password', 'passphrase', 'self.service', '\bsspr\b', 'banned']
+    map: { kya: ["13.στ", "14.γ"], nis2: ["21.2.θ"], iso: ["A.5.17", "A.8.5"], gdpr: ["32.1.β"] }
+    evidence: Στιγμιότυπο της Password protection (custom banned passwords, smart lockout), της πολιτικής λήξης κωδικών και των ρυθμίσεων SSPR, μαζί με την εγκεκριμένη πολιτική κωδικών.
+
+  - id: monitoring
+    name: Ειδοποιήσεις, παρακολούθηση και Defender for Cloud Apps
+    cat: Apps
+    patterns: ['alert', 'notif', 'activity polic', 'anomal', 'defender for cloud apps', 'cloud app', 'cloud discovery', 'shadow it', 'sentinel', 'incident']
+    map: { kya: ["24.ε", "24.α"], nis2: ["21.2.β"], iso: ["A.8.16", "A.5.25"], gdpr: ["33.1"] }
+    evidence: Οι ενεργές πολιτικές ειδοποιήσεων με τους παραλήπτες, και ένα δείγμα incidents με το πότε εξετάστηκαν και τι αποφασίστηκε.
+
+  # ---------- Γενικά themes (χρησιμοποιούνται από τα product_rules και τα category_fallback) ----------
+  - id: identity-general
+    name: Ταυτότητες και έλεγχος πρόσβασης (γενικά)
+    cat: Identity
+    patterns: []
+    map: { kya: ["13.α", "13.γ"], nis2: ["21.2.θ"], iso: ["A.5.15", "A.8.5"], gdpr: ["32.1.β"] }
+    evidence: Στιγμιότυπο ή εξαγωγή της ρύθμισης στο Microsoft Entra admin center, και η εγκεκριμένη πολιτική ελέγχου πρόσβασης που την περιγράφει.
+
+  - id: device-general
+    name: Ασφαλής παραμετροποίηση συσκευών (γενικά)
+    cat: Device
+    patterns: []
+    map: { kya: ["14.β", "14.α"], nis2: ["21.2.ε"], iso: ["A.8.9", "A.8.1"], gdpr: ["32.1.β"] }
+    evidence: Το configuration profile ή το GPO που εφαρμόζει τη ρύθμιση, και η λίστα συσκευών της σύστασης στο Defender Vulnerability Management με τις τεκμηριωμένες εξαιρέσεις.
+
+  - id: apps-general
+    name: Ασφαλής παραμετροποίηση υπηρεσιών cloud (γενικά)
+    cat: Apps
+    patterns: []
+    map: { kya: ["14.β", "14.α"], nis2: ["21.2.ε"], iso: ["A.8.9", "A.5.23"], gdpr: ["32.1.β"] }
+    evidence: Στιγμιότυπο ή εξαγωγή (PowerShell) της ρύθμισης στο αντίστοιχο admin center, με ημερομηνία, και η σύνδεσή της με την πολιτική ασφαλούς παραμετροποίησης.
+
+# Όταν ο τίτλος δεν ταιριάζει σε κανένα theme: αντιστοίχιση από τη στήλη Product
+product_rules:
+  - { match: 'defender for identity|azure atp', theme: ad }
+  - { match: 'exchange|defender for office|office 365 atp|eop', theme: email-protection }
+  - { match: 'sharepoint|onedrive', theme: sharing }
+  - { match: '\bteams\b', theme: teams }
+  - { match: 'cloud apps|cloud app security|mcas', theme: monitoring }
+  - { match: 'purview|information protection|\bmip\b|dlp|compliance', theme: dlp }
+  - { match: 'entra|azure (ad|active directory)|identity', theme: identity-general }
+  - { match: 'defender for endpoint|vulnerability management|\bmde\b|\bmdvm\b|intune', theme: device-general }
+
+# Όταν δεν ταιριάζει ούτε το Product: αντιστοίχιση από τη στήλη Category
+category_fallback:
+  identity: identity-general
+  device: device-general
+  apps: apps-general
+  data: dlp
+  default: apps-general
+
+# Δείγμα με κατασκευασμένα δεδομένα (εταιρεία «MyCompany»), για όποιον θέλει να δει το εργαλείο πριν φορτώσει το δικό του αρχείο.
+sample: |
+  Rank,Recommended action,Score impact,Points achieved,Status,Regressed,Have license?,Category,Product,Last synced,Microsoft update
+  1,Ensure multifactor authentication is enabled for all users,+8.11%,4/10,To address,No,Yes,Identity,Microsoft Entra ID,10/26/2026,None
+  2,Ensure multifactor authentication is enabled for all users in administrative roles,+0%,10/10,Completed,No,Yes,Identity,Microsoft Entra ID,10/26/2026,None
+  3,Enable Conditional Access policies to block legacy authentication,+6.49%,0/8,Planned,No,Yes,Identity,Microsoft Entra ID,10/26/2026,None
+  4,Enable Microsoft Entra ID Identity Protection sign-in risk policies,+5.68%,0/7,To address,No,No,Identity,Microsoft Entra ID,10/26/2026,None
+  5,Enable Microsoft Entra ID Identity Protection user risk policies,+5.68%,0/7,To address,No,No,Identity,Microsoft Entra ID,10/26/2026,None
+  6,Use least privileged administrative roles,+0%,1/1,Completed,No,Yes,Identity,Microsoft Entra ID,10/26/2026,None
+  7,Ensure 'Privileged Identity Management' is used to manage roles,+0.81%,0/1,To address,No,No,Identity,Microsoft Entra ID,10/26/2026,None
+  8,Do not allow users to grant consent to unreliable applications,+0%,4/4,Completed,No,Yes,Identity,Microsoft Entra ID,10/26/2026,None
+  9,Ensure the 'Password expiration policy' is set to 'Set passwords to never expire (recommended)',+0%,8/8,Completed,No,Yes,Identity,Microsoft Entra ID,10/26/2026,None
+  10,Start your Defender for Identity deployment installing Sensors on Domain Controllers and other eligible servers,+3.24%,0/4,Risk accepted,No,No,Identity,Microsoft Defender for Identity,10/26/2026,None
+  11,Protect and manage local admin passwords with Microsoft LAPS,+0.81%,0/1,To address,No,Yes,Identity,Microsoft Defender for Identity,10/26/2026,None
+  12,Turn on Safe Attachments in block mode,+0%,8/8,Resolved through third party,No,Yes,Apps,Defender for Office 365,10/26/2026,None
+  13,Create Safe Links policies for email messages,+0%,9/9,Resolved through third party,No,Yes,Apps,Defender for Office 365,10/26/2026,None
+  14,Set the phishing email level threshold at 2 or higher,+0.73%,0/9,To address,No,Yes,Apps,Defender for Office 365,10/26/2026,None
+  15,Ensure that SPF records are published for all Exchange Domains,+0%,3/3,Completed,No,Yes,Apps,Exchange Online,10/26/2026,None
+  16,Ensure DKIM is enabled for all Exchange Online Domains,+0%,5/5,Completed,No,Yes,Apps,Exchange Online,10/26/2026,None
+  17,Ensure DMARC Records for all Exchange Online domains are published,+2.43%,0/3,To address,No,Yes,Apps,Exchange Online,10/26/2026,None
+  18,Ensure all forms of mail forwarding are blocked and/or disabled,+0%,8/8,Completed,No,Yes,Apps,Exchange Online,10/26/2026,None
+  19,Ensure mailbox auditing for all users is Enabled,+0%,10/10,Completed,No,Yes,Apps,Exchange Online,10/26/2026,None
+  20,Ensure that SharePoint guest users cannot share items they don't own,+0.81%,0/1,To address,No,Yes,Apps,SharePoint Online,10/26/2026,None
+  21,Ensure 'external access' is restricted in the Teams admin center,+0%,1/1,Completed,No,Yes,Apps,Microsoft Teams,10/26/2026,None
+  22,Create an OAuth app policy to notify you about new OAuth applications,+2.43%,0/3,Planned,No,Yes,Apps,Microsoft Defender for Cloud Apps,10/26/2026,None
+  23,Extend M365 sensitivity labeling to assets in Microsoft Purview data map,+4.05%,0/5,To address,No,No,Data,Microsoft Purview,10/26/2026,None
+  24,Turn on Microsoft Defender Antivirus,+0%,9/9,Completed,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  25,Turn on Tamper Protection,+0.97%,7/9,To address,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  26,Block credential stealing from the Windows local security authority subsystem,+1.62%,4/9,To address,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  27,Encrypt all supported local drives,+2.27%,3/9,To address,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  28,Update Microsoft Edge,+0.81%,8/9,To address,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  29,Disable SMBv1 client driver,+0%,9/9,Completed,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  30,Turn on Microsoft Defender Firewall in domain profile,+0.16%,8/9,To address,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  31,Disable 'Autoplay for non-volume devices',+0.49%,5/9,To address,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None
+  32,Enable Memory Integrity (HVCI),+0.65%,5/9,To address,No,Yes,Device,Microsoft Defender for Endpoint,10/26/2026,None

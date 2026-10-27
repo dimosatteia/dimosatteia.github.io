@@ -183,6 +183,8 @@ Sensitivity labels για ταξινόμηση και κρυπτογράφηση
 > - **[Μέρος 2: Μέσα στο οικοσύστημα του Defender](/posts/secure-score-grc-part-2-ecosystem/)**
 > - **[Μέρος 3: Καθημερινή λειτουργία και ISO 27001](/posts/secure-score-grc-part-3-operations/)**
 
+{{< tool-link page="/secure-score-symmorfosi" lead="Δοκίμασέ το στο δικό σου tenant:" label="Από το Secure Score στη συμμόρφωση" tail="ανέβασε το CSV των συστάσεων και πάρε κάλυψη ανά απαίτηση της ΚΥΑ 1689/2025, της NIS2, του ISO/IEC 27001 και του GDPR." >}}
+
 Διάβασέ τα με τη σειρά όταν είσαι έτοιμος. Καλή ανάγνωση! 📚
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.

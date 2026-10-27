@@ -30,6 +30,8 @@ tags:
 
 {{< tool-link page="/poia-adeia-microsoft-365" lead="Δεν ξέρετε ποια άδεια χρειάζεστε;" label="Δείτε ποιο πακέτο Microsoft 365 καλύπτει τα μέτρα σας" tail="από Business Basic έως E7, χωρίς τιμές." >}}
 
+{{< tool-link page="/secure-score-symmorfosi" lead="Θέλετε την πραγματική εικόνα του tenant σας;" label="Ανεβάστε το CSV του Microsoft Secure Score" tail="και δείτε την κάλυψη ανά απαίτηση, χωρίς να φύγει κανένα δεδομένο από τον browser σας." >}}
+
 {{< tool-link page="/etoimotita-microsoft-365" lead="Πόσο έτοιμοι είστε για τον έλεγχο;" label="Κάντε τον έλεγχο ετοιμότητας του Microsoft 365" tail="σε 22 ερωτήσεις, με αναφορά κενών ανά απαίτηση." >}}
 
 {{< tool-link page="/tekmiriosi-ekpaideysis" lead="Θα ζητηθεί τεκμήριο για την εκπαίδευση του προσωπικού;" label="Δείτε αν η εκπαίδευσή σας είναι τεκμηριωμένη" tail="με φάκελο .pdf και μητρώο εκπαίδευσης .xlsx." >}}

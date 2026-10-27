@@ -1,0 +1,30 @@
+{{- /* Γράφημα στη δεξιά στήλη, κάτω από το Table of Contents, για το εργαλείο «Από το Secure Score στη συμμόρφωση».
+       Εμφανίζεται μόνο σε σελίδες με ssGauge: true, και γίνεται ορατό όταν αναλυθεί ένα αρχείο. Το ενημερώνει το shortcode secure-score-map. */ -}}
+<div id="ssSide" class="hidden glass-card rounded-xl p-5 border-t-2 border-t-blue-500" aria-live="polite">
+    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Secure Score και συμμόρφωση</h3>
+    <div class="flex items-center gap-4">
+        <div class="relative w-28 h-28 shrink-0">
+            <svg viewBox="0 0 120 120" class="w-28 h-28 -rotate-90" aria-hidden="true">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="10" class="text-slate-800"></circle>
+                <circle id="ssSideRing" cx="60" cy="60" r="52" fill="none" stroke="#f43f5e" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" style="transition: stroke-dashoffset .6s ease, stroke .4s ease"></circle>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span id="ssSidePct" class="text-2xl font-bold font-mono text-slate-100 tabular-nums">0%</span>
+                <span class="text-[10px] font-mono text-slate-500">Secure Score</span>
+            </div>
+        </div>
+        <div class="text-xs text-slate-400 leading-relaxed">
+            <p><span id="ssSideRecs" class="font-mono text-slate-200">0</span> συστάσεις</p>
+            <p><span id="ssSideGaps" class="font-mono text-rose-400">0</span> ανοιχτές</p>
+            <p><span id="ssSideOwn" class="font-mono text-violet-300">0</span> θέλουν δικό σου τεκμήριο</p>
+        </div>
+    </div>
+    <div class="flex flex-col gap-2 mt-4">
+        {{- range (slice (dict "k" "kya" "n" "ΚΥΑ 1689/2025") (dict "k" "nis2" "n" "Οδηγία NIS2") (dict "k" "iso" "n" "ISO/IEC 27001") (dict "k" "gdpr" "n" "GDPR")) }}
+        <button type="button" class="ssSideFw group text-left" data-fw="{{ .k }}" title="Άνοιξε τις απαιτήσεις">
+            <span class="flex justify-between text-[11px] text-slate-400 group-hover:text-slate-200"><span>{{ .n }}</span><span class="ssSideFwPct font-mono tabular-nums">0%</span></span>
+            <span class="block h-1.5 rounded bg-slate-800 overflow-hidden mt-1"><span class="ssSideFwBar block h-full bg-rose-500 transition-all duration-500" style="width:0%"></span></span>
+        </button>
+        {{- end }}
+    </div>
+</div>
