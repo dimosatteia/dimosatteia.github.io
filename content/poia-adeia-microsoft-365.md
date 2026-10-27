@@ -31,9 +31,9 @@ tags:
   - Microsoft 365 Security
   - GRC
 cover:
-  image: "/images/M465.webp"
-  alt: "Microsoft 365: ποια άδεια χρειάζομαι για την ΚΥΑ 1689/2025 και την NIS2"
-  hiddenInSingle: true
+  image: "/images/tools/poia-adeia-microsoft-365.webp"
+  alt: "Πίνακας μέτρων της ΚΥΑ 1689/2025 ανά πακέτο Microsoft 365, από Business Basic έως E7: περιλαμβάνεται, με πρόσθετη άδεια ή χρειάζεται άλλο πακέτο"
+  maxWidth: 800
 # Εμφανίζεται πρώτο στα «Πρόσφατα Άρθρα» της αρχικής. Σβήσε τη γραμμή όταν δεν θες πια να είναι πρώτο.
 homeFeed: true
 weight: -6

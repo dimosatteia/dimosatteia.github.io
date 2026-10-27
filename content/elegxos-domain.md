@@ -56,6 +56,10 @@ verification:
     license: "Microsoft 365"
     source: "https://learn.microsoft.com/en-us/microsoft-365/enterprise/external-domain-name-system-records"
     verified: 2026-10-14
+cover:
+  image: "/images/tools/elegxos-domain.webp"
+  alt: "Έλεγχος των DNS records SPF, DKIM, DMARC, MTA-STS και DNSSEC ενός domain, με στόχο DMARC σε quarantine ή reject"
+  maxWidth: 800
 categories: ["Email & Collaboration"]
 tags:
   - Email Security

@@ -42,6 +42,10 @@ verification:
     license: "Ολόκληρη η απόφαση"
     source: "https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf"
     verified: 2026-10-15
+cover:
+  image: "/images/tools/kostos-peristatikou.webp"
+  alt: "Υπολογισμός κόστους ανά ώρα διακοπής, σύγκριση σημερινού χρόνου επαναφοράς με τον στόχο, ALE, ROSI και ανώτατο RTO σε σενάριο ransomware"
+  maxWidth: 800
 categories: ["GRC & Compliance"]
 tags:
   - Incident Response

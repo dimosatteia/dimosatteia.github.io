@@ -26,6 +26,10 @@ ShowBreadCrumbs: false
 hideMeta: true
 # Ζωντανό γράφημα ετοιμότητας στη δεξιά στήλη, κάτω από το Table of Contents
 readyGauge: true
+cover:
+  image: "/images/tools/etoimotita-microsoft-365.webp"
+  alt: "Ποσοστό ετοιμότητας του Microsoft 365 για έλεγχο, με ανάλυση ανά κατηγορία και λίστα τεκμηρίων που θα ζητήσει ο ελεγκτής"
+  maxWidth: 800
 categories: ["GRC & Compliance"]
 tags:
   - Microsoft 365 Security

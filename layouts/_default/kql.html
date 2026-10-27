@@ -30,6 +30,12 @@
         {{ with .Description }}<p class="text-sm text-slate-400 max-w-3xl leading-relaxed">{{ . }}</p>{{ end }}
     </header>
 
+    {{ with .Params.cover }}{{ if and .image (not .hiddenInSingle) }}
+    <div class="glass-card rounded-xl p-2 border border-slate-800">
+        {{ $d := partial "img-dims.html" .image }}<img src="{{ .image | absURL }}" alt="{{ .alt }}"{{ with $d.w }} width="{{ . }}" height="{{ $d.h }}"{{ end }} class="w-full h-auto rounded-lg mx-auto" style="max-width: {{ .maxWidth | default 800 }}px">
+    </div>
+    {{ end }}{{ end }}
+
     {{ with .Content }}
     <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300">
         {{ . }}

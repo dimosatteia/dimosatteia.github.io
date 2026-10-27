@@ -25,6 +25,10 @@ showToc: false
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+cover:
+  image: "/images/tools/kql.webp"
+  alt: "Advanced Hunting query του Microsoft Defender XDR με αποτελέσματα και αντιστοίχιση σε ΚΥΑ 1689/2025, NIS2, ISO/IEC 27001, GDPR και MITRE ATT&CK"
+  maxWidth: 800
 categories: ["Security Operations & XDR"]
 tags:
   - KQL

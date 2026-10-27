@@ -51,6 +51,10 @@ verification:
     license: "Ολόκληρη η απόφαση"
     source: "https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf"
     verified: 2026-10-14
+cover:
+  image: "/images/tools/elegxos-ypagogis.webp"
+  alt: "Πέντε ερωτήσεις για τομέα, εργαζόμενους, κύκλο εργασιών, ισολογισμό και ειδικές περιπτώσεις, που καταλήγουν σε βασική οντότητα, σημαντική οντότητα ή μη υπαγωγή στον ν. 5160/2024"
+  maxWidth: 800
 categories: ["GRC & Compliance"]
 tags:
   - Νόμος 5160/2024
