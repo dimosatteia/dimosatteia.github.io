@@ -28,7 +28,7 @@
                 <span class="text-[10px] font-mono bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">{{ len $newFeaturesPage.Pages }}</span>
             </h2>
             <ul class="flex-grow flex flex-col gap-3">
-                {{ range $newFeaturesPage.Pages }}
+                {{ range $newFeaturesPage.Pages.ByDate.Reverse }}
                 <li>
                     <a href="{{ .Permalink }}" class="group block p-3 rounded-lg bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-blue-500/50 transition-colors">
                         <span class="block text-sm font-medium text-slate-300 group-hover:text-blue-400 transition-colors mb-1 line-clamp-2">{{ .Title }}</span>
@@ -51,7 +51,7 @@
                 <span class="text-[10px] font-mono bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">{{ len $previewPage.Pages }}</span>
             </h2>
             <ul class="flex-grow flex flex-col gap-3">
-                {{ range $previewPage.Pages }}
+                {{ range $previewPage.Pages.ByDate.Reverse }}
                 <li>
                     <a href="{{ .Permalink }}" class="group block p-3 rounded-lg bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-orange-500/50 transition-colors">
                         <span class="block text-sm font-medium text-slate-300 group-hover:text-orange-400 transition-colors mb-1 line-clamp-2">{{ .Title }}</span>
@@ -74,7 +74,7 @@
                 <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">{{ len $gaPage.Pages }}</span>
             </h2>
             <ul class="flex-grow flex flex-col gap-3">
-                {{ range $gaPage.Pages }}
+                {{ range $gaPage.Pages.ByDate.Reverse }}
                 <li>
                     <a href="{{ .Permalink }}" class="group block p-3 rounded-lg bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 transition-colors">
                         <span class="block text-sm font-medium text-slate-300 group-hover:text-emerald-400 transition-colors mb-1 line-clamp-2">{{ .Title }}</span>

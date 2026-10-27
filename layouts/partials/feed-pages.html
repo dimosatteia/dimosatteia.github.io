@@ -5,6 +5,8 @@
 */ -}}
 {{- $feed := where site.RegularPages "Type" "in" site.Params.mainSections -}}
 {{- if eq .Kind "term" }}{{ $feed = .Pages }}{{ end -}}
+{{- /* Release Status (New Features, Preview, Generally Available): ΠΑΝΤΑ ανά ημερομηνία, το νεότερο πρώτο, ανεξάρτητα από weight */ -}}
+{{- if and (eq .Kind "term") (eq .Data.Plural "releases") }}{{ $feed = .Pages.ByDate.Reverse }}{{ end -}}
 {{- /* Αρχική: σελίδες με «homeFeed: true» στο front matter (π.χ. ένα νέο εργαλείο) μπαίνουν στα «Πρόσφατα Άρθρα» με την ίδια ταξινόμηση με τα άρθρα (weight, μετά ημερομηνία).
        Βάλε τους και «weight: -6» για να μπουν ανάμεσα στα πρόσφατα με βάση την ημερομηνία τους. Για να φύγει, σβήνεις τη γραμμή homeFeed. */ -}}
 {{- if .IsHome }}{{ with where site.RegularPages "Params.homeFeed" true }}{{ $feed = (union . $feed).ByWeight }}{{ end }}{{ end -}}
