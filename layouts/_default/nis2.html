@@ -41,9 +41,13 @@
         {{ with .Description }}<p class="text-sm text-slate-400 max-w-3xl leading-relaxed">{{ . }}</p>{{ end }}
     </header>
 
-    {{ with .Content }}
+    {{- /* Το κείμενο του οδηγού χωρίζεται στο <!--hub-tools-->: ό,τι είναι πριν μένει στην αρχή, τα links προς τα εργαλεία (🛠️) πάνε στο τέλος της σελίδας */ -}}
+    {{- $parts := split (string .Content) "<!--hub-tools-->" -}}
+    {{- $intro := index $parts 0 -}}
+    {{- $hubTools := "" -}}{{- if gt (len $parts) 1 }}{{ $hubTools = index $parts 1 }}{{ end -}}
+    {{ with trim $intro " \n" }}
     <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-headings:font-semibold">
-        {{ . }}
+        {{ . | safeHTML }}
     </div>
     {{ end }}
 
@@ -179,6 +183,13 @@
         {{ end }}
         <p id="nis2Empty" class="hidden text-sm font-mono text-slate-500 p-4">{{ if eq $items "controls" }}Κανένα control{{ else }}Καμία {{ $item }}{{ end }} δεν ταιριάζει με τα φίλτρα.</p>
     </section>
+
+    {{ with trim $hubTools " \n" }}
+    <section class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-headings:font-semibold" aria-labelledby="hub-tools-title">
+        <h2 id="hub-tools-title" class="mt-0">Εργαλεία για τον έλεγχο</h2>
+        {{ . | safeHTML }}
+    </section>
+    {{ end }}
 </main>
 
 <script>
