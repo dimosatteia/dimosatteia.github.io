@@ -1,5 +1,6 @@
 ---
 title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα WW/YYYY)"
+slug: "microsoft-365-security-ti-allaxe-YYYY-wWW"
 date: YYYY-MM-DDT08:00:00+03:00
 lastmod: YYYY-MM-DDT08:00:00+03:00
 draft: true

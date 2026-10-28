@@ -1,6 +1,7 @@
 ---
 title: "Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου"
 seoTitle: "ISOC, Sentinel ή Defender XDR: ποιο ταιριάζει σε σένα"
+slug: "isoc-sentinel-defender-xdr-poio-epilegeis"
 date: 2026-10-28T17:30:00+02:00
 lastmod: 2026-10-28T19:15:00+02:00
 draft: false
