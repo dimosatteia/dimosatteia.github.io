@@ -78,7 +78,7 @@ mitre: ["M1047"]
 |---|---|---|---|
 | Τι είναι | Προϊόν XDR | Benefit πάνω στην άδεια, όχι νέο προϊόν | SIEM, ξεχωριστή χρέωση στο Azure |
 | Ποιος το έχει | Όποιος έχει άδεια Defender | Defender Suite, Microsoft 365 E5 ή E7 χωρίς ενεργό Sentinel workspace | Οποιοσδήποτε με Azure subscription |
-| Case management, workbooks, playbooks | Όχι | Ναι, χωρίς workspace | Ναι |
+| Workbooks και playbooks με φυσική γλώσσα | Όχι, μόνο το incidents queue | Ναι, χωρίς workspace | Ναι |
 | UEBA, Content hub, threat intelligence | Όχι | Ναι, με ISOC workspace | Ναι |
 | Δεδομένα εκτός Microsoft | Όχι | Ναι, με ISOC workspace και πιθανή χρέωση ingestion | Ναι, με χρέωση ingestion |
 | Ερωτήματα KQL στα δεδομένα του Defender | 30 ημέρες | 30 ημέρες σε αυτή τη φάση | Έως 90 ημέρες για τα XDR tables, έως 2 έτη στο analytics tier, έως 12 έτη στο data lake |
