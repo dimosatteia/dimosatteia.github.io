@@ -1,0 +1,26 @@
+# Κανόνες του ερωτηματολογίου «ISOC, Sentinel ή μόνο Defender XDR».
+# Χρησιμοποιείται από το layouts/shortcodes/isoc-decision.html.
+# Όταν η Microsoft επιβεβαιώσει αλλαγές στο ISOC (π.χ. 90 ημέρες διατήρηση ή είσοδο πελατών Sentinel),
+# αλλάζεις τις τιμές εδώ και ενημερώνεις την ημερομηνία verified. Ο κώδικας δεν χρειάζεται αλλαγή.
+
+verified: "28/10/2026"
+
+# Ημέρες διατήρησης για KQL στα δεδομένα του Defender
+xdr_hunting_days: 30        # Advanced hunting στο Defender XDR
+isoc_retention_days: 30     # ISOC σε αυτή τη φάση του preview (Microsoft Learn, 28/10/2026)
+
+# Μπορούν οργανισμοί με ενεργό Sentinel workspace να μπουν στο ISOC;
+isoc_allows_sentinel_customers: false
+
+# Φάση του ISOC
+isoc_status: "Public Preview"
+
+# Ημερομηνία μετά την οποία το Sentinel δεν υποστηρίζεται στο Azure portal
+sentinel_azure_portal_retirement: "31/03/2027"
+
+links:
+  isoc_overview: "https://learn.microsoft.com/en-us/defender-xdr/isoc-overview"
+  sentinel_move_to_defender: "https://learn.microsoft.com/en-us/azure/sentinel/move-to-defender"
+  mssp_guide: "https://learn.microsoft.com/en-us/defender-xdr/playbook-managed-security"
+  sc200: "https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/"
+  sc200_study_guide: "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-200"

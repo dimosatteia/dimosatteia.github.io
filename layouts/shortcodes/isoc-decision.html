@@ -1,0 +1,272 @@
+{{- /* Ερωτηματολόγιο: ISOC, Microsoft Sentinel ή μόνο Defender XDR.
+       Οι τιμές (ημέρες διατήρησης, φάση, ημερομηνίες, links) έρχονται από το data/isoc_decision.yaml.
+       Όλος ο υπολογισμός γίνεται στον browser. Δεν αποστέλλεται κανένα στοιχείο.
+       Χρήση: {{< isoc-decision >}} */ -}}
+{{- $cfg := hugo.Data.isoc_decision -}}
+{{- $sel := "rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500" -}}
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="isocDecision">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-1">Ερωτηματολόγιο · ISOC, Sentinel ή Defender XDR</p>
+    <p class="text-sm text-slate-300 leading-relaxed mb-4">Οκτώ ερωτήσεις για τον οργανισμό σου. Στο τέλος βλέπεις ποιος δρόμος ταιριάζει, ποιες απαντήσεις το έκριναν και τι κάνεις μετά.</p>
+
+    <form id="idForm" class="flex flex-col gap-5" novalidate data-clarity-mask="true">
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">1.</span> Ποια άδεια έχει ο οργανισμός;</span>
+            <select id="idLic" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="e5">Microsoft 365 E5, Microsoft 365 E7 ή Microsoft Defender Suite</option>
+                <option value="other">Κάποια άλλη (π.χ. E3, Business Premium, μεμονωμένα Defender plans)</option>
+            </select>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">2.</span> Έχεις σήμερα ενεργό Microsoft Sentinel workspace;</span>
+            <select id="idSen" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="yes">Ναι</option>
+                <option value="no">Όχι</option>
+            </select>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">3.</span> Για πόσο καιρό ορίζει η πολιτική καταγραφών σου ότι πρέπει να μπορείς να ερευνάς τα logs με KQL;</span>
+            <select id="idRet" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="le30">Έως 30 ημέρες</option>
+                <option value="le90">Από 31 έως 90 ημέρες</option>
+                <option value="gt90">Πάνω από 90 ημέρες</option>
+                <option value="none">Η πολιτική μας δεν ορίζει χρόνο</option>
+            </select>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">4.</span> Χρειάζεται να συλλέγεις logs εκτός Microsoft, όπως firewalls, δικτυακές συσκευές, servers on-premises ή OT;</span>
+            <select id="idSrc" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="yes">Ναι</option>
+                <option value="no">Όχι, μόνο Microsoft 365, Defender και Entra</option>
+            </select>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">5.</span> Θα χρησιμοποιήσεις τη λύση ως τεκμήριο σε έλεγχο της ΚΥΑ 1689/2025 τους επόμενους μήνες;</span>
+            <select id="idAud" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="yes">Ναι</option>
+                <option value="no">Όχι ή δεν ξέρω ακόμα</option>
+            </select>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">6.</span> Ποιος παρακολουθεί τα incidents;</span>
+            <select id="idSoc" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="internal">Εσωτερικό SOC ή δική μας ομάδα</option>
+                <option value="external">Εξωτερικός πάροχος (MSSP ή MDR)</option>
+                <option value="none">Κανείς συστηματικά</option>
+            </select>
+        </label>
+
+        <label id="idProvWrap" class="hidden flex-col gap-1.5 text-sm text-slate-300 rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+            <span><span class="font-mono text-blue-400">6α.</span> Σε ποια πλατφόρμα δουλεύει ο πάροχος;</span>
+            <select id="idProv" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="own">Στο δικό του SIEM, όπου στέλνουμε τα logs μας</option>
+                <option value="tenant">Μέσα στο δικό μας Defender portal ή Sentinel, με πρόσβαση που του δώσαμε</option>
+                <option value="unknown">Δεν ξέρω</option>
+            </select>
+        </label>
+
+        <label id="idTeamWrap" class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">7.</span> Πώς είναι στελεχωμένη η ασφάλεια μέσα στον οργανισμό;</span>
+            <select id="idTeam" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="it">Κανείς ειδικά, το κάνει το IT όταν προλαβαίνει</option>
+                <option value="one">Ένα άτομο αφιερωμένο στην ασφάλεια</option>
+                <option value="small">Μικρή ομάδα αφιερωμένη στην ασφάλεια</option>
+                <option value="shifts">Ομάδα με κάλυψη σε βάρδιες ή 24/7</option>
+            </select>
+        </label>
+
+        <label id="idOverWrap" class="hidden flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">7.</span> Ποιος επιβλέπει τον πάροχο μέσα στον οργανισμό;</span>
+            <select id="idOver" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="dedicated">Άτομο αφιερωμένο στην ασφάλεια</option>
+                <option value="it">Κάποιος από το IT, παράλληλα με άλλα καθήκοντα</option>
+                <option value="none">Κανείς δεν έχει οριστεί</option>
+            </select>
+        </label>
+
+        <label class="flex flex-col gap-1.5 text-sm text-slate-300">
+            <span><span class="font-mono text-blue-400">8.</span> <span id="idSkillQ">Τι εκπαίδευση ή εμπειρία έχει η ομάδα σε Microsoft Security;</span></span>
+            <select id="idSkill" class="{{ $sel }}">
+                <option value="">Διάλεξε…</option>
+                <option value="none">Καμία ουσιαστική</option>
+                <option value="portal">Δουλεύουμε στο Defender portal (incidents, alerts), χωρίς KQL</option>
+                <option value="kql">Γράφουμε KQL στο Advanced hunting</option>
+                <option value="sc200">SC-200 ή αντίστοιχη εμπειρία σε Sentinel</option>
+            </select>
+        </label>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button type="submit" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Δες το αποτέλεσμα</button>
+            <button type="reset" id="idReset" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800">Καθαρισμός</button>
+            <span id="idError" class="text-sm text-amber-400 hidden" role="alert"></span>
+        </div>
+    </form>
+
+    <div id="idResult" class="hidden mt-5 rounded-lg border bg-slate-900/60 p-5" aria-live="polite" tabindex="-1" data-clarity-mask="true">
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Αποτέλεσμα</p>
+        <p id="idTitle" class="text-2xl font-bold text-slate-100"></p>
+        <p class="text-sm font-semibold text-slate-100 mt-4 mb-1">Τι το έκρινε</p>
+        <ul id="idWhy" class="text-sm text-slate-300 leading-relaxed list-disc pl-5 flex flex-col gap-1"></ul>
+        <div id="idNotesWrap" class="hidden">
+            <p class="text-sm font-semibold text-slate-100 mt-4 mb-1">Τι κάνεις μετά</p>
+            <ul id="idNotes" class="text-sm text-slate-300 leading-relaxed list-disc pl-5 flex flex-col gap-1"></ul>
+        </div>
+        <p class="text-sm font-semibold text-slate-100 mt-4 mb-1">Σχετικές απαιτήσεις</p>
+        <p id="idReq" class="text-sm text-slate-300 leading-relaxed flex flex-wrap gap-x-3 gap-y-1"></p>
+        <p class="text-xs text-amber-300/90 leading-relaxed mt-4">Ενδεικτικό αποτέλεσμα. Το ISOC είναι σε {{ $cfg.isoc_status }} και οι δυνατότητές του μπορεί να αλλάξουν. Η λογική βασίζεται στην τεκμηρίωση της Microsoft, όπως ελέγχθηκε στις {{ $cfg.verified }}.</p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-4">Οι απαντήσεις σου δεν αποστέλλονται πουθενά: ο υπολογισμός γίνεται μέσα στον browser σου.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το ερωτηματολόγιο χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    var form = document.getElementById('idForm');
+    if (!form) return;
+    var CFG = {{ $cfg | jsonify | safeJS }};
+    var KYA = {{ "kya-1689-2025/" | relURL }};
+    var NIS2 = {{ "nis2/" | relURL }};
+    var SUPPLIER = {{ "axiologisi-promitheyti/" | relURL }};
+    function $(id) { return document.getElementById(id); }
+    function a(href, text, ext) {
+        return '<a href="' + href + '" class="text-blue-400 hover:text-blue-300 underline"' + (ext ? ' target="_blank" rel="noopener noreferrer"' : '') + '>' + text + '</a>';
+    }
+    function req(base, code, label) {
+        return '<span>' + a(base + '#' + code.replace(/\./g, '-'), code) + ' ' + label + '</span>';
+    }
+
+    var soc = $('idSoc'), provWrap = $('idProvWrap'), prov = $('idProv');
+    var teamWrap = $('idTeamWrap'), team = $('idTeam'), overWrap = $('idOverWrap'), over = $('idOver');
+    function show(el, on) { el.classList.toggle('hidden', !on); el.classList.toggle('flex', on); }
+    function syncForm() {
+        var ext = soc.value === 'external';
+        show(provWrap, ext);
+        show(overWrap, ext);
+        show(teamWrap, !ext);
+        if (ext) team.value = ''; else { prov.value = ''; over.value = ''; }
+        $('idSkillQ').textContent = ext
+            ? 'Τι εκπαίδευση ή εμπειρία έχει όποιος επιβλέπει τον πάροχο σε Microsoft Security;'
+            : 'Τι εκπαίδευση ή εμπειρία έχει η ομάδα σε Microsoft Security;';
+    }
+    soc.addEventListener('change', syncForm);
+
+    // Η λογική απόφασης. Επιστρέφει τίτλο, αιτίες, επόμενα βήματα και σχετικές απαιτήσεις.
+    function decide(x) {
+        var r = { key: '', title: '', why: [], notes: [], req: ['24.δ'] };
+        var need = x.ret === 'le90' ? 90 : (x.ret === 'gt90' ? 91 : 30);
+        var low = x.soc === 'none' && x.team === 'it';
+        var skilled = x.skill === 'kql' || x.skill === 'sc200';
+
+        if (x.sen === 'yes' && !CFG.isoc_allows_sentinel_customers) {
+            r.key = 'keep';
+            r.title = 'Μένεις στο Microsoft Sentinel';
+            r.why.push('Έχεις ενεργό Sentinel workspace. Σε αυτή τη φάση το ISOC είναι μόνο για οργανισμούς χωρίς Sentinel, και η Microsoft λέει να μην αποσυνδέσεις workspace σε παραγωγή για να μπεις στο preview.');
+            r.notes.push('Αν το Sentinel σου τρέχει ακόμα στο Azure portal, προγραμμάτισε τη μεταφορά στο Defender portal. Μετά τις ' + CFG.sentinel_azure_portal_retirement + ' το Sentinel δεν θα υποστηρίζεται στο Azure portal. ' + a(CFG.links.sentinel_move_to_defender, 'Οδηγός μεταφοράς', true));
+        } else if (x.soc === 'external' && x.prov === 'own') {
+            r.key = 'provider';
+            r.title = 'Defender XDR, και τα logs στην πλατφόρμα του παρόχου σου';
+            r.why.push('Ο πάροχός σου δουλεύει στο δικό του SIEM. Ένα δικό σου ISOC ή Sentinel θα ήταν πιθανότατα διπλό κόστος για την ίδια δουλειά.');
+            r.notes.push('Βάλε στη σύμβαση ρητά τον χρόνο τήρησης των logs' + (x.ret !== 'none' ? ' (η πολιτική σου ζητά ' + (need > 90 ? 'πάνω από 90' : 'έως ' + need) + ' ημέρες)' : '') + ', πού φυλάσσονται και πώς σου επιστρέφονται αν αλλάξεις πάροχο.');
+        } else if (need > CFG.isoc_retention_days || x.src === 'yes') {
+            r.key = 'sentinel';
+            r.title = low ? 'Microsoft Sentinel, με εξωτερικό SOC' : 'Microsoft Sentinel';
+            if (need > CFG.isoc_retention_days) r.why.push('Η πολιτική σου ζητά KQL έρευνα για ' + (need > 90 ? 'πάνω από 90' : 'έως ' + need) + ' ημέρες. Το Defender XDR δίνει ' + CFG.xdr_hunting_days + ' ημέρες στο Advanced hunting και το ISOC ' + CFG.isoc_retention_days + ' ημέρες σε αυτή τη φάση. Το Sentinel φτάνει έως 2 έτη στο analytics tier και έως 12 έτη στο data lake.');
+            if (x.src === 'yes') r.why.push('Χρειάζεσαι logs εκτός Microsoft. Αυτό θέλει workspace και χρέωση ingestion, και σήμερα το κάνει σε GA το Sentinel.');
+            if (low) r.why.push('Δεν υπάρχει κανείς να παρακολουθεί συστηματικά. Ένα SIEM χωρίς ανθρώπους δεν αποδίδει, οπότε η λύση θέλει και εξωτερικό SOC.');
+            r.notes.push('Κάνε πρώτα υπολογισμό όγκου για κάθε πηγή εκτός Microsoft. Τα logs ενός firewall μπορούν να ανεβάσουν απότομα τον λογαριασμό του Azure.');
+            if (x.lic === 'e5' && x.sen === 'no') r.notes.push('Με την άδειά σου δικαιούσαι το ISOC. Μόλις όμως ενεργοποιήσεις Sentinel workspace, το preview του ISOC δεν σε αφορά πια, γιατί είναι μόνο για οργανισμούς χωρίς Sentinel.');
+        } else if (x.lic !== 'e5') {
+            r.key = 'xdr';
+            r.title = 'Μένεις στο Defender XDR';
+            r.why.push('Το ISOC θέλει Microsoft 365 E5, E7 ή Defender Suite, που δεν έχεις.');
+            r.why.push('Οι ανάγκες σου (KQL έρευνα έως ' + CFG.xdr_hunting_days + ' ημέρες, μόνο πηγές Microsoft) καλύπτονται από το Defender XDR.');
+        } else if (low) {
+            r.key = 'xdr';
+            r.title = 'Μένεις στο Defender XDR';
+            r.why.push('Δικαιούσαι το ISOC, αλλά δεν υπάρχει κανείς να δουλεύει cases, workbooks και playbooks. Τα εργαλεία ενός SOC χωρίς ανθρώπους δεν αποδίδουν.');
+            r.why.push('Το incidents queue και το automated investigation and response του Defender XDR είναι αυτό που αξιοποιείται ρεαλιστικά.');
+        } else {
+            r.key = 'isoc';
+            r.title = 'Δοκίμασε το ISOC στο Microsoft Defender';
+            r.why.push('Έχεις την άδεια, δεν έχεις Sentinel, και οι ανάγκες σου χωρούν στις ' + CFG.isoc_retention_days + ' ημέρες με πηγές μόνο Microsoft.');
+            r.why.push('Υπάρχει ' + (x.soc === 'external' ? 'πάροχος' : 'ομάδα') + ' που θα χρησιμοποιεί το case management, τα workbooks και τα playbooks.');
+            if (x.aud === 'yes') r.notes.push('Το ISOC είναι σε ' + CFG.isoc_status + '. Για τον έλεγχο, βάλε ως τεκμήριο τήρησης καταγραφών το Microsoft Purview Audit και τις 180 ημέρες του Defender portal, όχι το ISOC.');
+            r.req.push('24.α');
+        }
+
+        if (x.ret === 'none') r.notes.unshift('Η πολιτική σου δεν ορίζει χρόνο τήρησης των logs, ενώ η ΚΥΑ 1689/2025 ζητά «προκαθορισμένο χρόνο» (24.δ). Το αποτέλεσμα υπολογίστηκε σαν να αρκούν 30 ημέρες. Όρισε πρώτα τον χρόνο στην πολιτική σου και ξανατρέξε το ερωτηματολόγιο.');
+        if (x.aud === 'yes' && r.key === 'sentinel') r.notes.push('Το Sentinel είναι σε GA, άρα μπορεί να μπει ως τεκμήριο. Κράτα screenshot των ρυθμίσεων retention ανά πίνακα στο workspace.');
+
+        if (x.soc === 'external') {
+            if (x.over === 'none') r.notes.unshift('Κενό συμμόρφωσης: η ΚΥΑ 1689/2025 (24.β) ζητά να οριστεί τουλάχιστον ένας υπάλληλος που επιβλέπει την απόκριση όταν υπάρχει εξωτερικός ανάδοχος. Όρισέ τον με γραπτή απόφαση πριν από τον επόμενο έλεγχο.');
+            else if (x.over === 'it') r.notes.push('Η επίβλεψη του παρόχου υπάρχει, αλλά παράλληλα με άλλα καθήκοντα. Κατέγραψε τον ρόλο γραπτά (ΚΥΑ 24.β) και όρισε μηνιαία ανασκόπηση των αναφορών του παρόχου, με πρακτικό.');
+            else r.notes.push('Κατέγραψε γραπτά τον ορισμό του ατόμου που επιβλέπει τον πάροχο (ΚΥΑ 24.β), ώστε να υπάρχει τεκμήριο για τον έλεγχο.');
+            r.notes.push('Ο πάροχος είναι προμηθευτής, άρα πέφτει στην ασφάλεια της εφοδιαστικής αλυσίδας (Οδηγία NIS2 21.2.δ). Στείλε του ερωτηματολόγιο με το εργαλείο ' + a(SUPPLIER, 'Αξιολόγηση προμηθευτή') + '.');
+            if (x.prov === 'tenant') r.notes.push('Η πρόσβαση παρόχου στο Defender portal γίνεται με GDAP ή Microsoft Entra B2B και multitenant management. Για το ISOC ειδικά, η Microsoft δεν περιγράφει ακόμα σενάριο παρόχου, οπότε ρώτα τον πάροχο πριν το ενεργοποιήσεις. ' + a(CFG.links.mssp_guide, 'Οδηγός της Microsoft για MSSPs', true));
+            if (x.prov === 'unknown') r.notes.push('Ρώτα τον πάροχο σε ποια πλατφόρμα δουλεύει και πού ζουν τα logs σου. Η απάντηση μπορεί να αλλάξει το αποτέλεσμα.');
+            r.req.push('24.β');
+        }
+
+        if (!skilled) {
+            r.notes.push('Βάλε στο πλάνο εκπαίδευσης το ' + a(CFG.links.sc200, 'SC-200 (Microsoft Security Operations Analyst)', true) + ', που καλύπτει Defender XDR, Sentinel και KQL.' + (x.soc === 'external' ? ' Χωρίς αυτή τη γνώση, όποιος επιβλέπει δεν μπορεί να κρίνει αν ο πάροχος κάνει καλά τη δουλειά του.' : '') + ' Η εκπαίδευση είναι και απαίτηση (ΚΥΑ 21.α, Οδηγία NIS2 21.2.ζ).');
+            r.req.push('21.α');
+        }
+
+        r.req.push('24.ε');
+        return r;
+    }
+    window.__isocDecision = { decide: decide };
+
+    var LEVEL = {
+        keep: 'border-amber-500/50', provider: 'border-slate-500/50',
+        sentinel: 'border-amber-500/50', xdr: 'border-emerald-500/50', isoc: 'border-blue-500/50'
+    };
+    var LABEL = {
+        '24.α': 'Πλάνο ανίχνευσης και απόκρισης', '24.β': 'Υπεύθυνος απόκρισης', '24.δ': 'Τήρηση καταγραφών',
+        '24.ε': 'Τακτικός έλεγχος καταγραφών', '21.α': 'Εκπαίδευση προσωπικού'
+    };
+    var err = $('idError'), box = $('idResult');
+    function fail(msg) { err.textContent = msg; err.classList.remove('hidden'); box.classList.add('hidden'); }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        err.classList.add('hidden');
+        var x = { lic: $('idLic').value, sen: $('idSen').value, ret: $('idRet').value, src: $('idSrc').value,
+                  aud: $('idAud').value, soc: soc.value, prov: prov.value, team: team.value, over: over.value, skill: $('idSkill').value };
+        var ext = x.soc === 'external';
+        if (!x.lic || !x.sen || !x.ret || !x.src || !x.aud || !x.soc || !x.skill || (ext ? !x.over : !x.team)) return fail('Απάντησε σε όλες τις ερωτήσεις.');
+        if (ext && !x.prov) return fail('Διάλεξε σε ποια πλατφόρμα δουλεύει ο πάροχος (6α).');
+
+        var r = decide(x);
+        box.className = 'mt-5 rounded-lg border bg-slate-900/60 p-5 ' + LEVEL[r.key];
+        $('idTitle').textContent = r.title;
+        $('idWhy').innerHTML = r.why.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+        $('idNotes').innerHTML = r.notes.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+        $('idNotesWrap').classList.toggle('hidden', r.notes.length === 0);
+        var seen = {}, order = ['21.α', '24.α', '24.β', '24.δ', '24.ε'];
+        r.req.forEach(function (c) { seen[c] = true; });
+        $('idReq').innerHTML = order.filter(function (c) { return seen[c]; })
+            .map(function (c) { return req(KYA, c, LABEL[c]); }).join('') +
+            (x.soc === 'external' ? req(NIS2, '21.2.δ', 'Εφοδιαστική αλυσίδα (Οδηγία NIS2)') : '') +
+            (seen['21.α'] ? req(NIS2, '21.2.ζ', 'Εκπαίδευση (Οδηγία NIS2)') : '');
+        box.classList.remove('hidden');
+        box.focus();
+    });
+    form.addEventListener('reset', function () {
+        setTimeout(function () { syncForm(); box.classList.add('hidden'); err.classList.add('hidden'); }, 0);
+    });
+})();
+</script>
