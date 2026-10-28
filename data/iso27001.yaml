@@ -473,6 +473,8 @@ articles:
       url: /posts/teams-security-detection-report/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
   - code: A.5.26
@@ -492,6 +494,8 @@ articles:
     - *id011
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
@@ -1230,6 +1234,8 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
       url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
       page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
   - code: A.8.16
     scope: Νέο στην έκδοση 2022
     requirement: Monitoring activities
@@ -1249,6 +1255,8 @@ articles:
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
     - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'

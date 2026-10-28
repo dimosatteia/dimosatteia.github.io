@@ -1242,6 +1242,8 @@ articles:
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
@@ -1294,6 +1296,8 @@ articles:
       url: /posts/secure-score-grc-part-3-operations/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
   - code: 24.ε
     scope: Βασικές και σημαντικές
     requirement: Τακτικός έλεγχος των καταγραφών για ύποπτη δραστηριότητα. Κατάλληλα όρια και συνθήκες ειδοποίησης όταν ο έλεγχος είναι αυτοματοποιημένος.
@@ -1317,6 +1321,8 @@ articles:
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'

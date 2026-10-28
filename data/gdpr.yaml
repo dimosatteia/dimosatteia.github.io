@@ -559,6 +559,8 @@ articles:
       url: /posts/generally-available/defender-identity-sensor-v3-automatic-activation/
     - title: 'Preview: ISOC, το SIEM μπαίνει στο Microsoft Defender χωρίς Sentinel workspace'
       url: /posts/previews/isoc-integrated-security-operations-defender/
+    - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
+      url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'

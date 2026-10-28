@@ -114,6 +114,8 @@ verification:
 - **ISO/IEC 27001 [A.5.25](/iso-27001/#A-5-25), [A.5.26](/iso-27001/#A-5-26) και [A.8.16](/iso-27001/#A-8-16):** αξιολόγηση συμβάντων, απόκριση σε περιστατικά και monitoring activities.
 - **GDPR [33.1](/gdpr/#33-1):** ένα οργανωμένο case με χρονολόγιο βοηθά να τεκμηριώσεις πότε έγινε αντιληπτή μια παραβίαση, που είναι το σημείο από το οποίο μετρούν οι 72 ώρες.
 
+> 📖 **Το επόμενο βήμα:** Defender XDR, ISOC ή Microsoft Sentinel; Σύγκριση σε άδεια, δεδομένα και διατήρηση logs, και πώς διαλέγεις: **[Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου](/posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/)**.
+
 ---
 
 ## Πηγές και επαλήθευση {#last-verified}
