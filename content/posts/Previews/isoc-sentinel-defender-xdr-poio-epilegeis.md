@@ -35,6 +35,7 @@ releases:
   - "preview"
 ShowToc: true
 TocOpen: false
+weight: -7
 cover:
   image: "/images/isoc-defender-home-tenant.webp"
   alt: "Η αρχική σελίδα του Microsoft Defender portal με το banner του ISOC, σε πραγματικό tenant"
