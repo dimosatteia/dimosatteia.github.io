@@ -1,9 +1,9 @@
 ---
 title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 44/2026)"
 slug: "microsoft-365-security-ti-allaxe-2026-w44"
-date: 2026-10-30T08:00:00+02:00
-lastmod: 2026-10-30T08:00:00+02:00
-draft: true
+date: 2026-10-29T21:00:00+02:00
+lastmod: 2026-10-29T21:00:00+02:00
+draft: false
 keywords:
   - Microsoft Defender νέα
   - Security Operator Unified RBAC Defender for Office 365

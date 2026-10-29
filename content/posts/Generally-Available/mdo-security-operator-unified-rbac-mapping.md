@@ -2,9 +2,9 @@
 title: "Generally Available: Ο Security Operator χάνει τις πολιτικές του Defender for Office 365 στο Unified RBAC"
 seoTitle: "GA: Security Operator χωρίς πολιτικές MDO στο Unified RBAC"
 slug: "mdo-security-operator-unified-rbac-mapping"
-date: 2026-10-30T08:05:00+02:00
-lastmod: 2026-10-30T08:05:00+02:00
-draft: true
+date: 2026-10-29T21:05:00+02:00
+lastmod: 2026-10-29T21:05:00+02:00
+draft: false
 keywords:
   - Microsoft Defender for Office 365
   - Security Operator Unified RBAC

@@ -2,9 +2,9 @@
 title: "Generally Available: Move to quarantine, νέα ενέργεια αποκατάστασης για email στο Defender for Office 365"
 seoTitle: "GA: Move to quarantine στο Defender for Office 365"
 slug: "mdo-move-to-quarantine-remediation-action"
-date: 2026-10-30T08:10:00+02:00
-lastmod: 2026-10-30T08:10:00+02:00
-draft: true
+date: 2026-10-29T21:10:00+02:00
+lastmod: 2026-10-29T21:10:00+02:00
+draft: false
 keywords:
   - Microsoft Defender for Office 365
   - Move to quarantine

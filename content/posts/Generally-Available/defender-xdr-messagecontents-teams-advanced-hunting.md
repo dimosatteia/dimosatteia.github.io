@@ -2,9 +2,9 @@
 title: "Generally Available: Ο πίνακας MessageContents φέρνει μηνύματα Teams στο advanced hunting του Defender XDR"
 seoTitle: "GA: Πίνακας MessageContents για Teams στο Defender XDR"
 slug: "defender-xdr-messagecontents-teams-advanced-hunting"
-date: 2026-10-30T08:15:00+02:00
-lastmod: 2026-10-30T08:15:00+02:00
-draft: true
+date: 2026-10-29T21:15:00+02:00
+lastmod: 2026-10-29T21:15:00+02:00
+draft: false
 keywords:
   - MessageContents table
   - advanced hunting Microsoft Teams
