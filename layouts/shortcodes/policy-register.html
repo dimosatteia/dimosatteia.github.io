@@ -1,4 +1,5 @@
 {{- /* Εργαλείο «Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025» (Policy Gap & Register).
+       Πυρήνας: οι 12 πολιτικές του άρθρου 6 (ομάδα με core: true). Λοιπή τεκμηρίωση: όσα ζητούν τα άρθρα 4 έως 25.
        Ο ΥΑΣΠΕ δηλώνει για κάθε υποχρεωτικό έγγραφο αν υπάρχει, σε ποια κατάσταση είναι και πότε αναθεωρήθηκε,
        και παίρνει ποσοστό κάλυψης, κενά με προτεραιότητα και μητρώο έτοιμο για τον έλεγχο (.xlsx και .pdf).
        Τα έγγραφα έρχονται από το data/policy_register.yaml. Οι εξαγωγές από το static/js/policy-register-export.js.
@@ -23,7 +24,8 @@
 </style>
 <div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-4 sm:p-5" id="prTool">
     <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-2">Μητρώο πολιτικών · ΚΥΑ 1689/2025 · NIS2 · ISO/IEC 27001 · GDPR</p>
-    <p class="text-xs text-slate-400 mb-4">Έξι βήματα. Κάθε βήμα ανοίγει αφού ολοκληρώσεις το προηγούμενο. Με <span class="prKbd">Tab</span> πας στο επόμενο πεδίο, με τα <span class="prKbd">←</span> <span class="prKbd">→</span> αλλάζεις κατάσταση σε ένα έγγραφο και με <span class="prKbd">Enter</span> πατάς το κουμπί που είναι επιλεγμένο. Οι ημερομηνίες γράφονται ηη/μμ/εεεε.</p>
+    <p class="text-sm text-slate-300 mb-2">Η ΚΥΑ απαριθμεί ρητά μόνο <span class="font-semibold text-slate-100">12 πολιτικές</span>, στο άρθρο 6: τη γενική πολιτική και 11 θεματικές. Αυτές είναι ο πυρήνας του μητρώου και το κύριο ποσοστό κάλυψης. Τα άρθρα 4 έως 25 ζητούν και άλλα στοιχεία τεκμηρίωσης, όπως το πρόγραμμα, την εκτίμηση κινδύνων, τις διαδικασίες που συνοδεύουν κάθε πολιτική, τα πλάνα και τους καταλόγους. Τα βρίσκεις στη <span class="font-semibold text-slate-100">λοιπή τεκμηρίωση</span>, με δικό τους ποσοστό. Δεν είναι προαιρετικά: είναι υποχρεώσεις της ΚΥΑ που δεν διατυπώνονται ως λίστα εγγράφων.</p>
+    <p class="text-xs text-slate-400 mb-4">{{ add (len $D.groups) 1 }} βήματα. Κάθε βήμα ανοίγει αφού ολοκληρώσεις το προηγούμενο. Με <span class="prKbd">Tab</span> πας στο επόμενο πεδίο, με τα <span class="prKbd">←</span> <span class="prKbd">→</span> αλλάζεις κατάσταση σε ένα έγγραφο και με <span class="prKbd">Enter</span> πατάς το κουμπί που είναι επιλεγμένο. Οι ημερομηνίες γράφονται ηη/μμ/εεεε.</p>
 
     <form id="prForm" class="flex flex-col gap-3" novalidate data-clarity-mask="true" autocomplete="off">
 
@@ -63,10 +65,17 @@
         {{- range $gi, $g := $D.groups }}
         {{- $n := add $gi 2 }}
         {{- $last := eq $n (add (len $D.groups) 1) }}
+        {{- if and (not $g.core) (eq $gi 1) }}
+        <div class="mt-3 rounded-lg border border-slate-700/70 bg-slate-950/30 px-4 py-3">
+            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Λοιπή τεκμηρίωση · άρθρα 4 έως 25</p>
+            <p class="mt-1 text-xs text-slate-400">Ό,τι ζητά η ΚΥΑ πέρα από τις 12 πολιτικές του άρθρου 6: αποφάσεις, διαδικασίες, πλάνα και μητρώα. Όπου η ΚΥΑ λέει «πολιτική και διαδικασίες», η διαδικασία είναι εδώ, ως χωριστό τεκμήριο. Αν την έχεις ως ενότητα της πολιτικής, δήλωσέ τη και γράψε την ενότητα στις παρατηρήσεις.</p>
+        </div>
+        {{- end }}
         <details class="prStep group rounded-lg border border-slate-700 bg-slate-900/40 scroll-mt-24 min-w-0 open:border-blue-500/60" data-step="{{ $n }}" data-group="{{ $g.key }}" data-locked>
             <summary class="flex items-center gap-3 cursor-pointer list-none p-4 text-sm font-semibold text-slate-100 [&::-webkit-details-marker]:hidden">
                 <span class="prBadge flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-600 font-mono text-xs text-blue-400">{{ $n }}</span>
-                <span class="flex-1 min-w-0">{{ $g.name }}<span class="prNote block text-xs font-normal text-slate-400"></span></span>
+                <span class="flex-1 min-w-0">{{ $g.name }}{{ if $g.core }} <span class="ml-1 align-middle rounded border border-blue-500/50 px-1.5 py-0.5 text-[10px] font-mono font-normal text-blue-300">ΠΥΡΗΝΑΣ</span>{{ end }}<span class="prNote block text-xs font-normal text-slate-400"></span></span>
+                {{- if not $g.core }}<span class="prCount max-w-[45%] text-right text-[11px] leading-snug font-normal text-slate-400" data-group="{{ $g.key }}"></span>{{ end }}
                 <span class="prLock text-xs font-normal text-slate-500" aria-hidden="true">🔒</span>
                 {{ $chev | safeHTML }}
             </summary>
@@ -141,14 +150,14 @@
             <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="relative h-28 w-28 shrink-0 self-center">
                     <svg viewBox="0 0 120 120" class="h-28 w-28 -rotate-90" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="#1e293b" stroke-width="12"/><circle id="prRing" class="prRing" cx="60" cy="60" r="52" fill="none" stroke="#f43f5e" stroke-width="12" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center"><span id="prPct" class="text-2xl font-bold font-mono text-slate-100">0%</span><span class="text-[10px] text-slate-400">κάλυψη</span></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center"><span id="prPct" class="text-2xl font-bold font-mono text-slate-100">0%</span><span class="text-[10px] text-slate-400">άρθρο 6</span></div>
                 </div>
                 <div class="min-w-0 flex-1">
                     <p id="prHead" class="text-lg font-semibold text-slate-100"></p>
                     <p id="prVerdict" class="mt-1 text-sm text-slate-300 leading-relaxed"></p>
                 </div>
             </div>
-            <div id="prStats" class="mt-4 grid gap-3 grid-cols-2 sm:grid-cols-4"></div>
+            <div id="prStats" class="mt-4 grid gap-3 grid-cols-2 sm:grid-cols-5"></div>
             <div class="mt-4 flex flex-wrap gap-3">
                 <button type="button" id="prXlsx" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">📥 Μητρώο πολιτικών (.xlsx)</button>
                 <button type="button" id="prPdf" class="rounded-md border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800">📄 Αναφορά για τη διοίκηση και τον ελεγκτή (.pdf)</button>
@@ -331,21 +340,25 @@
     // ---------- Ζωντανό γράφημα στη δεξιά στήλη (partial policy-gauge, με policyGauge: true) ----------
     function side() {
         var ring = $('prSideRing'); if (!ring) return;
-        var r = collect(), set = r.rows.filter(function (x) { return x.set; });
+        var r = collect(), set = r.rows.filter(function (x) { return x.set; }), k = r.core, x = r.extra;
         var gaps = set.reduce(function (n, x) { return n + x.f.length; }, 0);
-        // Εξωτερικό δαχτυλίδι: τα εγκεκριμένα (ο αριθμός στη μέση). Εσωτερικό, μικρότερο: όσα είναι σε σχέδιο.
-        var proj = r.N ? Math.round((r.cnt.approved + r.cnt.draft) / r.N * 100) : 0, dp = r.N ? r.cnt.draft / r.N : 0;
-        ring.style.strokeDashoffset = (326.73 * (1 - r.pct / 100)).toFixed(2);
+        // Εξωτερικό δαχτυλίδι: οι εγκεκριμένες από τις 12 πολιτικές του άρθρου 6 (ο αριθμός στη μέση). Εσωτερικό: όσες είναι σε σχέδιο.
+        var proj = k.N ? Math.round((k.approved + k.draft) / k.N * 100) : 0, dp = k.N ? k.draft / k.N : 0;
+        ring.style.strokeDashoffset = (326.73 * (1 - k.pct / 100)).toFixed(2);
         $('prSideDraftRing').style.strokeDashoffset = (276.46 * (1 - dp)).toFixed(2);
-        $('prSidePct').textContent = r.pct + '%';
+        $('prSidePct').textContent = k.pct + '%';
         $('prSideDraft').textContent = r.cnt.draft;
         var pj = $('prSideProj');
-        pj.textContent = r.cnt.draft ? '+ ' + r.cnt.draft + ' σε σχέδιο: αν εγκριθούν, η κάλυψη πάει στο ' + proj + '%.' : '';
-        pj.classList.toggle('hidden', !r.cnt.draft);
+        pj.textContent = k.draft ? '+ ' + k.draft + (k.draft === 1 ? ' πολιτική' : ' πολιτικές') + ' σε σχέδιο: αν εγκριθούν, το άρθρο 6 πάει στο ' + proj + '%.' : '';
+        pj.classList.toggle('hidden', !k.draft);
+        var xe = $('prSideExtra');
+        if (xe) xe.textContent = x.approved + ' / ' + x.N + ' (' + x.pct + '%)';
+        var ke = $('prSideCore');
+        if (ke) ke.textContent = k.approved + ' / ' + k.N;
         $('prSideCount').textContent = set.length + ' / ' + r.N;
         $('prSideOk').textContent = set.filter(function (x) { return x.ok; }).length;
         $('prSideGaps').textContent = gaps;
-        $('prSideEnt').textContent = r.entity ? (r.entity === 'essential' ? 'Βασική οντότητα' : 'Σημαντική οντότητα') + ' · ' + r.N + ' υποχρεωτικά έγγραφα' : 'Διάλεξε είδος οντότητας στο βήμα 1.';
+        $('prSideEnt').textContent = r.entity ? (r.entity === 'essential' ? 'Βασική οντότητα' : 'Σημαντική οντότητα') + ' · ' + k.N + ' πολιτικές του άρθρου 6 και ' + x.N + ' έγγραφα λοιπής τεκμηρίωσης' : 'Διάλεξε είδος οντότητας στο βήμα 1.';
         Array.prototype.forEach.call(document.querySelectorAll('.prSideGrp'), function (b) {
             var g = r.groups.filter(function (x) { return x.g.key === b.getAttribute('data-group'); })[0];
             var n = g ? g.n : 0, ok = g ? g.ok : 0, dr = g ? g.draft : 0, p = n ? Math.round(ok / n * 100) : 0, pd = n ? Math.round((ok + dr) / n * 100) : 0;
@@ -369,8 +382,20 @@
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindSide); else bindSide();
 
+    // Πόσα έγγραφα έχει κάθε βήμα της λοιπής τεκμηρίωσης, ανά είδος. Πριν διαλέξεις οντότητα μετρά όλα τα έγγραφα.
+    var KIND_N = { policy: ['πολιτική', 'πολιτικές'], procedure: ['διαδικασία', 'διαδικασίες'], plan: ['πλάνο', 'πλάνα'], register: ['μητρώο', 'μητρώα'], scheme: ['σχήμα', 'σχήματα'], decision: ['απόφαση', 'αποφάσεις'] };
+    var KIND_ORDER = ['policy', 'procedure', 'plan', 'register', 'scheme', 'decision'];
+    function counts(e) {
+        Array.prototype.forEach.call(form.querySelectorAll('.prCount'), function (c) {
+            var g = c.getAttribute('data-group'), n = {}, tot = 0;
+            D.items.forEach(function (i) { if (i.group === g && (!e || applies(i, e))) { n[i.kind] = (n[i.kind] || 0) + 1; tot++; } });
+            var parts = KIND_ORDER.filter(function (k) { return n[k]; }).map(function (k) { return n[k] + ' ' + KIND_N[k][n[k] === 1 ? 0 : 1]; });
+            c.textContent = tot + (tot === 1 ? ' έγγραφο' : ' έγγραφα') + ': ' + parts.join(', ');
+        });
+    }
     function applyEntity() {
         var e = ent();
+        counts(e);
         Array.prototype.forEach.call(form.querySelectorAll('.prItem'), function (b) {
             if (applies(IT[b.getAttribute('data-id')], e)) b.removeAttribute('data-na'); else b.setAttribute('data-na', '');
         });
@@ -476,6 +501,17 @@
             'PRC-08': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '1.0', last: ago(5, 12) },
             'PLN-01': { st: 'draft', owner: 'COO', target: fmt(addMonths(t, 3)) },
             'PLN-02': { st: 'none' }, 'PLN-03': { st: 'none' },
+            'PLN-04': { st: 'draft', owner: 'COO', target: fmt(addMonths(t, 2)) },
+            'PRC-09': { st: 'draft', owner: 'Legal', target: fmt(addMonths(t, 1)) },
+            'PRC-10': { st: 'approved', owner: 'IT', ver: '1.0', last: ago(5, 12) },
+            'PRC-11': { st: 'none', owner: 'ΥΑΣΠΕ' },
+            'PRC-12': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '1.0', last: ago(4, 20) },
+            'PRC-13': { st: 'approved', owner: 'IT', ver: '1.0', last: ago(5, 12) },
+            'PRC-14': { st: 'draft', owner: 'CISO' },
+            'PRC-15': { st: 'approved', owner: 'Facilities', ver: '1.0', last: ago(11, 8) },
+            'PRC-16': { st: 'approved', owner: 'CEO', ver: '1.0', last: ago(5, 12) },
+            'PRC-17': { st: 'approved', owner: 'IT', ver: '1.1', last: ago(5, 12) },
+            'REG-05': { st: 'approved', owner: 'ΥΑΣΠΕ', ver: '1.0', last: ago(9, 1) },
             'REG-01': { st: 'approved', owner: 'IT', ver: '—', last: ago(1, 30) },
             'REG-02': { st: 'approved', owner: 'Legal', ver: '—', last: ago(3, 18) },
             'REG-03': { st: 'none', owner: 'IT' },
@@ -553,9 +589,16 @@
         });
         var N = rows.length, cnt = { approved: 0, draft: 0, none: 0, unknown: 0 }, ready = 0;
         rows.forEach(function (r) { cnt[r.st]++; if (r.ok) ready++; });
+        // Πυρήνας: οι 12 πολιτικές του άρθρου 6. Λοιπή τεκμηρίωση: όλα τα υπόλοιπα (άρθρα 4 έως 25).
+        function part(rs) {
+            var c = { N: rs.length, approved: 0, draft: 0, none: 0, unknown: 0, ready: 0 };
+            rs.forEach(function (x) { c[x.st]++; if (x.ok) c.ready++; });
+            c.pct = c.N ? Math.round(c.approved / c.N * 100) : 0; return c;
+        }
+        var core = part(rows.filter(function (x) { return GR[x.it.group].core; })), extra = part(rows.filter(function (x) { return !GR[x.it.group].core; }));
         var groups = D.groups.map(function (g) {
             var rs = rows.filter(function (r) { return r.it.group === g.key; });
-            return { g: g, n: rs.length, ok: rs.filter(function (r) { return r.st === 'approved'; }).length, draft: rs.filter(function (r) { return r.st === 'draft'; }).length, ready: rs.filter(function (r) { return r.ok; }).length };
+            return { g: g, core: !!g.core, n: rs.length, ok: rs.filter(function (r) { return r.st === 'approved'; }).length, draft: rs.filter(function (r) { return r.st === 'draft'; }).length, ready: rs.filter(function (r) { return r.ok; }).length };
         }).filter(function (x) { return x.n; });
         var gaps = [];
         rows.forEach(function (r) { r.f.forEach(function (f) { gaps.push({ r: r, f: f }); }); });
@@ -573,7 +616,7 @@
         });
         return {
             entity: e, org: $('prOrg').value.trim(), date: fmt(t), rows: rows, N: N, cnt: cnt, ready: ready,
-            pct: N ? Math.round(cnt.approved / N * 100) : 0, groups: groups, gaps: gaps, cover: cover,
+            pct: N ? Math.round(cnt.approved / N * 100) : 0, core: core, extra: extra, groups: groups, gaps: gaps, cover: cover,
             crit: gaps.filter(function (x) { return x.f.p === 'critical'; }).length
         };
     }
@@ -607,20 +650,22 @@
     function build(quiet) {
         var r = collect(); last = r; side();
         var C = 326.73;
-        $('prRing').style.strokeDashoffset = (C * (1 - r.pct / 100)).toFixed(2);
-        $('prRing').style.stroke = r.pct >= 85 ? '#10b981' : r.pct >= 50 ? '#fbbf24' : '#f43f5e';
-        $('prPct').textContent = r.pct + '%';
+        var k = r.core, x = r.extra;
+        $('prRing').style.strokeDashoffset = (C * (1 - k.pct / 100)).toFixed(2);
+        $('prRing').style.stroke = k.pct >= 85 ? '#10b981' : k.pct >= 50 ? '#fbbf24' : '#f43f5e';
+        $('prPct').textContent = k.pct + '%';
         $('prHead').textContent = (r.org || 'Η οντότητά σου') + ' · ' + (r.entity === 'essential' ? 'βασική' : 'σημαντική') + ' οντότητα · ' + r.date;
-        $('prVerdict').innerHTML = esc(r.cnt.approved + ' από τα ' + r.N + ' υποχρεωτικά έγγραφα είναι εγκεκριμένα, και ' + r.ready + ' από αυτά είναι σε τάξη για τον έλεγχο: με έγκριση όπου τη ζητά η ΚΥΑ, με αναθεώρηση στην ώρα της και με υπεύθυνο.') +
+        $('prVerdict').innerHTML = esc(k.approved + ' από τις ' + k.N + ' πολιτικές του άρθρου 6 είναι εγκεκριμένες, και ' + k.ready + ' από αυτές είναι σε τάξη για τον έλεγχο: με έγκριση από το ΔΣ, με αναθεώρηση στην ώρα της και με υπεύθυνο. Από τη λοιπή τεκμηρίωση των άρθρων 4 έως 25 είναι εγκεκριμένα ' + x.approved + ' από τα ' + x.N + ' έγγραφα (' + x.pct + '%).') +
             (r.crit ? ' <span class="text-rose-300">Υπάρχουν ' + r.crit + (r.crit === 1 ? ' κρίσιμο κενό' : ' κρίσιμα κενά') + ': ξεκίνα από εκεί.</span>' : r.gaps.length ? '' : ' <span class="text-emerald-300">Δεν βρέθηκε κανένα κενό.</span>');
-        $('prStats').innerHTML = stat(r.cnt.approved + '/' + r.N, 'εγκεκριμένα', 'text-emerald-400') + stat(r.cnt.draft, 'σε σχέδιο', 'text-amber-300') + stat(r.cnt.none + r.cnt.unknown, 'λείπουν ή δεν ξέρεις', 'text-rose-400') + stat(r.ready, 'σε τάξη για τον έλεγχο');
+        $('prStats').innerHTML = stat(k.approved + '/' + k.N, 'πολιτικές του άρθρου 6 εγκεκριμένες', 'text-emerald-400') + stat(x.approved + '/' + x.N, 'λοιπή τεκμηρίωση εγκεκριμένη', 'text-emerald-300') + stat(r.cnt.draft, 'σε σχέδιο', 'text-amber-300') + stat(r.cnt.none + r.cnt.unknown, 'λείπουν ή δεν ξέρεις', 'text-rose-400') + stat(r.ready + '/' + r.N, 'σε τάξη για τον έλεγχο');
 
-        $('prBars').innerHTML = r.groups.map(function (x) {
+        $('prBars').innerHTML = r.groups.map(function (x, i) {
+            var sep = !x.core && (i === 0 || r.groups[i - 1].core) ? '<p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mt-2">Λοιπή τεκμηρίωση · άρθρα 4 έως 25</p>' : x.core ? '<p class="text-[11px] font-mono uppercase tracking-wider text-blue-300">Πυρήνας · άρθρο 6</p>' : '';
             var p = Math.round(x.ok / x.n * 100), q = Math.round(x.ready / x.n * 100), d = Math.round((x.ok + x.draft) / x.n * 100);
-            return '<div><div class="flex justify-between gap-2 text-xs text-slate-300 mb-1"><span>' + esc(x.g.name) + '</span><span class="font-mono text-slate-400 text-right">' + x.ok + '/' + x.n + ' εγκεκριμένα · ' + x.ready + ' σε τάξη' + (x.draft ? ' · ' + x.draft + ' σε σχέδιο' : '') + '</span></div>' +
+            return sep + '<div><div class="flex justify-between gap-2 text-xs text-slate-300 mb-1"><span>' + esc(x.g.name) + '</span><span class="font-mono text-slate-400 text-right">' + x.ok + '/' + x.n + ' εγκεκριμένα · ' + x.ready + ' σε τάξη' + (x.draft ? ' · ' + x.draft + ' σε σχέδιο' : '') + '</span></div>' +
                 '<div class="relative h-2.5 rounded bg-slate-800 overflow-hidden"><div class="absolute inset-y-0 left-0 bg-amber-400/75" style="width:' + d + '%"></div><div class="absolute inset-y-0 left-0 bg-emerald-800" style="width:' + p + '%"></div><div class="absolute inset-y-0 left-0 bg-emerald-500" style="width:' + q + '%"></div></div></div>';
         }).join('') + '<p class="text-xs text-slate-400 mt-1"><span class="text-emerald-400">■</span> σε τάξη · <span class="text-emerald-700">■</span> εγκεκριμένο, με εύρημα · <span class="text-amber-300">■</span> σε σχέδιο</p>' +
-            '<p class="text-xs text-slate-400 mt-2 leading-relaxed"><span class="text-slate-200">Πότε ένα έγγραφο είναι «σε τάξη»:</span> όταν είναι εγκεκριμένο και ισχύουν όλα μαζί: ημερομηνία έγκρισης από το ΔΣ, όπου τη ζητά ρητά η ΚΥΑ (γενική πολιτική, πρόγραμμα, ρόλοι και ΥΑΣΠΕ, οι 11 θεματικές), τελευταία αναθεώρηση μετά τις 06/05/2025, επόμενη αναθεώρηση που δεν έχει περάσει, και υπεύθυνος (owner). Τα σχέδια δεν μετρούν στην κάλυψη, γιατί ο ελεγκτής δέχεται μόνο έγγραφα σε ισχύ.</p>';
+            '<p class="text-xs text-slate-400 mt-2 leading-relaxed"><span class="text-slate-200">Πότε ένα έγγραφο είναι «σε τάξη»:</span> όταν είναι εγκεκριμένο και ισχύουν όλα μαζί: ημερομηνία έγκρισης από το ΔΣ, όπου τη ζητά ρητά η ΚΥΑ (γενική πολιτική, πρόγραμμα, ρόλοι και ΥΑΣΠΕ, οι 11 θεματικές), τελευταία αναθεώρηση μετά τις 06/05/2025, επόμενη αναθεώρηση που δεν έχει περάσει, και υπεύθυνος (owner). Τα σχέδια δεν μετρούν στην κάλυψη, γιατί ο ελεγκτής δέχεται μόνο έγγραφα σε ισχύ. Το κύριο ποσοστό είναι οι 12 πολιτικές του άρθρου 6, τα μόνα έγγραφα που η ΚΥΑ απαριθμεί ρητά. Η λοιπή τεκμηρίωση μετρά χωριστά.</p>';
 
         $('prGaps').innerHTML = r.gaps.length ? PRIO.map(function (p) {
             var list = r.gaps.filter(function (x) { return x.f.p === p.key; }); if (!list.length) return '';

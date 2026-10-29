@@ -1,12 +1,14 @@
 {{- /* Ζωντανό γράφημα κάλυψης του Μητρώου πολιτικών στη δεξιά στήλη, κάτω από το Table of Contents.
        Εμφανίζεται μόνο σε σελίδες με policyGauge: true. Το ενημερώνει το shortcode policy-register. */ -}}
 {{- $d := hugo.Data.policy_register -}}
+{{- $core := slice }}{{ range where $d.groups "core" true }}{{ $core = $core | append .key }}{{ end -}}
+{{- $nCore := len (where $d.items "group" "in" $core) -}}
 <div id="prSide" class="glass-card rounded-xl p-5 border-t-2 border-t-blue-500" aria-live="polite">
     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Κάλυψη μητρώου</h3>
     <div class="flex items-center gap-4">
         <div class="relative w-28 h-28 shrink-0">
             <svg viewBox="0 0 120 120" class="w-28 h-28 -rotate-90" aria-hidden="true">
-                <!-- Εξωτερικό: εγκεκριμένα (το ποσοστό κάλυψης) -->
+                <!-- Εξωτερικό: εγκεκριμένες από τις 12 πολιτικές του άρθρου 6 (το κύριο ποσοστό κάλυψης) -->
                 <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="10" class="text-slate-800"></circle>
                 <circle id="prSideRing" cx="60" cy="60" r="52" fill="none" stroke="#10b981" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" style="transition: stroke-dashoffset .4s ease"></circle>
                 <!-- Εσωτερικό, εφάπτεται στο εξωτερικό: σε σχέδιο -->
@@ -15,18 +17,20 @@
             </svg>
             <div class="absolute inset-0 flex flex-col items-center justify-center">
                 <span id="prSidePct" class="text-2xl font-bold font-mono text-slate-100 tabular-nums">0%</span>
-                <span class="text-[10px] font-mono text-slate-500">εγκεκριμένα</span>
+                <span class="text-[10px] font-mono text-slate-500">άρθρο 6</span>
             </div>
         </div>
         <div class="text-xs text-slate-400 leading-relaxed">
+            <p><span id="prSideCore" class="font-mono text-emerald-400">0 / {{ $nCore }}</span> πολιτικές άρθρου 6</p>
             <p><span id="prSideCount" class="font-mono text-slate-200">0 / {{ len $d.items }}</span> δηλωμένα</p>
             <p><span id="prSideDraft" class="font-mono text-amber-300">0</span> σε σχέδιο</p>
             <p><span id="prSideOk" class="font-mono text-emerald-400">0</span> σε τάξη</p>
             <p><span id="prSideGaps" class="font-mono text-rose-400">0</span> κενά</p>
         </div>
     </div>
+    <p class="mt-3 text-[11px] text-slate-400">Λοιπή τεκμηρίωση (άρθρα 4 έως 25): <span id="prSideExtra" class="font-mono text-emerald-300">0 / {{ sub (len $d.items) $nCore }}</span> εγκεκριμένα</p>
     <p id="prSideProj" class="mt-3 text-[11px] text-amber-200/90 hidden"></p>
-    <p class="mt-2 flex flex-wrap gap-x-3 text-[11px] text-slate-400"><span><span class="text-emerald-400">●</span> εγκεκριμένα</span><span><span class="text-amber-300">●</span> σε σχέδιο</span></p>
+    <p class="mt-2 flex flex-wrap gap-x-3 text-[11px] text-slate-400"><span><span class="text-emerald-400">●</span> εγκεκριμένες πολιτικές</span><span><span class="text-amber-300">●</span> σε σχέδιο</span></p>
     <details class="mt-2 text-[11px] text-slate-400">
         <summary class="cursor-pointer text-blue-400 hover:text-blue-300">Πότε ένα έγγραφο είναι «σε τάξη»;</summary>
         <p class="mt-1 leading-relaxed">Όταν είναι εγκεκριμένο και ισχύουν όλα: ημερομηνία έγκρισης από το ΔΣ, όπου τη ζητά ρητά η ΚΥΑ (γενική πολιτική, πρόγραμμα, ρόλοι και ΥΑΣΠΕ, οι 11 θεματικές), τελευταία αναθεώρηση μετά τις 06/05/2025, επόμενη αναθεώρηση που δεν έχει περάσει, και υπεύθυνος (owner).</p>

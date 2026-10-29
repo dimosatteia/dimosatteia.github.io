@@ -6,7 +6,7 @@ source:
   title: Εθνικό Πλαίσιο Απαιτήσεων Κυβερνοασφάλειας Βασικών και Σημαντικών Οντοτήτων
   fek: ΦΕΚ Β΄ 2186/6.5.2025
   url: https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf
-updated: '2026-10-18'
+updated: '2026-10-29'
 types:
 - key: tech
   label: Τεχνικό
@@ -53,6 +53,9 @@ articles:
     - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
       url: /tekmiriosi-ekpaideysis/
       page: /tekmiriosi-ekpaideysis
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
 - number: 5
   title: Πλαίσιο διαχείρισης κινδύνων
   requirements:
@@ -64,6 +67,10 @@ articles:
     evidence: Εγκεκριμένη μεθοδολογία διαχείρισης κινδύνων.
     verified: 2026-10-14
     license: Microsoft Defender for Endpoint Plan 2 (Microsoft 365 E5 ή αντίστοιχο)
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 5.1.β
     scope: Βασικές και σημαντικές
     requirement: Περιοδική εκτίμηση κινδύνων (risk assessment) με μεθοδολογία βασισμένη σε διεθνή πρότυπα.
@@ -77,6 +84,9 @@ articles:
       url: /posts/secure-score-grc-part-3-operations/
     - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
       url: /posts/secure-score-defender-praktikos-odigos/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 5.1.γ
     scope: Βασικές και σημαντικές
     requirement: Πλάνο αντιμετώπισης κινδύνων (risk treatment plan) με κριτήρια προτεραιοποίησης.
@@ -89,6 +99,9 @@ articles:
       url: /posts/secure-score-grc-part-3-operations/
     - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
       url: /posts/secure-score-grc-part-1-anatomy/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 5.1.δ
     scope: Βασικές και σημαντικές
     requirement: Αξιολόγηση και επικαιροποίηση εκτίμησης και πλάνου σε προγραμματισμένα διαστήματα και μετά από σοβαρά περιστατικά ή αλλαγές.
@@ -165,6 +178,9 @@ articles:
     posts:
     - title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
       url: /posts/secure-score-defender-praktikos-odigos/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 7.β
     scope: Βασικές και σημαντικές
     requirement: Ο Υ.Α.Σ.Π.Ε. αναφέρεται απευθείας στο ανώτατο όργανο διοίκησης.
@@ -194,6 +210,9 @@ articles:
       url: /posts/secure-score-grc-part-0-intro/
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 8.β
     scope: Μόνο βασικές
     requirement: Διασφάλιση αμεροληψίας των ελεγκτών.
@@ -232,6 +251,9 @@ articles:
       url: /posts/secure-score-grc-part-0-intro/
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 9.β
     scope: Βασικές και σημαντικές
     requirement: Διορθωτικές ενέργειες σε περίπτωση μη συμμόρφωσης.
@@ -261,6 +283,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Διαδικασία HR, αρχεία προσλήψεων.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 10.1.β
     scope: Βασικές και σημαντικές
     requirement: Ευθύνες και καθήκοντα που παραμένουν μετά τη λήξη ή αλλαγή της απασχόλησης.
@@ -306,6 +332,9 @@ articles:
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 11.β
     scope: Βασικές και σημαντικές
     requirement: Ταξινόμηση δεδομένων και αγαθών σε επίπεδα, με βάση εμπιστευτικότητα, ακεραιότητα και διαθεσιμότητα.
@@ -317,6 +346,9 @@ articles:
     posts:
     - title: 'Purview Auto-labeling: Από 100.000 σε 500.000 αρχεία την ημέρα, τι αλλάζει πραγματικά για το labeling backlog σου'
       url: /posts/purview-autolabeling-500k-scale-increase/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 11.γ
     scope: Βασικές και σημαντικές
     requirement: Γραπτή πολιτική και οδηγίες ορθής χρήσης αγαθών και δεδομένων σε όλο τον κύκλο ζωής.
@@ -332,6 +364,9 @@ articles:
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 11.δ
     scope: Βασικές και σημαντικές
     requirement: Γραπτή πολιτική για την ασφαλή διαχείριση αφαιρούμενων μέσων αποθήκευσης.
@@ -340,6 +375,10 @@ articles:
     evidence: 'Εγκεκριμένη πολιτική. Intune: Endpoint security, Attack surface reduction, Device control.'
     verified: 2026-10-14
     planned: 'Άρθρο για το device control: έρχεται.'
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
 - number: 12
   title: Διαχείριση κινδύνων από τις σχέσεις με προμηθευτές και παρόχους υπηρεσιών Τ.Π.Ε.
   requirements:
@@ -349,6 +388,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Εγκεκριμένη πολιτική ασφάλειας εφοδιαστικής αλυσίδας.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 12.1.β
     scope: Βασικές και σημαντικές
     requirement: Ενημερωμένος κατάλογος άμεσων προμηθευτών και παρόχων, με σημεία επαφής, προϊόντα/υπηρεσίες και ταξινόμηση κρισιμότητας.
@@ -359,6 +402,9 @@ articles:
     posts:
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 12.1.γ
     scope: Βασικές και σημαντικές
     requirement: 'Διαδικασίες διαχείρισης κινδύνων προμηθευτών σε όλο τον κύκλο ζωής: κριτήρια αξιολόγησης και απαιτήσεις κυβερνοασφάλειας για παρόχους και προϊόντα.'
@@ -376,6 +422,9 @@ articles:
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 12.1.δ
     scope: Βασικές και σημαντικές
     requirement: 'Ελάχιστο περιεχόμενο συμβάσεων: απαιτήσεις ασφάλειας, συστήματα και δεδομένα στα οποία αποκτά πρόσβαση ο προμηθευτής, δικαίωμα ελέγχου, ασφαλής λήξη.'
@@ -437,6 +486,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 2: Η ανατομία μιας πολιτικής, από τα Assignments ως τα Session controls'
       url: /posts/conditional-access-series/conditional-access-meros-2-politikes-kai-mixanismoi/
       page: /posts/Conditional-Access-Series/conditional-access-meros-2-politikes-kai-mixanismoi
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 13.β
     scope: Βασικές και σημαντικές
     requirement: Μοναδική ταυτότητα για κάθε χρήστη και σύστημα, ώστε να υπάρχει λογοδοσία.
@@ -598,6 +650,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: αποκατάσταση, baselines και ενσωμάτωση'
       url: /posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/04-mdvm-remediation-baselines-and-integration
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 14.γ
     scope: Βασικές και σημαντικές
     requirement: Αλλαγή των προεπιλεγμένων συνθηματικών (default passwords) κατά την εγκατάσταση.
@@ -630,6 +685,10 @@ articles:
     evidence: Προδιαγραφές ασφάλειας εφαρμογών.
     verified: 2026-10-14
     license: Microsoft Defender for Cloud Apps (το Microsoft 365 E3 περιλαμβάνει μόνο το Cloud App Discovery)
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 15.β
     scope: Βασικές και σημαντικές
     requirement: 'Αρχές ασφαλούς κώδικα και αρχιτεκτονικής: security by design, security by default, least privilege, zero trust.'
@@ -683,6 +742,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
       url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
       page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 16.β
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών διαχείρισης αλλαγών.
@@ -706,6 +768,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: από τις 771 ημέρες στις 4 ώρες'
       url: /posts/microsoft-defender-vulnerability-management-series/00-mdvm-bridge-from-771-days-to-4-hours/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/00-mdvm-bridge-from-771-days-to-4-hours
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 17.β
     scope: Βασικές και σημαντικές
     requirement: Τακτική λήψη και επεξεργασία πληροφοριών για ευπάθειες από κατάλληλες πηγές (αρχές, προμηθευτές, CSIRTs).
@@ -796,6 +861,9 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: αποκατάσταση, baselines και ενσωμάτωση'
       url: /posts/microsoft-defender-vulnerability-management-series/04-mdvm-remediation-baselines-and-integration/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/04-mdvm-remediation-baselines-and-integration
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 17.ζ
     scope: Βασικές και σημαντικές
     requirement: Διαδικασία γνωστοποίησης μη δημόσια γνωστών ευπαθειών στο αρμόδιο CSIRT.
@@ -811,6 +879,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Εγκεκριμένη πολιτική διενέργειας ελέγχων.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 18.1.β
     scope: Βασικές και σημαντικές
     requirement: Εξωτερικοί έλεγχοι παρείσδυσης (external penetration tests) τουλάχιστον ετησίως ή μετά από σοβαρό περιστατικό.
@@ -828,6 +900,9 @@ articles:
     posts:
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 18.1.δ
     scope: Βασικές και σημαντικές
     requirement: Ετήσια αυτοαξιολόγηση με τον Οδηγό της Εθνικής Αρχής Κυβερνοασφάλειας και αποστολή αποτελεσμάτων με πλάνο διορθωτικών ενεργειών.
@@ -840,6 +915,9 @@ articles:
       url: /posts/secure-score-grc-part-0-intro/
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 18.2.α
     scope: Μόνο βασικές
     requirement: Εσωτερικοί έλεγχοι παρείσδυσης (internal penetration tests) τουλάχιστον ετησίως ή μετά από σοβαρό περιστατικό.
@@ -868,6 +946,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Εγκεκριμένη πολιτική ασφάλειας δικτύων.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 19.β
     scope: Βασικές και σημαντικές
     requirement: Τείχη προστασίας (firewalls) και, ανάλογα με την κρισιμότητα, IDS/IPS ή WAF.
@@ -1107,6 +1189,9 @@ articles:
     - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
       url: /kouiz-phishing/
       page: /kouiz-phishing
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 21.β
     scope: Βασικές και σημαντικές
     requirement: Εξειδικευμένη εκπαίδευση για το τεχνικό προσωπικό, ανάλογα με τον ρόλο του.
@@ -1138,6 +1223,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Εγκεκριμένη πολιτική κρυπτογράφησης δεδομένων και επικοινωνιών.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 22.β
     scope: Βασικές και σημαντικές
     requirement: 'Κρυπτογράφηση των δεδομένων αυξημένης κρισιμότητας σε αποθήκευση (encryption at rest): τερματικά, διακομιστές, αφαιρούμενα μέσα, εφαρμογές, βάσεις δεδομένων.'
@@ -1188,6 +1277,10 @@ articles:
     control: Εκτός Microsoft 365. Για τα δεδομένα που φιλοξενούνται στο Microsoft 365, οι εκθέσεις ελέγχου των datacenters της Microsoft βρίσκονται στο Service Trust Portal.
     evidence: Εγκεκριμένη πολιτική φυσικής και περιβαλλοντικής ασφάλειας.
     verified: 2026-10-14
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 23.β
     scope: Βασικές και σημαντικές
     requirement: Μέτρα φυσικής ασφάλειας και επίβλεψης στην περίμετρο και εσωτερικές ζώνες προστασίας.
@@ -1247,6 +1340,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 24.β
     scope: Βασικές και σημαντικές
     requirement: Ορισμός τουλάχιστον ενός υπαλλήλου που συντονίζει (ή επιβλέπει, αν υπάρχει εξωτερικός ανάδοχος) την απόκριση σε περιστατικά.
@@ -1257,6 +1353,9 @@ articles:
     posts:
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 24.γ
     scope: Βασικές και σημαντικές
     requirement: Καταγραφή δραστηριοτήτων (event logging) σε διακομιστές, δικτυακές συσκευές, συσκευές χρηστών, συστήματα και εφαρμογές, ιδίως για ευαίσθητα δεδομένα και προνομιούχους λογαριασμούς.
@@ -1350,12 +1449,19 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
       url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
       page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 25.1.β
     scope: Βασικές και σημαντικές
     requirement: Ανάλυση επιχειρηματικών επιπτώσεων (business impact analysis) και απαιτήσεις συνέχειας για τα συστήματα.
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Έκθεση BIA με RTO και RPO.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 25.1.γ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση του πλάνου.
@@ -1368,6 +1474,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Εγκεκριμένη πολιτική αντιγράφων ασφαλείας.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 25.1.ε
     scope: Βασικές και σημαντικές
     requirement: Αυτοματοποιημένη λήψη και τήρηση αντιγράφων ασφαλείας συστημάτων, εφαρμογών και δεδομένων, ανάλογα με την κρισιμότητα.
@@ -1399,6 +1509,10 @@ articles:
     type: org
     control: Δεν καλύπτεται από ρύθμιση.
     evidence: Εγκεκριμένες διαδικασίες διαχείρισης κρίσεων.
+    posts:
+    - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
+      url: /mitroo-politikon/
+      page: /mitroo-politikon
   - code: 25.2.β
     scope: Μόνο βασικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών διαχείρισης κρίσεων.

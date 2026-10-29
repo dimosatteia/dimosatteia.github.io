@@ -57,7 +57,8 @@
             row.eachCell(function (c) { c.fill = fill('FF0F172A'); c.font = { bold: true, color: { argb: 'FFFFFFFF' } }; c.alignment = { vertical: 'middle', wrapText: true }; c.border = border; });
             row.height = 32;
         }
-        var N = r.rows.length, last = N + 1;
+        var N = r.rows.length, last = N + 1, K = r.core, X = r.extra;
+        var coreName = (D.groups.filter(function (g) { return g.core; })[0] || {}).name || '';
 
         // 1. Οδηγίες
         var wi = wb.addWorksheet('Οδηγίες', { views: [{ showGridLines: false }] });
@@ -70,12 +71,13 @@
             ['Οντότητα', r.org || ''],
             ['Είδος', entName(r.entity)],
             ['Ημερομηνία', todayStr()],
-            ['Υποχρεωτικά έγγραφα', N],
-            ['Εγκεκριμένα', r.cnt.approved + ' (' + r.pct + '%)'],
-            ['Σε τάξη για τον έλεγχο', r.ready],
+            ['Πολιτικές του άρθρου 6 (πυρήνας)', K.approved + ' από ' + K.N + ' εγκεκριμένες (' + K.pct + '%), ' + K.ready + ' σε τάξη για τον έλεγχο'],
+            ['Λοιπή τεκμηρίωση (άρθρα 4 έως 25)', X.approved + ' από ' + X.N + ' εγκεκριμένα (' + X.pct + '%), ' + X.ready + ' σε τάξη για τον έλεγχο'],
+            ['Σύνολο εγγράφων', N + ', από τα οποία ' + r.cnt.approved + ' εγκεκριμένα (' + r.pct + '%) και ' + r.ready + ' σε τάξη'],
             ['Κενά', r.gaps.length + (r.crit ? ', από τα οποία ' + r.crit + ' κρίσιμα' : '')],
             ['', ''],
             ['Τι είναι', 'Το μητρώο των πολιτικών, διαδικασιών, πλάνων και μητρώων που ζητά η ΚΥΑ 1689/2025 (ΦΕΚ Β΄ 2186/06.05.2025), με την κατάσταση, τον υπεύθυνο, την έγκριση από το ανώτατο όργανο διοίκησης και τις αναθεωρήσεις κάθε εγγράφου. Είναι το «έγγραφο» τεκμήριο του άρθρου 3 παρ. 3 περ. α της ΚΥΑ.'],
+            ['Πυρήνας και λοιπή τεκμηρίωση', 'Η ΚΥΑ απαριθμεί ρητά μόνο 12 πολιτικές, στο άρθρο 6: τη γενική πολιτική ασφάλειας πληροφοριών και 11 ελάχιστες θεματικές. Αυτές είναι ο πυρήνας του μητρώου (ενότητα «' + coreName + '»). Τα υπόλοιπα έγγραφα είναι η λοιπή τεκμηρίωση που ζητούν τα άρθρα 4 έως 25 χωρίς να τη διατυπώνουν ως λίστα εγγράφων. Δεν είναι προαιρετικά. Η ΚΥΑ δεν ορίζει συνολικό αριθμό εγγράφων: η ομαδοποίηση της λοιπής τεκμηρίωσης είναι του εργαλείου.'],
             ['Πώς το ενημερώνεις', 'Στο φύλλο «Μητρώο πολιτικών» αλλάζεις την κατάσταση από τη λίστα και γράφεις τις ημερομηνίες ως ηη/μμ/εεεε. Η επόμενη αναθεώρηση υπολογίζεται μόνη της από την τελευταία αναθεώρηση ή την έγκριση του ΔΣ και τον κύκλο σε μήνες, και γίνεται κόκκινη όταν περάσει. Μην αλλάζεις τη στήλη «Κωδικός»: με αυτήν το εργαλείο διαβάζει πίσω το αρχείο.'],
             ['Τα κενά', 'Το φύλλο «Κενά και ενέργειες» έχει κάθε εύρημα με προτεραιότητα και προτεινόμενη ενέργεια. Συμπλήρωσε υπεύθυνο, προθεσμία και κατάσταση. Είναι το πλάνο διορθωτικών ενεργειών που ζητά το άρθρο 9 περ. β.'],
             ['Συνέχεια', 'Φόρτωσε αυτό το αρχείο στη σελίδα του εργαλείου (' + page + ') για να δεις ξανά ποσοστό, κενά και αναφορά .pdf με τα σημερινά δεδομένα.'],
@@ -148,20 +150,23 @@
         wsum.getCell('A1').font = { bold: true, size: 13, color: { argb: 'FF0F172A' } };
         var S = "'" + SHEET + "'!", G = S + '$G$2:$G$' + last, Dg = S + '$D$2:$D$' + last, M = S + '$M$2:$M$' + last;
         var sum = [
-            ['Υποχρεωτικά έγγραφα', { formula: 'COUNTA(' + S + '$A$2:$A$' + last + ')', result: N }],
+            ['Όλα τα έγγραφα του μητρώου', { formula: 'COUNTA(' + S + '$A$2:$A$' + last + ')', result: N }],
             [ST.approved, { formula: 'COUNTIF(' + G + ',"' + ST.approved + '")', result: r.cnt.approved }],
             [ST.draft, { formula: 'COUNTIF(' + G + ',"' + ST.draft + '")', result: r.cnt.draft }],
             [ST.none, { formula: 'COUNTIF(' + G + ',"' + ST.none + '")', result: r.cnt.none }],
             [ST.unknown, { formula: 'COUNTIF(' + G + ',"' + ST.unknown + '")', result: r.cnt.unknown }],
-            ['Κάλυψη (εγκεκριμένα προς σύνολο)', { formula: 'IFERROR(B4/B3,0)', result: N ? r.cnt.approved / N : 0 }],
+            ['Κάλυψη όλων (εγκεκριμένα προς σύνολο)', { formula: 'IFERROR(B4/B3,0)', result: N ? r.cnt.approved / N : 0 }],
             ['Εκπρόθεσμες αναθεωρήσεις σήμερα', { formula: 'COUNTIFS(' + M + ',"<"&TODAY(),' + G + ',"' + ST.approved + '")' }],
-            ['Χωρίς έγκριση ΔΣ, ενώ τη ζητά η ΚΥΑ', { formula: 'COUNTIFS(' + S + '$F$2:$F$' + last + ',"Ναι",' + G + ',"' + ST.approved + '",' + S + '$J$2:$J$' + last + ',"")' }]
+            ['Χωρίς έγκριση ΔΣ, ενώ τη ζητά η ΚΥΑ', { formula: 'COUNTIFS(' + S + '$F$2:$F$' + last + ',"Ναι",' + G + ',"' + ST.approved + '",' + S + '$J$2:$J$' + last + ',"")' }],
+            ['Πολιτικές του άρθρου 6 (πυρήνας)', { formula: 'COUNTIF(' + Dg + ',"' + coreName + '")', result: K.N }],
+            ['Πολιτικές του άρθρου 6 εγκεκριμένες', { formula: 'COUNTIFS(' + Dg + ',"' + coreName + '",' + G + ',"' + ST.approved + '")', result: K.approved }],
+            ['Κάλυψη των πολιτικών του άρθρου 6', { formula: 'IFERROR(B12/B11,0)', result: K.N ? K.approved / K.N : 0 }]
         ];
         sum.forEach(function (x, i) { var row = wsum.getRow(i + 3); row.values = x; row.getCell(1).font = { bold: true, color: { argb: 'FF334155' } }; });
-        wsum.getCell('B8').numFmt = '0%';
-        var gh = wsum.getRow(13); gh.values = ['Ενότητα', 'Έγγραφα', ST.approved, 'Κάλυψη']; header(gh);
+        wsum.getCell('B8').numFmt = '0%'; wsum.getCell('B13').numFmt = '0%';
+        var gh = wsum.getRow(15); gh.values = ['Ενότητα', 'Έγγραφα', ST.approved, 'Κάλυψη']; header(gh);
         r.groups.forEach(function (g, i) {
-            var n = 14 + i, row = wsum.getRow(n);
+            var n = 16 + i, row = wsum.getRow(n);
             row.values = [g.g.name, { formula: 'COUNTIF(' + Dg + ',A' + n + ')', result: g.n }, { formula: 'COUNTIFS(' + Dg + ',A' + n + ',' + G + ',"' + ST.approved + '")', result: g.ok }, { formula: 'IFERROR(C' + n + '/B' + n + ',0)', result: g.n ? g.ok / g.n : 0 }];
             row.getCell(4).numFmt = '0%'; row.eachCell(function (c) { c.border = border; });
         });
@@ -203,7 +208,7 @@
 
         // 6. Κρυφό φύλλο για τη φόρτωση πίσω στο εργαλείο
         var wm = wb.addWorksheet('_meta', { state: 'veryHidden' });
-        wm.getCell('A1').value = JSON.stringify({ tool: 'policy-register', v: 1, entity: r.entity, org: r.org || '' });
+        wm.getCell('A1').value = JSON.stringify({ tool: 'policy-register', v: 2, entity: r.entity, org: r.org || '' });
 
         wb.calcProperties = { fullCalcOnLoad: true };
         return wb.xlsx.writeBuffer().then(fixValidations).then(function (buf) {
@@ -315,19 +320,21 @@
                 ], fillColor: C.navy, margin: [16, 18, 16, 18]
             }]] }, layout: 'noBorders', margin: [0, 0, 0, 14]
         });
-        var pc = r.pct >= 85 ? C.green : r.pct >= 50 ? C.amber : C.red;
+        var K = r.core, X = r.extra;
+        var pc = K.pct >= 85 ? C.green : K.pct >= 50 ? C.amber : C.red;
         content.push({
             columns: [
-                { width: 110, table: { widths: ['*'], body: [[{ stack: [{ text: r.pct + '%', fontSize: 28, bold: true, color: pc, alignment: 'center' }, { text: 'κάλυψη', fontSize: 8, color: C.muted, alignment: 'center' }], fillColor: C.band, margin: [6, 10, 6, 10] }]] }, layout: 'noBorders' },
+                { width: 110, table: { widths: ['*'], body: [[{ stack: [{ text: K.pct + '%', fontSize: 28, bold: true, color: pc, alignment: 'center' }, { text: 'πολιτικές άρθρου 6', fontSize: 8, color: C.muted, alignment: 'center' }], fillColor: C.band, margin: [6, 10, 6, 10] }]] }, layout: 'noBorders' },
                 { width: '*', columns: [
-                    { stack: [{ text: r.cnt.approved + '/' + r.N, style: 'big', color: C.green }, { text: 'εγκεκριμένα', style: 'small' }] },
+                    { stack: [{ text: K.approved + '/' + K.N, style: 'big', color: C.green }, { text: 'άρθρο 6', style: 'small' }] },
+                    { stack: [{ text: X.approved + '/' + X.N, style: 'big', color: C.green }, { text: 'λοιπά έγγραφα', style: 'small' }] },
                     { stack: [{ text: String(r.cnt.draft), style: 'big', color: C.amber }, { text: 'σε σχέδιο', style: 'small' }] },
                     { stack: [{ text: String(r.cnt.none + r.cnt.unknown), style: 'big', color: C.red }, { text: 'λείπουν ή άγνωστα', style: 'small' }] },
                     { stack: [{ text: String(r.ready), style: 'big' }, { text: 'σε τάξη για τον έλεγχο', style: 'small' }] }
                 ], margin: [8, 12, 0, 0] }
             ], columnGap: 12, margin: [0, 0, 0, 12]
         });
-        content.push({ text: r.cnt.approved + ' από τα ' + r.N + ' υποχρεωτικά έγγραφα είναι εγκεκριμένα, και ' + r.ready + ' από αυτά είναι σε τάξη για τον έλεγχο: με έγκριση από το ανώτατο όργανο διοίκησης όπου τη ζητά η ΚΥΑ, με αναθεώρηση στην ώρα της και με υπεύθυνο. ' +
+        content.push({ text: K.approved + ' από τις ' + K.N + ' πολιτικές του άρθρου 6 είναι εγκεκριμένες, και ' + K.ready + ' από αυτές είναι σε τάξη για τον έλεγχο: με έγκριση από το ανώτατο όργανο διοίκησης, με αναθεώρηση στην ώρα της και με υπεύθυνο. Από τη λοιπή τεκμηρίωση των άρθρων 4 έως 25 είναι εγκεκριμένα ' + X.approved + ' από τα ' + X.N + ' έγγραφα (' + X.pct + '%). ' +
             (r.gaps.length ? 'Βρέθηκαν ' + r.gaps.length + ' κενά' + (r.crit ? ', από τα οποία ' + r.crit + ' κρίσιμα' : '') + '.' : 'Δεν βρέθηκε κανένα κενό.'), style: 'p' });
         content.push({ text: 'Ανά ενότητα', style: 'h2' });
         content.push({
@@ -358,7 +365,7 @@
 
         // Μητρώο σε οριζόντια σελίδα
         content.push(h1('Το μητρώο', true, 'landscape'));
-        content.push({ text: 'Τα υποχρεωτικά έγγραφα της ΚΥΑ 1689/2025 για ' + (r.entity === 'essential' ? 'βασική' : 'σημαντική') + ' οντότητα, με την κατάστασή τους στις ' + todayStr() + '. Η επόμενη αναθεώρηση υπολογίζεται από την τελευταία αναθεώρηση ή την έγκριση του ΔΣ και τον κύκλο του εγγράφου, εκτός αν δόθηκε άλλη ημερομηνία.', style: 'p' });
+        content.push({ text: 'Οι 12 πολιτικές του άρθρου 6 της ΚΥΑ 1689/2025 και η λοιπή τεκμηρίωση των άρθρων 4 έως 25 για ' + (r.entity === 'essential' ? 'βασική' : 'σημαντική') + ' οντότητα, με την κατάστασή τους στις ' + todayStr() + '. Η επόμενη αναθεώρηση υπολογίζεται από την τελευταία αναθεώρηση ή την έγκριση του ΔΣ και τον κύκλο του εγγράφου, εκτός αν δόθηκε άλλη ημερομηνία.', style: 'p' });
         var body = [[
             { text: 'Κωδ.', style: 'th' }, { text: 'Έγγραφο', style: 'th' }, { text: 'ΚΥΑ 1689/2025', style: 'th' }, { text: 'Κατάσταση', style: 'th' }, { text: 'Υπεύθυνος', style: 'th' },
             { text: 'Έκδ.', style: 'th' }, { text: 'Έγκριση ΔΣ', style: 'th' }, { text: 'Τελευταία αναθ.', style: 'th' }, { text: 'Επόμενη αναθ.', style: 'th' }
@@ -412,7 +419,8 @@
 
         content.push({ text: 'Πώς διαβάζεται', style: 'h2' });
         content.push({ ul: [
-            'Κάλυψη: τα εγκεκριμένα έγγραφα προς όλα τα υποχρεωτικά. Ένα σχέδιο δεν μετρά, γιατί ο ελεγκτής δέχεται μόνο έγγραφα σε ισχύ.',
+            'Κάλυψη: οι εγκεκριμένες προς τις 12 πολιτικές του άρθρου 6, τα μόνα έγγραφα που η ΚΥΑ απαριθμεί ρητά. Η λοιπή τεκμηρίωση των άρθρων 4 έως 25 μετρά χωριστά. Ένα σχέδιο δεν μετρά, γιατί ο ελεγκτής δέχεται μόνο έγγραφα σε ισχύ.',
+            'Η ΚΥΑ δεν ορίζει συνολικό αριθμό εγγράφων. Η ομαδοποίηση της λοιπής τεκμηρίωσης σε έγγραφα είναι του εργαλείου.',
             'Σε τάξη: εγκεκριμένο, με έγκριση από το ανώτατο όργανο διοίκησης όπου τη ζητά ρητά η ΚΥΑ (άρθρα 4, 6 και 7), με ημερομηνία αναθεώρησης μετά τις 06/05/2025, χωρίς εκπρόθεσμη αναθεώρηση και με υπεύθυνο.',
             'Κύκλος αναθεώρησης: η ΚΥΑ ζητά αξιολόγηση σε προγραμματισμένα διαστήματα και μετά από σοβαρά περιστατικά ή σημαντικές αλλαγές. Οι 12 μήνες είναι η συνήθης πρακτική, όχι κείμενο της ΚΥΑ.',
             'Ένα έγγραφο μπορεί να καλύπτει περισσότερες από μία υποχρεώσεις, π.χ. ως ενότητα της γενικής πολιτικής. Αρκεί να φαίνεται στο μητρώο ποια ενότητα καλύπτει ποια υποχρέωση.'
