@@ -15,7 +15,7 @@ author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: ανέβασε το CSV με τις συστάσεις του Microsoft Secure Score και δες την κάλυψη ανά απαίτηση της ΚΥΑ 1689/2025, της NIS2, του ISO/IEC 27001 και του GDPR, τα κενά με προτεραιότητα και το τεκμήριο που θα ζητήσει ο ελεγκτής. Το αρχείο δεν φεύγει από τον browser σου."
 seoTitle: "Microsoft Secure Score: κάλυψη ΚΥΑ, NIS2, ISO 27001"
 seoDescription: "Ανέβασε το CSV του Microsoft Secure Score και δες κάλυψη ανά απαίτηση της ΚΥΑ 1689/2025, NIS2, ISO 27001 και GDPR. Το αρχείο μένει στον browser σου."
-toolBlurb: "ανέβασε το CSV του Microsoft Secure Score και πάρε κάλυψη ανά απαίτηση σε ΚΥΑ 1689/2025, NIS2, ISO/IEC 27001 και GDPR, κενά με προτεραιότητα και τα τεκμήρια του ελεγκτή, σε .pdf και .xlsx. Το αρχείο δεν φεύγει από τον browser σου."
+toolBlurb: "Ανέβασε το CSV του Microsoft Secure Score και πάρε κάλυψη ανά απαίτηση σε ΚΥΑ 1689/2025, NIS2, ISO/IEC 27001 και GDPR, κενά με προτεραιότητα και τα τεκμήρια του ελεγκτή, σε .pdf και .xlsx. Το αρχείο δεν φεύγει από τον browser σου."
 keywords:
   - Microsoft Secure Score συμμόρφωση
   - Secure Score ΚΥΑ 1689/2025
