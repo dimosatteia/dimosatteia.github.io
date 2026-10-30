@@ -231,6 +231,8 @@ mitre: ["T1566.001", "T1566.002", "T1684.001", "M1049", "M1021", "M1054"]
 
 {{< tool-link page="/elegxos-domain" lead="Θέλετε να δείτε πού βρίσκεται το δικό σας domain;" label="Κάντε τον έλεγχο SPF, DKIM και DMARC" tail="και δείτε τη ρύθμιση του Microsoft 365 για κάθε εύρημα." >}}
 
+{{< tool-link page="/giati-pige-sta-junk" lead="Ένα μήνυμα πήγε στα Junk ή στην καραντίνα και θέλετε να μάθετε γιατί;" label="Αναλύστε τα headers του" tail="και δείτε στα Ελληνικά ποια πολιτική το αποφάσισε και τι κάνετε τώρα." >}}
+
 Ακολουθήστε με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 
 ## Πηγές και επαλήθευση {#last-verified}

@@ -1,0 +1,695 @@
+{{- /* «Γιατί πήγε στα Junk;» (/giati-pige-sta-junk/)
+       Αναλύει τα internet headers ενός μηνύματος και εξηγεί στα Ελληνικά τι αποφάσισε το Microsoft 365 και γιατί.
+       Πηγές για κάθε τιμή: Microsoft Learn, «Anti-spam message headers in cloud organizations» και
+       «Troubleshoot common anti-spam policy issues» (ελέγχθηκαν 30/10/2026).
+       Τα headers διαβάζονται ΜΟΝΟ μέσα στον browser του επισκέπτη. Δεν στέλνονται πουθενά.
+       Το pdfmake φορτώνει από το cdnjs μόνο όταν πατηθεί το κουμπί της αναφοράς.
+       Χρήση: {{< junk-check >}} */ -}}
+<style>
+#jcTool textarea{font-size:12px;line-height:1.45}
+#jcTool .jcPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
+#jcTool .jcKey{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#jcTool table td,#jcTool table th{vertical-align:top}
+#jcTool .jcStep{counter-increment:jcs}
+#jcTool .jcStep::before{content:counter(jcs);flex:none;width:1.6rem;height:1.6rem;border-radius:9999px;background:rgba(59,130,246,.15);color:#93c5fd;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+#jcTool .jcSteps{counter-reset:jcs}
+#jcTool .jcSteps li:first-child::before{background:#2563eb;color:#fff}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="jcTool"
+     data-base="{{ "" | absURL }}" data-domain="{{ "elegxos-domain/" | relURL }}" data-incident="{{ "anafora-peristatikou/" | relURL }}" data-ca="{{ "politikes-conditional-access/" | relURL }}">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Exchange Online Protection · Microsoft Defender for Office 365 · email headers</p>
+
+    <div class="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-emerald-300 mb-1">🔒 Τα headers δεν φεύγουν από τον υπολογιστή σου</p>
+        <p>Η ανάλυση γίνεται μόνο μέσα στον browser σου. Τα headers δεν στέλνονται σε κανέναν server, ούτε στο thecybersec.gr, και δεν αποθηκεύονται. Αν κλείσεις τη σελίδα, χάνονται. Μπορείς να το επιβεβαιώσεις: φόρτωσε τη σελίδα, αποσύνδεσε το δίκτυο και κάνε την ανάλυση. Το εργαλείο δουλεύει κανονικά. Λεπτομέρειες στην <a href="{{ "privacy/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Πολιτική απορρήτου</a>.</p>
+    </div>
+
+    <details class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 mb-4 text-sm text-slate-300 leading-relaxed">
+        <summary class="cursor-pointer font-semibold text-slate-100">Πού βρίσκω τα headers ενός μηνύματος;</summary>
+        <ul class="list-disc pl-5 mt-3 space-y-1.5">
+            <li><strong>Outlook on the web και νέο Outlook:</strong> άνοιξε το μήνυμα, πάτησε <span class="jcKey">…</span> (More actions) › <strong>View</strong> › <strong>View message details</strong>, και αντέγραψε όλο το κείμενο.</li>
+            <li><strong>Κλασικό Outlook:</strong> άνοιξε το μήνυμα σε δικό του παράθυρο, <strong>File</strong> › <strong>Properties</strong>, και αντέγραψε το πλαίσιο <strong>Internet headers</strong>.</li>
+            <li><strong>Μήνυμα σε καραντίνα:</strong> στο Microsoft Defender portal, <strong>Email &amp; collaboration</strong> › <strong>Review</strong> › <strong>Quarantine</strong>, διάλεξε το μήνυμα και πάτησε <strong>View message headers</strong>.</li>
+        </ul>
+        <p class="mt-3 text-slate-400">Επικόλλησε ολόκληρα τα headers, από την πρώτη γραμμή έως την τελευταία. Αν λείπει το <span class="jcKey">X-Forefront-Antispam-Report</span>, το εργαλείο δεν μπορεί να πει τι αποφάσισε το φίλτρο.</p>
+    </details>
+
+    <label for="jcInput" class="block text-sm text-slate-300 mb-1.5">Επικόλλησε εδώ τα headers του μηνύματος</label>
+    <textarea id="jcInput" rows="9" spellcheck="false" autocomplete="off" data-clarity-mask="true" placeholder="Received: from …&#10;Authentication-Results: spf=pass …&#10;X-Forefront-Antispam-Report: CIP:…;CTRY:…;SFV:…;CAT:…;DIR:INB;&#10;X-Microsoft-Antispam: BCL:0;…"
+              class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono focus:outline-none focus:border-blue-500"></textarea>
+    <div class="flex flex-wrap items-center gap-3 mt-3">
+        <button type="button" id="jcRun" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Ανάλυση</button>
+        <label class="flex items-center gap-2 text-sm text-slate-300">
+            <span>ή δοκίμασε ένα παράδειγμα:</span>
+            <select id="jcSample" class="rounded-md border border-slate-700 bg-slate-900 px-2 py-1.5 text-slate-100 text-sm focus:outline-none focus:border-blue-500">
+                <option value="">διάλεξε…</option>
+                <option value="spoof">Πλαστός αποστολέας (DMARC fail)</option>
+                <option value="bulk">Newsletter στα Junk (bulk)</option>
+                <option value="asf">Ρύθμιση ASF (web bug)</option>
+                <option value="gateway">Πίσω από gateway τρίτου</option>
+                <option value="bypass">Spam στα Inbox (mail flow rule)</option>
+                <option value="clean">Καθαρό μήνυμα</option>
+            </select>
+        </label>
+        <button type="button" id="jcClear" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Καθαρισμός</button>
+    </div>
+    <p id="jcError" class="text-sm text-amber-400 mt-3 hidden" role="alert"></p>
+
+    <div id="jcResult" class="hidden mt-6 flex flex-col gap-4" aria-live="polite" data-clarity-mask="true">
+        <div id="jcVerdict" class="rounded-lg border p-4"></div>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <h3 class="text-base font-bold text-slate-100 mb-1">Τι κάνεις τώρα</h3>
+            <p class="text-xs text-slate-400 mb-3">Ξεκίνα από το πρώτο βήμα. Τα επόμενα χρειάζονται μόνο αν δεν λύσει το πρόβλημα.</p>
+            <ol id="jcSteps" class="jcSteps flex flex-col gap-3 text-sm text-slate-300 leading-relaxed"></ol>
+        </div>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <h3 class="text-base font-bold text-slate-100 mb-1">Ταυτοποίηση αποστολέα</h3>
+            <p class="text-xs text-slate-400 mb-3">Από το <span class="jcKey">Authentication-Results</span>. Το Microsoft 365 κρίνει με βάση τη διεύθυνση From που βλέπει ο χρήστης.</p>
+            <div id="jcAuth" class="flex flex-col gap-2"></div>
+        </div>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <h3 class="text-base font-bold text-slate-100 mb-1">Τα πεδία του φίλτρου, ένα προς ένα</h3>
+            <p class="text-xs text-slate-400 mb-3">Από τα <span class="jcKey">X-Forefront-Antispam-Report</span>, <span class="jcKey">X-Microsoft-Antispam</span> και <span class="jcKey">X-CustomSpam</span>. Πεδία που η Microsoft δεν τεκμηριώνει δημόσια δεν εμφανίζονται.</p>
+            <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="text-left text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800"><th class="py-2 pr-3">Πεδίο</th><th class="py-2 pr-3">Τιμή</th><th class="py-2">Τι σημαίνει</th></tr></thead><tbody id="jcFields" class="text-slate-300"></tbody></table></div>
+        </div>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <h3 class="text-base font-bold text-slate-100 mb-1">Η διαδρομή του μηνύματος</h3>
+            <p class="text-xs text-slate-400 mb-3">Από τα <span class="jcKey">Received</span>, με τη σειρά που πέρασε το μήνυμα. Η καθυστέρηση υπολογίζεται από τα ρολόγια των servers και μπορεί να έχει μικρές αποκλίσεις.</p>
+            <div id="jcHops" class="flex flex-col gap-2"></div>
+        </div>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <h3 class="text-base font-bold text-slate-100 mb-2">Αναφορά για το ticket ή τον φάκελο του συμβάντος</h3>
+            <label class="flex items-start gap-2 text-sm text-slate-300 leading-relaxed mb-3">
+                <input type="checkbox" id="jcMask" class="mt-1" checked>
+                <span>Απόκρυψη των διευθύνσεων email στην αναφορά (π.χ. <span class="jcKey">g***@mycompany.gr</span>). Χρήσιμο όταν τη στέλνεις σε προμηθευτή ή συνεργάτη.</span>
+            </label>
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="jcPdf" class="rounded-md bg-blue-600 hover:bg-blue-500 disabled:opacity-50 px-4 py-2 text-sm font-semibold text-white">Κατέβασε αναφορά .pdf</button>
+                <button type="button" id="jcCopy" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-slate-500">Αντιγραφή σύνοψης</button>
+            </div>
+            <p id="jcExpMsg" class="text-sm mt-2 hidden" role="status"></p>
+        </div>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-5">Το αποτέλεσμα είναι ενδεικτικό. Τα headers δείχνουν την απόφαση του φίλτρου, όχι πάντα τον τελικό φάκελο: αυτός εξαρτάται από την πολιτική που εφαρμόζεται στον παραλήπτη. Για την πλήρη εικόνα, δες και το Message trace.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Η ανάλυση χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('jcTool');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var BASE = root.getAttribute('data-base') || '/';
+    var LINK_DOMAIN = root.getAttribute('data-domain');
+    var LINK_INCIDENT = root.getAttribute('data-incident');
+
+    // ---------- Πηγές (Microsoft Learn και portals) ----------
+    var L = 'https://learn.microsoft.com/en-us/defender-office-365/';
+    var DOC = {
+        headers: L + 'message-headers-eop-mdo',
+        trouble: L + 'anti-spam-policies-troubleshooting',
+        asf: L + 'anti-spam-policies-asf-settings-about',
+        bcl: L + 'anti-spam-bulk-complaint-level-bcl-about',
+        scl: L + 'anti-spam-spam-confidence-level-scl-about',
+        submit: L + 'submissions-admin',
+        tabl: L + 'tenant-allow-block-list-about',
+        spoof: L + 'anti-spoofing-spoof-intelligence',
+        authops: L + 'email-auth-sec-ops-guide',
+        precedence: L + 'how-policies-and-protections-are-combined',
+        antiphish: L + 'anti-phishing-policies-about',
+        efc: 'https://learn.microsoft.com/en-us/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/enhanced-filtering-for-connectors',
+        scln: 'https://learn.microsoft.com/en-us/exchange/security-and-compliance/mail-flow-rules/use-rules-to-set-scl',
+        conn: L + 'connection-filter-policies-configure',
+        junk: L + 'configure-junk-email-settings-on-exo-mailboxes',
+        adv: L + 'advanced-delivery-policy-configure',
+        arc: L + 'email-authentication-arc-configure'
+    };
+    var P = 'https://security.microsoft.com/';
+    var PORTAL = {
+        submit: P + 'reportsubmission', tabl: P + 'tenantAllowBlockList', quarantine: P + 'quarantine',
+        antispam: P + 'antispam', antiphish: P + 'antiphishing', spoof: P + 'spoofintelligence',
+        preset: P + 'presetSecurityPolicies', rules: 'https://admin.exchange.microsoft.com/#/transportrules',
+        trace: 'https://admin.exchange.microsoft.com/#/messagetrace', diag: 'https://aka.ms/mdopolicy'
+    };
+
+    // ---------- Λεξικά τιμών (από την τεκμηρίωση της Microsoft) ----------
+    var CAT = {
+        AMP: 'Anti-malware: εντοπίστηκε κακόβουλο λογισμικό από την πολιτική anti-malware.',
+        BIMP: 'Brand impersonation: το μήνυμα μιμείται γνωστή εταιρεία (μόνο Defender for Office 365).',
+        BULK: 'Bulk: μαζική αποστολή (newsletter, προωθητικό) πάνω από το όριο BCL της πολιτικής.',
+        DIMP: 'Domain impersonation: το domain του αποστολέα μοιάζει με προστατευμένο domain (μόνο Defender for Office 365).',
+        FTBP: 'Common attachments filter: συνημμένο με τύπο αρχείου που μπλοκάρει η πολιτική anti-malware.',
+        GIMP: 'Mailbox intelligence impersonation: ο αποστολέας μοιάζει με κάποιον με τον οποίο αλληλογραφεί ο χρήστης (μόνο Defender for Office 365).',
+        HPHSH: 'High confidence phishing: phishing με υψηλή βεβαιότητα.',
+        HPHISH: 'High confidence phishing: phishing με υψηλή βεβαιότητα.',
+        HSPM: 'High confidence spam: spam με υψηλή βεβαιότητα.',
+        INTOS: 'Intra-organization phishing: phishing από λογαριασμό μέσα στον οργανισμό.',
+        MALW: 'Malware: κακόβουλο λογισμικό.',
+        OSPM: 'Outbound spam: εξερχόμενο spam από τον οργανισμό.',
+        PHSH: 'Phishing.',
+        SAP: 'Safe Attachments: το συνημμένο κρίθηκε κακόβουλο στο sandbox (μόνο Defender for Office 365).',
+        SPM: 'Spam.',
+        SPOOF: 'Spoofing: ο αποστολέας δεν ταυτοποιήθηκε για το domain που δείχνει στο From.',
+        UIMP: 'User impersonation: ο αποστολέας μιμείται προστατευμένο χρήστη (μόνο Defender for Office 365).',
+        NONE: 'Καμία κατηγορία απειλής.'
+    };
+    var SFV = {
+        BLK: ['Λίστα Blocked Senders του χρήστη', 'Ο αποστολέας είναι στη λίστα Blocked Senders του παραλήπτη στο Outlook. Το μήνυμα χαρακτηρίστηκε spam.'],
+        NSPM: ['Φίλτρο spam', 'Το φίλτρο spam έκρινε ότι το μήνυμα δεν είναι spam.'],
+        SFE: ['Λίστα Safe Senders του χρήστη', 'Το φιλτράρισμα spam παρακάμφθηκε, γιατί ο αποστολέας είναι στη λίστα Safe Senders του παραλήπτη.'],
+        SKA: ['Allowed senders ή domains της anti-spam policy', 'Το φιλτράρισμα spam παρακάμφθηκε, γιατί ο αποστολέας ή το domain του είναι στη λίστα επιτρεπόμενων της anti-spam policy.'],
+        SKB: ['Blocked senders ή domains της anti-spam policy', 'Το μήνυμα χαρακτηρίστηκε spam, γιατί ο αποστολέας ή το domain του είναι στη λίστα αποκλεισμένων της anti-spam policy.'],
+        SKI: ['IP Allow List (connection filter)', 'Το φιλτράρισμα spam παρακάμφθηκε, γιατί η IP προέλευσης είναι στο IP Allow List της connection filter policy.'],
+        SKN: ['Mail flow rule (bypass)', 'Ένα mail flow rule ζήτησε παράκαμψη του φίλτρου spam (SCL -1) και το αίτημα έγινε δεκτό.'],
+        SKQ: ['Απελευθέρωση από καραντίνα', 'Το μήνυμα απελευθερώθηκε από την καραντίνα και παραδόθηκε.'],
+        SKS: ['Mail flow rule ή on-premises Exchange', 'Το μήνυμα χαρακτηρίστηκε spam πριν από το φίλτρο, από mail flow rule που όρισε SCL ή από απόφαση του on-premises Exchange σε hybrid.'],
+        SPM: ['Φίλτρο spam', 'Το φίλτρο spam χαρακτήρισε το μήνυμα spam.']
+    };
+    var CUSTOM = {
+        'image links to remote sites': ['Image links to remote websites', 'IncreaseScoreWithImageLinks'],
+        'numeric ip in url': ['Numeric IP address in URL', 'IncreaseScoreWithNumericIps'],
+        'url redirect to other port': ['URL redirect to other port', 'IncreaseScoreWithRedirectToOtherPort'],
+        'url to .biz or .info websites': ['Links to .biz or .info websites', 'IncreaseScoreWithBizOrInfoUrls'],
+        'empty message': ['Empty messages', 'MarkAsSpamEmptyMessages'],
+        'embed tag in html': ['Embedded tags in HTML', 'MarkAsSpamEmbedTagsInHtml'],
+        'javascript or vbscript tags in html': ['JavaScript or VBScript in HTML', 'MarkAsSpamJavaScriptInHtml'],
+        'form tag in html': ['Form tags in HTML', 'MarkAsSpamFormTagsInHtml'],
+        'iframe or frame in html': ['Frame or iframe tags in HTML', 'MarkAsSpamFramesInHtml'],
+        'web bug': ['Web bugs in HTML', 'MarkAsSpamWebBugsInHtml'],
+        'object tag in html': ['Object tags in HTML', 'MarkAsSpamObjectTagsInHtml'],
+        'sensitive word in subject/body': ['Sensitive words', 'MarkAsSpamSensitiveWordList'],
+        'spf record fail': ['SPF record: hard fail', 'MarkAsSpamSpfRecordHardFail'],
+        'spf from record fail': ['Sender ID filtering hard fail', 'MarkAsSpamFromAddressAuthFail'],
+        'backscatter ndr': ['Backscatter', 'MarkAsSpamNdrBackscatter']
+    };
+    function compauthReason(r) {
+        var m = {
+            '000': 'Αποτυχία ρητής ταυτοποίησης: το DMARC απέτυχε και η πολιτική DMARC του αποστολέα είναι p=quarantine ή p=reject.',
+            '001': 'Αποτυχία έμμεσης ταυτοποίησης: το domain δεν έχει εγγραφές ταυτοποίησης ή έχει χαλαρή πολιτική (SPF ~all ή ?all, DMARC p=none), και το Microsoft 365 δεν πείστηκε ότι ο αποστολέας είναι γνήσιος.',
+            '002': 'Ο οργανισμός έχει ρητή απαγόρευση spoofing για αυτό το ζεύγος αποστολέα και domain, που όρισε κάποιος admin.',
+            '010': 'Το DMARC απέτυχε με p=reject ή p=quarantine, και το domain του αποστολέα είναι accepted domain του οργανισμού σου (spoofing του δικού σου domain).',
+            '100': 'Πέρασε το SPF ή το DKIM, και τα domains του MAIL FROM και του From ταιριάζουν.',
+            '101': 'Το μήνυμα έχει υπογραφή DKIM από το domain του From.',
+            '102': 'Τα domains του MAIL FROM και του From ταιριάζουν και πέρασε το SPF.',
+            '103': 'Το domain του From ταιριάζει με το PTR της IP αποστολής.',
+            '104': 'Το PTR της IP αποστολής ταιριάζει με το domain του From.',
+            '108': 'Το DKIM απέτυχε επειδή το σώμα του μηνύματος άλλαξε σε προηγούμενο νόμιμο hop (π.χ. on-premises Exchange).',
+            '109': 'Το domain δεν έχει DMARC, αλλά το μήνυμα θα περνούσε ούτως ή άλλως.',
+            '111': 'Παρά προσωρινό ή μόνιμο σφάλμα DMARC, το domain του SPF ή του DKIM ταιριάζει με το From.',
+            '112': 'Timeout του DNS εμπόδισε την ανάκτηση της εγγραφής DMARC.',
+            '115': 'Το μήνυμα στάλθηκε από οργανισμό Microsoft 365 όπου το domain του From είναι accepted domain.',
+            '116': 'Το MX του domain του From ταιριάζει με το PTR της IP σύνδεσης.',
+            '130': 'Αποτέλεσμα ARC από trusted ARC sealer παρέκαμψε την αποτυχία DMARC.',
+            '201': 'Το PTR του domain του From ταιριάζει με το subnet του PTR της IP σύνδεσης.',
+            '202': 'Το domain του From ταιριάζει με το domain του PTR της IP σύνδεσης.',
+            '501': 'Το DMARC δεν εφαρμόστηκε: το μήνυμα είναι έγκυρο NDR και υπάρχει ήδη επικοινωνία ανάμεσα σε αποστολέα και παραλήπτη.',
+            '502': 'Το DMARC δεν εφαρμόστηκε: το μήνυμα είναι έγκυρο NDR για μήνυμα που έστειλε ο οργανισμός σου.',
+            '601': 'Το domain του αποστολέα είναι accepted domain του οργανισμού σου (spoofing του δικού σου domain).',
+            '905': 'Το DMARC δεν εφαρμόστηκε λόγω σύνθετης δρομολόγησης, π.χ. το email περνά από on-premises Exchange ή από υπηρεσία τρίτου πριν φτάσει στο Microsoft 365.'
+        };
+        if (m[r]) return m[r];
+        var n = parseInt(r, 10);
+        if (n >= 701 && n <= 704) return 'Το DMARC δεν εφαρμόστηκε, γιατί ο οργανισμός σου έχει ιστορικό νόμιμων μηνυμάτων από αυτή την υποδομή αποστολής.';
+        var c = String(r).charAt(0);
+        return ({ '1': 'Πέρασε ρητή ή έμμεση ταυτοποίηση.', '2': 'Πέρασε μερικώς την έμμεση ταυτοποίηση (softpass).', '3': 'Το μήνυμα δεν ελέγχθηκε για composite authentication.', '4': 'Το μήνυμα παρέκαμψε το composite authentication.', '6': 'Αποτυχία έμμεσης ταυτοποίησης.', '7': 'Πέρασε έμμεση ταυτοποίηση.', '9': 'Το μήνυμα παρέκαμψε το composite authentication.' })[c] || 'Κωδικός που δεν τεκμηριώνεται δημόσια.';
+    }
+    var GATEWAYS = [
+        [/pphosted\.com|ppe-hosted\.com|proofpoint/i, 'Proofpoint'], [/mimecast/i, 'Mimecast'], [/barracuda/i, 'Barracuda'],
+        [/hydra\.sophos|sophos\.com/i, 'Sophos'], [/trendmicro|tmes\./i, 'Trend Micro'], [/iphmx\.com/i, 'Cisco Secure Email'],
+        [/messagelabs\.com/i, 'Symantec Email Security.cloud'], [/mailcontrol\.com/i, 'Forcepoint'], [/hornetsecurity|antispameurope/i, 'Hornetsecurity'],
+        [/spamtitan/i, 'SpamTitan'], [/exclaimer/i, 'Exclaimer'], [/codetwo/i, 'CodeTwo'], [/mailchannels/i, 'MailChannels'], [/fortimail/i, 'FortiMail']
+    ];
+
+    // ---------- Βοηθητικά ----------
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+    function a(href, text) { return '<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">' + text + '</a>'; }
+    function al(href, text) { return '<a href="' + esc(href) + '" class="text-blue-400 hover:text-blue-300 underline">' + text + '</a>'; }
+    function code(s) { return '<span class="jcKey text-slate-100">' + esc(s) + '</span>'; }
+    function pill(text, tone) {
+        var t = { red: 'bg-rose-500/15 text-rose-300', amber: 'bg-amber-500/15 text-amber-300', green: 'bg-emerald-500/15 text-emerald-300', blue: 'bg-blue-500/15 text-blue-300', gray: 'bg-slate-700/50 text-slate-300' }[tone || 'gray'];
+        return '<span class="jcPill ' + t + '">' + esc(text) + '</span>';
+    }
+    function strip(html) { var d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').replace(/\s+/g, ' ').trim(); }
+    var MULTI = ['co.uk', 'org.uk', 'ac.uk', 'gov.uk', 'com.gr', 'net.gr', 'org.gr', 'edu.gr', 'gov.gr', 'com.cy', 'ac.cy', 'gov.cy', 'com.au', 'co.jp', 'com.br', 'co.za', 'co.in', 'com.tr', 'co.nz', 'com.mx'];
+    function orgDomain(d) {
+        d = String(d || '').toLowerCase().replace(/\.$/, '');
+        var p = d.split('.'); if (p.length <= 2) return d;
+        var last2 = p.slice(-2).join('.');
+        return MULTI.indexOf(last2) >= 0 ? p.slice(-3).join('.') : last2;
+    }
+    function domainOf(addr) { var m = String(addr || '').match(/@([A-Za-z0-9.-]+)/); return m ? m[1].toLowerCase() : ''; }
+    function addrOf(v) { var m = String(v || '').match(/<([^>]+)>/); if (m) return m[1].trim(); m = String(v || '').match(/[^\s<>"]+@[^\s<>"]+/); return m ? m[0] : String(v || '').trim(); }
+
+    // ---------- Ανάγνωση των headers ----------
+    function parseHeaders(raw) {
+        var lines = String(raw).replace(/\r\n?/g, '\n').split('\n'), out = [], cur = null;
+        for (var i = 0; i < lines.length; i++) {
+            var ln = lines[i];
+            if (/^[ \t]/.test(ln) && cur) { cur.v += ' ' + ln.trim(); continue; }
+            var m = ln.match(/^([!-9;-~]+):\s?(.*)$/);
+            if (m) { cur = { n: m[1], k: m[1].toLowerCase(), v: m[2].trim() }; out.push(cur); }
+            else if (ln.trim() === '') {
+                // Κενή γραμμή: αν ακολουθεί κείμενο που δεν είναι header, είναι το σώμα του μηνύματος και σταματάμε.
+                var j = i + 1; while (j < lines.length && !lines[j].trim()) j++;
+                if (out.length && j < lines.length && !/^[!-9;-~]+:/.test(lines[j])) break;
+                cur = null;
+            }
+            else if (cur) { cur.v += ' ' + ln.trim(); }
+        }
+        return out;
+    }
+    function all(H, k) { return H.filter(function (h) { return h.k === k; }); }
+    function first(H, k) { var f = all(H, k); return f.length ? f[0].v : ''; }
+    function kv(s) {
+        var o = {}, order = [];
+        String(s || '').split(';').forEach(function (part) {
+            var p = part.trim(); if (!p) return;
+            var i = p.indexOf(':'); if (i < 0) return;
+            var k = p.slice(0, i).trim().toUpperCase(), v = p.slice(i + 1).trim();
+            if (!(k in o)) order.push(k);
+            o[k] = v;
+        });
+        o._order = order; return o;
+    }
+    function parseAuth(v) {
+        var r = { raw: v, spf: '', spfDetail: '', mailfrom: '', dkim: [], dmarc: '', action: '', from: '', compauth: '', reason: '' };
+        var s = String(v || '');
+        var m = s.match(/\bspf=(\w+)(?:\s*\(([^)]*)\))?/i); if (m) { r.spf = m[1].toLowerCase(); r.spfDetail = m[2] || ''; }
+        m = s.match(/smtp\.mailfrom=([^\s;]+)/i); if (m) r.mailfrom = m[1].replace(/^.*@/, '').toLowerCase();
+        var re = /\bdkim=(\w+)(?:\s*\(([^)]*)\))?\s*(?:header\.d=([^\s;]+))?/gi, d;
+        while ((d = re.exec(s))) r.dkim.push({ res: d[1].toLowerCase(), why: d[2] || '', d: /^none$/i.test(d[3] || '') ? '' : (d[3] || '').toLowerCase() });
+        m = s.match(/\bdmarc=(\w+)/i); if (m) r.dmarc = m[1].toLowerCase();
+        m = s.match(/\baction=([\w.]+)/i); if (m) r.action = m[1].toLowerCase();
+        m = s.match(/header\.from=([^\s;]+)/i); if (m) r.from = m[1].toLowerCase();
+        m = s.match(/\bcompauth=(\w+)/i); if (m) r.compauth = m[1].toLowerCase();
+        m = s.match(/\breason=(\d{3})/i); if (m) r.reason = m[1];
+        return r;
+    }
+    function parseReceived(v) {
+        var semi = v.lastIndexOf(';'), dt = null, body = v;
+        if (semi >= 0) { var ds = v.slice(semi + 1).replace(/\([^)]*\)/g, '').trim(); var t = Date.parse(ds); if (!isNaN(t)) dt = new Date(t); body = v.slice(0, semi); }
+        var from = (body.match(/\bfrom\s+([^\s(;]+)/i) || [])[1] || '';
+        var fromIp = (body.match(/\[(\d{1,3}(?:\.\d{1,3}){3}|[0-9a-f:]{3,})\]/i) || [])[1] || (body.match(/\((\d{1,3}(?:\.\d{1,3}){3})\)/) || [])[1] || '';
+        var by = (body.match(/\bby\s+([^\s(;]+)/i) || [])[1] || '';
+        var wth = (body.match(/\bwith\s+([^\s(;]+)/i) || [])[1] || '';
+        return { from: from, ip: fromIp, by: by, with: wth, date: dt, raw: v };
+    }
+    function fmtDur(ms) {
+        if (ms == null || isNaN(ms)) return '';
+        var s = Math.round(ms / 1000), neg = s < 0; s = Math.abs(s);
+        var t = s < 60 ? s + ' δευτ.' : s < 3600 ? Math.floor(s / 60) + ' λεπτ. ' + (s % 60) + ' δευτ.' : Math.floor(s / 3600) + ' ώρ. ' + Math.floor((s % 3600) / 60) + ' λεπτ.';
+        return (neg ? '−' : '') + t;
+    }
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function fmtDate(d) { return d ? pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()) : ''; }
+
+    // ---------- Ανάλυση ----------
+    function analyze(raw) {
+        var H = parseHeaders(raw);
+        var R = { H: H, notes: [] };
+        R.from = first(H, 'from'); R.to = first(H, 'to'); R.subject = first(H, 'subject'); R.date = first(H, 'date');
+        R.msgid = first(H, 'message-id'); R.returnPath = first(H, 'return-path');
+        R.fromAddr = addrOf(R.from); R.fromDomain = domainOf(R.fromAddr);
+
+        var afr = first(H, 'x-forefront-antispam-report'), afrU = first(H, 'x-forefront-antispam-report-untrusted');
+        var xma = first(H, 'x-microsoft-antispam'), xmaU = first(H, 'x-microsoft-antispam-untrusted');
+        R.trusted = !!afr; R.untrustedOnly = !afr && !!afrU;
+        R.F = kv(afr); R.X = kv(xma);
+        if (!R.F.SCL) { var sclH = first(H, 'x-ms-exchange-organization-scl'); if (sclH) R.F.SCL = sclH.trim(); }
+        R.custom = all(H, 'x-customspam').map(function (h) { return h.v; });
+
+        // Authentication-Results: προτιμάται αυτό με compauth (του Microsoft 365 του παραλήπτη)
+        var ars = all(H, 'authentication-results');
+        var ar = ars.filter(function (h) { return /compauth=/i.test(h.v); })[0] || ars[0];
+        R.auth = ar ? parseAuth(ar.v) : null;
+        R.arc = all(H, 'arc-authentication-results').length > 0;
+        if (R.auth && !R.auth.from) R.auth.from = R.fromDomain;
+
+        // Received: από κάτω προς τα πάνω = χρονολογική σειρά
+        var rec = all(H, 'received').map(function (h) { return parseReceived(h.v); }).reverse();
+        for (var i = 0; i < rec.length; i++) rec[i].delay = (i && rec[i].date && rec[i - 1].date) ? rec[i].date - rec[i - 1].date : null;
+        R.hops = rec;
+        R.total = (rec.length > 1 && rec[0].date && rec[rec.length - 1].date) ? rec[rec.length - 1].date - rec[0].date : null;
+        R.gateways = [];
+        rec.forEach(function (h) { GATEWAYS.forEach(function (g) { if ((g[0].test(h.from) || g[0].test(h.by)) && R.gateways.indexOf(g[1]) < 0) R.gateways.push(g[1]); }); });
+
+        var cat = (R.F.CAT || '').toUpperCase(), sfv = (R.F.SFV || '').toUpperCase(), ipv = (R.F.IPV || '').toUpperCase();
+        var bcl = R.X.BCL != null && R.X.BCL !== '' ? parseInt(R.X.BCL, 10) : null; R.bcl = isNaN(bcl) ? null : bcl;
+        R.cat = cat; R.sfv = sfv; R.ipv = ipv; R.dir = (R.F.DIR || '').toUpperCase();
+        var k;
+        if (!R.trusted) k = R.untrustedOnly ? 'untrusted' : 'none';
+        else if (/^(MALW|AMP|FTBP|SAP)$/.test(cat)) k = 'malware';
+        else if (/^(HPHSH|HPHISH)$/.test(cat)) k = 'hphish';
+        else if (cat === 'PHSH') k = 'phish';
+        else if (/^(UIMP|DIMP|GIMP|BIMP)$/.test(cat)) k = 'imp';
+        else if (cat === 'INTOS') k = 'intos';
+        else if (cat === 'SPOOF') k = 'spoof';
+        else if (sfv === 'BLK') k = 'userblock';
+        else if (sfv === 'SKB') k = 'policyblock';
+        else if (sfv === 'SKS') k = 'rulespam';
+        else if (R.custom.length && /^(SPM|HSPM)$/.test(cat)) k = 'asf';
+        else if (cat === 'HSPM') k = 'hspam';
+        else if (cat === 'SPM') k = 'spam';
+        else if (cat === 'BULK' || /BULK/i.test(R.F.SRV || '')) k = 'bulk';
+        else if (sfv === 'SPM') k = 'spam';
+        else if (cat === 'OSPM') k = 'outspam';
+        else if (sfv === 'SKQ') k = 'released';
+        else if (sfv === 'SKN') k = 'rulebypass';
+        else if (sfv === 'SKI' || ipv === 'CAL') k = 'ipallow';
+        else if (sfv === 'SKA') k = 'policyallow';
+        else if (sfv === 'SFE') k = 'safesender';
+        else if (sfv === 'NSPM' || cat === 'NONE') k = 'clean';
+        else k = 'unknown';
+        R.key = k;
+        R.authEval = evalAuth(R);
+        R.V = VERDICTS[k](R);
+        return R;
+    }
+
+    function evalAuth(R) {
+        var A = R.auth, out = { rows: [], aligned: null, summary: '' };
+        if (!A) { out.summary = 'Δεν βρέθηκε Authentication-Results.'; return out; }
+        var fromOrg = orgDomain(A.from || R.fromDomain);
+        var spfAligned = A.mailfrom && fromOrg && orgDomain(A.mailfrom) === fromOrg;
+        var dkimPass = A.dkim.filter(function (x) { return x.res === 'pass'; });
+        var dkimAligned = dkimPass.some(function (x) { return x.d && orgDomain(x.d) === fromOrg; });
+        out.spfAligned = spfAligned; out.dkimAligned = dkimAligned;
+        out.aligned = (A.spf === 'pass' && spfAligned) || dkimAligned;
+
+        var SPF = {
+            pass: ['green', 'Η IP αποστολής επιτρέπεται από την εγγραφή SPF του domain.'],
+            fail: ['red', 'Hard fail: η IP αποστολής δεν είναι στο SPF, και το domain ζητά απόρριψη (-all).'],
+            softfail: ['amber', 'Soft fail: η IP αποστολής δεν είναι στο SPF, και το domain ζητά απλή σήμανση (~all).'],
+            neutral: ['amber', 'Η IP αποστολής δεν είναι στο SPF, και το domain δεν δίνει οδηγία (?all).'],
+            none: ['amber', 'Το domain δεν έχει εγγραφή SPF ή η εγγραφή δεν δίνει αποτέλεσμα.'],
+            temperror: ['amber', 'Προσωρινό σφάλμα, π.χ. στο DNS. Ο ίδιος έλεγχος αργότερα μπορεί να περάσει.'],
+            permerror: ['red', 'Μόνιμο σφάλμα: η εγγραφή SPF είναι λάθος γραμμένη ή ξεπερνά τα 10 DNS lookups.']
+        };
+        if (A.spf) {
+            var s = SPF[A.spf] || ['gray', 'Τιμή που δεν τεκμηριώνεται.'];
+            out.rows.push({ name: 'SPF', value: A.spf + (A.mailfrom ? ' · ' + A.mailfrom : ''), tone: s[0],
+                text: s[1] + (A.mailfrom ? ' Ελέγχθηκε το domain του MAIL FROM (' + A.mailfrom + ')' + (spfAligned ? ', που ταιριάζει με το From.' : ', που δεν ταιριάζει με το From (' + (A.from || R.fromDomain || 'άγνωστο') + '). Γι\' αυτό το SPF μόνο του δεν αρκεί για το DMARC.') : '') });
+        }
+        if (A.dkim.length) {
+            A.dkim.forEach(function (x) {
+                var tone = x.res === 'pass' ? 'green' : x.res === 'none' ? 'amber' : 'red';
+                var t = x.res === 'pass' ? 'Η υπογραφή DKIM επαληθεύτηκε.' : x.res === 'none' ? 'Το μήνυμα δεν έχει υπογραφή DKIM.' : 'Η υπογραφή DKIM απέτυχε' + (x.why ? ' (' + x.why + ').' : '.');
+                if (x.d) t += ' Υπογράφει το ' + x.d + (orgDomain(x.d) === fromOrg ? ', που ταιριάζει με το From.' : ', που δεν ταιριάζει με το From. Μια τέτοια υπογραφή δεν μετράει για το DMARC.');
+                out.rows.push({ name: 'DKIM', value: x.res + (x.d ? ' · ' + x.d : ''), tone: tone, text: t });
+            });
+        }
+        if (A.dmarc) {
+            var D = { pass: ['green', 'Το DMARC πέρασε: SPF ή DKIM πέρασε για domain που ταιριάζει με το From.'], fail: ['red', 'Το DMARC απέτυχε: ούτε SPF ούτε DKIM πέρασαν για domain που ταιριάζει με το From.'], bestguesspass: ['amber', 'Το domain δεν έχει εγγραφή DMARC. Αν είχε, το μήνυμα θα περνούσε.'], none: ['amber', 'Το domain του αποστολέα δεν έχει εγγραφή DMARC.'], temperror: ['amber', 'Προσωρινό σφάλμα στον έλεγχο DMARC.'], permerror: ['red', 'Μόνιμο σφάλμα: η εγγραφή DMARC είναι λάθος γραμμένη.'] }[A.dmarc] || ['gray', 'Τιμή που δεν τεκμηριώνεται.'];
+            var act = { none: '', oreject: ' Η πολιτική του αποστολέα είναι p=reject, αλλά το Microsoft 365 δεν απέρριψε το μήνυμα στη σύνδεση. Το χειρίστηκε ως spoof, με την ενέργεια της anti-phishing policy.', 'pct.quarantine': ' Η πολιτική είναι p=quarantine με pct κάτω από 100, και αυτή τη φορά η ενέργεια δεν εφαρμόστηκε.', 'pct.reject': ' Η πολιτική είναι p=reject με pct κάτω από 100, και αυτή τη φορά η ενέργεια δεν εφαρμόστηκε.', quarantine: ' Η πολιτική DMARC του αποστολέα ζητά quarantine.', reject: ' Η πολιτική DMARC του αποστολέα ζητά reject.', permerror: ' Μόνιμο σφάλμα στην εγγραφή DMARC.', temperror: ' Προσωρινό σφάλμα στην ανάγνωση της εγγραφής DMARC.' }[A.action];
+            out.rows.push({ name: 'DMARC', value: A.dmarc + (A.action ? ' · action=' + A.action : '') + (A.from ? ' · ' + A.from : ''), tone: D[0], text: D[1] + (act || '') });
+        }
+        if (A.compauth) {
+            var ct = A.compauth === 'pass' ? 'green' : A.compauth === 'fail' ? 'red' : A.compauth === 'softpass' ? 'amber' : 'gray';
+            out.rows.push({ name: 'compauth', value: A.compauth + (A.reason ? ' · reason=' + A.reason : ''), tone: ct,
+                text: 'Η συνολική κρίση του Microsoft 365 για τον αποστολέα, με βάση SPF, DKIM, DMARC και άλλα σήματα. ' + (A.reason ? compauthReason(A.reason) : '') + (A.compauth === 'fail' ? ' Ακόμα και με αποτυχία, το μήνυμα μπορεί να παραδοθεί αν τα υπόλοιπα σήματα δεν είναι ύποπτα.' : '') });
+        }
+        out.summary = A.dmarc === 'pass' ? 'Ο αποστολέας ταυτοποιήθηκε κανονικά.' : A.dmarc === 'fail' ? 'Ο αποστολέας δεν ταυτοποιήθηκε για το domain του From.' : 'Η ταυτοποίηση δεν είναι πλήρης.';
+        return out;
+    }
+
+    // ---------- Αποφάσεις και βήματα ----------
+    function S(title, body) { return { t: title, b: body }; }
+    var stepSubmitFP = function () { return S('Στείλε το μήνυμα στη Microsoft ως false positive.', 'Στο ' + a(PORTAL.submit, 'Submissions') + ' › <strong>Emails</strong> › <strong>Submit to Microsoft for analysis</strong>, διάλεξε <strong>Should not have been blocked (False positive)</strong>. Αν ενεργοποιήσεις το <strong>Allow this message</strong>, δημιουργείται και προσωρινή καταχώριση allow στο Tenant Allow/Block List. ' + a(DOC.submit, 'Οδηγός της Microsoft') + '.'); };
+    var stepSubmitFN = function () { return S('Στείλε το μήνυμα στη Microsoft ως false negative.', 'Στο ' + a(PORTAL.submit, 'Submissions') + ' › <strong>Emails</strong>, διάλεξε <strong>Should have been blocked (False negative)</strong> και, αν θέλεις, μπλόκαρε τον αποστολέα στο Tenant Allow/Block List από την ίδια φόρμα. ' + a(DOC.submit, 'Οδηγός') + '.'); };
+    var stepSender = function (R) { return S('Ζήτα από τον αποστολέα να διορθώσει την ταυτοποίησή του.', 'Το πρόβλημα είναι στις εγγραφές DNS του ' + code(R.auth && R.auth.from || R.fromDomain || 'domain του αποστολέα') + ', όχι στο δικό σου tenant. Στείλε του το αποτέλεσμα του ' + al(LINK_DOMAIN, 'ελέγχου domain') + ' για το domain του. Μια μόνιμη εξαίρεση στο δικό σου tenant θα άνοιγε τον δρόμο και σε όποιον τον μιμείται.'); };
+    var stepTrace = function () { return S('Επιβεβαίωσε τη διαδρομή στο Message trace.', 'Στο ' + a(PORTAL.trace, 'Message trace') + ' του Exchange admin center θα δεις τι έγινε τελικά στο μήνυμα και ποιος κανόνας ενεργοποιήθηκε (γεγονός AGENTINFO στο detailed trace).'); };
+    var stepDiag = function () { return S('Δες ποια πολιτική εφαρμόζεται στον παραλήπτη.', 'Το διαγνωστικό ' + a(PORTAL.diag, 'Email Threat Policies') + ' δείχνει ποιες πολιτικές καλύπτουν τον παραλήπτη. Αν ο χρήστης είναι στο Standard ή στο Strict preset security policy, οι ρυθμίσεις των custom policies δεν εφαρμόζονται σε αυτόν. ' + a(DOC.precedence, 'Σειρά προτεραιότητας') + '.'); };
+    var stepGateway = function (R) { return R.gateways.length ? S('Ρύθμισε Enhanced Filtering for Connectors.', 'Το μήνυμα πέρασε από ' + esc(R.gateways.join(', ')) + ' πριν φτάσει στο Microsoft 365. Χωρίς Enhanced Filtering for Connectors, το Microsoft 365 βλέπει την IP του gateway αντί για την πραγματική IP του αποστολέα, και το SPF και το DMARC αποτυγχάνουν χωρίς λόγο. ' + a(DOC.efc, 'Οδηγός της Microsoft') + '.') : null; };
+
+    var VERDICTS = {
+        none: function () { return { tone: 'amber', title: 'Δεν βρέθηκαν headers φιλτραρίσματος του Microsoft 365', where: 'Δεν μπορεί να κριθεί', why: 'Λείπει το X-Forefront-Antispam-Report. Είτε δεν επικόλλησες όλα τα headers, είτε το μήνυμα δεν πέρασε από το Exchange Online Protection (π.χ. το mailbox δεν είναι στο Microsoft 365). Δες παρακάτω όσα μπόρεσαν να διαβαστούν.', steps: [S('Αντέγραψε ξανά όλα τα headers.', 'Από το <strong>View message details</strong> ή το <strong>File › Properties</strong>, από την πρώτη έως την τελευταία γραμμή.'), stepTrace()] }; },
+        untrusted: function () { return { tone: 'amber', title: 'Βλέπω μόνο headers «-Untrusted»', where: 'Δεν μπορεί να κριθεί', why: 'Τα X-Forefront-Antispam-Report-Untrusted και X-Microsoft-Antispam-Untrusted τα έβαλε το Microsoft 365 του αποστολέα, όχι του παραλήπτη. Δεν δείχνουν τι αποφάσισε το δικό σου φίλτρο, γι\' αυτό δεν χρησιμοποιούνται για την κρίση.', steps: [S('Πάρε τα headers από το mailbox του παραλήπτη.', 'Αν το mailbox του παραλήπτη δεν είναι στο Microsoft 365, το φίλτρο που αποφάσισε είναι άλλο και πρέπει να εξεταστεί εκεί.'), stepTrace()] }; },
+        malware: function (R) { return { tone: 'red', title: 'Κακόβουλο λογισμικό', where: 'Καραντίνα. Μόνο admin μπορεί να το διαχειριστεί.', why: CAT[R.cat] + ' Το malware δεν παρακάμπτεται με allow lists ή mail flow rules.', steps: [S('Μην απελευθερώσεις το μήνυμα.', 'Οι παραλήπτες δεν μπορούν να το απελευθερώσουν μόνοι τους, μόνο να ζητήσουν απελευθέρωση. Αφού το συνημμένο κρίθηκε κακόβουλο, άφησέ το στην ' + a(PORTAL.quarantine, 'καραντίνα') + '.'), S('Έλεγξε αν έφτασαν παρόμοια μηνύματα σε άλλους.', 'Στο Threat Explorer (Plan 2) ή στο Real-time detections (Plan 1) αναζήτησε τον αποστολέα και το θέμα. Αν βρεις μηνύματα που παραδόθηκαν, χειρίσου το ως συμβάν ασφάλειας.'), S('Μόνο αν είσαι βέβαιος ότι είναι λάθος, στείλε false positive.', 'Στο ' + a(PORTAL.submit, 'Submissions') + ' διάλεξε <strong>Should not have been blocked</strong>, ώστε να το εξετάσει η Microsoft.')] }; },
+        hphish: function (R) { return { tone: 'red', title: 'Phishing υψηλής βεβαιότητας', where: 'Πάντα καραντίνα. Ο χρήστης μπορεί μόνο να ζητήσει απελευθέρωση.', why: 'Το Microsoft 365 είναι σχεδόν βέβαιο ότι πρόκειται για phishing. Αυτή η κρίση δεν παρακάμπτεται με allow lists, Safe Senders ή mail flow rule με SCL -1.', steps: [S('Μην το απελευθερώσεις.', 'Αν ο χρήστης ζήτησε release, εξήγησέ του ότι το μήνυμα σταμάτησε σκόπιμα.'), S('Έλεγξε αν έφτασαν παρόμοια μηνύματα και αν πάτησε κάποιος.', 'Αν κάποιος χρήστης άνοιξε link ή έδωσε κωδικό, άλλαξε τον κωδικό του, κάνε revoke sessions και έλεγξε τα sign-in logs. Αν το συμβάν είναι σημαντικό, δες τον ' + al(LINK_INCIDENT, 'οδηγό αναφοράς περιστατικού στην ΕΑΚ') + '.'), S('Μόνο αν είσαι βέβαιος ότι είναι νόμιμο, στείλε false positive.', 'Μόνο η Microsoft μπορεί να αλλάξει αυτή την κρίση, μέσω ' + a(PORTAL.submit, 'Submissions') + '.')] }; },
+        phish: function (R) { return { tone: 'red', title: 'Phishing', where: 'Καραντίνα με την προεπιλεγμένη πολιτική.', why: 'Το φίλτρο χαρακτήρισε το μήνυμα phishing. Η ενέργεια ορίζεται στην anti-spam policy που εφαρμόζεται στον παραλήπτη.', steps: [S('Μην το απελευθερώσεις πριν το εξετάσεις.', 'Δες προσεκτικά αποστολέα, links και συνημμένα. Η ενότητα «Ταυτοποίηση αποστολέα» παρακάτω δείχνει αν ο αποστολέας είναι αυτός που λέει.'), ].concat(R.auth && R.auth.dmarc !== 'pass' ? [stepSender(R)] : []).concat([stepSubmitFP()]) }; },
+        imp: function (R) { return { tone: 'red', title: 'Impersonation (μίμηση)', where: 'Η ενέργεια ορίζεται στην anti-phishing policy του Defender for Office 365.', why: CAT[R.cat] + (R.F.SFTY ? ' Πεδίο SFTY: ' + R.F.SFTY + '.' : ''), steps: [S('Έλεγξε αν ο αποστολέας είναι πραγματικά αυτός που φαίνεται.', 'Σύγκρινε τη διεύθυνση γράμμα προς γράμμα με τη γνήσια. Η μίμηση συχνά αλλάζει ένα γράμμα ή το domain.'), S('Αν είναι γνήσιος, πρόσθεσέ τον στους trusted senders της anti-phishing policy.', 'Στις ' + a(PORTAL.antiphish, 'anti-phishing policies') + ', στις ρυθμίσεις impersonation, πρόσθεσε τον αποστολέα ή το domain στο <strong>Trusted senders and domains</strong>. Αυτό εξαιρεί μόνο από την προστασία impersonation. ' + a(DOC.antiphish, 'Οδηγός') + '.'), stepSubmitFP()] }; },
+        intos: function () { return { tone: 'red', title: 'Phishing από λογαριασμό του οργανισμού σου', where: 'Η ενέργεια ορίζεται στην anti-spam policy, για τα εσωτερικά μηνύματα.', why: 'Ένας εσωτερικός λογαριασμός έστειλε μήνυμα που μοιάζει με phishing. Συχνά σημαίνει παραβιασμένο λογαριασμό.', steps: [S('Έλεγξε άμεσα τον λογαριασμό που το έστειλε.', 'Δες τα sign-in logs, τους inbox rules και τα πρόσφατα απεσταλμένα. Αν δεις κάτι ύποπτο, άλλαξε τον κωδικό, κάνε revoke sessions και ζήτησε ξανά MFA. Οι ' + al(root.getAttribute('data-ca'), 'πολιτικές Conditional Access') + ' μειώνουν αυτόν τον κίνδυνο.'), S('Αν επιβεβαιωθεί παραβίαση, χειρίσου το ως συμβάν.', 'Δες τον ' + al(LINK_INCIDENT, 'οδηγό αναφοράς περιστατικού στην ΕΑΚ') + ' για το αν είναι σημαντικό περιστατικό.'), stepSubmitFP()] }; },
+        spoof: function (R) {
+            var r = R.auth && R.auth.reason, own = r === '010' || r === '601';
+            var why = 'Ο αποστολέας δεν ταυτοποιήθηκε για το domain που δείχνει στο From' + (r ? ' (compauth reason ' + r + '). ' + compauthReason(r) : '.');
+            var steps = [];
+            if (own) {
+                steps.push(S('Βρες ποια υπηρεσία στέλνει με το δικό σου domain.', 'Κάποιος στέλνει από έξω με διεύθυνση του δικού σου domain. Αν είναι νόμιμη υπηρεσία (π.χ. πλατφόρμα newsletter, σύστημα ERP, scanner), πρόσθεσέ την στο SPF ή ενεργοποίησε DKIM για το domain σου εκεί. Αν δεν την αναγνωρίζεις, πρόκειται για επίθεση. Έλεγξε το domain σου με τον ' + al(LINK_DOMAIN, 'έλεγχο domain') + '.'));
+            } else if (r === '000') {
+                steps.push(stepSender(R));
+            } else {
+                steps.push(S('Αν ο αποστολέας είναι γνήσιος, επέτρεψέ τον από το spoof intelligence.', 'Στο ' + a(PORTAL.spoof, 'spoof intelligence insight') + ' βρες το ζεύγος domain και υποδομής αποστολής και επέτρεψέ το. Η καταχώριση πηγαίνει στο Tenant Allow/Block List, στα <strong>Spoofed senders</strong>. ' + a(DOC.spoof, 'Οδηγός') + '.'));
+                steps.push(stepSender(R));
+            }
+            var g = stepGateway(R); if (g) steps.unshift(g);
+            steps.push(stepSubmitFP());
+            return { tone: 'amber', title: 'Πλαστός αποστολέας (spoofing)', where: 'Junk ή καραντίνα, ανάλογα με τη ρύθμιση spoof της anti-phishing policy.', why: why, steps: steps.slice(0, 4) };
+        },
+        userblock: function () { return { tone: 'amber', title: 'Ο αποστολέας είναι στα Blocked Senders του χρήστη', where: 'Junk ή καραντίνα, ανάλογα με την anti-spam policy.', why: SFV.BLK[1] + ' Δεν το αποφάσισε το φίλτρο, το επέλεξε ο ίδιος ο χρήστης.', steps: [S('Αφαίρεσε τον αποστολέα από τα Blocked Senders.', 'Στο Outlook: <strong>Settings</strong> › <strong>Mail</strong> › <strong>Junk email</strong> › <strong>Blocked senders and domains</strong>. Ως admin: ' + code('Get-MailboxJunkEmailConfiguration -Identity <χρήστης>') + ' και δες το BlockedSendersAndDomains. ' + a(DOC.junk, 'Οδηγός') + '.')] }; },
+        policyblock: function () { return { tone: 'amber', title: 'Ο αποστολέας είναι στη λίστα αποκλεισμού της anti-spam policy', where: 'Junk ή καραντίνα, ανάλογα με την anti-spam policy.', why: SFV.SKB[1], steps: [S('Έλεγξε τη λίστα blocked senders και domains.', 'Στις ' + a(PORTAL.antispam, 'anti-spam policies') + ' ή με ' + code('Get-HostedContentFilterPolicy | Format-Table Identity, BlockedSenders, BlockedSenderDomains') + '. Αν η καταχώριση δεν χρειάζεται πια, αφαίρεσέ την.'), stepDiag()] }; },
+        rulespam: function () { return { tone: 'amber', title: 'Ένα mail flow rule το χαρακτήρισε spam', where: 'Junk ή καραντίνα, ανάλογα με την anti-spam policy.', why: SFV.SKS[1], steps: [S('Βρες το mail flow rule που ορίζει SCL.', 'Στα ' + a(PORTAL.rules, 'mail flow rules') + ' ψάξε κανόνες με ενέργεια <strong>Set the spam confidence level (SCL)</strong>, ή τρέξε ' + code('Get-TransportRule | Where-Object {$_.SetSCL -ne $null} | Format-Table Name, State, SetSCL, Priority') + '. Σε hybrid, δες και το on-premises Exchange.'), stepTrace()] }; },
+        asf: function (R) {
+            var hits = R.custom.map(function (c) { var key = c.toLowerCase().trim(); var f = CUSTOM[key]; return f ? f : [c, '']; });
+            var names = hits.map(function (h) { return h[0] + (h[1] ? ' (' + h[1] + ')' : ''); }).join(', ');
+            return { tone: 'amber', title: 'Το χαρακτήρισε μια ρύθμιση Advanced Spam Filter', where: R.cat === 'HSPM' ? 'High confidence spam: Junk με την προεπιλεγμένη πολιτική, καραντίνα στο Standard και Strict preset.' : 'Spam: Junk με την προεπιλεγμένη πολιτική.', why: 'Το X-CustomSpam δείχνει ότι ενεργοποιήθηκε η ρύθμιση ' + names + '. Οι ρυθμίσεις ASF είναι επιθετικές, η Microsoft δεν τις προτείνει πια, και τα μηνύματα που πιάνουν δεν μπορούν να σταλούν ως false positive.', steps: [S('Απενεργοποίησε τη ρύθμιση ASF που το έπιασε.', 'Στις ' + a(PORTAL.antispam, 'anti-spam policies') + ', στο <strong>Spam properties</strong>, γύρισε τη ρύθμιση σε <strong>Off</strong> ή σε <strong>Test</strong>' + (hits[0] && hits[0][1] ? ', ή με ' + code('Set-HostedContentFilterPolicy -Identity <policy> -' + hits[0][1] + ' Off') : '') + '. ' + a(DOC.asf, 'Οδηγός') + '.'), S('Δες ποιες άλλες ρυθμίσεις ASF είναι ενεργές.', code('Get-HostedContentFilterPolicy | Format-Table Identity, MarkAsSpam*, IncreaseScoreWith* -AutoSize') + '. ' + a(DOC.trouble + '#asf-settings-that-cause-false-positives', 'Ποιες προκαλούν false positives') + '.')] };
+        },
+        hspam: function (R) { return { tone: 'amber', title: 'Spam υψηλής βεβαιότητας', where: 'Junk με την προεπιλεγμένη πολιτική, καραντίνα στο Standard και Strict preset.', why: CAT.HSPM + (R.authEval.aligned === false ? ' Επιπλέον, ο αποστολέας δεν ταυτοποιήθηκε σωστά.' : ''), steps: [R.authEval.aligned === false ? stepSender(R) : stepSubmitFP(), R.authEval.aligned === false ? stepSubmitFP() : stepDiag(), stepGateway(R)].filter(Boolean) }; },
+        spam: function (R) { return { tone: 'amber', title: 'Spam', where: 'Junk με την προεπιλεγμένη πολιτική, καραντίνα στο Strict preset.', why: 'Το φίλτρο spam έκρινε το μήνυμα ανεπιθύμητο από το περιεχόμενο, τον αποστολέα και τη φήμη της IP.' + (R.authEval.aligned === false ? ' Ο αποστολέας δεν ταυτοποιήθηκε σωστά, κάτι που βαραίνει την κρίση.' : ''), steps: [R.authEval.aligned === false ? stepSender(R) : stepSubmitFP(), R.authEval.aligned === false ? stepSubmitFP() : S('Για έναν μόνο χρήστη, αρκεί το «Not junk».', 'Ο χρήστης μετακινεί το μήνυμα στα Inbox και, αν θέλει, προσθέτει τον αποστολέα στα Safe Senders. Για όλο τον οργανισμό, προτίμησε το Submissions αντί για allowed senders στην anti-spam policy, γιατί εκείνα παρακάμπτουν το φίλτρο ακόμα και για όποιον τα μιμείται.'), stepGateway(R)].filter(Boolean) }; },
+        bulk: function (R) { var b = R.bcl; return { tone: 'blue', title: 'Μαζική αποστολή (bulk)', where: 'Junk με την προεπιλεγμένη πολιτική και το Standard preset, καραντίνα στο Strict preset.', why: 'Το μήνυμα είναι από αποστολέα μαζικών μηνυμάτων' + (b != null ? ' με BCL ' + b + '. ' + (b >= 8 ? 'Οι αποστολείς με BCL 8 και 9 προκαλούν πολλά παράπονα.' : b >= 4 ? 'Οι αποστολείς με BCL 4 έως 7 προκαλούν μέτρια παράπονα.' : 'Οι αποστολείς με BCL 1 έως 3 προκαλούν λίγα παράπονα.') : '.') + ' Τα προεπιλεγμένα όρια είναι 7 στην default policy, 6 στο Standard και 5 στο Strict preset. Ό,τι φτάνει ή ξεπερνά το όριο θεωρείται bulk.', steps: [S('Για έναν χρήστη που θέλει αυτά τα μηνύματα, αρκεί το «Not junk».', 'Μετακίνηση στα Inbox και προσθήκη του αποστολέα στα Safe Senders. Δεν χρειάζεται αλλαγή σε επίπεδο οργανισμού.'), S('Για όλο τον οργανισμό, άλλαξε προσεκτικά το bulk email threshold.', 'Στις ' + a(PORTAL.antispam, 'anti-spam policies') + '. Με μεγαλύτερο όριο λιγότερα μηνύματα θεωρούνται bulk. Δες πρώτα το <strong>Bulk senders insight</strong> για να προσομοιώσεις την αλλαγή. ' + a(DOC.bcl, 'Οδηγός') + '.'), S('Εναλλακτικά, στείλε τα bulk στον φάκελο Promotions.', 'Η ρύθμιση <strong>Bulk moves enabled</strong> στην anti-spam policy παραδίδει τα bulk κάτω από το όριο στον φάκελο Promotions, αντί για τα Inbox.')] }; },
+        outspam: function () { return { tone: 'red', title: 'Εξερχόμενο spam από τον οργανισμό σου', where: 'Αποστολή μέσω high-risk delivery pool ή NDR.', why: CAT.OSPM + ' Συχνά σημαίνει ότι ένας λογαριασμός του οργανισμού έχει παραβιαστεί.', steps: [S('Έλεγξε τον λογαριασμό που έστειλε το μήνυμα.', 'Δες sign-in logs, inbox rules και απεσταλμένα. Στο Defender portal, στο <strong>Restricted entities</strong>, θα δεις αν ο χρήστης έχει μπλοκαριστεί από αποστολή.'), S('Αν επιβεβαιωθεί παραβίαση, χειρίσου το ως συμβάν.', 'Δες τον ' + al(LINK_INCIDENT, 'οδηγό αναφοράς περιστατικού στην ΕΑΚ') + '.')] }; },
+        released: function () { return { tone: 'blue', title: 'Απελευθερώθηκε από την καραντίνα', where: 'Inbox, μετά από απελευθέρωση.', why: SFV.SKQ[1] + ' Τα headers δεν λένε για ποιον λόγο μπήκε αρχικά στην καραντίνα.', steps: [S('Δες ποιος το απελευθέρωσε και γιατί είχε μπει στην καραντίνα.', 'Στην ' + a(PORTAL.quarantine, 'καραντίνα') + ' και στο audit log. Αν το απελευθέρωσε χρήστης και ήταν phishing, χειρίσου το ως συμβάν.')] }; },
+        rulebypass: function () { return { tone: 'amber', title: 'Ένα mail flow rule παρέκαμψε το φίλτρο spam', where: 'Inbox.', why: SFV.SKN[1] + ' Αν πρόκειται για spam που έφτασε στα Inbox, αυτός είναι ο λόγος. Το malware και το high confidence phishing ελέγχονται κανονικά.', steps: [S('Βρες τον κανόνα με SCL -1 και στένεψε τις συνθήκες του.', 'Στα ' + a(PORTAL.rules, 'mail flow rules') + ' ψάξε <strong>Bypass spam filtering</strong>, ή τρέξε ' + code('Get-TransportRule | Where-Object {$_.SetSCL -ne $null} | Format-Table Name, State, SetSCL, Priority') + '. Ένας κανόνας για ολόκληρο domain ή IP range είναι υψηλός κίνδυνος. ' + a(DOC.scln, 'Οδηγός') + '.'), S('Αν ο κανόνας υπάρχει επειδή το email περνά από υπηρεσία τρίτου, αντικατέστησέ τον.', 'Χρησιμοποίησε ' + a(DOC.efc, 'Enhanced Filtering for Connectors') + ' αντί για SCL -1. Για mailboxes του SOC και προσομοιώσεις phishing, χρησιμοποίησε το ' + a(DOC.adv, 'advanced delivery policy') + '.'), stepSubmitFN()] }; },
+        ipallow: function () { return { tone: 'amber', title: 'Η IP αποστολής είναι στο IP Allow List', where: 'Inbox.', why: SFV.SKI[1] + ' Το malware και το high confidence phishing ελέγχονται κανονικά, και οι αποτυχίες DMARC δεν παρακάμπτονται.', steps: [S('Έλεγξε αν η IP πρέπει να μείνει στη λίστα.', 'Στην connection filter policy στις ' + a(PORTAL.antispam, 'anti-spam policies') + ', ή με ' + code('Get-HostedConnectionFilterPolicy | Format-List IPAllowList') + '. Κάθε IP εκεί παρακάμπτει το φίλτρο spam για όλους. ' + a(DOC.conn, 'Οδηγός') + '.'), stepSubmitFN()] }; },
+        policyallow: function () { return { tone: 'amber', title: 'Ο αποστολέας είναι στους allowed senders της anti-spam policy', where: 'Inbox.', why: SFV.SKA[1] + ' Είναι ρύθμιση υψηλού κινδύνου, γιατί όποιος μιμηθεί αυτό το domain περνά κι αυτός.', steps: [S('Αφαίρεσε την καταχώριση και χρησιμοποίησε το Tenant Allow/Block List.', 'Στις ' + a(PORTAL.antispam, 'anti-spam policies') + ' ή με ' + code('Get-HostedContentFilterPolicy | Format-Table Identity, AllowedSenders, AllowedSenderDomains') + '. Αν ο χρήστης είναι σε preset security policy, η λίστα αυτή αγνοείται. ' + a(DOC.tabl, 'Tenant Allow/Block List') + '.'), stepDiag()] }; },
+        safesender: function () { return { tone: 'blue', title: 'Ο αποστολέας είναι στα Safe Senders του χρήστη', where: 'Inbox.', why: SFV.SFE[1] + ' Το malware και το high confidence phishing ελέγχονται κανονικά.', steps: [S('Αν το μήνυμα είναι ύποπτο, αφαίρεσε τον αποστολέα από τα Safe Senders.', 'Ως admin: ' + code('Get-MailboxJunkEmailConfiguration -Identity <χρήστης> | Select-Object TrustedSendersAndDomains') + '. ' + a(DOC.junk, 'Οδηγός') + '.'), stepSubmitFN()] }; },
+        clean: function (R) { return { tone: 'green', title: 'Το Microsoft 365 δεν το θεώρησε ανεπιθύμητο', where: 'Inbox.', why: 'Το φίλτρο έκρινε ότι το μήνυμα δεν είναι spam' + (R.cat === 'NONE' ? ' και δεν βρήκε κατηγορία απειλής' : '') + '. Αν ο χρήστης το βρήκε στα Junk, η μετακίνηση δεν έγινε από το φιλτράρισμα του Microsoft 365.' + (R.bcl ? ' Το BCL ' + R.bcl + ' σημαίνει μαζικό αποστολέα: αν είναι ενεργή η ρύθμιση Bulk moves, μπορεί να βρίσκεται στον φάκελο Promotions.' : ''), steps: [S('Αν το βρήκε στα Junk, έλεγξε τους κανόνες του χρήστη.', 'Δες τα inbox rules του mailbox και αν ο χρήστης το μετακίνησε ο ίδιος. Το Message trace επιβεβαιώνει πού παραδόθηκε.'), S('Αν το μήνυμα είναι κακόβουλο και πέρασε, ανάφερέ το.', 'Στο ' + a(PORTAL.submit, 'Submissions') + ' διάλεξε <strong>Should have been blocked</strong>. Αν το ήδη παραδοθέν μήνυμα είναι επικίνδυνο, αφαίρεσέ το από τα mailboxes.'), stepTrace()] }; },
+        unknown: function (R) { return { tone: 'gray', title: 'Συνδυασμός που δεν αναγνωρίστηκε', where: 'Δεν μπορεί να κριθεί με βεβαιότητα', why: 'Το X-Forefront-Antispam-Report υπάρχει, αλλά οι τιμές SFV (' + (R.sfv || 'κενό') + ') και CAT (' + (R.cat || 'κενό') + ') δεν αντιστοιχούν σε γνωστή απόφαση. Δες τα πεδία παρακάτω.', steps: [stepTrace(), stepDiag()] }; }
+    };
+
+    // ---------- Εμφάνιση ----------
+    var TONE = { red: 'border-rose-500/40 bg-rose-500/5', amber: 'border-amber-500/40 bg-amber-500/5', blue: 'border-blue-500/40 bg-blue-500/5', green: 'border-emerald-500/40 bg-emerald-500/5', gray: 'border-slate-700 bg-slate-900/60' };
+    var TONE_TXT = { red: 'text-rose-300', amber: 'text-amber-300', blue: 'text-blue-300', green: 'text-emerald-300', gray: 'text-slate-300' };
+    var last = null;
+
+    function fieldRows(R) {
+        var rows = [], F = R.F;
+        function add(k, v, t) { rows.push({ k: k, v: v, t: t }); }
+        if (F.CAT) add('CAT', F.CAT, CAT[F.CAT.toUpperCase()] || 'Κατηγορία που δεν τεκμηριώνεται δημόσια.');
+        if (F.SFV) add('SFV', F.SFV, SFV[F.SFV.toUpperCase()] ? SFV[F.SFV.toUpperCase()][1] + ' (' + SFV[F.SFV.toUpperCase()][0] + ')' : 'Τιμή που δεν τεκμηριώνεται δημόσια.');
+        if (F.SRV) add('SRV', F.SRV, /BULK/i.test(F.SRV) ? 'Το μήνυμα αναγνωρίστηκε ως bulk από το όριο BCL της πολιτικής.' : 'Χωρίς χαρακτηρισμό bulk.');
+        if (R.bcl != null) add('BCL', String(R.bcl), 'Bulk complaint level (0 έως 9). 0: όχι μαζικός αποστολέας. 1 έως 3: λίγα παράπονα. 4 έως 7: μέτρια. 8 και 9: πολλά.');
+        if (F.SFTY) add('SFTY', F.SFTY, ({ '9.19': 'Domain impersonation: προστέθηκε safety tip.', '9.20': 'User impersonation: προστέθηκε safety tip.', '9.25': 'First contact safety tip: ο παραλήπτης δεν έχει λάβει ξανά μήνυμα από αυτόν τον αποστολέα.' })[F.SFTY] || 'Το μήνυμα χαρακτηρίστηκε phishing με επιπλέον σήμανση ασφάλειας.');
+        if (F.IPV) add('IPV', F.IPV, ({ CAL: 'Η IP είναι στο IP Allow List. Το φίλτρο spam παρακάμφθηκε.', NLI: 'Η IP δεν βρέθηκε σε καμία λίστα φήμης.' })[F.IPV.toUpperCase()] || 'Τιμή που δεν τεκμηριώνεται δημόσια.');
+        if (F.DIR) add('DIR', F.DIR, ({ INB: 'Εισερχόμενο μήνυμα.', OUT: 'Εξερχόμενο μήνυμα.', INT: 'Εσωτερικό μήνυμα.' })[F.DIR.toUpperCase()] || 'Κατεύθυνση μηνύματος.');
+        if (F.CIP) add('CIP', F.CIP, 'Η IP που συνδέθηκε στο Microsoft 365. Αν πριν υπάρχει gateway τρίτου, είναι η IP του gateway, όχι του αποστολέα.');
+        if (F.CTRY) add('CTRY', F.CTRY, 'Η χώρα της IP σύνδεσης. Μπορεί να διαφέρει από τη χώρα του αρχικού αποστολέα.');
+        if (F.PTR) add('PTR', F.PTR, 'Το reverse DNS της IP προέλευσης.');
+        if (F.H) add('H', F.H, 'Το HELO/EHLO του server που συνδέθηκε.');
+        if (F.LANG) add('LANG', F.LANG, 'Η γλώσσα του μηνύματος.');
+        if (F.SCL) add('SCL', F.SCL, 'Spam confidence level. Στο cloud δεν καθορίζει την κρίση ούτε την ενέργεια, και η ίδια τιμή εμφανίζεται σε μηνύματα με διαφορετική κρίση. Γι\' αυτό το εργαλείο κρίνει από τα CAT και SFV. Χρησιμεύει κυρίως στο on-premises Exchange.');
+        R.custom.forEach(function (c) { var f = CUSTOM[c.toLowerCase().trim()]; add('X-CustomSpam', c, f ? 'Ενεργοποιήθηκε η ρύθμιση ASF «' + f[0] + '» (' + f[1] + ').' : 'Ρύθμιση Advanced Spam Filter ή Test mode.'); });
+        return rows;
+    }
+
+    function render(R) {
+        var V = R.V;
+        var meta = [];
+        if (R.fromAddr) meta.push('<span class="text-slate-400">Από:</span> ' + esc(R.fromAddr));
+        if (R.subject) meta.push('<span class="text-slate-400">Θέμα:</span> ' + esc(R.subject));
+        if (R.date) meta.push('<span class="text-slate-400">Ημερομηνία:</span> ' + esc(R.date));
+        $('jcVerdict').className = 'rounded-lg border p-4 ' + TONE[V.tone];
+        $('jcVerdict').innerHTML =
+            '<p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Τι αποφάσισε το Microsoft 365</p>' +
+            '<p class="text-xl font-bold ' + TONE_TXT[V.tone] + '">' + esc(V.title) + '</p>' +
+            '<p class="text-sm text-slate-200 leading-relaxed mt-2">' + esc(V.why) + '</p>' +
+            '<p class="text-sm text-slate-300 mt-2"><span class="text-slate-400">Πού πηγαίνει συνήθως:</span> ' + esc(V.where) + '</p>' +
+            (meta.length ? '<p class="text-xs text-slate-300 mt-3 leading-relaxed break-words">' + meta.join(' · ') + '</p>' : '') +
+            (R.gateways.length && R.key !== 'spoof' ? '<p class="text-xs text-amber-300 mt-2">Το μήνυμα πέρασε από ' + esc(R.gateways.join(', ')) + ' πριν το Microsoft 365. Δες το βήμα για το Enhanced Filtering for Connectors αν τα SPF ή DMARC αποτυγχάνουν.</p>' : '');
+
+        $('jcSteps').innerHTML = V.steps.map(function (s) {
+            return '<li class="jcStep flex gap-3"><div><p class="font-semibold text-slate-100">' + s.t + '</p><p class="mt-0.5">' + s.b + '</p></div></li>';
+        }).join('');
+
+        var E = R.authEval;
+        $('jcAuth').innerHTML = E.rows.length ? E.rows.map(function (r) {
+            return '<div class="rounded-md border border-slate-800 p-3"><div class="flex flex-wrap items-center gap-2 mb-1"><span class="font-semibold text-slate-100">' + esc(r.name) + '</span>' + pill(r.value, r.tone) + '</div><p class="text-sm text-slate-300 leading-relaxed">' + esc(r.text) + '</p></div>';
+        }).join('') + (R.arc ? '<p class="text-xs text-slate-400">Υπάρχει και ARC-Authentication-Results: το μήνυμα πέρασε από ενδιάμεση υπηρεσία που κατέγραψε τα αρχικά αποτελέσματα. Αν η υπηρεσία είναι δική σου, μπορείς να τη δηλώσεις ' + a(DOC.arc, 'trusted ARC sealer') + '.</p>' : '')
+            : '<p class="text-sm text-slate-400">' + esc(E.summary) + '</p>';
+
+        var fr = fieldRows(R);
+        $('jcFields').innerHTML = fr.length ? fr.map(function (r) {
+            return '<tr class="border-b border-slate-800/70"><td class="py-2 pr-3 jcKey text-slate-100 whitespace-nowrap">' + esc(r.k) + '</td><td class="py-2 pr-3 jcKey break-all min-w-[9rem]">' + esc(r.v) + '</td><td class="py-2 leading-relaxed">' + esc(r.t) + '</td></tr>';
+        }).join('') : '<tr><td colspan="3" class="py-2 text-slate-400">Δεν βρέθηκαν πεδία φιλτραρίσματος.</td></tr>';
+
+        $('jcHops').innerHTML = R.hops.length ? R.hops.map(function (h, i) {
+            var slow = h.delay != null && h.delay > 5 * 60 * 1000;
+            var gw = GATEWAYS.filter(function (g) { return g[0].test(h.from) || g[0].test(h.by); }).map(function (g) { return g[1]; })[0];
+            var ms = /outlook\.com|protection\.outlook|microsoft\.com/i.test(h.by);
+            return '<div class="rounded-md border ' + (slow ? 'border-amber-500/40' : 'border-slate-800') + ' p-3 text-sm"><div class="flex flex-wrap items-center gap-2"><span class="text-slate-400">' + (i + 1) + '.</span>' +
+                '<span class="jcKey text-slate-100 break-all">' + esc(h.from || 'άγνωστο') + (h.ip ? ' [' + esc(h.ip) + ']' : '') + '</span><span class="text-slate-500">→</span><span class="jcKey text-slate-200 break-all">' + esc(h.by || 'άγνωστο') + '</span>' +
+                (ms ? pill('Microsoft 365', 'blue') : '') + (gw ? pill(gw, 'amber') : '') + '</div>' +
+                '<p class="text-xs text-slate-400 mt-1">' + (h.date ? fmtDate(h.date) : 'χωρίς ημερομηνία') + (h.with ? ' · ' + esc(h.with) : '') + (h.delay != null ? ' · <span class="' + (slow ? 'text-amber-300 font-semibold' : '') + '">καθυστέρηση ' + fmtDur(h.delay) + '</span>' : '') + '</p></div>';
+        }).join('') + (R.total != null ? '<p class="text-xs text-slate-400">Συνολικός χρόνος από το πρώτο έως το τελευταίο hop: ' + fmtDur(R.total) + '</p>' : '')
+            : '<p class="text-sm text-slate-400">Δεν βρέθηκαν headers Received.</p>';
+
+        $('jcResult').classList.remove('hidden');
+        $('jcExpMsg').classList.add('hidden');
+    }
+
+    function run() {
+        var raw = $('jcInput').value, err = $('jcError');
+        err.classList.add('hidden');
+        if (!raw.trim()) { err.textContent = 'Επικόλλησε πρώτα τα headers ενός μηνύματος.'; err.classList.remove('hidden'); return; }
+        if (raw.length > 400000) { err.textContent = 'Το κείμενο είναι πολύ μεγάλο. Επικόλλησε μόνο τα headers, χωρίς το σώμα και τα συνημμένα.'; err.classList.remove('hidden'); return; }
+        var R = analyze(raw);
+        if (!R.H.length) { err.textContent = 'Δεν αναγνωρίστηκαν headers. Κάθε γραμμή πρέπει να ξεκινά με όνομα πεδίου και άνω-κάτω τελεία, π.χ. «Received: from …».'; err.classList.remove('hidden'); return; }
+        last = R; render(R);
+        $('jcResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---------- Σύνοψη για αντιγραφή και αναφορά ----------
+    function mask(s) { return String(s || '').replace(/([A-Za-z0-9._%+-])([A-Za-z0-9._%+-]*)@([A-Za-z0-9.-]+\.[A-Za-z]{2,})/g, function (m, f, rest, d) { return f + '***@' + d; }); }
+    function summaryText(R, m) {
+        var t = function (s) { return m ? mask(s) : String(s || ''); };
+        var V = R.V, out = [];
+        out.push('Ανάλυση email headers (thecybersec.gr/giati-pige-sta-junk/)');
+        out.push('Απόφαση: ' + V.title);
+        out.push('Αιτία: ' + V.why);
+        out.push('Πού πηγαίνει συνήθως: ' + V.where);
+        if (R.fromAddr) out.push('Από: ' + t(R.fromAddr));
+        if (R.subject) out.push('Θέμα: ' + t(R.subject));
+        if (R.date) out.push('Ημερομηνία: ' + R.date);
+        if (R.msgid) out.push('Message-ID: ' + t(R.msgid));
+        var A = R.auth;
+        if (A) out.push('Ταυτοποίηση: SPF=' + (A.spf || '-') + ', DKIM=' + (A.dkim.map(function (x) { return x.res; }).join('/') || '-') + ', DMARC=' + (A.dmarc || '-') + ', compauth=' + (A.compauth || '-') + (A.reason ? ' (reason ' + A.reason + ')' : ''));
+        out.push('Πεδία: ' + ['CAT', 'SFV', 'IPV', 'DIR', 'CIP', 'CTRY'].filter(function (k) { return R.F[k]; }).map(function (k) { return k + ':' + R.F[k]; }).concat(R.bcl != null ? ['BCL:' + R.bcl] : []).join('; '));
+        out.push('Επόμενα βήματα:');
+        V.steps.forEach(function (s, i) { out.push((i + 1) + '. ' + strip(s.t) + ' ' + strip(s.b)); });
+        return out.join('\n');
+    }
+
+    $('jcRun').addEventListener('click', run);
+    $('jcInput').addEventListener('keydown', function (e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') run(); });
+    $('jcClear').addEventListener('click', function () { $('jcInput').value = ''; $('jcResult').classList.add('hidden'); $('jcError').classList.add('hidden'); $('jcSample').value = ''; last = null; $('jcInput').focus(); });
+    $('jcSample').addEventListener('change', function () { var k = this.value; if (!k || !SAMPLES[k]) return; $('jcInput').value = SAMPLES[k].trim(); run(); });
+    $('jcCopy').addEventListener('click', function () {
+        if (!last) return;
+        var msg = $('jcExpMsg'), txt = summaryText(last, $('jcMask').checked);
+        function ok() { msg.textContent = 'Η σύνοψη αντιγράφηκε. Επικόλλησέ τη στο ticket.'; msg.className = 'text-sm mt-2 text-emerald-300'; }
+        function bad() { msg.textContent = 'Η αντιγραφή δεν επιτράπηκε από τον browser. Κατέβασε την αναφορά .pdf.'; msg.className = 'text-sm mt-2 text-amber-400'; }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, bad); else bad();
+    });
+
+    // ---------- Αναφορά .pdf: το pdfmake φορτώνει μόνο όταν πατηθεί το κουμπί ----------
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-jc="' + src + '"]')) return next();
+            var s = document.createElement('script'); s.src = src; s.setAttribute('data-jc', src); s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    var EXPORT = '{{ "js/junk-report.js" | relURL }}?v={{ readFile "static/js/junk-report.js" | md5 | truncate 8 "" }}';
+    var PDFLIB = ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'];
+    $('jcPdf').addEventListener('click', function () {
+        if (!last) return;
+        var btn = this, msg = $('jcExpMsg'), txt = btn.textContent;
+        btn.disabled = true; btn.textContent = 'Δημιουργία…'; msg.classList.add('hidden');
+        var m = $('jcMask').checked, t = function (s) { return m ? mask(s) : String(s || ''); };
+        var R = last;
+        var ctx = {
+            base: BASE, mask: m,
+            title: R.V.title, why: R.V.why, where: R.V.where, tone: R.V.tone,
+            steps: R.V.steps.map(function (s) { return { t: strip(s.t), b: strip(s.b) }; }),
+            from: t(R.fromAddr), to: t(addrOf(R.to)), subject: t(R.subject), date: R.date, msgid: t(R.msgid),
+            auth: R.authEval.rows, fields: fieldRows(R).map(function (r) { return { k: r.k, v: t(r.v), t: r.t }; }),
+            hops: R.hops.map(function (h) { return { from: h.from, ip: h.ip, by: h.by, date: h.date ? fmtDate(h.date) : '', delay: h.delay != null ? fmtDur(h.delay) : '', slow: h.delay != null && h.delay > 300000 }; }),
+            total: R.total != null ? fmtDur(R.total) : '', gateways: R.gateways
+        };
+        loadScripts(PDFLIB.concat([EXPORT]), function () {
+            Promise.resolve().then(function () { return window.JunkReport.pdf(ctx); })
+                .catch(function () { msg.textContent = 'Δεν δημιουργήθηκε η αναφορά. Δοκίμασε ξανά.'; msg.className = 'text-sm mt-2 text-amber-400'; })
+                .then(function () { btn.disabled = false; btn.textContent = txt; });
+        }, function () { msg.textContent = 'Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'; msg.className = 'text-sm mt-2 text-amber-400'; btn.disabled = false; btn.textContent = txt; });
+    });
+
+    // ---------- Παραδείγματα: κατασκευασμένα δεδομένα (MyCompany, IP τεκμηρίωσης κατά RFC 5737) ----------
+    var SAMPLES = {
+        spoof: [
+            'Received: from AM8PR04MB7890.eurprd04.prod.outlook.com (2603:10a6:20b:3c1::12) by DB9PR04MB8456.eurprd04.prod.outlook.com with HTTPS; Thu, 30 Oct 2026 09:14:22 +0000',
+            'Received: from AM4PEPF00027A63.eurprd04.prod.outlook.com (2603:10a6:208:2b::4) by AM8PR04MB7890.eurprd04.prod.outlook.com (2603:10a6:20b:3c1::12) with Microsoft SMTP Server; Thu, 30 Oct 2026 09:14:21 +0000',
+            'Received: from mail.invoice-portal.example (198.51.100.77) by AM4PEPF00027A63.mail.protection.outlook.com (10.167.16.73) with Microsoft SMTP Server; Thu, 30 Oct 2026 09:14:19 +0000',
+            'Authentication-Results: spf=fail (sender IP is 198.51.100.77) smtp.mailfrom=bank-partner.gr; dkim=none (message not signed) header.d=none;dmarc=fail action=quarantine header.from=bank-partner.gr;compauth=fail reason=000',
+            'From: "Τμήμα Πληρωμών" <payments@bank-partner.gr>',
+            'To: <cfo@mycompany.gr>',
+            'Subject: Επείγουσα αλλαγή IBAN για τα τιμολόγια Νοεμβρίου',
+            'Date: Thu, 30 Oct 2026 11:14:15 +0200',
+            'Message-ID: <a1b2c3d4@invoice-portal.example>',
+            'X-Forefront-Antispam-Report: CIP:198.51.100.77;CTRY:US;LANG:el;SCL:5;SRV:;IPV:NLI;SFV:SPM;H:mail.invoice-portal.example;PTR:mail.invoice-portal.example;CAT:SPOOF;SFS:(13230040);DIR:INB;',
+            'X-Microsoft-Antispam: BCL:0;ARA:13230040;'
+        ].join('\n'),
+        bulk: [
+            'Received: from DB8PR04MB6721.eurprd04.prod.outlook.com (2603:10a6:10:fb::21) by AS8PR04MB8899.eurprd04.prod.outlook.com with HTTPS; Wed, 29 Oct 2026 07:02:11 +0000',
+            'Received: from DU2PEPF00028D11.eurprd03.prod.outlook.com (2603:10a6:10:3b::9) by DB8PR04MB6721.eurprd04.prod.outlook.com (2603:10a6:10:fb::21) with Microsoft SMTP Server; Wed, 29 Oct 2026 07:02:10 +0000',
+            'Received: from mta-12.news-platform.example (203.0.113.45) by DU2PEPF00028D11.mail.protection.outlook.com (10.167.242.55) with Microsoft SMTP Server; Wed, 29 Oct 2026 07:02:09 +0000',
+            'Authentication-Results: spf=pass (sender IP is 203.0.113.45) smtp.mailfrom=bounce.news-platform.example; dkim=pass (signature was verified) header.d=supplier-news.gr;dmarc=pass action=none header.from=supplier-news.gr;compauth=pass reason=100',
+            'From: Supplier News <newsletter@supplier-news.gr>',
+            'To: <it@mycompany.gr>',
+            'Subject: Οι προσφορές του μήνα',
+            'Date: Wed, 29 Oct 2026 09:02:00 +0200',
+            'X-Forefront-Antispam-Report: CIP:203.0.113.45;CTRY:IE;LANG:el;SCL:5;SRV:BULK;IPV:NLI;SFV:SPM;H:mta-12.news-platform.example;PTR:mta-12.news-platform.example;CAT:BULK;SFS:(13230040);DIR:INB;',
+            'X-Microsoft-Antispam: BCL:7;ARA:13230040;'
+        ].join('\n'),
+        asf: [
+            'Received: from VI1PR04MB5555.eurprd04.prod.outlook.com (2603:10a6:803:d1::14) by PA4PR04MB7777.eurprd04.prod.outlook.com with HTTPS; Tue, 28 Oct 2026 12:30:05 +0000',
+            'Received: from smtp.partner-erp.gr (192.0.2.25) by VI1PEPF00012345.mail.protection.outlook.com (10.167.1.10) with Microsoft SMTP Server; Tue, 28 Oct 2026 12:30:03 +0000',
+            'Authentication-Results: spf=pass (sender IP is 192.0.2.25) smtp.mailfrom=partner-erp.gr; dkim=pass (signature was verified) header.d=partner-erp.gr;dmarc=pass action=none header.from=partner-erp.gr;compauth=pass reason=100',
+            'From: "Partner ERP" <reports@partner-erp.gr>',
+            'To: <logistics@mycompany.gr>',
+            'Subject: Εβδομαδιαία αναφορά αποστολών',
+            'Date: Tue, 28 Oct 2026 14:29:58 +0200',
+            'X-Forefront-Antispam-Report: CIP:192.0.2.25;CTRY:GR;LANG:el;SCL:9;SRV:;IPV:NLI;SFV:SPM;H:smtp.partner-erp.gr;PTR:smtp.partner-erp.gr;CAT:HSPM;DIR:INB;',
+            'X-CustomSpam: Web bug',
+            'X-Microsoft-Antispam: BCL:0;'
+        ].join('\n'),
+        gateway: [
+            'Received: from AM6PR04MB4321.eurprd04.prod.outlook.com (2603:10a6:20b:12::8) by AM9PR04MB1234.eurprd04.prod.outlook.com with HTTPS; Mon, 27 Oct 2026 08:45:40 +0000',
+            'Received: from AM3PEPF0000A79B.eurprd04.prod.outlook.com (2603:10a6:20b:1a::3) by AM6PR04MB4321.eurprd04.prod.outlook.com (2603:10a6:20b:12::8) with Microsoft SMTP Server; Mon, 27 Oct 2026 08:45:39 +0000',
+            'Received: from mx0a-001b2d01.pphosted.com (192.0.2.140) by AM3PEPF0000A79B.mail.protection.outlook.com (10.167.16.120) with Microsoft SMTP Server; Mon, 27 Oct 2026 08:45:38 +0000',
+            'Received: from mail.customer-portal.gr (198.51.100.20) by mx0a-001b2d01.pphosted.com with ESMTPS; Mon, 27 Oct 2026 08:37:02 +0000',
+            'Authentication-Results: spf=fail (sender IP is 192.0.2.140) smtp.mailfrom=customer-portal.gr; dkim=none (message not signed) header.d=none;dmarc=fail action=none header.from=customer-portal.gr;compauth=fail reason=001',
+            'From: <orders@customer-portal.gr>',
+            'To: <sales@mycompany.gr>',
+            'Subject: Νέα παραγγελία 2026-1187',
+            'Date: Mon, 27 Oct 2026 10:36:58 +0200',
+            'X-Forefront-Antispam-Report: CIP:192.0.2.140;CTRY:US;LANG:el;SCL:5;SRV:;IPV:NLI;SFV:SPM;H:mx0a-001b2d01.pphosted.com;PTR:mx0a-001b2d01.pphosted.com;CAT:SPOOF;DIR:INB;',
+            'X-Microsoft-Antispam: BCL:0;'
+        ].join('\n'),
+        bypass: [
+            'Received: from DB7PR04MB3333.eurprd04.prod.outlook.com (2603:10a6:10:9a::5) by DB9PR04MB2222.eurprd04.prod.outlook.com with HTTPS; Fri, 24 Oct 2026 16:20:12 +0000',
+            'Received: from relay.cheap-offers.example (203.0.113.99) by DB5PEPF00014B88.mail.protection.outlook.com (10.167.8.200) with Microsoft SMTP Server; Fri, 24 Oct 2026 16:20:10 +0000',
+            'Authentication-Results: spf=softfail (sender IP is 203.0.113.99) smtp.mailfrom=cheap-offers.example; dkim=none (message not signed) header.d=none;dmarc=none action=none header.from=cheap-offers.example;compauth=fail reason=001',
+            'From: "Super Offers" <win@cheap-offers.example>',
+            'To: <accounts@mycompany.gr>',
+            'Subject: Κερδίσατε δωροεπιταγή 500€',
+            'Date: Fri, 24 Oct 2026 18:20:05 +0200',
+            'X-Forefront-Antispam-Report: CIP:203.0.113.99;CTRY:NL;LANG:el;SCL:-1;SRV:;IPV:NLI;SFV:SKN;H:relay.cheap-offers.example;PTR:;CAT:NONE;DIR:INB;',
+            'X-Microsoft-Antispam: BCL:0;'
+        ].join('\n'),
+        clean: [
+            'Received: from AM0PR04MB1111.eurprd04.prod.outlook.com (2603:10a6:208:11::2) by AM0PR04MB1111.eurprd04.prod.outlook.com with HTTPS; Thu, 30 Oct 2026 07:50:03 +0000',
+            'Received: from AM0PR04MB9999.eurprd04.prod.outlook.com (2603:10a6:208:99::7) by AM0PR04MB1111.eurprd04.prod.outlook.com (2603:10a6:208:11::2) with Microsoft SMTP Server; Thu, 30 Oct 2026 07:50:02 +0000',
+            'Authentication-Results: dkim=none (message not signed) header.d=none;dmarc=none action=none header.from=mycompany.gr;',
+            'From: CEO <ceo@mycompany.gr>',
+            'To: <ciso@mycompany.gr>',
+            'Subject: Ενημέρωση για το ISMS',
+            'Date: Thu, 30 Oct 2026 09:50:00 +0200',
+            'X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:el;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB9999.eurprd04.prod.outlook.com;PTR:;CAT:NONE;DIR:INT;',
+            'X-Microsoft-Antispam: BCL:0;'
+        ].join('\n')
+    };
+})();
+</script>

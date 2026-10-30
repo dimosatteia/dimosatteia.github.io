@@ -442,6 +442,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
+      url: /giati-pige-sta-junk/
+      page: /giati-pige-sta-junk
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.

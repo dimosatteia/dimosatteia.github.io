@@ -477,6 +477,9 @@ articles:
       url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/
+    - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
+      url: /giati-pige-sta-junk/
+      page: /giati-pige-sta-junk
   - code: A.5.26
     scope: ''
     requirement: Response to information security incidents
@@ -791,6 +794,9 @@ articles:
     posts:
     - *id018
     - *id019
+    - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
+      url: /giati-pige-sta-junk/
+      page: /giati-pige-sta-junk
 - number: 7
   label: A.7
   title: Physical controls
@@ -1090,6 +1096,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
+      url: /giati-pige-sta-junk/
+      page: /giati-pige-sta-junk
   - code: A.8.8
     scope: ''
     requirement: Management of technical vulnerabilities

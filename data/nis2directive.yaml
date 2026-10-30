@@ -142,6 +142,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
+      url: /giati-pige-sta-junk/
+      page: /giati-pige-sta-junk
   - code: 21.2.γ
     scope: Βασικές και σημαντικές
     requirement: Επιχειρησιακή συνέχεια, όπως διαχείριση αντιγράφων ασφαλείας και αποκατάσταση έπειτα από καταστροφή, και διαχείριση των κρίσεων.
@@ -284,6 +287,9 @@ articles:
     - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
       url: /kouiz-phishing/
       page: /kouiz-phishing
+    - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
+      url: /giati-pige-sta-junk/
+      page: /giati-pige-sta-junk
   - code: 21.2.η
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες σχετικά με τη χρήση κρυπτογραφίας και, κατά περίπτωση, κρυπτογράφησης.
