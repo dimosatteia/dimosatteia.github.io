@@ -10,7 +10,7 @@ source:
   item: control
   groups: ενότητες
   disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία. Μια ρύθμιση υποστηρίζει ένα control, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι τίτλοι είναι οι επίσημοι του προτύπου και οι περιγραφές είναι δικές μας· το κείμενο των controls δεν αναπαράγεται. Για τη διατύπωση κάθε control ισχύει το [ISO/IEC 27001:2022](https://www.iso.org/standard/27001).
-updated: '2026-10-18'
+updated: '2026-10-31'
 types:
 - key: tech
   label: Τεχνικό
@@ -301,6 +301,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - *id003
     - &id017
       title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
@@ -1046,6 +1049,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - *id003
     - *id017
     - *id004
@@ -1257,6 +1263,9 @@ articles:
     kya:
     - 24
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - *id012
     - *id013
     - *id014

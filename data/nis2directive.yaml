@@ -6,7 +6,7 @@ source:
   fek: ΕΕ L 333 της 27.12.2022
   url: https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32022L2555
   of: της Οδηγίας
-updated: '2026-10-18'
+updated: '2026-10-31'
 types:
 - key: tech
   label: Τεχνικό
@@ -321,6 +321,9 @@ articles:
     - 11
     - 13
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
     - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
@@ -366,6 +369,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
       url: /posts/passkeys-by-default-telos-sms-voice-mfa/
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'

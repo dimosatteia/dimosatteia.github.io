@@ -6,7 +6,7 @@ source:
   title: Εθνικό Πλαίσιο Απαιτήσεων Κυβερνοασφάλειας Βασικών και Σημαντικών Οντοτήτων
   fek: ΦΕΚ Β΄ 2186/6.5.2025
   url: https://cyber.gov.gr/wp-content/uploads/2025/05/20250202186.pdf
-updated: '2026-10-29'
+updated: '2026-10-31'
 types:
 - key: tech
   label: Τεχνικό
@@ -556,6 +556,9 @@ articles:
     evidence: 'Entra admin center: Authentication methods, Policies και User registration details.'
     verified: 2026-10-14
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
       url: /posts/passkeys-by-default-telos-sms-voice-mfa/
     - title: 'Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει'
@@ -569,6 +572,9 @@ articles:
     verified: 2026-10-14
     license: Microsoft Entra ID P2 (Microsoft Entra ID Protection, για policies με βάση sign-in risk ή user risk)
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
       url: /posts/passkeys-by-default-telos-sms-voice-mfa/
     - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
@@ -1412,6 +1418,9 @@ articles:
     verified: 2026-10-18
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο) για advanced hunting, custom detection rules, Defender for Cloud Apps και Defender for Identity
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - title: 'Microsoft Defender AIR: Πώς το Automated Investigation & Response Αλλάζει το SOC (και τι γίνεται μετά την 1η Σεπτεμβρίου 2026)'
       url: /posts/microsoft-defender-air-automated-investigation-response/
     - title: 'Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705'

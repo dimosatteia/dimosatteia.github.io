@@ -11,7 +11,7 @@ source:
   item: υποχρέωση
   groups: άρθρα
   disclaimer: Η αντιστοίχιση είναι επαγγελματική ερμηνεία και όχι νομική συμβουλή. Μια ρύθμιση υποστηρίζει μια υποχρέωση, δεν αποδεικνύει από μόνη της συμμόρφωση. Οι περιγραφές είναι σύντομες αποδόσεις για το ακριβές κείμενο ισχύει ο [Κανονισμός (ΕΕ) 2016/679](https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:32016R0679). Στην Ελλάδα εφαρμόζεται μαζί με τον ν. 4624/2019, και η εποπτική αρχή είναι η [Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα](https://www.dpa.gr/).
-updated: '2026-10-18'
+updated: '2026-10-31'
 types:
 - key: tech
   label: Τεχνικό
@@ -403,6 +403,9 @@ articles:
     - A.8.5
     - A.8.16
     posts:
+    - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
+      url: /posts/aadsts-sfalmata-syndesis-entra-id/
+      page: /posts/aadsts-sfalmata-syndesis-entra-id
     - title: 'Τέλος στα SMS/Voice MFA: Η Microsoft κάνει τα Passkeys default στο Entra ID'
       url: /posts/passkeys-by-default-telos-sms-voice-mfa/
     - title: 'Microsoft Defender for Endpoint: Τι είναι, τι κάνει και πώς να το αναπτύξετε στην πράξη'
