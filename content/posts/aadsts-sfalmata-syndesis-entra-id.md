@@ -2,7 +2,7 @@
 title: "AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin"
 seoTitle: "Σφάλματα AADSTS στο Entra ID: τι σημαίνουν, τι κάνεις"
 date: 2026-10-31T16:30:00+02:00
-lastmod: 2026-10-31T16:30:00+02:00
+lastmod: 2026-10-31T17:00:00+02:00
 draft: false
 homeHighlight: true
 slug: aadsts-sfalmata-syndesis-entra-id
@@ -91,8 +91,8 @@ verification:
 - την καρτέλα **Conditional Access**, που δείχνει ποια πολιτική εφαρμόστηκε και με τι αποτέλεσμα
 - την καρτέλα **Authentication Details**, που δείχνει ποια μέθοδος χρησιμοποιήθηκε ή ζητήθηκε
 
-[![Η λεπτομέρεια μιας αποτυχημένης σύνδεσης στα sign-in logs, με Correlation ID, Status, Sign-in error code, Failure reason και Additional Details](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/media/howto-troubleshoot-sign-in-errors/troubleshoot-sign-in-details.png)](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/media/howto-troubleshoot-sign-in-errors/troubleshoot-sign-in-details.png)
-> 📷 **Εικόνα 2: Μια αποτυχημένη σύνδεση στα sign-in logs, με Correlation ID, Sign-in error code, Failure reason και Additional Details. Entra ID › Monitoring & health › Sign-in logs.** Πηγή εικόνας: Microsoft Learn.
+[![Μια αποτυχημένη σύνδεση στα sign-in logs με Sign-in error code 50053, Failure reason για κλειδωμένο λογαριασμό και Additional details με τους δύο πιθανούς λόγους](/images/aadsts/aadsts-sign-in-details.webp)](/images/aadsts/aadsts-sign-in-details.webp)
+> 📷 **Εικόνα 2: Μια αποτυχημένη σύνδεση με κωδικό 50053. Το Failure reason λέει ότι ο λογαριασμός κλειδώθηκε, και τα Additional details εξηγούν ότι ο ίδιος κωδικός βγαίνει και για κακόβουλη IP. Entra ID › Monitoring & health › Sign-in logs.** Πηγή εικόνας: το δικό μου production tenant, με απόκρυψη των στοιχείων του χρήστη.
 
 Τα logs μένουν 7 ημέρες στο Microsoft Entra ID Free και 30 ημέρες στο P1 και στο P2. Αν ο χρήστης σε πάρει μετά από μια εβδομάδα σε tenant χωρίς premium άδεια, η σύνδεση δεν θα υπάρχει πια.
 
@@ -120,8 +120,8 @@ verification:
 | `50079`, `50072` | Ο χρήστης πρέπει να καταχωρίσει μέθοδο MFA πριν συνεχίσει. | Ο χρήστης ολοκληρώνει την καταχώριση στο [Security info](https://mysignins.microsoft.com/security-info). Αν δεν έχει καμία μέθοδο ή έχασε το κινητό του, δώσε του Temporary Access Pass για να καταχωρίσει νέα. |
 | `50158` | Ο χρήστης στάλθηκε σε επιπλέον έλεγχο, π.χ. Terms of use ή πάροχο MFA τρίτου. | Μόνος του ο κωδικός δεν σημαίνει αποτυχία. Δες στα logs αν ο επιπλέον έλεγχος ολοκληρώθηκε. |
 
-[![Η καρτέλα Authentication Details μιας σύνδεσης, με τις πολιτικές που εφαρμόστηκαν, τη μέθοδο και αν το βήμα πέτυχε](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/media/concept-sign-in-log-activity-details/sign-in-activity-details-authentication.png)](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/media/concept-sign-in-log-activity-details/sign-in-activity-details-authentication.png)
-> 📷 **Εικόνα 3: Η καρτέλα Authentication Details δείχνει ποια μέθοδος ζητήθηκε, αν πέτυχε και ποια απαίτηση την ενεργοποίησε.** Πηγή εικόνας: Microsoft Learn.
+[![Η καρτέλα Authentication details μιας σύνδεσης, με πολιτικές Conditional Access και Authentication Strength και απαίτηση phishing-resistant MFA που είχε ήδη ικανοποιηθεί](/images/aadsts/aadsts-authentication-details.webp)](/images/aadsts/aadsts-authentication-details.webp)
+> 📷 **Εικόνα 3: Η καρτέλα Authentication details. Η πολιτική ζήτησε phishing-resistant MFA μέσω Authentication Strength, και η απαίτηση είχε ήδη ικανοποιηθεί (Previously satisfied), οπότε ο χρήστης δεν ρωτήθηκε ξανά.** Πηγή εικόνας: το δικό μου production tenant, με απόκρυψη των στοιχείων του χρήστη.
 
 ## Conditional Access και συσκευές
 
@@ -134,8 +134,8 @@ verification:
 | `50097` | Απαιτείται ταυτοποίηση της συσκευής. | Η συσκευή πρέπει να είναι registered ή joined στο Entra. Σε Windows, ξεκίνα από το `dsregcmd /status`. |
 | `530032` | Μια πολιτική ασφάλειας σε επίπεδο tenant μπλόκαρε το αίτημα. | Δες τις πολιτικές ασφάλειας του tenant και την καρτέλα **Conditional Access** της σύνδεσης. |
 
-[![Η καρτέλα Conditional Access μιας σύνδεσης στο Microsoft Entra admin center, με την πολιτική, τα grant controls, το αποτέλεσμα και τις τρεις τελείες για τις λεπτομέρειες](https://learn.microsoft.com/en-us/entra/identity/conditional-access/media/troubleshoot-conditional-access/activity-details-sign-ins.png)](https://learn.microsoft.com/en-us/entra/identity/conditional-access/media/troubleshoot-conditional-access/activity-details-sign-ins.png)
-> 📷 **Εικόνα 4: Η καρτέλα Conditional Access μιας σύνδεσης. Οι τρεις τελείες δεξιά δείχνουν γιατί η πολιτική εφαρμόστηκε ή όχι.** Πηγή εικόνας: Microsoft Learn.
+[![Η καρτέλα Conditional access μιας σύνδεσης, με τέσσερις πολιτικές, τα grant controls τους και αποτέλεσμα Success](/images/aadsts/aadsts-conditional-access.webp)](/images/aadsts/aadsts-conditional-access.webp)
+> 📷 **Εικόνα 4: Η καρτέλα Conditional access μιας σύνδεσης που πέρασε. Φαίνονται όλες οι πολιτικές που εφαρμόστηκαν, με τα grant controls και το αποτέλεσμα. Σε ένα 53003, η πολιτική που μπλόκαρε εμφανίζεται εδώ με Failure.** Πηγή εικόνας: το δικό μου production tenant, με απόκρυψη των στοιχείων του χρήστη.
 
 Αν η καρτέλα Conditional Access δεν σου φτάνει, χρησιμοποίησε το **What If tool** για να προσομοιώσεις τη σύνδεση του χρήστη, ή το **Sign-in diagnostic** από την καρτέλα **Basic info** της σύνδεσης. Για ένα βασικό σύνολο πολιτικών που αποφεύγει τα πιο συχνά λάθη, δες το εργαλείο [Βασικό σύνολο πολιτικών Conditional Access](/politikes-conditional-access/).
 
