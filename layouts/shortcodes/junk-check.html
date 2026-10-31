@@ -407,6 +407,12 @@
         R.msgidEval = evalMsgId(R);
         R.authEval.rows.push(R.msgidEval);
         R.plainHops = rec.filter(function (h) { return h.tls === 'no'; });
+        var tlsYes = rec.filter(function (h) { return h.tls === 'yes'; }).length, np = R.plainHops.length;
+        if (rec.length) R.authEval.rows.push(np
+            ? { name: 'Κρυπτογράφηση διαδρομής', value: (np === 1 ? '1 βήμα' : np + ' βήματα') + ' χωρίς TLS', tone: 'red', text: 'Σε ' + (np === 1 ? 'ένα βήμα' : np + ' βήματα') + ' της διαδρομής το μήνυμα μεταφέρθηκε χωρίς κρυπτογράφηση, άρα μπορούσε να διαβαστεί ή να αλλαχτεί στο δίκτυο. Δες ποια βήματα στην ενότητα «Η διαδρομή του μηνύματος».' }
+            : tlsYes
+                ? { name: 'Κρυπτογράφηση διαδρομής', value: 'χωρίς ευρήματα', tone: 'green', text: 'Δεν βρέθηκε βήμα χωρίς κρυπτογράφηση. Όπου το Received το δηλώνει, η μεταφορά έγινε με TLS.' }
+                : { name: 'Κρυπτογράφηση διαδρομής', value: 'δεν δηλώνεται', tone: 'gray', text: 'Τα Received δεν δηλώνουν αν η μεταφορά έγινε με TLS, οπότε η κρυπτογράφηση δεν μπορεί να κριθεί.' });
         R.V = VERDICTS[k](R);
         return R;
     }
