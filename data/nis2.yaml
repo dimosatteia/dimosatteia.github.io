@@ -556,6 +556,9 @@ articles:
     evidence: 'Entra admin center: Authentication methods, Policies και User registration details.'
     verified: 2026-10-14
     posts:
+    - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
+      url: /ti-simainei-aadsts/
+      page: /ti-simainei-aadsts
     - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
       url: /posts/aadsts-sfalmata-syndesis-entra-id/
       page: /posts/aadsts-sfalmata-syndesis-entra-id
@@ -572,6 +575,9 @@ articles:
     verified: 2026-10-14
     license: Microsoft Entra ID P2 (Microsoft Entra ID Protection, για policies με βάση sign-in risk ή user risk)
     posts:
+    - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
+      url: /ti-simainei-aadsts/
+      page: /ti-simainei-aadsts
     - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
       url: /posts/aadsts-sfalmata-syndesis-entra-id/
       page: /posts/aadsts-sfalmata-syndesis-entra-id
@@ -1418,6 +1424,9 @@ articles:
     verified: 2026-10-18
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο) για advanced hunting, custom detection rules, Defender for Cloud Apps και Defender for Identity
     posts:
+    - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
+      url: /ti-simainei-aadsts/
+      page: /ti-simainei-aadsts
     - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
       url: /posts/aadsts-sfalmata-syndesis-entra-id/
       page: /posts/aadsts-sfalmata-syndesis-entra-id

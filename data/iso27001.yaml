@@ -301,6 +301,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
+      url: /ti-simainei-aadsts/
+      page: /ti-simainei-aadsts
     - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
       url: /posts/aadsts-sfalmata-syndesis-entra-id/
       page: /posts/aadsts-sfalmata-syndesis-entra-id
@@ -1049,6 +1052,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
+      url: /ti-simainei-aadsts/
+      page: /ti-simainei-aadsts
     - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
       url: /posts/aadsts-sfalmata-syndesis-entra-id/
       page: /posts/aadsts-sfalmata-syndesis-entra-id
@@ -1263,6 +1269,9 @@ articles:
     kya:
     - 24
     posts:
+    - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
+      url: /ti-simainei-aadsts/
+      page: /ti-simainei-aadsts
     - title: 'AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Microsoft Entra ID και τι κάνεις ως admin'
       url: /posts/aadsts-sfalmata-syndesis-entra-id/
       page: /posts/aadsts-sfalmata-syndesis-entra-id

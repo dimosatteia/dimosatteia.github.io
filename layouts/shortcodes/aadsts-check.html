@@ -1,0 +1,209 @@
+{{- /* «Τι σημαίνει αυτό το AADSTS;» (/ti-simainei-aadsts/)
+       Ο admin επικολλά έναν κωδικό AADSTS, ολόκληρο το μήνυμα σφάλματος ή το JSON μιας εφαρμογής, και παίρνει στα Ελληνικά
+       τι σημαίνει, ποιος το λύνει, τι κάνει, και τι λέει στον χρήστη.
+       Ελληνικές ερμηνείες: data/aadsts.yaml. Όλοι οι κωδικοί της Microsoft με το όνομά τους: data/aadsts_codes.json.
+       Πηγή: Microsoft Learn, «Microsoft Entra authentication and authorization error codes» (ελέγχθηκε 31/10/2026).
+       Το κείμενο διαβάζεται ΜΟΝΟ μέσα στον browser του επισκέπτη. Δεν στέλνεται πουθενά.
+       Χρήση: {{< aadsts-check >}} */ -}}
+{{- $d := hugo.Data.aadsts -}}
+{{- $data := dict "groups" $d.groups "who" $d.who "codes" $d.codes "all" hugo.Data.aadsts_codes -}}
+<style>
+#axTool .axKey{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#axTool .axPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
+#axTool .axChip{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px}
+#axTool table td,#axTool table th{vertical-align:top}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="axTool" data-article="{{ "posts/aadsts-sfalmata-syndesis-entra-id/" | relURL }}">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Microsoft Entra ID · σφάλματα σύνδεσης · AADSTS</p>
+
+    <div class="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-emerald-300 mb-1">🔒 Ό,τι επικολλάς δεν φεύγει από τον υπολογιστή σου</p>
+        <p>Η ανάλυση γίνεται μόνο μέσα στον browser σου. Το κείμενο δεν στέλνεται σε κανέναν server, ούτε στο thecybersec.gr, και δεν αποθηκεύεται. Λεπτομέρειες στην <a href="{{ "privacy/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Πολιτική απορρήτου</a>.</p>
+    </div>
+
+    <label for="axInput" class="block text-sm text-slate-300 mb-1.5">Επικόλλησε τον κωδικό, ολόκληρο το μήνυμα σφάλματος, ή γράψε μια λέξη (π.χ. MFA, consent, κλειδώθηκε)</label>
+    <textarea id="axInput" rows="4" spellcheck="false" autocomplete="off" data-clarity-mask="true" placeholder="AADSTS53003: Access has been blocked by Conditional Access policies. The access policy does not allow token issuance.&#10;Trace ID: …&#10;Correlation ID: …&#10;Timestamp: …"
+              class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono text-[13px] focus:outline-none focus:border-blue-500"></textarea>
+    <div class="flex flex-wrap items-center gap-3 mt-3">
+        <button type="button" id="axRun" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Τι σημαίνει;</button>
+        <button type="button" id="axClear" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Καθαρισμός</button>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 mt-3 text-xs text-slate-400">
+        <span>Οι πιο συχνοί:</span>
+        {{- range (slice "53003" "50126" "50053" "50076" "50079" "53000" "50105" "65001" "7000222" "50058") }}
+        <button type="button" class="axChip axQuick rounded border border-slate-700 px-2 py-1 text-slate-200 hover:border-blue-500 hover:text-white" data-code="{{ . }}">{{ . }}</button>
+        {{- end }}
+    </div>
+    <p id="axError" class="text-sm text-amber-400 mt-3 hidden" role="alert"></p>
+
+    <div id="axResult" class="hidden mt-6 flex flex-col gap-4" aria-live="polite" data-clarity-mask="true">
+        <div id="axIds" class="hidden rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div id="axCards" class="flex flex-col gap-4"></div>
+        <div class="flex flex-wrap gap-3">
+            <button type="button" id="axCopy" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-slate-500">Αντιγραφή για το ticket</button>
+        </div>
+        <p id="axMsg" class="text-sm hidden" role="status"></p>
+    </div>
+
+    <details class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 mt-6 text-sm text-slate-300">
+        <summary class="cursor-pointer font-semibold text-slate-100">Όλοι οι κωδικοί με Ελληνική ερμηνεία, ανά ομάδα</summary>
+        <div id="axAll" class="mt-3 flex flex-col gap-4"></div>
+    </details>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-5">Η ερμηνεία είναι ενδεικτική και βασίζεται στον κατάλογο της Microsoft. Η Microsoft αλλάζει τις περιγραφές χωρίς προειδοποίηση, γι' αυτό κάθε κάρτα έχει link στην τρέχουσα περιγραφή. Για τη συγκεκριμένη σύνδεση, ο λόγος φαίνεται πάντα στο Failure reason των sign-in logs.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('axTool');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var D = {{ $data | jsonify | safeJS }};
+    var ARTICLE = root.getAttribute('data-article');
+    var LOOKUP = 'https://login.microsoftonline.com/error?code=';
+    var SIGNINS = 'https://entra.microsoft.com';
+
+    // Ευρετήριο: κωδικός -> εγγραφή με Ελληνική ερμηνεία
+    var BY = {};
+    D.codes.forEach(function (e) { e.codes.forEach(function (c) { BY[c] = e; }); });
+    var WHO_TONE = { user: 'blue', helpdesk: 'amber', admin: 'red', dev: 'violet', other: 'gray', none: 'green' };
+    var GROUP_ORDER = ['account', 'mfa', 'ca', 'risk', 'guest', 'app', 'hybrid', 'noise'];
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+    function a(href, text) { return '<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">' + text + '</a>'; }
+    function pill(text, tone) {
+        var t = { red: 'bg-rose-500/15 text-rose-300', amber: 'bg-amber-500/15 text-amber-300', green: 'bg-emerald-500/15 text-emerald-300', blue: 'bg-blue-500/15 text-blue-300', violet: 'bg-violet-500/15 text-violet-300', gray: 'bg-slate-700/50 text-slate-300' }[tone || 'gray'];
+        return '<span class="axPill ' + t + '">' + esc(text) + '</span>';
+    }
+    function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+
+    // ---------- Ανάγνωση του κειμένου ----------
+    function parse(raw) {
+        var codes = [], seen = {};
+        function add(c) { if (!seen[c]) { seen[c] = 1; codes.push(c); } }
+        var m, re = /AADSTS(\d{4,8})/gi;
+        while ((m = re.exec(raw))) add(m[1]);
+        // error_codes: [70011] στο JSON μιας εφαρμογής
+        var ec = raw.match(/"error_codes"\s*:\s*\[([\d,\s]+)\]/i);
+        if (ec) ec[1].split(',').forEach(function (x) { x = x.trim(); if (x) add(x); });
+        // Σκέτος αριθμός: μόνο αν είναι γνωστός κωδικός, ώστε να μη μετρήσουν IPs, ώρες ή κομμάτια από IDs
+        if (!codes.length) {
+            var nre = /(^|[^0-9A-Fa-f\-.:])(\d{5,7})(?![0-9A-Fa-f\-.:])/g;
+            while ((m = nre.exec(raw))) if (BY[m[2]] || D.all[m[2]] !== undefined) add(m[2]);
+        }
+        var ids = {};
+        [['corr', /Correlation\s*ID\s*[:=]?\s*"?([0-9a-f-]{36})/i], ['trace', /Trace\s*ID\s*[:=]?\s*"?([0-9a-f-]{36})/i], ['req', /Request\s*ID\s*[:=]?\s*"?([0-9a-f-]{36})/i], ['time', /Timestamp\s*[:=]?\s*"?(\d{4}-\d\d-\d\d[ T]\d\d:\d\d:\d\dZ?)/i]].forEach(function (p) {
+            var x = raw.match(p[1]); if (x) ids[p[0]] = x[1];
+        });
+        return { codes: codes, ids: ids };
+    }
+
+    function search(q) {
+        var n = norm(q).trim();
+        if (n.length < 2) return [];
+        var words = n.split(/\s+/);
+        return D.codes.filter(function (e) {
+            var hay = norm([e.codes.join(' '), D.groups[e.group], e.meaning, e.action, e.codes.map(function (c) { return D.all[c] || ''; }).join(' ')].join(' '));
+            return words.every(function (w) { return hay.indexOf(w) >= 0; });
+        });
+    }
+
+    // ---------- Εμφάνιση ----------
+    function card(c) {
+        var e = BY[c], name = D.all[c];
+        var head = '<div class="flex flex-wrap items-center gap-2 mb-2"><span class="axKey text-lg font-bold text-slate-100">AADSTS' + esc(c) + '</span>' + (name ? '<span class="axKey text-xs text-slate-400">' + esc(name) + '</span>' : '') + '</div>';
+        var foot = '<p class="text-xs text-slate-400 mt-3">' + a(LOOKUP + encodeURIComponent(c), 'Τρέχουσα περιγραφή στη Microsoft ↗') + '</p>';
+        if (!e) {
+            var known = name !== undefined;
+            return '<div class="rounded-lg border border-slate-700 bg-slate-900/60 p-4">' + head +
+                '<p class="text-sm text-slate-300 leading-relaxed">' + (known
+                    ? 'Ο κωδικός υπάρχει στον κατάλογο της Microsoft' + (name ? ' με το όνομα ' + '<span class="axKey text-slate-100">' + esc(name) + '</span>' : '') + ', αλλά δεν έχω ακόμα Ελληνική ερμηνεία. Συνήθως αφορά developers που φτιάχνουν εφαρμογές. Δες την τρέχουσα περιγραφή της Microsoft και το Failure reason της σύνδεσης στα sign-in logs.'
+                    : 'Ο κωδικός δεν υπάρχει στον κατάλογο της Microsoft, όπως τον ελέγξαμε στις 31/10/2026. Μπορεί να είναι νέος, ή να έχει λάθος ψηφίο. Δες την τρέχουσα περιγραφή της Microsoft.') + '</p>' + foot + '</div>';
+        }
+        var others = e.codes.filter(function (x) { return x !== c; });
+        var tone = e.group === 'noise' ? 'border-emerald-500/40 bg-emerald-500/5' : e.who === 'admin' ? 'border-rose-500/30 bg-rose-500/5' : 'border-slate-700 bg-slate-900/60';
+        return '<div class="rounded-lg border ' + tone + ' p-4">' + head +
+            '<div class="flex flex-wrap gap-2 mb-3">' + pill(D.groups[e.group], 'gray') + pill('Ποιος το λύνει: ' + D.who[e.who], WHO_TONE[e.who]) + (others.length ? pill('Ίδια ερμηνεία με ' + others.join(', '), 'gray') : '') + '</div>' +
+            '<p class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Τι σημαίνει</p><p class="text-sm text-slate-200 leading-relaxed mb-3">' + esc(e.meaning) + '</p>' +
+            '<p class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Τι κάνεις</p><p class="text-sm text-slate-200 leading-relaxed">' + esc(e.action) + '</p>' +
+            (e.tell ? '<div class="mt-3 rounded-md border border-blue-500/30 bg-blue-500/5 p-3"><div class="flex items-center justify-between gap-2 mb-1"><p class="text-[11px] font-mono uppercase tracking-wider text-blue-300">Τι λες στον χρήστη</p><button type="button" class="axTell text-xs text-blue-300 hover:text-white underline" data-code="' + esc(c) + '">Αντιγραφή</button></div><p class="text-sm text-slate-200 leading-relaxed">' + esc(e.tell) + '</p></div>' : '') +
+            foot + '</div>';
+    }
+
+    var last = null;
+    function show(codes, ids, matches) {
+        var html = '';
+        if (codes.length) html = codes.map(card).join('');
+        else if (matches && matches.length) html = '<p class="text-sm text-slate-300">' + (matches.length === 1 ? 'Βρέθηκε 1 ερμηνεία' : 'Βρέθηκαν ' + matches.length + ' ερμηνείες') + ' για αυτή την αναζήτηση:</p>' + matches.map(function (e) { return card(e.codes[0]); }).join('');
+        $('axCards').innerHTML = html;
+        var bits = [];
+        if (ids.corr) bits.push('<span class="text-slate-400">Correlation ID:</span> <span class="axKey text-slate-100 break-all">' + esc(ids.corr) + '</span>');
+        if (ids.req) bits.push('<span class="text-slate-400">Request ID:</span> <span class="axKey text-slate-100 break-all">' + esc(ids.req) + '</span>');
+        if (ids.trace) bits.push('<span class="text-slate-400">Trace ID:</span> <span class="axKey text-slate-100 break-all">' + esc(ids.trace) + '</span>');
+        if (ids.time) bits.push('<span class="text-slate-400">Ώρα:</span> <span class="axKey text-slate-100">' + esc(ids.time) + '</span>');
+        if (bits.length) {
+            $('axIds').innerHTML = '<p class="font-semibold text-slate-100 mb-1">Βρες τη σύνδεση στα sign-in logs</p><p class="mb-2">Στο ' + a(SIGNINS, 'Microsoft Entra admin center') + ', άνοιξε Entra ID › Monitoring & health › Sign-in logs και φίλτραρε με το Correlation ID. Θα δεις το Failure reason και την πολιτική που εφαρμόστηκε. Τα logs μένουν 7 ημέρες στο Entra ID Free και 30 στο P1 και στο P2.</p>' + bits.map(function (b) { return '<div class="leading-relaxed">' + b + '</div>'; }).join('');
+            $('axIds').classList.remove('hidden');
+        } else $('axIds').classList.add('hidden');
+        $('axResult').classList.remove('hidden');
+        $('axMsg').classList.add('hidden');
+        last = { codes: codes.length ? codes : (matches || []).map(function (e) { return e.codes[0]; }), ids: ids };
+    }
+
+    function run() {
+        var raw = $('axInput').value, err = $('axError');
+        err.classList.add('hidden');
+        if (!raw.trim()) { err.textContent = 'Επικόλλησε πρώτα έναν κωδικό ή το μήνυμα σφάλματος.'; err.classList.remove('hidden'); return; }
+        if (raw.length > 100000) { err.textContent = 'Το κείμενο είναι πολύ μεγάλο. Επικόλλησε μόνο το μήνυμα σφάλματος.'; err.classList.remove('hidden'); return; }
+        var p = parse(raw);
+        var matches = p.codes.length ? null : search(raw);
+        if (!p.codes.length && !(matches && matches.length)) {
+            err.textContent = 'Δεν βρέθηκε κωδικός AADSTS ή ερμηνεία που να ταιριάζει. Γράψε τον κωδικό, π.χ. 53003, ή μια λέξη, π.χ. MFA.';
+            err.classList.remove('hidden'); $('axResult').classList.add('hidden'); last = null; return;
+        }
+        show(p.codes, p.ids, matches);
+        $('axResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---------- Λίστα όλων ----------
+    $('axAll').innerHTML = GROUP_ORDER.map(function (g) {
+        var rows = D.codes.filter(function (e) { return e.group === g; });
+        return '<div><p class="font-semibold text-slate-100 mb-1.5">' + esc(D.groups[g]) + '</p><div class="overflow-x-auto"><table class="w-full text-sm"><tbody>' + rows.map(function (e) {
+            return '<tr class="border-b border-slate-800/70"><td class="py-1.5 pr-3 whitespace-nowrap">' + e.codes.map(function (c) { return '<button type="button" class="axChip axQuick text-blue-400 hover:text-blue-300 underline" data-code="' + c + '">' + c + '</button>'; }).join(', ') + '</td><td class="py-1.5 text-slate-300 leading-relaxed">' + esc(e.meaning) + '</td></tr>';
+        }).join('') + '</tbody></table></div></div>';
+    }).join('');
+
+    // ---------- Αντιγραφή ----------
+    function copy(txt) {
+        var msg = $('axMsg');
+        function ok() { msg.textContent = 'Αντιγράφηκε.'; msg.className = 'text-sm text-emerald-300'; }
+        function bad() { msg.textContent = 'Η αντιγραφή δεν επιτράπηκε από τον browser. Επίλεξε και αντίγραψε το κείμενο χειροκίνητα.'; msg.className = 'text-sm text-amber-400'; }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, bad); else bad();
+    }
+    function ticket() {
+        var out = ['Σφάλμα σύνδεσης Microsoft Entra ID (thecybersec.gr/ti-simainei-aadsts/)'];
+        if (last.ids.corr) out.push('Correlation ID: ' + last.ids.corr);
+        if (last.ids.time) out.push('Ώρα: ' + last.ids.time);
+        last.codes.forEach(function (c) {
+            var e = BY[c];
+            out.push('');
+            out.push('AADSTS' + c + (D.all[c] ? ' (' + D.all[c] + ')' : ''));
+            if (e) { out.push('Τι σημαίνει: ' + e.meaning); out.push('Ποιος το λύνει: ' + D.who[e.who]); out.push('Τι κάνεις: ' + e.action); }
+            out.push('Microsoft: ' + LOOKUP + c);
+        });
+        return out.join('\n');
+    }
+
+    $('axRun').addEventListener('click', run);
+    $('axInput').addEventListener('keydown', function (e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') run(); });
+    $('axClear').addEventListener('click', function () { $('axInput').value = ''; $('axResult').classList.add('hidden'); $('axError').classList.add('hidden'); last = null; $('axInput').focus(); });
+    root.addEventListener('click', function (e) {
+        var q = e.target.closest('.axQuick');
+        if (q) { $('axInput').value = q.getAttribute('data-code'); run(); return; }
+        var t = e.target.closest('.axTell');
+        if (t) { var en = BY[t.getAttribute('data-code')]; if (en && en.tell) copy(en.tell); }
+    });
+    $('axCopy').addEventListener('click', function () { if (last) copy(ticket()); });
+})();
+</script>

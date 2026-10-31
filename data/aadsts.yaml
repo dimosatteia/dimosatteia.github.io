@@ -1,0 +1,316 @@
+# Ερμηνείες κωδικών AADSTS στα Ελληνικά για το εργαλείο /ti-simainei-aadsts/ και το άρθρο /posts/aadsts-sfalmata-syndesis-entra-id/
+# Πηγή κάθε κωδικού: https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes (ελέγχθηκε 31/10/2026).
+# Εξαιρέσεις: το 53009 από το «Troubleshoot sign-in problems with Conditional Access» και το 90025 από το «How to troubleshoot Microsoft Entra sign-in errors».
+# Οι υπόλοιποι κωδικοί της Microsoft, με το όνομά τους μόνο, είναι στο data/aadsts_codes.json.
+# who: user | helpdesk | admin | dev | other | none
+# tell: προαιρετικό μήνυμα προς τον χρήστη (β' ενικό)
+updated: '2026-10-31'
+groups:
+  account: Κωδικός και λογαριασμός
+  mfa: MFA
+  ca: Conditional Access και συσκευές
+  risk: Κίνδυνος (Identity Protection)
+  guest: Guests, tenant και ανάθεση
+  app: Εφαρμογές και consent
+  hybrid: Hybrid (PTA, Seamless SSO, Windows Hello for Business)
+  noise: Αναμενόμενο, χωρίς ενέργεια
+who:
+  user: Ο χρήστης
+  helpdesk: Helpdesk
+  admin: Admin του tenant
+  dev: Ιδιοκτήτης της εφαρμογής
+  other: Admin του άλλου οργανισμού
+  none: Καμία ενέργεια
+codes:
+  # ---------- Κωδικός και λογαριασμός ----------
+  - codes: ['50126']
+    group: account
+    who: user
+    meaning: Λάθος όνομα χρήστη ή κωδικός.
+    action: Ο χρήστης ξαναπροσπαθεί. Λίγα τέτοια σφάλματα είναι φυσιολογικά. Αν δεις πολλά από την ίδια IP για πολλούς διαφορετικούς χρήστες, είναι ένδειξη password spray. Το query στο άρθρο σε βοηθά να το ελέγξεις.
+    tell: Ο κωδικός ή το όνομα χρήστη δεν είναι σωστά. Δοκίμασε ξανά προσεκτικά. Αν δεν θυμάσαι τον κωδικό, κάνε επαναφορά από το «Ξέχασα τον κωδικό μου».
+  - codes: ['50053']
+    group: account
+    who: helpdesk
+    meaning: Δύο πιθανοί λόγοι. Ο λογαριασμός κλειδώθηκε από το Smart Lockout μετά από πολλές λάθος προσπάθειες, ή η σύνδεση ήρθε από IP με κακόβουλη δραστηριότητα. Η Microsoft χρησιμοποιεί τον ίδιο κωδικό και για τα δύο, ώστε ο επιτιθέμενος να μην ξέρει ποιο ισχύει.
+    action: Δες το Failure reason της σύνδεσης στα sign-in logs. Αν το κλείδωμα το προκάλεσε ο ίδιος ο χρήστης, περιμένει λίγο και ξαναδοκιμάζει. Αν ο χρήστης δεν έκανε αυτές τις προσπάθειες, κάποιος δοκιμάζει τον κωδικό του. Έλεγξε από πού ήρθαν και σκέψου αλλαγή κωδικού.
+    tell: Ο λογαριασμός σου κλειδώθηκε προσωρινά για λόγους ασφάλειας. Περίμενε λίγα λεπτά και δοκίμασε ξανά. Αν δεν έκανες εσύ πολλές προσπάθειες σύνδεσης, ενημέρωσέ μας αμέσως.
+  - codes: ['50055']
+    group: account
+    who: user
+    meaning: Ο κωδικός έληξε.
+    action: Ο χρήστης αλλάζει κωδικό στην επόμενη σύνδεση ή μέσω self-service password reset. Αλλιώς του κάνεις reset εσύ.
+    tell: Ο κωδικός σου έληξε. Θα σου ζητηθεί να ορίσεις νέο στην επόμενη σύνδεση.
+  - codes: ['50144']
+    group: account
+    who: user
+    meaning: Έληξε ο κωδικός του on-premises Active Directory.
+    action: Όπως το 50055, αλλά η αλλαγή γίνεται στο Active Directory, ή μέσω self-service password reset με password writeback.
+    tell: Ο εταιρικός σου κωδικός έληξε. Άλλαξέ τον από τον υπολογιστή της εταιρείας ή από τη σελίδα επαναφοράς κωδικού.
+  - codes: ['50057']
+    group: account
+    who: admin
+    meaning: Ο λογαριασμός είναι απενεργοποιημένος.
+    action: Αν ο χρήστης είναι synced, ενεργοποίησέ τον στο on-premises Active Directory. Αν είναι cloud-only, ενεργοποίησέ τον στο Entra. Πριν το κάνεις, βεβαιώσου ότι δεν απενεργοποιήθηκε σκόπιμα, π.χ. σε αποχώρηση.
+  - codes: ['50034', '51004']
+    group: account
+    who: helpdesk
+    meaning: Ο λογαριασμός δεν υπάρχει στον tenant.
+    action: Συνήθως λάθος στο όνομα χρήστη. Αν είναι σωστό, η εφαρμογή στέλνει τον χρήστη σε λάθος tenant. Αν πρέπει να έχει πρόσβαση ως εξωτερικός, πρόσθεσέ τον ως guest.
+    tell: Δεν βρέθηκε λογαριασμός με αυτό το όνομα. Έλεγξε ότι γράφεις σωστά την εταιρική σου διεύθυνση.
+  - codes: ['50173', '50133', '50132']
+    group: account
+    who: user
+    meaning: Το session ή το token ακυρώθηκε, συνήθως επειδή ο χρήστης άλλαξε ή έκανε reset τον κωδικό, ή επειδή έγινε revoke sessions.
+    action: Ο χρήστης κάνει sign out και ξανά sign in στην εφαρμογή. Είναι η αναμενόμενη συμπεριφορά μετά από αλλαγή κωδικού.
+    tell: Επειδή άλλαξε ο κωδικός σου, χρειάζεται να συνδεθείς ξανά. Κάνε αποσύνδεση και σύνδεση στην εφαρμογή.
+  - codes: ['50125']
+    group: account
+    who: none
+    meaning: Η σύνδεση διακόπηκε για να γίνει επαναφορά κωδικού ή καταχώριση στοιχείων για επαναφορά.
+    action: Συνήθως τίποτα. Ο χρήστης ολοκληρώνει τη διαδικασία που του εμφανίζεται και συνεχίζει.
+  - codes: ['135011']
+    group: account
+    who: admin
+    meaning: Η συσκευή που χρησιμοποιήθηκε είναι απενεργοποιημένη στο Entra.
+    action: Δες τη συσκευή στο Entra ID › Devices. Αν απενεργοποιήθηκε σκόπιμα, π.χ. επειδή χάθηκε, μην την ενεργοποιήσεις.
+
+  # ---------- MFA ----------
+  - codes: ['50076']
+    group: mfa
+    who: none
+    meaning: Απαιτείται MFA, λόγω Conditional Access, per-user MFA ή νέας τοποθεσίας.
+    action: Συνήθως τίποτα. Είναι μέρος της κανονικής ροής. Ο χρήστης βλέπει το αίτημα MFA και συνεχίζει. Πρόβλημα υπάρχει μόνο αν δεν μπορεί να το ολοκληρώσει.
+  - codes: ['50074']
+    group: mfa
+    who: helpdesk
+    meaning: Απαιτείται MFA και ο χρήστης δεν πέρασε τον έλεγχο.
+    action: Δες στην καρτέλα Authentication Details ποια μέθοδος ζητήθηκε. Αν ο χρήστης λέει ότι δεν προσπάθησε να συνδεθεί, κάποιος έχει τον κωδικό του. Κάνε reset κωδικού και revoke sessions.
+    tell: Η επαλήθευση δεύτερου βήματος δεν ολοκληρώθηκε. Δοκίμασε ξανά και ενέκρινε το αίτημα στο Microsoft Authenticator. Αν δεν προσπαθούσες εσύ να συνδεθείς, μην εγκρίνεις τίποτα και ενημέρωσέ μας αμέσως.
+  - codes: ['50079', '50072']
+    group: mfa
+    who: user
+    meaning: Ο χρήστης πρέπει να καταχωρίσει μέθοδο MFA πριν συνεχίσει.
+    action: Ο χρήστης ολοκληρώνει την καταχώριση στο Security info (mysignins.microsoft.com/security-info). Αν δεν έχει καμία μέθοδο ή έχασε το κινητό του, δώσε του Temporary Access Pass για να καταχωρίσει νέα.
+    tell: Χρειάζεται να ρυθμίσεις τη δεύτερη μέθοδο ταυτοποίησης. Ακολούθησε τα βήματα που εμφανίζονται στην οθόνη, ή άνοιξε το mysignins.microsoft.com/security-info.
+  - codes: ['50158']
+    group: mfa
+    who: none
+    meaning: Ο χρήστης στάλθηκε σε επιπλέον έλεγχο, π.χ. Terms of use ή πάροχο MFA τρίτου.
+    action: Μόνος του ο κωδικός δεν σημαίνει αποτυχία. Δες στα sign-in logs αν ο επιπλέον έλεγχος ολοκληρώθηκε.
+  - codes: ['53010']
+    group: mfa
+    who: user
+    meaning: Ο χρήστης δεν μπορεί να καταχωρίσει μεθόδους MFA από εκεί που βρίσκεται, γιατί ο οργανισμός το επιτρέπει μόνο από συγκεκριμένες τοποθεσίες ή συσκευές.
+    action: Ο χρήστης κάνει την καταχώριση από το εταιρικό δίκτυο ή από εταιρική συσκευή. Η πολιτική που το ορίζει είναι στο Conditional Access, με τη δράση Register security information.
+    tell: Η ρύθμιση της δεύτερης μεθόδου ταυτοποίησης γίνεται μόνο από το εταιρικό δίκτυο ή από εταιρική συσκευή. Δοκίμασε ξανά από το γραφείο.
+
+  # ---------- Conditional Access και συσκευές ----------
+  - codes: ['53003']
+    group: ca
+    who: admin
+    meaning: Μια πολιτική Conditional Access μπλόκαρε τη σύνδεση.
+    action: Άνοιξε την καρτέλα Conditional Access της σύνδεσης στα sign-in logs. Εκεί φαίνεται η πολιτική με αποτέλεσμα Failure. Πάτα τις τρεις τελείες δίπλα της για να δεις ποια συνθήκη ταίριαξε. Αν ο χρήστης είναι guest σε άλλον οργανισμό, η πολιτική μπορεί να είναι του άλλου tenant, και τη λύνει ο δικός του admin.
+    tell: Η πρόσβαση μπλοκαρίστηκε από πολιτική ασφάλειας του οργανισμού, π.χ. λόγω τοποθεσίας, συσκευής ή εφαρμογής. Στείλε μας screenshot της οθόνης με το «More details» για να το ελέγξουμε.
+  - codes: ['53000']
+    group: ca
+    who: helpdesk
+    meaning: Η πολιτική ζητά συμμορφούμενη συσκευή και η συσκευή δεν είναι.
+    action: Δες τη συσκευή στο Intune admin center και ποια ρύθμιση συμμόρφωσης αποτυγχάνει. Αν η συσκευή δεν είναι καν εγγεγραμμένη στο Intune, ο χρήστης πρέπει να την εγγράψει.
+    tell: Η συσκευή σου δεν πληροί τις απαιτήσεις ασφάλειας της εταιρείας. Άνοιξε το Company Portal και δες τι χρειάζεται διόρθωση, π.χ. ενημέρωση λειτουργικού.
+  - codes: ['53001']
+    group: ca
+    who: user
+    meaning: Η πολιτική ζητά συσκευή joined στο domain και η συσκευή δεν είναι.
+    action: Ο χρήστης συνδέεται από εταιρική συσκευή Microsoft Entra hybrid joined. Σε συσκευή Windows, το dsregcmd /status δείχνει την κατάστασή της.
+    tell: Αυτή η εφαρμογή ανοίγει μόνο από εταιρικό υπολογιστή. Δοκίμασε από τον υπολογιστή της εταιρείας.
+  - codes: ['53002']
+    group: ca
+    who: user
+    meaning: Η εφαρμογή δεν είναι εγκεκριμένη για την πολιτική.
+    action: Στο κινητό, ο χρήστης χρησιμοποιεί την εγκεκριμένη εφαρμογή, π.χ. Outlook αντί για την ενσωματωμένη εφαρμογή email.
+    tell: Στο κινητό, χρησιμοποίησε την εφαρμογή Microsoft Outlook για το εταιρικό email, αντί για την ενσωματωμένη εφαρμογή email.
+  - codes: ['53009']
+    group: ca
+    who: user
+    meaning: Η πολιτική ζητά εφαρμογή με Intune app protection policy.
+    action: Ο χρήστης χρησιμοποιεί εφαρμογή που υποστηρίζει app protection, π.χ. Outlook ή Teams για κινητά, και έχει εγκατεστημένο τον broker (Microsoft Authenticator σε iOS, Company Portal σε Android).
+    tell: Για πρόσβαση από το κινητό χρειάζεσαι τις εφαρμογές της Microsoft, π.χ. Outlook και Teams, και το Microsoft Authenticator (iPhone) ή το Company Portal (Android).
+  - codes: ['50097']
+    group: ca
+    who: helpdesk
+    meaning: Απαιτείται ταυτοποίηση της συσκευής.
+    action: Η συσκευή πρέπει να είναι registered ή joined στο Entra. Σε Windows, ξεκίνα από το dsregcmd /status.
+  - codes: ['50155']
+    group: ca
+    who: helpdesk
+    meaning: Η ταυτοποίηση της συσκευής απέτυχε για αυτόν τον χρήστη.
+    action: Έλεγξε την κατάσταση της συσκευής στο Entra ID › Devices και με dsregcmd /status. Αν η συσκευή έχει διαγραφεί ή απενεργοποιηθεί στο Entra, χρειάζεται νέα εγγραφή.
+  - codes: ['50129']
+    group: ca
+    who: user
+    meaning: Απαιτείται εγγραφή της συσκευής (workplace join).
+    action: Ο χρήστης εγγράφει τη συσκευή, π.χ. προσθέτοντας τον εταιρικό λογαριασμό στα Windows (Access work or school) ή εγκαθιστώντας τον broker στο κινητό.
+  - codes: ['50127']
+    group: ca
+    who: user
+    meaning: Ο χρήστης πρέπει να εγκαταστήσει εφαρμογή broker για πρόσβαση.
+    action: Σε iOS, ο broker είναι το Microsoft Authenticator. Σε Android, το Company Portal ή το Microsoft Authenticator.
+    tell: Εγκατάστησε το Microsoft Authenticator (iPhone) ή το Company Portal (Android) και δοκίμασε ξανά.
+  - codes: ['50005']
+    group: ca
+    who: admin
+    meaning: Η σύνδεση έγινε από πλατφόρμα συσκευής που δεν υποστηρίζεται από την πολιτική Conditional Access.
+    action: Δες στην καρτέλα Conditional Access ποια πολιτική εφαρμόστηκε και τι ορίζει για τις πλατφόρμες συσκευών.
+  - codes: ['530032']
+    group: ca
+    who: admin
+    meaning: Μια πολιτική ασφάλειας σε επίπεδο tenant μπλόκαρε το αίτημα.
+    action: Δες τις πολιτικές ασφάλειας του tenant και την καρτέλα Conditional Access της σύνδεσης.
+  - codes: ['530035']
+    group: ca
+    who: admin
+    meaning: Τα Security defaults μπλόκαραν τη σύνδεση, συνήθως επειδή χρησιμοποιήθηκε legacy authentication.
+    action: Βρες ποια εφαρμογή ή συσκευή χρησιμοποιεί legacy authentication, π.χ. παλιό πρόγραμμα email με IMAP ή POP, ή scanner με SMTP, και πέρασέ την σε modern authentication. Μην απενεργοποιήσεις τα Security defaults για να περάσει.
+
+  # ---------- Κίνδυνος ----------
+  - codes: ['53004']
+    group: risk
+    who: admin
+    meaning: Ο χρήστης πρέπει να καταχωρίσει MFA, αλλά η καταχώριση μπλοκαρίστηκε λόγω κινδύνου.
+    action: Δες τον χρήστη στο Risky users και τη σύνδεση στο Risky sign-ins του ID Protection. Αν η σύνδεση δεν ήταν δική του, χειρίσου τον λογαριασμό ως παραβιασμένο.
+  - codes: ['53011']
+    group: risk
+    who: other
+    meaning: Ο χρήστης μπλοκαρίστηκε λόγω κινδύνου στον δικό του (home) tenant.
+    action: Αφορά συνήθως guests. Τη λύση τη δίνει ο admin του οργανισμού του χρήστη.
+  - codes: ['530034']
+    group: risk
+    who: other
+    meaning: Ένας delegated admin, π.χ. του συνεργάτη που σε υποστηρίζει, μπλοκαρίστηκε λόγω κινδύνου στον δικό του tenant.
+    action: Ενημέρωσε τον συνεργάτη. Ο έλεγχος και η λύση γίνονται στον δικό του tenant.
+
+  # ---------- Guests, tenant, ανάθεση ----------
+  - codes: ['50020']
+    group: guest
+    who: admin
+    meaning: Ο λογαριασμός δεν υπάρχει στον tenant της εφαρμογής.
+    action: Ο χρήστης προσπαθεί να μπει με λογαριασμό άλλου οργανισμού. Προσκάλεσέ τον ως guest μέσω B2B, ή ο χρήστης συνδέεται με τον σωστό λογαριασμό.
+  - codes: ['90072']
+    group: guest
+    who: admin
+    meaning: Ο εξωτερικός λογαριασμός δεν υπάρχει στον tenant, οπότε ο χρήστης δεν μπορεί να κάνει το MFA που ζητά.
+    action: Πρόσθεσε τον χρήστη ως guest. Αν ο χρήστης είναι synced, το ίδιο σφάλμα εμφανίζεται όταν δεν ταιριάζει το ImmutableID (sourceAnchor) ανάμεσα σε Active Directory και Entra.
+  - codes: ['50105']
+    group: guest
+    who: admin
+    meaning: Ο χρήστης δεν έχει ανατεθεί στην εφαρμογή.
+    action: Η εφαρμογή έχει Assignment required. Πρόσθεσε τον χρήστη ή μια ομάδα του στο Enterprise applications › εφαρμογή › Users and groups.
+    tell: Δεν έχεις ακόμα πρόσβαση σε αυτή την εφαρμογή. Θα την ενεργοποιήσουμε και θα σε ενημερώσουμε.
+  - codes: ['50059', '50128', '90002']
+    group: guest
+    who: dev
+    meaning: Δεν βρέθηκε ο tenant. Το αίτημα δεν έχει στοιχεία tenant, ή ο tenant ή το domain που ορίζει δεν υπάρχει.
+    action: Έλεγξε ότι ο χρήστης γράφει σωστά το domain στο όνομα χρήστη. Αν το σφάλμα είναι σε εφαρμογή, έχει λάθος tenant ID ή domain στις ρυθμίσεις της.
+
+  # ---------- Εφαρμογές και consent ----------
+  - codes: ['65001']
+    group: app
+    who: admin
+    meaning: Δεν έχει δοθεί consent για την εφαρμογή.
+    action: Ο χρήστης ή ο admin δίνει consent. Αν οι χρήστες δεν επιτρέπεται να δίνουν consent, το δίνει ο admin.
+  - codes: ['65004']
+    group: app
+    who: user
+    meaning: Ο χρήστης αρνήθηκε το consent.
+    action: Ο χρήστης ξαναπροσπαθεί και αποδέχεται, αν η εφαρμογή είναι εγκεκριμένη από τον οργανισμό.
+  - codes: ['90094', '90095']
+    group: app
+    who: admin
+    meaning: Απαιτείται admin consent. Με το 90095, ο χρήστης βλέπει ότι μπορεί να το ζητήσει από τον admin.
+    action: Αξιολόγησε τα δικαιώματα που ζητά η εφαρμογή και δώσε consent μόνο αν τα χρειάζεται. Το admin consent workflow στέλνει τα αιτήματα των χρηστών σε εσένα, αντί να τους μπλοκάρει χωρίς εξήγηση.
+    tell: Αυτή η εφαρμογή χρειάζεται έγκριση από το IT πριν τη χρησιμοποιήσεις. Θα την ελέγξουμε και θα σε ενημερώσουμε.
+  - codes: ['700016']
+    group: app
+    who: dev
+    meaning: Η εφαρμογή δεν βρέθηκε στον tenant.
+    action: Η εφαρμογή δεν έχει εγκατασταθεί, ή το αίτημα πήγε σε λάθος tenant, ή το Application ID είναι λάθος.
+  - codes: ['500011']
+    group: app
+    who: admin
+    meaning: Δεν βρέθηκε η εφαρμογή-πόρος (resource) στον tenant.
+    action: Όπως το 700016, αλλά για την εφαρμογή που προσπαθεί να προσπελάσει. Συνήθως χρειάζεται admin consent.
+  - codes: ['500014']
+    group: app
+    who: admin
+    meaning: Το service principal της εφαρμογής-πόρου είναι απενεργοποιημένο, π.χ. επειδή έληξε μια συνδρομή ή επειδή το απενεργοποίησε admin.
+    action: Δες την εφαρμογή στο Enterprise applications και αν είναι ενεργή (Enabled for users to sign-in). Έλεγξε και τη συνδρομή που τη συνοδεύει.
+  - codes: ['7000215', '7000222']
+    group: app
+    who: dev
+    meaning: Λάθος ή ληγμένο client secret.
+    action: Φτιάξε νέο secret στο App registrations και ενημέρωσε την εφαρμογή. Ακόμα καλύτερα, χρησιμοποίησε πιστοποιητικό, όπως προτείνει η Microsoft. Βάλε υπενθύμιση πριν λήξει το επόμενο.
+  - codes: ['50011']
+    group: app
+    who: dev
+    meaning: Η διεύθυνση επιστροφής (reply URL) δεν ταιριάζει με αυτές της εφαρμογής.
+    action: Πρόσθεσε τη σωστή διεύθυνση στο Authentication της εφαρμογής στο App registrations.
+  - codes: ['50196']
+    group: app
+    who: dev
+    meaning: Η εφαρμογή ζητά το ίδιο token ξανά και ξανά σε πολύ μικρό διάστημα.
+    action: Η εφαρμογή δεν κρατά τα tokens στη μνήμη της ή δεν χειρίζεται σωστά τα σφάλματα. Ενημέρωσε τον κατασκευαστή της.
+
+  # ---------- Hybrid ----------
+  - codes: ['80001']
+    group: hybrid
+    who: admin
+    meaning: Ο agent του Pass-through Authentication δεν συνδέεται στο Active Directory.
+    action: Έλεγξε ότι οι servers του agent είναι στο ίδιο forest με τους χρήστες και βλέπουν τους domain controllers.
+  - codes: ['80002']
+    group: hybrid
+    who: admin
+    meaning: Έληξε ο χρόνος για τον έλεγχο του κωδικού στο Active Directory.
+    action: Έλεγξε τη διαθεσιμότητα των domain controllers και των agents. Αν πέσουν όλοι οι agents, κανένας χρήστης με PTA δεν συνδέεται.
+  - codes: ['81010']
+    group: hybrid
+    who: user
+    meaning: Το Seamless SSO απέτυχε επειδή το Kerberos ticket του χρήστη έληξε ή δεν είναι έγκυρο.
+    action: Ο χρήστης κάνει sign out και sign in στα Windows. Αν επαναλαμβάνεται σε πολλούς, έλεγξε το Seamless SSO στο Microsoft Entra Connect.
+  - codes: ['130004']
+    group: hybrid
+    who: helpdesk
+    meaning: Ο χρήστης δεν έχει ρυθμισμένο κλειδί Windows Hello for Business.
+    action: Ο χρήστης ξαναστήνει το Windows Hello for Business, ή συνδέεται με άλλη μέθοδο μέχρι να γίνει.
+
+  # ---------- Αναμενόμενα ----------
+  - codes: ['50058']
+    group: noise
+    who: none
+    meaning: Ο χρήστης δεν έχει συνδεθεί ακόμα.
+    action: Τίποτα. Εμφανίζεται συχνά πριν από μια κανονική σύνδεση, και τότε το πεδίο χρήστη στα logs μπορεί να δείχνει GUID αντί για όνομα. Πρόβλημα υπάρχει μόνο αν εμφανίζεται σε single sign-on για χρήστη που είχε ήδη συνδεθεί.
+  - codes: ['50140']
+    group: noise
+    who: none
+    meaning: Η ερώτηση «Keep me signed in».
+    action: Τίποτα. Είναι μέρος της ροής σύνδεσης.
+  - codes: ['50199']
+    group: noise
+    who: none
+    meaning: Επιβεβαίωση του χρήστη για λόγους ασφάλειας, συνήθως σε κινητό.
+    action: Τίποτα. Ο χρήστης επιβεβαιώνει ότι αυτή είναι η εφαρμογή στην οποία θέλει να συνδεθεί.
+  - codes: ['700082']
+    group: noise
+    who: none
+    meaning: Το refresh token έληξε επειδή ο χρήστης δεν χρησιμοποίησε την εφαρμογή για πολύ καιρό.
+    action: Τίποτα. Η εφαρμογή ζητά νέα σύνδεση και ο χρήστης συνδέεται κανονικά.
+  - codes: ['50089']
+    group: noise
+    who: none
+    meaning: Έληξε το token της ροής σύνδεσης, π.χ. επειδή ο χρήστης άφησε τη σελίδα σύνδεσης ανοιχτή πολλή ώρα.
+    action: Τίποτα. Ο χρήστης ξεκινά τη σύνδεση από την αρχή.
+  - codes: ['90025']
+    group: noise
+    who: none
+    meaning: Μια εσωτερική υπηρεσία του Entra ξαναπροσπάθησε.
+    action: Συνήθως λύνεται μόνο του, χωρίς να το καταλάβει ο χρήστης. Αν επιμένει, δες το Microsoft 365 Service health.
