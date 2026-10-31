@@ -119,6 +119,7 @@
         precedence: L + 'how-policies-and-protections-are-combined',
         antiphish: L + 'anti-phishing-policies-about',
         efc: 'https://learn.microsoft.com/en-us/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/enhanced-filtering-for-connectors',
+        tlsconn: 'https://learn.microsoft.com/en-us/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-for-secure-mail-flow-with-a-partner',
         scln: 'https://learn.microsoft.com/en-us/exchange/security-and-compliance/mail-flow-rules/use-rules-to-set-scl',
         conn: L + 'connection-filter-policies-configure',
         junk: L + 'configure-junk-email-settings-on-exo-mailboxes',
@@ -293,7 +294,47 @@
         var fromIp = (body.match(/\[(\d{1,3}(?:\.\d{1,3}){3}|[0-9a-f:]{3,})\]/i) || [])[1] || (body.match(/\((\d{1,3}(?:\.\d{1,3}){3})\)/) || [])[1] || '';
         var by = (body.match(/\bby\s+([^\s(;]+)/i) || [])[1] || '';
         var wth = (body.match(/\bwith\s+([^\s(;]+)/i) || [])[1] || '';
-        return { from: from, ip: fromIp, by: by, with: wth, date: dt, raw: v };
+        var h = { from: from, ip: fromIp, by: by, with: wth, date: dt, raw: v };
+        h.tls = hopTls(h, body);
+        return h;
+    }
+    // Κρυπτογράφηση ανά βήμα: yes | no | local | unknown
+    // ESMTPS/ESMTPSA/UTF8SMTPS (RFC 3848, 6531) = TLS. ESMTP/SMTP/ESMTPA = χωρίς TLS.
+    // Το Exchange Online γράφει (version=TLS1_x, cipher=…) όταν η σύνδεση έγινε με TLS.
+    var MS_HOST = /(\.outlook\.com|\.exchangelabs\.com|\.outlook\.office365\.com|\.microsoft\.com)$/i;
+    function hopTls(h, body) {
+        if (/^(localhost|127\.0\.0\.1|::1)$/i.test(h.from) || /^(127\.0\.0\.1|::1)$/.test(h.ip)) return 'local';
+        if (/\(using TLS|version=TLS|TLS1_[0-3]|TLSv1|cipher=/i.test(body)) return 'yes';
+        var w = (h.with || '').toUpperCase();
+        if (/^(ESMTPS|ESMTPSA|UTF8SMTPS|UTF8SMTPSA|LMTPS|HTTPS)$/.test(w)) return 'yes';
+        if (/^(SMTP|ESMTP|ESMTPA|LMTP|UTF8SMTP|UTF8SMTPA)$/.test(w)) return 'no';
+        // Εισερχόμενη σύνδεση από εξωτερικό server στο Exchange Online χωρίς version=TLS
+        if (w === 'MICROSOFT' && MS_HOST.test(h.by) && h.from && !MS_HOST.test(h.from)) return 'no';
+        return 'unknown';
+    }
+    // Message-ID: domain σε σχέση με το From
+    var MSGID_PLATFORM = [
+        [/(\.outlook\.com|\.exchangelabs\.com|\.outlook\.office365\.com)$/i, 'Exchange Online (Microsoft 365)'],
+        [/(^|\.)mail\.gmail\.com$|(^|\.)gmail\.com$/i, 'Gmail ή Google Workspace'],
+        [/(^|\.)amazonses\.com$/i, 'Amazon SES'],
+        [/sendgrid/i, 'SendGrid'], [/(^|\.)mailgun\./i, 'Mailgun'], [/mcsv\.net$|mailchimp/i, 'Mailchimp'],
+        [/sparkpost/i, 'SparkPost'], [/(^|\.)zoho\./i, 'Zoho Mail'], [/salesforce\.com$|exacttarget/i, 'Salesforce']
+    ];
+    function evalMsgId(R) {
+        var A = R.auth || {}, fromD = (A.from || R.fromDomain || '').toLowerCase();
+        if (!R.msgid) return { name: 'Message-ID', value: 'λείπει', tone: 'amber', text: 'Το μήνυμα δεν έχει Message-ID. Τα νόμιμα συστήματα αλληλογραφίας σχεδόν πάντα το προσθέτουν. Η απουσία του είναι συχνή σε μαζικά ή αυτοματοποιημένα εργαλεία spam.' };
+        var d = ((R.msgid.match(/@([^>\s]+)/) || [])[1] || '').toLowerCase().replace(/[.\]]+$/, '');
+        R.msgidDomain = d;
+        if (!d) return { name: 'Message-ID', value: 'χωρίς domain', tone: 'amber', text: 'Το Message-ID δεν έχει τη συνηθισμένη μορφή <κάτι@domain>. Δεν είναι απόδειξη πλαστογράφησης, αλλά τα νόμιμα συστήματα το γράφουν σχεδόν πάντα έτσι.' };
+        if (fromD && orgDomain(d) === orgDomain(fromD)) return { name: 'Message-ID', value: 'ίδιο domain · ' + d, tone: 'green', text: 'Το Message-ID δημιουργήθηκε στο ίδιο domain με το From (' + fromD + ').' };
+        var plat = MSGID_PLATFORM.filter(function (p) { return p[0].test(d); }).map(function (p) { return p[1]; })[0];
+        var dm = A.dmarc;
+        if (plat) return { name: 'Message-ID', value: 'άλλο domain · ' + d, tone: dm === 'fail' ? 'amber' : 'blue', text: 'Το Message-ID δημιουργήθηκε από ' + plat + ', όχι από το domain του From (' + (fromD || 'άγνωστο') + '). Είναι φυσιολογικό όταν ο αποστολέας στέλνει μέσω αυτής της υπηρεσίας.' + (dm === 'fail' ? ' Επειδή όμως το DMARC απέτυχε, δεν αποδεικνύει ότι ο αποστολέας είναι γνήσιος.' : '') };
+        return { name: 'Message-ID', value: 'άλλο domain · ' + d, tone: dm === 'fail' ? 'red' : dm === 'pass' ? 'blue' : 'amber',
+            text: 'Το Message-ID δημιουργήθηκε στο ' + d + ', ενώ το From δείχνει ' + (fromD || 'άγνωστο domain') + '. ' +
+                (dm === 'fail' ? 'Μαζί με την αποτυχία του DMARC, είναι ισχυρή ένδειξη ότι το μήνυμα δεν στάλθηκε από τον οργανισμό που δείχνει το From.'
+                    : dm === 'pass' ? 'Το DMARC πέρασε, άρα ο αποστολέας ταυτοποιήθηκε. Η διαφορά συνήθως σημαίνει ότι στέλνει μέσω πλατφόρμας τρίτου (newsletter, ERP, CRM).'
+                        : 'Μόνο του δεν αποδεικνύει πλαστογράφηση, γιατί πολλές νόμιμες πλατφόρμες γράφουν δικό τους domain. Κοίτα το μαζί με το DMARC.') };
     }
     function fmtDur(ms) {
         if (ms == null || isNaN(ms)) return '';
@@ -363,6 +404,9 @@
         else k = 'unknown';
         R.key = k;
         R.authEval = evalAuth(R);
+        R.msgidEval = evalMsgId(R);
+        R.authEval.rows.push(R.msgidEval);
+        R.plainHops = rec.filter(function (h) { return h.tls === 'no'; });
         R.V = VERDICTS[k](R);
         return R;
     }
@@ -512,26 +556,31 @@
         }).join('');
 
         var E = R.authEval;
-        $('jcAuth').innerHTML = E.rows.length ? E.rows.map(function (r) {
+        $('jcAuth').innerHTML = (R.auth ? '' : '<p class="text-sm text-slate-400">' + esc(E.summary) + '</p>') + E.rows.map(function (r) {
             return '<div class="rounded-md border border-slate-800 p-3"><div class="flex flex-wrap items-center gap-2 mb-1"><span class="font-semibold text-slate-100">' + esc(r.name) + '</span>' + pill(r.value, r.tone) + '</div><p class="text-sm text-slate-300 leading-relaxed">' + esc(r.text) + '</p></div>';
-        }).join('') + (R.arc ? '<p class="text-xs text-slate-400">Υπάρχει και ARC-Authentication-Results: το μήνυμα πέρασε από ενδιάμεση υπηρεσία που κατέγραψε τα αρχικά αποτελέσματα. Αν η υπηρεσία είναι δική σου, μπορείς να τη δηλώσεις ' + a(DOC.arc, 'trusted ARC sealer') + '.</p>' : '')
-            : '<p class="text-sm text-slate-400">' + esc(E.summary) + '</p>';
+        }).join('') + (R.arc ? '<p class="text-xs text-slate-400">Υπάρχει και ARC-Authentication-Results: το μήνυμα πέρασε από ενδιάμεση υπηρεσία που κατέγραψε τα αρχικά αποτελέσματα. Αν η υπηρεσία είναι δική σου, μπορείς να τη δηλώσεις ' + a(DOC.arc, 'trusted ARC sealer') + '.</p>' : '');
 
         var fr = fieldRows(R);
         $('jcFields').innerHTML = fr.length ? fr.map(function (r) {
             return '<tr class="border-b border-slate-800/70"><td class="py-2 pr-3 jcKey text-slate-100 whitespace-nowrap">' + esc(r.k) + '</td><td class="py-2 pr-3 jcKey break-all min-w-[9rem]">' + esc(r.v) + '</td><td class="py-2 leading-relaxed">' + esc(r.t) + '</td></tr>';
         }).join('') : '<tr><td colspan="3" class="py-2 text-slate-400">Δεν βρέθηκαν πεδία φιλτραρίσματος.</td></tr>';
 
-        $('jcHops').innerHTML = R.hops.length ? R.hops.map(function (h, i) {
+        var TLSP = { yes: pill('TLS', 'green'), no: pill('Χωρίς κρυπτογράφηση', 'red'), local: '', unknown: '' };
+        var n = R.plainHops.length, known = R.hops.filter(function (h) { return h.tls === 'yes'; }).length;
+        var tlsNote = !R.hops.length ? '' : n
+            ? '<div class="rounded-md border border-rose-500/40 bg-rose-500/5 p-3 text-sm text-slate-200 leading-relaxed"><span class="font-semibold text-rose-300">' + (n === 1 ? '1 βήμα' : n + ' βήματα') + ' χωρίς κρυπτογράφηση.</span> Σε ' + (n === 1 ? 'αυτό το βήμα' : 'αυτά τα βήματα') + ' το μήνυμα μεταφέρθηκε χωρίς TLS, άρα όποιος βρισκόταν στο δίκτυο ανάμεσα μπορούσε να το διαβάσει ή να το αλλάξει. Αν ο αποστολέας είναι συνεργάτης σου, ζήτα του να ενεργοποιήσει TLS στον mail server του. Για συνεργάτες με τους οποίους ανταλλάσσεις ευαίσθητα στοιχεία, μπορείς να απαιτήσεις TLS με ' + a(DOC.tlsconn, 'partner connector') + ' στο Exchange Online: τα μηνύματα χωρίς TLS απορρίπτονται. Τα Received τα γράφει ο server που παρέλαβε, οπότε τα βήματα πριν φτάσει στο Microsoft 365 δεν είναι επαληθευμένα.</div>'
+            : known ? '<p class="text-xs text-emerald-300">Δεν βρέθηκε βήμα χωρίς κρυπτογράφηση. Όπου το Received το δηλώνει, η μεταφορά έγινε με TLS.</p>'
+                : '<p class="text-xs text-slate-400">Τα Received δεν δηλώνουν αν η μεταφορά έγινε με TLS, οπότε η κρυπτογράφηση δεν μπορεί να κριθεί.</p>';
+        $('jcHops').innerHTML = tlsNote + (R.hops.length ? R.hops.map(function (h, i) {
             var slow = h.delay != null && h.delay > 5 * 60 * 1000;
             var gw = GATEWAYS.filter(function (g) { return g[0].test(h.from) || g[0].test(h.by); }).map(function (g) { return g[1]; })[0];
             var ms = /outlook\.com|protection\.outlook|microsoft\.com/i.test(h.by);
             return '<div class="rounded-md border ' + (slow ? 'border-amber-500/40' : 'border-slate-800') + ' p-3 text-sm"><div class="flex flex-wrap items-center gap-2"><span class="text-slate-400">' + (i + 1) + '.</span>' +
                 '<span class="jcKey text-slate-100 break-all">' + esc(h.from || 'άγνωστο') + (h.ip ? ' [' + esc(h.ip) + ']' : '') + '</span><span class="text-slate-500">→</span><span class="jcKey text-slate-200 break-all">' + esc(h.by || 'άγνωστο') + '</span>' +
-                (ms ? pill('Microsoft 365', 'blue') : '') + (gw ? pill(gw, 'amber') : '') + '</div>' +
+                (ms ? pill('Microsoft 365', 'blue') : '') + (gw ? pill(gw, 'amber') : '') + TLSP[h.tls] + '</div>' +
                 '<p class="text-xs text-slate-400 mt-1">' + (h.date ? fmtDate(h.date) : 'χωρίς ημερομηνία') + (h.with ? ' · ' + esc(h.with) : '') + (h.delay != null ? ' · <span class="' + (slow ? 'text-amber-300 font-semibold' : '') + '">καθυστέρηση ' + fmtDur(h.delay) + '</span>' : '') + '</p></div>';
         }).join('') + (R.total != null ? '<p class="text-xs text-slate-400">Συνολικός χρόνος από το πρώτο έως το τελευταίο hop: ' + fmtDur(R.total) + '</p>' : '')
-            : '<p class="text-sm text-slate-400">Δεν βρέθηκαν headers Received.</p>';
+            : '<p class="text-sm text-slate-400">Δεν βρέθηκαν headers Received.</p>');
 
         $('jcResult').classList.remove('hidden');
         $('jcExpMsg').classList.add('hidden');
@@ -563,6 +612,8 @@
         if (R.msgid) out.push('Message-ID: ' + t(R.msgid));
         var A = R.auth;
         if (A) out.push('Ταυτοποίηση: SPF=' + (A.spf || '-') + ', DKIM=' + (A.dkim.map(function (x) { return x.res; }).join('/') || '-') + ', DMARC=' + (A.dmarc || '-') + ', compauth=' + (A.compauth || '-') + (A.reason ? ' (reason ' + A.reason + ')' : ''));
+        if (R.msgidEval) out.push('Message-ID έναντι From: ' + R.msgidEval.value);
+        out.push('Βήματα χωρίς κρυπτογράφηση: ' + R.plainHops.length + ' από ' + R.hops.length);
         out.push('Πεδία: ' + ['CAT', 'SFV', 'IPV', 'DIR', 'CIP', 'CTRY'].filter(function (k) { return R.F[k]; }).map(function (k) { return k + ':' + R.F[k]; }).concat(R.bcl != null ? ['BCL:' + R.bcl] : []).join('; '));
         out.push('Επόμενα βήματα:');
         V.steps.forEach(function (s, i) { out.push((i + 1) + '. ' + strip(s.t) + ' ' + strip(s.b)); });
@@ -606,7 +657,8 @@
             steps: R.V.steps.map(function (s) { return { t: strip(s.t), b: strip(s.b) }; }),
             from: t(R.fromAddr), to: t(addrOf(R.to)), subject: t(R.subject), date: R.date, msgid: t(R.msgid),
             auth: R.authEval.rows, fields: fieldRows(R).map(function (r) { return { k: r.k, v: t(r.v), t: r.t }; }),
-            hops: R.hops.map(function (h) { return { from: h.from, ip: h.ip, by: h.by, date: h.date ? fmtDate(h.date) : '', delay: h.delay != null ? fmtDur(h.delay) : '', slow: h.delay != null && h.delay > 300000 }; }),
+            plain: R.plainHops.length,
+            hops: R.hops.map(function (h) { return { tls: h.tls, from: h.from, ip: h.ip, by: h.by, date: h.date ? fmtDate(h.date) : '', delay: h.delay != null ? fmtDur(h.delay) : '', slow: h.delay != null && h.delay > 300000 }; }),
             total: R.total != null ? fmtDur(R.total) : '', gateways: R.gateways
         };
         loadScripts(PDFLIB.concat([EXPORT]), function () {
@@ -634,23 +686,25 @@
         bulk: [
             'Received: from DB8PR04MB6721.eurprd04.prod.outlook.com (2603:10a6:10:fb::21) by AS8PR04MB8899.eurprd04.prod.outlook.com with HTTPS; Wed, 29 Oct 2026 07:02:11 +0000',
             'Received: from DU2PEPF00028D11.eurprd03.prod.outlook.com (2603:10a6:10:3b::9) by DB8PR04MB6721.eurprd04.prod.outlook.com (2603:10a6:10:fb::21) with Microsoft SMTP Server; Wed, 29 Oct 2026 07:02:10 +0000',
-            'Received: from mta-12.news-platform.example (203.0.113.45) by DU2PEPF00028D11.mail.protection.outlook.com (10.167.242.55) with Microsoft SMTP Server; Wed, 29 Oct 2026 07:02:09 +0000',
+            'Received: from mta-12.news-platform.example (203.0.113.45) by DU2PEPF00028D11.mail.protection.outlook.com (10.167.242.55) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384); Wed, 29 Oct 2026 07:02:09 +0000',
             'Authentication-Results: spf=pass (sender IP is 203.0.113.45) smtp.mailfrom=bounce.news-platform.example; dkim=pass (signature was verified) header.d=supplier-news.gr;dmarc=pass action=none header.from=supplier-news.gr;compauth=pass reason=100',
             'From: Supplier News <newsletter@supplier-news.gr>',
             'To: <it@mycompany.gr>',
             'Subject: Οι προσφορές του μήνα',
             'Date: Wed, 29 Oct 2026 09:02:00 +0200',
+            'Message-ID: <20261029070200.5f3a@mta-12.news-platform.example>',
             'X-Forefront-Antispam-Report: CIP:203.0.113.45;CTRY:IE;LANG:el;SCL:5;SRV:BULK;IPV:NLI;SFV:SPM;H:mta-12.news-platform.example;PTR:mta-12.news-platform.example;CAT:BULK;SFS:(13230040);DIR:INB;',
             'X-Microsoft-Antispam: BCL:7;ARA:13230040;'
         ].join('\n'),
         asf: [
             'Received: from VI1PR04MB5555.eurprd04.prod.outlook.com (2603:10a6:803:d1::14) by PA4PR04MB7777.eurprd04.prod.outlook.com with HTTPS; Tue, 28 Oct 2026 12:30:05 +0000',
-            'Received: from smtp.partner-erp.gr (192.0.2.25) by VI1PEPF00012345.mail.protection.outlook.com (10.167.1.10) with Microsoft SMTP Server; Tue, 28 Oct 2026 12:30:03 +0000',
+            'Received: from smtp.partner-erp.gr (192.0.2.25) by VI1PEPF00012345.mail.protection.outlook.com (10.167.1.10) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384); Tue, 28 Oct 2026 12:30:03 +0000',
             'Authentication-Results: spf=pass (sender IP is 192.0.2.25) smtp.mailfrom=partner-erp.gr; dkim=pass (signature was verified) header.d=partner-erp.gr;dmarc=pass action=none header.from=partner-erp.gr;compauth=pass reason=100',
             'From: "Partner ERP" <reports@partner-erp.gr>',
             'To: <logistics@mycompany.gr>',
             'Subject: Εβδομαδιαία αναφορά αποστολών',
             'Date: Tue, 28 Oct 2026 14:29:58 +0200',
+            'Message-ID: <rpt-4471@partner-erp.gr>',
             'X-Forefront-Antispam-Report: CIP:192.0.2.25;CTRY:GR;LANG:el;SCL:9;SRV:;IPV:NLI;SFV:SPM;H:smtp.partner-erp.gr;PTR:smtp.partner-erp.gr;CAT:HSPM;DIR:INB;',
             'X-CustomSpam: Web bug',
             'X-Microsoft-Antispam: BCL:0;'
@@ -658,13 +712,14 @@
         gateway: [
             'Received: from AM6PR04MB4321.eurprd04.prod.outlook.com (2603:10a6:20b:12::8) by AM9PR04MB1234.eurprd04.prod.outlook.com with HTTPS; Mon, 27 Oct 2026 08:45:40 +0000',
             'Received: from AM3PEPF0000A79B.eurprd04.prod.outlook.com (2603:10a6:20b:1a::3) by AM6PR04MB4321.eurprd04.prod.outlook.com (2603:10a6:20b:12::8) with Microsoft SMTP Server; Mon, 27 Oct 2026 08:45:39 +0000',
-            'Received: from mx0a-001b2d01.pphosted.com (192.0.2.140) by AM3PEPF0000A79B.mail.protection.outlook.com (10.167.16.120) with Microsoft SMTP Server; Mon, 27 Oct 2026 08:45:38 +0000',
+            'Received: from mx0a-001b2d01.pphosted.com (192.0.2.140) by AM3PEPF0000A79B.mail.protection.outlook.com (10.167.16.120) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384); Mon, 27 Oct 2026 08:45:38 +0000',
             'Received: from mail.customer-portal.gr (198.51.100.20) by mx0a-001b2d01.pphosted.com with ESMTPS; Mon, 27 Oct 2026 08:37:02 +0000',
             'Authentication-Results: spf=fail (sender IP is 192.0.2.140) smtp.mailfrom=customer-portal.gr; dkim=none (message not signed) header.d=none;dmarc=fail action=none header.from=customer-portal.gr;compauth=fail reason=001',
             'From: <orders@customer-portal.gr>',
             'To: <sales@mycompany.gr>',
             'Subject: Νέα παραγγελία 2026-1187',
             'Date: Mon, 27 Oct 2026 10:36:58 +0200',
+            'Message-ID: <order-2026-1187@customer-portal.gr>',
             'X-Forefront-Antispam-Report: CIP:192.0.2.140;CTRY:US;LANG:el;SCL:5;SRV:;IPV:NLI;SFV:SPM;H:mx0a-001b2d01.pphosted.com;PTR:mx0a-001b2d01.pphosted.com;CAT:SPOOF;DIR:INB;',
             'X-Microsoft-Antispam: BCL:0;'
         ].join('\n'),
@@ -676,6 +731,7 @@
             'To: <accounts@mycompany.gr>',
             'Subject: Κερδίσατε δωροεπιταγή 500€',
             'Date: Fri, 24 Oct 2026 18:20:05 +0200',
+            'Message-ID: <x7k2@relay.cheap-offers.example>',
             'X-Forefront-Antispam-Report: CIP:203.0.113.99;CTRY:NL;LANG:el;SCL:-1;SRV:;IPV:NLI;SFV:SKN;H:relay.cheap-offers.example;PTR:;CAT:NONE;DIR:INB;',
             'X-Microsoft-Antispam: BCL:0;'
         ].join('\n'),
@@ -687,6 +743,7 @@
             'To: <ciso@mycompany.gr>',
             'Subject: Ενημέρωση για το ISMS',
             'Date: Thu, 30 Oct 2026 09:50:00 +0200',
+            'Message-ID: <AM0PR04MB9999A1B2C3D4E5@AM0PR04MB9999.eurprd04.prod.outlook.com>',
             'X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:el;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB9999.eurprd04.prod.outlook.com;PTR:;CAT:NONE;DIR:INT;',
             'X-Microsoft-Antispam: BCL:0;'
         ].join('\n')

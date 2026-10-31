@@ -80,9 +80,10 @@
         if (ctx.hops && ctx.hops.length) {
             content.push({ text: 'Η διαδρομή του μηνύματος', style: 'h2', margin: [0, 10, 0, 6] });
             content.push({ table: { headerRows: 1, widths: [14, '*', '*', 76, 62], body: [[{ text: '#', style: 'th' }, { text: 'Από', style: 'th' }, { text: 'Προς', style: 'th' }, { text: 'Ώρα', style: 'th' }, { text: 'Καθυστέρηση', style: 'th' }]].concat(ctx.hops.map(function (h, i) {
-                return [{ text: String(i + 1), fontSize: 7.5, color: C.muted }, { text: (h.from || 'άγνωστο') + (h.ip ? ' [' + h.ip + ']' : ''), fontSize: 7.5 }, { text: h.by || 'άγνωστο', fontSize: 7.5 }, { text: h.date || '', fontSize: 7.5 }, { text: h.delay || '', fontSize: 7.5, color: h.slow ? C.amber : C.text, bold: !!h.slow }];
+                return [{ text: String(i + 1), fontSize: 7.5, color: C.muted }, { text: (h.from || 'άγνωστο') + (h.ip ? ' [' + h.ip + ']' : '') + (h.tls === 'no' ? ' · χωρίς TLS' : h.tls === 'yes' ? ' · TLS' : ''), fontSize: 7.5, color: h.tls === 'no' ? C.red : C.text }, { text: h.by || 'άγνωστο', fontSize: 7.5 }, { text: h.date || '', fontSize: 7.5 }, { text: h.delay || '', fontSize: 7.5, color: h.slow ? C.amber : C.text, bold: !!h.slow }];
             })) }, layout: 'jcTable' });
             if (ctx.total) content.push({ text: 'Συνολικός χρόνος: ' + ctx.total, style: 'note', margin: [0, 4, 0, 0] });
+            if (ctx.plain) content.push({ text: (ctx.plain === 1 ? '1 βήμα' : ctx.plain + ' βήματα') + ' της διαδρομής έγιναν χωρίς κρυπτογράφηση (TLS).', style: 'note', color: C.red });
             if (ctx.gateways && ctx.gateways.length) content.push({ text: 'Υπηρεσία τρίτου πριν το Microsoft 365: ' + ctx.gateways.join(', ') + '.', style: 'note', color: C.amber });
         }
 
