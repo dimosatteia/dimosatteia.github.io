@@ -1,7 +1,7 @@
 ---
 title: "Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365 στα Ελληνικά"
 date: 2026-10-30T17:30:00+02:00
-lastmod: 2026-10-30T17:30:00+02:00
+lastmod: 2026-10-31T13:00:00+02:00
 draft: false
 url: "/giati-pige-sta-junk/"
 slug: giati-pige-sta-junk
@@ -27,6 +27,7 @@ keywords:
   - Microsoft Defender for Office 365 false positive
   - email header analyzer Ελληνικά
 showToc: true
+junkGauge: true
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true

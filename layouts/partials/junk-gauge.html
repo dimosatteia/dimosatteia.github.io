@@ -1,0 +1,22 @@
+{{- /* Βαθμολογία στη δεξιά στήλη, κάτω από το Table of Contents, για το εργαλείο «Γιατί πήγε στα Junk;».
+       Εμφανίζεται μόνο σε σελίδες με junkGauge: true, γίνεται ορατή όταν αναλυθούν headers, και ακολουθεί τον χρήστη
+       καθώς κινείται στη σελίδα (sticky στήλη). Την ενημερώνει το shortcode junk-check. */ -}}
+<div id="jcSide" class="hidden glass-card rounded-xl p-5 border-t-2 border-t-blue-500" aria-live="polite">
+    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Βαθμός εμπιστοσύνης μηνύματος</h3>
+    <div class="flex items-center gap-4">
+        <div class="relative w-28 h-28 shrink-0">
+            <svg viewBox="0 0 120 120" class="w-28 h-28 -rotate-90" aria-hidden="true">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="10" class="text-slate-800"></circle>
+                <circle id="jcSideRing" cx="60" cy="60" r="52" fill="none" stroke="#f43f5e" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" style="transition: stroke-dashoffset .6s ease, stroke .4s ease"></circle>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span id="jcSideGrade" class="text-4xl font-black font-mono leading-none">–</span>
+                <span id="jcSideScore" class="text-xs font-mono text-slate-300 mt-1 tabular-nums">0/100</span>
+            </div>
+        </div>
+        <ul id="jcSideCounts" class="flex-1 min-w-0 flex flex-col gap-1 text-xs text-slate-400"></ul>
+    </div>
+    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-4 mb-1.5">Ευρήματα</p>
+    <ul id="jcSideList" class="flex flex-col gap-0.5 text-xs"></ul>
+    <p class="text-[10.5px] text-slate-500 leading-relaxed mt-3">Ξεκινά από 100 και αφαιρεί πόντους για κάθε εύρημα (Κρίσιμη 40, Υψηλή 25, Μεσαία 10, Χαμηλή 5). Δεν ξεπερνά το όριο του πιο σοβαρού ευρήματος: Κρίσιμη έως 29, Υψηλή έως 59, Μεσαία έως 79, Χαμηλή έως 89. A 90+, B 80+, C 70+, D 60+, E 50+, F κάτω από 50. Πάτησε ένα εύρημα για να πας στη θέση του.</p>
+</div>

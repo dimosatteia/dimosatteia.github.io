@@ -14,6 +14,9 @@
 #jcTool .jcStep::before{content:counter(jcs);flex:none;width:1.6rem;height:1.6rem;border-radius:9999px;background:rgba(59,130,246,.15);color:#93c5fd;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
 #jcTool .jcSteps{counter-reset:jcs}
 #jcTool .jcSteps li:first-child::before{background:#2563eb;color:#fff}
+.jcSev{display:inline-block;border:1px solid;border-radius:.375rem;padding:.05rem .45rem;font-size:10.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+#jcTool .jcFlash{animation:jcFlash 1.4s ease}
+@keyframes jcFlash{0%{box-shadow:0 0 0 0 rgba(59,130,246,.0)}25%{box-shadow:0 0 0 3px rgba(59,130,246,.7)}100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}}
 </style>
 <div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="jcTool"
      data-base="{{ "" | absURL }}" data-domain="{{ "elegxos-domain/" | relURL }}" data-incident="{{ "anafora-peristatikou/" | relURL }}" data-ca="{{ "politikes-conditional-access/" | relURL }}">
@@ -320,6 +323,45 @@
         [/sendgrid/i, 'SendGrid'], [/(^|\.)mailgun\./i, 'Mailgun'], [/mcsv\.net$|mailchimp/i, 'Mailchimp'],
         [/sparkpost/i, 'SparkPost'], [/(^|\.)zoho\./i, 'Zoho Mail'], [/salesforce\.com$|exacttarget/i, 'Salesforce']
     ];
+    // ---------- Σοβαρότητα και βαθμολογία ----------
+    // Κάθε εύρημα παίρνει επίπεδο σοβαρότητας. Η βαθμολογία ξεκινά από 100, αφαιρεί πόντους ανά εύρημα,
+    // και δεν ξεπερνά ποτέ το ανώτατο όριο του πιο σοβαρού ευρήματος.
+    var SEV = {
+        crit: { n: 'Κρίσιμη', pen: 40, cap: 29, rank: 4, cls: 'bg-fuchsia-500/15 text-fuchsia-300 border-fuchsia-500/50', dot: '#d946ef', pdf: '#a21caf' },
+        high: { n: 'Υψηλή', pen: 25, cap: 59, rank: 3, cls: 'bg-rose-500/15 text-rose-300 border-rose-500/50', dot: '#f43f5e', pdf: '#be123c' },
+        med:  { n: 'Μεσαία', pen: 10, cap: 79, rank: 2, cls: 'bg-orange-500/15 text-orange-300 border-orange-500/50', dot: '#f97316', pdf: '#c2410c' },
+        low:  { n: 'Χαμηλή', pen: 5, cap: 89, rank: 1, cls: 'bg-yellow-500/15 text-yellow-200 border-yellow-500/50', dot: '#eab308', pdf: '#a16207' },
+        info: { n: 'Πληροφοριακή', pen: 0, cap: 100, rank: 0, cls: 'bg-sky-500/15 text-sky-300 border-sky-500/50', dot: '#38bdf8', pdf: '#0369a1' }
+    };
+    var SEV_ORDER = ['crit', 'high', 'med', 'low', 'info'];
+    var VSEV = { malware: 'crit', hphish: 'crit', phish: 'high', imp: 'high', intos: 'high', outspam: 'high', spoof: 'high',
+        hspam: 'med', spam: 'med', asf: 'med', rulespam: 'med', rulebypass: 'med', ipallow: 'med', policyallow: 'med',
+        bulk: 'low', userblock: 'low', policyblock: 'low', released: 'low', safesender: 'low',
+        clean: 'info', none: 'info', untrusted: 'info', unknown: 'info' };
+    var GRADES = [[90, 'A', '#10b981'], [80, 'B', '#34d399'], [70, 'C', '#facc15'], [60, 'D', '#f59e0b'], [50, 'E', '#f97316'], [0, 'F', '#f43f5e']];
+    function rowSev(r, R) {
+        var A = R.auth || {}, v = String(r.value || '').split(' · ')[0];
+        if (r.name === 'Message-ID') return r.tone === 'red' ? 'high' : r.tone === 'amber' ? 'low' : 'info';
+        if (r.name === 'Κρυπτογράφηση διαδρομής') return r.tone === 'red' ? 'med' : 'info';
+        if (R.dir === 'INT') return 'info'; // τα εσωτερικά μηνύματα συνήθως δεν έχουν SPF, DKIM, DMARC
+        if (r.name === 'SPF') return A.spf === 'pass' ? 'info' : /^(fail|permerror)$/.test(A.spf) ? 'med' : 'low';
+        if (r.name === 'DKIM') return v === 'pass' ? 'info' : v === 'none' ? 'low' : 'med';
+        if (r.name === 'DMARC') return A.dmarc === 'pass' ? 'info' : A.dmarc === 'fail' ? 'high' : A.dmarc === 'permerror' ? 'med' : 'low';
+        if (r.name === 'compauth') return A.compauth === 'pass' ? 'info' : A.compauth === 'fail' ? 'med' : 'low';
+        return 'info';
+    }
+    function scoreIt(R) {
+        var F = [{ sev: VSEV[R.key] || 'info', label: 'Απόφαση: ' + R.V.title, target: 'jcVerdict' }];
+        R.authEval.rows.forEach(function (r, i) { r.sev = rowSev(r, R); F.push({ sev: r.sev, label: r.name + ': ' + r.value, target: 'jcAuthRow' + i }); });
+        var counts = { crit: 0, high: 0, med: 0, low: 0, info: 0 }, pen = 0, cap = 100;
+        F.forEach(function (f) { counts[f.sev]++; pen += SEV[f.sev].pen; cap = Math.min(cap, SEV[f.sev].cap); });
+        var score = Math.max(0, Math.min(100 - pen, cap));
+        var g = GRADES.filter(function (x) { return score >= x[0]; })[0];
+        F.sort(function (a, b) { return SEV[b.sev].rank - SEV[a.sev].rank; });
+        return { findings: F, counts: counts, score: score, grade: g[1], color: g[2], worst: F[0].sev, vsev: VSEV[R.key] || 'info' };
+    }
+    function sevBadge(k) { var x = SEV[k]; return '<span class="jcSev ' + x.cls + '">' + x.n + '</span>'; }
+
     function evalMsgId(R) {
         var A = R.auth || {}, fromD = (A.from || R.fromDomain || '').toLowerCase();
         if (!R.msgid) return { name: 'Message-ID', value: 'λείπει', tone: 'amber', text: 'Το μήνυμα δεν έχει Message-ID. Τα νόμιμα συστήματα αλληλογραφίας σχεδόν πάντα το προσθέτουν. Η απουσία του είναι συχνή σε μαζικά ή αυτοματοποιημένα εργαλεία spam.' };
@@ -414,6 +456,7 @@
                 ? { name: 'Κρυπτογράφηση διαδρομής', value: 'χωρίς ευρήματα', tone: 'green', text: 'Δεν βρέθηκε βήμα χωρίς κρυπτογράφηση. Όπου το Received το δηλώνει, η μεταφορά έγινε με TLS.' }
                 : { name: 'Κρυπτογράφηση διαδρομής', value: 'δεν δηλώνεται', tone: 'gray', text: 'Τα Received δεν δηλώνουν αν η μεταφορά έγινε με TLS, οπότε η κρυπτογράφηση δεν μπορεί να κριθεί.' });
         R.V = VERDICTS[k](R);
+        R.S = scoreIt(R);
         return R;
     }
 
@@ -550,8 +593,11 @@
         if (R.date) meta.push('<span class="text-slate-400">Ημερομηνία:</span> ' + esc(R.date));
         $('jcVerdict').className = 'rounded-lg border p-4 ' + TONE[V.tone];
         $('jcVerdict').innerHTML =
+            '<div class="flex items-start gap-3"><div class="flex-1 min-w-0">' +
             '<p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Τι αποφάσισε το Microsoft 365</p>' +
             '<p class="text-xl font-bold ' + TONE_TXT[V.tone] + '">' + esc(V.title) + '</p>' +
+            '<p class="mt-1.5"><span class="text-xs text-slate-400 mr-1.5">Σοβαρότητα:</span>' + sevBadge(R.S.vsev) + '</p></div>' +
+            '<div class="shrink-0 text-center rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2" title="Βαθμός εμπιστοσύνης μηνύματος"><p class="text-3xl font-black font-mono leading-none" style="color:' + R.S.color + '">' + R.S.grade + '</p><p class="text-[11px] font-mono text-slate-300 mt-1 tabular-nums">' + R.S.score + '/100</p></div></div>' +
             '<p class="text-sm text-slate-200 leading-relaxed mt-2">' + esc(V.why) + '</p>' +
             '<p class="text-sm text-slate-300 mt-2"><span class="text-slate-400">Πού πηγαίνει συνήθως:</span> ' + esc(V.where) + '</p>' +
             (meta.length ? '<p class="text-xs text-slate-300 mt-3 leading-relaxed break-words">' + meta.join(' · ') + '</p>' : '') +
@@ -562,8 +608,8 @@
         }).join('');
 
         var E = R.authEval;
-        $('jcAuth').innerHTML = (R.auth ? '' : '<p class="text-sm text-slate-400">' + esc(E.summary) + '</p>') + E.rows.map(function (r) {
-            return '<div class="rounded-md border border-slate-800 p-3"><div class="flex flex-wrap items-center gap-2 mb-1"><span class="font-semibold text-slate-100">' + esc(r.name) + '</span>' + pill(r.value, r.tone) + '</div><p class="text-sm text-slate-300 leading-relaxed">' + esc(r.text) + '</p></div>';
+        $('jcAuth').innerHTML = (R.auth ? '' : '<p class="text-sm text-slate-400">' + esc(E.summary) + '</p>') + E.rows.map(function (r, i) {
+            return '<div id="jcAuthRow' + i + '" class="scroll-mt-24 rounded-md border border-slate-800 p-3"><div class="flex flex-wrap items-center gap-2 mb-1"><span class="font-semibold text-slate-100">' + esc(r.name) + '</span>' + pill(r.value, r.tone) + sevBadge(r.sev) + '</div><p class="text-sm text-slate-300 leading-relaxed">' + esc(r.text) + '</p></div>';
         }).join('') + (R.arc ? '<p class="text-xs text-slate-400">Υπάρχει και ARC-Authentication-Results: το μήνυμα πέρασε από ενδιάμεση υπηρεσία που κατέγραψε τα αρχικά αποτελέσματα. Αν η υπηρεσία είναι δική σου, μπορείς να τη δηλώσεις ' + a(DOC.arc, 'trusted ARC sealer') + '.</p>' : '');
 
         var fr = fieldRows(R);
@@ -590,7 +636,52 @@
 
         $('jcResult').classList.remove('hidden');
         $('jcExpMsg').classList.add('hidden');
+        side(R);
     }
+
+    // ---------- Floating βαθμολογία στη δεξιά στήλη (partial junk-gauge) ----------
+    function side(R) {
+        var box = document.getElementById('jcSide');
+        if (!box) return;
+        if (!R) { box.classList.add('hidden'); return; }
+        var S = R.S, C = 326.73;
+        var ring = document.getElementById('jcSideRing');
+        ring.style.strokeDashoffset = (C * (1 - S.score / 100)).toFixed(2);
+        ring.style.stroke = S.color;
+        var g = document.getElementById('jcSideGrade'); g.textContent = S.grade; g.style.color = S.color;
+        document.getElementById('jcSideScore').textContent = S.score + '/100';
+        document.getElementById('jcSideCounts').innerHTML = SEV_ORDER.map(function (k) {
+            return '<li class="flex items-center justify-between gap-2"><span class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:' + SEV[k].dot + '"></span>' + SEV[k].n + '</span><span class="font-mono tabular-nums ' + (S.counts[k] && k !== 'info' ? 'text-slate-100 font-bold' : 'text-slate-500') + '">' + S.counts[k] + '</span></li>';
+        }).join('');
+        var nonInfo = S.findings.filter(function (f) { return f.sev !== 'info'; }), top = nonInfo.slice(0, 6), rest = nonInfo.length - top.length;
+        document.getElementById('jcSideList').innerHTML = top.length ? top.map(function (f) {
+            return '<li><button type="button" class="jcSideGo w-full text-left flex items-start gap-2 rounded px-1 py-1 hover:bg-slate-800/60" data-t="' + f.target + '">' + sevBadge(f.sev) + '<span class="text-slate-300 leading-snug break-words min-w-0">' + esc(f.label) + '</span></button></li>';
+        }).join('') + (rest > 0 ? '<li class="text-slate-500 px-1">και ' + rest + ' ακόμα στην ενότητα «Ταυτοποίηση αποστολέα»</li>' : '') : '<li class="text-emerald-300">Δεν βρέθηκαν ευρήματα πέρα από πληροφοριακά.</li>';
+        box.classList.remove('hidden');
+        pin();
+    }
+    // Η δεξιά στήλη έχει sticky, αλλά το <main> έχει overflow-y-auto και κυλάει το παράθυρο, οπότε το sticky δεν πιάνει.
+    // Γι' αυτό η βαθμολογία γίνεται fixed όταν η φυσική της θέση φύγει από την οθόνη, και επιστρέφει όταν ξαναφανεί.
+    function pin() {
+        var box = document.getElementById('jcSide');
+        if (!box || box.classList.contains('hidden')) return;
+        var aside = box.closest('aside');
+        if (!aside || !aside.offsetParent) { box.style.cssText = ''; return; }
+        var prev = box.previousElementSibling, top = 80;
+        var natural = prev ? prev.getBoundingClientRect().bottom + 16 : aside.getBoundingClientRect().top;
+        if (natural < top) {
+            var r = aside.getBoundingClientRect();
+            box.style.cssText = 'position:fixed;top:' + top + 'px;left:' + r.left + 'px;width:' + r.width + 'px;max-height:calc(100vh - ' + (top + 16) + 'px);overflow-y:auto;z-index:20';
+        } else box.style.cssText = '';
+    }
+    window.addEventListener('scroll', pin, { passive: true });
+    window.addEventListener('resize', pin);
+    document.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('.jcSideGo'); if (!b) return;
+        var el = document.getElementById(b.getAttribute('data-t')); if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.classList.remove('jcFlash'); void el.offsetWidth; el.classList.add('jcFlash');
+    });
 
     function run() {
         var raw = $('jcInput').value, err = $('jcError');
@@ -609,7 +700,8 @@
         var t = function (s) { return m ? mask(s) : String(s || ''); };
         var V = R.V, out = [];
         out.push('Ανάλυση email headers (thecybersec.gr/giati-pige-sta-junk/)');
-        out.push('Απόφαση: ' + V.title);
+        out.push('Βαθμός εμπιστοσύνης: ' + R.S.grade + ' (' + R.S.score + '/100)');
+        out.push('Απόφαση: ' + V.title + ' · Σοβαρότητα: ' + SEV[R.S.vsev].n);
         out.push('Αιτία: ' + V.why);
         out.push('Πού πηγαίνει συνήθως: ' + V.where);
         if (R.fromAddr) out.push('Από: ' + t(R.fromAddr));
@@ -618,6 +710,7 @@
         if (R.msgid) out.push('Message-ID: ' + t(R.msgid));
         var A = R.auth;
         if (A) out.push('Ταυτοποίηση: SPF=' + (A.spf || '-') + ', DKIM=' + (A.dkim.map(function (x) { return x.res; }).join('/') || '-') + ', DMARC=' + (A.dmarc || '-') + ', compauth=' + (A.compauth || '-') + (A.reason ? ' (reason ' + A.reason + ')' : ''));
+        out.push('Ευρήματα: ' + SEV_ORDER.filter(function (k) { return k !== 'info'; }).map(function (k) { return SEV[k].n + ' ' + R.S.counts[k]; }).join(', '));
         if (R.msgidEval) out.push('Message-ID έναντι From: ' + R.msgidEval.value);
         out.push('Βήματα χωρίς κρυπτογράφηση: ' + R.plainHops.length + ' από ' + R.hops.length);
         out.push('Πεδία: ' + ['CAT', 'SFV', 'IPV', 'DIR', 'CIP', 'CTRY'].filter(function (k) { return R.F[k]; }).map(function (k) { return k + ':' + R.F[k]; }).concat(R.bcl != null ? ['BCL:' + R.bcl] : []).join('; '));
@@ -628,7 +721,7 @@
 
     $('jcRun').addEventListener('click', run);
     $('jcInput').addEventListener('keydown', function (e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') run(); });
-    $('jcClear').addEventListener('click', function () { $('jcInput').value = ''; $('jcResult').classList.add('hidden'); $('jcError').classList.add('hidden'); $('jcSample').value = ''; last = null; $('jcInput').focus(); });
+    $('jcClear').addEventListener('click', function () { $('jcInput').value = ''; $('jcResult').classList.add('hidden'); $('jcError').classList.add('hidden'); $('jcSample').value = ''; last = null; side(null); $('jcInput').focus(); });
     $('jcSample').addEventListener('change', function () { var k = this.value; if (!k || !SAMPLES[k]) return; $('jcInput').value = SAMPLES[k].trim(); run(); });
     $('jcCopy').addEventListener('click', function () {
         if (!last) return;
@@ -662,7 +755,9 @@
             title: R.V.title, why: R.V.why, where: R.V.where, tone: R.V.tone,
             steps: R.V.steps.map(function (s) { return { t: strip(s.t), b: strip(s.b) }; }),
             from: t(R.fromAddr), to: t(addrOf(R.to)), subject: t(R.subject), date: R.date, msgid: t(R.msgid),
-            auth: R.authEval.rows, fields: fieldRows(R).map(function (r) { return { k: r.k, v: t(r.v), t: r.t }; }),
+            grade: R.S.grade, score: R.S.score, gradeColor: R.S.color, vsev: SEV[R.S.vsev].n, vsevColor: SEV[R.S.vsev].pdf,
+            counts: SEV_ORDER.filter(function (k) { return k !== 'info'; }).map(function (k) { return [SEV[k].n, R.S.counts[k], SEV[k].pdf]; }),
+            auth: R.authEval.rows.map(function (r) { return { name: r.name, value: r.value, tone: r.tone, text: r.text, sev: SEV[r.sev].n, sevColor: SEV[r.sev].pdf }; }), fields: fieldRows(R).map(function (r) { return { k: r.k, v: t(r.v), t: r.t }; }),
             plain: R.plainHops.length,
             hops: R.hops.map(function (h) { return { tls: h.tls, from: h.from, ip: h.ip, by: h.by, date: h.date ? fmtDate(h.date) : '', delay: h.delay != null ? fmtDur(h.delay) : '', slow: h.delay != null && h.delay > 300000 }; }),
             total: R.total != null ? fmtDur(R.total) : '', gateways: R.gateways

@@ -52,6 +52,16 @@
         var meta = [['Από', ctx.from], ['Προς', ctx.to], ['Θέμα', ctx.subject], ['Ημερομηνία', ctx.date], ['Message-ID', ctx.msgid]].filter(function (r) { return r[1]; });
         if (meta.length) content.push({ table: { widths: [80, '*'], body: meta.map(function (r) { return [{ text: r[0], color: C.muted, fontSize: 8.5 }, { text: r[1], fontSize: 8.5 }]; }) }, layout: 'jcTable', margin: [0, 0, 0, 10] });
 
+        if (ctx.grade) content.push({ table: { widths: [70, '*'], body: [[
+            { stack: [{ text: ctx.grade, fontSize: 30, bold: true, color: ctx.gradeColor, alignment: 'center' }, { text: ctx.score + '/100', fontSize: 9, alignment: 'center', color: C.text }], margin: [0, 6, 0, 6] },
+            { stack: [
+                { text: 'ΒΑΘΜΟΣ ΕΜΠΙΣΤΟΣΥΝΗΣ ΜΗΝΥΜΑΤΟΣ', fontSize: 7.5, color: C.muted, characterSpacing: 1 },
+                { text: [{ text: 'Σοβαρότητα απόφασης: ', color: C.muted }, { text: ctx.vsev, bold: true, color: ctx.vsevColor }], fontSize: 9.5, margin: [0, 4, 0, 4] },
+                { text: ctx.counts.map(function (c, i) { return [{ text: (i ? '   ' : '') + c[0] + ' ', color: C.muted }, { text: String(c[1]), bold: true, color: c[1] ? c[2] : C.muted }]; }).reduce(function (a, b) { return a.concat(b); }, []), fontSize: 9 },
+                { text: 'Ξεκινά από 100 και αφαιρεί πόντους ανά εύρημα. Δεν ξεπερνά το όριο του πιο σοβαρού ευρήματος.', fontSize: 7.5, color: C.muted, margin: [0, 4, 0, 0] }
+            ], margin: [6, 6, 6, 6] }
+        ]] }, layout: 'jcTable', margin: [0, 0, 0, 10] });
+
         content.push({ table: { widths: ['*'], body: [[{ stack: [
             { text: 'ΤΙ ΑΠΟΦΑΣΙΣΕ ΤΟ MICROSOFT 365', fontSize: 7.5, color: tone[0], characterSpacing: 1 },
             { text: ctx.title, fontSize: 14, bold: true, color: tone[0], margin: [0, 3, 0, 4] },
@@ -64,9 +74,9 @@
 
         if (ctx.auth && ctx.auth.length) {
             content.push({ text: 'Ταυτοποίηση αποστολέα', style: 'h2', margin: [0, 10, 0, 6] });
-            content.push({ table: { headerRows: 1, widths: [58, 130, '*'], body: [[{ text: 'Έλεγχος', style: 'th' }, { text: 'Αποτέλεσμα', style: 'th' }, { text: 'Τι σημαίνει', style: 'th' }]].concat(ctx.auth.map(function (r) {
+            content.push({ table: { headerRows: 1, widths: [58, 112, 50, '*'], body: [[{ text: 'Έλεγχος', style: 'th' }, { text: 'Αποτέλεσμα', style: 'th' }, { text: 'Σοβαρότητα', style: 'th' }, { text: 'Τι σημαίνει', style: 'th' }]].concat(ctx.auth.map(function (r) {
                 var t = TONE[r.tone] || TONE.gray;
-                return [{ text: r.name, bold: true, fontSize: 8.5 }, { text: r.value, fontSize: 8, color: t[0], bold: true }, { text: r.text, fontSize: 8 }];
+                return [{ text: r.name, bold: true, fontSize: 8.5 }, { text: r.value, fontSize: 8, color: t[0], bold: true }, { text: r.sev || '', fontSize: 8, bold: true, color: r.sevColor || C.muted }, { text: r.text, fontSize: 8 }];
             })) }, layout: 'jcTable' });
         }
 

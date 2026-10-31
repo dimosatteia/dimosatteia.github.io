@@ -117,6 +117,7 @@
                     {{ if .Params.readyGauge }}{{ partial "ready-gauge.html" . }}{{ end }}
                     {{ if .Params.policyGauge }}{{ partial "policy-gauge.html" . }}{{ end }}
                     {{ if .Params.ssGauge }}{{ partial "ss-gauge.html" . }}{{ end }}
+                    {{ if .Params.junkGauge }}{{ partial "junk-gauge.html" . }}{{ end }}
                     </div>
                 </aside>
                 {{ end }}
@@ -125,4 +126,4 @@
 
     </div>
 </main>
-{{ end }}
+{{ end }}
