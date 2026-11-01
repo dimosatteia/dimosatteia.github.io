@@ -451,6 +451,9 @@ articles:
     - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
       url: /giati-pige-sta-junk/
       page: /giati-pige-sta-junk
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.

@@ -335,6 +335,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 11.β
     scope: Βασικές και σημαντικές
     requirement: Ταξινόμηση δεδομένων και αγαθών σε επίπεδα, με βάση εμπιστευτικότητα, ακεραιότητα και διαθεσιμότητα.
@@ -665,6 +668,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 14.γ
     scope: Βασικές και σημαντικές
     requirement: Αλλαγή των προεπιλεγμένων συνθηματικών (default passwords) κατά την εγκατάσταση.
@@ -783,6 +789,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 17.β
     scope: Βασικές και σημαντικές
     requirement: Τακτική λήψη και επεξεργασία πληροφοριών για ευπάθειες από κατάλληλες πηγές (αρχές, προμηθευτές, CSIRTs).
@@ -1454,6 +1463,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 24.στ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών απόκρισης.

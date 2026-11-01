@@ -145,6 +145,9 @@ articles:
     - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
       url: /giati-pige-sta-junk/
       page: /giati-pige-sta-junk
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 21.2.γ
     scope: Βασικές και σημαντικές
     requirement: Επιχειρησιακή συνέχεια, όπως διαχείριση αντιγράφων ασφαλείας και αποκατάσταση έπειτα από καταστροφή, και διαχείριση των κρίσεων.
@@ -259,6 +262,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
       url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
       page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
+    - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
+      url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
+      page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
   - code: 21.2.ζ
     scope: Βασικές και σημαντικές
     requirement: Βασικές πρακτικές κυβερνοϋγιεινής και κατάρτιση στην κυβερνοασφάλεια.

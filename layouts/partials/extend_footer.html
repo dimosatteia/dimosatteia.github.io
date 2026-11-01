@@ -44,8 +44,22 @@
     <a href="https://thecybersec.gr/poia-adeia-microsoft-365/" class="announce-cta">Δες ποια άδεια χρειάζεσαι →</a>
     </div>
 
+    {{- /* Defender for Cloud (02/11/2026 07:00): εμφανίζεται μόνο από το build μετά τη δημοσίευση. Μέχρι τότε μένουν AADSTS και εβδομάδα 44. */ -}}
+    {{- $dfc := site.GetPage "/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive" -}}
+    {{- if $dfc }}
       <div class="announce-item announce-default">
-    <h3 id="announce-title">AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Entra ID και τι κάνεις</h3>
+    <h3 id="announce-title">Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft</h3>
+    <p>
+      Τι σου δίνει δωρεάν το Foundational CSPM, πότε αξίζει το Defender CSPM,
+      τεκμήρια για NIS2 και ISO 27001, Plan 1 ή Plan 2 στο Defender for Servers,
+      και η νέα διαχείριση των plans από το Defender portal.
+    </p>
+    <a href="https://thecybersec.gr{{ $dfc.RelPermalink }}" class="announce-cta">Δες το άρθρο →</a>
+    </div>
+    {{- end }}
+
+      <div class="announce-item announce-default">
+    <h3{{ if not $dfc }} id="announce-title"{{ end }}>AADSTS: Τι σημαίνουν τα σφάλματα σύνδεσης του Entra ID και τι κάνεις</h3>
     <p>
       Πού βρίσκεις τον κωδικό στα sign-in logs, τι σημαίνουν οι κωδικοί που
       συναντάς στην πράξη, όπως 53003, 50126 και 50076, ποιοι είναι απλός
@@ -54,6 +68,7 @@
     <a href="https://thecybersec.gr/posts/aadsts-sfalmata-syndesis-entra-id/" class="announce-cta">Δες το άρθρο →</a>
     </div>
 
+    {{- if not $dfc }}
       <div class="announce-item announce-default">
     <h3>Microsoft 365 Security: τι άλλαξε (εβδομάδα 44/2026)</h3>
     <p>
@@ -63,6 +78,7 @@
     </p>
     <a href="https://thecybersec.gr/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w44/" class="announce-cta">Δες το τεύχος →</a>
     </div>
+    {{- end }}
 
   </div>
 </div>
@@ -179,7 +195,7 @@
 
 <script>
   (function () {
-    var STORAGE_KEY = "announce_two_articles_27_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
+    var STORAGE_KEY = "announce_two_articles_{{ if site.GetPage "/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive" }}28{{ else }}27{{ end }}_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
 
     var overlay = document.getElementById("announce-overlay");
     var closeBtn = document.getElementById("announce-close");
