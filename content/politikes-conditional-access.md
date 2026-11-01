@@ -33,6 +33,7 @@ cover:
   image: "/images/tools/politikes-conditional-access.webp"
   alt: "Σήματα χρήστη, συσκευής, τοποθεσίας, εφαρμογής και κινδύνου περνούν από πολιτική Conditional Access σε Grant, MFA, συμβατή συσκευή ή Block, με σειρά ενεργοποίησης σε τέσσερα κύματα"
   maxWidth: 800
+  flow: "ca"
 categories: ["Identity & Access"]
 tags:
   - Microsoft Entra ID

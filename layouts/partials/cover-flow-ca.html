@@ -1,0 +1,34 @@
+<!-- Κινούμενη ροή πάνω στο cover του /politikes-conditional-access/ (viewBox = διαστάσεις της εικόνας 1600x874).
+     Οι γραμμές ακολουθούν τις καμπύλες της εικόνας: σήματα → Policy → αποτελέσματα, από αριστερά προς τα δεξιά. -->
+<svg class="cover-flow" viewBox="0 0 1600 874" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="cf-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#cf-glow)" fill="none" stroke-linecap="round" stroke-width="3.5">
+    <!-- Σήματα → Policy -->
+    <path class="cf-in"  style="--d:0s"    stroke="#7cb4ff" d="M430,200 C465,205 515,420 585,437"/>
+    <path class="cf-in"  style="--d:-.45s" stroke="#7cb4ff" d="M430,310 C470,315 515,425 585,437"/>
+    <path class="cf-in"  style="--d:-.9s"  stroke="#7cb4ff" d="M430,420 C500,425 520,436 585,437"/>
+    <path class="cf-in"  style="--d:-1.35s" stroke="#7cb4ff" d="M430,530 C470,525 515,450 585,437"/>
+    <path class="cf-in"  style="--d:-1.8s" stroke="#7cb4ff" d="M430,640 C465,635 515,455 585,437"/>
+    <!-- Policy → αποτελέσματα -->
+    <path class="cf-out" style="--d:-.3s"  stroke="#34d399" d="M878,437 C960,430 950,262 1030,260"/>
+    <path class="cf-out" style="--d:-.8s"  stroke="#60a5fa" d="M878,437 C960,430 960,362 1030,360"/>
+    <path class="cf-out" style="--d:-1.3s" stroke="#38bdf8" d="M878,437 C960,437 960,460 1030,460"/>
+    <path class="cf-out" style="--d:-1.8s" stroke="#fb7185" d="M878,437 C960,440 950,558 1030,560"/>
+  </g>
+</svg>
+<style>
+  .cover-flow-wrap { position: relative; }
+  .cover-flow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .cover-flow path {
+    stroke-dasharray: 26 140;
+    animation: cf-move 2.2s linear infinite;
+    animation-delay: var(--d);
+  }
+  @keyframes cf-move { from { stroke-dashoffset: 166; } to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .cover-flow { display: none; } }
+</style>
