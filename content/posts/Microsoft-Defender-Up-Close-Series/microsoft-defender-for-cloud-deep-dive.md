@@ -1,10 +1,10 @@
 ---
 title: "Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft"
 seoTitle: "Microsoft Defender for Cloud: πρακτικός οδηγός CSPM και plans"
+slug: microsoft-defender-for-cloud-deep-dive
 date: 2026-11-02T07:00:00+02:00
 lastmod: 2026-11-02T07:00:00+02:00
 draft: false
-slug: "microsoft-defender-for-cloud-deep-dive"
 keywords:
   - Microsoft Defender for Cloud
   - Microsoft Defender for Cloud οδηγός
@@ -72,7 +72,7 @@ verification:
   - feature: "Defender for Servers: τα desktops δεν χρεώνονται ως servers στο Plan 1, νέος τρόπος αναγνώρισης billable servers (από 1 Νοεμβρίου 2026)"
     status: "Generally Available"
     license: "Defender for Servers Plan 1 και Plan 2"
-    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes#september-2026"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes#upcoming-billing-updates-for-defender-for-servers"
     verified: 2026-11-02
   - feature: "Διαχείριση cloud security plans στο Defender portal, χρέωση σε Defender Workload Units (DWU)"
     status: "Public Preview"
@@ -105,7 +105,7 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 Μόλις ανοίξεις το Defender for Cloud σε ένα Azure subscription, ενεργοποιείται το **Foundational CSPM**, χωρίς κόστος. Δεν χρειάζεται agent ούτε απόφαση αγοράς. Παίρνεις:
 
 - **Security recommendations** για κάθε resource, βασισμένες στο **Microsoft Cloud Security Benchmark (MCSB)**.
-- **Secure score** για το cloud, που ανεβαίνει καθώς διορθώνεις τις recommendations.
+- **Cloud secure score**, που ανεβαίνει καθώς διορθώνεις τις recommendations.
 - **Asset inventory** των resources σε Azure, AWS και GCP, και των servers που συνδέεις μέσω Azure Arc.
 - Σύνδεση των **AWS** και **GCP** χωρίς agent, για την ίδια εικόνα σε όλα τα clouds.
 - **Workflow automation** και **εξαγωγή δεδομένων** προς SIEM.
@@ -114,8 +114,8 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 
 Στο Defender portal, στο **Cloud security → Overview**, η ίδια εικόνα συνδυάζεται με τα alerts και τα incidents του SOC:
 
-[![Το Cloud overview dashboard του Defender for Cloud στο Microsoft Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/media/defender-portal-dashboard/overview-dashboard.png)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/media/defender-portal-dashboard/overview-dashboard.png)
-> 📷 **Εικόνα 2:** Το Cloud overview dashboard, με posture και threat protection μαζί. Defender portal → Cloud security → Overview. Πηγή εικόνας: Microsoft Learn.
+[![Το Cloud overview dashboard του Defender for Cloud στο Microsoft Defender portal, με τις κάρτες Cloud secure score, Recommendations και Threat detection](/images/Microsoft-Defender/mdc-01-cloud-overview.webp)](/images/Microsoft-Defender/mdc-01-cloud-overview.webp)
+> 📷 **Εικόνα 2:** Το Cloud overview dashboard, με τις κάρτες Cloud secure score, Recommendations και Threat detection. Defender portal → Cloud security → Overview.
 
 Μία πρακτική λεπτομέρεια: το Defender portal δείχνει τα δεδομένα του cloud όταν έχεις **τουλάχιστον ένα paid plan**. Την πρώτη φορά επιλέγεις **Prepare my tenant**, και τα δεδομένα μπορεί να χρειαστούν έως 24 ώρες για να εμφανιστούν.
 
@@ -136,8 +136,8 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 
 Για όποιον κάνει GRC, το τελευταίο είναι το πιο ενδιαφέρον. Στη λίστα των standards που μπορείς να ενεργοποιήσεις υπάρχουν το **EU 2022/2555 (NIS2)**, ο **GDPR** και το **ISO/IEC 27001:2022**, για Azure, AWS και GCP. Το MCSB είναι ενεργό από προεπιλογή. Για να προσθέσεις τα υπόλοιπα, χρειάζεσαι τουλάχιστον ένα paid plan.
 
-[![Το Regulatory compliance dashboard του Defender for Cloud, με τα controls ενός standard και τις αξιολογήσεις τους](https://learn.microsoft.com/en-us/azure/defender-for-cloud/media/regulatory-compliance-dashboard/compliance-drilldown.png)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/media/regulatory-compliance-dashboard/compliance-drilldown.png)
-> 📷 **Εικόνα 3:** Τα controls ενός standard, με αυτόματες και χειροκίνητες αξιολογήσεις. Azure portal → Microsoft Defender for Cloud → Regulatory compliance. Πηγή εικόνας: Microsoft Learn.
+[![Το Regulatory compliance του Defender for Cloud, με τα standards και την κάλυψη των controls τους](/images/Microsoft-Defender/mdc-02-regulatory-compliance.webp)](/images/Microsoft-Defender/mdc-02-regulatory-compliance.webp)
+> 📷 **Εικόνα 3:** Τα standards του Regulatory compliance και η κάλυψη των controls τους. Defender portal → Cloud security → Regulatory compliance.
 
 Τρία πράγματα που πρέπει να ξέρεις πριν δείξεις αυτό το dashboard σε ελεγκτή:
 
@@ -183,8 +183,8 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 
 Ως τώρα τα plans ρυθμίζονταν στο Azure portal, subscription προς subscription, στο **Environment settings**:
 
-[![Η ενεργοποίηση όλων των plans του Defender for Cloud σε ένα subscription από το Azure portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/media/get-started/enable-all-plans.png)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/media/get-started/enable-all-plans.png)
-> 📷 **Εικόνα 4:** Τα plans ενός subscription και το κουμπί Enable all. Azure portal → Microsoft Defender for Cloud → Environment settings → subscription. Πηγή εικόνας: Microsoft Learn.
+[![Τα Defender plans ενός subscription στο Azure portal, με την κατάσταση On ή Off για κάθε plan](/images/Microsoft-Defender/mdc-03-environment-settings-plans.webp)](/images/Microsoft-Defender/mdc-03-environment-settings-plans.webp)
+> 📷 **Εικόνα 4:** Τα Defender plans ενός subscription και η κατάστασή τους. Azure portal → Microsoft Defender for Cloud → Environment settings → subscription → Defender plans.
 
 Από τις **20 Οκτωβρίου 2026**, σε **Public Preview**, μπορείς να τα διαχειρίζεσαι από το Defender portal. Ορίζεις plans **global**, για όλα τα συνδεδεμένα περιβάλλοντα, τωρινά και μελλοντικά, ή **ανά management group και subscription**. Με το εικονίδιο της κλειδαριάς (**Enforce and lock**) εμποδίζεις τα επιμέρους subscriptions να αλλάξουν τη ρύθμιση.
 
@@ -201,13 +201,13 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 [![Το παράθυρο Migrate to Defender με τις αλλαγές στη χρέωση και τη σύγκριση των παλιών και νέων plans](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/media/plan-management-changes-defender-portal/migrate-to-defender-plan-comparison.png)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/media/plan-management-changes-defender-portal/migrate-to-defender-plan-comparison.png)
 > 📷 **Εικόνα 6:** Η σύγκριση παλιών και νέων plans πριν από τη μεταφορά. Defender portal → Cloud security → Define Cloud Security plans → Per-environment plan configurations. Πηγή εικόνας: Microsoft Learn.
 
-Το preview καλύπτει μόνο Azure commercial. Τα AWS, GCP, Azure DevOps και GitLab connectors μένουν στο Azure portal, ενώ το GitHub υποστηρίζεται χωριστά, επίσης σε preview. Για τον πλήρη πίνακα αλλαγών και το τι κάνεις πριν από τη μεταφορά, δες το **[Preview: τα plans του Defender for Cloud στο Defender portal, με χρέωση σε DWU](/posts/previews/defender-for-cloud-plans-defender-portal-dwu/)**.
+Το preview καλύπτει μόνο Azure commercial. Τα AWS, GCP, Azure DevOps, GitLab και τα υπόλοιπα DevOps connectors μένουν στο Azure portal. Εξαίρεση είναι το GitHub, που υποστηρίζεται χωριστά σε δικό του public preview. Για τον πλήρη πίνακα αλλαγών και το τι κάνεις πριν από τη μεταφορά, δες το **[Preview: τα plans του Defender for Cloud στο Defender portal, με χρέωση σε DWU](/posts/previews/defender-for-cloud-plans-defender-portal-dwu/)**.
 
 Η σύστασή μου: μην ενεργοποιήσεις **global plan enablement** σε παραγωγή όσο είναι preview. Η έγκριση γίνεται μία φορά για όλο το tenant και μεταφέρει αυτόματα όλα τα συνδεδεμένα subscriptions. Ξεκίνα από ένα subscription δοκιμών.
 
 ## Ένα ρεαλιστικό πλάνο για τον πρώτο μήνα
 
-- **Εβδομάδα 1**: Άνοιξε το Defender for Cloud σε όλα τα subscriptions (Foundational CSPM, χωρίς κόστος). Σύνδεσε AWS ή GCP αν υπάρχουν. Μην ενεργοποιήσεις ακόμη paid plans. Κατάγραψε τις 20 recommendations με τον μεγαλύτερο αντίκτυπο στο Secure score.
+- **Εβδομάδα 1**: Άνοιξε το Defender for Cloud σε όλα τα subscriptions (Foundational CSPM, χωρίς κόστος). Σύνδεσε AWS ή GCP αν υπάρχουν. Μην ενεργοποιήσεις ακόμη paid plans. Κατάγραψε τις 20 recommendations με τον μεγαλύτερο αντίκτυπο στο Cloud secure score.
 - **Εβδομάδα 2**: Αποφάσισε για το Defender for Servers ανά subscription, Plan 1 ή Plan 2, με τον πίνακα παραπάνω. Ενεργοποίησε με opt-in στη δοκιμή των 30 ημερών και έλεγξε ότι οι servers εμφανίζονται στο Defender portal με τον agent του Defender for Endpoint.
 - **Εβδομάδα 3**: Ενεργοποίησε το Defender CSPM σε ένα subscription με κρίσιμα δεδομένα. Άνοιξε το **Attack path analysis** και διόρθωσε τις διαδρομές που καταλήγουν σε ευαίσθητα δεδομένα. Όρισε **governance rules** με owner και προθεσμία για τις critical recommendations.
 - **Εβδομάδα 4**: Πρόσθεσε τα standards **NIS2** και **ISO/IEC 27001:2022** στο Regulatory compliance, κατέβασε την πρώτη αναφορά ανά standard και κράτα την ως baseline. Πριν λήξει η δοκιμή, σύγκρινε το κόστος με τον Cost Estimator και κράτα μόνο τα plans που αιτιολογούνται.
@@ -217,12 +217,12 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 ## Πού να συνεχίσεις από εδώ
 
 {{< if-published page="/posts/alysida-epithesis-3d-microsoft-defender" >}}
-> 🔗 **Θέλεις να δες το προϊόν μέσα σε μια πραγματική επίθεση;** Δες **[την αλυσίδα μιας επίθεσης σε 3D](/posts/alysida-epithesis-3d-microsoft-defender/)**, με τρία σενάρια και το βήμα όπου τη σταματά το Microsoft Defender.
+> 🔗 **Θέλεις να δεις το προϊόν μέσα σε μια πραγματική επίθεση;** Δες **[την αλυσίδα μιας επίθεσης σε 3D](/posts/alysida-epithesis-3d-microsoft-defender/)**, με τρία σενάρια και το βήμα όπου τη σταματά το Microsoft Defender.
 {{< /if-published >}}
 
 > 🔗 **Διάβασε την υπόλοιπη σειρά Microsoft Defender Up Close:** **[Microsoft Defender for Endpoint](/posts/microsoft-defender-up-close-series/microsoft-defender-for-endpoint-deep-dive/)**, **[Microsoft Defender for Office 365](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**, **[Microsoft Defender for Identity](/posts/microsoft-defender-up-close-series/microsoft-defender-for-identity-deep-dive/)** και **[Microsoft Defender for Cloud Apps](/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/)**. Ακολουθεί το **Enterprise Mobility + Security**, στη **[σελίδα της σειράς](/series/microsoft-defender-up-close/)**.
 
-> 🔗 **Θέλεις να δες πώς το Secure Score τροφοδοτεί την τεκμηρίωση συμμόρφωσης;** Διάβασε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
+> 🔗 **Θέλεις να δεις πώς το Secure Score τροφοδοτεί την τεκμηρίωση συμμόρφωσης;** Διάβασε το **[Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2](/posts/secure-score-grc-part-0-intro/)**.
 
 > 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Το Foundational και το Defender CSPM, το Regulatory compliance, το Defender for Servers και η διαχείριση των plans ανά management group στηρίζουν τις απαιτήσεις [11.α](/kya-1689-2025/#11-α), [14.α](/kya-1689-2025/#14-α), [14.β](/kya-1689-2025/#14-β), [17.α](/kya-1689-2025/#17-α), [17.ε](/kya-1689-2025/#17-ε), [20.α](/kya-1689-2025/#20-α) και [24.ε](/kya-1689-2025/#24-ε), όπως τις αναλύει ο **[οδηγός της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.ε](/nis2/#21-2-ε) και [21.2.στ](/nis2/#21-2-στ), στο **[ISO/IEC 27001](/iso-27001/)** στα [A.5.23](/iso-27001/#A-5-23), [A.5.36](/iso-27001/#A-5-36), [A.8.7](/iso-27001/#A-8-7), [A.8.8](/iso-27001/#A-8-8), [A.8.9](/iso-27001/#A-8-9) και [A.8.16](/iso-27001/#A-8-16), και στον **[GDPR](/gdpr/)** στα [32.1.β](/gdpr/#32-1-β) και [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
@@ -232,6 +232,6 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 
 {{< verification >}}
 
-Επιπλέον πηγές: [Defender for Cloud in the Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal) · [Improve regulatory compliance](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard) · [What changes when managing cloud security plans in the Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/plan-management-changes-defender-portal) · [Common questions about Defender for Servers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/faq-defender-for-servers) · [Connect your Azure subscriptions](https://learn.microsoft.com/en-us/azure/defender-for-cloud/connect-azure-subscription). Οι εικόνες προέρχονται από το Microsoft Learn.
+Επιπλέον πηγές: [Defender for Cloud in the Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal) · [Improve regulatory compliance](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard) · [What changes when managing cloud security plans in the Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/plan-management-changes-defender-portal) · [Common questions about Defender for Servers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/faq-defender-for-servers) · [Connect your Azure subscriptions](https://learn.microsoft.com/en-us/azure/defender-for-cloud/connect-azure-subscription). Οι Εικόνες 1, 5 και 6 προέρχονται από το Microsoft Learn. Οι Εικόνες 2 έως 4 είναι από δικό μου tenant.
 
 Τελευταίος έλεγχος στοιχείων: 2 Νοεμβρίου 2026.
