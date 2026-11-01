@@ -2,8 +2,8 @@
 title: "Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft"
 seoTitle: "Microsoft Defender for Cloud: πρακτικός οδηγός CSPM και plans"
 slug: microsoft-defender-for-cloud-deep-dive
-date: 2026-11-02T07:00:00+02:00
-lastmod: 2026-11-02T07:00:00+02:00
+date: 2026-11-01T17:30:00+02:00
+lastmod: 2026-11-01T17:30:00+02:00
 draft: false
 keywords:
   - Microsoft Defender for Cloud
@@ -48,37 +48,37 @@ verification:
     status: "Generally Available"
     license: "Azure subscription. Foundational CSPM χωρίς κόστος, τα υπόλοιπα plans με χρέωση ανά resource"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction"
-    verified: 2026-11-02
+    verified: 2026-11-01
   - feature: "Foundational CSPM: Secure score, recommendations, asset inventory, Microsoft Cloud Security Benchmark"
     status: "Generally Available"
     license: "Χωρίς κόστος"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management"
-    verified: 2026-11-02
+    verified: 2026-11-01
   - feature: "Defender CSPM: attack path analysis, cloud security explorer, governance rules, regulatory compliance assessments"
     status: "Generally Available"
     license: "Defender CSPM (χρέωση ανά billable resource)"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management"
-    verified: 2026-11-02
+    verified: 2026-11-01
   - feature: "Regulatory compliance standards: EU 2022/2555 (NIS2), GDPR, ISO/IEC 27001:2022"
     status: "Generally Available"
     license: "Τουλάχιστον ένα paid plan του Defender for Cloud"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-regulatory-compliance-standards"
-    verified: 2026-11-02
+    verified: 2026-11-01
   - feature: "Defender for Servers Plan 1 και Plan 2"
     status: "Generally Available"
     license: "Defender for Servers P1 ή P2 (χρέωση ανά server-hour)"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-overview"
-    verified: 2026-11-02
+    verified: 2026-11-01
   - feature: "Defender for Servers: τα desktops δεν χρεώνονται ως servers στο Plan 1, νέος τρόπος αναγνώρισης billable servers (από 1 Νοεμβρίου 2026)"
     status: "Generally Available"
     license: "Defender for Servers Plan 1 και Plan 2"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes#upcoming-billing-updates-for-defender-for-servers"
-    verified: 2026-11-02
+    verified: 2026-11-01
   - feature: "Διαχείριση cloud security plans στο Defender portal, χρέωση σε Defender Workload Units (DWU)"
     status: "Public Preview"
     license: "Azure commercial, με ρόλο Global Administrator ή Security Administrator"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/manage-plans-defender-portal"
-    verified: 2026-11-02
+    verified: 2026-11-01
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 ---
@@ -234,4 +234,4 @@ mitre: ["T1190", "T1530", "T1078.004", "M1047", "M1054"]
 
 Επιπλέον πηγές: [Defender for Cloud in the Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/defender-for-cloud-defender-portal) · [Improve regulatory compliance](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard) · [What changes when managing cloud security plans in the Defender portal](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-portal/plan-management-changes-defender-portal) · [Common questions about Defender for Servers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/faq-defender-for-servers) · [Connect your Azure subscriptions](https://learn.microsoft.com/en-us/azure/defender-for-cloud/connect-azure-subscription). Οι Εικόνες 1, 5 και 6 προέρχονται από το Microsoft Learn. Οι Εικόνες 2 έως 4 είναι από δικό μου tenant.
 
-Τελευταίος έλεγχος στοιχείων: 2 Νοεμβρίου 2026.
+Τελευταίος έλεγχος στοιχείων: 1 Νοεμβρίου 2026.
