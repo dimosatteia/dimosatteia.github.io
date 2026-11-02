@@ -1,0 +1,223 @@
+# «Τι λέει αυτό το token;» (/ti-leei-auto-to-token/)
+# Ελληνικές ερμηνείες για τα claims των tokens του Microsoft Entra ID, και πίνακες για ρόλους, εφαρμογές και δικαιώματα.
+# Πηγές (ελέγχθηκαν 02/11/2026):
+#   Access token claims reference: https://learn.microsoft.com/en-us/entra/identity-platform/access-token-claims-reference
+#   ID token claims reference:     https://learn.microsoft.com/en-us/entra/identity-platform/id-token-claims-reference
+#   Linkable identifiers:          https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-authentication-track-linkable-identifiers
+#   Built-in roles (Template ID):  https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+#   First-party apps:              https://learn.microsoft.com/en-us/power-platform/admin/apps-to-allow
+#   Token lifetime και CAE:        https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#token-lifetime
+
+# Ομάδες στον πίνακα των claims, με τη σειρά που εμφανίζονται
+groups:
+  who: Ποιος
+  app: Ποια εφαρμογή και για ποιον πόρο
+  auth: Πώς ταυτοποιήθηκε
+  perm: Τι δικαιώματα έχει
+  time: Πότε ισχύει
+  link: Για τη διερεύνηση στα logs
+  meta: Τεχνικά στοιχεία
+
+# Header του JWT
+header:
+  typ: "Ο τύπος του token. Στο Entra ID είναι πάντα JWT."
+  alg: "Ο αλγόριθμος της υπογραφής, συνήθως RS256."
+  kid: "Ποιο κλειδί του Entra ID υπέγραψε το token. Με αυτό ο πόρος βρίσκει το δημόσιο κλειδί για τον έλεγχο της υπογραφής."
+  x5t: "Ίδιο με το kid. Υπάρχει μόνο στα v1.0 tokens, για συμβατότητα."
+  nonce: "Υπάρχει στα tokens για το Microsoft Graph. Σημαίνει ότι την υπογραφή την ελέγχει μόνο το Graph: δεν την επαληθεύεις εσύ, και δεν πρέπει."
+
+# Payload: claim -> [ομάδα, ερμηνεία]
+claims:
+  name: [who, "Το εμφανιζόμενο όνομα του χρήστη. Μόνο για προβολή, γιατί αλλάζει."]
+  given_name: [who, "Το μικρό όνομα του χρήστη."]
+  family_name: [who, "Το επώνυμο του χρήστη."]
+  upn: [who, "Το όνομα σύνδεσης του χρήστη (User Principal Name). Υπάρχει στα v1.0 tokens."]
+  unique_name: [who, "Το όνομα σύνδεσης του χρήστη στα v1.0 tokens. Μόνο για προβολή."]
+  preferred_username: [who, "Το όνομα σύνδεσης του χρήστη στα v2.0 tokens. Μόνο για προβολή, γιατί αλλάζει."]
+  email: [who, "Η διεύθυνση email του χρήστη, αν υπάρχει."]
+  oid: [who, "Το Object ID του χρήστη ή του service principal στο tenant. Δεν αλλάζει ποτέ. Με αυτό ψάχνεις τον λογαριασμό στο Entra ID και στα logs (UserId)."]
+  sub: [who, "Αναγνωριστικό του χρήστη, μοναδικό ανά εφαρμογή. Ο ίδιος χρήστης έχει άλλο sub σε άλλη εφαρμογή. Για διερεύνηση χρησιμοποίησε το oid."]
+  tid: [who, "Το Tenant ID του οργανισμού όπου έγινε η σύνδεση."]
+  idp: [who, "Ποιος ταυτοποίησε τον χρήστη. Αν διαφέρει από το iss, ο χρήστης είναι guest από άλλο tenant ή προσωπικός λογαριασμός Microsoft."]
+  acct: [who, "Τύπος λογαριασμού: 0 σημαίνει μέλος του tenant, 1 σημαίνει guest."]
+  onprem_sid: [who, "Το SID του χρήστη στο on-premises Active Directory. Υπάρχει όταν ο λογαριασμός συγχρονίζεται από το AD."]
+  ipaddr: [who, "Η διεύθυνση IP από την οποία ταυτοποιήθηκε ο χρήστης. Σύγκρινέ τη με τις IP του οργανισμού σου."]
+  ctry: [who, "Η χώρα του χρήστη, όπως την ξέρει το Entra ID."]
+  tenant_ctry: [who, "Η χώρα του tenant."]
+  tenant_region_scope: [who, "Η περιοχή του tenant, π.χ. EU."]
+  in_corp: [who, "Αν η σύνδεση έγινε από το εταιρικό δίκτυο, όπως το δηλώνει ο federation server."]
+
+  aud: [app, "Για ποιον πόρο εκδόθηκε το token (audience): ποιο API θα το δεχτεί. Ένα token για το Microsoft Graph δεν περνά στο Exchange Online, και το αντίστροφο."]
+  appid: [app, "Ποια εφαρμογή ζήτησε το token (client). Υπάρχει στα v1.0 tokens."]
+  azp: [app, "Ποια εφαρμογή ζήτησε το token (client). Υπάρχει στα v2.0 tokens."]
+  app_displayname: [app, "Το όνομα της εφαρμογής που ζήτησε το token."]
+  appidacr: [app, "Πώς ταυτοποιήθηκε η εφαρμογή: 0 χωρίς μυστικό (public client, π.χ. εφαρμογή σε υπολογιστή ή κινητό), 1 με client secret, 2 με πιστοποιητικό."]
+  azpacr: [app, "Πώς ταυτοποιήθηκε η εφαρμογή: 0 χωρίς μυστικό (public client), 1 με client secret, 2 με πιστοποιητικό."]
+  idtyp: [app, "Τι είδους token είναι: user σημαίνει ότι η εφαρμογή ενεργεί για λογαριασμό χρήστη, app σημαίνει ότι ενεργεί η ίδια, χωρίς χρήστη."]
+
+  amr: [auth, "Με ποιες μεθόδους ταυτοποιήθηκε ο χρήστης στη σύνδεση από την οποία προέρχεται το token."]
+  acr: [auth, "Στα v1.0 tokens: 1 σημαίνει ότι η ταυτοποίηση καλύπτει το ISO/IEC 29115, 0 ότι δεν το καλύπτει."]
+  acrs: [auth, "Τα Authentication Context (c1 έως c99) που ικανοποίησε ο χρήστης. Τα ορίζεις στο Conditional Access για ενέργειες που θέλουν επιπλέον έλεγχο."]
+  deviceid: [auth, "Το Device ID της συσκευής στο Entra ID. Υπάρχει όταν η συσκευή είναι registered ή joined. Αν λείπει, το Entra ID δεν ήξερε από ποια συσκευή έγινε η σύνδεση."]
+  xms_cc: [auth, "Η τιμή cp1 σημαίνει ότι η εφαρμογή ξέρει να χειριστεί claims challenge, άρα υποστηρίζει Continuous Access Evaluation (CAE)."]
+  pwd_exp: [auth, "Πότε λήγει ο κωδικός του χρήστη."]
+  pwd_url: [auth, "Πού αλλάζει ο χρήστης τον κωδικό του."]
+
+  scp: [perm, "Τα δικαιώματα (delegated scopes) που πήρε η εφαρμογή για λογαριασμό του χρήστη. Η εφαρμογή δεν μπορεί να κάνει περισσότερα από όσα επιτρέπονται και στον ίδιο τον χρήστη."]
+  roles: [perm, "Σε token εφαρμογής χωρίς χρήστη: τα application permissions, δηλαδή δικαιώματα σε επίπεδο οργανισμού. Σε token χρήστη: οι ρόλοι του χρήστη στη συγκεκριμένη εφαρμογή."]
+  wids: [perm, "Οι ρόλοι του Entra ID που είχε ενεργούς ο χρήστης όταν εκδόθηκε το token. Οι επιλέξιμοι (eligible) ρόλοι του PIM εμφανίζονται μόνο αφού ενεργοποιηθούν."]
+  groups: [perm, "Τα Object ID των ομάδων του χρήστη. Αν οι ομάδες είναι πάνω από 200, το Entra ID δεν τις βάζει στο token."]
+  hasgroups: [perm, "Ο χρήστης ανήκει σε πολλές ομάδες, οπότε η εφαρμογή πρέπει να τις ζητήσει από το Microsoft Graph."]
+  _claim_names: [perm, "Οι ομάδες του χρήστη δεν χώρεσαν στο token (group overage). Η εφαρμογή τις παίρνει από το Microsoft Graph."]
+  _claim_sources: [perm, "Πού βρίσκει η εφαρμογή τις ομάδες που δεν χώρεσαν στο token."]
+
+  iat: [time, "Πότε εκδόθηκε το token."]
+  nbf: [time, "Από πότε ισχύει το token."]
+  exp: [time, "Πότε λήγει το token. Μέχρι τότε, όποιος έχει το token μπορεί να το χρησιμοποιήσει, εκτός αν ο πόρος υποστηρίζει CAE και το ακυρώσει νωρίτερα."]
+  auth_time: [time, "Πότε έγινε η ταυτοποίηση του χρήστη."]
+
+  uti: [link, "Μοναδικό αναγνωριστικό του token. Στα sign-in logs είναι το Unique token identifier, στα Microsoft Graph activity logs το SignInActivityId. Με αυτό βρίσκεις τι έκανε αυτό το συγκεκριμένο token."]
+  sid: [link, "Το αναγνωριστικό της συνεδρίας (Session ID). Όλα τα tokens που προήλθαν από την ίδια αρχική σύνδεση έχουν το ίδιο sid. Με αυτό βρίσκεις όλη τη δραστηριότητα της συνεδρίας."]
+
+  iss: [meta, "Ποιος εξέδωσε το token. Περιέχει το Tenant ID. Αν τελειώνει σε /v2.0, το token είναι v2.0."]
+  ver: [meta, "Η έκδοση του token, 1.0 ή 2.0."]
+  aio: [meta, "Εσωτερικό claim του Entra ID. Δεν έχει σημασία για τη διερεύνηση."]
+  rh: [meta, "Εσωτερικό claim του Entra ID. Δεν έχει σημασία για τη διερεύνηση."]
+  nonce: [meta, "Τιμή που έστειλε η εφαρμογή στη σύνδεση. Υπάρχει στα ID tokens."]
+  at_hash: [meta, "Hash του access token που εκδόθηκε μαζί. Υπάρχει στα ID tokens."]
+  c_hash: [meta, "Hash του authorization code. Υπάρχει στα ID tokens."]
+  xms_ftd: [meta, "Εσωτερικό claim του Entra ID. Δεν έχει σημασία για τη διερεύνηση."]
+  xms_idrel: [meta, "Εσωτερικό claim του Entra ID. Δεν έχει σημασία για τη διερεύνηση."]
+  xms_st: [meta, "Εσωτερικό claim του Entra ID. Δεν έχει σημασία για τη διερεύνηση."]
+  xms_tcdt: [meta, "Πότε δημιουργήθηκε το tenant."]
+  signin_state: [meta, "Πρόσθετες πληροφορίες για τη σύνδεση, π.χ. kmsi όταν ο χρήστης επέλεξε «Παραμονή σε σύνδεση», ή dvc_mngd και dvc_cmp για συσκευή υπό διαχείριση και συμβατή."]
+
+# Τιμές του amr
+amr:
+  pwd: "Κωδικός πρόσβασης (ή client secret, για εφαρμογή)"
+  rsa: "Απόδειξη με κλειδί RSA, π.χ. Microsoft Authenticator, Windows Hello for Business ή πιστοποιητικό"
+  otp: "Κωδικός μίας χρήσης με email ή SMS"
+  fed: "Ταυτοποίηση από federation, π.χ. AD FS ή άλλο IdP"
+  wia: "Windows Integrated Authentication"
+  mfa: "Πολυπαραγοντική ταυτοποίηση (MFA)"
+  ngcmfa: "Ισοδύναμο με MFA, για εγγραφή προηγμένων διαπιστευτηρίων"
+  wiaormfa: "Windows ή διαπιστευτήριο MFA"
+  none: "Η ταυτοποίηση δεν ολοκληρώθηκε"
+
+# Ρόλοι του Entra ID (Template ID). tier: critical | high | read | base
+roles:
+  62e90394-69f5-4237-9190-012177145e10: [Global Administrator, critical]
+  e8611ab8-c189-46e8-94e1-60213ab1f814: [Privileged Role Administrator, critical]
+  7be44c8a-adaf-4e2a-84d6-ab2649e08a13: [Privileged Authentication Administrator, critical]
+  194ae4cb-b126-40b2-bd5b-6091b380977d: [Security Administrator, high]
+  5f2222b1-57c3-48ba-8ad5-d4759f1fde6f: [Security Operator, high]
+  b1be1c3e-b65d-4f19-8427-f6fa0d97feb9: [Conditional Access Administrator, high]
+  c4e39bd9-1100-46d3-8c65-fb160da0071f: [Authentication Administrator, high]
+  9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3: [Application Administrator, high]
+  158c047a-c907-4556-b7ef-446551a6b5f7: [Cloud Application Administrator, high]
+  fe930be7-5e62-47db-91af-98c3a49a38b1: [User Administrator, high]
+  729827e3-9c14-49f7-bb1b-9608f156bbb8: [Helpdesk Administrator, high]
+  966707d0-3269-4727-9be2-8c3a10f19b9d: [Password Administrator, high]
+  29232cdf-9323-42fd-ade2-1d097af3e4de: [Exchange Administrator, high]
+  f28a1f50-f6e7-4571-818b-6a12f2af6b6c: [SharePoint Administrator, high]
+  69091246-20e8-4a56-aa4d-066075b2a7a8: [Teams Administrator, high]
+  3a2c62db-5318-420d-8d74-23affee5d9d5: [Intune Administrator, high]
+  fdd7a751-b60b-444a-984c-02652fe8fa1c: [Groups Administrator, high]
+  b0f54661-2d74-4c50-afa3-1ec803f12efe: [Billing Administrator, high]
+  ac434307-12b9-4fa1-a708-88bf58caabc1: [Global Secure Access Administrator, high]
+  59d46f88-662b-457b-bceb-5c3809e5908f: [Lifecycle Workflows Administrator, high]
+  d29b2b05-8046-44ba-8758-1e26182fcf32: [Directory Synchronization Accounts, high]
+  4d6ac14f-3453-41d0-bef9-a3e0c569773a: [License Administrator, high]
+  f023fd81-a637-4b56-95fd-791ac0226033: [Service Support Administrator, high]
+  f2ef992c-3afb-46b9-b7cf-a126ee74c451: [Global Reader, read]
+  5d6b6bb7-de71-4623-b4af-96380a352509: [Security Reader, read]
+  4a5d8f65-41da-4de4-8968-e035b65339cf: [Reports Reader, read]
+  790c1fb9-7f7d-4f88-86a1-ef1f95c05c1b: [Message Center Reader, read]
+  b79fbf4d-3ef9-4689-8143-76b194e85509: [User (βασικός ρόλος κάθε μέλους), base]
+
+# Γνωστές εφαρμογές της Microsoft (client): Application ID -> όνομα
+apps:
+  1950a258-227b-4e31-a9cf-717495945fc2: Microsoft Azure PowerShell
+  04b07795-8ddb-461a-bbee-02f9e1bf7b46: Microsoft Azure CLI
+  14d82eec-204b-4c2f-b7e8-296a70dab67e: Microsoft Graph Command Line Tools (Microsoft Graph PowerShell)
+  de8bc8b5-d9f9-48b1-a8ad-b748da725064: Graph Explorer
+  1b730954-1685-4b74-9bfd-dac224a7b894: Azure Active Directory PowerShell
+  9bc3ab49-b65d-410a-85ad-de819febfddc: Microsoft SharePoint Online Management Shell
+  872cd9fa-d31f-45e0-9eab-6e460a02d1f1: Visual Studio
+  c44b4083-3bb0-49c1-b47d-974e53cbdf3c: Azure Portal
+  d3590ed6-52b3-4102-aeff-aad2292ab01c: Microsoft Office
+  1fec8e78-bce4-4aaf-ab1b-5451cc387264: Microsoft Teams
+  5e3ce6c0-2b1f-4285-8d4b-75ee78787346: Microsoft Teams Web Client
+  27922004-5251-4030-b22d-91ecd9a37ea4: Outlook Mobile
+  b26aadf8-566f-4478-926f-589f601d9c74: OneDrive
+  ab9b8c07-8f02-4f72-87fa-80105867a763: OneDrive SyncEngine
+  f44b1140-bc5e-48c6-8dc0-5cf5a53c0e34: Microsoft Edge
+  4813382a-8fa7-425e-ab75-3b753aab3abb: Microsoft Authenticator App
+  9ba1a5c7-f17a-4de9-a1f1-6178c8d51223: Microsoft Intune Company Portal
+  00b41c95-dab0-4487-9791-b9d2c32c80f2: Office 365 Management
+  66375f6b-983f-4c2c-9701-d680650f588f: Microsoft Planner
+  cb1056e2-e479-49de-ae31-7812af012ed8: Microsoft Azure Active Directory Connect
+
+# Εφαρμογές διαχείρισης: αν το token ανήκει σε αυτές, ο χρήστης δούλευε από γραμμή εντολών ή εργαλείο admin
+adminClients:
+  - 1950a258-227b-4e31-a9cf-717495945fc2
+  - 04b07795-8ddb-461a-bbee-02f9e1bf7b46
+  - 14d82eec-204b-4c2f-b7e8-296a70dab67e
+  - de8bc8b5-d9f9-48b1-a8ad-b748da725064
+  - 1b730954-1685-4b74-9bfd-dac224a7b894
+  - 9bc3ab49-b65d-410a-85ad-de819febfddc
+
+# Γνωστοί πόροι (aud): τιμή -> όνομα. Τα URI ελέγχονται με «ξεκινά με».
+resources:
+  00000003-0000-0000-c000-000000000000: Microsoft Graph
+  https://graph.microsoft.com: Microsoft Graph
+  00000002-0000-0ff1-ce00-000000000000: Office 365 Exchange Online
+  https://outlook.office365.com: Office 365 Exchange Online
+  https://outlook.office.com: Office 365 Exchange Online
+  00000003-0000-0ff1-ce00-000000000000: Office 365 SharePoint Online
+  797f4846-ba00-4fd7-ba43-dac1f8f63013: Azure Resource Manager (Windows Azure Service Management API)
+  https://management.azure.com: Azure Resource Manager
+  https://management.core.windows.net: Azure Resource Manager
+  cc15fd57-2c6c-4117-a88c-83b1d56b4bbe: Microsoft Teams Services
+  https://api.spaces.skype.com: Microsoft Teams Services
+  https://vault.azure.net: Azure Key Vault
+  https://database.windows.net: Azure SQL Database
+  https://storage.azure.com: Azure Storage
+  https://api.securitycenter.microsoft.com: Microsoft Defender for Endpoint API
+  https://api.security.microsoft.com: Microsoft Defender XDR API
+  https://manage.office.com: Office 365 Management APIs
+  https://graph.windows.net: Azure AD Graph (αποσύρεται)
+
+# Δικαιώματα υψηλού κινδύνου (scp ή roles). Τιμή: γιατί μετράει
+riskyPerms:
+  Directory.ReadWrite.All: "Αλλάζει σχεδόν τα πάντα στον κατάλογο: χρήστες, ομάδες, ρυθμίσεις."
+  RoleManagement.ReadWrite.Directory: "Δίνει ρόλους του Entra ID, ακόμα και Global Administrator."
+  AppRoleAssignment.ReadWrite.All: "Δίνει application permissions σε οποιαδήποτε εφαρμογή, άρα και στον εαυτό της."
+  Application.ReadWrite.All: "Αλλάζει οποιαδήποτε εφαρμογή, π.χ. προσθέτει credentials σε εφαρμογή με υψηλά δικαιώματα."
+  Application.ReadWrite.OwnedBy: "Αλλάζει τις εφαρμογές που της ανήκουν, π.χ. προσθέτει νέα credentials."
+  User.ReadWrite.All: "Αλλάζει όλους τους χρήστες."
+  Group.ReadWrite.All: "Αλλάζει όλες τις ομάδες, άρα και ομάδες που δίνουν πρόσβαση."
+  GroupMember.ReadWrite.All: "Προσθέτει μέλη σε όλες τις ομάδες, άρα και σε ομάδες που δίνουν πρόσβαση."
+  Policy.ReadWrite.ConditionalAccess: "Αλλάζει ή απενεργοποιεί πολιτικές Conditional Access."
+  Policy.ReadWrite.AuthenticationMethod: "Αλλάζει τις μεθόδους ταυτοποίησης του tenant."
+  UserAuthenticationMethod.ReadWrite.All: "Προσθέτει ή αφαιρεί μεθόδους MFA από χρήστες."
+  Domain.ReadWrite.All: "Προσθέτει ή αλλάζει domains, ακόμα και ρυθμίσεις federation."
+  Mail.ReadWrite: "Διαβάζει, αλλάζει και διαγράφει email."
+  Mail.Read: "Διαβάζει email."
+  Mail.Send: "Στέλνει email ως ο χρήστης, ή ως οποιοσδήποτε αν είναι application permission."
+  MailboxSettings.ReadWrite: "Αλλάζει ρυθμίσεις του mailbox, π.χ. κανόνες προώθησης."
+  full_access_as_app: "Πλήρης πρόσβαση σε όλα τα mailboxes του Exchange Online."
+  full_access_as_user: "Πλήρης πρόσβαση στο mailbox του χρήστη."
+  EWS.AccessAsUser.All: "Πλήρης πρόσβαση στο mailbox μέσω Exchange Web Services."
+  Exchange.ManageAsApp: "Διαχείριση του Exchange Online ως εφαρμογή."
+  Files.ReadWrite.All: "Διαβάζει και αλλάζει όλα τα αρχεία στα οποία έχει πρόσβαση."
+  Files.Read.All: "Διαβάζει όλα τα αρχεία στα οποία έχει πρόσβαση."
+  Sites.FullControl.All: "Πλήρης έλεγχος σε όλα τα sites του SharePoint."
+  Sites.ReadWrite.All: "Διαβάζει και αλλάζει όλα τα sites του SharePoint."
+  Sites.Read.All: "Διαβάζει όλα τα sites του SharePoint."
+  Chat.ReadWrite.All: "Διαβάζει και στέλνει μηνύματα σε όλα τα chats του Teams."
+  ChannelMessage.Read.All: "Διαβάζει όλα τα μηνύματα των καναλιών του Teams."
+  DeviceManagementConfiguration.ReadWrite.All: "Αλλάζει τις πολιτικές του Intune."
+  DeviceManagementManagedDevices.PrivilegedOperations.All: "Κάνει wipe, reset ή retire σε συσκευές του Intune."
+  user_impersonation: "Η εφαρμογή ενεργεί με όλα τα δικαιώματα του χρήστη στον πόρο."
+  offline_access: "Η εφαρμογή παίρνει refresh token και κρατά την πρόσβαση χωρίς νέα σύνδεση του χρήστη."

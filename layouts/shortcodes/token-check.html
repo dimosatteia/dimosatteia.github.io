@@ -1,0 +1,363 @@
+{{- /* «Τι λέει αυτό το token;» (/ti-leei-auto-to-token/)
+       Ο admin επικολλά ένα access token ή ID token του Microsoft Entra ID (ή ολόκληρη την κεφαλίδα Authorization, ένα αίτημα,
+       ένα JSON) και παίρνει στα Ελληνικά: ποιος, ποια εφαρμογή, για ποιον πόρο, πώς ταυτοποιήθηκε, τι δικαιώματα έχει,
+       πόσο ακόμα ισχύει, τι πρέπει να προσέξει, και KQL για να βρει τη σύνδεση στα logs.
+       Ερμηνείες, ρόλοι, εφαρμογές και δικαιώματα: data/token_claims.yaml.
+       Το token αποκωδικοποιείται ΜΟΝΟ μέσα στον browser του επισκέπτη. Δεν στέλνεται πουθενά και η υπογραφή δεν ελέγχεται.
+       Χρήση: {{< token-check >}} */ -}}
+{{- $data := hugo.Data.token_claims -}}
+<style>
+#tkTool .tkMono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#tkTool .tkPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
+#tkTool table td,#tkTool table th{vertical-align:top}
+#tkTool pre{white-space:pre-wrap;word-break:break-all}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="tkTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Microsoft Entra ID · access token · ID token · JWT</p>
+
+    <div class="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-emerald-300 mb-1">🔒 Το token δεν φεύγει από τον υπολογιστή σου</p>
+        <p>Η αποκωδικοποίηση γίνεται μόνο μέσα στον browser σου. Το token δεν στέλνεται σε κανέναν server, ούτε στο thecybersec.gr, και δεν αποθηκεύεται. Λεπτομέρειες στην <a href="{{ "privacy/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Πολιτική απορρήτου</a>.</p>
+    </div>
+    <div class="rounded-lg border border-amber-500/40 bg-amber-500/5 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-amber-300 mb-1">⚠️ Ένα ενεργό token είναι κλειδί</p>
+        <p>Όποιος έχει ένα access token που δεν έχει λήξει, μπορεί να το χρησιμοποιήσει. Για να το διαβάσεις εδώ, δεν χρειάζεται η υπογραφή: μπορείς να σβήσεις ό,τι υπάρχει μετά τη δεύτερη τελεία. Μην επικολλάς ενεργά tokens σε εργαλεία που στέλνουν το κείμενο σε server.</p>
+    </div>
+
+    <label for="tkInput" class="block text-sm text-slate-300 mb-1.5">Επικόλλησε το token, ή ολόκληρη την κεφαλίδα <span class="tkMono">Authorization: Bearer …</span>, ή την απάντηση JSON που το περιέχει</label>
+    <textarea id="tkInput" rows="5" spellcheck="false" autocomplete="off" data-clarity-mask="true" placeholder="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIs…"
+              class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono text-[13px] focus:outline-none focus:border-blue-500"></textarea>
+    <div class="flex flex-wrap items-center gap-3 mt-3">
+        <button type="button" id="tkRun" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Τι λέει;</button>
+        <button type="button" id="tkSample" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Δοκίμασε με παράδειγμα</button>
+        <button type="button" id="tkClear" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Καθαρισμός</button>
+    </div>
+    <p id="tkError" class="text-sm text-amber-400 mt-3 hidden" role="alert"></p>
+
+    <div id="tkResult" class="hidden mt-6 flex flex-col gap-5" aria-live="polite" data-clarity-mask="true">
+        <div id="tkStatus"></div>
+        <div>
+            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-2">Με μια ματιά</p>
+            <div id="tkSummary" class="grid gap-3 sm:grid-cols-2"></div>
+        </div>
+        <div>
+            <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-2">Τι πρέπει να προσέξεις</p>
+            <div id="tkFindings" class="flex flex-col gap-3"></div>
+        </div>
+        <div id="tkHunt" class="hidden rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <details class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300" open>
+            <summary class="cursor-pointer font-semibold text-slate-100">Όλα τα claims, με την ερμηνεία τους</summary>
+            <div id="tkClaims" class="mt-3 flex flex-col gap-4"></div>
+        </details>
+        <div class="flex flex-wrap gap-3">
+            <button type="button" id="tkCopy" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-slate-500">Αντιγραφή για το ticket (χωρίς το token)</button>
+        </div>
+        <p id="tkMsg" class="text-sm hidden" role="status"></p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-5">Το εργαλείο διαβάζει το περιεχόμενο του token. Δεν ελέγχει την υπογραφή, άρα δεν αποδεικνύει ότι το token είναι γνήσιο ή ότι δεν έχει ανακληθεί. Η ερμηνεία βασίζεται στην τεκμηρίωση της Microsoft. Τα claims που δεν είναι τεκμηριωμένα εμφανίζονται χωρίς ερμηνεία.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('tkTool');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var D = {{ $data | jsonify | safeJS }};
+    var MSA_TENANT = '9188040d-6c67-4c5b-b112-36a304b66dad';
+    var GROUP_ORDER = ['who', 'app', 'auth', 'perm', 'time', 'link', 'meta'];
+    var MEDIUM_PERMS = { 'Mail.Read': 1, 'Files.Read.All': 1, 'Sites.Read.All': 1, 'user_impersonation': 1, 'offline_access': 1, 'full_access_as_user': 1, 'EWS.AccessAsUser.All': 1, 'ChannelMessage.Read.All': 1 };
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+    function pill(text, tone) {
+        var t = { red: 'bg-rose-500/15 text-rose-300', amber: 'bg-amber-500/15 text-amber-300', green: 'bg-emerald-500/15 text-emerald-300', blue: 'bg-blue-500/15 text-blue-300', violet: 'bg-violet-500/15 text-violet-300', gray: 'bg-slate-700/50 text-slate-300' }[tone || 'gray'];
+        return '<span class="tkPill ' + t + '">' + esc(text) + '</span>';
+    }
+    function mono(s) { return '<span class="tkMono text-slate-100 break-all">' + esc(s) + '</span>'; }
+    function lower(s) { return String(s || '').toLowerCase(); }
+
+    // ---------- Ανάγνωση ----------
+    function b64url(s) {
+        s = s.replace(/-/g, '+').replace(/_/g, '/');
+        while (s.length % 4) s += '=';
+        var bin = atob(s), bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+    function extract(raw) {
+        // Το πρώτο κομμάτι που μοιάζει με JWT ή JWE (ξεκινά με eyJ, δηλαδή {" σε base64url)
+        var m = raw.match(/eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*(?:\.[A-Za-z0-9_-]*){0,3}/);
+        return m ? m[0].replace(/\.+$/, '') : null;
+    }
+    function decode(tok) {
+        var parts = tok.split('.');
+        if (parts.length === 5) return { jwe: true };
+        if (parts.length < 2) throw new Error('parts');
+        var header = JSON.parse(b64url(parts[0]));
+        var payload = JSON.parse(b64url(parts[1]));
+        if (typeof payload !== 'object' || payload === null || Array.isArray(payload)) throw new Error('payload');
+        return { header: header, payload: payload, signed: parts.length > 2 && parts[2].length > 0 };
+    }
+
+    // ---------- Βοηθητικά ----------
+    function fmtDate(sec) {
+        var d = new Date(sec * 1000);
+        if (isNaN(d.getTime())) return String(sec);
+        return d.toLocaleString('el-GR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' (' + d.toISOString().replace('.000Z', 'Z') + ')';
+    }
+    function dur(min) {
+        min = Math.round(min);
+        if (min < 60) return min + ' λεπτά';
+        var h = Math.floor(min / 60), m = min % 60;
+        return h + (h === 1 ? ' ώρα' : ' ώρες') + (m ? ' και ' + m + ' λεπτά' : '');
+    }
+    function arr(v) { return v == null ? [] : Array.isArray(v) ? v : String(v).split(' ').filter(Boolean); }
+    function tenantFrom(iss) { var m = String(iss || '').match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i); return m ? m[0].toLowerCase() : ''; }
+    function resourceName(aud) {
+        if (!aud) return '';
+        var a = lower(aud).replace(/\/+$/, '');
+        if (D.resources[a]) return D.resources[a];
+        for (var k in D.resources) if (k.indexOf('https://') === 0 && a.indexOf(k) === 0) return D.resources[k];
+        if (/^https:\/\/[a-z0-9-]+(-my)?\.sharepoint\.com/.test(a)) return 'SharePoint Online / OneDrive';
+        return '';
+    }
+    function isEntraIssuer(iss) { return /^https:\/\/(sts\.windows\.net|login\.microsoftonline\.com|login\.windows\.net|[a-z0-9-]+\.ciamlogin\.com|[a-z0-9-]+\.b2clogin\.com)\//i.test(String(iss || '')); }
+
+    // ---------- Ανάλυση ----------
+    function analyse(h, p) {
+        var now = Date.now() / 1000;
+        var ver = p.ver || (/\/v2\.0\/?$/.test(p.iss || '') ? '2.0' : '');
+        var scp = arr(p.scp), roles = arr(p.roles), wids = arr(p.wids), amr = arr(p.amr);
+        var client = p.appid || p.azp || '';
+        var clientAcr = p.appidacr != null ? String(p.appidacr) : p.azpacr != null ? String(p.azpacr) : '';
+        var isId = p.nonce != null || p.at_hash != null || p.c_hash != null;
+        var person = p.name || p.upn || p.unique_name || p.preferred_username || p.email || '';
+        var appOnly = !isId && !scp.length && (p.idtyp === 'app' || (!person && !amr.length));
+        var kind = isId ? 'id' : appOnly ? 'app' : 'user';
+        var tid = lower(p.tid || tenantFrom(p.iss));
+        var idpTenant = tenantFrom(p.idp);
+        var guest = String(p.acct) === '1' || (!!p.idp && lower(p.idp) !== lower(p.iss) && !(idpTenant && idpTenant === tid));
+        var msa = tid === MSA_TENANT || lower(p.idp) === 'live.com' || idpTenant === MSA_TENANT;
+        var a = { h: h, p: p, ver: ver, scp: scp, roles: roles, wids: wids, amr: amr, client: client, clientAcr: clientAcr, kind: kind, tid: tid, guest: guest, msa: msa, person: person, now: now, findings: [] };
+        var F = a.findings;
+        function add(tone, title, text) { F.push({ tone: tone, title: title, text: text }); }
+
+        if (!isEntraIssuer(p.iss)) add('amber', 'Δεν μοιάζει με token του Microsoft Entra ID', 'Ο εκδότης (iss) είναι ' + (p.iss ? '«' + p.iss + '»' : 'κενός') + '. Το εργαλείο έχει ερμηνείες για tokens του Entra ID. Τα υπόλοιπα claims εμφανίζονται, αλλά οι ερμηνείες μπορεί να μην ισχύουν.');
+
+        // Ισχύς
+        if (typeof p.exp === 'number') {
+            var left = (p.exp - now) / 60;
+            if (left > 0 && isId) add('amber', 'Το ID token ισχύει ακόμα για ' + dur(left), 'Μέχρι τις ' + fmtDate(p.exp) + '. Το ID token δεν δίνει πρόσβαση σε API, αλλά περιέχει προσωπικά στοιχεία του χρήστη. Μην το αφήνεις σε logs ή tickets.');
+            else if (left > 0) add('red', 'Το token είναι ακόμα ενεργό για ' + dur(left), 'Μέχρι τις ' + fmtDate(p.exp) + ', όποιος έχει αυτό το token μπορεί να το χρησιμοποιήσει στον πόρο του, χωρίς κωδικό και χωρίς MFA. Αν το βρήκες σε log, σε email ή σε συσκευή που δεν ελέγχεις, κάνε Revoke sessions στον χρήστη στο Microsoft Entra admin center. Αυτό ακυρώνει τα refresh tokens και τα session cookies. Το ίδιο το access token κόβεται νωρίτερα μόνο αν ο πόρος υποστηρίζει Continuous Access Evaluation. Αλλιώς ισχύει μέχρι να λήξει.');
+            else add('green', 'Το token έχει λήξει', 'Έληξε στις ' + fmtDate(p.exp) + '. Δεν δίνει πια πρόσβαση. Ένα refresh token από την ίδια σύνδεση μπορεί όμως να ισχύει ακόμα.');
+            if (typeof p.iat === 'number') {
+                var life = (p.exp - p.iat) / 60;
+                var cae = arr(p.xms_cc).map(lower).indexOf('cp1') >= 0;
+                if (life > 180) add('blue', 'Μακράς διάρκειας token: ' + dur(life), cae ? 'Η εφαρμογή υποστηρίζει CAE (xms_cc: cp1), οπότε το Entra ID μπορεί να δώσει token έως 28 ωρών. Σε αυτή την περίπτωση, το token ακυρώνεται σχεδόν αμέσως σε κρίσιμα γεγονότα, όπως απενεργοποίηση λογαριασμού, αλλαγή κωδικού ή Revoke sessions, εφόσον ο πόρος υποστηρίζει CAE.' : 'Η προεπιλεγμένη διάρκεια ενός access token είναι 60 έως 90 λεπτά. Μεγαλύτερη διάρκεια χωρίς CAE σημαίνει συνήθως πολιτική Configurable token lifetime ή tenant χωρίς Conditional Access. Έλεγξε αν υπάρχει τέτοια πολιτική.');
+            }
+        }
+
+        // Είδος token
+        if (kind === 'id') add('blue', 'Είναι ID token, όχι access token', 'Το ID token λέει στην εφαρμογή ποιος συνδέθηκε. Δεν δίνει πρόσβαση σε API. Για διερεύνηση πρόσβασης σε δεδομένα, χρειάζεσαι το access token που εκδόθηκε μαζί του.');
+        if (h.nonce) add('blue', 'Token για το Microsoft Graph', 'Το header έχει nonce. Αυτά τα tokens τα ελέγχει μόνο το Microsoft Graph, οπότε κανένα εργαλείο, ούτε αυτό, δεν μπορεί να επαληθεύσει την υπογραφή τους. Αυτό είναι φυσιολογικό.');
+        if (lower(p.aud).indexOf('https://graph.windows.net') === 0 || lower(p.aud) === '00000002-0000-0000-c000-000000000000') add('amber', 'Token για το Azure AD Graph', 'Το Azure AD Graph αποσύρεται. Μια εφαρμογή που ζητά ακόμα tokens για αυτό πρέπει να μεταφερθεί στο Microsoft Graph.');
+
+        // Ταυτοποίηση
+        if (kind === 'user' && amr.length) {
+            if (amr.indexOf('mfa') >= 0 || amr.indexOf('ngcmfa') >= 0) add('green', 'Ο χρήστης πέρασε MFA', 'Το amr περιέχει ' + amr.filter(function (x) { return x === 'mfa' || x === 'ngcmfa'; }).join(', ') + '. Μέθοδοι: ' + amr.map(function (x) { return D.amr[x] || x; }).join(' · ') + '.');
+            else if (amr.indexOf('fed') >= 0) add('amber', 'Η ταυτοποίηση έγινε από federation, χωρίς MFA στο token', 'Το Entra ID δέχτηκε την ταυτοποίηση από άλλον IdP (fed). Αν ο IdP κάνει MFA αλλά δεν το δηλώνει, το Entra ID δεν το βλέπει. Έλεγξε στο federation αν στέλνεται το claim για MFA, ή κάνε το MFA στο Entra ID.');
+            else add('amber', 'Δεν φαίνεται MFA', 'Μέθοδοι: ' + amr.map(function (x) { return D.amr[x] || x; }).join(' · ') + '. Αν ο χρήστης έπρεπε να περάσει MFA για αυτή την εφαρμογή, έλεγξε στα sign-in logs, στην καρτέλα Conditional Access, ποια πολιτική εφαρμόστηκε και γιατί δεν ζήτησε MFA.');
+        }
+        if (kind === 'user' && !p.deviceid && !a.msa) add('amber', 'Δεν υπάρχει συσκευή στο token', 'Το Entra ID δεν ήξερε από ποια συσκευή έγινε η σύνδεση: δεν ήταν registered ή joined, ή ο browser δεν έστειλε την ταυτότητα της συσκευής. Αν ο χρήστης δουλεύει από εταιρικό υπολογιστή, αυτό αξίζει έλεγχο. Οι πολιτικές Conditional Access που ζητούν compliant ή hybrid joined συσκευή δεν μπορούν να ικανοποιηθούν χωρίς αυτή.');
+        if (p.acrs) add('blue', 'Ικανοποιήθηκε Authentication Context', 'Ο χρήστης πέρασε τα Authentication Context ' + arr(p.acrs).join(', ') + '. Δες στο Conditional Access ποια πολιτική αντιστοιχεί σε καθένα.');
+
+        // Ρόλοι
+        var crit = [], high = [];
+        wids.forEach(function (w) { var r = D.roles[lower(w)]; if (r && r[1] === 'critical') crit.push(r[0]); else if (r && r[1] === 'high') high.push(r[0]); });
+        if (crit.length) add('red', 'Ο χρήστης είχε ενεργό ρόλο ' + crit.join(', '), 'Ένα token με αυτόν τον ρόλο ελέγχει όλο το tenant. Αυτοί οι ρόλοι θέλουν PIM με ενεργοποίηση μόνο όταν χρειάζεται, phishing-resistant MFA, και ξεχωριστό λογαριασμό για τη διαχείριση. Αν το token βρέθηκε εκτός της συσκευής του χρήστη, χειρίσου το ως περιστατικό.');
+        if (high.length) add('amber', 'Ο χρήστης είχε ενεργούς ρόλους διαχείρισης', high.join(', ') + '. Έλεγξε αν ο χρήστης χρειάζεται μόνιμα αυτούς τους ρόλους, ή αν πρέπει να είναι eligible στο PIM.');
+
+        // Δικαιώματα
+        var risky = scp.concat(roles).filter(function (x) { return D.riskyPerms[x]; });
+        var riskyHigh = risky.filter(function (x) { return !MEDIUM_PERMS[x]; });
+        if (kind === 'app' && riskyHigh.length) add('red', 'Η εφαρμογή έχει application permissions υψηλού κινδύνου', riskyHigh.map(function (x) { return x + ': ' + D.riskyPerms[x]; }).join(' ') + ' Ως application permissions ισχύουν για όλο τον οργανισμό, χωρίς χρήστη. Έλεγξε αν η εφαρμογή τα χρειάζεται όλα, ποιος έχει τα credentials της, και περιόρισέ τα όπου γίνεται, π.χ. με RBAC for Applications στο Exchange Online ή Sites.Selected στο SharePoint.');
+        else if (kind === 'user' && riskyHigh.length) add('amber', 'Η εφαρμογή ζήτησε ευρεία delegated δικαιώματα', riskyHigh.map(function (x) { return x + ': ' + D.riskyPerms[x]; }).join(' ') + ' Ως delegated δικαιώματα περιορίζονται σε όσα επιτρέπονται στον ίδιο τον χρήστη. Αν η εφαρμογή δεν είναι της Microsoft ή του οργανισμού σου, έλεγξε ποιος έδωσε το consent.');
+        if (kind === 'app' && a.clientAcr === '1') add('amber', 'Η εφαρμογή ταυτοποιήθηκε με client secret', 'Ένα client secret αντιγράφεται και διαρρέει εύκολα. Προτίμησε πιστοποιητικό, managed identity ή workload identity federation, και βάλε τη λήξη του secret στο ημερολόγιο.');
+
+        // Εφαρμογή
+        if (D.adminClients.indexOf(lower(a.client)) >= 0) add('blue', 'Εργαλείο διαχείρισης: ' + (D.apps[lower(a.client)] || a.client), 'Το token το ζήτησε εργαλείο γραμμής εντολών ή διαχείρισης. Αν ο χρήστης δεν είναι admin ή developer, αξίζει να δεις τι έκανε με αυτό στα logs.');
+
+        // Λογαριασμός
+        if (a.msa) add('blue', 'Προσωπικός λογαριασμός Microsoft', 'Ο λογαριασμός είναι προσωπικός (Microsoft account), όχι εταιρικός. Οι πολιτικές του οργανισμού σου δεν εφαρμόζονται στην ταυτοποίησή του.');
+        else if (a.guest) add('blue', 'Ο χρήστης είναι guest', 'Ο χρήστης ταυτοποιήθηκε από άλλο tenant ή IdP (idp: ' + (p.idp || 'acct=1') + '). Το MFA του μπορεί να το έχει κάνει ο οργανισμός του, αν το επιτρέπουν οι ρυθμίσεις cross-tenant access.');
+        if (p._claim_names || p.hasgroups) add('blue', 'Οι ομάδες δεν χώρεσαν στο token', 'Ο χρήστης ανήκει σε πάρα πολλές ομάδες (group overage). Η εφαρμογή πρέπει να τις ζητήσει από το Microsoft Graph.');
+        return a;
+    }
+
+    // ---------- Εμφάνιση ----------
+    function box(label, html) { return '<div class="rounded-lg border border-slate-800 bg-slate-900/60 p-3"><p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">' + esc(label) + '</p><div class="text-sm text-slate-200 leading-relaxed">' + html + '</div></div>'; }
+    function summary(a) {
+        var p = a.p, out = [];
+        var kindTxt = { user: 'Access token χρήστη (delegated)', app: 'Access token εφαρμογής, χωρίς χρήστη', id: 'ID token' }[a.kind];
+        out.push(box('Τι είναι', esc(kindTxt) + (a.ver ? ' · v' + esc(a.ver) : '')));
+        var who = a.kind === 'app' ? 'Service principal ' + mono(p.oid || p.sub || '') : esc(a.person || '') + (p.upn && p.name ? '<br>' + mono(p.upn) : p.preferred_username && p.name ? '<br>' + mono(p.preferred_username) : '') + (p.oid ? '<br><span class="text-slate-400 text-xs">Object ID:</span> ' + mono(p.oid) : '');
+        out.push(box('Ποιος', who || '<span class="text-slate-400">Δεν αναφέρεται</span>'));
+        var cname = D.apps[lower(a.client)] || p.app_displayname || '';
+        out.push(box('Ποια εφαρμογή το ζήτησε', a.client ? (cname ? esc(cname) + '<br>' : '') + mono(a.client) + (a.clientAcr !== '' ? '<br><span class="text-slate-400 text-xs">' + esc({ '0': 'Public client, χωρίς μυστικό', '1': 'Με client secret', '2': 'Με πιστοποιητικό' }[a.clientAcr] || '') + '</span>' : '') : '<span class="text-slate-400">Δεν αναφέρεται</span>'));
+        var rn = resourceName(p.aud);
+        out.push(box('Για ποιον πόρο', a.kind === 'id' ? 'Για την ίδια την εφαρμογή ' + mono(p.aud || '') : (rn ? esc(rn) + '<br>' : '') + mono(p.aud || '')));
+        if (a.amr.length) out.push(box('Πώς ταυτοποιήθηκε', a.amr.map(function (x) { return esc(D.amr[x] || x); }).join('<br>')));
+        if (typeof p.exp === 'number') {
+            var left = (p.exp - a.now) / 60;
+            out.push(box('Πότε ισχύει', (typeof p.iat === 'number' ? 'Εκδόθηκε: ' + esc(fmtDate(p.iat)) + '<br>' : '') + 'Λήγει: ' + esc(fmtDate(p.exp)) + '<br>' + (left > 0 ? pill('Ενεργό ακόμα για ' + dur(left), 'red') : pill('Έχει λήξει', 'green')) + (typeof p.iat === 'number' ? ' ' + pill('Διάρκεια ' + dur((p.exp - p.iat) / 60), 'gray') : '')));
+        }
+        var dev = [];
+        if (p.ipaddr) dev.push('IP: ' + mono(p.ipaddr));
+        if (p.deviceid) dev.push('Device ID: ' + mono(p.deviceid));
+        if (a.kind === 'user' && !p.deviceid) dev.push('<span class="text-amber-300">Χωρίς συσκευή γνωστή στο Entra ID</span>');
+        if (dev.length) out.push(box('Από πού', dev.join('<br>')));
+        var tn = a.msa ? 'Προσωπικός λογαριασμός Microsoft' : a.guest ? 'Guest από άλλο tenant ή IdP' : 'Μέλος του tenant';
+        if (a.tid) out.push(box('Tenant', esc(tn) + '<br>' + mono(a.tid)));
+        $('tkSummary').innerHTML = out.join('');
+    }
+    function findings(a) {
+        var order = { red: 0, amber: 1, blue: 2, green: 3 };
+        var cls = { red: 'border-rose-500/40 bg-rose-500/5', amber: 'border-amber-500/40 bg-amber-500/5', blue: 'border-blue-500/30 bg-blue-500/5', green: 'border-emerald-500/40 bg-emerald-500/5' };
+        var icon = { red: '🔴', amber: '🟠', blue: 'ℹ️', green: '🟢' };
+        var list = a.findings.slice().sort(function (x, y) { return order[x.tone] - order[y.tone]; });
+        $('tkFindings').innerHTML = list.length ? list.map(function (f) {
+            return '<div class="rounded-lg border ' + cls[f.tone] + ' p-4"><p class="font-semibold text-slate-100 mb-1">' + icon[f.tone] + ' ' + esc(f.title) + '</p><p class="text-sm text-slate-300 leading-relaxed">' + esc(f.text) + '</p></div>';
+        }).join('') : '<p class="text-sm text-slate-400">Δεν βρέθηκε κάτι που χρειάζεται προσοχή.</p>';
+    }
+    function kqlTime(a, sec, pad) { return new Date((sec + pad) * 1000).toISOString().replace('.000Z', 'Z'); }
+    function hunt(a) {
+        var p = a.p, el = $('tkHunt');
+        if (!p.uti && !p.sid) { el.classList.add('hidden'); a.kql = ''; return; }
+        var from = typeof p.iat === 'number' ? kqlTime(a, p.iat, -3600) : null, to = typeof p.exp === 'number' ? kqlTime(a, p.exp, 3600) : null;
+        var range = from && to ? '| where TimeGenerated between (datetime(' + from + ') .. datetime(' + to + '))\n' : '| where TimeGenerated > ago(30d)\n';
+        var cond = [];
+        if (p.uti) cond.push('UniqueTokenIdentifier == "' + p.uti + '"');
+        if (p.sid) cond.push('SessionId == "' + p.sid + '"');
+        var q1 = '// Οι συνδέσεις που έβγαλαν αυτό το token και τα tokens της ίδιας συνεδρίας\nunion isfuzzy=true SigninLogs, AADNonInteractiveUserSignInLogs, AADServicePrincipalSignInLogs\n' + range + '| where ' + cond.join(' or ') + '\n| project TimeGenerated, Type, UserPrincipalName, ServicePrincipalName, AppDisplayName, ResourceDisplayName, IPAddress, ConditionalAccessStatus, AuthenticationRequirement, UniqueTokenIdentifier, SessionId\n| sort by TimeGenerated asc';
+        var cond2 = [];
+        if (p.uti) cond2.push('SignInActivityId == "' + p.uti + '"');
+        if (p.sid) cond2.push('SessionId == "' + p.sid + '"');
+        var q2 = '// Τι έκανε στο Microsoft Graph\nMicrosoftGraphActivityLogs\n' + range + '| where ' + cond2.join(' or ') + '\n| project TimeGenerated, RequestMethod, RequestUri, ResponseStatusCode, IPAddress, UserAgent, AppId\n| sort by TimeGenerated asc';
+        a.kql = q1 + '\n\n' + q2;
+        el.innerHTML = '<p class="font-semibold text-slate-100 mb-1">Βρες τη σύνδεση και τι έκανε το token</p>' +
+            '<p class="mb-2">' + (p.uti ? 'Το uti ' + mono(p.uti) + ' είναι το Unique token identifier στα sign-in logs και το SignInActivityId στα Microsoft Graph activity logs. ' : '') + (p.sid ? 'Το sid ' + mono(p.sid) + ' είναι το Session ID: το ίδιο έχουν όλα τα tokens της ίδιας αρχικής σύνδεσης. ' : '') + 'Τα queries τρέχουν στο Microsoft Sentinel ή στο Log Analytics, αν στέλνεις εκεί τα sign-in logs και τα Microsoft Graph activity logs με diagnostic settings. Στο Entra admin center, τα sign-in logs μένουν 7 ημέρες στο Entra ID Free και 30 στο P1 και στο P2.</p>' +
+            '<pre class="tkMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200 overflow-x-auto">' + esc(a.kql) + '</pre>' +
+            '<button type="button" id="tkKql" class="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-slate-500">Αντιγραφή KQL</button>';
+        el.classList.remove('hidden');
+    }
+    function valueHtml(k, v, a) {
+        if ((k === 'iat' || k === 'nbf' || k === 'exp' || k === 'auth_time' || k === 'pwd_exp' || k === 'xms_tcdt') && typeof v === 'number') return mono(v) + '<br><span class="text-slate-400 text-xs">' + esc(fmtDate(v)) + '</span>';
+        if (k === 'amr') return arr(v).map(function (x) { return mono(x) + (D.amr[x] ? ' <span class="text-slate-400 text-xs">' + esc(D.amr[x]) + '</span>' : ''); }).join('<br>');
+        if (k === 'wids') return arr(v).map(function (x) { var r = D.roles[lower(x)]; return mono(x) + (r ? ' ' + pill(r[0], r[1] === 'critical' ? 'red' : r[1] === 'high' ? 'amber' : 'gray') : ''); }).join('<br>');
+        if (k === 'scp' || k === 'roles') return arr(v).map(function (x) { return D.riskyPerms[x] ? pill(x, MEDIUM_PERMS[x] ? 'amber' : (a.kind === 'app' ? 'red' : 'amber')) : mono(x); }).join(' ');
+        if ((k === 'appid' || k === 'azp') && D.apps[lower(v)]) return mono(v) + '<br><span class="text-slate-400 text-xs">' + esc(D.apps[lower(v)]) + '</span>';
+        if (k === 'aud' && resourceName(v)) return mono(v) + '<br><span class="text-slate-400 text-xs">' + esc(resourceName(v)) + '</span>';
+        if (typeof v === 'object') return mono(JSON.stringify(v));
+        return mono(v);
+    }
+    function claims(a) {
+        var p = a.p, h = a.h, by = {}, other = [];
+        Object.keys(p).forEach(function (k) {
+            var c = D.claims[k];
+            if (c) (by[c[0]] = by[c[0]] || []).push(k); else other.push(k);
+        });
+        function table(keys, src, explain) {
+            return '<div class="overflow-x-auto"><table class="w-full text-sm"><tbody>' + keys.map(function (k) {
+                return '<tr class="border-b border-slate-800/70"><td class="py-2 pr-3 whitespace-nowrap tkMono text-blue-300">' + esc(k) + '</td><td class="py-2 pr-3 min-w-[10rem] max-w-[22rem]">' + valueHtml(k, src[k], a) + '</td><td class="py-2 text-slate-300 leading-relaxed">' + esc(explain(k)) + '</td></tr>';
+            }).join('') + '</tbody></table></div>';
+        }
+        var html = GROUP_ORDER.filter(function (g) { return by[g]; }).map(function (g) {
+            return '<div><p class="font-semibold text-slate-100 mb-1.5">' + esc(D.groups[g]) + '</p>' + table(by[g], p, function (k) { return D.claims[k][1]; }) + '</div>';
+        }).join('');
+        if (other.length) html += '<div><p class="font-semibold text-slate-100 mb-1.5">Χωρίς Ελληνική ερμηνεία</p>' + table(other, p, function () { return 'Δεν είναι στα claims που τεκμηριώνει η Microsoft για αναλυτές. Μπορεί να είναι προαιρετικό claim της εφαρμογής ή εσωτερικό claim.'; }) + '</div>';
+        html += '<div><p class="font-semibold text-slate-100 mb-1.5">Header</p>' + table(Object.keys(h), h, function (k) { return D.header[k] || ''; }) + '</div>';
+        $('tkClaims').innerHTML = html;
+    }
+
+    var last = null;
+    function ticket() {
+        var a = last, p = a.p, out = ['Ανάλυση token Microsoft Entra ID (thecybersec.gr/ti-leei-auto-to-token/)', 'Το ίδιο το token δεν περιλαμβάνεται.', ''];
+        out.push('Τύπος: ' + { user: 'Access token χρήστη (delegated)', app: 'Access token εφαρμογής', id: 'ID token' }[a.kind] + (a.ver ? ' v' + a.ver : ''));
+        if (a.person) out.push('Χρήστης: ' + a.person + (p.upn && p.upn !== a.person ? ' (' + p.upn + ')' : ''));
+        if (p.oid) out.push('Object ID: ' + p.oid);
+        if (a.tid) out.push('Tenant ID: ' + a.tid);
+        if (a.client) out.push('Εφαρμογή: ' + (D.apps[lower(a.client)] ? D.apps[lower(a.client)] + ' ' : '') + a.client);
+        if (p.aud) out.push('Πόρος: ' + (resourceName(p.aud) ? resourceName(p.aud) + ' ' : '') + p.aud);
+        if (a.amr.length) out.push('Ταυτοποίηση: ' + a.amr.join(', '));
+        if (p.ipaddr) out.push('IP: ' + p.ipaddr);
+        if (p.deviceid) out.push('Device ID: ' + p.deviceid);
+        if (typeof p.iat === 'number') out.push('Εκδόθηκε: ' + new Date(p.iat * 1000).toISOString());
+        if (typeof p.exp === 'number') out.push('Λήγει: ' + new Date(p.exp * 1000).toISOString());
+        if (p.uti) out.push('uti (Unique token identifier): ' + p.uti);
+        if (p.sid) out.push('sid (Session ID): ' + p.sid);
+        if (a.wids.length) out.push('Ρόλοι (wids): ' + a.wids.map(function (w) { var r = D.roles[lower(w)]; return r ? r[0] : w; }).join(', '));
+        if (a.scp.length) out.push('Delegated scopes (scp): ' + a.scp.join(' '));
+        if (a.roles.length) out.push('Roles: ' + a.roles.join(' '));
+        if (a.findings.length) { out.push(''); out.push('Ευρήματα:'); a.findings.forEach(function (f) { out.push('- ' + f.title); }); }
+        return out.join('\n');
+    }
+
+    function fail(msg) { var e = $('tkError'); e.textContent = msg; e.classList.remove('hidden'); $('tkResult').classList.add('hidden'); last = null; }
+    function run() {
+        var raw = $('tkInput').value;
+        $('tkError').classList.add('hidden');
+        if (!raw.trim()) return fail('Επικόλλησε πρώτα ένα token.');
+        if (raw.length > 200000) return fail('Το κείμενο είναι πολύ μεγάλο. Επικόλλησε μόνο το token.');
+        var tok = extract(raw);
+        if (!tok) {
+            var t = raw.trim();
+            if (/^[01]\.[A-Za-z0-9_\-.]{100,}$/.test(t)) return fail('Αυτό μοιάζει με refresh token. Τα refresh tokens του Entra ID είναι κρυπτογραφημένα και δεν διαβάζονται, αλλά δίνουν νέα access tokens για μέρες. Αν διέρρευσε, κάνε Revoke sessions στον χρήστη.');
+            return fail('Δεν βρέθηκε token. Ένα token του Entra ID ξεκινά με eyJ και έχει δύο τελείες.');
+        }
+        var d;
+        try { d = decode(tok); } catch (e) { return fail('Το token δεν αποκωδικοποιείται. Ίσως κόπηκε στην αντιγραφή. Αντέγραψέ το ξανά ολόκληρο.'); }
+        if (d.jwe) return fail('Αυτό είναι κρυπτογραφημένο token (JWE, πέντε μέρη). Το διαβάζει μόνο η εφαρμογή για την οποία εκδόθηκε.');
+        var a = analyse(d.header, d.payload);
+        $('tkStatus').innerHTML = '<div class="flex flex-wrap gap-2">' + pill(d.signed ? 'Με υπογραφή (δεν ελέγχθηκε)' : 'Χωρίς υπογραφή', 'gray') + (a.ver ? pill('v' + a.ver, 'gray') : '') + pill(Object.keys(d.payload).length + ' claims', 'gray') + '</div>';
+        summary(a); findings(a); hunt(a); claims(a);
+        last = a;
+        $('tkResult').classList.remove('hidden');
+        $('tkMsg').classList.add('hidden');
+        $('tkResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---------- Παράδειγμα (επινοημένα στοιχεία, χωρίς υπογραφή) ----------
+    function b64enc(o) { var s = new TextEncoder().encode(JSON.stringify(o)), bin = ''; s.forEach(function (b) { bin += String.fromCharCode(b); }); return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+    function sample() {
+        var now = Math.floor(Date.now() / 1000), iat = now - 1800;
+        var h = { typ: 'JWT', alg: 'RS256', kid: 'paradeigma-kid' };
+        var p = {
+            aud: '00000003-0000-0000-c000-000000000000', iss: 'https://sts.windows.net/11111111-2222-3333-4444-555555555555/', iat: iat, nbf: iat, exp: iat + 4500,
+            acct: 0, acr: '1', amr: ['pwd'], app_displayname: 'Microsoft Graph Command Line Tools', appid: '14d82eec-204b-4c2f-b7e8-296a70dab67e', appidacr: '0',
+            family_name: 'Παπαδόπουλος', given_name: 'Γιώργος', idtyp: 'user', ipaddr: '203.0.113.45', name: 'Γιώργος Παπαδόπουλος',
+            oid: 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee', scp: 'Directory.ReadWrite.All Mail.ReadWrite User.Read openid profile email',
+            sid: '0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d', sub: 'paradeigma-sub', tid: '11111111-2222-3333-4444-555555555555',
+            unique_name: 'g.papadopoulos@paradeigma.gr', upn: 'g.papadopoulos@paradeigma.gr', uti: 'PaRaDeIgMa0123456789ab', ver: '1.0',
+            wids: ['62e90394-69f5-4237-9190-012177145e10', 'b79fbf4d-3ef9-4689-8143-76b194e85509'], xms_cc: ['CP1'], xms_tcdt: 1600000000
+        };
+        $('tkInput').value = b64enc(h) + '.' + b64enc(p) + '.';
+        run();
+    }
+
+    // ---------- Αντιγραφή ----------
+    function copy(txt) {
+        var msg = $('tkMsg');
+        function ok() { msg.textContent = 'Αντιγράφηκε.'; msg.className = 'text-sm text-emerald-300'; }
+        function bad() { msg.textContent = 'Η αντιγραφή δεν επιτράπηκε από τον browser. Επίλεξε και αντίγραψε το κείμενο χειροκίνητα.'; msg.className = 'text-sm text-amber-400'; }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, bad); else bad();
+    }
+
+    $('tkRun').addEventListener('click', run);
+    $('tkSample').addEventListener('click', sample);
+    $('tkInput').addEventListener('keydown', function (e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') run(); });
+    $('tkClear').addEventListener('click', function () { $('tkInput').value = ''; $('tkResult').classList.add('hidden'); $('tkError').classList.add('hidden'); last = null; $('tkInput').focus(); });
+    $('tkCopy').addEventListener('click', function () { if (last) copy(ticket()); });
+    root.addEventListener('click', function (e) { if (e.target.id === 'tkKql' && last && last.kql) copy(last.kql); });
+})();
+</script>
