@@ -14,7 +14,7 @@ menu:
     weight: 15
 author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: επικόλλησε ένα access token ή ID token του Microsoft Entra ID και δες στα Ελληνικά ποιος είναι, ποια εφαρμογή το ζήτησε, για ποιον πόρο, αν πέρασε MFA, τι δικαιώματα έχει, πόσο ακόμα ισχύει, και KQL για τα logs. Όλα στον browser σου."
-seoTitle: "Τι λέει αυτό το token; Access token του Entra ID στα Ελληνικά"
+seoTitle: "Τι λέει αυτό το token; Access token Entra ID στα Ελληνικά"
 seoDescription: "Επικόλλησε ένα access token του Entra ID και δες στα Ελληνικά ποιος, ποια εφαρμογή, αν πέρασε MFA, τι δικαιώματα έχει και πότε λήγει. Όλα στον browser σου."
 toolBlurb: "Επικόλλησε ένα access token ή ID token του Entra ID και δες στα Ελληνικά ποιος είναι, ποια εφαρμογή το ζήτησε, αν πέρασε MFA, τι ρόλους και δικαιώματα έχει, πόσο ακόμα ισχύει, και KQL για να βρεις τι έκανε. Το token δεν φεύγει από τον browser σου."
 keywords:

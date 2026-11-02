@@ -14,7 +14,7 @@ menu:
     weight: 16
 author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: επικόλλησε την έξοδο του Get-MpPreference και δες κάθε κανόνα Attack Surface Reduction του Microsoft Defender με όνομα αντί για GUID, αν είναι σε Block, Audit, Warn ή Off, τι κάνει, με ποια σειρά τον ενεργοποιείς, και KQL για τα συμβάντα. Όλα στον browser σου."
-seoTitle: "Αποκωδικοποιητής ASR rules του Microsoft Defender στα Ελληνικά"
+seoTitle: "Αποκωδικοποιητής ASR rules του Microsoft Defender (Ελληνικά)"
 seoDescription: "Επικόλλησε την έξοδο του Get-MpPreference και δες κάθε κανόνα ASR με όνομα, κατάσταση, τι κάνει και με ποια σειρά τον βάζεις σε Block. Όλα στον browser σου."
 toolBlurb: "Επικόλλησε την έξοδο του Get-MpPreference και δες κάθε κανόνα ASR του Microsoft Defender με όνομα αντί για GUID, αν είναι σε Block, Audit, Warn ή Off, τι κάνει, με ποια σειρά τον ενεργοποιείς, και KQL για τα συμβάντα του Audit."
 keywords:

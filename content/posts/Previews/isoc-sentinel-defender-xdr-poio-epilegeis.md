@@ -28,7 +28,7 @@ tags:
   - ISO 27001
 author: "Dimosthenis Atteia"
 description: "Το ISOC δίνει SIEM μέσα στο Defender portal, αλλά δεν είναι για όλους. Σύγκριση Defender XDR, ISOC και Microsoft Sentinel σε άδεια, δεδομένα και διατήρηση logs, πού κάθεται το Project Perception, τι αναμένεται τον Νοέμβριο και πώς διαλέγεις με βάση την ΚΥΑ 1689/2025."
-seoDescription: "Defender XDR, ISOC ή Microsoft Sentinel: σύγκριση σε άδεια, δεδομένα και διατήρηση logs, ο ρόλος του Project Perception και πώς διαλέγεις με βάση την ΚΥΑ 1689/2025."
+seoDescription: "Defender XDR, ISOC ή Microsoft Sentinel: σύγκριση σε άδεια, δεδομένα και διατήρηση logs, ο ρόλος του Project Perception και πώς διαλέγεις για την ΚΥΑ 1689/2025."
 summary: "Έχεις Microsoft 365 E5 και αναρωτιέσαι αν φτάνει το Defender XDR, αν σου κάνει το ISOC ή αν χρειάζεσαι Sentinel. Η απάντηση κρύβεται κυρίως σε δύο ερωτήσεις: πόσο καιρό πρέπει να κρατάς τα logs και από πού έρχονται. Με ερωτηματολόγιο οκτώ ερωτήσεων που σου δείχνει ποιος δρόμος ταιριάζει."
 categories: ["Security Operations & XDR"]
 releases:
