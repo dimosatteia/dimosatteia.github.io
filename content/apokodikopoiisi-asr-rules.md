@@ -1,6 +1,6 @@
 ---
 title: "Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου"
-date: 2026-11-02T20:55:00+02:00
+date: 2026-11-02T20:56:00+02:00
 lastmod: 2026-11-02T20:55:00+02:00
 draft: false
 url: "/apokodikopoiisi-asr-rules/"
@@ -29,6 +29,9 @@ showToc: true
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+# Στα «Πρόσφατα Άρθρα» της αρχικής, με βάση την ημερομηνία του
+homeFeed: true
+weight: -6
 cover:
   image: "/images/tools/apokodikopoiisi-asr-rules.webp"
   alt: "Η έξοδος του Get-MpPreference με GUID και τιμές, και δίπλα οι κανόνες ASR με όνομα και κατάσταση Block, Audit ή Off"

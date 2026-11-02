@@ -30,6 +30,9 @@ showToc: true
 ShowReadingTime: false
 ShowBreadCrumbs: false
 hideMeta: true
+# Στα «Πρόσφατα Άρθρα» της αρχικής, με βάση την ημερομηνία του
+homeFeed: true
+weight: -6
 cover:
   image: "/images/tools/ti-leei-auto-to-token.webp"
   alt: "Ένα access token του Entra ID και, δίπλα, η ερμηνεία του στα Ελληνικά: ποιος, ποια εφαρμογή, αν πέρασε MFA και πόσο ακόμα ισχύει"
