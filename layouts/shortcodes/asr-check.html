@@ -1,0 +1,246 @@
+{{- /* «Αποκωδικοποιητής ASR rules» (/apokodikopoiisi-asr-rules/)
+       Ο admin επικολλά την έξοδο του Get-MpPreference (ή της εντολής της Microsoft που δείχνει Id και Action, ή registry,
+       ή την τιμή OMA-URI του Intune) και βλέπει κάθε κανόνα ASR με όνομα αντί για GUID, την κατάστασή του (Block, Audit,
+       Warn, Off, Not configured), τι κάνει, και προτεινόμενη σειρά ενεργοποίησης, με KQL για τα συμβάντα του Audit.
+       Κανόνες: data/asr_rules.yaml. Πηγή: Microsoft Learn, «Attack surface reduction (ASR) rules reference».
+       Το κείμενο διαβάζεται ΜΟΝΟ μέσα στον browser του επισκέπτη. Δεν στέλνεται πουθενά.
+       Χρήση: {{< asr-check >}} */ -}}
+{{- $data := hugo.Data.asr_rules -}}
+{{- $cmd := `$p = Get-MpPreference;0..([math]::Min($p.AttackSurfaceReductionRules_Ids.Count,$p.AttackSurfaceReductionRules_Actions.Count)-1) | % {[pscustomobject]@{Id=$p.AttackSurfaceReductionRules_Ids[$_];Action=$p.AttackSurfaceReductionRules_Actions[$_]}} | Format-Table -AutoSize` -}}
+<style>
+#arTool .arMono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#arTool .arPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
+#arTool table td,#arTool table th{vertical-align:top}
+#arTool pre{white-space:pre-wrap;word-break:break-all}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="arTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Microsoft Defender · Attack Surface Reduction · Get-MpPreference</p>
+
+    <div class="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-emerald-300 mb-1">🔒 Ό,τι επικολλάς δεν φεύγει από τον υπολογιστή σου</p>
+        <p>Η ανάλυση γίνεται μόνο μέσα στον browser σου. Το κείμενο δεν στέλνεται σε κανέναν server, ούτε στο thecybersec.gr, και δεν αποθηκεύεται. Λεπτομέρειες στην <a href="{{ "privacy/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Πολιτική απορρήτου</a>.</p>
+    </div>
+
+    <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-slate-100 mb-1">1. Τρέξε στη συσκευή, σε PowerShell</p>
+        <p class="mb-2">Η εντολή είναι της Microsoft και δείχνει κάθε κανόνα με την κατάστασή του. Δεν αλλάζει τίποτα. Αν θες και τις εξαιρέσεις, τρέξε σκέτο <span class="arMono text-slate-100">Get-MpPreference</span> και επικόλλησε όλη την έξοδο.</p>
+        <pre id="arCmd" class="arMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200">{{ $cmd }}</pre>
+        <button type="button" id="arCmdCopy" class="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-slate-500">Αντιγραφή εντολής</button>
+    </div>
+
+    <label for="arInput" class="block text-sm text-slate-300 mb-1.5">2. Επικόλλησε την έξοδο. Δέχεται και την έξοδο του <span class="arMono">reg query</span> και την τιμή OMA-URI του Intune (<span class="arMono">GUID=1|GUID=2</span>).</label>
+    <textarea id="arInput" rows="6" spellcheck="false" autocomplete="off" data-clarity-mask="true" placeholder="Id                                   Action&#10;--                                   ------&#10;56a863a9-875e-4185-98a7-b882c64b5ce5      1&#10;d4f940ab-401b-4efc-aadc-ad5f3c50688a      2"
+              class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono text-[13px] focus:outline-none focus:border-blue-500"></textarea>
+    <fieldset class="mt-3 flex flex-col gap-1.5 text-sm text-slate-300">
+        <legend class="sr-only">Πληροφορίες για τη συσκευή</legend>
+        <label class="flex items-start gap-2"><input type="checkbox" id="arLsa" class="mt-1"> Η συσκευή έχει ενεργό LSA protection ή Credential Guard</label>
+        <label class="flex items-start gap-2"><input type="checkbox" id="arCm" class="mt-1"> Οι συσκευές διαχειρίζονται και με Configuration Manager</label>
+        <label class="flex items-start gap-2"><input type="checkbox" id="arExch" class="mt-1"> Η συσκευή είναι Exchange server</label>
+    </fieldset>
+    <div class="flex flex-wrap items-center gap-3 mt-3">
+        <button type="button" id="arRun" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Τι λένε;</button>
+        <button type="button" id="arSample" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Δοκίμασε με παράδειγμα</button>
+        <button type="button" id="arClear" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Καθαρισμός</button>
+    </div>
+    <p id="arError" class="text-sm text-amber-400 mt-3 hidden" role="alert"></p>
+
+    <div id="arResult" class="hidden mt-6 flex flex-col gap-5" aria-live="polite" data-clarity-mask="true">
+        <div id="arWarn" class="hidden flex flex-col gap-2"></div>
+        <div id="arStats" class="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"></div>
+        <div id="arNext" class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div id="arRules" class="flex flex-col gap-5"></div>
+        <div id="arExcl" class="hidden rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div id="arKql" class="hidden rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div class="flex flex-wrap gap-3">
+            <button type="button" id="arCopy" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-slate-500">Αντιγραφή σύνοψης για το ticket</button>
+        </div>
+        <p id="arMsg" class="text-sm hidden" role="status"></p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-5">Η εντολή δείχνει τι ισχύει στη συγκεκριμένη συσκευή. Για να δεις από πού ήρθε κάθε ρύθμιση (Intune, Group Policy, PowerShell), άνοιξε τη συσκευή στο Microsoft Defender portal, στην καρτέλα Effective settings. Η προτεινόμενη σειρά ενεργοποίησης είναι πρόταση του thecybersec.gr, με βάση την τεκμηρίωση της Microsoft.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('arTool');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var D = {{ $data | jsonify | safeJS }};
+    var BY = {};
+    D.rules.forEach(function (r) { BY[r.guid] = r; });
+    var GUID = '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}';
+    var WORDS = { enabled: '1', block: '1', disabled: '0', off: '0', auditmode: '2', audit: '2', warn: '6', notconfigured: '5' };
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+    function pill(text, tone) {
+        var t = { red: 'bg-rose-500/15 text-rose-300', amber: 'bg-amber-500/15 text-amber-300', green: 'bg-emerald-500/15 text-emerald-300', blue: 'bg-blue-500/15 text-blue-300', gray: 'bg-slate-700/50 text-slate-300' }[tone || 'gray'];
+        return '<span class="arPill ' + t + '">' + esc(text) + '</span>';
+    }
+    function mono(s) { return '<span class="arMono text-slate-100 break-all">' + esc(s) + '</span>'; }
+    function code(v) { v = String(v).trim().toLowerCase().replace(/^0x0*/, ''); if (v === '') v = '0'; return WORDS[v] || (/^\d$/.test(v) ? v : null); }
+
+    // ---------- Ανάγνωση ----------
+    function list(inner) { return inner.split(/[,\n]/).map(function (s) { return s.replace(/["'\s]/g, ''); }).filter(Boolean); }
+    function grab(raw, name) {
+        var re = new RegExp(name + '\\s*:\\s*\\{([^}]*)\\}', 'i'), m = raw.match(re);
+        if (m) return m[1];
+        re = new RegExp('"' + name + '"\\s*:\\s*\\[([^\\]]*)\\]', 'i'); m = raw.match(re);
+        return m ? m[1] : null;
+    }
+    function parse(raw) {
+        var res = { rules: {}, order: [], unknown: [], warns: [], excl: null };
+        function put(g, c) { g = g.toLowerCase(); if (!(g in res.rules)) res.order.push(g); res.rules[g] = c; if (!BY[g] && res.unknown.indexOf(g) < 0) res.unknown.push(g); }
+        var ids = grab(raw, 'AttackSurfaceReductionRules_Ids'), acts = grab(raw, 'AttackSurfaceReductionRules_Actions');
+        if (ids != null) {
+            var cut = /\.\.\.|…/.test(ids) || (acts && /\.\.\.|…/.test(acts));
+            if (cut) res.warns.push('Η λίστα κόπηκε από το PowerShell (εμφανίζεται «…»), οπότε λείπουν κανόνες. Τρέξε την εντολή της Microsoft στο βήμα 1, που δείχνει όλους τους κανόνες σε γραμμές.');
+            var I = list(ids.replace(/\.\.\.|…/g, '')).filter(function (x) { return new RegExp('^' + GUID + '$').test(x); }), A = acts ? list(acts.replace(/\.\.\.|…/g, '')) : [];
+            if (!cut && A.length !== I.length) res.warns.push('Τα GUID (' + I.length + ') δεν είναι όσα και οι τιμές (' + A.length + '). Τα αντιστοίχισα με τη σειρά, αλλά καλύτερα τρέξε την εντολή της Microsoft στο βήμα 1.');
+            I.forEach(function (g, i) { var c = A[i] != null ? code(A[i]) : null; if (c != null) put(g, c); });
+        } else {
+            var re = new RegExp('(' + GUID + ')["\'}\\s]*(?:=|:|\\|)?\\s*(?:REG_SZ|REG_DWORD|REG_EXPAND_SZ)?\\s*(0x[0-9a-f]+|\\d|Enabled|Disabled|AuditMode|Audit|Warn|NotConfigured|Block|Off)\\b', 'gi'), m;
+            while ((m = re.exec(raw))) { var c2 = code(m[2]); if (c2 != null) put(m[1], c2); }
+        }
+        var ex = grab(raw, 'AttackSurfaceReductionOnlyExclusions');
+        if (ex != null) {
+            res.excl = ex.split(/,\s+|\n/).map(function (s) { return s.trim().replace(/^["']|["']$/g, ''); }).filter(Boolean);
+            if (/\.\.\.|…/.test(ex)) res.warns.push('Η λίστα των εξαιρέσεων κόπηκε από το PowerShell. Για όλες, τρέξε: (Get-MpPreference).AttackSurfaceReductionOnlyExclusions');
+        }
+        return res;
+    }
+
+    // ---------- Ανάλυση ----------
+    function analyse(p, opt) {
+        var out = [];
+        D.rules.forEach(function (r) {
+            var has = r.guid in p.rules, c = has ? p.rules[r.guid] : '5';
+            var mode = D.modes[c] || ['Τιμή ' + c, 'gray'];
+            var na = '', advice;
+            if (r.phase === 'server' && !opt.exch) na = 'Αφορά μόνο Exchange servers.';
+            if (r.guid === '9e6c4e1f-7d60-472f-ba1a-a39ef669e4b2' && opt.lsa) na = 'Με LSA protection ή Credential Guard ο κανόνας δεν προσθέτει προστασία.';
+            if (r.guid === 'd1e49aac-8f56-4280-b9ba-993a6d77406c' && opt.cm) na = 'Με Configuration Manager η Microsoft λέει να μην τον ενεργοποιείς με άλλο τρόπο, γιατί ο client βασίζεται στο WMI.';
+            if (na) advice = 'Δεν χρειάζεται ενέργεια.';
+            else if (c === '1') advice = 'Προστατεύει. Δεν χρειάζεται ενέργεια.';
+            else if (c === '6') advice = 'Προστατεύει, αλλά ο χρήστης μπορεί να παρακάμψει το μπλοκάρισμα. Όταν σιγουρευτείς από τα συμβάντα ότι δεν σπάει κάτι, πέρασέ τον σε Block.';
+            else if (c === '2') advice = r.phase === '1' ? 'Σε Audit δεν προστατεύει. Είναι standard protection rule: πέρασέ τον σε Block.' : 'Σε Audit δεν προστατεύει, μόνο καταγράφει. Δες τα συμβάντα με το KQL παρακάτω, πρόσθεσε εξαιρέσεις όπου χρειάζεται και πέρασέ τον σε Block.';
+            else if (c === '0') advice = 'Είναι ρητά απενεργοποιημένος (Off). Αν δεν υπάρχει γραπτός λόγος, ' + (r.phase === '1' ? 'πέρασέ τον σε Block.' : 'ξεκίνα με Audit.');
+            else advice = (has ? 'Είναι Not configured' : 'Δεν εμφανίζεται, άρα είναι Not configured') + ' και δεν προστατεύει. ' + (r.phase === '1' ? 'Είναι standard protection rule: βάλ\' τον σε Block.' : 'Ξεκίνα με Audit.');
+            out.push({ r: r, c: c, has: has, mode: mode, na: na, advice: advice, ok: !!na || c === '1' || c === '6' });
+        });
+        return out;
+    }
+
+    // ---------- Εμφάνιση ----------
+    function stat(label, n, tone) { var t = { green: 'text-emerald-300', amber: 'text-amber-300', red: 'text-rose-300', blue: 'text-blue-300', gray: 'text-slate-200' }[tone]; return '<div class="rounded-lg border border-slate-800 bg-slate-900/60 p-3"><p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">' + esc(label) + '</p><p class="text-2xl font-bold ' + t + '">' + n + '</p></div>'; }
+    var last = null;
+    function render(p, rows, opt) {
+        var w = p.warns.slice();
+        if (p.unknown.length) w.push('Άγνωστα GUID: ' + p.unknown.join(', ') + '. Δεν είναι κανόνες ASR του Microsoft Defender. Αν τα έβαλες με Group Policy, έλεγξε για εισαγωγικά ή κενά στο GUID: ο κανόνας τότε δεν εφαρμόζεται.');
+        $('arWarn').innerHTML = w.map(function (x) { return '<div class="rounded-lg border border-amber-500/40 bg-amber-500/5 p-3 text-sm text-amber-200 leading-relaxed">⚠️ ' + esc(x) + '</div>'; }).join('');
+        $('arWarn').classList.toggle('hidden', !w.length);
+
+        var app = rows.filter(function (x) { return !x.na; });
+        var cnt = function (c) { return app.filter(function (x) { return x.c === c; }).length; };
+        var prot = app.filter(function (x) { return x.c === '1' || x.c === '6'; }).length;
+        var pct = app.length ? Math.round(prot * 100 / app.length) : 0;
+        $('arStats').innerHTML = stat('Προστατεύουν', prot + '/' + app.length, pct >= 80 ? 'green' : pct >= 50 ? 'amber' : 'red') + stat('Block', cnt('1'), 'green') + stat('Warn', cnt('6'), 'blue') + stat('Audit', cnt('2'), 'amber') + stat('Off', cnt('0'), 'red') + stat('Not configured', cnt('5'), 'amber');
+
+        // Επόμενα βήματα, το απλούστερο πρώτο
+        var steps = [];
+        ['1', '2', '3', 'server'].forEach(function (ph) {
+            var todo = app.filter(function (x) { return x.r.phase === ph && !x.ok; });
+            if (!todo.length) return;
+            var aud = todo.filter(function (x) { return x.c === '2'; }), none = todo.filter(function (x) { return x.c !== '2'; });
+            if (ph === '1') steps.push('Βάλε σε <strong>Block</strong> τους standard protection rules: ' + todo.map(function (x) { return esc(x.r.el); }).join(', ') + '. Η Microsoft τους θεωρεί κατάλληλους για Block σχεδόν παντού.');
+            else {
+                if (aud.length) steps.push('<strong>' + esc(D.phases[ph]) + '.</strong> Σε Audit ήδη: ' + aud.map(function (x) { return esc(x.r.el); }).join(', ') + '. Τρέξε το KQL παρακάτω, κράτα εξαιρέσεις μόνο για ό,τι είναι νόμιμο, και πέρασέ τους σε Block.');
+                if (none.length) steps.push('<strong>' + esc(D.phases[ph]) + '.</strong> Βάλε σε <strong>Audit</strong>: ' + none.map(function (x) { return esc(x.r.el); }).join(', ') + '.');
+            }
+        });
+        $('arNext').innerHTML = '<p class="font-semibold text-slate-100 mb-2">Τι κάνεις τώρα</p>' + (steps.length ? '<ol class="list-decimal pl-5 flex flex-col gap-1.5">' + steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol><p class="mt-3 text-xs text-slate-400">Αν οι συσκευές διαχειρίζονται από το Intune, άλλαξε τους κανόνες στο Endpoint security › Attack surface reduction, όχι με PowerShell: το Intune ξαναγράφει τις τοπικές ρυθμίσεις.</p>' : '<p>Όλοι οι κανόνες που αφορούν τη συσκευή προστατεύουν. Κράτα το KQL για να βλέπεις τι μπλοκάρουν.</p>');
+
+        // Κανόνες ανά φάση
+        $('arRules').innerHTML = ['1', '2', '3', 'server'].map(function (ph) {
+            var rs = rows.filter(function (x) { return x.r.phase === ph; });
+            return '<div><p class="font-semibold text-slate-100 mb-2">' + esc(D.phases[ph]) + '</p><div class="flex flex-col gap-3">' + rs.map(function (x) {
+                var tone = x.na ? 'border-slate-800 bg-slate-900/40' : x.ok ? 'border-emerald-500/30 bg-emerald-500/5' : x.c === '0' ? 'border-rose-500/30 bg-rose-500/5' : 'border-amber-500/30 bg-amber-500/5';
+                return '<div class="rounded-lg border ' + tone + ' p-4"><div class="flex flex-wrap items-center gap-2 mb-1">' + pill(x.mode[0], x.na ? 'gray' : x.mode[1]) + (x.na ? pill('Δεν εφαρμόζεται εδώ', 'gray') : '') + (x.r.warn ? '' : pill('Χωρίς Warn', 'gray')) + '<span class="font-semibold text-slate-100">' + esc(x.r.el) + '</span></div>' +
+                    '<p class="text-xs text-slate-400 mb-2">' + esc(x.r.name) + ' · ' + mono(x.r.guid) + '</p>' +
+                    '<p class="text-sm text-slate-300 leading-relaxed mb-2">' + esc(x.r.what) + '</p>' +
+                    '<p class="text-sm text-slate-100 leading-relaxed">' + esc(x.na ? x.na + ' ' + x.advice : x.advice) + '</p>' +
+                    (x.r.note ? '<p class="text-xs text-slate-400 leading-relaxed mt-2">' + esc(x.r.note) + '</p>' : '') + '</div>';
+            }).join('') + '</div></div>';
+        }).join('');
+
+        // Εξαιρέσεις
+        if (p.excl) {
+            var broad = function (e) { return /^[a-z]:\\?\*?$/i.test(e) || /^\*/.test(e) || /\\users\\\*?$/i.test(e) || /%temp%|\\temp\\|\\downloads|\\appdata\\local\\temp/i.test(e); };
+            $('arExcl').innerHTML = '<p class="font-semibold text-slate-100 mb-1">Εξαιρέσεις για όλους τους κανόνες (' + p.excl.length + ')</p><p class="mb-2">Κάθε εξαίρεση εδώ ισχύει για όλους τους κανόνες ASR. Αν μια εξαίρεση χρειάζεται για έναν μόνο κανόνα, βάλ\' την ως εξαίρεση ανά κανόνα.</p><ul class="flex flex-col gap-1">' + p.excl.map(function (e) { return '<li>' + mono(e) + (broad(e) ? ' ' + pill('Πολύ ευρεία: εκεί γράφει και το malware', 'red') : '') + '</li>'; }).join('') + '</ul>';
+            $('arExcl').classList.remove('hidden');
+        } else $('arExcl').classList.add('hidden');
+
+        // KQL
+        var auditRules = app.filter(function (x) { return (x.c === '2' || x.c === '6') && x.r.ah.length; });
+        var types = []; auditRules.forEach(function (x) { types = types.concat(x.r.ah); });
+        var q = '// Όλα τα συμβάντα ASR των τελευταίων 30 ημερών, ανά κανόνα (Microsoft Defender XDR, Advanced hunting)\nDeviceEvents\n| where Timestamp > ago(30d)\n| where ActionType startswith "Asr"\n| summarize Events = count(), Devices = dcount(DeviceId) by ActionType\n| sort by Events desc';
+        if (types.length) q += '\n\n// Τι καταγράφουν ή μπλοκάρουν οι κανόνες που είναι σε Audit ή Warn: από αυτά βγαίνουν οι εξαιρέσεις\nDeviceEvents\n| where Timestamp > ago(30d)\n| where ActionType in (' + types.map(function (t) { return '"' + t + '"'; }).join(', ') + ')\n| summarize Events = count(), Devices = dcount(DeviceId) by ActionType, FileName, FolderPath, InitiatingProcessFileName\n| sort by Events desc\n| take 100';
+        $('arKql').innerHTML = '<p class="font-semibold text-slate-100 mb-1">KQL για το Advanced hunting</p><p class="mb-2">Στη συσκευή, τα ίδια συμβάντα θα τα βρεις στο Event Viewer, στο Microsoft › Windows › Windows Defender › Operational: 1121 για Block, 1122 για Audit, 1129 όταν ο χρήστης παρακάμπτει ένα Warn.</p><pre class="arMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200 overflow-x-auto">' + esc(q) + '</pre><button type="button" id="arKqlCopy" class="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-slate-500">Αντιγραφή KQL</button>';
+        $('arKql').classList.remove('hidden');
+
+        last = { rows: rows, p: p, kql: q, prot: prot, app: app.length, opt: opt };
+        $('arResult').classList.remove('hidden');
+        $('arMsg').classList.add('hidden');
+    }
+
+    function ticket() {
+        var L = last, out = ['Κανόνες ASR του Microsoft Defender (thecybersec.gr/apokodikopoiisi-asr-rules/)', 'Προστατεύουν: ' + L.prot + ' από ' + L.app + ' κανόνες που αφορούν τη συσκευή', ''];
+        L.rows.forEach(function (x) { out.push((x.na ? '[Δεν εφαρμόζεται] ' : '[' + x.mode[0] + '] ') + x.r.name + ' (' + x.r.guid + ')'); });
+        if (L.p.excl && L.p.excl.length) { out.push(''); out.push('Εξαιρέσεις για όλους τους κανόνες: ' + L.p.excl.join('; ')); }
+        if (L.p.unknown.length) { out.push(''); out.push('Άγνωστα GUID: ' + L.p.unknown.join(', ')); }
+        return out.join('\n');
+    }
+
+    function fail(msg) { var e = $('arError'); e.textContent = msg; e.classList.remove('hidden'); $('arResult').classList.add('hidden'); last = null; }
+    function opts() { return { lsa: $('arLsa').checked, cm: $('arCm').checked, exch: $('arExch').checked }; }
+    function run() {
+        var raw = $('arInput').value;
+        $('arError').classList.add('hidden');
+        if (!raw.trim()) return fail('Επικόλλησε πρώτα την έξοδο της εντολής.');
+        if (raw.length > 300000) return fail('Το κείμενο είναι πολύ μεγάλο. Επικόλλησε μόνο την έξοδο της εντολής.');
+        var p = parse(raw);
+        if (!p.order.length && !p.warns.length) {
+            if (/AttackSurfaceReductionRules_Ids\s*:\s*(\{\s*\}|$)/im.test(raw)) return fail('Η συσκευή δεν έχει κανέναν κανόνα ASR ρυθμισμένο: όλοι είναι Not configured. Ξεκίνα από τους τρεις κανόνες της φάσης 1.');
+            return fail('Δεν βρέθηκε κανόνας ASR με κατάσταση. Τρέξε την εντολή του βήματος 1 και επικόλλησε όλη την έξοδο.');
+        }
+        render(p, analyse(p, opts()), opts());
+        $('arResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function sample() {
+        $('arInput').value = [
+            'AttackSurfaceReductionOnlyExclusions          : {C:\\Program Files\\LOBApp\\app.exe, C:\\Users\\*\\Downloads}',
+            'AttackSurfaceReductionRules_Actions           : {1, 2, 2, 1, 6, 0, 2, 2, 1}',
+            'AttackSurfaceReductionRules_Ids               : {56a863a9-875e-4185-98a7-b882c64b5ce5, 9e6c4e1f-7d60-472f-ba1a-a39ef669e4b2, d4f940ab-401b-4efc-aadc-ad5f3c50688a, be9ba2d9-53ea-4cdc-84e5-9b1eeee46550, d3e037e1-3eb8-44c8-a917-57927947596d, d1e49aac-8f56-4280-b9ba-993a6d77406c, 5beb7efe-fd9a-4556-801d-275e5ffc04cc, 92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b, 3b576869-a4ec-4529-8536-b80a7769e899}',
+            'AttackSurfaceReductionRules_RuleSpecificExclusions :',
+            'CheckForSignaturesBeforeRunningScan           : False'
+        ].join('\n');
+        run();
+    }
+
+    function copy(txt) {
+        var msg = $('arMsg');
+        function ok() { msg.textContent = 'Αντιγράφηκε.'; msg.className = 'text-sm text-emerald-300'; msg.classList.remove('hidden'); }
+        function bad() { msg.textContent = 'Η αντιγραφή δεν επιτράπηκε από τον browser. Επίλεξε και αντίγραψε το κείμενο χειροκίνητα.'; msg.className = 'text-sm text-amber-400'; msg.classList.remove('hidden'); }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, bad); else bad();
+    }
+
+    $('arRun').addEventListener('click', run);
+    $('arSample').addEventListener('click', sample);
+    $('arInput').addEventListener('keydown', function (e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') run(); });
+    $('arClear').addEventListener('click', function () { $('arInput').value = ''; $('arResult').classList.add('hidden'); $('arError').classList.add('hidden'); last = null; $('arInput').focus(); });
+    ['arLsa', 'arCm', 'arExch'].forEach(function (id) { $(id).addEventListener('change', function () { if (last) run(); }); });
+    $('arCopy').addEventListener('click', function () { if (last) copy(ticket()); });
+    $('arCmdCopy').addEventListener('click', function () { copy($('arCmd').textContent); });
+    root.addEventListener('click', function (e) { if (e.target.id === 'arKqlCopy' && last) copy(last.kql); });
+})();
+</script>
