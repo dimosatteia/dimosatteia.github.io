@@ -1,7 +1,7 @@
 ---
 title: "Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου"
-date: 2026-11-02T20:00:00+02:00
-lastmod: 2026-11-02T20:00:00+02:00
+date: 2026-11-02T20:55:00+02:00
+lastmod: 2026-11-02T20:55:00+02:00
 draft: false
 url: "/apokodikopoiisi-asr-rules/"
 slug: apokodikopoiisi-asr-rules
