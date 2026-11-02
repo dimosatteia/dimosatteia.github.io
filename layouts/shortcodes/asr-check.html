@@ -6,7 +6,7 @@
        Το κείμενο διαβάζεται ΜΟΝΟ μέσα στον browser του επισκέπτη. Δεν στέλνεται πουθενά.
        Χρήση: {{< asr-check >}} */ -}}
 {{- $data := hugo.Data.asr_rules -}}
-{{- $cmd := `$p = Get-MpPreference;0..([math]::Min($p.AttackSurfaceReductionRules_Ids.Count,$p.AttackSurfaceReductionRules_Actions.Count)-1) | % {[pscustomobject]@{Id=$p.AttackSurfaceReductionRules_Ids[$_];Action=$p.AttackSurfaceReductionRules_Actions[$_]}} | Format-Table -AutoSize` -}}
+{{- $cmd := `$p = Get-MpPreference; if (-not $p.AttackSurfaceReductionRules_Ids) { 'No ASR rules configured' } else { 0..($p.AttackSurfaceReductionRules_Ids.Count-1) | % { [pscustomobject]@{Id=$p.AttackSurfaceReductionRules_Ids[$_];Action=$p.AttackSurfaceReductionRules_Actions[$_]} } | Format-Table -AutoSize }` -}}
 <style>
 #arTool .arMono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 #arTool .arPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
@@ -23,7 +23,7 @@
 
     <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed mb-4">
         <p class="font-semibold text-slate-100 mb-1">1. Τρέξε στη συσκευή, σε PowerShell</p>
-        <p class="mb-2">Η εντολή είναι της Microsoft και δείχνει κάθε κανόνα με την κατάστασή του. Δεν αλλάζει τίποτα. Αν θες και τις εξαιρέσεις, τρέξε σκέτο <span class="arMono text-slate-100">Get-MpPreference</span> και επικόλλησε όλη την έξοδο.</p>
+        <p class="mb-2">Η εντολή βασίζεται σε αυτή της Microsoft και δείχνει κάθε κανόνα με την κατάστασή του. Δεν αλλάζει τίποτα. Αν η συσκευή δεν έχει κανέναν κανόνα, γράφει «No ASR rules configured». Αν θες και τις εξαιρέσεις, τρέξε σκέτο <span class="arMono text-slate-100">Get-MpPreference</span> και επικόλλησε όλη την έξοδο.</p>
         <pre id="arCmd" class="arMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200">{{ $cmd }}</pre>
         <button type="button" id="arCmdCopy" class="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-slate-500">Αντιγραφή εντολής</button>
     </div>
@@ -94,7 +94,7 @@
         var ids = grab(raw, 'AttackSurfaceReductionRules_Ids'), acts = grab(raw, 'AttackSurfaceReductionRules_Actions');
         if (ids != null) {
             var cut = /\.\.\.|…/.test(ids) || (acts && /\.\.\.|…/.test(acts));
-            if (cut) res.warns.push('Η λίστα κόπηκε από το PowerShell (εμφανίζεται «…»), οπότε λείπουν κανόνες. Τρέξε την εντολή της Microsoft στο βήμα 1, που δείχνει όλους τους κανόνες σε γραμμές.');
+            if (cut) res.warns.push('Η λίστα κόπηκε από το PowerShell (εμφανίζεται «…»), οπότε λείπουν κανόνες. Τρέξε την εντολή του βήματος 1, που δείχνει όλους τους κανόνες σε γραμμές.');
             var I = list(ids.replace(/\.\.\.|…/g, '')).filter(function (x) { return new RegExp('^' + GUID + '$').test(x); }), A = acts ? list(acts.replace(/\.\.\.|…/g, '')) : [];
             if (!cut && A.length !== I.length) res.warns.push('Τα GUID (' + I.length + ') δεν είναι όσα και οι τιμές (' + A.length + '). Τα αντιστοίχισα με τη σειρά, αλλά καλύτερα τρέξε την εντολή της Microsoft στο βήμα 1.');
             I.forEach(function (g, i) { var c = A[i] != null ? code(A[i]) : null; if (c != null) put(g, c); });
@@ -210,7 +210,7 @@
         if (raw.length > 300000) return fail('Το κείμενο είναι πολύ μεγάλο. Επικόλλησε μόνο την έξοδο της εντολής.');
         var p = parse(raw);
         if (!p.order.length && !p.warns.length) {
-            if (/AttackSurfaceReductionRules_Ids\s*:\s*(\{\s*\}|$)/im.test(raw)) return fail('Η συσκευή δεν έχει κανέναν κανόνα ASR ρυθμισμένο: όλοι είναι Not configured. Ξεκίνα από τους τρεις κανόνες της φάσης 1.');
+            if (/No ASR rules configured|Cannot index into a null array/i.test(raw) || /AttackSurfaceReductionRules_Ids\s*:\s*(\{\s*\}|$)/im.test(raw)) return fail('Η συσκευή δεν έχει κανέναν κανόνα ASR ρυθμισμένο: όλοι είναι Not configured. Ξεκίνα από τους τρεις κανόνες της φάσης 1.');
             return fail('Δεν βρέθηκε κανόνας ASR με κατάσταση. Τρέξε την εντολή του βήματος 1 και επικόλλησε όλη την έξοδο.');
         }
         render(p, analyse(p, opts()), opts());
