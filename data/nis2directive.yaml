@@ -212,6 +212,9 @@ articles:
     - 15
     - 17
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
       url: /posts/previews/vulnerability-remediation-agent-intune/
     - &id011
@@ -277,6 +280,9 @@ articles:
     - 14
     - 21
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - *id003
     - *id004
     - *id005
@@ -327,6 +333,9 @@ articles:
     - 11
     - 13
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts
@@ -378,6 +387,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts

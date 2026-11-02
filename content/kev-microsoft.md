@@ -116,6 +116,10 @@ mitre: ["T1190", "T1203", "T1068", "M1051", "M1016"]
 > 📖 **Αναλυτικά:** [Microsoft Defender Vulnerability Management: η μηχανή ιεράρχησης](/posts/microsoft-defender-vulnerability-management-series/03-mdvm-the-prioritization-engine/)
 {{< /if-published >}}
 
+{{< if-published page="/apokodikopoiisi-asr-rules" >}}
+> 🛠️ **Μέχρι να έρθει η ενημέρωση;** [Δες ποιοι κανόνες ASR του Microsoft Defender προστατεύουν τη συσκευή σου](/apokodikopoiisi-asr-rules/) και σταματούν τα συνηθισμένα πρώτα βήματα μιας επίθεσης.
+{{< /if-published >}}
+
 ## Πώς το χρησιμοποιείς στη συμμόρφωση
 
 Ο κατάλογος KEV είναι μια επίσημη, δημόσια πηγή πληροφοριών για ευπάθειες. Τον χρησιμοποιείς ως τεκμήριο ότι παρακολουθείς ενεργά τις απειλές και ότι ιεραρχείς τις ενημερώσεις με βάση τον πραγματικό κίνδυνο.

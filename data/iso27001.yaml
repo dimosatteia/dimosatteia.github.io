@@ -253,6 +253,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - &id002
       title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
       url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
@@ -929,6 +932,9 @@ articles:
     kya:
     - 11
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - *id020
     - *id021
   - code: A.7.11
@@ -1013,6 +1019,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - *id005
     - *id025
     - title: 'Microsoft Defender for Identity: Πώς οι sensors εντοπίζουν επιθέσεις μετά την παραβίαση'
@@ -1055,6 +1064,9 @@ articles:
     kya:
     - 13
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts
@@ -1097,6 +1109,9 @@ articles:
     kya:
     - 20
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - *id028
     - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
       url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
@@ -1165,6 +1180,9 @@ articles:
     kya:
     - 14
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - *id023
     - *id024
     - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
@@ -1278,6 +1296,9 @@ articles:
     kya:
     - 24
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts

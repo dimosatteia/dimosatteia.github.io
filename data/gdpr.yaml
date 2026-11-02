@@ -403,6 +403,12 @@ articles:
     - A.8.5
     - A.8.16
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts

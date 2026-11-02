@@ -379,6 +379,9 @@ articles:
     verified: 2026-10-14
     planned: 'Άρθρο για το device control: έρχεται.'
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
@@ -515,6 +518,9 @@ articles:
     verified: 2026-10-14
     license: Microsoft Entra ID Governance ή Microsoft Entra ID P2 (access reviews και entitlement management)
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Preview: AD Group Enforcement στο Entra Cloud Sync'
       url: /posts/previews/ad-group-enforcement-cloud-sync/
     - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
@@ -531,6 +537,9 @@ articles:
     verified: 2026-10-18
     license: Microsoft Entra ID P2 (Privileged Identity Management)
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: Microsoft Secure Score ως εργαλείο GRC για ISO 27001 & NIS2
       url: /posts/secure-score-grc-part-0-intro/
     - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
@@ -559,6 +568,9 @@ articles:
     evidence: 'Entra admin center: Authentication methods, Policies και User registration details.'
     verified: 2026-10-14
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts
@@ -578,6 +590,9 @@ articles:
     verified: 2026-10-14
     license: Microsoft Entra ID P2 (Microsoft Entra ID Protection, για policies με βάση sign-in risk ή user risk)
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts
@@ -634,6 +649,9 @@ articles:
     evidence: 'Intune: Devices, Configuration και Compliance, per-policy device status.'
     verified: 2026-10-14
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
       url: /posts/entra-tenant-governance-ga/
     - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
@@ -1097,6 +1115,9 @@ articles:
     verified: 2026-10-14
     comment: Οι δικτυακές συσκευές δεν καλύπτονται από το Microsoft Defender for Endpoint.
     posts:
+    - title: 'Εργαλείο: Αποκωδικοποιητής ASR rules: ποιοι κανόνες του Microsoft Defender προστατεύουν τη συσκευή σου'
+      url: /apokodikopoiisi-asr-rules/
+      page: /apokodikopoiisi-asr-rules
     - title: Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ
       url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
     - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
@@ -1433,6 +1454,9 @@ articles:
     verified: 2026-10-18
     license: Microsoft Defender XDR (Microsoft 365 E5 ή αντίστοιχο) για advanced hunting, custom detection rules, Defender for Cloud Apps και Defender for Identity
     posts:
+    - title: 'Εργαλείο: Τι λέει αυτό το token; Αποκωδικοποίηση access token του Microsoft Entra ID στα Ελληνικά'
+      url: /ti-leei-auto-to-token/
+      page: /ti-leei-auto-to-token
     - title: 'Εργαλείο: Τι σημαίνει αυτό το AADSTS; Μεταφραστής σφαλμάτων σύνδεσης του Microsoft Entra ID'
       url: /ti-simainei-aadsts/
       page: /ti-simainei-aadsts
