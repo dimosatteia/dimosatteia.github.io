@@ -3,13 +3,13 @@
  "license": "CC BY-NC 4.0",
  "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
  "units": "bytes",
- "start": "2026-11-02T17:00:00Z",
- "end": "2026-11-03T17:00:00Z",
- "lastUpdated": "2026-11-03T16:15:00Z",
- "generated": "2026-11-03T17:55:23Z",
+ "start": "2026-11-02T23:00:00Z",
+ "end": "2026-11-03T23:00:00Z",
+ "lastUpdated": "2026-11-03T21:15:00Z",
+ "generated": "2026-11-03T23:29:27Z",
  "vectors": [
   {
-   "name": "Bogon Flood",
+   "name": "SYN Flood",
    "pct": 100.0
   }
  ],
@@ -17,61 +17,42 @@
   {
    "name": "Διαδίκτυο και τηλεπικοινωνίες",
    "en": "Internet and Telecom",
-   "pct": 67.4
+   "pct": 48.2
   },
   {
    "name": "Υπολογιστές και ηλεκτρονικά",
    "en": "Computer and Electronics",
-   "pct": 26.1
-  },
-  {
-   "name": "Επιχειρήσεις και βιομηχανία",
-   "en": "Business and Industry",
-   "pct": 3.1
-  },
-  {
-   "name": "Professional Services",
-   "en": "Professional Services",
-   "pct": 1.6
+   "pct": 42.1
   },
   {
    "name": "News, Media, and Publications",
    "en": "News, Media, and Publications",
-   "pct": 0.7
+   "pct": 4.0
+  },
+  {
+   "name": "Χρηματοοικονομικά",
+   "en": "Finance",
+   "pct": 2.4
+  },
+  {
+   "name": "Professional Services",
+   "en": "Professional Services",
+   "pct": 1.1
   }
  ],
  "origins": [
   {
-   "code": "PK",
-   "name": "Πακιστάν",
-   "pct": 100.0
+   "code": "DE",
+   "name": "Γερμανία",
+   "pct": 75.0
+  },
+  {
+   "code": "RU",
+   "name": "Ρωσία",
+   "pct": 25.0
   }
  ],
  "series": [
-  {
-   "t": "2026-11-02T17:00:00Z",
-   "v": 0.0
-  },
-  {
-   "t": "2026-11-02T18:00:00Z",
-   "v": 0.1
-  },
-  {
-   "t": "2026-11-02T19:00:00Z",
-   "v": 0.0
-  },
-  {
-   "t": "2026-11-02T20:00:00Z",
-   "v": 0.0
-  },
-  {
-   "t": "2026-11-02T21:00:00Z",
-   "v": 0.0
-  },
-  {
-   "t": "2026-11-02T22:00:00Z",
-   "v": 1.0
-  },
   {
    "t": "2026-11-02T23:00:00Z",
    "v": 0.0
@@ -139,7 +120,31 @@
   {
    "t": "2026-11-03T15:00:00Z",
    "v": 0.0
+  },
+  {
+   "t": "2026-11-03T16:00:00Z",
+   "v": 0.0
+  },
+  {
+   "t": "2026-11-03T17:00:00Z",
+   "v": 0.0
+  },
+  {
+   "t": "2026-11-03T18:00:00Z",
+   "v": 0.0
+  },
+  {
+   "t": "2026-11-03T19:00:00Z",
+   "v": 1.0
+  },
+  {
+   "t": "2026-11-03T20:00:00Z",
+   "v": 0.0
+  },
+  {
+   "t": "2026-11-03T21:00:00Z",
+   "v": 0.0
   }
  ],
- "peak": "2026-11-02T22:00:00Z"
+ "peak": "2026-11-03T19:00:00Z"
 }
