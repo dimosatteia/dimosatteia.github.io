@@ -4,7 +4,7 @@ seoTitle: "GA: CallActivityEvents για κλήσεις Teams στο Defender XD
 slug: "defender-xdr-callactivityevents-teams-calls-advanced-hunting"
 date: 2026-11-06T08:15:00+02:00
 lastmod: 2026-11-06T08:15:00+02:00
-draft: true
+draft: false
 keywords:
   - CallActivityEvents table
   - advanced hunting Microsoft Teams calls

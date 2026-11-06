@@ -4,7 +4,7 @@ seoTitle: "Preview: Posture policies και exemptions στο Defender"
 slug: "defender-for-cloud-posture-policies-exemptions-defender-portal"
 date: 2026-11-06T08:20:00+02:00
 lastmod: 2026-11-06T08:20:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender for Cloud
   - posture policies Defender portal

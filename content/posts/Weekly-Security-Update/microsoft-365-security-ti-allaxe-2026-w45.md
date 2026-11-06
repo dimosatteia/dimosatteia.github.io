@@ -3,7 +3,7 @@ title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 45/2026)"
 slug: "microsoft-365-security-ti-allaxe-2026-w45"
 date: 2026-11-06T08:00:00+02:00
 lastmod: 2026-11-06T08:00:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender νέα
   - Defender RBAC αυτόματη ενεργοποίηση

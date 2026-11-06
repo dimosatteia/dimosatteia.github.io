@@ -4,7 +4,7 @@ seoTitle: "GA: Emails associated with alerts και για κλικ σε URLs"
 slug: "defender-rbac-emails-associated-with-alerts-url-clicks"
 date: 2026-11-06T08:10:00+02:00
 lastmod: 2026-11-06T08:10:00+02:00
-draft: true
+draft: false
 keywords:
   - Emails associated with alerts
   - Microsoft Defender unified RBAC
