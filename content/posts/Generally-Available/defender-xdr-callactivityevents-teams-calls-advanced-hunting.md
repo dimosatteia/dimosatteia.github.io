@@ -42,12 +42,12 @@ verification:
     status: "Generally Available"
     license: "Defender for Office 365 Plan 2 (σύμφωνα με την ανακοίνωση)"
     source: "https://mc.merill.net/message/MC1532241"
-    verified: 2026-11-05
+    verified: 2026-11-06
   - feature: "CallActivityEvents table: πεδία και πηγή δεδομένων (Defender for Office 365)"
     status: "Generally Available"
     license: "Defender for Office 365"
     source: "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-callactivityevents-table"
-    verified: 2026-11-05
+    verified: 2026-11-06
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1566.004", "T1684.001", "M1047"]
 ---
@@ -96,7 +96,7 @@ CallActivityEvents
 
 1. **Ενημέρωσε το SOC και τους threat hunters.** Στο Microsoft Defender portal, **Hunting > Advanced hunting**, άνοιξε το schema του `CallActivityEvents` από την καρτέλα **Schema** και δες τα πεδία με **See preview data**.
 2. **Έλεγξε τα δικαιώματα.** Οι analysts χρειάζονται δικαιώματα advanced hunting. Με unified RBAC, η σελίδα του advanced hunting στο Microsoft Learn συνδέει τους πίνακες email και collaboration με το **Email & collaboration metadata (read)**. Ο νέος πίνακας δεν αναφέρεται ακόμη εκεί, οπότε δοκίμασε με έναν λογαριασμό analyst ότι τον βλέπει.
-3. **Αν στέλνεις δεδομένα σε SIEM,** έλεγξε τη ρύθμιση του streaming API ή του Sentinel για τον νέο πίνακα, και υπολόγισε το επιπλέον volume.
+3. **Αν στέλνεις δεδομένα σε SIEM,** έλεγξε τη ρύθμιση του streaming API ή του Sentinel για τον νέο πίνακα, και υπολόγισε το επιπλέον volume. Σύμφωνα με τη σελίδα αναφοράς του Azure Monitor, ο πίνακας `CallActivityEvents` στο Sentinel υποστηρίζει Basic και Auxiliary/Lake tier, οπότε μπορείς να τον κρατήσεις φθηνότερα αν δεν τον χρειάζεσαι για analytics rules.
 4. **Πρόσθεσε τον πίνακα στη διαδικασία διερεύνησης** για phishing και κοινωνική μηχανική μέσω Teams: από μια αναφορά χρήστη ή ένα alert, στο `MessageEvents`, και μετά στο `CallActivityEvents` με το `ThreadId`.
 5. **Συζήτησε με τον DPO** τον σκοπό και τη διάρκεια χρήσης. Στα πεδία του πίνακα δεν υπάρχει περιεχόμενο κλήσεων, υπάρχει όμως ποιος μίλησε με ποιον, πότε και από πού.
 
@@ -119,8 +119,8 @@ CallActivityEvents
 
 {{< verification >}}
 
-Επιπλέον πηγές: [CallActivityEvents table](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-callactivityevents-table) · [Security Operations Guide for Teams protection in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-support-teams-sec-ops-guide) · [Proactively hunt for threats with advanced hunting in Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview) · [What's new in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/defender-for-office-365-whats-new) · Message Center MC1532241 (30 Οκτωβρίου 2026), όπως αρχειοθετείται στο mc.merill.net. Οι ημερομηνίες και η άδεια προέρχονται από την ανακοίνωση. Το query είναι παράδειγμα που δεν δοκιμάστηκε σε tenant. Οι ανακοινώσεις διαφέρουν ανά tenant, οπότε δες την στο δικό σου Message Center.
+Επιπλέον πηγές: [CallActivityEvents table](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-callactivityevents-table) · [Security Operations Guide for Teams protection in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/mdo-support-teams-sec-ops-guide) · [Proactively hunt for threats with advanced hunting in Microsoft Defender](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview) · [CallActivityEvents (Azure Monitor Logs reference)](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/callactivityevents) · [What's new in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/defender-for-office-365-whats-new) · Message Center MC1532241 (30 Οκτωβρίου 2026), όπως αρχειοθετείται στο mc.merill.net. Οι ημερομηνίες και η άδεια προέρχονται από την ανακοίνωση. Το query είναι παράδειγμα που δεν δοκιμάστηκε σε tenant. Οι ανακοινώσεις διαφέρουν ανά tenant, οπότε δες την στο δικό σου Message Center.
 
 Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 45/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w45/).
 
-Τελευταίος έλεγχος στοιχείων: 5 Νοεμβρίου 2026.
+Τελευταίος έλεγχος στοιχείων: 6 Νοεμβρίου 2026.

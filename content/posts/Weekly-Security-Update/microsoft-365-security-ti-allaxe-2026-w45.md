@@ -32,22 +32,27 @@ verification:
     status: "Not stated"
     license: "Defender for Office 365 Plan 2, ξεχωριστά ή μέσω Microsoft 365 E5 (σύμφωνα με την ανακοίνωση)"
     source: "https://learn.microsoft.com/en-us/defender-xdr/manage-rbac"
-    verified: 2026-11-05
+    verified: 2026-11-06
   - feature: "Defender XDR: το δικαίωμα Emails associated with alerts καλύπτει και alerts για κλικ σε URLs"
     status: "Generally Available"
     license: "Δεν αναφέρεται"
     source: "https://learn.microsoft.com/en-us/defender-xdr/custom-permissions-details"
-    verified: 2026-11-05
+    verified: 2026-11-06
   - feature: "Defender XDR: πίνακας CallActivityEvents για κλήσεις και συσκέψεις Teams στο advanced hunting"
     status: "Generally Available"
     license: "Defender for Office 365 Plan 2 (σύμφωνα με την ανακοίνωση)"
     source: "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-callactivityevents-table"
-    verified: 2026-11-05
+    verified: 2026-11-06
   - feature: "Defender for Cloud: posture policies και exemptions στο Defender portal για Azure"
     status: "Public Preview"
     license: "Ενεργό επιλέξιμο Defender plan. Defender CSPM για posture recommendations σε περιβάλλοντα Managed in Defender"
     source: "https://learn.microsoft.com/en-us/security-exposure-management/manage-posture-policies-defender"
-    verified: 2026-11-05
+    verified: 2026-11-06
+  - feature: "Defender for Cloud: Defender for SQL Servers on Machines σε Arc SQL Server με Arc proxy"
+    status: "Not stated"
+    license: "Defender for SQL Servers on Machines (μέρος του Defender for Databases)"
+    source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-usage"
+    verified: 2026-11-06
 ---
 
 ## Με μια ματιά
@@ -86,7 +91,7 @@ verification:
 
 **Τι αλλάζει.** Ο πίνακας `CallActivityEvents` καταγράφει δραστηριότητες μέσα σε κλήσεις και συσκέψεις Teams: αν πέτυχαν ή απέτυχαν, ποιος τις έκανε και αν τις έκανε στον εαυτό του ή σε άλλο συμμετέχοντα. Για αυτόν που κάνει την ενέργεια δίνει ταυτότητα, τύπο λογαριασμού (για παράδειγμα Entra, consumer ή PSTN), οργανισμό, περιοχή του tenant και πλατφόρμα Teams. Δίνει επίσης τον διοργανωτή και τον tenant του. Συνδέεται με το `MessageEvents` μέσω του `ThreadId`. Σύμφωνα με την ανακοίνωση, τα ίδια δεδομένα θα είναι διαθέσιμα και μέσω του event streaming API και του Microsoft Sentinel API.
 
-**Τι να κάνεις.** Δώσε τον πίνακα στο SOC και στους threat hunters, με την ίδια λογική που ισχύει για τα μηνύματα Teams: μια απόπειρα κοινωνικής μηχανικής μπορεί να γίνει και με κλήση, όχι μόνο με μήνυμα. Έλεγξε ότι οι analysts έχουν δικαιώματα advanced hunting. Αν στέλνεις δεδομένα στο Sentinel ή σε άλλο SIEM μέσω streaming API, έλεγξε τη ρύθμιση ingestion και το κόστος.
+**Τι να κάνεις.** Δώσε τον πίνακα στο SOC και στους threat hunters, με την ίδια λογική που ισχύει για τα μηνύματα Teams: μια απόπειρα κοινωνικής μηχανικής μπορεί να γίνει και με κλήση, όχι μόνο με μήνυμα. Έλεγξε ότι οι analysts έχουν δικαιώματα advanced hunting. Αν στέλνεις δεδομένα στο Sentinel ή σε άλλο SIEM μέσω streaming API, έλεγξε τη ρύθμιση ingestion και το κόστος. Σύμφωνα με το Microsoft Learn, ο πίνακας στο Sentinel υποστηρίζει και Basic και Auxiliary/Lake tier, κάτι που βοηθά στο κόστος.
 
 **Αναλυτικά:** [Generally Available: Ο πίνακας CallActivityEvents φέρνει τις κλήσεις Teams στο advanced hunting](/posts/generally-available/defender-xdr-callactivityevents-teams-calls-advanced-hunting/)
 
@@ -103,6 +108,16 @@ verification:
 **Αναλυτικά:** [Preview: Posture policies και exemptions του Defender for Cloud στο Defender portal](/posts/previews/defender-for-cloud-posture-policies-exemptions-defender-portal/)
 
 **Πηγή:** [Manage posture policies](https://learn.microsoft.com/en-us/security-exposure-management/manage-posture-policies-defender) · [Exempt resources from recommendations (Defender portal)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/exempt-resource?pivots=defender-portal) · [What's new in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes)
+
+### 5. Defender for Cloud: το Defender for SQL Servers on Machines καλύπτει και Arc SQL Server πίσω από Arc proxy
+
+**Φάση:** η σελίδα «What's new» το χαρακτηρίζει «Update» στις 4 Νοεμβρίου 2026, χωρίς φάση Preview ή GA · **Άδεια:** αφορά όσους έχουν το Defender for SQL Servers on Machines, που περιλαμβάνεται στο Defender for Databases plan
+
+**Τι αλλάζει.** Από την έκδοση **2.0.3585.403** του Defender for SQL extension, υποστηρίζονται και τα Azure Arc SQL Server instances με ενεργό Arc proxy. Έτσι, servers χωρίς άμεση πρόσβαση στο internet παίρνουν όλες τις δυνατότητες του plan μέσω του proxy. Η έκδοση διατίθεται προς το παρόν μόνο με χειροκίνητη ενημέρωση. Η αυτόματη διάθεση δεν έχει ξεκινήσει, για να έχεις χρόνο να ελέγξεις ποια resources επηρεάζονται. Το Microsoft Learn προειδοποιεί ότι η επέκταση της κάλυψης μπορεί να προσθέσει χρεώσιμα resources και να αυξήσει το κόστος.
+
+**Τι να κάνεις.** Βρες ποια Arc machines με SQL Server έχουν ρυθμισμένο proxy. Το Microsoft Learn δίνει έτοιμο script PowerShell με Azure CLI. Αποφάσισε αν θέλεις κάλυψη σε αυτά. Αν όχι, απενεργοποίησε το plan σε επίπεδο resource πριν ξεκινήσει η αυτόματη διάθεση. Αν ναι, ενημέρωσε χειροκίνητα το extension και επιβεβαίωσε ότι τα μηχανήματα εμφανίζονται ως προστατευμένα.
+
+**Πηγή:** [Enable Defender for SQL Servers on Machines](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-usage) · [What's new in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes)
 
 ## Προσοχή αυτή την εβδομάδα
 
@@ -129,15 +144,15 @@ verification:
 
 Για αυτό το τεύχος ελέγχθηκαν το αρχείο mc.merill.net (αναρτήσεις Message Center για τα προϊόντα Defender που δημοσιεύθηκαν ή ενημερώθηκαν από τις 31 Οκτωβρίου έως τις 6 Νοεμβρίου 2026, και ανακοινώσεις Defender παλαιότερων εβδομάδων με ημερομηνίες μέσα στις επόμενες δύο εβδομάδες), οι σελίδες «What's new» των Defender XDR, Defender for Endpoint, Defender for Office 365, Defender for Identity, Defender for Cloud Apps, Defender for Cloud και Microsoft Sentinel, και τα blogs του Microsoft Defender στο Tech Community. Η ροή RSS του mc.merill.net δεν ήταν προσβάσιμη σε αυτόν τον έλεγχο, οπότε οι ανακοινώσεις εντοπίστηκαν μέσω αναζήτησης και κάθε μία ανοίχτηκε στη δική της σελίδα. Μπορεί να υπάρχουν ανακοινώσεις της εβδομάδας που δεν εντοπίστηκαν.
 
-Τι βρέθηκε στις σελίδες «What's new»: του Defender XDR δεν έχει καταχωρίσεις μετά τον Σεπτέμβριο. Του Defender for Endpoint έχει για τον Νοέμβριο μόνο ένα build για macOS. Του Defender for Office 365 έχει για τον Οκτώβριο τον πίνακα `CallActivityEvents` (αλλαγή 3), το πεδίο `ApproverUpn` στον πίνακα `EmailPostDeliveryEvents` και την αναφορά συσκέψεων στο Teams, που καλύπτει ήδη το [άρθρο για το Report a call και το Report a meeting](/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/). Του Defender for Identity και του Defender for Cloud Apps δεν έχουν κάτι νεότερο από όσα κάλυψαν τα [τεύχη 42](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w42/) έως [44](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w44/). Του Defender for Cloud προσθέτει τα posture policies και τα exemptions στις 28 Οκτωβρίου (αλλαγή 4), που δεν είχαν μπει στο τεύχος 44. Του Microsoft Sentinel δεν έχει καταχωρίσεις Νοεμβρίου. Στα blogs του Tech Community δεν βρέθηκαν νέες αναρτήσεις ή webinars για τα προϊόντα Defender και Sentinel μέσα στην εβδομάδα, γι' αυτό δεν υπάρχει ενότητα «Νέοι πόροι».
+Τι βρέθηκε στις σελίδες «What's new»: του Defender XDR δεν έχει καταχωρίσεις μετά τον Σεπτέμβριο. Του Defender for Endpoint έχει για τον Νοέμβριο μόνο ένα build για macOS. Του Defender for Office 365 έχει για τον Οκτώβριο τον πίνακα `CallActivityEvents` (αλλαγή 3), το πεδίο `ApproverUpn` στον πίνακα `EmailPostDeliveryEvents` και την αναφορά συσκέψεων στο Teams, που καλύπτει ήδη το [άρθρο για το Report a call και το Report a meeting](/posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/). Του Defender for Identity και του Defender for Cloud Apps δεν έχουν κάτι νεότερο από όσα κάλυψαν τα [τεύχη 42](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w42/) έως [44](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w44/). Του Defender for Cloud προσθέτει τα posture policies και τα exemptions στις 28 Οκτωβρίου (αλλαγή 4), που δεν είχαν μπει στο τεύχος 44, και την υποστήριξη Arc proxy για το Defender for SQL Servers on Machines στις 4 Νοεμβρίου (αλλαγή 5). Του Microsoft Sentinel δεν έχει καταχωρίσεις Νοεμβρίου. Το public preview του Defender Vulnerability Management για ευπάθειες σε πακέτα Node.js, Python και Java ([MC1490909](https://mc.merill.net/message/MC1490909)) τρέχει σύμφωνα με την ανακοίνωση από τα τέλη Οκτωβρίου έως τα τέλη Νοεμβρίου, αλλά ούτε σε αυτόν τον έλεγχο βρέθηκε σελίδα στο Microsoft Learn, οπότε μένει εκτός τεύχους. Στα blogs του Tech Community δεν βρέθηκαν νέες αναρτήσεις ή webinars για τα προϊόντα Defender και Sentinel μέσα στην εβδομάδα, γι' αυτό δεν υπάρχει ενότητα «Νέοι πόροι».
 
 Οι ανακοινώσεις MC1537494, MC1536045 και MC1532241 διαβάστηκαν από το έγκυρο, δημόσιο και ανεξάρτητο αρχείο του Microsoft 365 Message Center, mc.merill.net, που το συντηρεί η κοινότητα και όχι η Microsoft. Δεν διαβάστηκαν σε Message Center κάποιου tenant. Το πόσο επιβεβαιώνονται από τη Microsoft διαφέρει ανά θέμα:
 
 - **Defender RBAC (MC1537494):** η αυτόματη ενεργοποίηση, η άδεια και οι ημερομηνίες προέρχονται μόνο από την ανακοίνωση. Το Microsoft Learn γράφει ακόμη ότι τα workloads ενεργοποιούνται χειροκίνητα.
 - **Emails associated with alerts (MC1536045):** το Microsoft Learn επιβεβαιώνει τα τέσσερα alerts που καλύπτει το δικαίωμα.
 - **CallActivityEvents (MC1532241):** το Microsoft Learn επιβεβαιώνει τον πίνακα και τα πεδία. Η άδεια και οι ημερομηνίες προέρχονται από την ανακοίνωση.
-- **Posture policies και exemptions:** δεν υπάρχει ανακοίνωση Message Center. Τα στοιχεία προέρχονται από το Microsoft Learn.
+- **Posture policies και exemptions, Arc proxy για Defender for SQL:** δεν βρέθηκε ανακοίνωση Message Center. Τα στοιχεία προέρχονται από το Microsoft Learn.
 
 Οι ανακοινώσεις και οι ημερομηνίες τους διαφέρουν ανά tenant. Πριν ενεργήσεις, δες την αντίστοιχη ανακοίνωση στο δικό σου Message Center.
 
-Τελευταίος έλεγχος αδειών και στοιχείων: 5 Νοεμβρίου 2026.
+Τελευταίος έλεγχος αδειών και στοιχείων: 6 Νοεμβρίου 2026.

@@ -41,17 +41,17 @@ verification:
     status: "Public Preview"
     license: "Ενεργό επιλέξιμο Defender plan"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes"
-    verified: 2026-11-05
+    verified: 2026-11-06
   - feature: "Posture policies: MDC Baseline Policy, custom policies, δικαιώματα, Defender CSPM αντί για Foundational CSPM"
     status: "Public Preview"
     license: "Defender CSPM για posture recommendations σε περιβάλλοντα Managed in Defender"
     source: "https://learn.microsoft.com/en-us/security-exposure-management/manage-posture-policies-defender"
-    verified: 2026-11-05
+    verified: 2026-11-06
   - feature: "Exemptions στο Defender portal: scope, conditions, αιτιολογία, υποχρεωτική λήξη, Azure exemptions χωρίς μεταφορά"
     status: "Public Preview"
     license: "Δεν αναφέρεται"
     source: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/exempt-resource?pivots=defender-portal"
-    verified: 2026-11-05
+    verified: 2026-11-06
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1530", "M1047"]
 ---
@@ -131,4 +131,4 @@ mitre: ["T1530", "M1047"]
 
 Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 45/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w45/).
 
-Τελευταίος έλεγχος στοιχείων: 5 Νοεμβρίου 2026.
+Τελευταίος έλεγχος στοιχείων: 6 Νοεμβρίου 2026.

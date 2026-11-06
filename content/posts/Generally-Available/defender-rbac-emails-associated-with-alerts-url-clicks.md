@@ -41,12 +41,12 @@ verification:
     status: "Generally Available"
     license: "Δεν αναφέρεται"
     source: "https://mc.merill.net/message/MC1536045"
-    verified: 2026-11-05
+    verified: 2026-11-06
   - feature: "Unified RBAC: τα τέσσερα alerts που υποστηρίζει το Emails associated with alerts"
     status: "Generally Available"
     license: "Δεν αναφέρεται"
     source: "https://learn.microsoft.com/en-us/defender-xdr/custom-permissions-details"
-    verified: 2026-11-05
+    verified: 2026-11-06
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1566.002", "T1204.001", "M1018"]
 ---
@@ -121,4 +121,4 @@ mitre: ["T1566.002", "T1204.001", "M1018"]
 
 Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 45/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w45/).
 
-Τελευταίος έλεγχος στοιχείων: 5 Νοεμβρίου 2026.
+Τελευταίος έλεγχος στοιχείων: 6 Νοεμβρίου 2026.
