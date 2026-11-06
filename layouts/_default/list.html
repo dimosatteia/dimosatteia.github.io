@@ -26,7 +26,7 @@
                         {{- $featured := where $posts "Params.homeHighlight" true -}}
                         {{- with index (union $weekly $featured).ByDate.Reverse 0 -}}
                           {{- $label := "🆕 Νέο άρθρο:" -}}
-                          {{- if in (.Params.series | default slice) "Microsoft 365 Security Weekly" }}{{ $label = "🗓️ Αυτή την εβδομάδα:" }}{{ end -}}
+                          {{- if in (.Params.series | default slice) "Microsoft 365 Security Weekly" }}{{ $label = "🆕 Αυτή την εβδομάδα:" }}{{ end -}}
                           {{- $hl = printf "**%s** [%s](%s)<br>\n\n" $label .Title .RelPermalink -}}
                         {{- end -}}
                         {{ replace .Site.Params.homeInfoParams.Content "%%HIGHLIGHTS%%" $hl | markdownify }}
