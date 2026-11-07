@@ -44,7 +44,7 @@
     <a href="https://thecybersec.gr/poia-adeia-microsoft-365/" class="announce-cta">Δες ποια άδεια χρειάζεσαι →</a>
     </div>
 
-    <!-- Από τη Δευτέρα 09/11/2026 07:30 (ώρα Ελλάδας), όταν δημοσιεύεται: μπαίνει πρώτο και βγαίνει το Defender for Cloud. -->
+    <!-- Από τις 07/11/2026 12:10 (ώρα Ελλάδας), όταν δημοσιεύτηκε: μπαίνει πρώτο και βγαίνει το Defender for Cloud. -->
     <div class="announce-item announce-default announce-from">
     <h3>Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις</h3>
     <p>
@@ -208,7 +208,7 @@
     // Άρθρο EMS: εμφανίζεται από τη στιγμή της δημοσίευσης, με νέο κλειδί ώστε να το δουν και όσοι έκλεισαν το προηγούμενο popup.
     var athensNow = "";
     try { athensNow = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Athens", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date()).replace(" ", "T"); } catch (e) {}
-    var emsLive = athensNow >= "2026-11-09T07:30";
+    var emsLive = athensNow >= "2026-11-07T12:10";
     overlay.querySelectorAll(emsLive ? ".announce-until" : ".announce-from").forEach(function (el) { el.remove(); });
     if (emsLive) STORAGE_KEY = "announce_two_articles_30_v1";
     if (isToday) {

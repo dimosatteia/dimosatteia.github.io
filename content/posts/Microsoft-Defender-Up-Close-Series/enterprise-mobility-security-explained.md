@@ -2,8 +2,8 @@
 title: "Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις"
 seoTitle: "Enterprise Mobility + Security: EMS E3 vs E5, πότε αξίζει"
 slug: enterprise-mobility-security-explained
-date: 2026-11-09T07:00:00+02:00
-lastmod: 2026-11-09T07:00:00+02:00
+date: 2026-11-07T12:10:00+02:00
+lastmod: 2026-11-07T12:10:00+02:00
 draft: false
 keywords:
   - Enterprise Mobility + Security
