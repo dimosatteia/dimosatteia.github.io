@@ -212,6 +212,9 @@ articles:
     - 11
     posts:
     - *id001
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: A.5.13
     scope: ''
     requirement: Labelling of information
@@ -1007,6 +1010,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 4: Advanced Identity Security, από τα passkeys ως τα workload identities'
       url: /posts/conditional-access-series/conditional-access-meros-4-advanced-identity-security/
       page: /posts/Conditional-Access-Series/conditional-access-meros-4-advanced-identity-security
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: A.8.2
     scope: ''
     requirement: Privileged access rights
@@ -1029,6 +1035,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 3: Από τον σχεδιασμό στις πρώτες πολιτικές, με ασφάλεια'
       url: /posts/conditional-access-series/conditional-access-meros-3-ylopoiisi-stin-praxi/
       page: /posts/Conditional-Access-Series/conditional-access-meros-3-ylopoiisi-stin-praxi
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: A.8.3
     scope: ''
     requirement: Information access restriction
@@ -1088,6 +1097,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 4: Advanced Identity Security, από τα passkeys ως τα workload identities'
       url: /posts/conditional-access-series/conditional-access-meros-4-advanced-identity-security/
       page: /posts/Conditional-Access-Series/conditional-access-meros-4-advanced-identity-security
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: A.8.6
     scope: ''
     requirement: Capacity management

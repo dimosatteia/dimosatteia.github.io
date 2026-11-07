@@ -460,6 +460,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.

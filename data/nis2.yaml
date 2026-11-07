@@ -338,6 +338,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: 11.β
     scope: Βασικές και σημαντικές
     requirement: Ταξινόμηση δεδομένων και αγαθών σε επίπεδα, με βάση εμπιστευτικότητα, ακεραιότητα και διαθεσιμότητα.
@@ -352,6 +355,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: 11.γ
     scope: Βασικές και σημαντικές
     requirement: Γραπτή πολιτική και οδηγίες ορθής χρήσης αγαθών και δεδομένων σε όλο τον κύκλο ζωής.
@@ -552,6 +558,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
       url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
       page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: 13.ε
     scope: Βασικές και σημαντικές
     requirement: Προσαρμογή δικαιωμάτων πρόσβασης όταν αλλάζει ή διακόπτεται η απασχόληση.
@@ -620,6 +629,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: 13.η
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση πολιτικών και διαδικασιών ελέγχου πρόσβασης.
@@ -661,6 +673,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: 14.β
     scope: Βασικές και σημαντικές
     requirement: Ασφαλής παραμετροποίηση (secure configuration) με πρότυπα κατασκευαστών ή ανεξάρτητων οργανισμών, και αρχές least functionality και least privilege.

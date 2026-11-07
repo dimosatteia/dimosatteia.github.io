@@ -44,6 +44,17 @@
     <a href="https://thecybersec.gr/poia-adeia-microsoft-365/" class="announce-cta">Δες ποια άδεια χρειάζεσαι →</a>
     </div>
 
+    <!-- Από τη Δευτέρα 09/11/2026 07:30 (ώρα Ελλάδας), όταν δημοσιεύεται: μπαίνει πρώτο και βγαίνει το Defender for Cloud. -->
+    <div class="announce-item announce-default announce-from">
+    <h3>Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις</h3>
+    <p>
+      Τι περιέχουν τα EMS E3 και E5, πώς σχετίζονται με το Microsoft 365 E3,
+      E5 και E7, και πότε το EMS είναι η σωστή αγορά, με λίστα ελέγχου για
+      την απόφαση.
+    </p>
+    <a href="https://thecybersec.gr/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/" class="announce-cta">Δες το άρθρο →</a>
+    </div>
+
     <div class="announce-item announce-default">
     <h3 id="announce-title">Microsoft 365 Security: τι άλλαξε (εβδομάδα 45/2026)</h3>
     <p>
@@ -54,7 +65,7 @@
     <a href="https://thecybersec.gr/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w45/" class="announce-cta">Δες το τεύχος →</a>
     </div>
 
-    <div class="announce-item announce-default">
+    <div class="announce-item announce-default announce-until">
     <h3>Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft</h3>
     <p>
       Τι σου δίνει δωρεάν το Foundational CSPM, πότε αξίζει το Defender CSPM,
@@ -194,6 +205,12 @@
     // Αφαιρούνται από τη σελίδα τα στοιχεία που δεν ισχύουν, ώστε το τελευταίο ορατό να μην έχει διαχωριστική γραμμή.
     var isToday = athensDate === TODAY_ONLY;
     overlay.querySelectorAll(isToday ? ".announce-default" : ".announce-today").forEach(function (el) { el.remove(); });
+    // Άρθρο EMS: εμφανίζεται από τη στιγμή της δημοσίευσης, με νέο κλειδί ώστε να το δουν και όσοι έκλεισαν το προηγούμενο popup.
+    var athensNow = "";
+    try { athensNow = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Athens", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date()).replace(" ", "T"); } catch (e) {}
+    var emsLive = athensNow >= "2026-11-09T07:30";
+    overlay.querySelectorAll(emsLive ? ".announce-until" : ".announce-from").forEach(function (el) { el.remove(); });
+    if (emsLive) STORAGE_KEY = "announce_two_articles_30_v1";
     if (isToday) {
       STORAGE_KEY = "announce_kostos_adeia_v1";
       overlay.querySelectorAll(".announce-today").forEach(function (el) { el.hidden = false; });

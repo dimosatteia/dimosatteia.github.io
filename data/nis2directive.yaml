@@ -376,6 +376,9 @@ articles:
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: 21.2.ι
     scope: Βασικές και σημαντικές
     requirement: Χρήση λύσεων πολυπαραγοντικής επαλήθευσης ταυτότητας ή συνεχούς επαλήθευσης ταυτότητας, ασφαλών φωνητικών επικοινωνιών, επικοινωνιών βίντεο και κειμένου και ασφαλών συστημάτων επικοινωνιών έκτακτης ανάγκης εντός της οντότητας, κατά περίπτωση.
@@ -417,6 +420,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
+      url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
+      page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
   - code: '21.3'
     scope: Βασικές και σημαντικές
     requirement: Για τα μέτρα της αλυσίδας εφοδιασμού λαμβάνονται υπόψη οι ευπάθειες που χαρακτηρίζουν κάθε άμεσο προμηθευτή και πάροχο υπηρεσιών, η συνολική ποιότητα των προϊόντων και των πρακτικών κυβερνοασφάλειάς τους, μαζί με τις ασφαλείς διαδικασίες ανάπτυξής τους, καθώς και τα αποτελέσματα των συντονισμένων εκτιμήσεων κινδύνου του άρθρου 22.
