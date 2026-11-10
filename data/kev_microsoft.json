@@ -2,17 +2,17 @@
  "source": "https://github.com/cisagov/kev-data",
  "catalog": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?f%5B0%5D=vendor_project%3A822",
  "license": "CC0 1.0",
- "catalogVersion": "2026.11.09",
- "dateReleased": "2026-11-09T16:16:16.4275Z",
- "generated": "2026-11-10T01:29:53Z",
- "totalAll": 1772,
- "totalMicrosoft": 390,
+ "catalogVersion": "2026.11.10",
+ "dateReleased": "2026-11-10T19:03:29.8375Z",
+ "generated": "2026-11-10T23:18:14Z",
+ "totalAll": 1779,
+ "totalMicrosoft": 391,
  "ransomwareKnown": 117,
- "added30": 1,
- "added90": 7,
- "addedThisYear": 40,
+ "added30": 2,
+ "added90": 8,
+ "addedThisYear": 41,
  "cvssSource": "https://github.com/CVEProject/cvelistV5",
- "withCvss": 390,
+ "withCvss": 391,
  "products": [
   {
    "name": "Windows",
@@ -24,7 +24,7 @@
   },
   {
    "name": "Office",
-   "count": 29
+   "count": 30
   },
   {
    "name": "Win32k",
@@ -300,6 +300,26 @@
   }
  ],
  "items": [
+  {
+   "cve": "CVE-2026-124194",
+   "product": "Office",
+   "name": "Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability",
+   "added": "2026-11-10",
+   "due": "2026-11-24",
+   "ransomware": false,
+   "desc": "Microsoft Office Outlook contains a missing user interaction for potentially unsafe action vulnerability that allows an unauthorized attacker to perform spoofing over a network.",
+   "cwes": [
+    "CWE-356"
+   ],
+   "msrc": "https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-124194",
+   "cvss": {
+    "v": "3.1",
+    "score": 6.5,
+    "sev": "MEDIUM",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C",
+    "by": "CNA"
+   }
+  },
   {
    "cve": "CVE-2026-96951",
    "product": "Windows",
