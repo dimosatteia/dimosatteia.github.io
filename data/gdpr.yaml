@@ -264,6 +264,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
 - number: 25
   title: Προστασία των δεδομένων ήδη από το σχεδιασμό και εξ ορισμού
   requirements:
@@ -552,6 +555,9 @@ articles:
     - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
       url: /kouiz-phishing/
       page: /kouiz-phishing
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
 - number: 33
   title: Γνωστοποίηση παραβίασης δεδομένων προσωπικού χαρακτήρα στην εποπτική αρχή
   requirements:
@@ -587,6 +593,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: '33.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Ο εκτελών ενημερώνει τον υπεύθυνο χωρίς αδικαιολόγητη καθυστέρηση μόλις αντιληφθεί παραβίαση δεδομένων προσωπικού χαρακτήρα.

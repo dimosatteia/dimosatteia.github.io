@@ -32,7 +32,7 @@
                     <option value="II|std">Παραγωγή, μεταποίηση και διανομή τροφίμων</option>
                     <option value="II|std">Μεταποίηση: ιατροτεχνολογικά, υπολογιστές και ηλεκτρονικά, ηλεκτρολογικός εξοπλισμός, μηχανήματα, οχήματα, λοιπός εξοπλισμός μεταφορών</option>
                     <option value="II|std">Πάροχοι ψηφιακών υπηρεσιών (online marketplaces, μηχανές αναζήτησης, κοινωνικά δίκτυα)</option>
-                    <option value="II|std">Έρευνα (ερευνητικοί οργανισμοί)</option>
+                    <option value="II|research">Έρευνα (ερευνητικοί οργανισμοί)</option>
                 </optgroup>
                 <optgroup label="Άλλο">
                     <option value="none|none">Κανένας από τους παραπάνω (π.χ. λιανικό εμπόριο, ξενοδοχεία, λογιστικά γραφεία)</option>
@@ -57,6 +57,7 @@
                     <option value="3">250 ή περισσότερους</option>
                 </select>
             </label>
+            <p id="scFinHint" class="hidden -mt-3 text-xs text-emerald-400">Με 250 ή περισσότερους εργαζόμενους είσαι μεγάλη επιχείρηση, οπότε οι ερωτήσεις 3 και 4 δεν χρειάζονται.</p>
             <label class="flex flex-col gap-1.5 text-sm text-slate-300">
                 <span><span class="font-mono text-blue-400">3.</span> Ποιος ήταν ο ετήσιος κύκλος εργασιών στην τελευταία κλεισμένη χρήση;</span>
                 <select id="scTurn" class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none focus:border-blue-500">
@@ -184,6 +185,7 @@
             return { level: 'important', why: 'Οι πάροχοι δημόσιων δικτύων ή υπηρεσιών ηλεκτρονικών επικοινωνιών υπάγονται ανεξάρτητα από μέγεθος. Οι μικρές και οι πολύ μικρές επιχειρήσεις είναι σημαντικές οντότητες.', notes: notes };
         }
 
+        if (a.kind === 'research') notes.push('Τα Ανώτατα Εκπαιδευτικά Ιδρύματα εξαιρούνται από τον ν. 5160/2024 (άρθρο 3 παρ. 8Α, όπως προστέθηκε με τον ν. 5256/2025). Αν ο οργανισμός σου είναι ΑΕΙ, δεν υπάγεσαι.');
         if (a.kind === 'fin') notes.push('Για τις χρηματοπιστωτικές οντότητες, η διαχείριση κινδύνων ΤΠΕ και η αναφορά περιστατικών ρυθμίζονται κυρίως από τον Κανονισμό (ΕΕ) 2022/2554 (DORA).');
         if (special.registrar) notes.push('Ως πάροχος υπηρεσιών καταχώρισης ονομάτων τομέα έχεις υποχρέωση εγγραφής στο μητρώο, ανεξάρτητα από μέγεθος.');
 
@@ -223,8 +225,14 @@
         var on = needsSize();
         sizeBlock.disabled = !on;
         sizeBlock.classList.toggle('opacity-40', !on);
+        var fin = on && finNeeded();
+        $('scFinHint').classList.toggle('hidden', !on || fin);
+        [turn, bal].forEach(function (s) { s.disabled = !fin; s.closest('label').classList.toggle('opacity-40', on && !fin); });
     }
+    // Με 250+ εργαζόμενους η επιχείρηση είναι μεγάλη ανεξάρτητα από κύκλο εργασιών και ισολογισμό (Σύσταση 2003/361/ΕΚ).
+    function finNeeded() { return emp.value !== '3'; }
     sector.addEventListener('change', syncForm);
+    emp.addEventListener('change', syncForm);
 
     function fail(msg) { err.textContent = msg; err.classList.remove('hidden'); box.classList.add('hidden'); }
 
@@ -234,7 +242,12 @@
         if (!sector.value) return fail('Διάλεξε τομέα.');
         var parts = sector.value.split('|'), size = 'small';
         if (needsSize()) {
-            if (!emp.value || !turn.value || !bal.value) return fail('Απάντησε στις ερωτήσεις 2, 3 και 4.');
+            var missing = [];
+            if (!emp.value) missing.push('2');
+            if (finNeeded() && !turn.value) missing.push('3');
+            if (finNeeded() && !bal.value) missing.push('4');
+            if (missing.length === 1) return fail('Απάντησε στην ερώτηση ' + missing[0] + '.');
+            if (missing.length > 1) return fail('Απάντησε στις ερωτήσεις ' + missing.slice(0, -1).join(', ') + ' και ' + missing[missing.length - 1] + '.');
             size = sizeOf(Number(emp.value), Number(turn.value), Number(bal.value));
         }
         var special = {};

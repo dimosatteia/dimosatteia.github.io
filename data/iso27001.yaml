@@ -44,6 +44,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: A.5.2
     scope: ''
     requirement: Information security roles and responsibilities
@@ -90,6 +93,9 @@ articles:
       url: /posts/secure-score-grc-part-0-intro/
     - title: Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers
       url: /posts/microsoft-secure-score-grc-programma-ciso/
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: A.5.5
     scope: ''
     requirement: Contact with authorities
@@ -462,6 +468,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: A.5.25
     scope: ''
     requirement: Assessment and decision on information security events
@@ -604,6 +613,9 @@ articles:
       url: /posts/secure-score-grc-part-0-intro/
     - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
       url: /posts/secure-score-grc-part-3-operations/
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: A.5.32
     scope: ''
     requirement: Intellectual property rights
@@ -736,6 +748,9 @@ articles:
     - title: 'Εργαλείο: Κουίζ phishing, 10 επιθέσεις και τα σημάδια τους'
       url: /kouiz-phishing/
       page: /kouiz-phishing
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: A.6.4
     scope: ''
     requirement: Disciplinary process

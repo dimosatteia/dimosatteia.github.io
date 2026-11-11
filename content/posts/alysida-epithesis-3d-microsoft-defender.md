@@ -1,8 +1,9 @@
 ---
 title: "Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender"
 seoTitle: "Αλυσίδα επίθεσης σε 3D με Microsoft Defender XDR"
-date: 2026-11-16T07:00:00+02:00
-lastmod: 2026-11-16T07:00:00+02:00
+slug: alysida-epithesis-3d-microsoft-defender
+date: 2026-11-11T16:00:00+02:00
+lastmod: 2026-11-11T16:00:00+02:00
 draft: false
 # Εμφανίζεται ως «Νέο άρθρο» στην αρχική, μέχρι να βγει νεότερο τεύχος της εβδομαδιαίας σύνοψης
 homeHighlight: true
@@ -37,7 +38,7 @@ description: "Τρία ρεαλιστικά σενάρια επίθεσης σε
 seoDescription: "Τρία σενάρια επίθεσης σε 3D και σε ποιο βήμα τα σταματά το Microsoft Defender XDR, με MITRE ATT&CK και αντιστοίχιση σε ΚΥΑ 1689/2025, NIS2, ISO 27001 και GDPR."
 summary: "Μια διαδραστική 3D εικονική εταιρεία με τρία σενάρια επίθεσης: AiTM που καταλήγει σε απάτη BEC και ransomware, παραβιασμένος προμηθευτής, ευπάθεια στο VPN. Γυρνάς τον διακόπτη «Με / Χωρίς Defender» και βλέπεις σε ποιο βήμα κόβεται η αλυσίδα, ποιο προϊόν την κόβει και τι ζητούν η ΚΥΑ 1689/2025, η NIS2, το ISO 27001 και ο GDPR."
 categories: ["Security Operations & XDR"]
-# Τελευταίο άρθρο της σειράς: η σειρά ταξινομείται κατά ημερομηνία, άρα βγαίνει μετά το EMS (2/11/2026)
+# Τελευταίο άρθρο της σειράς: η σειρά ταξινομείται κατά ημερομηνία, άρα βγαίνει μετά το EMS (7/11/2026)
 series: ["Microsoft Defender Up Close"]
 ShowToc: true
 TocOpen: false
@@ -55,72 +56,72 @@ verification:
     status: "Generally Available (η αυτόματη απομόνωση συσκευής είναι Preview)"
     license: "Microsoft 365 E5, E3 με Defender Suite ή EMS E5, ή ένα από MDE P2, MDI, MDCA, MDO P2, Defender for Business"
     source: "https://learn.microsoft.com/en-us/defender-xdr/configure-attack-disruption"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Automatic attack disruption στο Microsoft Defender for Business (ενεργή χωρίς ρύθμιση)"
     status: "Generally Available"
     license: "Microsoft Defender for Business (περιλαμβάνεται στο Microsoft 365 Business Premium)"
     source: "https://learn.microsoft.com/en-us/defender-business/mdb-attack-disruption"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Safe Links (έλεγχος τη στιγμή του κλικ)"
     status: "Generally Available"
     license: "Defender for Office 365 Plan 1 ή Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/safe-links-about"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Safe Attachments (detonation σε sandbox)"
     status: "Generally Available"
     license: "Defender for Office 365 Plan 1 ή Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-about"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Zero-hour auto purge (ZAP)"
     status: "Generally Available"
     license: "Όλα τα cloud mailboxes (Exchange Online Protection)"
     source: "https://learn.microsoft.com/en-us/defender-office-365/zero-hour-auto-purge"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Mailbox intelligence: δεν ενεργεί όταν αποστολέας και παραλήπτης έχουν ξαναμιλήσει"
     status: "Generally Available"
     license: "Defender for Office 365 Plan 1 ή Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/anti-phishing-policies-about"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Τεχνολογίες ανίχνευσης email, μεταξύ τους LLM content analysis και Mailbox intelligence impersonation"
     status: "Generally Available"
     license: "Defender for Office 365 Plan 1 ή Plan 2"
     source: "https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-real-time-detections-about"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Entra ID Protection: ανίχνευση «Attacker in the Middle»"
     status: "Generally Available"
     license: "Microsoft 365 E5 με Enterprise Mobility + Security E5"
     source: "https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Alerts «Stolen session cookie was used» και «Possible AiTM phishing attempt»"
     status: "Generally Available"
     license: "Defender for Cloud Apps με connector Office 365, Defender for Endpoint"
     source: "https://learn.microsoft.com/en-us/entra/identity/devices/protecting-tokens-microsoft-entra-id"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Ανίχνευση ύποπτων κανόνων inbox (dynamic threat detection model)"
     status: "Generally Available"
     license: "Defender for Cloud Apps"
     source: "https://learn.microsoft.com/en-us/defender-cloud-apps/anomaly-detection-policy"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Defender for Identity: alerts για pass-the-hash και DCSync"
     status: "Generally Available"
     license: "Defender for Identity (Microsoft 365 E5, EMS E5 ή standalone)"
     source: "https://learn.microsoft.com/en-us/defender-for-identity/alerts-xdr"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "ASR rules και tamper protection"
     status: "Generally Available"
     license: "Defender for Endpoint Plan 1 ή Plan 2, Defender for Business"
     source: "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-overview"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Authenticated network scans για firewalls και VPN gateways"
     status: "Generally Available"
     license: "Defender for Endpoint (Defender Vulnerability Management)"
     source: "https://learn.microsoft.com/en-us/defender-endpoint/network-devices"
-    verified: 2026-10-26
+    verified: 2026-11-11
   - feature: "Microsoft Sentinel στο Microsoft Defender portal"
     status: "Generally Available"
     license: "Microsoft Sentinel (χρέωση ανά όγκο δεδομένων στο Azure)"
     source: "https://learn.microsoft.com/en-us/azure/sentinel/microsoft-sentinel-defender-portal"
-    verified: 2026-10-26
+    verified: 2026-11-11
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1566.002", "T1566.001", "T1557", "T1539", "T1550.004", "T1078.004", "T1564.008", "T1114.003", "T1657", "T1534", "T1204.002", "T1550.002", "T1003.006", "T1003.001", "T1087.002", "T1685", "T1490", "T1486", "T1586.002", "T1199", "T1213.002", "T1530", "T1190", "T1133", "T1078", "T1021.001", "T1098"]
 ---

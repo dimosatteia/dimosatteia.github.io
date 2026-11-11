@@ -42,6 +42,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: '20.2'
     scope: Βασικές και σημαντικές
     requirement: Τα μέλη της ανώτατης διοίκησης υποχρεούνται να παρακολουθούν εκπαίδευση. Οι οντότητες ενθαρρύνονται να προσφέρουν παρόμοια κατάρτιση στους υπαλλήλους τους σε τακτική βάση, ώστε να εντοπίζουν τους κινδύνους και να αξιολογούν τις πρακτικές διαχείρισης κινδύνων.
@@ -66,6 +69,9 @@ articles:
     - title: 'Εργαλείο: Εκπαίδευση προσωπικού, είναι τεκμηριωμένη για τον ελεγκτή;'
       url: /tekmiriosi-ekpaideysis/
       page: /tekmiriosi-ekpaideysis
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
 - number: 21
   title: Μέτρα διαχείρισης κινδύνων στον τομέα της κυβερνοασφάλειας
   requirements:
@@ -509,6 +515,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: 23.4.β
     scope: Βασικές και σημαντικές
     requirement: Κοινοποίηση περιστατικού, χωρίς αδικαιολόγητη καθυστέρηση και σε κάθε περίπτωση εντός 72 ωρών από τη στιγμή που έγινε αντιληπτό. Επικαιροποιεί την έγκαιρη προειδοποίηση και αναφέρει αρχική αξιολόγηση, μεταξύ άλλων της σοβαρότητας και των επιπτώσεων, καθώς και, εφόσον υπάρχουν, τις ενδείξεις της παραβίασης.
@@ -529,6 +538,9 @@ articles:
       url: /posts/new-features/defender-identity-health-alert-network-traffic/
     - title: 'Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705'
       url: /posts/new-features/defender-xdr-unified-identity-timeline/
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: 23.4.γ
     scope: Βασικές και σημαντικές
     requirement: Ενδιάμεση έκθεση σχετικά με τις επικαιροποιήσεις της κατάστασης, κατόπιν αιτήματος της CSIRT ή, κατά περίπτωση, της αρμόδιας αρχής.
@@ -558,6 +570,9 @@ articles:
       url: /posts/secure-score-grc-part-3-operations/
     - *id012
     - *id013
+    - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
+      url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
+      page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
   - code: 23.4.ε
     scope: Βασικές και σημαντικές
     requirement: 'Αν το περιστατικό είναι ακόμα σε εξέλιξη όταν λήγει η προθεσμία της τελικής έκθεσης: έκθεση προόδου εκείνη τη στιγμή και τελική έκθεση εντός ενός μηνός από τον χειρισμό του περιστατικού.'

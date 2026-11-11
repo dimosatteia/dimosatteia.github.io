@@ -44,35 +44,25 @@
     <a href="https://thecybersec.gr/poia-adeia-microsoft-365/" class="announce-cta">Δες ποια άδεια χρειάζεσαι →</a>
     </div>
 
-    <!-- Από τις 07/11/2026 12:10 (ώρα Ελλάδας), όταν δημοσιεύτηκε: μπαίνει πρώτο και βγαίνει το Defender for Cloud. -->
-    <div class="announce-item announce-default announce-from">
-    <h3>Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις</h3>
+    <!-- 11/11/2026: ο οδηγός για τη Διοίκηση πρώτος, το τελευταίο άρθρο της σειράς Microsoft Defender Up Close δεύτερο. -->
+    <div class="announce-item announce-default">
+    <h3 id="announce-title">Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση</h3>
     <p>
-      Τι περιέχουν τα EMS E3 και E5, πώς σχετίζονται με το Microsoft 365 E3,
-      E5 και E7, και πότε το EMS είναι η σωστή αγορά, με λίστα ελέγχου για
-      την απόφαση.
+      Οδηγός χωρίς τεχνική ορολογία για CEO, CFO και Διοικητικά Συμβούλια:
+      τι ζητά ο νόμος από τη Διοίκηση, τα πρόστιμα, η προσωπική ευθύνη,
+      οι προθεσμίες αναφοράς και πώς εγκρίνεις σωστά το budget.
     </p>
-    <a href="https://thecybersec.gr/posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/" class="announce-cta">Δες το άρθρο →</a>
+    <a href="https://thecybersec.gr/posts/odigos-dioikisis-n5160-2024-kya-1689-2025/" class="announce-cta">Δες τον οδηγό →</a>
     </div>
 
     <div class="announce-item announce-default">
-    <h3 id="announce-title">Microsoft 365 Security: τι άλλαξε (εβδομάδα 45/2026)</h3>
+    <h3>Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender</h3>
     <p>
-      Το τεύχος της εβδομάδας: η Microsoft ενεργοποιεί αυτόματα το Defender RBAC
-      με προθεσμία ελέγχου στις 2 Δεκεμβρίου, ο πίνακας CallActivityEvents φέρνει
-      τις κλήσεις Teams στο advanced hunting, και posture policies στο Defender for Cloud.
+      Τρία σενάρια σε μια εικονική εταιρεία σε 3D: AiTM που καταλήγει σε BEC
+      και ransomware, παραβιασμένος προμηθευτής, ευπάθεια στο VPN. Γύρνα τον
+      διακόπτη «Με / Χωρίς Defender» και δες πού κόβεται η αλυσίδα.
     </p>
-    <a href="https://thecybersec.gr/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w45/" class="announce-cta">Δες το τεύχος →</a>
-    </div>
-
-    <div class="announce-item announce-default announce-until">
-    <h3>Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft</h3>
-    <p>
-      Τι σου δίνει δωρεάν το Foundational CSPM, πότε αξίζει το Defender CSPM,
-      τεκμήρια για NIS2 και ISO 27001, Plan 1 ή Plan 2 στο Defender for Servers,
-      και η νέα διαχείριση των plans από το Defender portal.
-    </p>
-    <a href="https://thecybersec.gr/posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/" class="announce-cta">Δες το άρθρο →</a>
+    <a href="https://thecybersec.gr/posts/alysida-epithesis-3d-microsoft-defender/" class="announce-cta">Δες το άρθρο →</a>
     </div>
 
   </div>
@@ -190,7 +180,7 @@
 
 <script>
   (function () {
-    var STORAGE_KEY = "announce_two_articles_29_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
+    var STORAGE_KEY = "announce_two_articles_31_v1"; // άλλαξε το suffix (v1 -> v2) όταν θες να ξαναδείξεις σε όλους
 
     var overlay = document.getElementById("announce-overlay");
     var closeBtn = document.getElementById("announce-close");
@@ -205,12 +195,6 @@
     // Αφαιρούνται από τη σελίδα τα στοιχεία που δεν ισχύουν, ώστε το τελευταίο ορατό να μην έχει διαχωριστική γραμμή.
     var isToday = athensDate === TODAY_ONLY;
     overlay.querySelectorAll(isToday ? ".announce-default" : ".announce-today").forEach(function (el) { el.remove(); });
-    // Άρθρο EMS: εμφανίζεται από τη στιγμή της δημοσίευσης, με νέο κλειδί ώστε να το δουν και όσοι έκλεισαν το προηγούμενο popup.
-    var athensNow = "";
-    try { athensNow = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Athens", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date()).replace(" ", "T"); } catch (e) {}
-    var emsLive = athensNow >= "2026-11-07T12:10";
-    overlay.querySelectorAll(emsLive ? ".announce-until" : ".announce-from").forEach(function (el) { el.remove(); });
-    if (emsLive) STORAGE_KEY = "announce_two_articles_30_v1";
     if (isToday) {
       STORAGE_KEY = "announce_kostos_adeia_v1";
       overlay.querySelectorAll(".announce-today").forEach(function (el) { el.hidden = false; });
