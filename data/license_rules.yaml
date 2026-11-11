@@ -267,12 +267,12 @@ measures:
     plans:
       basic: {s: n, t: "Χρειάζεται Business Premium με Purview Suite for Business Premium, ή E5."}
       standard: {s: n, t: "Χρειάζεται Business Premium με Purview Suite for Business Premium, ή E5."}
-      premium: {s: a, c: true, t: "Purview Suite for Business Premium. Η Microsoft δεν το αναφέρει ρητά στους πίνακες για το auto-labeling και το Endpoint DLP."}
+      premium: {s: a, t: "Microsoft Purview Suite for Business Premium. Σύμφωνα με τη Microsoft δίνει όλες τις advanced δυνατότητες του Purview στους χρήστες Business Premium."}
       e3: {s: a, t: "Microsoft Purview Suite."}
       e5: {s: y, t: "Περιλαμβάνεται."}
       e7: {s: y, t: "Περιλαμβάνεται."}
-      f1: {s: a, c: true, t: "Microsoft Purview Suite FLW. Η Microsoft το αναφέρει ρητά για το automatic labeling, όχι για το Endpoint DLP."}
-      f3: {s: a, c: true, t: "Microsoft Purview Suite FLW. Η Microsoft το αναφέρει ρητά για το automatic labeling, όχι για το Endpoint DLP."}
+      f1: {s: a, t: "Microsoft Purview Suite FLW (automatic labeling και Endpoint DLP)."}
+      f3: {s: a, t: "Microsoft Purview Suite FLW (automatic labeling και Endpoint DLP)."}
   - key: audit
     label: Τήρηση audit log για ένα έτος
     kya: [24.δ]

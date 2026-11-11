@@ -110,6 +110,11 @@ verification:
     license: "Microsoft 365 E5, Purview Suite"
     source: "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description"
     verified: 2026-11-11
+  - feature: "Microsoft Purview Suite for Business Premium: όλες οι advanced δυνατότητες του Purview για χρήστες Business Premium· Purview Suite FLW: automatic labeling και Endpoint DLP"
+    status: "Generally Available"
+    license: "Add-on σε Business Premium, F1, F3"
+    source: "https://www.microsoft.com/licensing/guidance/Microsoft-Purview"
+    verified: 2026-11-11
   - feature: "Auditing δεν ενεργοποιείται αυτόματα σε Business Basic, Standard και Premium"
     status: "Generally Available"
     license: "Όλα τα πακέτα Business"
