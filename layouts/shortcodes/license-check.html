@@ -84,7 +84,7 @@
             <div id="lcCurrentBody" class="text-sm text-slate-300 leading-relaxed flex flex-col gap-2"></div>
         </div>
 
-        <p class="text-sm font-semibold text-slate-100 mt-5 mb-2">Σύγκριση των έξι πακέτων για όσα διάλεξες</p>
+        <p class="text-sm font-semibold text-slate-100 mt-5 mb-2">Σύγκριση των πακέτων για όσα διάλεξες</p>
         <div class="overflow-x-auto">
             <table class="w-full text-xs text-left border-collapse" id="lcMatrix"></table>
         </div>
@@ -114,6 +114,7 @@
     var D = JSON.parse($('lcData').textContent);
     var KYA = '{{ "kya-1689-2025/" | relURL }}';
     var PLAN = {}; D.plans.forEach(function (p) { PLAN[p.key] = p; });
+    // Τα F1/F3 (frontline: true) εμφανίζονται στον πίνακα και στο «σήμερα», αλλά δεν μπαίνουν ποτέ στη σειρά πρότασης βάσης (ladder).
     var M = {}; D.measures.forEach(function (m) { M[m.key] = m; });
     var err = $('lcError'), box = $('lcResult');
     var boxes = Array.prototype.slice.call(document.querySelectorAll('.lcMeasure'));
@@ -219,6 +220,7 @@
         if (rec === 'premium' && suite) n.push('Αν διαλέξεις το Defender Suite for Business Premium, οι χρήστες παίρνουν Defender for Endpoint Plan 2 στη θέση του Defender for Business. Το Defender for Business δεν υποστηρίζει μικτή αδειοδότηση: αν το Defender Suite καλύπτει μόνο μέρος των χρηστών, όλοι μένουν στην εμπειρία του Defender for Business. Για να περάσεις σε Defender for Endpoint Plan 2, χρειάζεται άδεια για όλους τους χρήστες και αίτημα στο Microsoft Support.');
         if (servers === 'le60' && PLAN[rec].business) n.push('Για τους servers: Microsoft Defender for Business servers, add-on για έως 60 servers.' + (rec === 'premium' && suite ? ' Αν πας σε Defender Suite για όλους τους χρήστες, οι servers χρειάζονται Defender for Endpoint for servers ή Defender for Servers.' : ''));
         if (servers === 'gt60' || (servers === 'le60' && !PLAN[rec].business)) n.push('Για τους servers: Microsoft Defender for Endpoint for servers ή Microsoft Defender for Servers Plan 1 ή Plan 2 (Microsoft Defender for Cloud). Δεν περιλαμβάνονται σε κανένα πακέτο Microsoft 365.' + (servers === 'gt60' && PLAN[rec].business ? ' Το Defender for Business servers καλύπτει έως 60 servers.' : ''));
+        if (current && PLAN[current].frontline) n.push('Τα Microsoft 365 F1 και F3 προορίζονται μόνο για frontline εργαζόμενους (παραγωγή, αποθήκη, βάρδιες, εξυπηρέτηση πελατών). Γι\' αυτό το εργαλείο δεν τα προτείνει ποτέ ως βάση για όλο τον οργανισμό. Οι χρήστες γραφείου χρειάζονται Business ή E, και η κάλυψη κάθε μέτρου ισχύει μόνο για τους χρήστες που έχουν την αντίστοιχη άδεια.');
         if (ot) n.push('Κανένα πακέτο Microsoft 365 δεν προστατεύει συστήματα OT. Η Microsoft έχει ξεχωριστό προϊόν, το Microsoft Defender for IoT, με δική του αδειοδότηση. Τα μέτρα της ΚΥΑ για το OT χρειάζονται ξεχωριστό σχέδιο.');
         if (sel.some(function (m) { return D.plans.some(function (p) { return cell(m, p.key).c; }); })) n.push('Όπου βλέπεις <span class="text-sky-300">?</span>, η Microsoft δεν το αναφέρει ρητά για αυτό το πακέτο. Ζήτησε από τον licensing partner γραπτή επιβεβαίωση πριν από την αγορά.');
         if (sel.indexOf('backup') >= 0) n.push('Το Microsoft 365 Backup χρεώνεται βάσει χρήσης και χρειάζεται Azure subscription. Η άδεια δεν αποδεικνύει ότι η επαναφορά δουλεύει: κράτα τεκμήρια από δοκιμές επαναφοράς.');
