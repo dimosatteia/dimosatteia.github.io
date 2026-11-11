@@ -29,6 +29,11 @@
                           {{- if in (.Params.series | default slice) "Microsoft 365 Security Weekly" }}{{ $label = "🆕 Αυτή την εβδομάδα:" }}{{ end -}}
                           {{- $hl = printf "**%s** [%s](%s)<br>\n\n" $label .Title .RelPermalink -}}
                         {{- end -}}
+                        {{- /* Ενημέρωση: σελίδες με «homeUpdate: true» στο front matter (π.χ. ένα εργαλείο που ενημερώθηκε) εμφανίζονται κάτω από το 🆕 με πράσινο εικονίδιο ανανέωσης σε τετράγωνο, όπως το 🆕, η πιο πρόσφατη πρώτη.
+                               Για να φύγει, σβήνεις τη γραμμή homeUpdate από το front matter της σελίδας. */ -}}
+                        {{- range (where site.RegularPages "Params.homeUpdate" true).ByLastmod.Reverse -}}
+                          {{- $hl = printf "%s<span style=\"color:#34d399\"><strong style=\"color:#34d399\"><span aria-hidden=\"true\" style=\"display:inline-flex;align-items:center;justify-content:center;width:1.15em;height:1.15em;border-radius:0.22em;background:#10b981;vertical-align:-0.2em;margin-right:0.3em\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"width:0.8em;height:0.8em\"><path d=\"M21 12a9 9 0 0 1-15.5 6.2L3 16\"/><path d=\"M3 21v-5h5\"/><path d=\"M3 12a9 9 0 0 1 15.5-6.2L21 8\"/><path d=\"M21 3v5h-5\"/></svg></span>Ενημέρωση:</strong> <a href=\"%s\" style=\"color:#34d399\">%s</a></span><br>\n\n" $hl .RelPermalink (.Title | htmlEscape) -}}
+                        {{- end -}}
                         {{ replace .Site.Params.homeInfoParams.Content "%%HIGHLIGHTS%%" $hl | markdownify }}
                     </div>
                 </div>
@@ -39,8 +44,11 @@
         {{ partial "platform-profile.html" . }}
     </section>
 
-    {{- /* Teaser «Έρχεται σύντομα» για τη σειρά Conditional Access: layouts/partials/coming-soon-ca.html */}}
+    {{- /* Teaser για τη σειρά Conditional Access: layouts/partials/coming-soon-ca.html.
+           Φεύγει μόνο του στο πρώτο build αφού δημοσιευτεί το Μέρος 1 (16/11/2026 07:00). */}}
+    {{- if not (site.GetPage "/posts/Conditional-Access-Series/conditional-access-meros-1-themeliodeis-ennoies") }}
     {{ partial "coming-soon-ca.html" . }}
+    {{- end }}
     {{ end }}
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
@@ -207,6 +215,11 @@
                     {{ $titleHover = "group-hover:text-purple-400" }}
                     {{ $iconColor = "text-purple-400" }}
                     {{ $glow = "168,85,247" }}
+                {{ else if in .Params.categories "Security Awareness" }}
+                    {{ $hoverColor = "hover:border-l-rose-500" }}
+                    {{ $titleHover = "group-hover:text-rose-400" }}
+                    {{ $iconColor = "text-rose-400" }}
+                    {{ $glow = "244,63,94" }}
                 {{ end }}
 
                 <a href="{{ .RelPermalink }}" class="depth-wrap">
