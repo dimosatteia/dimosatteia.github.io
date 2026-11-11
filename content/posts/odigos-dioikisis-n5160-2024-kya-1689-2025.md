@@ -29,6 +29,8 @@ summary: "Ο Ν.5160/2024 δεν βάζει την κυβερνοασφάλει�
 categories: ["GRC & Compliance"]
 ShowToc: true
 TocOpen: false
+# Ίδιο weight με το 3D άρθρο: στα «Πρόσφατα Άρθρα» έρχεται πρώτο λόγω νεότερης ημερομηνίας
+weight: -7
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["M1017", "M1047"]
 cover:
