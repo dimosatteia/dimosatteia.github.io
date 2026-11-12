@@ -23,7 +23,8 @@
                         {{- $hl := "" -}}
                         {{- $posts := where site.RegularPages "Section" "posts" -}}
                         {{- $weekly := where $posts "Params.series" "intersect" (slice "Microsoft 365 Security Weekly") -}}
-                        {{- $featured := where $posts "Params.homeHighlight" true -}}
+                        {{- /* homeHighlight: true πιάνει και σελίδες εκτός posts (π.χ. /ekdoseis/) */ -}}
+                        {{- $featured := where site.RegularPages "Params.homeHighlight" true -}}
                         {{- with index (union $weekly $featured).ByDate.Reverse 0 -}}
                           {{- $label := "🆕 Νέο άρθρο:" -}}
                           {{- if in (.Params.series | default slice) "Microsoft 365 Security Weekly" }}{{ $label = "🆕 Αυτή την εβδομάδα:" }}{{ end -}}

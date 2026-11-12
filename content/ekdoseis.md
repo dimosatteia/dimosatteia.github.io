@@ -8,6 +8,10 @@ slug: "ekdoseis"
 # Ίδιο layout με τη σελίδα «Εργαλεία». Το <!--tracker--> στο κείμενο ορίζει πού μπαίνουν τα tiles.
 layout: "ekdoseis"
 newDays: 14
+# Αρχική: πρώτο στα «Πρόσφατα Άρθρα» (homeFeed + weight -7, το νεότερο ανάμεσα στα -7) και στη γραμμή «🆕 Νέο άρθρο:» (homeHighlight)
+homeFeed: true
+homeHighlight: true
+weight: -7
 # Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
 menu:
   main:
