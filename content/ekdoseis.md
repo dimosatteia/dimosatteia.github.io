@@ -12,6 +12,10 @@ newDays: 14
 homeFeed: true
 homeHighlight: true
 weight: -7
+cover:
+  image: "/images/tools/ekdoseis.webp"
+  alt: "Ασπίδα στο κέντρο με τις ενότητες της σελίδας γύρω της: Windows 11 και Hotpatch, connectors και sensors, PowerShell modules, Intune security baselines και Microsoft Defender Antivirus"
+  maxWidth: 1000
 # Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
 menu:
   main:

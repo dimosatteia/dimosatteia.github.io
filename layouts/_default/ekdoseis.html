@@ -59,6 +59,14 @@
         {{ with .Description }}<p class="text-sm text-slate-400 max-w-3xl leading-relaxed">{{ . }}</p>{{ end }}
     </header>
 
+    {{- /* Cover, όπως στο single.html */}}
+    {{ with .Params.cover }}{{ if .image }}
+    <div class="glass-card rounded-xl p-2 border border-slate-800">
+        {{ $dim := partial "img-dims.html" .image }}<img src="{{ .image | absURL }}" alt="{{ .alt }}"{{ with $dim.w }} width="{{ . }}" height="{{ $dim.h }}"{{ end }} {{ with .maxWidth }}class="w-full h-auto rounded-lg mx-auto" style="max-width: {{ . }}px"{{ else }}class="w-full h-auto rounded-lg object-cover max-h-[500px]"{{ end }}>
+        {{ with .caption }}<p class="text-center text-[11px] font-mono text-slate-500 mt-2 mb-1">{{ . | markdownify }}</p>{{ end }}
+    </div>
+    {{ end }}{{ end }}
+
     {{ with $before }}
     <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300">
         {{ partial "verification.html" (dict "page" $ "mode" "top") }}
