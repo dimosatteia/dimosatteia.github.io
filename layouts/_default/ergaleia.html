@@ -8,7 +8,8 @@
   Προαιρετικά στο front matter του εργαλείου: toolBlurb (πιο σύντομο κείμενο για το tile).
   Badge «Νέο»: για όσες ημέρες ορίζει το newDays στο front matter αυτής της σελίδας (προεπιλογή 14).
 */ -}}
-{{- $newDays := .Params.newDays | default 14 -}}
+{{- /* int: το Hugo 0.161 διαβάζει τον αριθμό του front matter ως uint64 και η σύγκριση με float αποτυγχάνει */ -}}
+{{- $newDays := int (.Params.newDays | default 14) -}}
 {{- $items := slice -}}
 {{- range site.Menus.main -}}
   {{- if eq .Identifier "tools" -}}

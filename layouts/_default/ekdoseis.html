@@ -9,7 +9,8 @@
   Τα προϊόντα με «Νέα» εμφανίζονται πάντα πρώτα, με τη νεότερη έκδοση πρώτη.
 */ -}}
 {{- $d := site.Data.versions -}}
-{{- $newDays := .Params.newDays | default 14 -}}
+{{- /* int: το Hugo 0.161 διαβάζει τον αριθμό του front matter ως uint64 και η σύγκριση με float αποτυγχάνει */ -}}
+{{- $newDays := int (.Params.newDays | default 14) -}}
 {{- $months := slice "Ιανουάριος" "Φεβρουάριος" "Μάρτιος" "Απρίλιος" "Μάιος" "Ιούνιος" "Ιούλιος" "Αύγουστος" "Σεπτέμβριος" "Οκτώβριος" "Νοέμβριος" "Δεκέμβριος" -}}
 {{- $emoji := dict "agents" "🔌" "clients" "💻" "platform" "🛡️" "windows" "🪟" "powershell" "📦" "baselines" "📐" -}}
 {{- $delivery := dict
