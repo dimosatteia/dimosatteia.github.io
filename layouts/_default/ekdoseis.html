@@ -1,0 +1,191 @@
+{{ define "main" }}
+{{- /*
+  Σελίδα «Εκδόσεις» (/ekdoseis/), με το ίδιο layout και τα ίδια tiles με τη σελίδα «Εργαλεία» (_default/ergaleia.html).
+  Δεδομένα: data/versions.yaml (η νεότερη έκδοση πρώτη ανά προϊόν). Ενημερώνεται κάθε Κυριακή από scheduled task, local,
+  και ανεβαίνει με «Πάμε LIVE».
+  Το κείμενο της σελίδας (content/ekdoseis.md) χωρίζεται στο <!--tracker-->: ό,τι είναι πριν μπαίνει πάνω από τα tiles,
+  ό,τι είναι μετά μπαίνει κάτω από αυτά.
+  Badge «🆕 Νέα» (αναβοσβήνει): όταν η τρέχουσα έκδοση βγήκε τις τελευταίες newDays ημέρες (front matter, προεπιλογή 14).
+  Τα προϊόντα με «Νέα» εμφανίζονται πάντα πρώτα, με τη νεότερη έκδοση πρώτη.
+*/ -}}
+{{- $d := site.Data.versions -}}
+{{- $newDays := .Params.newDays | default 14 -}}
+{{- $months := slice "Ιανουάριος" "Φεβρουάριος" "Μάρτιος" "Απρίλιος" "Μάιος" "Ιούνιος" "Ιούλιος" "Αύγουστος" "Σεπτέμβριος" "Οκτώβριος" "Νοέμβριος" "Δεκέμβριος" -}}
+{{- $emoji := dict "agents" "🔌" "clients" "💻" "platform" "🛡️" "windows" "🪟" "powershell" "📦" "baselines" "📐" -}}
+{{- $delivery := dict
+    "auto"       (slice "🔄 Αυτόματη ενημέρωση" "border-emerald-500/50 text-emerald-300 bg-emerald-500/10")
+    "wu-restart" (slice "🔁 Windows Update · απαιτεί restart" "border-sky-500/50 text-sky-300 bg-sky-500/10")
+    "hotpatch"   (slice "⚡ Windows Update · χωρίς restart" "border-emerald-500/50 text-emerald-300 bg-emerald-500/10")
+    "manual"     (slice "⬇️ Μόνο χειροκίνητη λήψη" "border-orange-500/50 text-orange-300 bg-orange-500/10")
+    "mixed"      (slice "⬇️ Λήψη, auto-upgrade μόνο σε επιλεγμένες εκδόσεις" "border-yellow-500/50 text-yellow-300 bg-yellow-500/10")
+    "gallery"    (slice "📦 PowerShell Gallery" "border-blue-500/50 text-blue-300 bg-blue-500/10")
+    "portal"     (slice "🧩 Διαθέσιμο στο admin center" "border-purple-500/50 text-purple-300 bg-purple-500/10") -}}
+{{- $parts := split .Content "<!--tracker-->" -}}
+{{- $before := index $parts 0 -}}
+{{- $after := cond (gt (len $parts) 1) (index $parts 1) "" -}}
+
+{{- /* Προετοιμασία: ημερομηνία, «Νέα» και σειρά. Τα «Νέα» πρώτα (νεότερη πρώτη), μετά τα υπόλοιπα με τη σειρά του yaml. */ -}}
+{{- $newItems := slice -}}{{- $oldItems := slice -}}
+{{- with $d -}}
+{{- range $i, $p := .products -}}
+  {{- $cat := "" }}{{ range $d.categories }}{{ if eq .id $p.category }}{{ $cat = .name }}{{ end }}{{ end -}}
+  {{- $rels := slice -}}
+  {{- $isNew := false }}{{ $sortKey := "" -}}
+  {{- range $j, $r := $p.releases -}}
+    {{- $dp := split $r.date "-" -}}
+    {{- $dateStr := "Χωρίς ημερομηνία από τη Microsoft" -}}
+    {{- if eq (len $dp) 3 -}}
+      {{- $t := time $r.date -}}
+      {{- $dateStr = $t.Format "02/01/2006" -}}
+      {{- if and (eq $j 0) (lt (div (now.Sub $t).Hours 24) $newDays) }}{{ $isNew = true }}{{ $sortKey = $r.date }}{{ end -}}
+    {{- else if eq (len $dp) 2 -}}
+      {{- $dateStr = printf "%s %s" (index $months (sub (int (strings.TrimLeft "0" (index $dp 1))) 1)) (index $dp 0) -}}
+    {{- end -}}
+    {{- $rels = $rels | append (dict "r" $r "date" $dateStr) -}}
+  {{- end -}}
+  {{- $item := dict "p" $p "cat" $cat "rels" $rels "isNew" $isNew "sortKey" $sortKey -}}
+  {{- if $isNew }}{{ $newItems = $newItems | append $item }}{{ else }}{{ $oldItems = $oldItems | append $item }}{{ end -}}
+{{- end -}}
+{{- end -}}
+{{- $items := (sort $newItems "sortKey" "desc") | append $oldItems -}}
+{{- $total := len $items -}}
+
+<main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+
+    <header>
+        <p class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2">Version Tracker · Έλεγχος κάθε Κυριακή 19:00</p>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-100 mb-3 leading-tight">{{ .Title }}</h1>
+        {{ with .Description }}<p class="text-sm text-slate-400 max-w-3xl leading-relaxed">{{ . }}</p>{{ end }}
+    </header>
+
+    {{ with $before }}
+    <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300">
+        {{ partial "verification.html" (dict "page" $ "mode" "top") }}
+        {{ . | safeHTML }}
+    </div>
+    {{ end }}
+
+    {{ if not $d }}
+    <p class="text-sm text-slate-400">Τα δεδομένα των εκδόσεων δεν είναι διαθέσιμα αυτή τη στιγμή.</p>
+    {{ else }}
+    <!-- Φίλτρα κατηγορίας και αναζήτηση (ενεργοποιούνται με JavaScript, χωρίς αυτό φαίνονται απλώς όλα τα tiles) -->
+    <section id="toolFilters" class="glass-card rounded-xl p-4 hidden" aria-label="Φίλτρα εκδόσεων">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3">
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Κατηγορία">
+                <button type="button" data-cat="all" aria-pressed="true" class="tool-f px-3 py-1.5 rounded border text-xs font-mono border-blue-500 text-white bg-slate-800">Όλα ({{ $total }})</button>
+                {{ range $d.categories }}<button type="button" data-cat="{{ .id }}" aria-pressed="false" class="tool-f px-3 py-1.5 rounded border text-xs font-mono border-slate-700 text-slate-300 bg-slate-900">{{ .name }}</button>{{ end }}
+            </div>
+            <div class="lg:ml-auto w-full lg:w-auto">
+                <label for="toolSearch" class="sr-only">Αναζήτηση στις εκδόσεις</label>
+                <input type="search" id="toolSearch" placeholder="Αναζήτηση, π.χ. connector, KB5132061, restart" autocomplete="off"
+                       class="w-full lg:w-72 bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-md py-1.5 px-3 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+            </div>
+        </div>
+    </section>
+
+    <section aria-label="Εκδόσεις">
+        <ul id="toolGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+            {{ range $items }}
+            {{ $p := .p }}
+            {{ $cur := index .rels 0 }}
+            {{ $dl := index $delivery $cur.r.delivery }}
+            <li class="tool-tile" id="{{ $p.id }}" data-cats="{{ $p.category }}" data-text="{{ printf "%s %s %s %s" $p.name .cat $cur.r.version $cur.r.summary }}">
+                <div class="ver-card glass-card rounded-xl p-6 h-full flex flex-col gap-4">
+                    <div class="flex items-start justify-between gap-3">
+                        <span class="tool-emoji" aria-hidden="true">{{ index $emoji $p.category | default "🔢" }}</span>
+                        {{ if .isNew }}<span class="ver-new text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded border border-emerald-500/50 text-emerald-300 bg-emerald-500/10">🆕 Νέα</span>{{ end }}
+                    </div>
+                    <div class="flex flex-col gap-2 flex-grow">
+                        <h2 class="text-base font-semibold text-slate-100 leading-snug m-0">{{ $p.name }}</h2>
+                        <p class="m-0 font-mono text-sm text-blue-300 break-words">{{ $cur.r.version }}</p>
+                        <p class="m-0 text-[11px] font-mono text-slate-500">Τρέχουσα έκδοση · {{ $cur.date }}</p>
+                        {{ with $dl }}<p class="m-0"><span class="inline-block text-[10px] font-mono px-2 py-1 rounded border {{ index . 1 }}">{{ index . 0 }}</span></p>{{ end }}
+                        {{ with $cur.r.summary }}<p class="text-sm text-slate-400 leading-relaxed m-0">{{ . }}</p>{{ end }}
+                        {{ if gt (len .rels) 1 }}
+                        <details class="text-sm mt-1">
+                            <summary class="cursor-pointer text-xs font-mono text-slate-500 hover:text-blue-300">Προηγούμενες εκδόσεις</summary>
+                            <ol class="mt-2 flex flex-col gap-2 list-none p-0">
+                                {{ range after 1 .rels }}
+                                <li class="rounded-md border border-slate-800 p-3">
+                                    <p class="m-0 font-mono text-xs text-slate-200 break-words">{{ .r.version }} <span class="font-sans text-slate-500">· {{ .date }}</span></p>
+                                    {{ with .r.summary }}<p class="m-0 mt-1 text-xs text-slate-400 leading-relaxed">{{ . }}</p>{{ end }}
+                                </li>
+                                {{ end }}
+                            </ol>
+                        </details>
+                        {{ end }}
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 mt-auto pt-2">
+                        <span class="px-2 py-0.5 bg-slate-900 border border-slate-700 text-slate-400 text-[10px] font-mono rounded">{{ .cat }}</span>
+                        <a href="{{ $p.source }}" rel="noopener" target="_blank" class="ml-auto text-xs font-mono text-blue-400 hover:text-blue-300 whitespace-nowrap no-underline">Πηγή ↗</a>
+                    </div>
+                </div>
+            </li>
+            {{ end }}
+        </ul>
+        <p id="toolEmpty" class="hidden text-sm text-slate-400 text-center py-10">Δεν βρέθηκε έκδοση με αυτά τα κριτήρια.</p>
+        <p class="text-xs text-slate-500 mt-4">Οι εκδόσεις, οι ημερομηνίες και ο τρόπος διάθεσης είναι αυτά που δημοσιεύει η Microsoft στο Microsoft Learn, στο Microsoft Support και στο PowerShell Gallery. Οι περιλήψεις είναι δικές μου, στα Ελληνικά. Όπου η Microsoft δίνει μόνο μήνα ή καμία ημερομηνία, το γράφω έτσι. Το thecybersec.gr δεν συνδέεται με τη Microsoft.</p>
+    </section>
+    {{ end }}
+
+    {{ with $after }}
+    <div class="glass-card p-6 rounded-xl prose prose-invert prose-slate max-w-none prose-a:text-blue-400 hover:prose-a:text-blue-300">
+        {{ . | safeHTML }}
+    </div>
+    {{ end }}
+
+    {{ with .Params.tags }}
+    <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-mono text-slate-500 mr-2 uppercase">Tags:</span>
+        {{ range . }}
+        <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}" class="px-2 py-1 bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-blue-500 text-[10px] font-mono rounded transition-colors">{{ . }}</a>
+        {{ end }}
+    </div>
+    {{ end }}
+</main>
+
+<style>
+.ver-card { transition: border-color .2s ease, box-shadow .2s ease; }
+.ver-card:hover { border-color: rgba(59,130,246,.6); box-shadow: 0 12px 32px -12px rgba(59,130,246,.35); }
+.tool-emoji { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; font-size: 1.6rem; line-height: 1; border-radius: .75rem; background: rgba(30,41,59,.7); border: 1px solid #1e293b; }
+/* «🆕 Νέα»: αναβοσβήνει */
+.ver-new { animation: ver-blink 1.2s ease-in-out infinite; }
+@keyframes ver-blink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+@media (prefers-reduced-motion: reduce) { .ver-card { transition: none; } .ver-new { animation: none; } }
+</style>
+
+<script>
+(function () {
+    var box = document.getElementById("toolFilters");
+    if (!box) return;
+    box.classList.remove("hidden");
+    var btns = box.querySelectorAll(".tool-f"), q = document.getElementById("toolSearch"),
+        tiles = document.querySelectorAll(".tool-tile"), empty = document.getElementById("toolEmpty"), cat = "all";
+    // Αναζήτηση χωρίς τόνους και κεφαλαία: «αδεια» βρίσκει «Άδεια»
+    function norm(x) { return (x || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
+    tiles.forEach(function (t) { t.dataset.text = norm(t.dataset.text); });
+    function apply() {
+        var term = norm(q.value).trim(), shown = 0;
+        tiles.forEach(function (t) {
+            var ok = (cat === "all" || (" " + t.dataset.cats + " ").indexOf(" " + cat + " ") > -1) &&
+                     (!term || t.dataset.text.indexOf(term) > -1);
+            t.hidden = !ok; if (ok) shown++;
+        });
+        empty.classList.toggle("hidden", shown > 0);
+    }
+    btns.forEach(function (b) {
+        b.addEventListener("click", function () {
+            cat = b.dataset.cat;
+            btns.forEach(function (x) {
+                var on = x === b;
+                x.setAttribute("aria-pressed", on);
+                x.classList.toggle("border-blue-500", on); x.classList.toggle("text-white", on); x.classList.toggle("bg-slate-800", on);
+                x.classList.toggle("border-slate-700", !on); x.classList.toggle("text-slate-300", !on); x.classList.toggle("bg-slate-900", !on);
+            });
+            apply();
+        });
+    });
+    q.addEventListener("input", apply);
+})();
+</script>
+{{ end }}
