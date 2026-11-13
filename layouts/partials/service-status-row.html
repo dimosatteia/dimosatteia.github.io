@@ -2,9 +2,9 @@
   layouts/partials/service-status-row.html
   Μία γραμμή κατάστασης υπηρεσίας για την κάρτα «Προφίλ» (platform-profile.html).
 
-  Προαιρετικό πεδίο data.affected: λίστα υπηρεσιών με πρόβλημα, εμφανίζεται κάτω από το όνομα όταν η γραμμή είναι κόκκινη.
+  Προαιρετικό πεδίο data.title: ο τίτλος του περιστατικού από τη Microsoft, εμφανίζεται κάτω από το όνομα όταν η γραμμή είναι κόκκινη.
 
-  Κλήση: partial "service-status-row.html" (dict "name" "M365 Admin Center" "data" site.Data.m365status "url" "https://status.cloud.microsoft")
+  Κλήση: partial "service-status-row.html" (dict "name" "Microsoft 365 (Business or Enterprise)" "data" site.Data.m365status "url" "https://status.cloud.microsoft/m365/")
 
   Κανόνας χρωμάτων:
     - Σταθερό πράσινο: Available, Operational, ServiceRestored / Service restored (η υπηρεσία δουλεύει).
@@ -28,7 +28,7 @@
 <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between gap-3 rounded-lg p-3 bg-slate-950/50 border {{ if eq $state "bad" }}border-red-500/40{{ else }}border-slate-800{{ end }} hover:border-slate-600 transition-colors" title="{{ .name }}: {{ $raw }}">
   <span class="min-w-0">
     <span class="block text-xs text-slate-300 font-mono">{{ .name }}</span>
-    {{ if and (eq $state "bad") .data.affected }}<span class="block text-[10px] text-red-300/80 font-mono truncate" title="{{ delimit .data.affected ", " }}">{{ delimit .data.affected ", " }}</span>
+    {{ if and (eq $state "bad") .data.title }}<span class="block text-[10px] text-red-300/80 font-mono truncate" title="{{ .data.title }}">{{ .data.title }}</span>
     {{ else }}{{ with .data.updated }}<span class="block text-[10px] text-slate-500 font-mono truncate">{{ . }}</span>{{ end }}{{ end }}
   </span>
   <span class="flex items-center gap-2 px-2.5 py-1 rounded-full border shrink-0 {{ $box }}{{ if eq $state "bad" }} animate-pulse{{ end }}">
