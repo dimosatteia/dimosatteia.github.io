@@ -12,6 +12,8 @@ keywords:
   - Match any OR logic
   - MC1546447
   - Safe Links policy SentToMemberOf
+  - Safe Attachments policy recipients
+  - preset security policies
   - ΚΥΑ 1689/2025 διαχείριση αλλαγών
 tags:
   - Microsoft Defender for Office 365
@@ -52,13 +54,13 @@ verification:
 mitre: ["T1566", "T1566.001", "T1566.002", "M1054", "M1049"]
 ---
 
-Ένα συχνό σενάριο: φτιάχνεις μια αυστηρότερη πολιτική Safe Links για τη διοίκηση. Στους παραλήπτες βάζεις την ομάδα **Executives** και, για σιγουριά, και δύο ονόματα που δεν είναι ακόμα μέλη της. Η πολιτική σήμερα δεν εφαρμόζεται σε αυτούς τους δύο. Ούτε στα μέλη της ομάδας που δεν είναι ανάμεσα στα δύο ονόματα. Εφαρμόζεται μόνο σε όσους ταιριάζουν και στις δύο συνθήκες.
+Ένα συχνό σενάριο: φτιάχνεις μια αυστηρότερη πολιτική Safe Links για τη διοίκηση. Στους παραλήπτες βάζεις την ομάδα **Executives** και, για σιγουριά, και δύο ονόματα που δεν είναι ακόμα μέλη της. Σήμερα η πολιτική εφαρμόζεται μόνο σε όσους ταιριάζουν και στις δύο συνθήκες, δηλαδή είναι στη λίστα των ονομάτων και μέλη της ομάδας. Αν τα δύο ονόματα δεν είναι μέλη της ομάδας, η πολιτική δεν εφαρμόζεται σε κανέναν.
 
 Αυτή η συμπεριφορά αλλάζει. Η Microsoft ανακοίνωσε ότι οι threat protection policies του Defender for Office 365 περνούν σε λογική **Match any (OR)** όταν μια πολιτική έχει περισσότερους από έναν τύπο συνθήκης για τους παραλήπτες.
 
 ## Τι αλλάζει
 
-Σύμφωνα με την ανακοίνωση MC1546447 της 10ης Νοεμβρίου 2026, η αλλαγή είναι Generally Available και η διάθεση ξεκινά στις **αρχές Δεκεμβρίου 2026**, με ολοκλήρωση επίσης στις αρχές Δεκεμβρίου. Η ανακοίνωση δεν αναφέρει άδεια.
+Σύμφωνα με την ανακοίνωση MC1546447 της 10ης Νοεμβρίου 2026, η αλλαγή είναι Generally Available, σε όλο τον κόσμο. Η διάθεση ξεκινά και ολοκληρώνεται στις **αρχές Δεκεμβρίου 2026**. Η ανακοίνωση δεν αναφέρει άδεια.
 
 | | Σήμερα | Μετά την αλλαγή |
 |---|---|---|
@@ -94,21 +96,20 @@ mitre: ["T1566", "T1566.001", "T1566.002", "M1054", "M1049"]
     ```powershell
     # Πολιτικές Safe Links με δύο ή περισσότερους τύπους συνθήκης παραληπτών
     Get-SafeLinksRule | Where-Object {
-        @($_.SentTo, $_.SentToMemberOf, $_.RecipientDomainIs |
-          Where-Object { $_ }).Count -ge 2
-    } | Format-Table Name, Priority, State, SentTo, SentToMemberOf, RecipientDomainIs
+        ([int][bool]$_.SentTo + [int][bool]$_.SentToMemberOf + [int][bool]$_.RecipientDomainIs) -ge 2
+    } | Format-Table Name, Priority, State, SentTo, SentToMemberOf, RecipientDomainIs -AutoSize
     ```
 
-    Κάνε το ίδιο με τα αντίστοιχα cmdlets για τις υπόλοιπες πολιτικές (`Get-SafeAttachmentRule`, `Get-AntiPhishRule`, `Get-MalwareFilterRule`, `Get-HostedContentFilterRule`).
+    Κάνε το ίδιο με τα αντίστοιχα cmdlets για τις υπόλοιπες πολιτικές (`Get-SafeAttachmentRule`, `Get-AntiPhishRule`, `Get-MalwareFilterRule`, `Get-HostedContentFilterRule`). Τα πεδία `SentTo`, `SentToMemberOf` και `RecipientDomainIs` αντιστοιχούν στα **Users**, **Groups** και **Domains** του portal.
 2. **Κατέγραψε τη σημερινή κάλυψη.** Για κάθε πολιτική που βρήκες, σημείωσε ποιους καλύπτει σήμερα (την τομή των συνθηκών) και ποιους θα καλύπτει μετά (την ένωση). Κράτα export των ρυθμίσεων ως baseline.
 3. **Αποφάσισε τι θέλεις.** Αν η πρόθεση ήταν η τομή, ξανασχεδίασε την πολιτική με έναν τύπο συνθήκης, για παράδειγμα μια ομάδα που περιέχει ακριβώς τους σωστούς χρήστες. Αν η πρόθεση ήταν η ένωση, η νέα λογική σε εξυπηρετεί.
-4. **Μην επεξεργαστείς καμία από αυτές τις πολιτικές πριν περάσεις τα βήματα 2 και 3.** Βάλε την αλλαγή στη διαδικασία διαχείρισης αλλαγών, και ενημέρωσε όποιον έχει δικαίωμα να αλλάζει πολιτικές, και τους συνεργάτες ή τον MSSP.
+4. **Μην επεξεργαστείς καμία από αυτές τις πολιτικές πριν περάσεις τα βήματα 2 και 3.** Βάλε την αλλαγή στη διαδικασία διαχείρισης αλλαγών και ενημέρωσε όσους έχουν δικαίωμα να αλλάζουν πολιτικές, μαζί με τους συνεργάτες ή τον MSSP. Για το ποιος έχει αυτό το δικαίωμα στο Unified RBAC, δες το άρθρο για τον [Security Operator και τις πολιτικές του Defender for Office 365](/posts/generally-available/mdo-security-operator-unified-rbac-mapping/).
 5. **Διάβασε τις προειδοποιήσεις.** Όταν τροποποιείς μια πολιτική στο **Email & collaboration → Policies & rules → Threat policies**, ή όταν φορτώνεις το Exchange Online PowerShell, διάβασε την προειδοποίηση πριν επιβεβαιώσεις.
 6. **Επιβεβαίωσε μετά την αλλαγή.** Μετά από κάθε τροποποίηση, έλεγξε σε ποιους εφαρμόζεται η πολιτική, και άφησε έως 6 ώρες για να εφαρμοστεί, όπως γράφει το Microsoft Learn για τις πολιτικές Safe Links.
 
 Αν οι πολιτικές σου είναι τα Standard και Strict preset security policies, που είναι και η σύσταση της Microsoft, έλεγξε και εκεί τις συνθήκες στο **Preset security policies**, γιατί η ίδια λογική AND ισχύει σήμερα και στην ανάθεση παραληπτών τους.
 
-> 📖 **Θέλεις όλη την εικόνα;** Πώς δουλεύουν τα Safe Links, τα Safe Attachments, το anti-phishing και η σειρά προτεραιότητας των πολιτικών στο ίδιο προϊόν: **[Microsoft Defender for Office 365: Μια πρακτική περιήγηση](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**.
+> 📖 **Θέλεις όλη την εικόνα;** Πώς δουλεύουν τα preset policies, τα Safe Links, τα Safe Attachments και το anti-phishing στο ίδιο προϊόν: **[Microsoft Defender for Office 365: Από τις preset policies στην προχωρημένη παραμετροποίηση](/posts/microsoft-defender-up-close-series/microsoft-defender-for-office-365-deep-dive/)**. Για το ποια άδεια δίνει ποιες πολιτικές: **[Microsoft Defender Μέρος 4: Οδηγός αδειοδότησης](/posts/defender-demystified-series/defender-demystified-part-4-licensing-decoder/)**.
 
 ## Σύνδεση με ΚΥΑ 1689/2025, NIS2, ISO 27001 και GDPR
 
