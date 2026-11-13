@@ -30,10 +30,31 @@ jobs:
               f.write("\n")
           EOF
 
+      - name: Fetch Azure status
+        run: |
+          python3 - <<'EOF'
+          import json, urllib.request
+          # Δημόσιο endpoint του status.cloud.microsoft για την κάρτα Azure.
+          # Αν αποτύχει, κρατάμε το προηγούμενο αρχείο.
+          try:
+              req = urllib.request.Request("https://status.cloud.microsoft/api/posts/azure",
+                                           headers={"User-Agent": "thecybersec.gr status widget"})
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  d = json.load(r)
+              out = {"status": d.get("Status") or "Unknown",
+                     "updated": d.get("LastUpdatedTime") or "",
+                     "title": d.get("Title") or ""}
+              with open("data/azurestatus.json", "w", encoding="utf-8") as f:
+                  json.dump(out, f, indent=2, ensure_ascii=False)
+                  f.write("\n")
+          except Exception as e:
+              print("Azure status fetch failed:", e)
+          EOF
+
       - name: Commit if changed
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/m365status.json
-          git diff --cached --quiet || git commit -m "Update M365 admin center status"
+          git add data/m365status.json data/azurestatus.json
+          git diff --cached --quiet || git commit -m "Update M365 admin center and Azure status"
           git push

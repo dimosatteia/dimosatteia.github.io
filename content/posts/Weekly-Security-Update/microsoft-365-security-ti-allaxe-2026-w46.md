@@ -3,7 +3,7 @@ title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 46/2026)"
 slug: "microsoft-365-security-ti-allaxe-2026-w46"
 date: 2026-11-13T08:00:00+02:00
 lastmod: 2026-11-13T08:00:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender νέα
   - Defender for Office 365 recipient conditions

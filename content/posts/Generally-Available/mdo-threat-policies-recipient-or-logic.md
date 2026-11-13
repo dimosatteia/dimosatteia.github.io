@@ -4,7 +4,7 @@ seoTitle: "GA: Λογική OR στους παραλήπτες των πολιτ
 slug: "mdo-threat-policies-recipient-or-logic"
 date: 2026-11-13T08:10:00+02:00
 lastmod: 2026-11-13T08:10:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender for Office 365
   - threat protection policies

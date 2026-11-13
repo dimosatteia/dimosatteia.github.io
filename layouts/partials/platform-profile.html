@@ -1,14 +1,9 @@
 {{- /*
   layouts/partials/platform-profile.html
   Κάρτα "Platform Profile" της αρχικής: ταυτότητα, αναφορά ΕΑΚ, Gold Award,
-  M365 Admin Center status (data/m365status.json), social links
+  κατάσταση M365 Admin Center και Azure (data/m365status.json, data/azurestatus.json, partials/service-status-row.html), social links
   και Community Spotlight (data/community.yaml).
 */ -}}
-{{- $raw := site.Data.m365status.status | default "Unknown" -}}
-{{- $label := $raw -}}{{- $dot := "bg-slate-500" -}}{{- $txt := "text-slate-400" -}}{{- $box := "bg-slate-500/10 border-slate-500/20" -}}
-{{- if eq $raw "Available" }}{{ $label = "Operational" }}{{ $dot = "bg-emerald-500" }}{{ $txt = "text-emerald-400" }}{{ $box = "bg-emerald-500/10 border-emerald-500/20" }}
-{{- else if eq $raw "Degraded" }}{{ $dot = "bg-amber-500" }}{{ $txt = "text-amber-400" }}{{ $box = "bg-amber-500/10 border-amber-500/20" }}
-{{- else if eq $raw "Unavailable" }}{{ $label = "Outage" }}{{ $dot = "bg-red-500" }}{{ $txt = "text-red-400" }}{{ $box = "bg-red-500/10 border-red-500/20" }}{{ end -}}
 <div class="glass-card rounded-xl p-5 flex flex-col gap-4">
 
   <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
@@ -56,20 +51,11 @@
     </span>
   </a>
 
-  <!-- M365 Admin Center status -->
-  <a href="https://status.cloud.microsoft" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between gap-3 rounded-lg p-3 bg-slate-950/50 border border-slate-800 hover:border-slate-600 transition-colors">
-    <span class="min-w-0">
-      <span class="block text-xs text-slate-300 font-mono">M365 Admin Center</span>
-      {{ with site.Data.m365status.updated }}<span class="block text-[10px] text-slate-500 font-mono truncate">{{ . }}</span>{{ end }}
-    </span>
-    <span class="flex items-center gap-2 px-2.5 py-1 rounded-full border shrink-0 {{ $box }}">
-      <span class="relative flex h-2 w-2">
-        {{ if eq $raw "Available" }}<span class="animate-ping absolute inline-flex h-full w-full rounded-full {{ $dot }} opacity-60"></span>{{ end }}
-        <span class="relative inline-flex rounded-full h-2 w-2 {{ $dot }}"></span>
-      </span>
-      <span class="text-xs font-mono font-medium {{ $txt }}">{{ $label }}</span>
-    </span>
-  </a>
+  <!-- Κατάσταση υπηρεσιών Microsoft: σταθερό πράσινο όταν δουλεύει, κόκκινο που αναβοσβήνει σε degradation ή outage -->
+  <div class="flex flex-col gap-2">
+    {{ partial "service-status-row.html" (dict "name" "M365 Admin Center" "data" site.Data.m365status "url" "https://status.cloud.microsoft") }}
+    {{ partial "service-status-row.html" (dict "name" "Microsoft Azure" "data" site.Data.azurestatus "url" "https://azure.status.microsoft/status") }}
+  </div>
 
   <!-- Community Spotlight -->
   {{ with site.Data.community }}

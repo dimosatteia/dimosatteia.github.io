@@ -1,0 +1,38 @@
+{{- /*
+  layouts/partials/service-status-row.html
+  Μία γραμμή κατάστασης υπηρεσίας για την κάρτα «Προφίλ» (platform-profile.html).
+
+  Κλήση: partial "service-status-row.html" (dict "name" "M365 Admin Center" "data" site.Data.m365status "url" "https://status.cloud.microsoft")
+
+  Κανόνας χρωμάτων:
+    - Σταθερό πράσινο: Available, Operational, ServiceRestored / Service restored (η υπηρεσία δουλεύει).
+    - Κόκκινο που αναβοσβήνει: κάθε άλλη τιμή που έρχεται από τη Microsoft
+      (π.χ. ServiceDegradation, Service degradation, Degraded, Unavailable, ServiceInterruption).
+    - Γκρι: δεν υπάρχει τιμή (Unknown, το αρχείο δεν διαβάστηκε).
+*/ -}}
+{{- $raw := .data.status | default "Unknown" -}}
+{{- $key := lower (replace $raw " " "") -}}
+{{- $state := "unknown" -}}
+{{- if in (slice "available" "operational" "servicerestored") $key }}{{ $state = "ok" }}
+{{- else if ne $key "unknown" }}{{ $state = "bad" }}{{ end -}}
+{{- $label := $raw -}}
+{{- if eq $state "ok" }}{{ $label = "Operational" }}
+{{- else if in (slice "servicedegradation" "degraded") $key }}{{ $label = "Degraded" }}
+{{- else if in (slice "unavailable" "serviceinterruption") $key }}{{ $label = "Outage" }}
+{{- else if eq $state "unknown" }}{{ $label = "Unknown" }}{{ end -}}
+{{- $dot := "bg-slate-500" -}}{{- $txt := "text-slate-400" -}}{{- $box := "bg-slate-500/10 border-slate-500/20" -}}
+{{- if eq $state "ok" }}{{ $dot = "bg-emerald-500" }}{{ $txt = "text-emerald-400" }}{{ $box = "bg-emerald-500/10 border-emerald-500/20" }}
+{{- else if eq $state "bad" }}{{ $dot = "bg-red-500" }}{{ $txt = "text-red-400" }}{{ $box = "bg-red-500/10 border-red-500/30" }}{{ end -}}
+<a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between gap-3 rounded-lg p-3 bg-slate-950/50 border {{ if eq $state "bad" }}border-red-500/40{{ else }}border-slate-800{{ end }} hover:border-slate-600 transition-colors" title="{{ .name }}: {{ $raw }}">
+  <span class="min-w-0">
+    <span class="block text-xs text-slate-300 font-mono">{{ .name }}</span>
+    {{ with .data.updated }}<span class="block text-[10px] text-slate-500 font-mono truncate">{{ . }}</span>{{ end }}
+  </span>
+  <span class="flex items-center gap-2 px-2.5 py-1 rounded-full border shrink-0 {{ $box }}{{ if eq $state "bad" }} animate-pulse{{ end }}">
+    <span class="relative flex h-2 w-2">
+      {{ if eq $state "bad" }}<span class="animate-ping absolute inline-flex h-full w-full rounded-full {{ $dot }} opacity-75"></span>{{ end }}
+      <span class="relative inline-flex rounded-full h-2 w-2 {{ $dot }}"></span>
+    </span>
+    <span class="text-xs font-mono font-medium {{ $txt }}">{{ $label }}</span>
+  </span>
+</a>
