@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write   # OIDC token για το Microsoft Graph (workload identity federation, χωρίς client secret)
 
 jobs:
   update:
@@ -51,10 +52,72 @@ jobs:
               print("Azure status fetch failed:", e)
           EOF
 
+      - name: Fetch Microsoft 365 (Business or Enterprise) health from Microsoft Graph
+        # Τρέχει μόνο όταν έχουν οριστεί τα repository variables M365_TENANT_ID και M365_CLIENT_ID.
+        # App registration με application permission ServiceHealth.Read.All (admin consent)
+        # και federated credential για repo:dimosatteia/dimosatteia.github.io:ref:refs/heads/main.
+        if: ${{ vars.M365_TENANT_ID != '' && vars.M365_CLIENT_ID != '' }}
+        env:
+          TENANT_ID: ${{ vars.M365_TENANT_ID }}
+          CLIENT_ID: ${{ vars.M365_CLIENT_ID }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, urllib.request, urllib.parse
+          from datetime import datetime, timezone
+
+          def get_json(req):
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  return json.load(r)
+
+          try:
+              # 1. OIDC token του GitHub για το Entra ID
+              oidc = get_json(urllib.request.Request(
+                  os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] + "&audience=api://AzureADTokenExchange",
+                  headers={"Authorization": "Bearer " + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]}))["value"]
+              # 2. Access token για το Microsoft Graph με client assertion (χωρίς secret)
+              body = urllib.parse.urlencode({
+                  "client_id": os.environ["CLIENT_ID"],
+                  "scope": "https://graph.microsoft.com/.default",
+                  "grant_type": "client_credentials",
+                  "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                  "client_assertion": oidc,
+              }).encode()
+              token = get_json(urllib.request.Request(
+                  "https://login.microsoftonline.com/%s/oauth2/v2.0/token" % os.environ["TENANT_ID"],
+                  data=body))["access_token"]
+              # 3. Κατάσταση όλων των υπηρεσιών του tenant
+              url = "https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/healthOverviews?$select=service,status"
+              services = []
+              while url:
+                  page = get_json(urllib.request.Request(url, headers={"Authorization": "Bearer " + token}))
+                  services += page.get("value", [])
+                  url = page.get("@odata.nextLink")
+              ok = {"serviceOperational", "serviceRestored", "postIncidentReviewPublished", "falsePositive",
+                    "resolved", "resolvedExternal", "investigationSuspended"}
+              bad = [s for s in services if s.get("status") not in ok]
+              if any(s.get("status") == "serviceInterruption" for s in bad):
+                  status = "ServiceInterruption"
+              elif bad:
+                  status = "ServiceDegradation"
+              else:
+                  status = "Available"
+              out = {
+                  "status": status,
+                  "updated": datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S Z"),
+                  "affected": sorted(s.get("service", "") for s in bad),
+              }
+              with open("data/m365bizstatus.json", "w", encoding="utf-8") as f:
+                  json.dump(out, f, indent=2, ensure_ascii=False)
+                  f.write("\n")
+          except Exception as e:
+              print("Microsoft 365 health fetch failed:", e)
+          EOF
+
       - name: Commit if changed
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/m365status.json data/azurestatus.json
+          [ -f data/m365bizstatus.json ] && git add data/m365bizstatus.json || true
           git diff --cached --quiet || git commit -m "Update M365 admin center and Azure status"
           git push
