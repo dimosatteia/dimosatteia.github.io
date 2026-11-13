@@ -134,6 +134,28 @@
     border-radius: 999px;
     border: 1px solid rgba(148, 163, 184, 0.25);
     background: rgba(30, 41, 59, 0.6);
+    transform-origin: center;
+    will-change: transform;
+    animation: ca-puff 4.8s ease-in-out infinite;
+  }
+  /* «Φούσκωμα» με τη σειρά: κάθε μέρος μεγαλώνει, επανέρχεται, και περνά στο επόμενο (1 έως 6, μετά από την αρχή) */
+  .ca-soon-parts li:nth-child(1) { animation-delay: 0s; }
+  .ca-soon-parts li:nth-child(2) { animation-delay: 0.8s; }
+  .ca-soon-parts li:nth-child(3) { animation-delay: 1.6s; }
+  .ca-soon-parts li:nth-child(4) { animation-delay: 2.4s; }
+  .ca-soon-parts li:nth-child(5) { animation-delay: 3.2s; }
+  .ca-soon-parts li:nth-child(6) { animation-delay: 4s; }
+  @keyframes ca-puff {
+    0%, 16.67%, 100% {
+      transform: scale(1);
+      border-color: rgba(148, 163, 184, 0.25);
+      box-shadow: none;
+    }
+    8% {
+      transform: scale(1.15);
+      border-color: rgba(59, 130, 246, 0.8);
+      box-shadow: 0 0 14px rgba(37, 99, 235, 0.45);
+    }
   }
   .ca-soon-parts li span {
     display: inline-flex;
@@ -155,6 +177,7 @@
   @media (prefers-reduced-motion: reduce) {
     .ca-dot { animation: none; opacity: 1; }
     .ca-soon-badge { animation: none; }
+    .ca-soon-parts li { animation: none; }
   }
 </style>
 
