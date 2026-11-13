@@ -682,6 +682,9 @@ articles:
     - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
       url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
       page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: 14.β
     scope: Βασικές και σημαντικές
     requirement: Ασφαλής παραμετροποίηση (secure configuration) με πρότυπα κατασκευαστών ή ανεξάρτητων οργανισμών, και αρχές least functionality και least privilege.
@@ -802,6 +805,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: 16.β
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση των διαδικασιών διαχείρισης αλλαγών.
@@ -1202,6 +1208,9 @@ articles:
     - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
       url: /giati-pige-sta-junk/
       page: /giati-pige-sta-junk
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: 20.δ
     scope: Βασικές και σημαντικές
     requirement: Χρήση μόνο υποστηριζόμενων browsers, τακτική ενημέρωσή τους και περιορισμός των επεκτάσεων τρίτων.

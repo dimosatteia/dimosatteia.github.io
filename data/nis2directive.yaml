@@ -111,6 +111,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: 21.2.β
     scope: Βασικές και σημαντικές
     requirement: Χειρισμός περιστατικών.
@@ -274,6 +277,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: 21.2.ζ
     scope: Βασικές και σημαντικές
     requirement: Βασικές πρακτικές κυβερνοϋγιεινής και κατάρτιση στην κυβερνοασφάλεια.

@@ -13,7 +13,8 @@
   </div>
 
   <div class="ca-soon-body">
-    <span class="ca-soon-badge">Έρχεται τη Δευτέρα 16/11/2026</span>
+    {{/* Badge με ενσωματωμένη αντίστροφη μέτρηση ως τη Δευτέρα 16/11/2026 10:00 ώρα Ελλάδας (EET, UTC+2) */}}
+    <span class="ca-soon-badge">Έρχεται τη Δευτέρα 16/11/2026<span class="ca-countdown" id="ca-countdown" data-target="2026-11-16T10:00:00+02:00" role="timer" aria-live="off" aria-label="Αντίστροφη μέτρηση ως τη Δευτέρα 16/11/2026 10:00"><span class="ca-cd-unit"><b id="ca-cd-d">--</b><small>ημ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-h">--</b><small>ώρ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-m">--</b><small>λεπ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-s">--</b><small>δευτ.</small></span></span></span>
     <h2 id="ca-soon-title" class="ca-soon-title">Microsoft Entra Conditional Access: Ο Πλήρης Οδηγός</h2>
     <p class="ca-soon-text">
       Από τις βασικές αρχές στο Enterprise Zero Trust. Μια νέα σειρά 6 άρθρων
@@ -93,6 +94,14 @@
     0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55); }
     50%      { opacity: 0.35; box-shadow: 0 0 14px 2px rgba(245, 158, 11, 0.35); }
   }
+  /* Η αντίστροφη μέτρηση μέσα στο ίδιο badge, χωρισμένη με μια λεπτή κάθετη γραμμή */
+  .ca-countdown {
+    margin-left: 8px;
+    padding-left: 8px;
+    border-left: 1px solid rgba(17, 24, 39, 0.35);
+    font-variant-numeric: tabular-nums;
+  }
+  .ca-cd-unit small { font-size: inherit; font-weight: inherit; margin-left: 1px; }
   .ca-soon-title {
     margin: 0 0 6px;
     font-size: 1.35rem;
@@ -148,3 +157,31 @@
     .ca-soon-badge { animation: none; }
   }
 </style>
+
+<script>
+  (function () {
+    var box = document.getElementById("ca-countdown");
+    if (!box) return;
+    var target = new Date(box.getAttribute("data-target")).getTime();
+    var el = {
+      d: document.getElementById("ca-cd-d"),
+      h: document.getElementById("ca-cd-h"),
+      m: document.getElementById("ca-cd-m"),
+      s: document.getElementById("ca-cd-s")
+    };
+    function pad(n) { return n < 10 ? "0" + n : String(n); }
+    var timer;
+    function tick() {
+      var left = Math.max(0, Math.floor((target - Date.now()) / 1000));
+      el.d.textContent = pad(Math.floor(left / 86400));
+      el.h.textContent = pad(Math.floor((left % 86400) / 3600));
+      el.m.textContent = pad(Math.floor((left % 3600) / 60));
+      el.s.textContent = pad(left % 60);
+      if (left === 0) {
+        clearInterval(timer);
+      }
+    }
+    tick();
+    timer = setInterval(tick, 1000);
+  })();
+</script>

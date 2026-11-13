@@ -1159,6 +1159,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: A.8.8
     scope: ''
     requirement: Management of technical vulnerabilities
@@ -1222,6 +1225,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: A.8.10
     scope: Νέο στην έκδοση 2022
     requirement: Information deletion
@@ -1586,6 +1592,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
       url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
       page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
+      url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
+      page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
   - code: A.8.33
     scope: ''
     requirement: Test information
