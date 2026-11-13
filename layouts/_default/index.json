@@ -8,6 +8,15 @@
   {{- $page := dict "title" .Title "contents" $fullContents "permalink" .Permalink "summary" (.Summary | plainify | htmlUnescape) "date" (.Date.Format "2006-01-02") "tags" (.Params.tags | default slice) -}}
   {{- $index = $index | append $page -}}
 {{- end -}}
+{{- /* Εργαλεία και σελίδες εκτός posts (π.χ. /poia-adeia-microsoft-365/, /ekdoseis/): μπαίνουν με τίτλο, περιγραφή και keywords.
+       Εξαιρούνται η σελίδα αναζήτησης, η πολιτική απορρήτου και όσες έχουν searchHidden: true. */ -}}
+{{- range where .Site.RegularPages "Type" "not in" .Site.Params.mainSections -}}
+  {{- if and (not .Params.searchHidden) (not (in (slice "search" "privacy") .File.ContentBaseName)) -}}
+    {{- $keywordsList := delimit (.Params.keywords | default slice) ", " -}}
+    {{- $contents := printf "%s | %s | Keywords: %s" (.Description | default "") (.Plain | truncate 3000) $keywordsList -}}
+    {{- $index = $index | append (dict "title" .Title "contents" $contents "permalink" .Permalink "summary" (.Description | default (.Summary | plainify | htmlUnescape)) "date" (.Date.Format "2006-01-02") "tags" (.Params.tags | default slice)) -}}
+  {{- end -}}
+{{- end -}}
 {{- /* Τα queries της Βιβλιοθήκης KQL (data/kql.yaml), ώστε να βγαίνουν και αυτά στην αναζήτηση. Τα draft δεν μπαίνουν. */ -}}
 {{- with site.GetPage "/kql" -}}
   {{- $kqlPage := . -}}
