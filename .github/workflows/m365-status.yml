@@ -2,7 +2,7 @@ name: Update M365 status
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "17 */4 * * *"   # κάθε 4 ώρες (στο :17, για να αποφεύγεται ο φόρτος του GitHub στην αρχή της ώρας)
   workflow_dispatch:
 
 permissions:
