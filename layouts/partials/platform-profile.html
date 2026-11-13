@@ -1,7 +1,7 @@
 {{- /*
   layouts/partials/platform-profile.html
   Κάρτα "Platform Profile" της αρχικής: ταυτότητα, αναφορά ΕΑΚ, Gold Award,
-  κατάσταση Microsoft 365 (Business or Enterprise) και Azure από το status.cloud.microsoft (data/m365status.json, data/azurestatus.json, partials/service-status-row.html), social links
+  κατάσταση M365 Admin Center, Microsoft 365 (Business or Enterprise) και Azure από το status.cloud.microsoft (Admin Center και Business/Enterprise διαβάζουν την ίδια κάρτα, api/posts/mac) (data/m365status.json, data/azurestatus.json, partials/service-status-row.html), social links
   και Community Spotlight (data/community.yaml).
 */ -}}
 <div class="glass-card rounded-xl p-5 flex flex-col gap-4">
@@ -53,6 +53,7 @@
 
   <!-- Κατάσταση υπηρεσιών Microsoft: σταθερό πράσινο όταν δουλεύει, κόκκινο που αναβοσβήνει σε degradation ή outage -->
   <div class="flex flex-col gap-2">
+    {{ partial "service-status-row.html" (dict "name" "M365 Admin Center" "data" site.Data.m365status "url" "https://status.cloud.microsoft") }}
     {{ partial "service-status-row.html" (dict "name" "Microsoft 365 (Business or Enterprise)" "data" site.Data.m365status "url" "https://status.cloud.microsoft/m365/") }}
     {{ partial "service-status-row.html" (dict "name" "Microsoft Azure" "data" site.Data.azurestatus "url" "https://azure.status.microsoft/status") }}
   </div>
