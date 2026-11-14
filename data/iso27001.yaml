@@ -501,6 +501,9 @@ articles:
     - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
       url: /giati-pige-sta-junk/
       page: /giati-pige-sta-junk
+    - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
+      url: /poios-diavazei-to-mailbox-sou/
+      page: /poios-diavazei-to-mailbox-sou
   - code: A.5.26
     scope: ''
     requirement: Response to information security incidents
@@ -525,6 +528,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
+      url: /poios-diavazei-to-mailbox-sou/
+      page: /poios-diavazei-to-mailbox-sou
   - code: A.5.27
     scope: ''
     requirement: Learning from information security incidents
@@ -1361,6 +1367,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
+      url: /poios-diavazei-to-mailbox-sou/
+      page: /poios-diavazei-to-mailbox-sou
   - code: A.8.17
     scope: ''
     requirement: Clock synchronization

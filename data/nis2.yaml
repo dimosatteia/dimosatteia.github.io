@@ -1211,6 +1211,9 @@ articles:
     - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
       url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
       page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
+    - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
+      url: /poios-diavazei-to-mailbox-sou/
+      page: /poios-diavazei-to-mailbox-sou
   - code: 20.δ
     scope: Βασικές και σημαντικές
     requirement: Χρήση μόνο υποστηριζόμενων browsers, τακτική ενημέρωσή τους και περιορισμός των επεκτάσεων τρίτων.
@@ -1427,6 +1430,9 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
+      url: /poios-diavazei-to-mailbox-sou/
+      page: /poios-diavazei-to-mailbox-sou
   - code: 24.β
     scope: Βασικές και σημαντικές
     requirement: Ορισμός τουλάχιστον ενός υπαλλήλου που συντονίζει (ή επιβλέπει, αν υπάρχει εξωτερικός ανάδοχος) την απόκριση σε περιστατικά.
@@ -1526,6 +1532,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
+      url: /poios-diavazei-to-mailbox-sou/
+      page: /poios-diavazei-to-mailbox-sou
   - code: 24.στ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών απόκρισης.

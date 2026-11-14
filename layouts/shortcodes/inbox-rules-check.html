@@ -1,0 +1,506 @@
+{{- /* «Ποιος διαβάζει το mailbox σου;» (/poios-diavazei-to-mailbox-sou/)
+       Ο admin τρέχει ένα script στο Exchange Online PowerShell που εξάγει σε JSON τους inbox rules (και τους κρυφούς)
+       και την προώθηση (SMTP forwarding) κάθε mailbox. Ανεβάζει ή επικολλά το JSON και βλέπει κάθε κανόνα με σοβαρότητα,
+       εξήγηση στα Ελληνικά, εντολές αποκατάστασης και KQL για το ποιος έφτιαξε τον κανόνα.
+       Πηγές: Microsoft Learn, «Alert grading for suspicious inbox manipulation rules» και
+       «Responding to a compromised email account».
+       Το αρχείο διαβάζεται ΜΟΝΟ μέσα στον browser του επισκέπτη. Δεν στέλνεται πουθενά.
+       Χρήση: {{< inbox-rules-check >}} */ -}}
+{{- /* Το script διαβάζεται από το static/downloads/inboxrules-audit.ps1, ώστε το αρχείο για κατέβασμα και ο κώδικας για copy-paste να είναι πάντα ίδια.
+       Το αρχείο είναι UTF-8 με BOM (για τα Ελληνικά στο Windows PowerShell 5.1): το BOM και τα \r αφαιρούνται για την εμφάνιση. */ -}}
+{{- $ps1 := "downloads/inboxrules-audit.ps1" -}}
+{{- $cmd := readFile (printf "static/%s" $ps1) | strings.TrimPrefix "\ufeff" | replaceRE "\r" "" | strings.TrimSpace -}}
+<style>
+#irTool .irMono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#irTool .irPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
+#irTool pre{white-space:pre-wrap;word-break:break-all}
+#irTool .irDrop.irOver{border-color:#3b82f6;background:rgba(59,130,246,.08)}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="irTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Exchange Online · Inbox rules · Mailbox forwarding</p>
+
+    <div class="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-emerald-300 mb-1">🔒 Το αρχείο δεν φεύγει από τον υπολογιστή σου</p>
+        <p>Η ανάλυση γίνεται μόνο μέσα στον browser σου. Οι διευθύνσεις, τα ονόματα των κανόνων και οι λέξεις-κλειδιά δεν στέλνονται σε κανέναν server, ούτε στο thecybersec.gr, και δεν αποθηκεύονται. Λεπτομέρειες στην <a href="{{ "privacy/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Πολιτική απορρήτου</a>.</p>
+    </div>
+
+    <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-slate-100 mb-2">1. Βγάλε το αρχείο από το Microsoft 365 σου</p>
+        <ol class="list-decimal pl-5 flex flex-col gap-1.5 mb-3">
+            <li>Στον υπολογιστή σου με Windows, άνοιξε το <strong>PowerShell</strong>: πάτησε το πλήκτρο Windows, γράψε <span class="irMono text-slate-100">PowerShell</span> και άνοιξε το <strong>Windows PowerShell</strong>. Όχι το «Windows PowerShell ISE»: εκεί η σύνδεση αποτυγχάνει με το σφάλμα «A window handle must be configured». Δεν χρειάζεται «Run as administrator».</li>
+            <li>Μόνο την πρώτη φορά, τρέξε τις δύο εντολές παρακάτω, μία μία. Η πρώτη επιτρέπει στο PowerShell να φορτώνει τα scripts που φτιάχνει το module κατά τη σύνδεση· χωρίς αυτήν, το <span class="irMono text-slate-100">Connect-ExchangeOnline</span> βγάζει το σφάλμα «Module could not be correctly formed». Η δεύτερη εγκαθιστά το module της Microsoft για το Exchange Online. Όπου σε ρωτήσει, γράψε <span class="irMono text-slate-100">Y</span> και Enter. Μετά κλείσε το PowerShell και άνοιξέ το ξανά.
+                <pre class="irMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-2 mt-1 text-slate-200">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Install-Module ExchangeOnlineManagement -Scope CurrentUser</pre></li>
+            <li>Κατέβασε το script και τρέξ' το. Θα ανοίξει το παράθυρο σύνδεσης της Microsoft: μπες με λογαριασμό που έχει ρόλο <strong>Exchange Administrator</strong> ή <strong>Global Administrator</strong>. Ο ρόλος Global Reader δεν αρκεί.
+                <div class="my-2"><a href="{{ $ps1 | relURL }}" download class="inline-block rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white no-underline">⬇️ Κατέβασε το inboxrules-audit.ps1</a></div>
+                Στο PowerShell, τρέξε τις τρεις εντολές μία μία. Η πρώτη σε πηγαίνει στον φάκελο Λήψεις. Η δεύτερη ξεμπλοκάρει το αρχείο, γιατί τα Windows μπλοκάρουν τα scripts που κατεβαίνουν από το internet. Η τρίτη το τρέχει.
+                <pre class="irMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-2 mt-1 text-slate-200">cd $env:USERPROFILE\Downloads
+Unblock-File .\inboxrules-audit.ps1
+.\inboxrules-audit.ps1</pre></li>
+            <li>Περίμενε να τελειώσει. Για μερικές εκατοντάδες mailboxes θέλει λίγα λεπτά. Το script μόνο διαβάζει, δεν αλλάζει τίποτα. Στο τέλος σου δείχνει μια σύνοψη, πόσα mailboxes, κανόνες και προωθήσεις βρήκε, και πού αποθήκευσε το <span class="irMono text-slate-100">inboxrules.json</span>: στον ίδιο φάκελο, δηλαδή στις Λήψεις.</li>
+        </ol>
+        <details class="rounded-md border border-slate-700 bg-slate-950/40 p-3">
+            <summary class="cursor-pointer text-sm text-slate-200 font-semibold">📄 Θες να δεις τον κώδικα ή να τον κάνεις copy-paste;</summary>
+            <p class="mt-2 mb-2 text-xs text-slate-400 leading-relaxed">Είναι το ίδιο script με το αρχείο. Αν δεν θέλεις να κατεβάσεις αρχείο, πάτησε «Αντιγραφή script», επικόλλησέ το στο PowerShell και πάτησε Enter. Τότε δεν χρειάζονται οι τρεις εντολές του βήματος 3. Για ένα μόνο mailbox, άλλαξε το <span class="irMono">-ResultSize Unlimited</span> σε <span class="irMono">-Identity user@mycompany.gr</span>.</p>
+            <pre id="irCmd" class="irMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200 max-h-96 overflow-auto">{{ $cmd }}</pre>
+            <button type="button" id="irCmdCopy" class="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-slate-500">Αντιγραφή script</button>
+        </details>
+    </div>
+
+    <p class="text-sm text-slate-300 mb-1.5">2. Σύρε εδώ το <span class="irMono">inboxrules.json</span> από τον φάκελο που σου έγραψε το PowerShell, ή επικόλλησε το περιεχόμενό του.</p>
+    <label for="irFile" id="irDrop" class="irDrop flex flex-col items-center justify-center gap-1 rounded-md border border-dashed border-slate-600 bg-slate-900/60 px-3 py-4 text-sm text-slate-300 cursor-pointer mb-2">
+        <span>📂 Σύρε το αρχείο εδώ ή <span class="text-blue-400 underline">διάλεξε αρχείο</span></span>
+        <span id="irFileName" class="text-xs text-slate-400">.json, έως 20 MB</span>
+        <input type="file" id="irFile" accept=".json,application/json,text/plain" class="sr-only">
+    </label>
+    <textarea id="irInput" rows="5" spellcheck="false" autocomplete="off" data-clarity-mask="true" placeholder="[&#10;  { &quot;Type&quot;: &quot;Rule&quot;, &quot;Mailbox&quot;: &quot;cfo@mycompany.gr&quot;, &quot;Name&quot;: &quot;.&quot;, &quot;MoveToFolder&quot;: &quot;RSS Feeds&quot;, &quot;MarkAsRead&quot;: true, ... }&#10;]"
+              class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono text-[13px] focus:outline-none focus:border-blue-500"></textarea>
+
+    <label for="irDomains" class="block text-sm text-slate-300 mt-3 mb-1.5">3. Τα domains του οργανισμού σου. Συμπληρώνονται μόνα τους από τα mailboxes. Πρόσθεσε όσα λείπουν, π.χ. θυγατρικές, χωρισμένα με κόμμα.</label>
+    <input type="text" id="irDomains" spellcheck="false" autocomplete="off" data-clarity-mask="true" placeholder="mycompany.gr, mycompany.onmicrosoft.com"
+           class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono text-[13px] focus:outline-none focus:border-blue-500">
+
+    <div class="flex flex-wrap items-center gap-3 mt-3">
+        <button type="button" id="irRun" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Ποιος διαβάζει;</button>
+        <button type="button" id="irSample" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Δοκίμασε με παράδειγμα</button>
+        <button type="button" id="irClear" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Καθαρισμός</button>
+    </div>
+    <p id="irError" class="text-sm text-amber-400 mt-3 hidden" role="alert"></p>
+
+    <div id="irResult" class="hidden mt-6 flex flex-col gap-5" aria-live="polite" data-clarity-mask="true">
+        <div id="irWarn" class="hidden flex flex-col gap-2"></div>
+        <div id="irVerdict"></div>
+        <div id="irStats" class="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"></div>
+        <div id="irNext" class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div class="flex flex-wrap items-center gap-2 text-sm text-slate-300">
+            <span>Εμφάνιση:</span>
+            <select id="irFilter" class="rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-sm text-slate-100">
+                <option value="flag">Μόνο mailboxes με ευρήματα</option>
+                <option value="all">Όλα τα mailboxes</option>
+            </select>
+        </div>
+        <div id="irBoxes" class="flex flex-col gap-4"></div>
+        <div id="irKql" class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">
+            <label class="flex items-start gap-2 mb-3"><input type="checkbox" id="irMask" class="mt-1"> Απόκρυψη των διευθύνσεων email στη σύνοψη και στην αναφορά .pdf</label>
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="irPdf" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">Κατέβασε την αναφορά (.pdf)</button>
+                <button type="button" id="irCopy" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-slate-500">Αντιγραφή σύνοψης για το ticket</button>
+            </div>
+            <p id="irMsg" class="text-sm mt-2 hidden" role="status"></p>
+        </div>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-5">Ένας κανόνας που σημειώνεται εδώ δεν είναι απόδειξη παραβίασης: πολλοί χρήστες έχουν νόμιμους κανόνες που διαγράφουν ή μετακινούν μηνύματα. Τον κρίνεις εσύ, με τον χρήστη και με τα logs του KQL. Το εργαλείο δεν βλέπει κανόνες που υπάρχουν μόνο στο Outlook της συσκευής (client-only rules), mail flow rules του admin ή εφαρμογές με δικαίωμα στο mailbox.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('irTool');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var BASE = '{{ site.BaseURL }}';
+
+    // ---------- Λεξικά ----------
+    // Φάκελοι που ο χρήστης σπάνια ανοίγει (Αγγλικά και Ελληνικά ονόματα του Outlook), χωρίς τόνους και πεζά
+    var HIDDEN = ['rss feeds', 'rss subscriptions', 'rss', 'conversation history', 'archive', 'notes', 'junk email', 'junk e-mail', 'deleted items', 'sync issues', 'conflicts', 'local failures', 'server failures', 'outbox',
+        'ροες rss', 'συνδρομες rss', 'ιστορικο συνομιλιων', 'αρχειοθετηση', 'σημειωσεις', 'ανεπιθυμητη αλληλογραφια', 'διαγραμμενα', 'προβληματα συγχρονισμου', 'συγκρουσεις', 'εξερχομενα'];
+    // Λέξεις που ψάχνει ο επιτιθέμενος για να κρύψει πληρωμές ή προειδοποιήσεις (ρίζες, χωρίς τόνους)
+    var FIN = ['invoice', 'payment', 'wire', 'transfer', 'iban', 'swift', 'bank', 'remittance', 'remit', 'account details', 'τιμολογ', 'πληρωμ', 'εμβασμ', 'τραπεζ', 'καταθεσ', 'εξοφλ', 'λογαριασμο τραπεζ'];
+    var SEC = ['phish', 'spam', 'hack', 'compromis', 'suspicious', 'security', 'password', 'mfa', 'verify', 'do not reply', 'fraud', 'scam', 'malware', 'virus', 'helpdesk', 'it support',
+        'υποπτ', 'απατη', 'ασφαλει', 'κωδικ', 'παραβιασ', 'ψαρεμα', 'ιο', 'κακοβουλ'];
+    var SYSTEM = [/^junk e-?mail rule$/i, /^microsoft\.exchange\.oof\./i];
+
+    var SEV = {
+        4: { n: 'Κρίσιμο', tone: 'red', pdf: '#be123c' },
+        3: { n: 'Υψηλό', tone: 'red', pdf: '#be123c' },
+        2: { n: 'Μέτριο', tone: 'amber', pdf: '#b45309' },
+        1: { n: 'Χαμηλό', tone: 'blue', pdf: '#1d4ed8' },
+        0: { n: 'Χωρίς εύρημα', tone: 'green', pdf: '#047857' }
+    };
+    var ICON = { 4: '🔴', 3: '🔴', 2: '🟠', 1: '🔵', 0: '🟢' };
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+    function norm(s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+    function pill(text, tone) {
+        var t = { red: 'bg-rose-500/15 text-rose-300', amber: 'bg-amber-500/15 text-amber-300', green: 'bg-emerald-500/15 text-emerald-300', blue: 'bg-blue-500/15 text-blue-300', gray: 'bg-slate-700/50 text-slate-300' }[tone || 'gray'];
+        return '<span class="irPill ' + t + '">' + esc(text) + '</span>';
+    }
+    function mono(s) { return '<span class="irMono text-slate-100 break-all">' + esc(s) + '</span>'; }
+    function psq(s) { return "'" + String(s).replace(/'/g, "''") + "'"; }
+    function mask(s) { return String(s || '').replace(/([A-Za-z0-9._%+-])[A-Za-z0-9._%+-]*@([A-Za-z0-9.-]+)/g, '$1***@$2'); }
+
+    // ---------- Ανάγνωση ----------
+    function arr(v) {
+        if (v == null) return [];
+        if (!Array.isArray(v)) v = [v];
+        var out = [];
+        v.forEach(function (x) {
+            if (x == null) return;
+            if (typeof x === 'object') x = x.value || x.Address || x.address || x.DisplayName || JSON.stringify(x);
+            x = String(x).trim();
+            if (x) out.push(x);
+        });
+        return out;
+    }
+    function str(v) { if (v == null) return ''; if (typeof v === 'object') return arr(v).join(', '); return String(v).trim(); }
+    function bool(v) { return v === true || /^true$/i.test(String(v)); }
+    function addrOf(s) {
+        var m = String(s).match(/SMTP:([^\]\s"]+@[^\]\s"]+)/i) || String(s).match(/([A-Za-z0-9._%+'-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/);
+        if (m) return m[1].toLowerCase();
+        return null;
+    }
+    function parse(raw) {
+        raw = raw.replace(/^﻿/, '').trim();
+        var data;
+        try { data = JSON.parse(raw); } catch (e) { return { err: 'Το κείμενο δεν είναι έγκυρο JSON. Τρέξε το script του βήματος 1 και ανέβασε το inboxrules.json όπως βγήκε.' }; }
+        if (!Array.isArray(data)) data = [data];
+        var boxes = {}, order = [], rules = 0, sys = 0;
+        function box(m) { m = String(m || 'άγνωστο mailbox').toLowerCase(); if (!boxes[m]) { boxes[m] = { mb: m, fwd: null, rules: [], err: '' }; order.push(m); } return boxes[m]; }
+        data.forEach(function (o) {
+            if (!o || typeof o !== 'object') return;
+            var mbx = o.Mailbox || o.MailboxOwnerId || (o.Identity && String(o.Identity).split('\\')[0]) || '';
+            var type = o.Type || ('ForwardingSmtpAddress' in o && !('Name' in o) ? 'Mailbox' : 'Rule');
+            if (/^error$/i.test(type)) { box(mbx).err = str(o.Message) || 'άγνωστο σφάλμα'; return; }
+            if (/^mailbox$/i.test(type)) {
+                var b = box(o.Mailbox || o.UserPrincipalName || o.PrimarySmtpAddress || mbx);
+                b.fwd = { smtp: str(o.ForwardingSmtpAddress).replace(/^smtp:/i, ''), addr: str(o.ForwardingAddress), keep: o.DeliverToMailboxAndForward == null ? null : bool(o.DeliverToMailboxAndForward) };
+                return;
+            }
+            var name = str(o.Name);
+            if (!name && !o.Description) return;
+            if (SYSTEM.some(function (re) { return re.test(name); })) { box(mbx); sys++; return; }
+            rules++;
+            box(mbx).rules.push({
+                name: name, enabled: o.Enabled == null ? true : bool(o.Enabled), prio: o.Priority, desc: str(o.Description),
+                from: arr(o.From), fromW: arr(o.FromAddressContainsWords), subj: arr(o.SubjectContainsWords), body: arr(o.BodyContainsWords), sob: arr(o.SubjectOrBodyContainsWords),
+                move: str(o.MoveToFolder), copy: str(o.CopyToFolder), del: bool(o.DeleteMessage), sdel: bool(o.SoftDeleteMessage), read: bool(o.MarkAsRead), stop: bool(o.StopProcessingRules),
+                fwd: arr(o.ForwardTo), fwdA: arr(o.ForwardAsAttachmentTo), redir: arr(o.RedirectTo)
+            });
+        });
+        if (!order.length) return { err: 'Δεν βρέθηκε κανένα mailbox ή κανόνας στο JSON. Βεβαιώσου ότι ανέβασες το inboxrules.json του βήματος 1.' };
+        return { boxes: order.map(function (k) { return boxes[k]; }), rules: rules, sys: sys };
+    }
+
+    // ---------- Ανάλυση ----------
+    function domainsFrom(p) {
+        var d = [];
+        p.boxes.forEach(function (b) { var m = b.mb.match(/@([a-z0-9.-]+)$/); if (m && d.indexOf(m[1]) < 0) d.push(m[1]); });
+        return d;
+    }
+    function isInternal(a, doms) {
+        if (!a) return true;
+        var d = a.split('@')[1] || '';
+        return doms.some(function (x) { return d === x || d.slice(-(x.length + 1)) === '.' + x; });
+    }
+    function recipients(list, doms) {
+        return list.map(function (s) {
+            var a = addrOf(s);
+            if (!a && /EX:|\/o=/i.test(s)) return { a: s.replace(/^.*?\[|\]$/g, ''), ext: false, x500: true };
+            return { a: a || s, ext: a ? !isInternal(a, doms) : false };
+        });
+    }
+    // Επιστρέφει τις λέξεις του κανόνα, όπως τις έγραψε ο χρήστης, που ταιριάζουν σε μια ρίζα της λίστας
+    function hits(words, list) {
+        var out = [];
+        words.forEach(function (orig) {
+            var w = norm(orig);
+            var ok = list.some(function (k) { return k.length <= 3 ? new RegExp('(^|[^a-zα-ω])' + k + '([^a-zα-ω]|$)').test(w) : w.indexOf(k) >= 0; });
+            if (ok && out.indexOf(orig) < 0) out.push(orig);
+        });
+        return out;
+    }
+    function folderName(f) { return norm(String(f).split(/[\\\/:]/).filter(Boolean).pop() || ''); }
+
+    function analyseRule(r, doms) {
+        var F = [], words = r.subj.concat(r.body, r.sob, r.fromW);
+        var hasCond = !!(r.from.length || words.length) || /if the message|αν το μηνυμα/i.test(norm(r.desc));
+        var fin = hits(words, FIN), sec = hits(words, SEC), kw = fin.concat(sec);
+        var rc = recipients(r.fwd.concat(r.fwdA, r.redir), doms);
+        var ext = rc.filter(function (x) { return x.ext; }), intl = rc.filter(function (x) { return !x.ext; });
+        var hide = r.move && HIDDEN.indexOf(folderName(r.move)) >= 0;
+        var del = r.del || r.sdel;
+        var odd = r.name && !/[A-Za-zΑ-Ωα-ωΆ-ώ0-9]{3,}/.test(r.name);
+        var signals = 0;
+
+        if (ext.length) {
+            signals++;
+            F.push({ s: hasCond ? 3 : 4, t: (hasCond ? 'Προωθεί μηνύματα' : 'Προωθεί ΚΑΘΕ εισερχόμενο') + ' σε εξωτερική διεύθυνση: ' + ext.map(function (x) { return x.a; }).join(', ') + '.',
+                why: 'Είναι το πιο συνηθισμένο σημάδι BEC: ο επιτιθέμενος διαβάζει την αλληλογραφία ακόμα κι αφού αλλάξει ο κωδικός. Αν ο χρήστης δεν το ζήτησε γραπτώς, θεώρησέ το παραβίαση.', mitre: 'T1114.003' });
+        }
+        if (del) {
+            signals++;
+            if (!hasCond) F.push({ s: 4, t: 'Διαγράφει κάθε εισερχόμενο μήνυμα, χωρίς κανένα φίλτρο.', why: 'Η Microsoft το θεωρεί ισχυρή ένδειξη κακόβουλης δραστηριότητας: ο χρήστης δεν βλέπει τίποτα, ούτε τις απαντήσεις στα μηνύματα που στέλνει ο επιτιθέμενος από τον λογαριασμό του.', mitre: 'T1564.008' });
+            else if (kw.length) F.push({ s: 3, t: 'Διαγράφει μηνύματα που περιέχουν: ' + kw.join(', ') + '.', why: 'Ο επιτιθέμενος σβήνει τις απαντήσεις για πληρωμές ή τις προειδοποιήσεις «μήπως σας χάκαραν;», για να μην τις δει ο χρήστης.', mitre: 'T1564.008' });
+            else F.push({ s: 1, t: 'Διαγράφει μηνύματα με φίλτρο.', why: 'Συνήθως νόμιμος κανόνας καθαριότητας. Έλεγξε μόνο αν ο χρήστης τον αναγνωρίζει.' });
+        }
+        if (hide) {
+            signals++;
+            F.push({ s: (r.read || kw.length) ? 3 : 2, t: 'Μετακινεί ' + (kw.length ? 'τα μηνύματα που περιέχουν ' + kw.join(', ') : (hasCond ? 'μηνύματα' : 'ΚΑΘΕ εισερχόμενο')) + ' στον φάκελο «' + String(r.move).split(/[\\\/:]/).filter(Boolean).pop() + '»' + (r.read ? ' και τα σημειώνει ως αναγνωσμένα' : '') + '.',
+                why: 'Φάκελοι όπως RSS Feeds, Conversation History και Archive δεν ανοίγονται σχεδόν ποτέ. Η Microsoft τους αναφέρει ως τον συνηθισμένο τρόπο να κρυφτούν τα μηνύματα από τον κάτοχο του mailbox.', mitre: 'T1564.008' });
+        } else if (r.read && kw.length) {
+            signals++;
+            F.push({ s: 2, t: 'Σημειώνει ως αναγνωσμένα τα μηνύματα που περιέχουν: ' + kw.join(', ') + '.', why: 'Τα μηνύματα δεν φαίνονται ως νέα, άρα ο χρήστης τα προσπερνά.', mitre: 'T1564.008' });
+        }
+        if (odd) {
+            signals++;
+            F.push({ s: 2, t: 'Το όνομα του κανόνα είναι «' + r.name + '»: σχεδόν χωρίς γράμματα.', why: 'Ονόματα όπως «.», «..» ή «,,,» είναι κλασικό μοτίβο του επιτιθέμενου, ώστε ο κανόνας να μη φαίνεται στη λίστα του Outlook.' });
+        }
+        if (kw.length && !del && !hide && !r.read && !rc.length && !r.move && !r.copy) F.push({ s: 1, t: 'Φιλτράρει με λέξεις όπως: ' + kw.join(', ') + '.', why: 'Μόνο του δεν είναι ύποπτο. Δες τι κάνει ο κανόνας στα μηνύματα αυτά.' });
+        if (intl.length) F.push({ s: 0, t: 'Προωθεί εσωτερικά, σε: ' + intl.map(function (x) { return x.x500 ? 'εσωτερικό παραλήπτη (X500)' : x.a; }).join(', ') + '.', why: 'Η εσωτερική προώθηση δεν βγάζει δεδομένα εκτός οργανισμού. Βεβαιώσου μόνο ότι ο παραλήπτης πρέπει να τα βλέπει.' });
+
+        var s = F.reduce(function (m, f) { return Math.max(m, f.s); }, 0);
+        if (s === 3 && signals >= 2) s = 4;
+        var note = '';
+        if (!r.enabled && s > 1) { s = s - 1; note = 'Ο κανόνας είναι απενεργοποιημένος, γι\' αυτό η σοβαρότητα πέφτει ένα επίπεδο. Ο επιτιθέμενος όμως τον ενεργοποιεί ξανά με ένα κλικ: αν ο χρήστης δεν τον αναγνωρίζει, σβήσ\' τον αφού κρατήσεις το τεκμήριο.'; }
+        return { r: r, F: F, s: s, note: note, ext: ext };
+    }
+    function analyse(p, doms) {
+        var out = p.boxes.map(function (b) {
+            var rows = b.rules.map(function (r) { return analyseRule(r, doms); }).sort(function (a, c) { return c.s - a.s; });
+            var mf = null;
+            if (b.fwd) {
+                var targets = [b.fwd.smtp, b.fwd.addr].filter(Boolean), ext = targets.map(addrOf).filter(function (a) { return a && !isInternal(a, doms); });
+                if (ext.length) mf = { s: b.fwd.keep === false ? 4 : 3, t: 'Το mailbox προωθείται σε εξωτερική διεύθυνση (SMTP forwarding): ' + ext.join(', ') + '.' + (b.fwd.keep === false ? ' Αντίγραφο ΔΕΝ μένει στο mailbox.' : ''),
+                    why: 'Η προώθηση σε επίπεδο mailbox ορίζεται από admin ή από κάποιον με τα δικαιώματά του, και δεν φαίνεται στους κανόνες του Outlook. Αν δεν υπάρχει γραπτό αίτημα, θεώρησέ τη μέρος του περιστατικού.', ext: ext };
+                else if (targets.length) mf = { s: 0, t: 'Το mailbox προωθείται εσωτερικά: ' + targets.join(', ') + '.', why: 'Δεν βγάζει δεδομένα εκτός οργανισμού.' };
+            }
+            var s = Math.max(mf ? mf.s : 0, rows.reduce(function (m, x) { return Math.max(m, x.s); }, 0));
+            return { mb: b.mb, rows: rows, mf: mf, s: s, err: b.err };
+        });
+        out.sort(function (a, c) { return c.s - a.s || (c.err ? 1 : 0) - (a.err ? 1 : 0) || a.mb.localeCompare(c.mb); });
+        return out;
+    }
+
+    // ---------- Εντολές και KQL ----------
+    function fixCmds(b) {
+        var c = [];
+        b.rows.filter(function (x) { return x.s >= 3; }).forEach(function (x) { c.push('Disable-InboxRule -Mailbox ' + psq(b.mb) + ' -Identity ' + psq(x.r.name) + ' -Confirm:$false'); });
+        if (b.mf && b.mf.s >= 3) c.push('Set-Mailbox -Identity ' + psq(b.mb) + ' -ForwardingSmtpAddress $null -ForwardingAddress $null -DeliverToMailboxAndForward $false');
+        return c;
+    }
+    function kql(flag) {
+        var who = flag.map(function (b) { return '"' + b.mb.replace(/"/g, '') + '"'; });
+        return '// Ποιος έφτιαξε ή άλλαξε inbox rules και προώθηση, από ποια IP και χώρα (Microsoft Defender XDR, Advanced hunting)\n' +
+            'CloudAppEvents\n| where Timestamp > ago(30d)\n| where Application == "Microsoft Exchange Online"\n' +
+            '| where ActionType in ("New-InboxRule", "Set-InboxRule", "UpdateInboxRules", "Set-Mailbox")\n' +
+            '| extend Actor = tolower(tostring(RawEventData.UserId)), Target = tolower(tostring(RawEventData.ObjectId)), RuleConfig = tostring(RawEventData.Parameters)\n' +
+            (who.length ? '// Actor: ποιος έκανε την αλλαγή. Target: σε ποιο mailbox (για το Set-Mailbox είναι συνήθως ο admin ή ο επιτιθέμενος με δικαιώματα admin)\n| where Actor in~ (' + who.join(', ') + ') or Target has_any (' + who.join(', ') + ')\n' : '') +
+            '| where ActionType != "Set-Mailbox" or RuleConfig has_any ("ForwardingSmtpAddress", "ForwardingAddress", "DeliverToMailboxAndForward")\n' +
+            '| project Timestamp, Actor, Target, ActionType, IPAddress, CountryCode, City, ISP, RuleConfig\n| sort by Timestamp desc';
+    }
+
+    // ---------- Εμφάνιση ----------
+    function stat(label, n, tone) { var t = { green: 'text-emerald-300', amber: 'text-amber-300', red: 'text-rose-300', blue: 'text-blue-300', gray: 'text-slate-200' }[tone]; return '<div class="rounded-lg border border-slate-800 bg-slate-900/60 p-3"><p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">' + esc(label) + '</p><p class="text-2xl font-bold ' + t + '">' + n + '</p></div>'; }
+    function finding(f) {
+        var sv = SEV[f.s];
+        return '<li class="flex flex-col gap-0.5"><span>' + pill(sv.n, sv.tone) + ' <span class="text-slate-100">' + esc(f.t) + '</span>' + (f.mitre ? ' <span class="text-[11px] text-slate-500 irMono">' + esc(f.mitre) + '</span>' : '') + '</span><span class="text-xs text-slate-400 leading-relaxed">' + esc(f.why) + '</span></li>';
+    }
+    function boxCard(b) {
+        var sv = SEV[b.s];
+        var tone = b.s >= 3 ? 'border-rose-500/30 bg-rose-500/5' : (b.s === 2 || b.err) ? 'border-amber-500/30 bg-amber-500/5' : 'border-slate-800 bg-slate-900/40';
+        var h = '<div class="rounded-lg border ' + tone + ' p-4"><div class="flex flex-wrap items-center gap-2 mb-2">' + (b.err && b.s < 1 ? pill('⚠️ Δεν ελέγχθηκε', 'amber') : pill(ICON[b.s] + ' ' + sv.n, sv.tone)) + '<span class="font-semibold text-slate-100 break-all">' + esc(b.mb) + '</span><span class="text-xs text-slate-400">' + b.rows.length + (b.rows.length === 1 ? ' κανόνας' : ' κανόνες') + '</span></div>';
+        if (b.err) h += '<div class="rounded-md border border-amber-500/40 bg-amber-500/5 p-3 text-sm text-amber-200 mb-3">⚠️ Οι inbox rules αυτού του mailbox δεν διαβάστηκαν, άρα ο έλεγχος δεν είναι πλήρης. Τρέξε ξανά το script μόνο για αυτό: άλλαξε το <span class="irMono">-ResultSize Unlimited</span> σε <span class="irMono">-Identity ' + esc(b.mb) + '</span>.<div class="text-xs text-slate-400 mt-1 irMono break-all">' + esc(b.err) + '</div></div>';
+        if (b.mf) h += '<ul class="flex flex-col gap-2 text-sm mb-3">' + finding(b.mf) + '</ul>';
+        b.rows.forEach(function (x) {
+            var rs = SEV[x.s];
+            h += '<div class="rounded-md border border-slate-800 bg-slate-950/50 p-3 mt-2"><div class="flex flex-wrap items-center gap-2 mb-1">' + pill(ICON[x.s] + ' ' + rs.n, rs.tone) + (x.r.enabled ? '' : pill('Απενεργοποιημένος', 'gray')) + '<span class="text-sm text-slate-100">Κανόνας ' + mono('«' + (x.r.name || '(χωρίς όνομα)') + '»') + '</span></div>';
+            if (x.F.length) h += '<ul class="flex flex-col gap-2 text-sm mt-2">' + x.F.map(finding).join('') + '</ul>';
+            else h += '<p class="text-xs text-slate-400">Δεν βρέθηκε κάτι ύποπτο σε αυτόν τον κανόνα.</p>';
+            if (x.note) h += '<p class="text-xs text-amber-300 mt-2">' + esc(x.note) + '</p>';
+            if (x.r.desc) h += '<details class="mt-2"><summary class="text-xs text-slate-400 cursor-pointer">Τι λέει το Exchange για τον κανόνα</summary><pre class="irMono text-[11px] text-slate-300 mt-1">' + esc(x.r.desc) + '</pre></details>';
+            h += '</div>';
+        });
+        var c = fixCmds(b);
+        if (c.length) h += '<div class="mt-3"><p class="text-xs text-slate-400 mb-1">Εντολές αποκατάστασης για αυτό το mailbox (Exchange Online PowerShell):</p><pre class="irMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200">' + esc(c.join('\n')) + '</pre></div>';
+        return h + '</div>';
+    }
+
+    var last = null;
+    function render(p, rows, doms) {
+        var w = [];
+        if (!rows.some(function (b) { return b.mf !== null || b.rows.length; }) && p.sys) w.push('Βρέθηκαν μόνο οι κρυφοί κανόνες του συστήματος (Junk E-mail Rule), που δεν αφορούν την ανάλυση.');
+        if (!p.boxes.some(function (b) { return b.fwd; })) w.push('Το JSON δεν περιέχει την προώθηση των mailboxes (SMTP forwarding). Με το script του βήματος 1 ελέγχεται κι αυτή.');
+        var errs = rows.filter(function (b) { return b.err; });
+        if (errs.length) w.push('Δεν διαβάστηκαν οι inbox rules για ' + errs.length + (errs.length === 1 ? ' mailbox' : ' mailboxes') + ': ' + errs.map(function (b) { return b.mb; }).join(', ') + '. Γι\' αυτά ο έλεγχος δεν είναι πλήρης: δεν σημαίνει ότι είναι καθαρά. Τρέξε ξανά το script για αυτά, π.χ. αργότερα αν το Exchange Online είχε πρόβλημα.');
+        if (!doms.length) w.push('Δεν βρέθηκαν domains του οργανισμού. Συμπλήρωσέ τα στο βήμα 3, αλλιώς κάθε προώθηση θεωρείται εξωτερική.');
+        $('irWarn').innerHTML = w.map(function (x) { return '<div class="rounded-lg border border-amber-500/40 bg-amber-500/5 p-3 text-sm text-amber-200 leading-relaxed">⚠️ ' + esc(x) + '</div>'; }).join('');
+        $('irWarn').classList.toggle('hidden', !w.length);
+
+        var n = function (lv) { return rows.filter(function (b) { return b.s === lv; }).length; };
+        var top = rows.length ? rows[0].s : 0, crit = n(4), high = n(3), med = n(2);
+        var V = top >= 3 ? ['🔴 Βρέθηκαν σημάδια που ταιριάζουν σε παραβιασμένο mailbox', 'border-rose-500/40 bg-rose-500/10 text-rose-200', 'Ξεκίνα από τα mailboxes με «Κρίσιμο». Απενεργοποίησε τον κανόνα, όχι διαγραφή, για να μείνει το τεκμήριο, και ακολούθησε τα βήματα παρακάτω.']
+            : (top < 2 && errs.length) ? ['⚠️ Ο έλεγχος δεν ολοκληρώθηκε για όλα τα mailboxes', 'border-amber-500/40 bg-amber-500/10 text-amber-200', 'Στα mailboxes που διαβάστηκαν δεν βρέθηκε ύποπτος κανόνας, αλλά για ' + errs.length + ' δεν διαβάστηκαν οι κανόνες. Τρέξε ξανά το script για αυτά πριν βγάλεις συμπέρασμα.']
+            : top === 2 ? ['🟠 Υπάρχουν κανόνες που αξίζει να ελέγξεις', 'border-amber-500/40 bg-amber-500/10 text-amber-200', 'Τίποτα δεν δείχνει καθαρά επίθεση, αλλά ρώτα τους χρήστες αν αναγνωρίζουν τους κανόνες που σημειώνονται.']
+            : ['🟢 Δεν βρέθηκε ύποπτος κανόνας ή προώθηση', 'border-emerald-500/40 bg-emerald-500/10 text-emerald-200', 'Τρέξε τον έλεγχο ξανά περιοδικά, και κλείσε την αυτόματη εξωτερική προώθηση στο outbound spam policy, αν δεν τη χρειάζεσαι.'];
+        $('irVerdict').innerHTML = '<div class="rounded-lg border ' + V[1] + ' p-4"><p class="font-semibold text-base mb-1">' + esc(V[0]) + '</p><p class="text-sm leading-relaxed">' + esc(V[2]) + '</p></div>';
+
+        $('irStats').innerHTML = stat('Mailboxes', rows.length, 'gray') + stat('Κανόνες', p.rules, 'gray') + stat('Κρίσιμο', crit, crit ? 'red' : 'green') + stat('Υψηλό', high, high ? 'red' : 'green') + stat('Μέτριο', med, med ? 'amber' : 'green') + stat(errs.length ? 'Χωρίς εύρημα / Δεν ελέγχθηκαν' : 'Χωρίς εύρημα', rows.filter(function (b) { return b.s <= 1 && !b.err; }).length + (errs.length ? ' / ' + errs.length : ''), errs.length ? 'amber' : 'green');
+
+        var flag = rows.filter(function (b) { return b.s >= 3; });
+        var steps = [];
+        if (flag.length) {
+            steps.push('<strong>Απενεργοποίησε τους κανόνες και την προώθηση</strong> με τις εντολές που βλέπεις σε κάθε mailbox. Το <span class="irMono">Disable-InboxRule</span> κρατά τον κανόνα ως τεκμήριο, ενώ το <span class="irMono">Remove-InboxRule</span> τον σβήνει.');
+            steps.push('<strong>Ακύρωσε τις ενεργές συνεδρίες και άλλαξε τον κωδικό</strong> κάθε χρήστη με εύρημα: Microsoft Entra admin center › Users › Revoke sessions, και μετά Reset password. Η αλλαγή κωδικού μόνη της δεν ακυρώνει τα tokens που ήδη έχει ο επιτιθέμενος.');
+            steps.push('<strong>Έλεγξε τις μεθόδους MFA και τις εφαρμογές</strong> του χρήστη. Ο επιτιθέμενος συχνά προσθέτει δική του μέθοδο ή εφαρμογή με πρόσβαση στο mailbox.');
+            steps.push('<strong>Τρέξε το KQL παρακάτω</strong> για να δεις πότε και από ποια IP φτιάχτηκε κάθε κανόνας. Από την ίδια IP βρίσκεις κι άλλους λογαριασμούς που ίσως παραβιάστηκαν.');
+            steps.push('<strong>Αποφάσισε αν είναι περιστατικό προς αναφορά.</strong> Αν το mailbox προωθούσε δεδομένα εκτός οργανισμού, ίσως έχεις παραβίαση προσωπικών δεδομένων (GDPR, 72 ώρες) και, για οντότητες του ν. 5160/2024, σημαντικό περιστατικό (έγκαιρη προειδοποίηση σε 24 ώρες). Ξεκίνα από το <a class="text-blue-400 underline" href="' + BASE + 'anafora-peristatikou/">εργαλείο αναφοράς περιστατικού</a>.');
+        } else if (n(2)) steps.push('<strong>Ρώτα τους χρήστες</strong> με κανόνες «Μέτριο» αν τους έφτιαξαν οι ίδιοι. Αν όχι, χειρίσου τους ως «Κρίσιμο».');
+        steps.push('<strong>Κλείσε την αυτόματη εξωτερική προώθηση</strong> για όλους: Microsoft Defender portal › Email & collaboration › Policies › Anti-spam › Anti-spam outbound policy › Automatic forwarding rules: <strong>Off</strong>. Η προεπιλογή «Automatic - System-controlled» δεν σημαίνει πάντα Off σε κάθε tenant. Όσοι χρειάζονται προώθηση μπαίνουν σε ξεχωριστή πολιτική.');
+        $('irNext').innerHTML = '<p class="font-semibold text-slate-100 mb-2">Τι κάνεις τώρα</p><ol class="list-decimal pl-5 flex flex-col gap-1.5">' + steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>';
+
+        var q = kql(flag);
+        $('irKql').innerHTML = '<p class="font-semibold text-slate-100 mb-1">KQL για το Advanced hunting</p><p class="mb-2">Χρειάζεται Microsoft Defender for Cloud Apps ή το connector του Microsoft 365 στο Defender XDR, ώστε να γεμίζει ο πίνακας CloudAppEvents.' + (flag.length ? ' Το query φιλτράρει ήδη τα mailboxes με εύρημα «Υψηλό» ή «Κρίσιμο».' : '') + '</p><pre class="irMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200 overflow-x-auto">' + esc(q) + '</pre><button type="button" id="irKqlCopy" class="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-slate-500">Αντιγραφή KQL</button>';
+
+        last = { rows: rows, p: p, kql: q, flag: flag, V: V, counts: { crit: crit, high: high, med: med, err: errs.length }, doms: doms };
+        drawBoxes();
+        $('irResult').classList.remove('hidden');
+        $('irMsg').classList.add('hidden');
+    }
+    function drawBoxes() {
+        if (!last) return;
+        var all = $('irFilter').value === 'all';
+        var list = last.rows.filter(function (b) { return all || b.s >= 1 || b.err; });
+        $('irBoxes').innerHTML = list.length ? list.map(boxCard).join('') : '<p class="text-sm text-slate-400">Κανένα mailbox με εύρημα. Διάλεξε «Όλα τα mailboxes» για να τα δεις όλα.</p>';
+    }
+
+    function ticket() {
+        var L = last, m = $('irMask').checked, t = function (s) { return m ? mask(s) : s; };
+        var out = ['Έλεγχος inbox rules και προώθησης Exchange Online (thecybersec.gr/poios-diavazei-to-mailbox-sou/)', L.V[0].replace(/^\S+\s/, ''),
+            'Mailboxes: ' + L.rows.length + ' · Κανόνες: ' + L.p.rules + ' · Κρίσιμο: ' + L.counts.crit + ' · Υψηλό: ' + L.counts.high + ' · Μέτριο: ' + L.counts.med, ''];
+        L.rows.filter(function (b) { return b.err; }).forEach(function (b) { out.push('[Δεν ελέγχθηκε] ' + t(b.mb) + ': δεν διαβάστηκαν οι inbox rules.'); });
+        L.rows.filter(function (b) { return b.s >= 2; }).forEach(function (b) {
+            out.push('[' + SEV[b.s].n + '] ' + t(b.mb));
+            if (b.mf && b.mf.s >= 2) out.push('  - ' + t(b.mf.t));
+            b.rows.filter(function (x) { return x.s >= 2; }).forEach(function (x) { out.push('  - Κανόνας «' + x.r.name + '»' + (x.r.enabled ? '' : ' (απενεργοποιημένος)') + ': ' + x.F.filter(function (f) { return f.s >= 2; }).map(function (f) { return t(f.t); }).join(' ')); });
+        });
+        if (L.rows.every(function (b) { return b.s < 2 && !b.err; })) out.push('Δεν βρέθηκε ύποπτος κανόνας ή εξωτερική προώθηση.');
+        return out.join('\n');
+    }
+
+    function fail(msg) { var e = $('irError'); e.textContent = msg; e.classList.remove('hidden'); $('irResult').classList.add('hidden'); last = null; }
+    var autoDoms = true;
+    function run() {
+        var raw = $('irInput').value;
+        $('irError').classList.add('hidden');
+        if (!raw.trim()) return fail('Ανέβασε πρώτα το inboxrules.json ή επικόλλησε το περιεχόμενό του.');
+        var p = parse(raw);
+        if (p.err) return fail(p.err);
+        var found = domainsFrom(p), typed = $('irDomains').value.split(/[,;\s]+/).map(function (s) { return s.trim().toLowerCase().replace(/^@/, ''); }).filter(Boolean);
+        var doms = typed.slice(); found.forEach(function (d) { if (doms.indexOf(d) < 0) doms.push(d); });
+        if (autoDoms || !typed.length) { $('irDomains').value = doms.join(', '); }
+        render(p, analyse(p, doms), doms);
+        $('irResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---------- Παράδειγμα: κατασκευασμένα δεδομένα (MyCompany, εξωτερικά domains κατά RFC 2606) ----------
+    function sample() {
+        var S = [
+            { Type: 'Mailbox', Mailbox: 'ceo@mycompany.gr', ForwardingSmtpAddress: '', ForwardingAddress: '', DeliverToMailboxAndForward: false },
+            { Type: 'Rule', Mailbox: 'ceo@mycompany.gr', Name: 'Newsletters', Enabled: true, Priority: 1, Description: 'If the message:\r\n\tincludes \'newsletter\' in the subject\r\nTake the following actions:\r\n\tmove the message to folder \'Newsletters\'\r\n', SubjectContainsWords: ['newsletter'], MoveToFolder: 'Newsletters', DeleteMessage: false, MarkAsRead: false, ForwardTo: [''], RedirectTo: [''] },
+            { Type: 'Mailbox', Mailbox: 'cfo@mycompany.gr', ForwardingSmtpAddress: '', ForwardingAddress: '', DeliverToMailboxAndForward: false },
+            { Type: 'Rule', Mailbox: 'cfo@mycompany.gr', Name: '.', Enabled: true, Priority: 1, Description: 'If the message:\r\n\tincludes \'invoice\' or \'πληρωμή\' or \'IBAN\' in the subject or body\r\nTake the following actions:\r\n\tmove the message to folder \'RSS Feeds\'\r\n\tand mark the message as read\r\n', SubjectOrBodyContainsWords: ['invoice', 'πληρωμή', 'IBAN'], MoveToFolder: 'cfo@mycompany.gr:\\RSS Feeds', DeleteMessage: false, MarkAsRead: true, StopProcessingRules: true, ForwardTo: [''], RedirectTo: [''] },
+            { Type: 'Rule', Mailbox: 'cfo@mycompany.gr', Name: '..', Enabled: true, Priority: 2, Description: 'Take the following actions:\r\n\tforward the message as an attachment to \'"Accounts Backup" [SMTP:accounts.backup@example.net]\'\r\n', ForwardAsAttachmentTo: ['"Accounts Backup" [SMTP:accounts.backup@example.net]'], DeleteMessage: false, MarkAsRead: false },
+            { Type: 'Mailbox', Mailbox: 'hr@mycompany.gr', ForwardingSmtpAddress: 'smtp:hr.archive@example.org', ForwardingAddress: '', DeliverToMailboxAndForward: false },
+            { Type: 'Rule', Mailbox: 'hr@mycompany.gr', Name: 'Security alerts', Enabled: false, Priority: 1, Description: 'If the message:\r\n\tincludes \'suspicious\' or \'ύποπτη σύνδεση\' in the subject\r\nTake the following actions:\r\n\tdelete the message\r\n', SubjectContainsWords: ['suspicious', 'ύποπτη σύνδεση'], DeleteMessage: true },
+            { Type: 'Rule', Mailbox: 'hr@mycompany.gr', Name: 'Junk E-mail Rule', Enabled: true, Priority: 2 },
+            { Type: 'Mailbox', Mailbox: 'it@mycompany.gr', ForwardingSmtpAddress: '', ForwardingAddress: '', DeliverToMailboxAndForward: false },
+            { Type: 'Rule', Mailbox: 'it@mycompany.gr', Name: 'Ειδοποιήσεις backup στον CISO', Enabled: true, Priority: 1, Description: 'If the message:\r\n\tincludes \'backup\' in the subject\r\nTake the following actions:\r\n\tforward the message to \'"CISO" [SMTP:ciso@mycompany.gr]\'\r\n', SubjectContainsWords: ['backup'], ForwardTo: ['"CISO" [SMTP:ciso@mycompany.gr]'] },
+            { Type: 'Mailbox', Mailbox: 'legal@mycompany.gr', ForwardingSmtpAddress: '', ForwardingAddress: '', DeliverToMailboxAndForward: false },
+            { Type: 'Mailbox', Mailbox: 'sales@mycompany.gr', ForwardingSmtpAddress: '', ForwardingAddress: '', DeliverToMailboxAndForward: false },
+            { Type: 'Error', Mailbox: 'sales@mycompany.gr', Message: 'The operation couldn\'t be performed because the server is busy. Please try again later.' }
+        ];
+        $('irInput').value = JSON.stringify(S, null, 2);
+        $('irDomains').value = ''; autoDoms = true;
+        $('irFileName').textContent = '.json, έως 20 MB';
+        run();
+    }
+
+    // ---------- Αρχείο ----------
+    function readFile(f) {
+        if (!f) return;
+        if (f.size > 20 * 1024 * 1024) return fail('Το αρχείο είναι μεγαλύτερο από 20 MB. Τρέξε το script για λιγότερα mailboxes κάθε φορά.');
+        var rd = new FileReader();
+        rd.onload = function () {
+            var buf = new Uint8Array(rd.result), txt;
+            // Το Out-File -Encoding utf8 του Windows PowerShell 5.1 γράφει UTF-8 με BOM· παλαιότερες εκδόσεις UTF-16
+            if (buf[0] === 0xFF && buf[1] === 0xFE) txt = new TextDecoder('utf-16le').decode(buf);
+            else if (buf[0] === 0xFE && buf[1] === 0xFF) txt = new TextDecoder('utf-16be').decode(buf);
+            else txt = new TextDecoder('utf-8').decode(buf);
+            $('irInput').value = txt; $('irFileName').textContent = f.name;
+            run();
+        };
+        rd.onerror = function () { fail('Δεν διαβάστηκε το αρχείο. Δοκίμασε να επικολλήσεις το περιεχόμενό του.'); };
+        rd.readAsArrayBuffer(f);
+    }
+    var drop = $('irDrop');
+    ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('irOver'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('irOver'); }); });
+    drop.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]); });
+    $('irFile').addEventListener('change', function () { readFile(this.files[0]); this.value = ''; });
+
+    // ---------- Αντιγραφή ----------
+    function copy(txt, okMsg) {
+        var msg = $('irMsg');
+        function ok() { msg.textContent = okMsg || 'Αντιγράφηκε.'; msg.className = 'text-sm mt-2 text-emerald-300'; }
+        function bad() { msg.textContent = 'Η αντιγραφή δεν επιτράπηκε από τον browser. Επίλεξε και αντίγραψε το κείμενο χειροκίνητα.'; msg.className = 'text-sm mt-2 text-amber-400'; }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, bad); else bad();
+    }
+
+    // ---------- Αναφορά .pdf: το pdfmake φορτώνει μόνο όταν πατηθεί το κουμπί ----------
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-ir="' + src + '"]')) return next();
+            var s = document.createElement('script'); s.src = src; s.setAttribute('data-ir', src); s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    var EXPORT = '{{ "js/inbox-rules-report.js" | relURL }}?v={{ readFile "static/js/inbox-rules-report.js" | md5 | truncate 8 "" }}';
+    var PDFLIB = ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'];
+    $('irPdf').addEventListener('click', function () {
+        if (!last) return;
+        var btn = this, msg = $('irMsg'), txt = btn.textContent, m = $('irMask').checked, t = function (s) { return m ? mask(s) : String(s || ''); };
+        btn.disabled = true; btn.textContent = 'Δημιουργία…'; msg.classList.add('hidden');
+        var L = last;
+        var ctx = {
+            base: BASE, mask: m, verdict: L.V[0].replace(/^\S+\s/, ''), verdictText: L.V[2], top: L.rows.length ? L.rows[0].s : 0,
+            stats: [['Mailboxes', L.rows.length], ['Κανόνες', L.p.rules], ['Κρίσιμο', L.counts.crit], ['Υψηλό', L.counts.high], ['Μέτριο', L.counts.med]].concat(L.counts.err ? [['Δεν ελέγχθηκαν', L.counts.err]] : []),
+            domains: L.doms.join(', '),
+            boxes: L.rows.filter(function (b) { return b.s >= 1 || b.err; }).map(function (b) {
+                return { mb: t(b.mb), sev: b.s >= 1 ? SEV[b.s].n : 'Δεν ελέγχθηκε', color: b.s >= 1 ? SEV[b.s].pdf : '#b45309',
+                    items: (b.err ? [{ what: 'Inbox rules', sev: 'Δεν ελέγχθηκε', color: '#b45309', text: 'Οι κανόνες δεν διαβάστηκαν (' + b.err + '). Τρέξε ξανά το script για αυτό το mailbox.' }] : []).concat(b.mf && b.mf.s >= 1 ? [{ what: 'Προώθηση mailbox', sev: SEV[b.mf.s].n, color: SEV[b.mf.s].pdf, text: t(b.mf.t) }] : []).concat(
+                        b.rows.filter(function (x) { return x.s >= 1; }).map(function (x) { return { what: 'Κανόνας «' + x.r.name + '»' + (x.r.enabled ? '' : ' (απενεργ.)'), sev: SEV[x.s].n, color: SEV[x.s].pdf, text: x.F.filter(function (f) { return f.s >= 1; }).map(function (f) { return t(f.t); }).join(' ') }; })),
+                    cmds: m ? [] : fixCmds(b) };
+            }),
+            clean: L.rows.filter(function (b) { return b.s < 1 && !b.err; }).length,
+            kql: m ? kql([]) : L.kql
+        };
+        loadScripts(PDFLIB.concat([EXPORT]), function () {
+            Promise.resolve().then(function () { return window.InboxRulesReport.pdf(ctx); })
+                .catch(function () { msg.textContent = 'Δεν δημιουργήθηκε η αναφορά. Δοκίμασε ξανά.'; msg.className = 'text-sm mt-2 text-amber-400'; })
+                .then(function () { btn.disabled = false; btn.textContent = txt; });
+        }, function () { msg.textContent = 'Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'; msg.className = 'text-sm mt-2 text-amber-400'; btn.disabled = false; btn.textContent = txt; });
+    });
+
+    $('irRun').addEventListener('click', run);
+    $('irSample').addEventListener('click', sample);
+    $('irDomains').addEventListener('input', function () { autoDoms = false; });
+    $('irDomains').addEventListener('change', function () { if (last) run(); });
+    $('irInput').addEventListener('keydown', function (e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') run(); });
+    $('irClear').addEventListener('click', function () { $('irInput').value = ''; $('irDomains').value = ''; autoDoms = true; $('irFileName').textContent = '.json, έως 20 MB'; $('irResult').classList.add('hidden'); $('irError').classList.add('hidden'); last = null; $('irInput').focus(); });
+    $('irFilter').addEventListener('change', drawBoxes);
+    $('irCopy').addEventListener('click', function () { if (last) copy(ticket(), 'Η σύνοψη αντιγράφηκε. Επικόλλησέ τη στο ticket.'); });
+    // Το μήνυμα του κουμπιού φαίνεται στο ίδιο το κουμπί, γιατί το #irMsg είναι στα αποτελέσματα, που ακόμα δεν φαίνονται
+    $('irCmdCopy').addEventListener('click', function () {
+        var btn = this, txt = btn.textContent;
+        function done(m) { btn.textContent = m; setTimeout(function () { btn.textContent = txt; }, 2500); }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText($('irCmd').textContent).then(function () { done('Αντιγράφηκε ✓'); }, function () { done('Επίλεξε και αντίγραψε χειροκίνητα'); });
+        else done('Επίλεξε και αντίγραψε χειροκίνητα');
+    });
+    root.addEventListener('click', function (e) { if (e.target.id === 'irKqlCopy' && last) copy(last.kql, 'Το KQL αντιγράφηκε.'); });
+})();
+</script>
