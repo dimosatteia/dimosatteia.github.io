@@ -44,7 +44,7 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": {{ .Title | jsonify }},
-  "description": {{ .Summary | plainify | jsonify }},
+  "description": {{ .Description | default (.Summary | plainify) | jsonify }},
   "author": {
     "@type": "Person",
     "name": "Dimosthenis Atteia",
