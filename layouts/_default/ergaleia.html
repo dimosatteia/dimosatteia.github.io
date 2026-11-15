@@ -6,11 +6,12 @@
   εμφανίζεται εδώ μόνο του, μόλις δημοσιευτεί (draft: false). Δεν χρειάζεται καμία αλλαγή σε αυτό το αρχείο.
   Emoji και σύντομο όνομα tile: από το name του μενού. Κείμενο: από το description της σελίδας.
   Προαιρετικά στο front matter του εργαλείου: toolBlurb (πιο σύντομο κείμενο για το tile).
-  Badge «Νέο»: για όσες ημέρες ορίζει το newDays στο front matter αυτής της σελίδας (προεπιλογή 14).
+  Badge «🆕 Νέο» (αναβοσβήνει, όπως στις «Εκδόσεις»): για όσες ημέρες ορίζει το newDays στο front matter αυτής της σελίδας (προεπιλογή 14).
+  Τα «Νέα» εργαλεία εμφανίζονται πάντα πρώτα, με το νεότερο πρώτο. Τα υπόλοιπα ακολουθούν με τη σειρά του μενού.
 */ -}}
 {{- /* int: το Hugo 0.161 διαβάζει τον αριθμό του front matter ως uint64 και η σύγκριση με float αποτυγχάνει */ -}}
 {{- $newDays := int (.Params.newDays | default 14) -}}
-{{- $items := slice -}}
+{{- $newItems := slice -}}{{- $oldItems := slice -}}
 {{- range site.Menus.main -}}
   {{- if eq .Identifier "tools" -}}
     {{- range .Children -}}
@@ -19,11 +20,15 @@
         {{- $parts := split $m.Name " " -}}
         {{- $emoji := index $parts 0 -}}
         {{- $short := delimit (after 1 $parts) " " -}}
-        {{- $items = $items | append (dict "m" $m "p" . "emoji" $emoji "short" $short) -}}
+        {{- $isNew := lt (div (now.Sub .Date).Hours 24) $newDays -}}
+        {{- $item := dict "m" $m "p" . "emoji" $emoji "short" $short "isNew" $isNew "sortKey" .Date.Unix -}}
+        {{- if $isNew }}{{ $newItems = $newItems | append $item }}{{ else }}{{ $oldItems = $oldItems | append $item }}{{ end -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
+{{- /* Τα «Νέα» πρώτα (νεότερο πρώτο), μετά τα υπόλοιπα με τη σειρά του μενού */ -}}
+{{- $items := (sort $newItems "sortKey" "desc") | append $oldItems -}}
 {{- /* Κατηγορίες για τα φίλτρα, με τη σειρά που εμφανίζονται */ -}}
 {{- $cats := slice -}}
 {{- range $items }}{{ range .p.Params.categories }}{{ if not (in $cats .) }}{{ $cats = $cats | append . }}{{ end }}{{ end }}{{ end -}}
@@ -64,13 +69,13 @@
         <ul id="toolGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
             {{ range $items }}
             {{ $p := .p }}
-            {{ $isNew := lt (div (now.Sub $p.Date).Hours 24) $newDays }}
+            {{ $isNew := .isNew }}
             {{ $catKeys := slice }}{{ range $p.Params.categories }}{{ $catKeys = $catKeys | append (. | urlize) }}{{ end }}
             <li class="tool-tile" data-cats="{{ delimit $catKeys " " }}" data-text="{{ printf "%s %s %s" .short $p.Title $p.Description }}">
                 <a href="{{ $p.RelPermalink }}" class="tool-card group glass-card rounded-xl p-6 h-full flex flex-col gap-4 no-underline">
                     <div class="flex items-start justify-between gap-3">
                         <span class="tool-emoji" aria-hidden="true">{{ .emoji }}</span>
-                        {{ if $isNew }}<span class="text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded border border-emerald-500/50 text-emerald-300 bg-emerald-500/10">🆕 Νέο</span>{{ end }}
+                        {{ if $isNew }}<span class="tool-new text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded border border-emerald-500/50 text-emerald-300 bg-emerald-500/10">🆕 Νέο</span>{{ end }}
                     </div>
                     <div class="flex flex-col gap-2 flex-grow">
                         <h2 class="text-base font-semibold text-slate-100 leading-snug m-0 group-hover:text-white">{{ .short }}</h2>
@@ -101,7 +106,10 @@
 .tool-card { transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
 .tool-card:hover, .tool-card:focus-visible { transform: translateY(-3px); border-color: rgba(59,130,246,.6); box-shadow: 0 12px 32px -12px rgba(59,130,246,.35); outline: none; }
 .tool-emoji { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; font-size: 1.6rem; line-height: 1; border-radius: .75rem; background: rgba(30,41,59,.7); border: 1px solid #1e293b; }
-@media (prefers-reduced-motion: reduce) { .tool-card { transition: none; } .tool-card:hover { transform: none; } }
+/* «🆕 Νέο»: αναβοσβήνει, όπως το «🆕 Νέα» στις «Εκδόσεις» */
+.tool-new { animation: tool-blink 1.2s ease-in-out infinite; }
+@keyframes tool-blink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+@media (prefers-reduced-motion: reduce) { .tool-card { transition: none; } .tool-card:hover { transform: none; } .tool-new { animation: none; } }
 </style>
 
 <script>
