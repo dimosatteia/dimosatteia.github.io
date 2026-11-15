@@ -1,0 +1,718 @@
+{{- /* «Ποιος χτυπάει την πόρτα σου;» (/poios-xtypaei-tin-porta-sou/)
+       Ο admin κατεβάζει τα sign-in logs από το Microsoft Entra admin center (CSV ή JSON, interactive και non-interactive)
+       και τα σύρει εδώ. Το εργαλείο βρίσκει password spray, brute force, σωστό κωδικό που σταμάτησε στο MFA, MFA fatigue,
+       επιτυχημένες συνδέσεις από χώρες όπου ο οργανισμός δεν έχει ανθρώπους, legacy authentication και χρήστες χωρίς MFA.
+       Δείχνει τις χώρες στην 3D υδρόγειο του Cloudflare Radar (static/js/radar-globe/globe.js, με opts.target).
+       Τα αρχεία διαβάζονται ΜΟΝΟ μέσα στον browser του επισκέπτη. Δεν στέλνονται πουθενά.
+       Χρήση: {{< signin-check >}} */ -}}
+<style>
+#siTool .siMono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#siTool .siPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
+#siTool pre{white-space:pre-wrap;word-break:break-all}
+#siTool .siDrop.siOver{border-color:#3b82f6;background:rgba(59,130,246,.08)}
+#siTool table{width:100%;border-collapse:collapse;font-size:13px}
+#siTool th{text-align:left;font-weight:600;color:#94a3b8;font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:6px 8px;border-bottom:1px solid #1e293b}
+#siTool td{padding:6px 8px;border-bottom:1px solid #1e293b;vertical-align:top}
+#siTool .siBar{height:6px;border-radius:3px;background:#1e293b;overflow:hidden;min-width:60px}
+#siTool .siBar>span{display:block;height:100%}
+/* Ίδια εμφάνιση με την υδρόγειο του Cloudflare Radar (layouts/partials/radar-map.html) */
+.radar-map .rg-stage{position:relative;aspect-ratio:800/520;touch-action:pan-y;cursor:grab;background:radial-gradient(ellipse at 50% 45%,#13213d 0%,#0b1220 70%)}
+.radar-map .rg-stage.is-drag{cursor:grabbing}
+.radar-map .rg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .8s ease}
+.radar-map .rg-stage.is-ready .rg-canvas{opacity:1}
+.radar-map .rg-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.radar-map .rg-label{position:absolute;left:0;top:0;margin:-26px 0 0 8px;white-space:nowrap;font:600 12px ui-sans-serif,system-ui,sans-serif;color:#e2e8f0;text-shadow:0 0 3px #0b1220,0 0 6px #0b1220;transition:opacity .3s}
+.radar-map .rg-label-gr{color:#bfdbfe;margin:10px 0 0 -58px}
+.radar-map .rg-label.rg-left{translate:calc(-100% - 4px) 34px}
+.radar-map .rg-hint{position:absolute;z-index:1;left:12px;bottom:8px;margin:0;font:11px ui-sans-serif,system-ui,sans-serif;color:#64748b;pointer-events:none}
+.radar-map .rg-zoom{position:absolute;right:8px;bottom:8px;z-index:2;display:flex;flex-direction:column;border:1px solid #334155;border-radius:8px;overflow:hidden;background:rgba(11,18,32,.85)}
+.radar-map .rg-zoom button{width:30px;height:28px;font:600 15px/1 ui-sans-serif,system-ui,sans-serif;color:#cbd5e1;background:transparent;border:0;cursor:pointer}
+.radar-map .rg-zoom button+button{border-top:1px solid #334155}
+.radar-map .rg-zoom button:hover{background:#1e293b;color:#fff}
+.radar-map .rg-zoom button:focus-visible{outline:2px solid #60a5fa;outline-offset:-2px}
+.radar-map .rg-switch{position:absolute;top:8px;right:8px;z-index:2;display:flex;border:1px solid #334155;border-radius:9999px;overflow:hidden;background:rgba(11,18,32,.85)}
+.radar-map .rg-switch button{font:600 11px ui-sans-serif,system-ui,sans-serif;color:#94a3b8;padding:4px 10px;background:transparent;border:0;cursor:pointer}
+.radar-map .rg-switch button[aria-pressed="true"]{background:#1d4ed8;color:#fff}
+.radar-map .rg-switch button:focus-visible{outline:2px solid #60a5fa;outline-offset:-2px}
+.radar-map .rg-label-hot{color:#fecaca}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="siTool">
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mb-4">Microsoft Entra ID · Sign-in logs · Password spray · MFA</p>
+
+    <div class="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-emerald-300 mb-1">🔒 Τα logs δεν φεύγουν από τον υπολογιστή σου</p>
+        <p>Η ανάλυση γίνεται μόνο μέσα στον browser σου. Τα ονόματα χρηστών, οι διευθύνσεις IP και οι τοποθεσίες δεν στέλνονται σε κανέναν server, ούτε στο thecybersec.gr, και δεν αποθηκεύονται. Λεπτομέρειες στην <a href="{{ "privacy/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Πολιτική απορρήτου</a>.</p>
+    </div>
+
+    <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed mb-4">
+        <p class="font-semibold text-slate-100 mb-2">1. Κατέβασε τα sign-in logs από το Microsoft Entra ID</p>
+        <p class="mb-2">Δεν χρειάζεται PowerShell ούτε κάποια άδεια: η λήψη υπάρχει σε όλες τις εκδόσεις του Microsoft Entra ID. Με Entra ID Free βλέπεις τις τελευταίες 7 ημέρες, με P1 ή P2 τις τελευταίες 30.</p>
+        <ol class="list-decimal pl-5 flex flex-col gap-1.5 mb-1">
+            <li>Άνοιξε το <a href="https://entra.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Entra admin center</a> και μπες με λογαριασμό που έχει τουλάχιστον τον ρόλο <strong>Reports Reader</strong>. Αρκούν και οι Security Reader, Security Administrator ή Global Reader.</li>
+            <li>Πήγαινε στο <strong>Entra ID › Monitoring &amp; health › Sign-in logs</strong>.</li>
+            <li>Στο φίλτρο <strong>Date</strong> διάλεξε <strong>Last 7 days</strong>, ή <strong>Last 1 month</strong> αν έχεις Entra ID P1 ή P2. Μην προσθέσεις άλλα φίλτρα: το εργαλείο χρειάζεται και τις επιτυχημένες και τις αποτυχημένες συνδέσεις.</li>
+            <li>Πάτησε <strong>Download › Download CSV</strong>. Στο παράθυρο «Download Sign-ins in CSV format» βλέπεις έξι αρχεία. Πάτησε <strong>Download</strong> μόνο σε δύο:
+                <ul class="list-disc pl-5 mt-1 flex flex-col gap-0.5">
+                    <li>το πρώτο, <span class="siMono text-slate-100">InteractiveSignIns_…</span></li>
+                    <li>το τρίτο, <span class="siMono text-slate-100">NonInteractiveSignIns_…</span>, που έχει τις συνδέσεις από Outlook, κινητά και παλιά πρωτόκολλα, εκεί που συνήθως φαίνεται το password spray.</li>
+                </ul>
+                Άφησε τα υπόλοιπα: τα <span class="siMono">…_AuthDetails</span> έχουν μόνο λεπτομέρειες του MFA χωρίς χώρα και IP, και τα <span class="siMono">ApplicationSignIns</span> και <span class="siMono">MSISignIns</span> αφορούν εφαρμογές, όχι χρήστες. Τα δύο αρχεία πέφτουν στον φάκελο Λήψεις.</li>
+        </ol>
+        <details class="mt-3 rounded-md border border-slate-700 bg-slate-950/40 p-3">
+            <summary class="cursor-pointer text-sm text-slate-200 font-semibold">🛠️ Κάτι δεν πήγε καλά στη λήψη;</summary>
+            <ul class="list-disc pl-5 mt-2 flex flex-col gap-1.5 text-xs text-slate-400 leading-relaxed">
+                <li><strong class="text-slate-200">Δεν βλέπεις το κουμπί Download ή τα logs:</strong> ο λογαριασμός σου δεν έχει κάποιον από τους ρόλους του βήματος 1.</li>
+                <li><strong class="text-slate-200">Η λήψη σταματά ή δεν τελειώνει:</strong> κάθε αρχείο έχει όριο 100.000 συνδέσεις και η λήψη στον browser λήγει σε μεγάλα σύνολα. Μίκρυνε το διάστημα, π.χ. Last 24 hours, και κατέβασε περισσότερα αρχεία. Μπορείς να τα σύρεις όλα μαζί εδώ.</li>
+                <li><strong class="text-slate-200">Το εργαλείο λέει ότι δεν αναγνωρίζει τις στήλες του CSV:</strong> κατέβασε τα ίδια logs με <strong>Download › Download JSON</strong>. Το JSON έχει πάντα τα ίδια ονόματα πεδίων, όποια γλώσσα κι αν έχει το portal σου. Είναι μεγαλύτερο σε μέγεθος.</li>
+                <li><strong class="text-slate-200">Οι στήλες που έχεις κρύψει στο portal:</strong> δεν παίζουν ρόλο. Το αρχείο έχει πάντα όλα τα πεδία.</li>
+            </ul>
+        </details>
+    </div>
+
+    <p class="text-sm text-slate-300 mb-1.5">2. Σύρε εδώ τα αρχεία από τις Λήψεις. Μπορείς να σύρεις πολλά μαζί.</p>
+    <label for="siFile" id="siDrop" class="siDrop flex flex-col items-center justify-center gap-1 rounded-md border border-dashed border-slate-600 bg-slate-900/60 px-3 py-5 text-sm text-slate-300 cursor-pointer mb-2">
+        <span>📂 Σύρε τα αρχεία εδώ ή <span class="text-blue-400 underline">διάλεξε αρχεία</span></span>
+        <span id="siFileName" class="text-xs text-slate-400">.csv ή .json, έως 300 MB συνολικά</span>
+        <input type="file" id="siFile" accept=".csv,.json,text/csv,application/json" multiple class="sr-only">
+    </label>
+
+    <label for="siHome" class="block text-sm text-slate-300 mt-3 mb-1.5">3. Οι χώρες όπου έχει ανθρώπους ο οργανισμός σου, με κωδικούς δύο γραμμάτων χωρισμένους με κόμμα (π.χ. GR, CY). Συμπληρώνονται μόνες τους από τις επιτυχημένες συνδέσεις. Πρόσθεσε και όσες χώρες επισκέπτονται συχνά οι συνεργάτες σου.</label>
+    <input type="text" id="siHome" spellcheck="false" autocomplete="off" placeholder="GR"
+           class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono text-[13px] focus:outline-none focus:border-blue-500 uppercase">
+
+    <label for="siOwn" class="block text-sm text-slate-300 mt-3 mb-1.5">4. Οι δημόσιες διευθύνσεις IP του οργανισμού σου (γραφεία, VPN, Wi-Fi επισκεπτών), χωρισμένες με κόμμα. Δέχεται και περιοχές, π.χ. <span class="siMono">203.0.113.0/28</span>. Συμπληρώνονται μόνες τους με όσες IP της χώρας σου χρησιμοποιούν με επιτυχία τρεις ή περισσότεροι χρήστες. Έλεγξέ τες: από αυτές οι αποτυχίες δεν μετράνε ως password spray.</label>
+    <input type="text" id="siOwn" spellcheck="false" autocomplete="off" data-clarity-mask="true" placeholder="192.0.2.10, 198.51.100.0/29"
+           class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 font-mono text-[13px] focus:outline-none focus:border-blue-500">
+
+    <div class="flex flex-wrap items-center gap-3 mt-3">
+        <button type="button" id="siRun" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-blue-400">Ποιος χτυπάει;</button>
+        <button type="button" id="siSample" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Δοκίμασε με παράδειγμα</button>
+        <button type="button" id="siClear" class="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:text-white hover:border-slate-500">Καθαρισμός</button>
+    </div>
+    <p id="siBusy" class="text-sm text-blue-300 mt-3 hidden" role="status"></p>
+    <p id="siError" class="text-sm text-amber-400 mt-3 hidden" role="alert"></p>
+
+    <div id="siResult" class="hidden mt-6 flex flex-col gap-5" aria-live="polite" data-clarity-mask="true">
+        <div id="siWarn" class="hidden flex flex-col gap-2"></div>
+        <div id="siVerdict"></div>
+        <div id="siStats" class="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"></div>
+        <figure class="radar-map relative overflow-hidden rounded-lg border border-slate-700 bg-[#0b1220] hidden" id="siMap">
+            <div class="rg-stage" id="siStage">
+                <p class="rg-hint">Σύρε για περιστροφή · διπλό κλικ, Ctrl + τροχός ή τσίμπημα για zoom</p>
+                <div class="rg-zoom" role="group" aria-label="Zoom υδρογείου">
+                    <button type="button" data-si-zoom="in" aria-label="Μεγέθυνση">+</button><button type="button" data-si-zoom="out" aria-label="Σμίκρυνση">−</button><button type="button" data-si-zoom="reset" aria-label="Επαναφορά προβολής">⟲</button>
+                </div>
+            </div>
+            <figcaption class="px-3 py-2 text-xs text-slate-400">Τόξα από τις χώρες εκτός των δικών σου απ' όπου έγιναν προσπάθειες σύνδεσης. Έντονο κόκκινο: χώρα με τουλάχιστον μία <strong class="text-rose-300">επιτυχημένη</strong> σύνδεση.</figcaption>
+        </figure>
+        <div id="siFindings" class="flex flex-col gap-3"></div>
+        <div id="siNext" class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div id="siCountries" class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 overflow-x-auto"></div>
+        <div id="siIps" class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 overflow-x-auto"></div>
+        <div id="siKql" class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 leading-relaxed"></div>
+        <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">
+            <label class="flex items-start gap-2 mb-3"><input type="checkbox" id="siMask" class="mt-1"> Απόκρυψη των ονομάτων χρηστών και των διευθύνσεων IP στη σύνοψη και στην αναφορά .pdf</label>
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="siPdf" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">Κατέβασε την αναφορά (.pdf)</button>
+                <button type="button" id="siCopy" class="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-200 hover:border-slate-500">Αντιγραφή σύνοψης για το ticket</button>
+            </div>
+            <p id="siMsg" class="text-sm mt-2 hidden" role="status"></p>
+        </div>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-5">Ένα εύρημα εδώ δεν είναι απόδειξη παραβίασης: μια σύνδεση από άλλη χώρα μπορεί να είναι ταξίδι, VPN ή κινητό με roaming. Το κρίνεις εσύ, με τον χρήστη. Η χώρα προκύπτει από τη διεύθυνση IP όπως την καταγράφει η Microsoft, άρα δεν είναι πάντα ακριβής. Το εργαλείο βλέπει μόνο ό,τι υπάρχει στα αρχεία που ανέβασες.</p>
+    <noscript><p class="text-xs text-slate-400 mt-2">Το εργαλείο χρειάζεται JavaScript.</p></noscript>
+</div>
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('siTool');
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var BASE = '{{ site.BaseURL }}';
+    var GLOBE = '{{ "js/radar-globe/globe.js" | relURL }}', LAND = '{{ "js/radar-globe/land.json" | relURL }}';
+
+    // ---------- Κωδικοί σφάλματος Microsoft Entra (AADSTS) που μετράνε εδώ ----------
+    var PWD_BAD = { 50126: 1 };                       // λάθος όνομα χρήστη ή κωδικός
+    var NO_USER = { 50034: 1 };                       // ο χρήστης δεν υπάρχει
+    var LOCKED = { 50053: 1 };                        // κλείδωμα (Smart Lockout) ή IP με κακόβουλη δραστηριότητα
+    var PWD_OK_MFA = { 50074: 1, 50076: 1, 50079: 1 }; // ο κωδικός ήταν σωστός, ζητήθηκε MFA
+    var MFA_DENY = { 500121: 1 };                     // το MFA δεν ολοκληρώθηκε ή απορρίφθηκε
+    var CA_BLOCK = { 53003: 1 };                      // μπλόκαρε το Conditional Access: εφαρμόζεται ΜΕΤΑ τον πρώτο παράγοντα, άρα ο κωδικός πέρασε
+    var CODE_TXT = { 50126: 'λάθος κωδικός', 50034: 'ο χρήστης δεν υπάρχει', 50053: 'κλείδωμα λογαριασμού ή IP', 50074: 'σωστός κωδικός, ζητήθηκε MFA', 50076: 'σωστός κωδικός, ζητήθηκε MFA', 50079: 'σωστός κωδικός, ζητήθηκε εγγραφή MFA', 500121: 'το MFA απορρίφθηκε ή δεν ολοκληρώθηκε', 53003: 'μπλόκαρε το Conditional Access', 50057: 'απενεργοποιημένος λογαριασμός', 50055: 'έληξε ο κωδικός', 50173: 'ο κωδικός άλλαξε' };
+    // Legacy πρωτόκολλα: μόνο οι τιμές του «Client app» που η Microsoft κατατάσσει στο legacy authentication.
+    // Το «Browser», το «Mobile Apps and Desktop clients» και το «Unknown» (όταν η Microsoft δεν αναγνωρίζει τον client) ΔΕΝ μετράνε.
+    var LEGACY = ['exchange activesync', 'imap4', 'imap', 'pop3', 'pop', 'authenticated smtp', 'smtp', 'exchange web services', 'other clients',
+        'mapi over http', 'offline address book', 'outlook anywhere (rpc over http)', 'autodiscover', 'exchange online powershell', 'reporting web services', 'universal outlook'];
+
+    // ---------- Παραδείγματα πολιτικών Conditional Access, με τα ονόματα των πεδίων όπως στο Microsoft Entra admin center ----------
+    // Όλες ξεκινούν σε Report-only και εξαιρούν τους λογαριασμούς έκτακτης ανάγκης (break-glass).
+    var BG = 'Exclude: τους λογαριασμούς έκτακτης ανάγκης (break-glass)';
+    var CA = {
+        country: { name: 'CA-Block-Countries-Outside-Organization', lic: 'Microsoft Entra ID P1', rows: [
+            ['Πριν από την πολιτική', 'Entra ID › Conditional Access › Named locations › + Countries location. Όνομα «Χώρες οργανισμού», και επίλεξε τις χώρες όπου έχεις ανθρώπους.'],
+            ['Users', 'Include: All users · ' + BG + ', και μια ομάδα «Ταξιδεύουν» για όσους φεύγουν προσωρινά στο εξωτερικό'],
+            ['Target resources', 'Resources: All resources'],
+            ['Conditions › Locations', 'Configure: Yes · Include: Any network or location · Exclude: Selected networks and locations › «Χώρες οργανισμού»'],
+            ['Grant', 'Block access'],
+            ['Enable policy', 'Report-only, και On αφού ελέγξεις τα αποτελέσματα για μία εβδομάδα']],
+            note: 'Ο χρήστης που ταξιδεύει μπαίνει για λίγες μέρες στην ομάδα «Ταξιδεύουν». Το VPN ενός επιτιθέμενου μπορεί να βγαίνει από τη χώρα σου, άρα η πολιτική αυτή δεν αντικαθιστά το MFA.' },
+        phish: { name: 'CA-Require-PhishingResistant-MFA', lic: 'Microsoft Entra ID P1', rows: [
+            ['Users', 'Include: πρώτα οι admins και οι χρήστες με πρόσβαση σε πληρωμές (π.χ. CEO, CFO), μετά όλοι · ' + BG],
+            ['Target resources', 'Resources: All resources'],
+            ['Grant', 'Grant access › Require authentication strength › Phishing-resistant MFA'],
+            ['Enable policy', 'Report-only, και On αφού οι χρήστες γράψουν passkey (Microsoft Authenticator ή FIDO2) ή Windows Hello for Business']],
+            note: 'Το phishing-resistant MFA δεν «περνά» από σελίδες AiTM ούτε από MFA fatigue, γιατί δεν υπάρχει κουμπί Approve να πατήσει ο χρήστης κατά λάθος.' },
+        risk: { name: 'CA-Risky-SignIns-Require-MFA', lic: 'Microsoft Entra ID P2', rows: [
+            ['Users', 'Include: All users · ' + BG],
+            ['Target resources', 'Resources: All resources'],
+            ['Conditions › Sign-in risk', 'Configure: Yes · High, Medium'],
+            ['Grant', 'Grant access › Require multifactor authentication'],
+            ['Session', 'Sign-in frequency: Every time'],
+            ['Enable policy', 'Report-only, και On αφού ελέγξεις τα αποτελέσματα']],
+            note: 'Το Microsoft Entra ID Protection βαθμολογεί κάθε σύνδεση (άγνωστη τοποθεσία, password spray, κακόβουλη IP) και η πολιτική ζητά ξανά MFA όταν ο κίνδυνος είναι μέτριος ή υψηλός.' },
+        legacy: { name: 'CA-Block-Legacy-Authentication', lic: 'Microsoft Entra ID P1 (χωρίς P1: Security defaults)', rows: [
+            ['Users', 'Include: All users · ' + BG + ', και όσους λογαριασμούς υπηρεσίας χρειάζονται ακόμα legacy (π.χ. scanner που στέλνει email), μέχρι να αλλάξουν'],
+            ['Target resources', 'Resources: All resources'],
+            ['Conditions › Client apps', 'Configure: Yes · μόνο Exchange ActiveSync clients και Other clients'],
+            ['Grant', 'Block access'],
+            ['Enable policy', 'Report-only, και On αφού ελέγξεις στα sign-in logs ποιοι χρησιμοποιούν ακόμα legacy']],
+            note: 'Η Microsoft αναφέρει ότι πάνω από το 99% των password spray χρησιμοποιούν legacy authentication. Το Conditional Access εφαρμόζεται μετά τον κωδικό, οπότε κλείσε και στο Exchange Online τα πρωτόκολλα που δεν χρειάζεσαι (π.χ. SMTP AUTH).' },
+        mfa: { name: 'CA-Require-MFA-All-Users', lic: 'Microsoft Entra ID P1 (χωρίς P1: Security defaults)', rows: [
+            ['Users', 'Include: All users · ' + BG],
+            ['Target resources', 'Resources: All resources'],
+            ['Grant', 'Grant access › Require authentication strength › Multifactor authentication'],
+            ['Enable policy', 'Report-only, και On αφού γράψουν όλοι οι χρήστες μέθοδο MFA']],
+            note: 'Αν δεν έχεις Entra ID P1 (π.χ. Microsoft 365 Business Standard), ενεργοποίησε τα Security defaults: ζητούν MFA από όλους και μπλοκάρουν το legacy authentication, δωρεάν.' }
+    };
+
+    var SEV = {
+        4: { n: 'Κρίσιμο', tone: 'red', pdf: '#be123c' },
+        3: { n: 'Υψηλό', tone: 'red', pdf: '#be123c' },
+        2: { n: 'Μέτριο', tone: 'amber', pdf: '#b45309' },
+        1: { n: 'Χαμηλό', tone: 'blue', pdf: '#1d4ed8' },
+        0: { n: 'Πληροφορία', tone: 'green', pdf: '#047857' }
+    };
+    var ICON = { 4: '🔴', 3: '🔴', 2: '🟠', 1: '🔵', 0: '🟢' };
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+    function pill(text, tone) {
+        var t = { red: 'bg-rose-500/15 text-rose-300', amber: 'bg-amber-500/15 text-amber-300', green: 'bg-emerald-500/15 text-emerald-300', blue: 'bg-blue-500/15 text-blue-300', gray: 'bg-slate-700/50 text-slate-300' }[tone || 'gray'];
+        return '<span class="siPill ' + t + '">' + esc(text) + '</span>';
+    }
+    function nf(n) { try { return n.toLocaleString('el-GR'); } catch (e) { return String(n); } }
+    var regionNames = null;
+    try { regionNames = new Intl.DisplayNames(['el'], { type: 'region' }); } catch (e) { }
+    function cname(cc) { if (!cc) return 'Άγνωστη χώρα'; try { return (regionNames && regionNames.of(cc)) || cc; } catch (e) { return cc; } }
+    function flag(cc) { return /^[A-Z]{2}$/.test(cc || '') ? String.fromCodePoint.apply(null, cc.split('').map(function (c) { return 127397 + c.charCodeAt(0); })) : '🏳️'; }
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function fdt(d) { return d ? pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) : ''; }
+    function fd(d) { return d ? pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear() : ''; }
+    function maskUser(s) { return String(s || '').replace(/^([^@]{1})[^@]*@/, '$1***@'); }
+    function maskIp(s) { s = String(s || ''); if (s.indexOf(':') >= 0) return s.split(':').slice(0, 3).join(':') + ':…'; var p = s.split('.'); return p.length === 4 ? p[0] + '.' + p[1] + '.x.x' : s; }
+
+    // ---------- CSV (RFC 4180, με εισαγωγικά και αλλαγές γραμμής μέσα σε πεδία) ----------
+    function parseCsv(text) {
+        var rows = [], row = [], f = '', q = false, i = 0, n = text.length, c;
+        var delim = ',';
+        var firstLine = text.slice(0, text.indexOf('\n') > 0 ? text.indexOf('\n') : 2000);
+        if ((firstLine.match(/;/g) || []).length > (firstLine.match(/,/g) || []).length) delim = ';';
+        for (; i < n; i++) {
+            c = text.charCodeAt(i);
+            if (q) {
+                if (c === 34) { if (text.charCodeAt(i + 1) === 34) { f += '"'; i++; } else q = false; }
+                else f += text[i];
+            } else if (c === 34) q = true;
+            else if (text[i] === delim) { row.push(f); f = ''; }
+            else if (c === 10) { row.push(f); rows.push(row); row = []; f = ''; }
+            else if (c !== 13) f += text[i];
+        }
+        if (f !== '' || row.length) { row.push(f); rows.push(row); }
+        return rows;
+    }
+    function hkey(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
+    // Στήλες του CSV του Microsoft Entra admin center, με εναλλακτικά ονόματα
+    var COLS = {
+        t: ['dateutc', 'date', 'createddatetime', 'timegenerated'],
+        upn: ['username', 'userprincipalname', 'signinidentifier'],
+        user: ['user', 'userdisplayname'],
+        ip: ['ipaddress', 'ipaddressseenbyresource'],
+        loc: ['location'],
+        cc: ['countryorregion', 'country'],
+        city: ['city'],
+        status: ['status', 'result'],
+        code: ['signinerrorcode', 'errorcode', 'resulttype'],
+        reason: ['failurereason', 'resultdescription'],
+        client: ['clientapp', 'clientappused'],
+        app: ['application', 'appdisplayname'],
+        authreq: ['authenticationrequirement'],
+        ca: ['conditionalaccess', 'conditionalaccessstatus'],
+        ua: ['useragent']
+    };
+    function csvRecords(text) {
+        var rows = parseCsv(text.replace(/^﻿/, ''));
+        if (rows.length < 2) return { err: 'empty' };
+        var head = rows[0].map(hkey), idx = {};
+        Object.keys(COLS).forEach(function (k) {
+            for (var j = 0; j < COLS[k].length; j++) { var p = head.indexOf(COLS[k][j]); if (p >= 0) { idx[k] = p; break; } }
+        });
+        if (idx.t == null || idx.ip == null || (idx.upn == null && idx.user == null) || (idx.code == null && idx.status == null)) return { err: 'cols' };
+        var out = [];
+        for (var r = 1; r < rows.length; r++) {
+            var x = rows[r]; if (!x || x.length < 3) continue;
+            var g = function (k) { return idx[k] == null ? '' : (x[idx[k]] || '').trim(); };
+            var loc = g('loc'), cc = g('cc'), city = g('city');
+            if (!cc && loc) { var parts = loc.split(',').map(function (s) { return s.trim(); }); cc = parts[parts.length - 1]; city = parts[0]; }
+            var code = parseInt(g('code'), 10); var st = g('status').toLowerCase();
+            if (isNaN(code)) code = /success/.test(st) ? 0 : -1;
+            out.push(norm({ t: g('t'), upn: g('upn') || g('user'), ip: g('ip'), cc: cc, city: city, code: code, reason: g('reason'), client: g('client'), app: g('app'), authreq: g('authreq'), ca: g('ca') }));
+        }
+        return { recs: out };
+    }
+    function pick(o, names) {
+        for (var i = 0; i < names.length; i++) {
+            var path = names[i].split('.'), v = o;
+            for (var j = 0; j < path.length && v != null; j++) {
+                var key = path[j], found;
+                if (key in v) found = v[key];
+                else { var lk = key.toLowerCase(); for (var kk in v) if (kk.toLowerCase() === lk) { found = v[kk]; break; } }
+                v = found;
+            }
+            if (v != null && v !== '') return v;
+        }
+        return '';
+    }
+    function jsonRecords(text) {
+        var d;
+        try { d = JSON.parse(text.replace(/^﻿/, '')); } catch (e) { return { err: 'json' }; }
+        if (d && !Array.isArray(d)) d = d.value || d.signIns || [d];
+        if (!Array.isArray(d) || !d.length) return { err: 'empty' };
+        var out = [];
+        d.forEach(function (o) {
+            if (!o || typeof o !== 'object') return;
+            var code = pick(o, ['status.errorCode', 'errorCode', 'ResultType']);
+            code = code === '' ? -1 : parseInt(code, 10);
+            out.push(norm({
+                t: pick(o, ['createdDateTime', 'CreatedDateTime', 'TimeGenerated']),
+                upn: pick(o, ['userPrincipalName', 'signInIdentifier', 'userDisplayName']),
+                ip: pick(o, ['ipAddress', 'IPAddress']),
+                cc: pick(o, ['location.countryOrRegion', 'LocationDetails.countryOrRegion', 'countryOrRegion']),
+                city: pick(o, ['location.city', 'LocationDetails.city', 'city']),
+                code: code,
+                reason: pick(o, ['status.failureReason', 'failureReason', 'ResultDescription']),
+                client: pick(o, ['clientAppUsed', 'ClientAppUsed']),
+                app: pick(o, ['appDisplayName', 'AppDisplayName']),
+                authreq: pick(o, ['authenticationRequirement', 'AuthenticationRequirement']),
+                ca: pick(o, ['conditionalAccessStatus', 'ConditionalAccessStatus'])
+            }));
+        });
+        return { recs: out };
+    }
+    function norm(r) {
+        var d = r.t ? new Date(/Z$|[+-]\d\d:?\d\d$/.test(r.t) || !/\d{4}-\d\d-\d\dT/.test(r.t) ? r.t : r.t + 'Z') : null;
+        if (d && isNaN(d)) d = null;
+        var cc = String(r.cc || '').trim().toUpperCase();
+        if (!/^[A-Z]{2}$/.test(cc)) cc = '';
+        return {
+            t: d, upn: String(r.upn || '').toLowerCase(), ip: String(r.ip || ''), cc: cc, city: String(r.city || ''),
+            code: typeof r.code === 'number' ? r.code : parseInt(r.code, 10), reason: String(r.reason || ''),
+            client: String(r.client || ''), app: String(r.app || ''),
+            mfa: /multi/i.test(String(r.authreq || '')) ? 'multi' : /single/i.test(String(r.authreq || '')) ? 'single' : '',
+            ca: String(r.ca || '')
+        };
+    }
+
+    // ---------- Δικές σου IP ----------
+    function ip4(s) { var m = String(s).trim().match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/); if (!m) return null; return ((+m[1] << 24) >>> 0) + (+m[2] << 16) + (+m[3] << 8) + (+m[4]); }
+    function parseOwn(txt) {
+        return String(txt || '').split(/[\s,;]+/).filter(Boolean).map(function (t) {
+            var m = t.match(/^(.+)\/(\d{1,3})$/);
+            if (m && ip4(m[1]) != null) { var bits = Math.min(32, +m[2]), mask = bits ? (0xFFFFFFFF << (32 - bits)) >>> 0 : 0; return { net: (ip4(m[1]) & mask) >>> 0, mask: mask, txt: t }; }
+            return { exact: t.toLowerCase(), txt: t };
+        });
+    }
+    function isOwn(ip, own) {
+        var v = ip4(ip), l = String(ip).toLowerCase();
+        return own.some(function (o) { return o.exact ? o.exact === l : (v != null && ((v & o.mask) >>> 0) === o.net); });
+    }
+    // Αυτόματα: IP στις δικές σου χώρες με επιτυχημένες συνδέσεις από τουλάχιστον 3 διαφορετικούς χρήστες (γραφείο, NAT, VPN)
+    function autoOwn(recs, home) {
+        var H = {}, ips = {}; home.forEach(function (c) { H[c] = 1; });
+        recs.forEach(function (r) { if (r.code === 0 && r.ip && H[r.cc]) (ips[r.ip] = ips[r.ip] || {})[r.upn] = 1; });
+        return Object.keys(ips).filter(function (k) { return Object.keys(ips[k]).length >= 3; });
+    }
+
+    // ---------- Ανάλυση ----------
+    function isLegacy(c) { return LEGACY.indexOf(String(c || '').trim().toLowerCase()) >= 0; }
+    function analyse(recs, home, own) {
+        var H = {}; home.forEach(function (c) { H[c] = 1; });
+        var away = function (r) { return r.cc && !H[r.cc]; };
+        var users = {}, ips = {}, countries = {}, tmin = null, tmax = null;
+        var succ = 0, fail = 0;
+        recs.forEach(function (r) {
+            if (r.t) { if (!tmin || r.t < tmin) tmin = r.t; if (!tmax || r.t > tmax) tmax = r.t; }
+            var ok = r.code === 0;
+            if (ok) succ++; else fail++;
+            var u = users[r.upn] || (users[r.upn] = { upn: r.upn, ok: 0, bad: 0, pwdBad: 0, locked: 0, mfaDeny: 0, okAway: {}, pwdOkAway: {}, single: 0, legacyOk: {}, ips: {} });
+            var ip = ips[r.ip] || (ips[r.ip] = { ip: r.ip, cc: r.cc, city: r.city, users: {}, ok: 0, bad: 0, okUsers: {}, codes: {} });
+            var c = countries[r.cc || '??'] || (countries[r.cc || '??'] = { cc: r.cc, ok: 0, bad: 0, users: {}, okUsers: {} });
+            ip.users[r.upn] = 1; c.users[r.upn] = 1; u.ips[r.ip] = 1;
+            if (ok) { u.ok++; ip.ok++; c.ok++; ip.okUsers[r.upn] = 1; c.okUsers[r.upn] = 1; } else { u.bad++; ip.bad++; c.bad++; ip.codes[r.code] = (ip.codes[r.code] || 0) + 1; }
+            if (PWD_BAD[r.code] || NO_USER[r.code]) u.pwdBad++;
+            if (LOCKED[r.code]) u.locked++;
+            if (MFA_DENY[r.code]) u.mfaDeny++;
+            if (ok && away(r)) { var k = r.cc; u.okAway[k] = u.okAway[k] || { n: 0, single: 0, legacy: 0, ips: {}, first: r.t }; var a = u.okAway[k]; a.n++; a.ips[r.ip] = 1; if (r.mfa === 'single') a.single++; if (isLegacy(r.client)) a.legacy++; if (r.t && (!a.first || r.t < a.first)) a.first = r.t; }
+            if ((PWD_OK_MFA[r.code] || CA_BLOCK[r.code]) && away(r)) { var pa = u.pwdOkAway[r.cc] || (u.pwdOkAway[r.cc] = { mfa: 0, ca: 0 }); if (CA_BLOCK[r.code]) pa.ca++; else pa.mfa++; }
+            if (ok && r.mfa === 'single') u.single++;
+            if (ok && isLegacy(r.client)) u.legacyOk[r.client] = (u.legacyOk[r.client] || 0) + 1;
+        });
+        var F = [];
+        function push(s, title, why, fix, who, mitre, ca) { F.push({ s: s, title: title, why: why, fix: fix, who: who || [], mitre: mitre || '', ca: ca || [] }); }
+
+        // 1. Επιτυχημένες συνδέσεις από χώρες εκτός των δικών σου
+        Object.keys(users).forEach(function (k) {
+            var u = users[k];
+            Object.keys(u.okAway).forEach(function (cc) {
+                var a = u.okAway[cc], weak = a.single > 0 || a.legacy > 0;
+                push(weak ? 4 : 3,
+                    'Επιτυχημένη σύνδεση του ' + u.upn + ' από ' + flag(cc) + ' ' + cname(cc) + ' (' + a.n + (a.n === 1 ? ' φορά' : ' φορές') + ', πρώτη ' + fdt(a.first) + ')' + (a.single ? ', χωρίς MFA' : '') + (a.legacy ? ', με legacy πρωτόκολλο' : '') + '.',
+                    weak ? 'Κάποιος μπήκε στον λογαριασμό από χώρα όπου δεν έχεις ανθρώπους, και μάλιστα μόνο με κωδικό. Αν ο χρήστης δεν ταξίδευε, θεώρησέ το παραβίαση.'
+                        : 'Η σύνδεση πέρασε το MFA. Μπορεί να είναι ταξίδι ή VPN, αλλά μπορεί και να είναι κλεμμένο token από επίθεση AiTM, που περνά το MFA. Ρώτα τον χρήστη σήμερα.',
+                    'Ακύρωσε τις συνεδρίες του χρήστη (Revoke sessions) και άλλαξε τον κωδικό, έλεγξε τις μεθόδους MFA του, τους inbox rules και την προώθηση του mailbox. Με Conditional Access, μπλόκαρε τις χώρες όπου δεν έχεις δουλειά (named locations).',
+                    [u.upn], 'T1078.004', weak ? ['country', 'mfa', 'legacy'] : ['country', 'phish', 'risk']);
+            });
+        });
+        // 2. Σωστός κωδικός από άλλη χώρα, που σταμάτησε στο MFA ή στο Conditional Access
+        Object.keys(users).forEach(function (k) {
+            var u = users[k], cs = Object.keys(u.pwdOkAway);
+            if (!cs.length) return;
+            var mfa = cs.some(function (c) { return u.pwdOkAway[c].mfa; }), ca = cs.some(function (c) { return u.pwdOkAway[c].ca; });
+            var where = mfa && ca ? 'στο MFA και στο Conditional Access' : ca ? 'στο Conditional Access' : 'στο MFA';
+            push(3, 'Ο κωδικός του ' + u.upn + ' είναι μάλλον γνωστός: σύνδεση από ' + cs.map(function (c) { return flag(c) + ' ' + cname(c); }).join(', ') + ' πέρασε τον κωδικό και σταμάτησε ' + where + '.',
+                (mfa ? 'Οι κωδικοί 50074, 50076 και 50079 σημαίνουν ότι ο κωδικός πρόσβασης πέρασε και η Microsoft ζήτησε δεύτερο παράγοντα. ' : '') + (ca ? 'Ο κωδικός 53003 σημαίνει ότι μπλόκαρε το Conditional Access, που εφαρμόζεται μόνο αφού περάσει ο κωδικός. ' : '') + 'Το εμπόδιο σε έσωσε, αλλά όποιος δοκίμασε ξέρει τον κωδικό.',
+                'Άλλαξε τον κωδικό του χρήστη σήμερα και έλεγξε αν τον χρησιμοποιεί και αλλού. Αν ο χρήστης ταξίδευε εκείνες τις μέρες, το εύρημα εξηγείται. Για τα MFA, προτίμησε number matching, Microsoft Authenticator passkey ή FIDO2 αντί για απλές push ειδοποιήσεις.',
+                [u.upn], 'T1110', ['phish', 'risk']);
+        });
+        // 3. MFA fatigue
+        Object.keys(users).forEach(function (k) {
+            var u = users[k];
+            if (u.mfaDeny >= 3) push(3, 'Ο ' + u.upn + ' απέρριψε ή άφησε ανολοκλήρωτο το MFA ' + u.mfaDeny + ' φορές.',
+                'Πολλές συνεχόμενες ειδοποιήσεις MFA είναι το μοτίβο του MFA fatigue: ο επιτιθέμενος έχει τον κωδικό και «βομβαρδίζει» τον χρήστη μέχρι να πατήσει Approve από κούραση.',
+                'Ρώτα τον χρήστη αν έλαβε ειδοποιήσεις που δεν περίμενε. Άλλαξε τον κωδικό του και βεβαιώσου ότι το Microsoft Authenticator έχει number matching.',
+                [u.upn], 'T1621', ['phish', 'risk']);
+        });
+        // 4. Password spray από IP. Οι δικές σου IP (βήμα 4) εξαιρούνται: εκεί πολλοί χρήστες με λάθος κωδικό είναι συνήθως καθημερινότητα.
+        Object.keys(ips).forEach(function (k) {
+            var ip = ips[k], tried = Object.keys(ip.users).length, pw = (ip.codes[50126] || 0) + (ip.codes[50034] || 0) + (ip.codes[50053] || 0);
+            if (tried < 5 || pw < 5) return;
+            if (isOwn(ip.ip, own)) {
+                if (pw >= 20) push(1, 'Πολλές αποτυχίες από τη δική σου IP ' + ip.ip + ': ' + nf(pw) + ' λάθος κωδικοί σε ' + tried + ' χρήστες.',
+                    'Η IP είναι στη λίστα των δικών σου διευθύνσεων, γι\' αυτό δεν μετρά ως password spray. Ο αριθμός όμως είναι μεγάλος: μπορεί να είναι μια εφαρμογή ή ένα μηχάνημα με παλιό κωδικό, ή κάποιος μέσα στο δίκτυό σου που δοκιμάζει κωδικούς.',
+                    'Δες στο Microsoft Entra admin center ποια εφαρμογή και ποια συσκευή εμφανίζονται στις αποτυχίες αυτής της IP.', [], '');
+                return;
+            }
+            var won = Object.keys(ip.okUsers);
+            push(won.length ? 4 : 2, 'Password spray από ' + ip.ip + ' (' + flag(ip.cc) + ' ' + cname(ip.cc) + '): δοκίμασε ' + tried + ' χρήστες με ' + nf(pw) + ' λάθος κωδικούς' + (won.length ? ', και πέτυχε για ' + won.join(', ') : '') + '.',
+                'Μία IP που δοκιμάζει έναν κοινό κωδικό σε πολλούς λογαριασμούς είναι password spray. ' + (won.length ? 'Η ίδια IP μπήκε επιτυχώς σε λογαριασμό, άρα κάποιος κωδικός «έπεσε». Αν η IP είναι δική σου (γραφείο, VPN), πρόσθεσέ τη στο βήμα 4 και το εύρημα θα επανεκτιμηθεί.' : 'Κανένας λογαριασμός δεν έπεσε από αυτήν την IP, στα logs που ανέβασες.'),
+                won.length ? 'Χειρίσου τους λογαριασμούς που πέτυχε ως παραβιασμένους: Revoke sessions, αλλαγή κωδικού, έλεγχος MFA και mailbox.' : 'Βεβαιώσου ότι όλοι οι χρήστες έχουν MFA και ότι το legacy authentication είναι μπλοκαρισμένο. Το Smart Lockout του Entra ID κλειδώνει ήδη τους λογαριασμούς προσωρινά.',
+                won, 'T1110.003', ['legacy', 'mfa']);
+        });
+        // 5. Brute force σε χρήστη
+        Object.keys(users).forEach(function (k) {
+            var u = users[k];
+            if (u.pwdBad >= 10) push(u.locked ? 2 : 1, 'Ο ' + u.upn + ' είχε ' + nf(u.pwdBad) + ' αποτυχίες λόγω λάθος κωδικού' + (u.locked ? ' και κλειδώθηκε ' + u.locked + (u.locked === 1 ? ' φορά' : ' φορές') : '') + '.',
+                'Πολλές αποτυχίες στον ίδιο λογαριασμό δείχνουν δοκιμές κωδικών (brute force), ή μια συσκευή του χρήστη με παλιό αποθηκευμένο κωδικό.',
+                'Ρώτα τον χρήστη αν άλλαξε πρόσφατα κωδικό και έχει κινητό ή Outlook που δεν τον ενημέρωσε. Αν όχι, βεβαιώσου ότι έχει MFA.',
+                [u.upn], 'T1110.001', ['mfa']);
+        });
+        // 6. Legacy authentication
+        var legacyUsers = Object.keys(users).filter(function (k) { return Object.keys(users[k].legacyOk).length; });
+        if (legacyUsers.length) push(3, legacyUsers.length + (legacyUsers.length === 1 ? ' χρήστης συνδέθηκε' : ' χρήστες συνδέθηκαν') + ' με legacy πρωτόκολλο (' + Object.keys(legacyUsers.reduce(function (a, k) { Object.keys(users[k].legacyOk).forEach(function (c) { a[c] = 1; }); return a; }, {})).join(', ') + ').',
+            'Τα legacy πρωτόκολλα (IMAP, POP3, SMTP AUTH, ActiveSync με basic auth, «Other clients») δεν υποστηρίζουν MFA. Είναι ο πιο συνηθισμένος δρόμος για password spray, γιατί ο κωδικός αρκεί.',
+            'Μπλόκαρε το legacy authentication με Conditional Access («Block legacy authentication»). Πριν το ενεργοποιήσεις, έλεγξε ποιες συσκευές ή εφαρμογές το χρειάζονται ακόμα, π.χ. εκτυπωτές που στέλνουν email.',
+            legacyUsers.map(function (k) { return k + ' (' + Object.keys(users[k].legacyOk).join(', ') + ')'; }), 'T1078.004', ['legacy']);
+        // 7. Χρήστες χωρίς MFA
+        var single = Object.keys(users).filter(function (k) { return users[k].single > 0; });
+        if (single.length) push(2, single.length + (single.length === 1 ? ' χρήστης μπήκε' : ' χρήστες μπήκαν') + ' με επιτυχία μόνο με κωδικό, χωρίς MFA.',
+            'Όποιος μάθει τον κωδικό αυτών των χρηστών μπαίνει χωρίς άλλο εμπόδιο. Η ΚΥΑ 1689/2025 ζητά MFA ανάλογα με την κρισιμότητα.',
+            'Ζήτα MFA για όλους με Conditional Access («Require MFA for all users»), ή ενεργοποίησε τα Security defaults αν δεν έχεις Entra ID P1.',
+            single, '', ['mfa']);
+        // 8. Ανύπαρκτοι χρήστες
+        var nouser = recs.filter(function (r) { return NO_USER[r.code]; });
+        if (nouser.length >= 5) push(1, nf(nouser.length) + ' προσπάθειες με ονόματα χρηστών που δεν υπάρχουν στον οργανισμό σου.',
+            'Ο επιτιθέμενος μαντεύει διευθύνσεις email (π.χ. info@, admin@, ονόματα από το LinkedIn) για να βρει ποιες υπάρχουν.',
+            'Δεν χρειάζεται ενέργεια για τους ανύπαρκτους χρήστες. Δες όμως αν οι ίδιες IP δοκίμασαν και υπαρκτούς.', [], 'T1589.002');
+        F.sort(function (a, b) { return b.s - a.s; });
+        var clist = Object.keys(countries).map(function (k) { var c = countries[k]; return { cc: c.cc, ok: c.ok, bad: c.bad, users: Object.keys(c.users).length, okUsers: Object.keys(c.okUsers), home: !!H[c.cc] }; })
+            .sort(function (a, b) { return (b.ok + b.bad) - (a.ok + a.bad); });
+        var ilist = Object.keys(ips).map(function (k) { var i = ips[k]; return { ip: i.ip, cc: i.cc, city: i.city, ok: i.ok, bad: i.bad, users: Object.keys(i.users).length, okUsers: Object.keys(i.okUsers), home: !!H[i.cc] }; })
+            .filter(function (i) { return i.bad > 0; }).sort(function (a, b) { return b.bad - a.bad; }).slice(0, 15);
+        ilist.forEach(function (i) { i.own = isOwn(i.ip, own); });
+        return { F: F, countries: clist, ips: ilist, users: Object.keys(users).length, total: recs.length, succ: succ, fail: fail, tmin: tmin, tmax: tmax, home: home, own: own.map(function (o) { return o.txt; }),
+            };
+    }
+
+    // ---------- Εμφάνιση ----------
+    function stat(label, n, tone) { var t = { green: 'text-emerald-300', amber: 'text-amber-300', red: 'text-rose-300', blue: 'text-blue-300', gray: 'text-slate-200' }[tone]; return '<div class="rounded-lg border border-slate-800 bg-slate-900/60 p-3"><p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">' + esc(label) + '</p><p class="text-2xl font-bold ' + t + '">' + n + '</p></div>'; }
+    function findingCard(f) {
+        var sv = SEV[f.s], tone = f.s >= 3 ? 'border-rose-500/30 bg-rose-500/5' : f.s === 2 ? 'border-amber-500/30 bg-amber-500/5' : f.s === 0 ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-slate-800 bg-slate-900/40';
+        return '<div class="rounded-lg border ' + tone + ' p-4 text-sm"><div class="flex flex-wrap items-start gap-2 mb-1">' + pill(ICON[f.s] + ' ' + sv.n, sv.tone) + '<span class="text-slate-100 break-words flex-1">' + esc(f.title) + '</span>' + (f.mitre ? '<span class="text-[11px] text-slate-500 siMono">' + esc(f.mitre) + '</span>' : '') + '</div>' +
+            '<p class="text-xs text-slate-400 leading-relaxed">' + esc(f.why) + '</p>' +
+            (f.fix ? '<p class="text-xs text-slate-300 leading-relaxed mt-1.5"><strong class="text-slate-200">Τι κάνεις:</strong> ' + esc(f.fix) + '</p>' : '') +
+            whoHtml(f) + caHtml(f) + '</div>';
+    }
+    // Οι χρήστες φαίνονται πάντα σε κάθε εύρημα που αφορά χρήστες, ακόμα κι όταν είναι ένας
+    function whoHtml(f) {
+        if (!f.who.length) return '';
+        if (f.who.length <= 5) return '<p class="text-xs text-slate-300 mt-1.5"><strong class="text-slate-200">' + (f.who.length === 1 ? 'Χρήστης' : 'Χρήστες') + ':</strong> <span class="siMono break-all">' + esc(f.who.join(', ')) + '</span></p>';
+        return '<details class="mt-2"><summary class="text-xs text-slate-300 cursor-pointer"><strong class="text-slate-200">Χρήστες (' + f.who.length + ')</strong></summary><p class="siMono text-[11px] text-slate-300 mt-1 break-all">' + esc(f.who.join(', ')) + '</p></details>';
+    }
+    function caHtml(f) {
+        return f.ca.map(function (k) {
+            var t = CA[k];
+            return '<details class="mt-2 rounded-md border border-blue-500/30 bg-blue-500/5 p-2.5"><summary class="text-xs text-blue-200 cursor-pointer font-semibold">🛡️ Παράδειγμα πολιτικής Conditional Access: <span class="siMono">' + esc(t.name) + '</span></summary>' +
+                '<p class="text-[11px] text-slate-400 mt-1.5 mb-1.5">Microsoft Entra admin center › Entra ID › Conditional Access › Policies › + New policy · Άδεια: ' + esc(t.lic) + '</p>' +
+                '<table class="text-xs"><tbody>' + t.rows.map(function (r) { return '<tr><td class="text-slate-400 whitespace-nowrap align-top">' + esc(r[0]) + '</td><td class="text-slate-200">' + esc(r[1]) + '</td></tr>'; }).join('') + '</tbody></table>' +
+                (t.note ? '<p class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">' + esc(t.note) + '</p>' : '') + '</details>';
+        }).join('');
+    }
+    function bar(v, max, color) { return '<div class="siBar"><span style="width:' + Math.max(2, Math.round(100 * v / Math.max(1, max))) + '%;background:' + color + '"></span></div>'; }
+
+    var last = null, globeApi = null;
+    function render(A) {
+        var top = A.F.length ? A.F[0].s : 0, crit = A.F.filter(function (f) { return f.s === 4; }).length, high = A.F.filter(function (f) { return f.s === 3; }).length, med = A.F.filter(function (f) { return f.s === 2; }).length;
+        var awayC = A.countries.filter(function (c) { return !c.home && c.cc; });
+        var V = top >= 3 ? ['🔴 Κάποιος έφτασε πολύ κοντά, ή μπήκε', 'border-rose-500/40 bg-rose-500/10 text-rose-200', 'Ξεκίνα από τα ευρήματα «Κρίσιμο» και «Υψηλό». Για κάθε χρήστη που αναφέρεται: Revoke sessions, αλλαγή κωδικού, έλεγχος MFA και mailbox.']
+            : top === 2 ? ['🟠 Σε χτυπούν, αλλά δεν βρέθηκε επιτυχημένη είσοδος', 'border-amber-500/40 bg-amber-500/10 text-amber-200', 'Κλείσε τα κενά που δείχνουν τα ευρήματα «Μέτριο» πριν οι προσπάθειες πετύχουν.']
+            : ['🟢 Δεν βρέθηκε ύποπτη σύνδεση', 'border-emerald-500/40 bg-emerald-500/10 text-emerald-200', 'Στα logs που ανέβασες δεν υπάρχει επιτυχημένη σύνδεση από άλλη χώρα ούτε μοτίβο επίθεσης. Επανέλαβε τον έλεγχο κάθε εβδομάδα: με Entra ID Free, τα logs κρατούν μόνο 7 ημέρες.'];
+        $('siVerdict').innerHTML = '<div class="rounded-lg border ' + V[1] + ' p-4"><p class="font-semibold text-base mb-1">' + esc(V[0]) + '</p><p class="text-sm leading-relaxed">' + esc(V[2]) + '</p><p class="text-xs mt-2 opacity-80">Περίοδος: ' + esc(fdt(A.tmin)) + ' έως ' + esc(fdt(A.tmax)) + ' (ώρα του υπολογιστή σου) · Δικές σου χώρες: ' + esc(A.home.map(function (c) { return flag(c) + ' ' + c; }).join(', ') || '—') + ' · Δικές σου IP: ' + esc(A.own.length ? A.own.join(', ') : 'καμία') + '</p></div>';
+        $('siStats').innerHTML = stat('Συνδέσεις', nf(A.total), 'gray') + stat('Αποτυχίες', nf(A.fail), A.fail ? 'amber' : 'green') + stat('Χρήστες', nf(A.users), 'gray') + stat('Ξένες χώρες', awayC.length, awayC.length ? 'amber' : 'green') + stat('Κρίσιμο', crit, crit ? 'red' : 'green') + stat('Υψηλό', high, high ? 'red' : 'green');
+
+        $('siFindings').innerHTML = A.F.length ? '<p class="font-semibold text-slate-100">Ευρήματα</p>' + A.F.map(findingCard).join('') : '';
+
+        var steps = [];
+        if (top >= 3) steps.push('<strong>Για κάθε χρήστη με «Κρίσιμο» ή «Υψηλό»:</strong> Microsoft Entra admin center › Users › ο χρήστης › <strong>Revoke sessions</strong>, μετά <strong>Reset password</strong>. Η αλλαγή κωδικού μόνη της δεν ακυρώνει τα tokens που ήδη έχει ο επιτιθέμενος.');
+        if (top >= 3) steps.push('<strong>Έλεγξε τι έκανε ο επιτιθέμενος μέσα:</strong> inbox rules και προώθηση με το εργαλείο <a class="text-blue-400 underline" href="' + BASE + 'poios-diavazei-to-mailbox-sou/">«Ποιος διαβάζει το mailbox σου;»</a>, νέες μέθοδοι MFA και εφαρμογές στον λογαριασμό.');
+        steps.push('<strong>Κλείσε την πόρτα με Conditional Access:</strong> MFA για όλους, μπλοκάρισμα του legacy authentication και των χωρών όπου δεν έχεις δουλειά. Δες ποιες πολιτικές σου ταιριάζουν με το εργαλείο <a class="text-blue-400 underline" href="' + BASE + 'politikes-conditional-access/">«Πολιτικές Conditional Access»</a>.');
+        if (top >= 4) steps.push('<strong>Αποφάσισε αν είναι περιστατικό προς αναφορά.</strong> Μια επιτυχημένη είσοδος επιτιθέμενου σε λογαριασμό με email μπορεί να είναι παραβίαση προσωπικών δεδομένων (GDPR, 72 ώρες) και, για οντότητες του ν. 5160/2024, σημαντικό περιστατικό (έγκαιρη προειδοποίηση σε 24 ώρες). Ξεκίνα από το <a class="text-blue-400 underline" href="' + BASE + 'anafora-peristatikou/">εργαλείο αναφοράς περιστατικού</a>.');
+        steps.push('<strong>Κράτα την αναφορά .pdf ως τεκμήριο</strong> ότι έκανες τον τακτικό έλεγχο των καταγραφών που ζητά η ΚΥΑ 1689/2025, και επανάλαβέ τον κάθε εβδομάδα.');
+        $('siNext').innerHTML = '<p class="font-semibold text-slate-100 mb-2">Τι κάνεις τώρα</p><ol class="list-decimal pl-5 flex flex-col gap-1.5">' + steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>';
+
+        var maxC = A.countries.reduce(function (m, c) { return Math.max(m, c.ok + c.bad); }, 1);
+        $('siCountries').innerHTML = '<p class="font-semibold text-slate-100 mb-2">Χώρες</p><table><thead><tr><th>Χώρα</th><th>Επιτυχίες</th><th>Αποτυχίες</th><th>Χρήστες</th><th></th></tr></thead><tbody>' +
+            A.countries.slice(0, 25).map(function (c) {
+                var hot = !c.home && c.ok > 0 && c.cc;
+                return '<tr><td class="whitespace-nowrap ' + (hot ? 'text-rose-300 font-semibold' : 'text-slate-200') + '">' + flag(c.cc) + ' ' + esc(cname(c.cc)) + (c.home ? ' ' + pill('δική σου', 'green') : '') + '</td><td class="' + (hot ? 'text-rose-300 font-semibold' : '') + '">' + nf(c.ok) + '</td><td>' + nf(c.bad) + '</td><td>' + nf(c.users) + '</td><td class="w-1/4">' + bar(c.ok + c.bad, maxC, c.home ? '#34d399' : hot ? '#ef4444' : '#f59e0b') + '</td></tr>';
+            }).join('') + '</tbody></table>' + (A.countries.length > 25 ? '<p class="text-xs text-slate-400 mt-2">Εμφανίζονται οι 25 χώρες με τις περισσότερες συνδέσεις από τις ' + A.countries.length + '.</p>' : '');
+
+        $('siIps').innerHTML = A.ips.length ? '<p class="font-semibold text-slate-100 mb-2">Οι διευθύνσεις IP με τις περισσότερες αποτυχίες</p><table><thead><tr><th>IP</th><th>Χώρα</th><th>Αποτυχίες</th><th>Χρήστες</th><th>Επιτυχίες</th></tr></thead><tbody>' +
+            A.ips.map(function (i) { return '<tr><td class="siMono text-slate-200 break-all">' + esc(i.ip) + (i.own ? ' ' + pill('δική σου', 'green') : '') + '</td><td class="whitespace-nowrap">' + flag(i.cc) + ' ' + esc(cname(i.cc)) + '</td><td>' + nf(i.bad) + '</td><td>' + nf(i.users) + '</td><td class="' + (i.ok && !i.home ? 'text-rose-300 font-semibold' : '') + '">' + nf(i.ok) + '</td></tr>'; }).join('') + '</tbody></table>' : '';
+
+        var q = kql(A);
+        $('siKql').innerHTML = '<p class="font-semibold text-slate-100 mb-1">KQL για να το παρακολουθείς συνεχώς</p><p class="mb-2">Τρέχει στο Log Analytics ή στο Microsoft Sentinel, αν στέλνεις εκεί τα sign-in logs του Entra ID (Diagnostic settings). Βρίσκει τις επιτυχημένες συνδέσεις από χώρες εκτός των δικών σου και τα password spray των τελευταίων 7 ημερών.</p><pre class="siMono text-[12px] rounded-md border border-slate-700 bg-slate-950 p-3 text-slate-200 overflow-x-auto">' + esc(q) + '</pre><button type="button" id="siKqlCopy" class="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-slate-500">Αντιγραφή KQL</button>';
+
+        last = { A: A, V: V, kql: q, crit: crit, high: high, med: med, awayC: awayC };
+        $('siResult').classList.remove('hidden');
+        $('siMsg').classList.add('hidden');
+        drawGlobe(A, awayC);
+    }
+    function kql(A) {
+        var home = A.home.length ? A.home.map(function (c) { return '"' + c + '"'; }).join(', ') : '"GR"';
+        return '// Δύο queries: βάλε τον κέρσορα μέσα στο καθένα και πάτησε Run.\n// 1. Επιτυχημένες συνδέσεις από χώρες εκτός των δικών σου (Microsoft Entra ID, SigninLogs)\n' +
+            'let home = dynamic([' + home + ']);\n' +
+            'SigninLogs\n| where TimeGenerated > ago(7d)\n| where ResultType == "0"\n' +
+            '| extend Country = tostring(LocationDetails.countryOrRegion)\n| where isnotempty(Country) and Country !in (home)\n' +
+            '| project TimeGenerated, UserPrincipalName, Country, City = tostring(LocationDetails.city), IPAddress, AppDisplayName, ClientAppUsed, AuthenticationRequirement\n| sort by TimeGenerated desc\n\n' +
+            '// 2. Password spray: μία IP, πολλοί χρήστες, λάθος κωδικοί\n' +
+            'SigninLogs\n| where TimeGenerated > ago(7d)\n| where ResultType in ("50126", "50053", "50034")\n' +
+            '| summarize Users = dcount(UserPrincipalName), Failures = count(), Sample = make_set(UserPrincipalName, 10) by IPAddress, Country = tostring(LocationDetails.countryOrRegion)\n| where Users >= 5\n| sort by Users desc';
+    }
+    function drawGlobe(A, awayC) {
+        var fig = $('siMap');
+        if (!awayC.length || !window.WebGLRenderingContext) { fig.classList.add('hidden'); return; }
+        fig.classList.remove('hidden');
+        var old = $('siStage'), stage = old.cloneNode(true);
+        old.parentNode.replaceChild(stage, old);
+        stage.classList.remove('is-ready');
+        Array.prototype.forEach.call(stage.querySelectorAll('canvas,.rg-labels'), function (e) { e.remove(); });
+        var tot = awayC.reduce(function (m, c) { return m + c.ok + c.bad; }, 0) || 1;
+        var origins = awayC.slice(0, 12).map(function (c) {
+            var n = c.ok + c.bad;
+            return { code: c.cc, name: cname(c.cc), pct: Math.min(100, Math.max(4, 100 * n / tot)), hot: c.ok > 0,
+                label: cname(c.cc) + ' · ' + nf(n) + (c.ok ? ' · ' + nf(c.ok) + (c.ok === 1 ? ' επιτυχία' : ' επιτυχίες') : '') };
+        });
+        var tgt = A.home[0] || 'GR';
+        import(GLOBE).then(function (m) { return m.init(stage, origins, { landUrl: LAND, target: tgt, targetName: cname(tgt) }); })
+            .then(function (api) {
+                globeApi = api;
+                stage.querySelector('.rg-zoom').addEventListener('click', function (e) { var b = e.target.closest('[data-si-zoom]'); if (!b || !globeApi) return; ({ 'in': globeApi.zoomIn, out: globeApi.zoomOut, reset: globeApi.reset })[b.getAttribute('data-si-zoom')](); });
+            })
+            .catch(function () { fig.classList.add('hidden'); });
+    }
+
+    function ticket() {
+        var L = last, A = L.A, m = $('siMask').checked;
+        var t = function (s) { return m ? String(s).replace(/[A-Za-z0-9._%+'-]+@[A-Za-z0-9.-]+/g, maskUser).replace(/\b(\d{1,3})\.(\d{1,3})\.\d{1,3}\.\d{1,3}\b/g, '$1.$2.x.x') : s; };
+        var out = ['Έλεγχος sign-in logs Microsoft Entra ID (thecybersec.gr/poios-xtypaei-tin-porta-sou/)', L.V[0].replace(/^\S+\s/, ''),
+            'Περίοδος: ' + fdt(A.tmin) + ' έως ' + fdt(A.tmax) + ' · Συνδέσεις: ' + A.total + ' · Αποτυχίες: ' + A.fail + ' · Χρήστες: ' + A.users + ' · Ξένες χώρες: ' + L.awayC.length, ''];
+        A.F.filter(function (f) { return f.s >= 2; }).forEach(function (f) { out.push('[' + SEV[f.s].n + '] ' + t(f.title) + (whoHtml(f) ? ' Χρήστες: ' + t(f.who.join(', ')) : '') + (f.ca.length ? ' Conditional Access: ' + f.ca.map(function (k) { return CA[k].name; }).join(', ') : '')); });
+        if (!A.F.some(function (f) { return f.s >= 2; })) out.push('Δεν βρέθηκε ύποπτη σύνδεση.');
+        return out.join('\n');
+    }
+
+    // ---------- Ανάγνωση αρχείων ----------
+    var texts = [], ownTouched = false;
+    function fail(msg) { var e = $('siError'); e.textContent = msg; e.classList.remove('hidden'); $('siResult').classList.add('hidden'); $('siBusy').classList.add('hidden'); last = null; }
+    function busy(msg) { var b = $('siBusy'); b.textContent = msg; b.classList.toggle('hidden', !msg); }
+    function decode(buf) {
+        var u = new Uint8Array(buf);
+        if (u[0] === 0xFF && u[1] === 0xFE) return new TextDecoder('utf-16le').decode(u);
+        if (u[0] === 0xFE && u[1] === 0xFF) return new TextDecoder('utf-16be').decode(u);
+        return new TextDecoder('utf-8').decode(u);
+    }
+    function readFiles(list) {
+        list = Array.prototype.slice.call(list || []);
+        if (!list.length) return;
+        var size = list.reduce(function (s, f) { return s + f.size; }, 0);
+        if (size > 300 * 1024 * 1024) return fail('Τα αρχεία είναι μεγαλύτερα από 300 MB συνολικά. Κατέβασε μικρότερο διάστημα, π.χ. Last 24 hours, ή προτίμησε CSV αντί για JSON.');
+        $('siError').classList.add('hidden'); busy('Διαβάζω ' + list.length + (list.length === 1 ? ' αρχείο' : ' αρχεία') + '…');
+        texts = [];
+        Promise.all(list.map(function (f) { return f.arrayBuffer().then(function (b) { return { name: f.name, text: decode(b) }; }); }))
+            .then(function (res) { texts = res; $('siFileName').textContent = res.map(function (r) { return r.name; }).join(', '); $('siHome').value = ''; $('siOwn').value = ''; ownTouched = false; run(); })
+            .catch(function () { fail('Δεν διαβάστηκαν τα αρχεία. Δοκίμασε ξανά.'); });
+    }
+    function run() {
+        $('siError').classList.add('hidden');
+        if (!texts.length) return fail('Σύρε πρώτα τα αρχεία των sign-in logs, ή πάτησε «Δοκίμασε με παράδειγμα».');
+        busy('Αναλύω…');
+        setTimeout(function () {
+            var recs = [], bad = [];
+            texts.forEach(function (f) {
+                var s = f.text.replace(/^﻿/, '').trimStart(), r = (s[0] === '[' || s[0] === '{') ? jsonRecords(s) : csvRecords(s);
+                if (r.err) bad.push({ name: f.name, err: r.err }); else recs = recs.concat(r.recs);
+            });
+            if (!recs.length) {
+                var e = bad[0] ? bad[0].err : 'empty';
+                return fail(e === 'cols' ? 'Δεν αναγνωρίζω τις στήλες του CSV. Κατέβασε τα ίδια logs με Download › Download JSON και σύρε εδώ το .json.' : e === 'json' ? 'Το αρχείο δεν είναι έγκυρο JSON. Κατέβασέ το ξανά από το Microsoft Entra admin center.' : 'Δεν βρέθηκαν συνδέσεις στα αρχεία. Έλεγξε ότι κατέβασες τα Sign-in logs χωρίς φίλτρο.');
+            }
+            var home = $('siHome').value.toUpperCase().split(/[^A-Z]+/).filter(function (c) { return /^[A-Z]{2}$/.test(c); });
+            if (!home.length) home = autoHome(recs);
+            $('siHome').value = home.join(', ');
+            var ownTxt = $('siOwn').value.trim();
+            if (!ownTxt && !ownTouched) { ownTxt = autoOwn(recs, home).join(', '); $('siOwn').value = ownTxt; }
+            var A = analyse(recs, home, parseOwn(ownTxt));
+            var w = [];
+            if (bad.length) w.push('Δεν διαβάστηκαν: ' + bad.map(function (b) { return b.name; }).join(', ') + '. Η ανάλυση έγινε με τα υπόλοιπα αρχεία.');
+            if (texts.length === 1 && !/^Δοκιμή/.test(texts[0].name)) w.push('Ανέβασες ένα αρχείο. Για πλήρη εικόνα κατέβασε και σύρε μαζί τα Interactive και τα Non-interactive sign-ins: εκεί φαίνονται οι συνδέσεις από Outlook, κινητά και παλιά πρωτόκολλα.');
+            if (!recs.some(function (r) { return r.cc; })) w.push('Τα αρχεία δεν έχουν τη χώρα των συνδέσεων, άρα δεν μπορώ να ξεχωρίσω τις ξένες χώρες.');
+            $('siWarn').innerHTML = w.map(function (x) { return '<div class="rounded-lg border border-amber-500/40 bg-amber-500/5 p-3 text-sm text-amber-200 leading-relaxed">⚠️ ' + esc(x) + '</div>'; }).join('');
+            $('siWarn').classList.toggle('hidden', !w.length);
+            busy('');
+            render(A);
+            $('siResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 30);
+    }
+    // Δικές σου χώρες: η χώρα με τις περισσότερες επιτυχημένες συνδέσεις, και όσες άλλες έχουν επιτυχημένες συνδέσεις
+    // από τουλάχιστον 2 χρήστες και το 10% των χρηστών. Μια χώρα με έναν μόνο χρήστη δεν μπαίνει ποτέ αυτόματα:
+    // μπορεί να είναι ακριβώς ο παραβιασμένος λογαριασμός. Ο επισκέπτης την προσθέτει στο βήμα 3 αν είναι δική του.
+    function autoHome(recs) {
+        var c = {}, all = {};
+        recs.forEach(function (r) { if (r.code === 0 && r.cc) { (c[r.cc] = c[r.cc] || { n: 0, u: {} }).n++; c[r.cc].u[r.upn] = 1; all[r.upn] = 1; } });
+        var nu = Object.keys(all).length;
+        var list = Object.keys(c).sort(function (a, b) { return c[b].n - c[a].n; });
+        return list.filter(function (k, i) { var u = Object.keys(c[k].u).length; return i === 0 || (u >= 2 && u >= nu * 0.1); });
+    }
+
+    // ---------- Παράδειγμα: κατασκευασμένα δεδομένα (MyCompany, IP από τις περιοχές τεκμηρίωσης RFC 5737) ----------
+    function sample() {
+        var now = Date.now(), H = 3600e3, out = [];
+        var people = ['ceo', 'cfo', 'coo', 'cio', 'ciso', 'hr', 'legal', 'it', 'sales', 'accounting'].map(function (r) { return r + '@mycompany.gr'; });
+        function add(h, upn, ip, cc, city, code, client, mfa, reason) {
+            out.push({ createdDateTime: new Date(now - h * H).toISOString(), userPrincipalName: upn, ipAddress: ip, location: { city: city, countryOrRegion: cc },
+                status: { errorCode: code, failureReason: reason || (CODE_TXT[code] || '') }, clientAppUsed: client || 'Browser', appDisplayName: client === 'IMAP4' ? 'Office 365 Exchange Online' : 'OfficeHome',
+                authenticationRequirement: mfa || 'multiFactorAuthentication', conditionalAccessStatus: code === 53003 ? 'failure' : 'success' });
+        }
+        for (var d = 0; d < 7; d++) people.forEach(function (p, i) { add(d * 24 + 9 + i * 0.3, p, '192.0.2.' + (10 + i), 'GR', i % 2 ? 'Athens' : 'Thessaloniki', 0, i % 3 ? 'Mobile Apps and Desktop clients' : 'Browser'); });
+        add(30, 'sales@mycompany.gr', '192.0.2.40', 'CY', 'Nicosia', 0, 'Browser');
+        // Το γραφείο βγαίνει από μία IP (NAT): πολλοί χρήστες με επιτυχία, και μερικοί που έγραψαν λάθος κωδικό. ΔΕΝ είναι password spray.
+        people.forEach(function (p, i) { add(5 + i * 0.4, p, '192.0.2.200', 'GR', 'Patras', 0, 'Browser'); if (i < 6) add(5.2 + i * 0.4, p, '192.0.2.200', 'GR', 'Patras', 50126, 'Browser'); });
+        // Password spray από 3 IP
+        [['198.51.100.23', 'RU', 'Moscow'], ['198.51.100.77', 'VN', 'Hanoi'], ['203.0.113.9', 'BR', 'Sao Paulo']].forEach(function (s, k) {
+            people.concat(['info@mycompany.gr', 'admin@mycompany.gr', 'office@mycompany.gr']).forEach(function (p, i) { add(50 + k * 10 + i * 0.05, p, s[0], s[1], s[2], /info|admin|office/.test(p) ? 50034 : 50126, 'Other clients', 'singleFactorAuthentication'); });
+        });
+        // Ο κωδικός του CFO έπεσε: επιτυχία από IMAP, χωρίς MFA
+        add(48, 'cfo@mycompany.gr', '203.0.113.9', 'BR', 'Sao Paulo', 0, 'IMAP4', 'singleFactorAuthentication');
+        add(47, 'cfo@mycompany.gr', '203.0.113.9', 'BR', 'Sao Paulo', 0, 'IMAP4', 'singleFactorAuthentication');
+        // Σωστός κωδικός του CEO από Νιγηρία, σταμάτησε στο MFA, και MFA fatigue
+        for (var k = 0; k < 4; k++) add(20 + k * 0.1, 'ceo@mycompany.gr', '203.0.113.150', 'NG', 'Lagos', 50074, 'Browser', 'multiFactorAuthentication');
+        for (k = 0; k < 4; k++) add(19.5 + k * 0.1, 'ceo@mycompany.gr', '203.0.113.150', 'NG', 'Lagos', 500121, 'Browser', 'multiFactorAuthentication');
+        // Brute force στον λογαριασμό HR
+        for (k = 0; k < 14; k++) add(70 + k * 0.2, 'hr@mycompany.gr', '198.51.100.200', 'CN', 'Beijing', k > 11 ? 50053 : 50126, 'Browser', 'singleFactorAuthentication');
+        // Το Conditional Access μπλόκαρε σύνδεση του COO: ο κωδικός είχε περάσει
+        add(90, 'coo@mycompany.gr', '198.51.100.140', 'US', 'Ashburn', 53003, 'Browser');
+        add(89.9, 'coo@mycompany.gr', '198.51.100.140', 'US', 'Ashburn', 53003, 'Browser');
+        texts = [{ name: 'Δοκιμή: παράδειγμα με κατασκευασμένα δεδομένα', text: JSON.stringify(out) }];
+        $('siFileName').textContent = 'Παράδειγμα με κατασκευασμένα δεδομένα (MyCompany)';
+        $('siHome').value = ''; $('siOwn').value = ''; ownTouched = false;
+        run();
+    }
+
+    // ---------- Αντιγραφή ----------
+    function copy(txt, okMsg) {
+        var msg = $('siMsg');
+        function ok() { msg.textContent = okMsg || 'Αντιγράφηκε.'; msg.className = 'text-sm mt-2 text-emerald-300'; }
+        function bad() { msg.textContent = 'Η αντιγραφή δεν επιτράπηκε από τον browser. Επίλεξε και αντίγραψε το κείμενο χειροκίνητα.'; msg.className = 'text-sm mt-2 text-amber-400'; }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, bad); else bad();
+    }
+
+    // ---------- Αναφορά .pdf: το pdfmake φορτώνει μόνο όταν πατηθεί το κουμπί ----------
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-si="' + src + '"]')) return next();
+            var s = document.createElement('script'); s.src = src; s.setAttribute('data-si', src); s.onload = next; s.onerror = onerr;
+            document.head.appendChild(s);
+        })();
+    }
+    var EXPORT = '{{ "js/signin-report.js" | relURL }}?v={{ readFile "static/js/signin-report.js" | md5 | truncate 8 "" }}';
+    var PDFLIB = ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'];
+    $('siPdf').addEventListener('click', function () {
+        if (!last) return;
+        var btn = this, msg = $('siMsg'), txt = btn.textContent, m = $('siMask').checked, L = last, A = L.A;
+        var t = function (s) { return m ? String(s).replace(/[A-Za-z0-9._%+'-]+@[A-Za-z0-9.-]+/g, maskUser).replace(/\b(\d{1,3})\.(\d{1,3})\.\d{1,3}\.\d{1,3}\b/g, '$1.$2.x.x') : String(s || ''); };
+        btn.disabled = true; btn.textContent = 'Δημιουργία…'; msg.classList.add('hidden');
+        var ctx = {
+            base: BASE, mask: m, verdict: L.V[0].replace(/^\S+\s/, ''), verdictText: L.V[2], top: A.F.length ? A.F[0].s : 0,
+            period: fdt(A.tmin) + ' έως ' + fdt(A.tmax), own: A.own.join(', '), home: A.home.map(function (c) { return cname(c) + ' (' + c + ')'; }).join(', '),
+            stats: [['Συνδέσεις', A.total], ['Αποτυχίες', A.fail], ['Χρήστες', A.users], ['Ξένες χώρες', L.awayC.length], ['Κρίσιμο', L.crit], ['Υψηλό', L.high]],
+            // Η γραμματοσειρά του pdf δεν έχει σημαίες (emoji): αφαιρούνται από τους τίτλους
+            findings: A.F.map(function (f) { return { sev: SEV[f.s].n, color: SEV[f.s].pdf, title: t(f.title).replace(/(?:[\uD83C][\uDDE6-\uDDFF]){2}\s?|\uD83C\uDFF3\uFE0F?\s?/g, ''), who: whoHtml(f) ? t(f.who.join(', ')) : '', ca: f.ca.map(function (k) { return CA[k].name; }).join(', '), why: f.why, fix: f.fix, mitre: f.mitre }; }),
+            countries: A.countries.slice(0, 15).map(function (c) { return { name: cname(c.cc) + (c.cc ? ' (' + c.cc + ')' : ''), ok: c.ok, bad: c.bad, users: c.users, home: c.home, hot: !c.home && c.ok > 0 && !!c.cc }; }),
+            ips: A.ips.slice(0, 10).map(function (i) { return { ip: (m ? maskIp(i.ip) : i.ip) + (i.own ? ' · δική σου' : ''), cc: cname(i.cc), bad: i.bad, users: i.users, ok: i.ok, hot: i.ok > 0 && !i.own && !i.home }; }),
+            kql: L.kql,
+            caTemplates: Object.keys(A.F.reduce(function (m, f) { f.ca.forEach(function (k) { m[k] = 1; }); return m; }, {})).map(function (k) { return CA[k]; })
+        };
+        loadScripts(PDFLIB.concat([EXPORT]), function () {
+            Promise.resolve().then(function () { return window.SigninReport.pdf(ctx); })
+                .catch(function () { msg.textContent = 'Δεν δημιουργήθηκε η αναφορά. Δοκίμασε ξανά.'; msg.className = 'text-sm mt-2 text-amber-400'; })
+                .then(function () { btn.disabled = false; btn.textContent = txt; });
+        }, function () { msg.textContent = 'Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'; msg.className = 'text-sm mt-2 text-amber-400'; btn.disabled = false; btn.textContent = txt; });
+    });
+
+    var drop = $('siDrop');
+    ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('siOver'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('siOver'); }); });
+    drop.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) readFiles(e.dataTransfer.files); });
+    $('siFile').addEventListener('change', function () { readFiles(this.files); this.value = ''; });
+    $('siRun').addEventListener('click', run);
+    $('siSample').addEventListener('click', sample);
+    $('siHome').addEventListener('change', function () { if (texts.length) run(); });
+    $('siOwn').addEventListener('input', function () { ownTouched = true; });
+    $('siOwn').addEventListener('change', function () { if (texts.length) run(); });
+    $('siClear').addEventListener('click', function () { texts = []; $('siHome').value = ''; $('siOwn').value = ''; ownTouched = false; $('siFileName').textContent = '.csv ή .json, έως 300 MB συνολικά'; $('siResult').classList.add('hidden'); $('siError').classList.add('hidden'); busy(''); last = null; });
+    $('siCopy').addEventListener('click', function () { if (last) copy(ticket(), 'Η σύνοψη αντιγράφηκε. Επικόλλησέ τη στο ticket.'); });
+    root.addEventListener('click', function (e) { if (e.target.id === 'siKqlCopy' && last) copy(last.kql, 'Το KQL αντιγράφηκε.'); });
+})();
+</script>

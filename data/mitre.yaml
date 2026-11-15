@@ -74,6 +74,8 @@ items:
   "M1051":      { name: "Update Software", tactic: "Mitigations" }
   "M1054":      { name: "Software Configuration", tactic: "Mitigations" }
   "T1110.003":   { name: "Brute Force: Password Spraying", tactic: "Credential Access" }
+  "T1110.001":   { name: "Brute Force: Password Guessing", tactic: "Credential Access" }
+  "T1621":       { name: "Multi-Factor Authentication Request Generation", tactic: "Credential Access" }
   "T1098.003":   { name: "Account Manipulation: Additional Cloud Roles", tactic: "Persistence", tactics: ["Persistence", "Privilege Escalation"] }
   "T1098.007":   { name: "Account Manipulation: Additional Local or Domain Groups", tactic: "Persistence", tactics: ["Persistence", "Privilege Escalation"] }
   "T1052.001":   { name: "Exfiltration Over Physical Medium: Exfiltration over USB", tactic: "Exfiltration" }

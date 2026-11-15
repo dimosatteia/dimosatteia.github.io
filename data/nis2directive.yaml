@@ -160,6 +160,9 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: 21.2.γ
     scope: Βασικές και σημαντικές
     requirement: Επιχειρησιακή συνέχεια, όπως διαχείριση αντιγράφων ασφαλείας και αποκατάσταση έπειτα από καταστροφή, και διαχείριση των κρίσεων.
@@ -438,6 +441,9 @@ articles:
     - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
       url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
       page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: '21.3'
     scope: Βασικές και σημαντικές
     requirement: Για τα μέτρα της αλυσίδας εφοδιασμού λαμβάνονται υπόψη οι ευπάθειες που χαρακτηρίζουν κάθε άμεσο προμηθευτή και πάροχο υπηρεσιών, η συνολική ποιότητα των προϊόντων και των πρακτικών κυβερνοασφάλειάς τους, μαζί με τις ασφαλείς διαδικασίες ανάπτυξής τους, καθώς και τα αποτελέσματα των συντονισμένων εκτιμήσεων κινδύνου του άρθρου 22.

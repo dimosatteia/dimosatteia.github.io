@@ -1121,6 +1121,9 @@ articles:
     - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
       url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
       page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: A.8.6
     scope: ''
     requirement: Capacity management
@@ -1323,6 +1326,9 @@ articles:
       page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
     - title: 'Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου'
       url: /posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: A.8.16
     scope: Νέο στην έκδοση 2022
     requirement: Monitoring activities
@@ -1370,6 +1376,9 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: A.8.17
     scope: ''
     requirement: Clock synchronization

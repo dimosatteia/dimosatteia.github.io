@@ -5,6 +5,8 @@
   Το Three.js σερβίρεται από το ίδιο το site (js/hero3d/three.module.min.js), όχι από CDN.
   Φορτώνεται από το layouts/partials/radar-map.html μόνο όταν υπάρχει WebGL και η υδρόγειος φτάσει στην οθόνη.
   Αν κάτι αποτύχει, μένει ο 2D χάρτης SVG.
+  Χρησιμοποιείται και από το εργαλείο «Ποιος χτυπάει την πόρτα σου;» (/poios-xtypaei-tin-porta-sou/), με opts.target,
+  opts.targetName και o.label / o.hot. Χωρίς αυτά συμπεριφέρεται ακριβώς όπως πριν (στόχος η Ελλάδα).
 */
 import * as THREE from '../hero3d/three.module.min.js';
 
@@ -100,6 +102,7 @@ export async function init(stage, origins, opts = {}) {
 
   // Σημεία ξηράς, με χρώμα ανά χώρα.
   const originCodes = new Set(origins.map(o => o.code));
+  const TGT = opts.target || 'GR';
   const grIdx = land.codes.indexOf('GR');
   const n = land.dots.length / 3;
   const pos = new Float32Array(n * 3), col = new Float32Array(n * 3), size = new Float32Array(n);
@@ -107,9 +110,9 @@ export async function init(stage, origins, opts = {}) {
     const v = vec(land.dots[i * 3], land.dots[i * 3 + 1], R * 1.001);
     pos.set([v.x, v.y, v.z], i * 3);
     const code = land.codes[land.dots[i * 3 + 2]];
-    const c = code === 'GR' ? C.greece : originCodes.has(code) ? C.origin : C.land;
+    const c = code === TGT ? C.greece : originCodes.has(code) ? C.origin : C.land;
     col.set([c.r, c.g, c.b], i * 3);
-    size[i] = code === 'GR' || originCodes.has(code) ? 1.35 : 1.0;
+    size[i] = code === TGT || originCodes.has(code) ? 1.35 : 1.0;
   }
   const dotGeo = new THREE.BufferGeometry();
   dotGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
@@ -125,14 +128,14 @@ export async function init(stage, origins, opts = {}) {
 
   // Περίγραμμα Ελλάδας.
   const lineMat = new THREE.LineBasicMaterial({ color: '#93c5fd', transparent: true, opacity: 0.9 });
-  for (const ring of land.greece) {
+  for (const ring of (TGT === 'GR' ? land.greece : [])) {
     const pts = [];
     for (let i = 0; i < ring.length; i += 2) pts.push(vec(ring[i], ring[i + 1], R * 1.003));
     globe.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), lineMat));
   }
 
   // Στόχος: Ελλάδα, με παλμό.
-  const grLL = land.centroids.GR || [39.07, 22];
+  const grLL = land.centroids[TGT] || land.centroids.GR || [39.07, 22];
   const target = vec(grLL[0], grLL[1]);
   const glowTex = glowTexture();
   function surfaceRing(at, color, r0, r1, opacity) {
@@ -179,7 +182,8 @@ export async function init(stage, origins, opts = {}) {
     const curve = arcPoints(src, target);
     const w = 0.0045 + o.pct * 0.00011;
     globe.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 96, w, 8, false), arcMat));
-    const s = surfaceRing(src, '#f87171', 0.45, 1, 0.9);
+    // o.hot: χώρα με επιτυχημένη σύνδεση (εργαλείο sign-in logs): πιο έντονο κόκκινο.
+    const s = surfaceRing(src, o.hot ? '#ef4444' : '#f87171', 0.45, 1, 0.9);
     s.scale.setScalar(0.022 + o.pct * 0.00018);
     markers.push({ o: s, s: 0.022 + o.pct * 0.00018 });
     const sGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: '#f87171', transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
@@ -197,14 +201,14 @@ export async function init(stage, origins, opts = {}) {
       packets.push({ sp, off: k / count + i * 0.13 });
     }
     const label = document.createElement('span');
-    label.className = 'rg-label';
-    label.textContent = o.name + ' · ' + fmtPct(o.pct) + '%';
+    label.className = 'rg-label' + (o.hot ? ' rg-label-hot' : '');
+    label.textContent = o.label || (o.name + ' · ' + fmtPct(o.pct) + '%');
     labelsEl.appendChild(label);
     routes.push({ curve, packets, src, label, speed: 0.16 + 0.1 * (1 - o.pct / 100) });
   });
   const grLabel = document.createElement('span');
   grLabel.className = 'rg-label rg-label-gr';
-  grLabel.textContent = 'Ελλάδα';
+  grLabel.textContent = opts.targetName || 'Ελλάδα';
   labelsEl.appendChild(grLabel);
 
   // Αρχικός προσανατολισμός: η Ελλάδα μπροστά, λίγο προς την πλευρά των πηγών.

@@ -507,6 +507,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: 13.β
     scope: Βασικές και σημαντικές
     requirement: Μοναδική ταυτότητα για κάθε χρήστη και σύστημα, ώστε να υπάρχει λογοδοσία.
@@ -638,6 +641,9 @@ articles:
     - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
       url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
       page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: 13.η
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση πολιτικών και διαδικασιών ελέγχου πρόσβασης.
@@ -1535,6 +1541,9 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: 24.στ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών απόκρισης.

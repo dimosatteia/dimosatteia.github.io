@@ -472,6 +472,9 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.
@@ -608,6 +611,9 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
+      url: /poios-xtypaei-tin-porta-sou/
+      page: /poios-xtypaei-tin-porta-sou
   - code: '33.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Ο εκτελών ενημερώνει τον υπεύθυνο χωρίς αδικαιολόγητη καθυστέρηση μόλις αντιληφθεί παραβίαση δεδομένων προσωπικού χαρακτήρα.
