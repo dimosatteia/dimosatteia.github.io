@@ -46,8 +46,10 @@
     </section>
 
     {{- /* Teaser για τη σειρά Conditional Access: layouts/partials/coming-soon-ca.html.
-           Φεύγει μόνο του στο πρώτο build αφού δημοσιευτεί το Μέρος 2 (23/11/2026 07:00). */}}
-    {{- if not (site.GetPage "/posts/Conditional-Access-Series/conditional-access-meros-2-politikes-kai-mixanismoi") }}
+           Φεύγει μόνο του στο πρώτο build αφού δημοσιευτεί το Μέρος 2 (23/11/2026 07:00).
+           Ελέγχει και το draft, ώστε να φαίνεται και στο local (hugo server -D), όπου το Μέρος 2 υπάρχει ως draft. */}}
+    {{- $caNext := site.GetPage "/posts/Conditional-Access-Series/conditional-access-meros-2-politikes-kai-mixanismoi" }}
+    {{- if or (not $caNext) $caNext.Draft }}
     {{ partial "coming-soon-ca.html" . }}
     {{- end }}
     {{ end }}
