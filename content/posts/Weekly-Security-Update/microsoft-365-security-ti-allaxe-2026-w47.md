@@ -29,7 +29,7 @@ categories: ["Security Operations & XDR"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
-weight: -6
+weight: -10
 cover:
   image: "/images/WSUM365.webp"
   alt: "Weekly Security Update: εβδομαδιαία ενημέρωση για το Microsoft 365 Security"
