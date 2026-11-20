@@ -97,13 +97,13 @@ verification:
 
 **Φάση:** Public Preview τώρα, GA με διάθεση που ξεκινά και ολοκληρώνεται στις αρχές Δεκεμβρίου 2026, σύμφωνα με την ανακοίνωση · **Άδεια:** δεν αναφέρεται στην πηγή
 
-**Τι αλλάζει.** Σύμφωνα με την ανακοίνωση MC1556107, η σελίδα του incident στο Defender portal, και για το Microsoft Sentinel μέσα στο Defender portal, αποκτά καρτέλα **Similar cases** με έως 20 incidents που μοιράζονται τίτλους alerts ή entities με το τρέχον. Η στήλη **Similarity reason** δείχνει γιατί εμφανίζεται το καθένα. Η κάρτα **Associated incidents** στο Summary μετονομάζεται σε **Recommended correlations**, χωρίς αλλαγή στο περιεχόμενο.
+**Τι αλλάζει.** Σύμφωνα με την ανακοίνωση MC1556107, η σελίδα του incident στο Defender portal, και για το Microsoft Sentinel μέσα στο Defender portal, αποκτά καρτέλα **Similar cases** με έως 20 incidents που μοιράζονται τίτλους alerts ή entities με το τρέχον. Η στήλη **Similarity reason** δείχνει γιατί εμφανίζεται το καθένα. Η κάρτα **Associated incidents** στο Summary μετονομάζεται σε **Recommended correlations**, χωρίς αλλαγή στο περιεχόμενο. Η διαφορά τους: τα Similar cases είναι ξεχωριστά cases με κοινά στοιχεία, ενώ τα Recommended correlations είναι cases που πιθανότατα ανήκουν στην ίδια επίθεση.
 
 **Τι να κάνεις.** Η ανακοίνωση λέει ότι δεν χρειάζεται προετοιμασία. Ενημέρωσε όμως τη βάρδια και τον MSSP σου για τη μετονομασία, γιατί μπορεί να την αναφέρουν οι οδηγίες έρευνας. Πρόσθεσε στη διαδικασία έρευνας ένα βήμα: «έλεγξε τα Similar cases και πώς έκλεισαν».
 
 **Αναλυτικά:** [Preview: Similar cases στα incidents του Defender portal](/posts/previews/defender-similar-cases-unified-secops/)
 
-**Πηγή:** [Investigate incident cases in the Microsoft Defender portal: Review similar cases](https://learn.microsoft.com/en-us/defender-xdr/investigate-incident-cases#review-similar-cases) · Message Center [MC1556107](https://mc.merill.net/message/MC1556107) (αρχείο mc.merill.net, δημοσιεύθηκε στις 16 Νοεμβρίου 2026)
+**Πηγή:** [Investigate incident cases in the Microsoft Defender portal: Review similar cases](https://learn.microsoft.com/en-us/defender-xdr/investigate-incident-cases#review-similar-cases) · Message Center [MC1556107](https://mc.merill.net/message/MC1556107) (αρχείο mc.merill.net, δημοσιεύθηκε στις 17 Νοεμβρίου 2026 ώρα Ελλάδας)
 
 ### 4. Defender for Cloud Apps: custom roles του Unified RBAC για το App Governance
 

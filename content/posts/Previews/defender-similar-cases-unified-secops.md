@@ -58,11 +58,13 @@ mitre: ["M1047"]
 
 ## Τι αλλάζει
 
-Σύμφωνα με την ανακοίνωση MC1556107 (16 Νοεμβρίου 2026):
+Σύμφωνα με την ανακοίνωση MC1556107 (17 Νοεμβρίου 2026 ώρα Ελλάδας):
 
 - Η σελίδα του incident αποκτά καρτέλα **Similar cases**, με έως **20 incidents** που μοιράζονται **τίτλους alerts ή entities** με το τρέχον.
 - Η στήλη **Similarity reason** δείχνει γιατί εμφανίζεται κάθε incident.
 - Η κάρτα **Associated incidents** στην καρτέλα **Summary** μετονομάζεται σε **Recommended correlations**. Το περιεχόμενό της δεν αλλάζει.
+- Η κάρτα και η καρτέλα κάνουν διαφορετική δουλειά. Τα **Similar cases** είναι ξεχωριστά cases που μοιράζονται τίτλους alerts ή entities. Τα **Recommended correlations** είναι cases που πιθανότατα ανήκουν στην ίδια επίθεση.
+- Η αλλαγή φέρνει στο unified SecOps platform την εμπειρία Similar incidents που είχε το Microsoft Sentinel στο Azure portal.
 - Αφορά το Microsoft Defender portal και το Microsoft Sentinel μέσα στο Defender portal.
 
 **Φάση και ημερομηνίες, σύμφωνα με την ανακοίνωση:** Public Preview διαθέσιμο τώρα. GA με διάθεση που ξεκινά και ολοκληρώνεται στις αρχές Δεκεμβρίου 2026. Η ανακοίνωση λέει ότι δεν χρειάζεται προετοιμασία. Η άδεια δεν αναφέρεται στην πηγή.
@@ -104,6 +106,6 @@ mitre: ["M1047"]
 
 {{< verification >}}
 
-Επιπλέον πηγές: [Investigate incident cases in the Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/investigate-incident-cases) · [Investigate incidents in the Microsoft Defender portal: Similar incidents](https://learn.microsoft.com/en-us/defender-xdr/investigate-incidents#similar-incidents) · [Alert correlation and incident merging in the Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/alerts-incidents-correlation) · Message Center MC1556107 (16 Νοεμβρίου 2026), όπως αρχειοθετείται στο mc.merill.net. Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 47/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w47/).
+Επιπλέον πηγές: [Investigate incident cases in the Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/investigate-incident-cases) · [Investigate incidents in the Microsoft Defender portal: Similar incidents](https://learn.microsoft.com/en-us/defender-xdr/investigate-incidents#similar-incidents) · [Alert correlation and incident merging in the Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/alerts-incidents-correlation) · Message Center MC1556107 (17 Νοεμβρίου 2026 ώρα Ελλάδας), όπως αρχειοθετείται στο mc.merill.net. Το θέμα πρωτοεμφανίστηκε στο [Microsoft 365 Security: τι άλλαξε (εβδομάδα 47/2026)](/posts/weekly-security-update/microsoft-365-security-ti-allaxe-2026-w47/).
 
 Τελευταίος έλεγχος στοιχείων: 19 Νοεμβρίου 2026.
