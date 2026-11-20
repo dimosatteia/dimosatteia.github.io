@@ -4,7 +4,7 @@ seoTitle: "Preview: Defender κατά device code phishing στο Copilot CLI"
 slug: "defender-github-copilot-cli-device-code-phishing"
 date: 2026-11-20T08:10:00+02:00
 lastmod: 2026-11-20T08:10:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender XDR
   - GitHub Copilot CLI

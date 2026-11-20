@@ -4,7 +4,7 @@ seoTitle: "Preview: Similar cases στα incidents του Defender"
 slug: "defender-similar-cases-unified-secops"
 date: 2026-11-20T08:15:00+02:00
 lastmod: 2026-11-20T08:15:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender XDR
   - Similar cases

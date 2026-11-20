@@ -4,7 +4,7 @@ seoTitle: "Preview: Preview features ανά feature στο Defender for Endpoint
 slug: "defender-endpoint-preview-features-page"
 date: 2026-11-20T08:20:00+02:00
 lastmod: 2026-11-20T08:20:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender for Endpoint
   - preview features page

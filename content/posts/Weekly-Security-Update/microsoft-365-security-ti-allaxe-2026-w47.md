@@ -3,7 +3,7 @@ title: "Microsoft 365 Security: τι άλλαξε (εβδομάδα 47/2026)"
 slug: "microsoft-365-security-ti-allaxe-2026-w47"
 date: 2026-11-20T08:00:00+02:00
 lastmod: 2026-11-20T08:00:00+02:00
-draft: true
+draft: false
 keywords:
   - Microsoft Defender νέα
   - Defender for Identity classic alerts retirement
