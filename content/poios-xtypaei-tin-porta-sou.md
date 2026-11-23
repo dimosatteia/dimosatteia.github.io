@@ -15,7 +15,7 @@ menu:
 author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: κατέβασε τα sign-in logs του Microsoft Entra ID, χωρίς PowerShell, και δες σε χάρτη ποιος προσπαθεί να μπει στο Microsoft 365 σου: password spray, brute force, σωστός κωδικός που σταμάτησε στο MFA, συνδέσεις από άλλες χώρες. Όλα στον browser σου."
 seoTitle: "Ποιος χτυπάει την πόρτα σου; Έλεγχος sign-in logs Entra ID"
-seoDescription: "Ανέβασε τα sign-in logs του Microsoft Entra ID και δες σε χάρτη password spray, brute force, συνδέσεις από άλλες χώρες και χρήστες χωρίς MFA. Όλα στον browser σου."
+seoDescription: "Ανέβασε τα sign-in logs του Microsoft Entra ID και δες σε χάρτη password spray, brute force, συνδέσεις από άλλες χώρες και χρήστες χωρίς MFA, όλα στον browser."
 toolBlurb: "Κατέβασε τα sign-in logs του Microsoft Entra ID, χωρίς PowerShell, και δες σε χάρτη ποιος προσπαθεί να μπει: password spray, brute force, σωστός κωδικός που σταμάτησε στο MFA, επιτυχημένες συνδέσεις από άλλες χώρες και legacy authentication, με αναφορά .pdf. Τα logs δεν φεύγουν από τον browser σου."
 keywords:
   - sign-in logs Entra ID

@@ -30,6 +30,8 @@ author: "Dimosthenis Atteia"
 description: "Κάθε πεδίο ενός recommendation του Microsoft Secure Score, εξηγημένο για junior Microsoft 365 admins και Tier 1 SOC analysts. Χωρίς θεωρία, μόνο η οθόνη."
 summary: "Μέρος 1 της σειράς για το Microsoft Secure Score. Ανοίγουμε ένα recommendation και εξηγούμε κάθε πεδίο της οθόνης: τι σημαίνει, τι αλλάζεις εσύ και τι η Microsoft, και τέσσερις μικρές συνήθειες που σε βοηθούν να βγάλεις αξία μέσα σε μία ώρα."
 categories: ["GRC & Compliance"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1054"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
 TocOpen: false
@@ -236,7 +238,7 @@ verification:
 
 > 🔗 **Θέλεις πρώτα μια περιήγηση στην οικογένεια Microsoft Defender;** Ξεκίνα από το **[Microsoft Defender Μέρος 1: Όλα τα προϊόντα και ποιο χρειάζεσαι](/posts/defender-demystified-series/defender-demystified-part-1-what-is-microsoft-defender/)**, το πρώτο άρθρο της σειράς Defender Demystified.
 
-> 🔗 **Θέλεις το Secure Score από την οπτική της συμμόρφωσης;** Ο **[Πρακτικός Οδηγός για τον ΥΑΣΠΕ](/posts/secure-score-defender-praktikos-odigos/)** δείχνει πώς ιεραρχείς τα recommendations για τον ν. 5160/2024. Οι καταστάσεις To address, Planned και Risk accepted που είδαμε εδώ είναι το πλάνο αντιμετώπισης κινδύνων που ζητά η απαίτηση **[5.1.γ](/kya-1689-2025/#5-1-γ)** του **[οδηγού της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Τα ίδια recommendations αντιστοιχούν σε controls του **[ISO/IEC 27001](/iso-27001/)**, όπως το A.8.9 (Configuration management).
+> 🔗 **Θέλεις το Secure Score από την οπτική της συμμόρφωσης;** Ο **[Πρακτικός Οδηγός για τον ΥΑΣΠΕ](/posts/secure-score-defender-praktikos-odigos/)** δείχνει πώς ιεραρχείς τα recommendations για τον ν. 5160/2024. Οι καταστάσεις To address, Planned και Risk accepted που είδαμε εδώ είναι το πλάνο αντιμετώπισης κινδύνων που ζητά η απαίτηση **[5.1.γ](/kya-1689-2025/#5-1-γ)** του **[οδηγού της ΚΥΑ 1689/2025](/kya-1689-2025/)**. Τα ίδια recommendations αντιστοιχούν σε controls του **[ISO/IEC 27001](/iso-27001/)**, όπως το A.8.9 (Configuration management). Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.2.α](/nis2/#21-2-α) και [21.2.θ](/nis2/#21-2-θ) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 

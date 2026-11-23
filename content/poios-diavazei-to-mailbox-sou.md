@@ -15,7 +15,7 @@ menu:
 author: "Dimosthenis Atteia"
 description: "Δωρεάν εργαλείο: τρέξε ένα script στο Exchange Online, ανέβασε το αρχείο και δες ποιοι inbox rules και ποιες προωθήσεις στέλνουν, σβήνουν ή κρύβουν email, με σοβαρότητα, εξήγηση στα Ελληνικά, εντολές αποκατάστασης και KQL. Όλα στον browser σου."
 seoTitle: "Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules (BEC)"
-seoDescription: "Βρες κακόβουλους inbox rules και εξωτερική προώθηση σε όλα τα mailboxes του Microsoft 365: σοβαρότητα, εξήγηση στα Ελληνικά, εντολές και KQL. Όλα στον browser σου."
+seoDescription: "Βρες κακόβουλους inbox rules και εξωτερική προώθηση σε κάθε mailbox του Microsoft 365: σοβαρότητα, εξήγηση στα Ελληνικά, εντολές και KQL. Όλα στον browser σου."
 toolBlurb: "Τρέξε ένα script στο Exchange Online, ανέβασε το αρχείο και δες ποιοι inbox rules και ποιες προωθήσεις στέλνουν, σβήνουν ή κρύβουν email, με σοβαρότητα, εξήγηση στα Ελληνικά, εντολές αποκατάστασης, KQL και αναφορά .pdf. Το αρχείο δεν φεύγει από τον browser σου."
 keywords:
   - κακόβουλοι inbox rules

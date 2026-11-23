@@ -32,9 +32,11 @@ tags:
   - Cyber GRC
 author: "Dimosthenis Atteia"
 description: "Η Microsoft ανακοίνωσε το Project Perception, ένα agentic security system με red, blue και green AI agents που βρίσκουν, αξιολογούν και διορθώνουν κινδύνους συνεχώς, με τον άνθρωπο στον έλεγχο. Εξηγώ με απλά λόγια τι είναι, πώς δουλεύει ο βρόχος των agents, το μοντέλο MAI-Cyber-1-Flash, τη διαφορά από το Security Copilot, το κόστος σε SCUs και τι πρέπει να κάνει το SOC σου για να προετοιμαστεί."
-seoDescription: "Το Project Perception της Microsoft με red, blue και green AI agents: πώς δουλεύει, το MAI-Cyber-1-Flash, η διαφορά από το Security Copilot και τι κάνει το SOC σου."
+seoDescription: "Το Project Perception της Microsoft με red, blue και green AI agents: πώς δουλεύει, το MAI-Cyber-1-Flash, η διαφορά από το Security Copilot και τι κάνει το SOC."
 summary: "Το Project Perception μπαίνει σε public preview (3 Αυγούστου 2026) μέσα στο Microsoft Defender. Δες πώς συνεργάζονται red/blue/green agents σε συνεχή βρόχο, τι είναι το «Cyber Stack» και το μοντέλο MAI-Cyber-1-Flash, γιατί δεν είναι το ίδιο με το Security Copilot, πώς χρεώνεται σε Security Compute Units, και μια ειλικρινή, GRC-ματιά για το τι σημαίνει αυτόνομη άμυνα όταν πρέπει να λογοδοτείς."
 categories: ["AI Security", "Security Operations & XDR"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1047"]
 releases:
   - "preview"
 ShowToc: true
@@ -150,6 +152,8 @@ verification:
 Μέχρι τότε, η στάση που προτείνω είναι η υγιής περιέργεια: δοκίμασέ το στο preview, μάθε τη λογική του, χτίσε από τώρα τη διακυβέρνηση γύρω του. Γιατί όταν φτάσει η ώρα να το εμπιστευτείς με πραγματικές ενέργειες, θα θέλεις να έχεις ήδη απαντήσει στο δύσκολο ερώτημα: **πόσο αυτόνομη άμυνα αντέχεις, και πώς την αποδεικνύεις;**
 
 > 📖 **Πού θα δουλεύουν οι agents:** το ISOC στο Microsoft Defender και η σύγκρισή του με το Defender XDR και το Microsoft Sentinel: **[Preview: ISOC, Sentinel ή μόνο Defender XDR; Ποιο ταιριάζει στον οργανισμό σου](/posts/previews/isoc-sentinel-defender-xdr-poio-epilegeis/)**.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [5.2](/kya-1689-2025/#5-2), [17.α](/kya-1689-2025/#17-α) και [24.ε](/kya-1689-2025/#24-ε), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.2.β](/nis2/#21-2-β) και [21.2.ε](/nis2/#21-2-ε), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.7](/iso-27001/#A-5-7), [A.8.8](/iso-27001/#A-8-8) και [A.8.16](/iso-27001/#A-8-16) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

@@ -23,6 +23,7 @@ author: "Dimosthenis Atteia"
 description: "Εβδομάδα 43/2026: Teams user reporting ενεργό από 25/10, Defender for Cloud στο Defender portal με DWU, αλλαγές ρόλων στο App Governance, νέα alerts στο MDI."
 summary: "Το Defender for Office 365 ενεργοποιεί στις 25 Οκτωβρίου το Teams user reporting σε όσους δεν το έχουν ρυθμίσει, και το Defender for Cloud φέρνει τη διαχείριση των plans στο Defender portal με χρέωση σε Defender Workload Units."
 categories: ["Security Operations & XDR"]
+mitre: ["T1098", "T1534", "T1550.001", "M1017", "M1047"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
@@ -175,6 +176,8 @@ verification:
 - **[24.ε](/kya-1689-2025/#24-ε), όρια και συνθήκες ειδοποίησης:** τα alert tuning rules με detection source και οι ειδοποιήσεις των Simple Flows είναι ακριβώς οι «κατάλληλες συνθήκες ειδοποίησης» που ζητά η απαίτηση. Τεκμηρίωσε κάθε κανόνα που κρύβει alerts.
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
+
+Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** οι αλλαγές της εβδομάδας αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.ε](/nis2/#21-2-ε), [21.2.ζ](/nis2/#21-2-ζ) και [21.2.θ](/nis2/#21-2-θ). Στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχούν στα [A.5.15](/iso-27001/#A-5-15), [A.5.23](/iso-27001/#A-5-23), [A.6.3](/iso-27001/#A-6-3), [A.6.8](/iso-27001/#A-6-8), [A.8.2](/iso-27001/#A-8-2), [A.8.7](/iso-27001/#A-8-7), [A.8.9](/iso-27001/#A-8-9), [A.8.15](/iso-27001/#A-8-15) και [A.8.16](/iso-27001/#A-8-16), και στον **[GDPR](/gdpr/)** στα [32.1.β](/gdpr/#32-1-β) και [32.4](/gdpr/#32-4). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

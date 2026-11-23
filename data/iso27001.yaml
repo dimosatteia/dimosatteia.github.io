@@ -96,6 +96,9 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου'
+      url: /posts/microsoft-365-price-increase-2026-security-leader-playbook/
+      page: /posts/microsoft-365-price-increase-2026-security-leader-playbook
   - code: A.5.5
     scope: ''
     requirement: Contact with authorities
@@ -105,6 +108,10 @@ articles:
     evidence: Κατάλογος επαφών με αρχές και CSIRT, με υπεύθυνο επικοινωνίας.
     kya:
     - 24
+    posts:
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: A.5.6
     scope: ''
     requirement: Contact with special interest groups
@@ -134,6 +141,15 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: η μηχανή ιεράρχησης'
       url: /posts/microsoft-defender-vulnerability-management-series/03-mdvm-the-prioritization-engine/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/03-mdvm-the-prioritization-engine
+    - title: 'Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις, πόσα SCU και πότε πληρώνεις'
+      url: /posts/security-copilot-sto-microsoft-365-e5-scu/
+      page: /posts/security-copilot-sto-microsoft-365-e5-scu
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
   - code: A.5.8
     scope: ''
     requirement: Information security in project management
@@ -170,6 +186,9 @@ articles:
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
   - code: A.5.10
     scope: ''
     requirement: Acceptable use of information and other associated assets
@@ -250,6 +269,9 @@ articles:
       url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
     - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
       url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+    - title: 'Έλεγχος domain: SPF, DKIM, DMARC με Microsoft 365'
+      url: /elegxos-domain/
+      page: /elegxos-domain
   - code: A.5.15
     scope: ''
     requirement: Access control
@@ -302,6 +324,9 @@ articles:
     - &id016
       title: 'Azure και Entra: Τι πραγματικά είναι, τι τα ενώνει και τι τα διαφοροποιεί (το θεμέλιο που παραλείπουμε)'
       url: /posts/azure-kai-entra-to-themelio/
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
   - code: A.5.17
     scope: ''
     requirement: Authentication information
@@ -371,6 +396,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου'
+      url: /posts/microsoft-365-price-increase-2026-security-leader-playbook/
+      page: /posts/microsoft-365-price-increase-2026-security-leader-playbook
   - code: A.5.20
     scope: ''
     requirement: Addressing information security within supplier agreements
@@ -445,6 +473,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Ποια άδεια Microsoft 365 χρειάζομαι για την ΚΥΑ 1689/2025 και την NIS2;'
+      url: /poia-adeia-microsoft-365/
+      page: /poia-adeia-microsoft-365
   - code: A.5.24
     scope: ''
     requirement: Information security incident management planning and preparation
@@ -471,6 +502,9 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: A.5.25
     scope: ''
     requirement: Assessment and decision on information security events
@@ -531,6 +565,12 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις, πόσα SCU και πότε πληρώνεις'
+      url: /posts/security-copilot-sto-microsoft-365-e5-scu/
+      page: /posts/security-copilot-sto-microsoft-365-e5-scu
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: A.5.27
     scope: ''
     requirement: Learning from information security incidents
@@ -587,6 +627,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
       url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
       page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'Πόσο κοστίζει ένα περιστατικό; Υπολογιστής για διακοπή λειτουργίας και ransomware'
+      url: /kostos-peristatikou/
+      page: /kostos-peristatikou
   - code: A.5.30
     scope: Νέο στην έκδοση 2022
     requirement: ICT readiness for business continuity
@@ -603,6 +646,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 6: Governance και Zero Trust, από τις πολιτικές σε πρόγραμμα'
       url: /posts/conditional-access-series/conditional-access-meros-6-governance-zero-trust/
       page: /posts/Conditional-Access-Series/conditional-access-meros-6-governance-zero-trust
+    - title: 'Πόσο κοστίζει ένα περιστατικό; Υπολογιστής για διακοπή λειτουργίας και ransomware'
+      url: /kostos-peristatikou/
+      page: /kostos-peristatikou
   - code: A.5.31
     scope: ''
     requirement: Legal, statutory, regulatory and contractual requirements
@@ -815,6 +861,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 4: Advanced Identity Security, από τα passkeys ως τα workload identities'
       url: /posts/conditional-access-series/conditional-access-meros-4-advanced-identity-security/
       page: /posts/Conditional-Access-Series/conditional-access-meros-4-advanced-identity-security
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
   - code: A.6.8
     scope: ''
     requirement: Information security event reporting
@@ -1124,6 +1173,9 @@ articles:
     - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
       url: /poios-xtypaei-tin-porta-sou/
       page: /poios-xtypaei-tin-porta-sou
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
   - code: A.8.6
     scope: ''
     requirement: Capacity management
@@ -1171,6 +1223,12 @@ articles:
     - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
       url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
       page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
+    - title: 'Prompt Injection μέσω email: Το Defender for Office 365 μπαίνει σε έναν πόλεμο που δεν ξέραμε ότι ξεκίνησε, τι φέρνει το MC1422060'
+      url: /posts/new-features/prompt-injection-protection-defender-office-365/
+      page: /posts/New-Features/entra-defender-prompt-injection-email
+    - title: 'Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)'
+      url: /posts/new-features/mdo-encrypted-attachment-protection-mc1440701/
+      page: /posts/New-Features/mdo-encrypted-attachment-protection-mc1440701
   - code: A.8.8
     scope: ''
     requirement: Management of technical vulnerabilities
@@ -1207,6 +1265,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
   - code: A.8.9
     scope: Νέο στην έκδοση 2022
     requirement: Configuration management
@@ -1379,6 +1440,15 @@ articles:
     - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
       url: /poios-xtypaei-tin-porta-sou/
       page: /poios-xtypaei-tin-porta-sou
+    - title: 'Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity'
+      url: /posts/generally-available/investigate-ad-domain-defender-identity/
+      page: /posts/Generally-Available/investigate-ad-domain-defender-identity
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
   - code: A.8.17
     scope: ''
     requirement: Clock synchronization

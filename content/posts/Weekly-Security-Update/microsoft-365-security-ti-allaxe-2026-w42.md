@@ -22,6 +22,7 @@ author: "Dimosthenis Atteia"
 description: "Εβδομάδα 42/2026: τέλος του Search-UnifiedAuditLog, αλλαγές στο Entra Agent ID στις 4 Νοεμβρίου, Windows Hello for Business ως MFA, NTLMv1 σε Enforce."
 summary: "Το Search-UnifiedAuditLog αποσύρεται στις 15 Οκτωβρίου 2027 υπέρ του AuditLogQuery API, το Entra αλλάζει από τις 4 Νοεμβρίου ποιος δημιουργεί agents, και το Windows Hello for Business γίνεται αυτόνομος παράγοντας MFA."
 categories: ["Security Operations & XDR"]
+mitre: ["T1557", "T1558.004", "M1026", "M1032", "M1047"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
@@ -154,6 +155,8 @@ verification:
 - **[24.ε](/kya-1689-2025/#24-ε), τακτικός έλεγχος για ύποπτη δραστηριότητα:** τα νέα alerts του Defender for Identity για AD CS, Kerberos και Okta αυξάνουν την κάλυψη του αυτοματοποιημένου ελέγχου.
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
+
+Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** οι αλλαγές της εβδομάδας αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.θ](/nis2/#21-2-θ) και [21.2.ι](/nis2/#21-2-ι). Στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχούν στα [A.5.15](/iso-27001/#A-5-15), [A.5.17](/iso-27001/#A-5-17), [A.8.2](/iso-27001/#A-8-2), [A.8.5](/iso-27001/#A-8-5), [A.8.15](/iso-27001/#A-8-15), [A.8.16](/iso-27001/#A-8-16) και [A.8.20](/iso-27001/#A-8-20), και στον **[GDPR](/gdpr/)** στα [32.1.β](/gdpr/#32-1-β) και [32.4](/gdpr/#32-4). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

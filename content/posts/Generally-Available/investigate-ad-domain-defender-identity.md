@@ -22,6 +22,8 @@ description: "Το Microsoft Defender for Identity ενοποιεί πλέον �
 seoDescription: "Το Defender for Identity ενοποιεί σε μία σελίδα την υγεία, τις πολιτικές ασφαλείας και τα trust relationships ενός Active Directory domain."
 summary: "Η σελίδα Active Directory Domain στο Microsoft Defender συγκεντρώνει σε ένα ενιαίο σημείο ό,τι χρειάζεται ένας αναλυτής για να αξιολογήσει την υγεία και την έκθεση ενός domain."
 categories: ["Identity & Access"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1087.002", "M1047"]
 releases:
   - "generally-available"       # ← αυτό στο /releases/generally-available/
 ShowToc: true
@@ -96,6 +98,8 @@ verification:
 Αν δεν το έχεις δοκιμάσει ακόμα, αξίζει μια πρώτη ματιά στο δικό σου tenant.
 
 ---
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στο [18.2.β](/kya-1689-2025/#18-2-β), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.στ](/nis2/#21-2-στ), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στο [A.8.16](/iso-27001/#A-8-16) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

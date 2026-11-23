@@ -1,0 +1,1162 @@
+{{- /* «Ο CISO σε μία σελίδα» (/ciso-se-mia-selida/)
+       Ο επισκέπτης ανεβάζει exports από τις κονσόλες του Microsoft 365 (Secure Score, Entra ID, Intune, Defender XDR,
+       Defender for Endpoint, ID Protection, Defender for Cloud Apps, Purview, Defender for Cloud) και παίρνει μία σελίδα
+       για τη Διοίκηση: συνολικός δείκτης, ενότητες με φανάρι, διάγραμμα αράχνης με στόχο, τα 3 πρώτα που διορθώνεις και
+       αντιστοίχιση σε ΚΥΑ 1689/2025, NIS2, ISO/IEC 27001 και GDPR, με .pdf και .xlsx.
+       Τα αρχεία διαβάζονται ΜΟΝΟ μέσα στον browser του επισκέπτη, με FileReader. Δεν στέλνονται πουθενά.
+       Χρήση: {{< ciso-one-page >}} */ -}}
+<style>
+#cpTool .cpMono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#cpTool .cpCard{transition:border-color .2s,background .2s}
+#cpTool .cpCard.is-over,#cpDrop.is-over{border-color:#3b82f6;background:rgba(59,130,246,.08)}
+#cpTool .cpCard.is-ok{border-color:rgba(16,185,129,.5);border-style:solid}
+#cpTool table{width:100%;border-collapse:collapse;font-size:13px}
+#cpTool th{text-align:left;font-weight:600;color:#94a3b8;font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:6px 8px;border-bottom:1px solid #1e293b}
+#cpTool td{padding:7px 8px;border-bottom:1px solid #1e293b;vertical-align:top}
+#cpTool .cpPill{display:inline-block;border-radius:9999px;padding:.1rem .55rem;font-size:11px;font-weight:600;white-space:nowrap}
+#cpTool .cpRing{width:9.5rem;height:9.5rem;flex:none}
+#cpTool input[type=range]{accent-color:#10b981}
+#cpTool a.cpCode{color:#93c5fd;text-decoration:none;border-bottom:1px dotted #475569}
+#cpTool a.cpCode:hover{color:#bfdbfe}
+</style>
+<div class="not-prose my-6 rounded-xl border border-blue-500/30 bg-blue-500/5 p-5" id="cpTool" data-clarity-mask="true">
+    <div class="flex flex-wrap gap-2 mb-4 text-xs">
+        <span class="rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-slate-300">🔒 Τοπική επεξεργασία</span>
+        <span class="rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-slate-300">🔌 Χωρίς σύνδεση με τον tenant</span>
+        <span class="rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-slate-300">📊 PDF για τη Διοίκηση</span>
+        <span class="rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-slate-300">📋 XLSX για την τεχνική ομάδα</span>
+        <span class="rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-slate-300">🛡 ΚΥΑ 1689/2025 · NIS2 · ISO 27001 · GDPR</span>
+    </div>
+
+    <p class="text-xs text-emerald-300 mb-0">🔒 Τα αρχεία δεν φεύγουν από τον υπολογιστή σου: η ανάλυση γίνεται μόνο μέσα στον browser σου και τίποτα δεν αποθηκεύεται. <a href="{{ "privacy/" | relURL }}" class="text-blue-400 hover:text-blue-300 underline">Πολιτική απορρήτου</a>.</p>
+
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mt-6 mb-3">1 · Upload <span class="normal-case tracking-normal text-slate-400 font-sans">· Ανέβασε τα exports</span></p>
+
+    <div id="cpDrop" class="rounded-lg border-2 border-dashed border-slate-700 bg-slate-950/40 p-5 text-center mb-5">
+        <p class="text-slate-200 font-semibold mb-1">Σύρε εδώ όλα τα αρχεία μαζί</p>
+        <p class="text-xs text-slate-400 mb-3">Το εργαλείο αναγνωρίζει μόνο του ποιο αρχείο είναι ποιο από τις στήλες του. Μπορείς επίσης να πατήσεις «Ανέβασε» σε κάθε κάρτα χωριστά. Δέχεται .csv.</p>
+        <div class="flex flex-wrap gap-2 justify-center">
+            <label class="cursor-pointer rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">Διάλεξε αρχεία<input type="file" id="cpFiles" accept=".csv,text/csv" multiple class="hidden"></label>
+            <button type="button" id="cpSample" class="rounded-md border border-slate-600 hover:border-slate-400 px-4 py-2 text-sm text-slate-200">Δοκίμασε με παράδειγμα</button>
+            <button type="button" id="cpClear" class="rounded-md border border-slate-700 hover:border-slate-500 px-4 py-2 text-sm text-slate-400">Καθάρισε</button>
+        </div>
+        <p id="cpDropMsg" class="text-xs mt-3 hidden"></p>
+    </div>
+
+    <p class="text-sm font-semibold text-slate-100 mb-1">Βασικές πηγές</p>
+    <p class="text-xs text-slate-400 mb-3">Τροφοδοτούν τις πέντε βασικές ενότητες: Ταυτότητες, Συσκευές, Ευπάθειες, Email και Περιστατικά.</p>
+    <div id="cpCore" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-5"></div>
+
+    <details class="mb-2 rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2">
+        <summary class="cursor-pointer text-sm font-semibold text-slate-100">Προαιρετικές πηγές (5) <span id="cpOptCnt" class="text-xs font-normal text-slate-400"></span></summary>
+        <p class="text-xs text-slate-400 mt-2 mb-3">Κρυπτογράφηση, Shadow IT, Διαρροή δεδομένων, Cloud υποδομή και Εξωτερικοί χρήστες. Καθεμία προσθέτει δική της ενότητα και δικό της άξονα στο διάγραμμα, μόνο όταν την ανεβάσεις.</p>
+        <div id="cpOpt" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-2"></div>
+    </details>
+
+    <details id="cpAdv" class="mt-4 mb-5 rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2">
+        <summary class="cursor-pointer text-sm font-semibold text-slate-100">⚙️ Ρυθμίσεις της αναφοράς: στόχος, επωνυμία, τρόπος υπολογισμού, βάρη και ιστορικό <span id="cpCfgSum" class="block sm:inline text-xs font-normal text-slate-400"></span></summary>
+        <div class="mt-3">
+    <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 mb-5 grid gap-4 sm:grid-cols-2">
+        <label class="block">
+            <span class="block text-xs text-slate-400 mb-1">Επωνυμία οργανισμού (προαιρετικά, μόνο για την αναφορά)</span>
+            <input type="text" id="cpOrg" maxlength="80" placeholder="π.χ. MyCompany" class="w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100">
+        </label>
+        <label class="block">
+            <span class="block text-xs text-slate-400 mb-1">Στόχος της Διοίκησης για κάθε ενότητα: <strong id="cpTv" class="text-emerald-300">85</strong>/100</span>
+            <input type="range" id="cpTarget" min="50" max="100" step="5" value="85" class="w-full mt-2">
+        </label>
+    </div>
+
+    <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 mb-5">
+        <p class="font-semibold text-slate-100 mb-2">Πώς συνδυάζονται οι ενότητες στον δείκτη</p>
+        <div class="flex flex-col gap-2 mb-3">
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="cpMode" value="risk" checked class="mt-1"><span><strong class="text-slate-100">Risk-weighted</strong> (προεπιλογή): κάθε ενότητα μετράει ανάλογα με το βάρος κινδύνου της. Ένα κενό στις ταυτότητες βαραίνει περισσότερο από ένα κενό στην κρυπτογράφηση.</span></label>
+            <label class="flex gap-2 items-start cursor-pointer"><input type="radio" name="cpMode" value="simple" class="mt-1"><span><strong class="text-slate-100">Simple</strong>: απλός αριθμητικός μέσος όρος. Όλες οι ενότητες μετράνε το ίδιο.</span></label>
+        </div>
+        <div id="cpWBox">
+            <p class="text-xs text-slate-400 mb-3">Τα προεπιλεγμένα βάρη είναι πρόταση του thecybersec.gr, όχι πρότυπο. Άλλαξέ τα ώστε να ταιριάζουν στο risk assessment του οργανισμού σου. Τα βάρη είναι σχετικά: το εργαλείο τα μοιράζει μόνο στις ενότητες που έχουν πηγή, ώστε το σύνολο να βγαίνει πάντα 100%. Η στήλη «ισχύει» δείχνει το βάρος που χρησιμοποιείται τώρα.</p>
+            <div id="cpWeights" class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4"></div>
+            <div class="flex flex-wrap items-center gap-2 mt-3">
+                <button type="button" id="cpWReset" class="rounded border border-slate-600 hover:border-slate-400 px-3 py-1 text-xs text-slate-200">Επαναφορά προεπιλογών</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 mb-5">
+        <p class="font-semibold text-slate-100 mb-2">Ιστορικό του δείκτη (προαιρετικά)</p>
+        <p class="text-xs text-slate-400 mb-2">Η Διοίκηση δεν ρωτά μόνο πού είσαι σήμερα. Ρωτά αν πηγαίνεις προς τη σωστή κατεύθυνση. Γράψε την ημερομηνία (mm/dd/yyyy), άνω και κάτω τελεία, και την τιμή του Posture εκείνη τη μέρα. Για παράδειγμα, <span class="cpMono text-slate-200">08/15/2026:71</span> σημαίνει Posture 71/100 στις 15 Αυγούστου 2026. Χώρισε τις τιμές με κόμμα. Δεν χρειάζεται να γράφεις κάθε μήνα: το «Πρόσθεσε τη σημερινή τιμή» το κάνει μόνο του, και το link το κρατά για την επόμενη φορά.</p>
+        <input type="text" id="cpHist" maxlength="400" placeholder="08/15/2026:71, 09/15/2026:74, 10/15/2026:79" class="w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 cpMono">
+        <div class="mt-4 rounded border border-blue-500/30 bg-blue-500/5 p-3">
+            <p class="text-xs font-semibold text-slate-200 mb-1">Φόρτωση προηγούμενης αξιολόγησης (.json)</p>
+            <p class="text-[11px] text-slate-400 mb-2">Ανέβασε το .json που αποθήκευσες την προηγούμενη φορά. Φέρνει πίσω στόχο, βάρη, ιστορικό και τιμές ανά ενότητα, και δείχνει στο Decision τι έγινε με τις ενέργειες της προηγούμενης φοράς. Το αρχείο διαβάζεται μόνο στον browser σου.</p>
+            <label class="inline-block cursor-pointer rounded border border-slate-600 hover:border-blue-400 px-3 py-1 text-xs text-slate-200">Διάλεξε .json<input type="file" id="cpLoad" accept=".json,application/json" class="hidden"></label>
+            <span id="cpLoadMsg" class="text-xs ml-2"></span>
+        </div>
+        <div class="mt-4 rounded border border-slate-800 bg-slate-950/40 p-3">
+            <p class="text-xs font-semibold text-slate-200 mb-1">Τιμές της προηγούμενης αξιολόγησης ανά ενότητα</p>
+            <p class="text-[11px] text-slate-400 mb-2">Από αυτές βγαίνει η μεταβολή κάθε ενότητας, π.χ. Ταυτότητες ↑ +6. Το «Πρόσθεσε τη σημερινή τιμή» τις συμπληρώνει μόνο του. Μπορείς να τις γράψεις και με το χέρι από μια παλιότερη αναφορά .pdf. Άφησε κενές όσες ενότητες δεν είχες τότε.</p>
+            <label class="flex items-center gap-2 text-xs text-slate-300 mb-2">Ημερομηνία (mm/dd/yyyy): <input type="text" id="cpPrevDate" maxlength="10" placeholder="10/15/2026" class="w-28 rounded border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-100 cpMono"></label>
+            <div id="cpPrev" class="grid gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"></div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 mt-3">
+            <button type="button" id="cpHAdd" class="rounded border border-slate-600 hover:border-slate-400 px-3 py-1 text-xs text-slate-200">Πρόσθεσε τη σημερινή τιμή</button>
+            <button type="button" id="cpWLink" class="rounded border border-slate-600 hover:border-slate-400 px-3 py-1 text-xs text-slate-200">Αντιγραφή link με τα βάρη και το ιστορικό</button>
+            <span id="cpWMsg" class="text-xs text-emerald-300"></span>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-2 mb-0">Το link κρατά τον τρόπο υπολογισμού, τα βάρη και το ιστορικό μετά το σύμβολο «#» της διεύθυνσης, που δεν στέλνεται ποτέ στον server. Αποθήκευσέ το στα αγαπημένα ή μοίρασέ το στην ομάδα σου, και άνοιξέ το τον επόμενο μήνα. Το «Πρόσθεσε τη σημερινή τιμή» κρατά και τις τιμές κάθε ενότητας, ώστε την επόμενη φορά να βλέπεις τη μεταβολή ανά ενότητα, π.χ. Ταυτότητες ↑ +6. Σύγκρινε μόνο τιμές με τον ίδιο τρόπο υπολογισμού και παρόμοιο Evidence coverage.</p>
+    </div>
+
+        </div>
+    </details>
+
+    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mt-6 mb-3">2 · Result <span class="normal-case tracking-normal text-slate-400 font-sans">· Η σελίδα για τη Διοίκηση</span></p>
+
+    <div id="cpEmpty" class="rounded-lg border border-slate-800 bg-slate-950/40 p-6 text-center text-sm text-slate-400">Ανέβασε τουλάχιστον ένα αρχείο ή πάτησε «Δοκίμασε με παράδειγμα» για να δεις τη σελίδα για τη Διοίκηση.</div>
+
+    <div id="cpOut" class="hidden">
+        <div class="rounded-xl border border-slate-700 bg-slate-950/60 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-5 border-b border-slate-800 pb-5 mb-5">
+                <div>
+                    <p class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-1">Η σελίδα για τη Διοίκηση</p>
+                    <h3 class="text-xl font-bold text-slate-100 m-0">Κατάσταση κυβερνοασφάλειας Microsoft 365</h3>
+                    <p id="cpMeta" class="text-xs text-slate-400 mt-1 mb-0"></p>
+                </div>
+                <div class="max-w-md">
+                    <p class="text-[11px] font-mono uppercase tracking-wider text-blue-300 mb-2">Microsoft 365 Security Posture Indicator</p>
+                    <p id="cpModeLine" class="text-[11px] text-slate-400 -mt-1 mb-2"></p>
+                    <div class="flex items-center gap-4">
+                        <svg id="cpRing" class="cpRing" viewBox="0 0 42 42" aria-hidden="true"></svg>
+                        <div id="cpVerdict" class="text-sm text-slate-300 max-w-xs"></div>
+                    </div>
+                    <div id="cpTriad" class="grid grid-cols-3 gap-2 mt-4"></div>
+                    <p id="cpConf" class="text-xs mt-2 mb-0"></p>
+                    <div id="cpTrend" class="text-xs mt-2 hidden"></div>
+                    <p class="text-[11px] text-slate-500 leading-snug mt-3 mb-0">Προσαρμοσμένος δείκτης υποστήριξης αποφάσεων, βασισμένος στα δεδομένα ασφάλειας (telemetry) του Microsoft 365 που ανέβασες. Δεν είναι το Microsoft Secure Score, ούτε βαθμός συμμόρφωσης, αξιολόγηση ωριμότητας ή αποτέλεσμα πιστοποίησης.</p>
+                </div>
+            </div>
+
+            <div id="cpDomains" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-5"></div>
+
+            <div class="grid gap-5 lg:grid-cols-5 items-center rounded-lg border border-slate-800 bg-slate-900/40 p-4 mb-5">
+                <div class="lg:col-span-2 text-sm text-slate-300">
+                    <p class="font-semibold text-slate-100 mb-2">Η εικόνα ανά ενότητα</p>
+                    <p class="mb-2">Κάθε άξονας είναι μια ενότητα σε κλίμακα 0 έως 100. Η μπλε περιοχή είναι η σημερινή σου εικόνα. Η πράσινη διακεκομμένη γραμμή είναι ο στόχος που όρισες στις Ρυθμίσεις της αναφοράς.</p>
+                    <p class="mb-3">Εκεί που η μπλε περιοχή «βουλιάζει» είναι το σημείο που χρειάζεται απόφαση.</p>
+                    <div class="flex flex-wrap gap-4 text-xs text-slate-400">
+                        <span><i class="inline-block w-3 h-3 rounded-sm align-middle mr-1" style="background:rgba(59,130,246,.35);border:2px solid #3b82f6"></i>Σήμερα</span>
+                        <span><i class="inline-block w-3 h-3 rounded-sm align-middle mr-1" style="border:2px dashed #10b981"></i>Στόχος</span>
+                        <span><i class="inline-block w-3 h-3 rounded-sm align-middle mr-1" style="background:#334155"></i>Χωρίς πηγή</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-3"><svg id="cpRadar" viewBox="0 0 520 440" role="img" aria-label="Διάγραμμα αράχνης ανά ενότητα" class="w-full h-auto"></svg></div>
+            </div>
+
+            <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mt-6 mb-3">3 · Decision <span class="normal-case tracking-normal text-slate-400 font-sans">· Τι αποφασίζει η Διοίκηση</span></p>
+            <div class="rounded-lg border border-amber-400/40 bg-amber-400/5 p-4 mb-5">
+                <p class="font-semibold text-amber-200 text-sm mb-1">Priority actions: τα 3 πρώτα που διορθώνεις</p>
+                <p class="text-xs text-slate-400 mb-3">Ο υπεύθυνος και η προθεσμία είναι προτάσεις. Άλλαξέ τα πριν βγάλεις την αναφορά, ώστε κάθε ενέργεια να έχει όνομα και ημερομηνία.</p>
+                <div class="overflow-x-auto"><table><thead><tr><th>Priority</th><th>Ενέργεια</th><th>Γιατί τώρα</th><th>Υπεύθυνος</th><th>Προθεσμία</th></tr></thead><tbody id="cpTop"></tbody></table></div>
+            </div>
+            <div id="cpFollow" class="hidden rounded-lg border border-slate-700 bg-slate-900/40 p-4 mb-5">
+                <p class="font-semibold text-slate-100 text-sm mb-1">Follow-up: οι ενέργειες της προηγούμενης αξιολόγησης <span id="cpFollowDate" class="font-normal text-slate-400"></span></p>
+                <p class="text-xs text-slate-400 mb-3">Η στήλη «Ένδειξη» συγκρίνει τον βαθμό της πηγής τότε και τώρα. Είναι ένδειξη, όχι επιβεβαίωση. Το κλείσιμο κάθε ενέργειας το επιβεβαιώνει ο υπεύθυνος.</p>
+                <div class="overflow-x-auto"><table><thead><tr><th>Priority</th><th>Ενέργεια</th><th>Υπεύθυνος</th><th>Προθεσμία</th><th>Τότε → τώρα</th><th>Ένδειξη</th></tr></thead><tbody id="cpFollowBody"></tbody></table></div>
+            </div>
+
+            <p class="font-semibold text-slate-100 text-sm mb-2">Ευρήματα και σχετικές αναφορές ελέγχων</p>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead><tr><th>Ενότητα</th><th>Εύρημα</th><th>ΚΥΑ 1689/2025</th><th>NIS2</th><th>ISO/IEC 27001</th><th>GDPR</th><th>Κατάσταση ελέγχου</th><th>Τεκμήριο</th></tr></thead>
+                    <tbody id="cpMap"></tbody>
+                </table>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-2 mb-0">Οι σχετικές αναφορές ελέγχων (relevant control references) δείχνουν σε ποια απαίτηση αφορά κάθε εύρημα. Δεν είναι βαθμός ή βεβαίωση συμμόρφωσης. Οι δύο τελευταίες στήλες απαντούν σε δύο διαφορετικές ερωτήσεις. Η <strong>Κατάσταση ελέγχου</strong> λέει πόσο καλά είναι τα πράγματα σε σχέση με τον στόχο που όρισες στις Ρυθμίσεις της αναφοράς: 🟢 At/above target, 🟡 Below target (από 60 έως κάτω από τον στόχο), 🔴 Material gap (κάτω από 60), ⚪ Not assessed. Το <strong>Τεκμήριο</strong> λέει πόσο κατάλληλο είναι το export για να αποδείξει την κατάσταση: 🟢 Direct technical evidence (καταγράφει κάθε χρήστη, συσκευή ή εύρημα), 🟡 Supporting evidence (σύνοψη, σύσταση ή δείγμα δραστηριότητας), ⚪ No evidence. Μια κακή κατάσταση μπορεί να έχει ισχυρό τεκμήριο: ξέρεις ακριβώς ποιες συσκευές δεν είναι κρυπτογραφημένες. Η telemetry τεκμηριώνει υλοποίηση, όχι νομική συμμόρφωση.</p>
+
+            <details class="mt-4 rounded-md border border-slate-800 bg-slate-900/40 p-3">
+                <summary class="cursor-pointer text-sm text-slate-200 font-semibold">Πώς βγαίνει κάθε βαθμός;</summary>
+                <ul id="cpHow" class="list-disc pl-5 mt-2 flex flex-col gap-1.5 text-xs text-slate-400 leading-relaxed"></ul>
+            </details>
+
+            <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400 mt-6 mb-0">4 · Export <span class="normal-case tracking-normal text-slate-400 font-sans">· Κατέβασε την αναφορά</span></p>
+            <div class="flex flex-wrap gap-2 mt-3">
+                <button type="button" id="cpPdf" class="rounded-md bg-slate-100 hover:bg-white px-4 py-2 text-sm font-semibold text-slate-900">Σελίδα για τη Διοίκηση (.pdf)</button>
+                <button type="button" id="cpJson" class="rounded-md border border-slate-500 hover:border-slate-300 px-4 py-2 text-sm font-semibold text-slate-100">Αποθήκευση αξιολόγησης (.json)</button>
+                <button type="button" id="cpXlsx" class="rounded-md bg-emerald-600 hover:bg-emerald-500 px-4 py-2 text-sm font-semibold text-white">Ευρήματα για την τεχνική ομάδα (.xlsx)</button>
+            </div>
+            <p class="text-xs text-slate-400 mt-3 mb-0">Και τα δύο αρχεία φτιάχνονται μέσα στον browser σου. Για το .pdf ο browser φορτώνει, μόνο όταν πατήσεις το κουμπί, τη βιβλιοθήκη pdfmake από το cdnjs.cloudflare.com.</p>
+            <p class="text-xs text-slate-400 mt-1 mb-0">Το .json κρατά την αξιολόγηση: ημερομηνία, στόχο, βάρη, τιμές ανά ενότητα, ιστορικό και Priority actions με υπεύθυνους. Βάλ' το στον φάκελο του ISMS και φόρτωσέ το την επόμενη φορά από τις «Ρυθμίσεις της αναφοράς». Περιέχει την εικόνα ασφάλειας του οργανισμού, οπότε κράτα το μόνο εσωτερικά.</p>
+            <div class="mt-4 rounded-lg border border-slate-800 bg-slate-900/40 p-3">
+                <div class="flex flex-wrap items-center gap-2">
+                    <button type="button" id="cpMinutes" class="rounded-md bg-blue-600 hover:bg-blue-500 px-4 py-2 text-sm font-semibold text-white">Αντιγραφή σύνοψης για τα πρακτικά</button>
+                    <span id="cpMinMsg" class="text-xs text-emerald-300"></span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2 mb-2">Λίγες προτάσεις έτοιμες για τα πρακτικά του Δ.Σ. ή για email. Η αναφορά .pdf μόνη της δεν αποδεικνύει ότι η Διοίκηση ενημερώθηκε. Η καταγραφή στα πρακτικά το αποδεικνύει.</p>
+                <textarea id="cpMinText" readonly rows="7" class="w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-200 leading-relaxed"></textarea>
+            </div>
+            <p id="cpExpErr" class="text-xs text-rose-400 mt-2 hidden"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    function $(id) { return document.getElementById(id); }
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function fmt(n) { return Number(n || 0).toLocaleString('el-GR'); }
+    function clamp(v) { return Math.max(0, Math.min(100, Math.round(v))); }
+    function pc(a, b) { return b > 0 ? Math.round(a / b * 100) : 0; }
+
+    // ---------- Ενότητες ----------
+    var DOMAINS = [
+        { id: 'id', label: 'Ταυτότητες', core: true },
+        { id: 'dev', label: 'Συσκευές', core: true },
+        { id: 'vul', label: 'Ευπάθειες', core: true },
+        { id: 'mail', label: 'Email', core: true },
+        { id: 'inc', label: 'Περιστατικά', core: true },
+        { id: 'enc', label: 'Κρυπτογράφηση', core: false },
+        { id: 'shd', label: 'Shadow IT', core: false },
+        { id: 'dlp', label: 'Διαρροή δεδομένων', core: false },
+        { id: 'cld', label: 'Cloud υποδομή', core: false },
+        { id: 'gst', label: 'Εξωτερικοί χρήστες', core: false }
+    ];
+
+    // ---------- CSV ----------
+    function parseCsv(text) {
+        text = String(text || '').replace(/^﻿/, '');
+        var first = text.split(/\r?\n/, 1)[0] || '';
+        var d = [',', ';', '\t'].sort(function (a, b) { return first.split(b).length - first.split(a).length; })[0];
+        var rows = [], row = [], f = '', q = false;
+        for (var i = 0; i < text.length; i++) {
+            var c = text[i];
+            if (q) { if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+            else if (c === '"') q = true;
+            else if (c === d) { row.push(f); f = ''; }
+            else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(f); f = ''; if (row.some(function (x) { return x.trim() !== ''; })) rows.push(row); row = []; }
+            else f += c;
+        }
+        row.push(f); if (row.some(function (x) { return x.trim() !== ''; })) rows.push(row);
+        // Η κεφαλίδα: η πρώτη γραμμή με τουλάχιστον 3 μη κενά κελιά, μέσα στις 15 πρώτες
+        var h = 0;
+        for (var k = 0; k < Math.min(rows.length, 15); k++) { if (rows[k].filter(function (x) { return x.trim(); }).length >= 3) { h = k; break; } }
+        return { head: (rows[h] || []).map(function (x) { return x.trim(); }), rows: rows.slice(h + 1) };
+    }
+    function N(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9α-ωάέήίόύώϊϋΐΰ]/g, ''); }
+    function col(head, names) {
+        var H = head.map(N), i, j;
+        for (j = 0; j < names.length; j++) { i = H.indexOf(N(names[j])); if (i >= 0) return i; }
+        for (j = 0; j < names.length; j++) { var n = N(names[j]); for (i = 0; i < H.length; i++) if (H[i].indexOf(n) >= 0) return i; }
+        return -1;
+    }
+    function cell(r, i) { return i >= 0 ? String(r[i] == null ? '' : r[i]).trim() : ''; }
+    function num(s) { s = String(s == null ? '' : s).replace(/[^\d.,-]/g, ''); if (/,\d{1,2}$/.test(s) && s.indexOf('.') < 0) s = s.replace(',', '.'); s = s.replace(/,/g, ''); var n = parseFloat(s); return isNaN(n) ? null : n; }
+    function days(s) { var t = Date.parse(s); return isNaN(t) ? null : (Date.now() - t) / 864e5; }
+
+    // ---------- Πηγές ----------
+    // sig: στήλες που αναγνωρίζουν το αρχείο. map: κωδικοί αντιστοίχισης. analyse(csv) → { score, cnt, find, fix, why }
+    var SOURCES = [
+        { id: 'ss', core: true, dom: 'mail', t: 'Microsoft Secure Score', p: 'Recommended actions (CSV)',
+          how: '<a href="https://security.microsoft.com/securescore" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Defender portal</a> › Exposure management › Secure Score › καρτέλα <strong>Recommended actions</strong> › <strong>Export</strong>. Ρόλος: Security Reader ή Global Reader.',
+          tip: 'Μην ανοίξεις και ξανασώσεις το αρχείο στο Excel. Αν το έκανες, κατέβασέ το ξανά.',
+          sig: ['recommended action', 'points achieved', 'score impact'],
+          map: { kya: ['20.γ'], nis: ['21.2.ζ'], iso: ['A.8.7'], gdpr: ['32.1.β'] },
+          rule: 'Οι πόντοι που έχεις στις συστάσεις του Exchange Online και του Defender for Office 365, ως ποσοστό των μέγιστων. Αν το αρχείο δεν έχει τέτοιες συστάσεις, μετράει όλο το Secure Score.',
+          analyse: function (c) {
+              var t = col(c.head, ['recommended action', 'improvement action', 'title']), p = col(c.head, ['points achieved', 'points']), mx = col(c.head, ['max score', 'maximum score']),
+                  st = col(c.head, ['status']), pr = col(c.head, ['product']), ca = col(c.head, ['category']);
+              if (t < 0 || p < 0) return null;
+              var all = [], mail = [];
+              c.rows.forEach(function (r) {
+                  var title = cell(r, t); if (!title) return;
+                  var raw = cell(r, p), m = raw.match(/(-?[\d.,]+)\s*\/\s*([\d.,]+)/), a = m ? num(m[1]) : num(raw), M = m ? num(m[2]) : num(cell(r, mx));
+                  if (M == null || M <= 0) return;
+                  var o = { title: title, a: Math.max(0, Math.min(a || 0, M)), m: M, st: cell(r, st) };
+                  all.push(o);
+                  if (/exchange|office 365|defender for office|email|mail/i.test(cell(r, pr) + ' ' + cell(r, ca))) mail.push(o);
+              });
+              if (!all.length) return null;
+              var set = mail.length ? mail : all, A = 0, M2 = 0, TA = 0, TM = 0;
+              set.forEach(function (o) { A += o.a; M2 += o.m; }); all.forEach(function (o) { TA += o.a; TM += o.m; });
+              var open = set.filter(function (o) { return o.a < o.m && !/complet|third|alternate|risk/i.test(o.st); }).sort(function (x, y) { return (y.m - y.a) - (x.m - x.a); });
+              var top = open[0];
+              return { score: pc(A, M2), cnt: fmt(all.length) + ' συστάσεις',
+                  find: (mail.length ? 'Email: ' + pc(A, M2) + '% των πόντων, ' : '') + 'Secure Score συνολικά ' + pc(TA, TM) + '%, ' + fmt(open.length) + ' ανοιχτές συστάσεις' + (mail.length ? ' στο email' : ''),
+                  fix: top ? 'Υλοποίησε τη σύσταση «' + top.title + '» στο Secure Score.' : 'Κράτα τις ρυθμίσεις του email όπως είναι.',
+                  why: top ? 'Είναι η ανοιχτή σύσταση με τους περισσότερους πόντους που λείπουν.' : 'Δεν βρέθηκε ανοιχτή σύσταση.' };
+          } },
+        { id: 'mfa', core: true, dom: 'id', t: 'Entra ID · MFA', p: 'User registration details (CSV)',
+          how: '<a href="https://entra.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Entra admin center</a> › Entra ID › Authentication methods › <strong>User registration details</strong> › <strong>Download</strong>. Ρόλος: Reports Reader, Security Reader ή Global Reader.',
+          tip: 'Η Microsoft ορίζει το «MFA Capable» ως ισχυρή μέθοδο που ο χρήστης έχει καταχωρίσει και που επιτρέπει η πολιτική Authentication methods. Δεν δείχνει αν το MFA επιβάλλεται σε κάθε σύνδεση. Η αναφορά ενημερώνεται μέσα σε 36 ώρες και δεν περιλαμβάνει απενεργοποιημένους χρήστες.',
+          sig: ['mfa capable', 'sspr registered', 'methods registered', 'passwordless capable'],
+          map: { kya: ['13.ζ', '13.στ'], nis: ['21.2.ι'], iso: ['A.8.5', 'A.5.17'], gdpr: ['32.1.β'] },
+          rule: 'Το ποσοστό των χρηστών που είναι MFA-capable, δηλαδή έχουν καταχωρίσει ισχυρή μέθοδο που επιτρέπει η πολιτική Authentication methods. Δεν μετρά αν το MFA επιβάλλεται σε κάθε σύνδεση. Κάθε διαχειριστής που δεν είναι MFA-capable αφαιρεί 10 μονάδες.',
+          analyse: function (c) {
+              var m = col(c.head, ['mfa capable', 'ismfacapable', 'multifactor authentication capable', 'mfa registered', 'ismfaregistered']), ad = col(c.head, ['is admin', 'isadmin']),
+                  ut = col(c.head, ['user type', 'usertype']), up = col(c.head, ['user principal name', 'userprincipalname']);
+              if (m < 0) return null;
+              var tot = 0, ok = 0, adm = 0;
+              c.rows.forEach(function (r) {
+                  if (up >= 0 && !cell(r, up)) return;
+                  if (ut >= 0 && /guest/i.test(cell(r, ut))) return;
+                  tot++; var yes = /^(capable|registered|yes|true|ναι)$/i.test(cell(r, m));
+                  if (yes) ok++; else if (ad >= 0 && /^(yes|true|ναι)$/i.test(cell(r, ad))) adm++;
+              });
+              if (!tot) return null;
+              var no = tot - ok;
+              return { score: clamp(pc(ok, tot) - adm * 10), cnt: fmt(tot) + ' χρήστες', urgent: adm > 0,
+                  find: fmt(no) + '/' + fmt(tot) + ' χρήστες δεν είναι MFA-capable' + (ad >= 0 ? ', ανάμεσά τους ' + fmt(adm) + ' διαχειριστές' : ''),
+                  fix: adm ? 'Οι ' + fmt(adm) + ' διαχειριστές που δεν είναι MFA-capable να καταχωρίσουν ισχυρή μέθοδο, και επίβαλε MFA σε όλους τους ρόλους διαχείρισης.' : 'Οι ' + fmt(no) + ' χρήστες που δεν είναι MFA-capable να καταχωρίσουν ισχυρή μέθοδο, και επίβαλε MFA με Conditional Access ή Security defaults.',
+                  why: adm ? 'Σε έναν διαχειριστή χωρίς καταχωρισμένη ισχυρή μέθοδο δεν μπορεί να ζητηθεί MFA, και ο λογαριασμός του ελέγχει όλο τον tenant.' : 'Σε έναν χρήστη χωρίς καταχωρισμένη ισχυρή μέθοδο δεν μπορεί να ζητηθεί MFA.' };
+          } },
+        { id: 'int', core: true, dom: 'dev', t: 'Intune · Συσκευές', p: 'All devices export (CSV)',
+          how: '<a href="https://intune.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Intune admin center</a> › Devices › <strong>All devices</strong> › <strong>Export</strong> › «Include all inventory data». Ρόλος: Read Only Operator ή Global Reader.',
+          tip: 'Το αρχείο έρχεται συμπιεσμένο (.zip). Αποσυμπίεσέ το και ανέβασε το .csv που περιέχει.',
+          sig: ['compliance', 'device name', 'os version', 'managed by', 'primary user upn'],
+          map: { kya: ['14.α', '14.β'], nis: ['21.2.ζ'], iso: ['A.8.1', 'A.8.9'], gdpr: [] },
+          rule: 'Το ποσοστό των συσκευών με κατάσταση Compliant. Όσες είναι Not evaluated ή In grace period μετράνε ως μη συμμορφούμενες.',
+          analyse: function (c) {
+              var k = col(c.head, ['compliance', 'compliance state', 'compliancestate']); if (k < 0) return null;
+              var tot = 0, ok = 0;
+              c.rows.forEach(function (r) { var v = cell(r, k); if (!v) return; tot++; if (/^compliant$/i.test(v)) ok++; });
+              if (!tot) return null;
+              return { score: pc(ok, tot), cnt: fmt(tot) + ' συσκευές', find: fmt(tot - ok) + ' από ' + fmt(tot) + ' συσκευές εκτός συμμόρφωσης',
+                  fix: 'Δες γιατί οι ' + fmt(tot - ok) + ' συσκευές είναι εκτός συμμόρφωσης και κλείσε τους την πρόσβαση με Conditional Access.',
+                  why: 'Μια συσκευή εκτός πολιτικής δεν έχει τις βασικές ρυθμίσεις ασφάλειας που όρισες.' };
+          } },
+        { id: 'mde', core: true, dom: 'dev', t: 'Defender for Endpoint · Device inventory', p: 'Device inventory export (CSV)',
+          how: '<a href="https://security.microsoft.com/machines" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Defender portal</a> › Assets › <strong>Devices</strong> › <strong>Export</strong>. Ρόλος: Security Reader.',
+          tip: 'Το export περιέχει πάντα όλες τις συσκευές, ανεξάρτητα από τα φίλτρα που έχεις στην οθόνη.',
+          sig: ['onboarding status', 'sensor health state', 'exposure level', 'risk level'],
+          map: { kya: ['11.α', '20.α'], nis: ['21.2.θ'], iso: ['A.5.9', 'A.8.7'], gdpr: [] },
+          rule: 'Το ποσοστό των συσκευών με Onboarding status «Onboarded», από όσες είναι Onboarded ή «Can be onboarded». Κάθε onboarded συσκευή με ανενεργό sensor αφαιρεί μισή μονάδα.',
+          analyse: function (c) {
+              var o = col(c.head, ['onboarding status', 'onboardingstatus']), h = col(c.head, ['sensor health state', 'health status']); if (o < 0) return null;
+              var on = 0, can = 0, inact = 0;
+              c.rows.forEach(function (r) { var v = cell(r, o); if (/^onboarded$/i.test(v)) { on++; if (h >= 0 && /inactive|no sensor|misconfig|impaired/i.test(cell(r, h))) inact++; } else if (/can be onboarded/i.test(v)) can++; });
+              if (!on && !can) return null;
+              return { score: clamp(pc(on, on + can) - inact * 0.5), cnt: fmt(on + can) + ' συσκευές',
+                  find: fmt(can) + ' συσκευές χωρίς Defender for Endpoint' + (inact ? ', ' + fmt(inact) + ' με ανενεργό ή προβληματικό sensor' : ''),
+                  fix: can ? 'Κάνε onboard στο Defender for Endpoint τις ' + fmt(can) + ' συσκευές που μπορούν.' : 'Διόρθωσε τους ' + fmt(inact) + ' sensors που δεν στέλνουν δεδομένα.',
+                  why: 'Μια συσκευή εκτός Defender είναι τυφλό σημείο: δεν βλέπεις τι γίνεται πάνω της.' };
+          } },
+        { id: 'rol', core: true, dom: 'id', t: 'Entra ID · Privileged roles', p: 'Download assignments (CSV)',
+          how: '<a href="https://entra.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Entra admin center</a> › Entra ID › Roles &amp; admins › <strong>All roles</strong> › <strong>Download assignments</strong> › Start bulk operation. Ρόλος: Global Reader.',
+          tip: 'Η λήψη περιέχει τις ενεργές αναθέσεις. Με PIM, οι eligible αναθέσεις δεν μετράνε, και αυτό είναι το σωστό: μετράμε όσους είναι admins αυτή τη στιγμή.',
+          sig: ['role', 'principal', 'assignment', 'directory scope', 'role definition'],
+          map: { kya: ['13.δ', '13.γ'], nis: ['21.2.θ'], iso: ['A.8.2', 'A.5.15'], gdpr: [] },
+          rule: 'Ξεκινά από 100. Κάθε Global Administrator πάνω από 4 αφαιρεί 12 μονάδες. Λιγότεροι από 2 αφαιρούν 10, γιατί χρειάζεσαι λογαριασμό έκτακτης ανάγκης. Κάθε ενεργός admin πάνω από 15 αφαιρεί 2.',
+          analyse: function (c) {
+              var r1 = col(c.head, ['role', 'role name', 'roledefinitionname', 'roledefinition']), p1 = col(c.head, ['principal name', 'userprincipalname', 'principalname', 'user principal name', 'principal', 'member', 'display name']);
+              if (r1 < 0) return null;
+              var ga = {}, all = {};
+              c.rows.forEach(function (r) { var role = cell(r, r1), who = cell(r, p1) || ('#' + Math.random()); if (!role) return; all[who] = 1; if (/global admin/i.test(role)) ga[who] = 1; });
+              var g = Object.keys(ga).length, a = Object.keys(all).length; if (!a) return null;
+              var s = 100 - Math.max(0, g - 4) * 12 - (g < 2 ? 10 : 0) - Math.max(0, a - 15) * 2;
+              return { score: clamp(s), cnt: fmt(a) + ' admins',
+                  find: fmt(g) + ' Global Administrators, ' + fmt(a) + ' λογαριασμοί με ενεργό ρόλο διαχείρισης',
+                  fix: g > 4 ? 'Μείωσε τους Global Administrators από ' + fmt(g) + ' σε 2 έως 4 και δώσε στους υπόλοιπους μικρότερους ρόλους, ιδανικά μέσω PIM.' : g < 2 ? 'Φτιάξε δεύτερο λογαριασμό Global Administrator για έκτακτη ανάγκη (break-glass).' : 'Πέρασε τους ενεργούς ρόλους διαχείρισης σε PIM, ώστε να ενεργοποιούνται μόνο όταν χρειάζεται.',
+                  why: 'Κάθε μόνιμος admin είναι ένας λογαριασμός που, αν κλαπεί, δίνει τον έλεγχο όλου του tenant.' };
+          } },
+        { id: 'rsk', core: true, dom: 'id', t: 'Entra ID Protection · Risky users', p: 'Risky users (CSV)',
+          how: '<a href="https://entra.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Entra admin center</a> › ID Protection › <strong>Risky users</strong> › <strong>Download</strong> › CSV. Ρόλος: Security Reader. Χρειάζεται Entra ID P2 για όλες τις λεπτομέρειες.',
+          tip: 'Μην αφήσεις το φίλτρο «Risk state» μόνο σε «At risk»: το εργαλείο χρειάζεται και τα Remediated, για να ξέρει ότι τα έκλεισες.',
+          sig: ['risk state', 'risk level', 'risk detail', 'risk last updated'],
+          map: { kya: ['24.ε', '13.α'], nis: ['21.2.β'], iso: ['A.8.16'], gdpr: ['33.1'] },
+          rule: 'Ξεκινά από 100. Κάθε χρήστης σε ανοιχτό κίνδυνο (At risk ή Confirmed compromised) αφαιρεί 20 μονάδες αν είναι High, 8 αν είναι Medium και 2 αν είναι Low.',
+          analyse: function (c) {
+              var lv = col(c.head, ['risk level', 'risklevel']), st = col(c.head, ['risk state', 'riskstate']); if (lv < 0 && st < 0) return null;
+              var h = 0, m = 0, l = 0;
+              c.rows.forEach(function (r) { if (st >= 0 && !/at ?risk|confirmed/i.test(cell(r, st))) return; var v = cell(r, lv); if (/high/i.test(v)) h++; else if (/medium/i.test(v)) m++; else if (/low/i.test(v)) l++; });
+              var open = h + m + l;
+              return { score: clamp(100 - 20 * h - 8 * m - 2 * l), cnt: fmt(c.rows.length) + ' εγγραφές', urgent: h > 0,
+                  find: open ? fmt(open) + ' χρήστες σε ανοιχτό κίνδυνο (' + fmt(h) + ' High, ' + fmt(m) + ' Medium, ' + fmt(l) + ' Low)' : 'Κανένας χρήστης σε ανοιχτό κίνδυνο',
+                  fix: open ? 'Ακύρωσε τις συνεδρίες (Revoke sessions) και άλλαξε τον κωδικό στους ' + fmt(h || open) + ' χρήστες ' + (h ? 'υψηλού ' : '') + 'κινδύνου.' : 'Ενεργοποίησε πολιτική Conditional Access για user risk, ώστε να κλείνουν μόνοι τους.',
+                  why: 'Η Microsoft θεωρεί ότι οι λογαριασμοί αυτοί μπορεί ήδη να έχουν παραβιαστεί.' };
+          } },
+        { id: 'sgn', core: true, dom: 'id', t: 'Entra ID · Sign-in logs', p: 'Interactive και Non-interactive (CSV)', multi: true,
+          how: '<a href="https://entra.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Entra admin center</a> › Entra ID › Monitoring &amp; health › <strong>Sign-in logs</strong> › Date: Last 7 days › <strong>Download › Download CSV</strong>. Κατέβασε το <span class="cpMono">InteractiveSignIns_…</span> και το <span class="cpMono">NonInteractiveSignIns_…</span>. Ρόλος: Reports Reader.',
+          tip: 'Κάθε αρχείο έχει όριο 100.000 συνδέσεις. Αν η λήψη κολλάει, μίκρυνε το διάστημα. Για ανάλυση σε βάθος με χάρτη, χρησιμοποίησε το «Ποιος χτυπάει την πόρτα σου;».',
+          sig: ['client app', 'authentication requirement', 'sign-in error code', 'conditional access', 'ip address', 'location'],
+          map: { kya: ['24.ε', '24.γ'], nis: ['21.2.β', '21.2.ι'], iso: ['A.8.15', 'A.8.16'], gdpr: ['32.1.β'] },
+          rule: 'Ξεκινά από 100. Κάθε επιτυχημένη σύνδεση με legacy πρωτόκολλο αφαιρεί 2 μονάδες (έως 40). Το ποσοστό των επιτυχημένων συνδέσεων μόνο με κωδικό αφαιρεί έως 40. Το ποσοστό αποτυχιών αφαιρεί έως 20.',
+          analyse: function (c) {
+              var s = col(c.head, ['status', 'sign-in status']), ap = col(c.head, ['client app', 'clientappused']), ar = col(c.head, ['authentication requirement', 'authenticationrequirement']);
+              if (s < 0) return null;
+              var tot = 0, ok = 0, fail = 0, leg = 0, sfa = 0;
+              c.rows.forEach(function (r) {
+                  var v = cell(r, s); if (!v) return; tot++;
+                  if (/success/i.test(v)) { ok++; var a = cell(r, ap); if (a && !/browser|mobile apps and desktop/i.test(a)) leg++; if (/single/i.test(cell(r, ar))) sfa++; }
+                  else if (/fail/i.test(v)) fail++;
+              });
+              if (!tot) return null;
+              var sc = 100 - Math.min(40, leg * 2) - Math.min(40, Math.round(sfa / Math.max(ok, 1) * 40)) - Math.min(20, Math.round(fail / tot * 40));
+              return { score: clamp(sc), cnt: fmt(tot) + ' συνδέσεις',
+                  find: fmt(fail) + ' αποτυχημένες συνδέσεις, ' + fmt(leg) + ' επιτυχημένες με legacy authentication, ' + pc(sfa, ok) + '% των επιτυχημένων μόνο με κωδικό',
+                  fix: leg ? 'Μπλόκαρε το legacy authentication με Conditional Access.' : 'Ζήτα MFA σε όλες τις συνδέσεις, για να πέσει το ' + pc(sfa, ok) + '% των συνδέσεων μόνο με κωδικό.',
+                  why: leg ? 'Το legacy authentication δεν υποστηρίζει σύγχρονους μηχανισμούς MFA και αποτελεί ιδιαίτερα ελκυστικό στόχο για password-spray και credential-based attacks.' : 'Όσο μια σύνδεση περνά μόνο με κωδικό, ένας κλεμμένος κωδικός αρκεί.' };
+          } },
+        { id: 'tvm', core: true, dom: 'vul', t: 'Defender · Ευπάθειες', p: 'Security recommendations (CSV)',
+          how: '<a href="https://security.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Defender portal</a> › Exposure management › Vulnerability management › <strong>Recommendations</strong> › <strong>Export</strong>. Ρόλος: Security Reader. Χρειάζεται Defender for Endpoint P2 ή Defender for Business.',
+          tip: 'Αν δεν βλέπεις το μενού Vulnerability management, η άδειά σου δεν το περιλαμβάνει. Άφησε την κάρτα κενή.',
+          sig: ['security recommendation', 'exposed devices', 'weaknesses', 'related component', 'threats'],
+          map: { kya: ['17.γ', '17.στ'], nis: ['21.2.ε'], iso: ['A.8.8'], gdpr: ['32.1.β'] },
+          rule: 'Ξεκινά από 100. Κάθε ανοιχτή σύσταση με γνωστό exploit ή ενεργή απειλή αφαιρεί 5 μονάδες. Κάθε άλλη ανοιχτή σύσταση αφαιρεί μισή μονάδα.',
+          analyse: function (c) {
+              var n = col(c.head, ['security recommendation', 'recommendation', 'name']), th = col(c.head, ['threats', 'threat']), ex = col(c.head, ['exposed devices', 'exposeddevices']), st = col(c.head, ['remediation status', 'status']);
+              if (n < 0) return null;
+              var tot = 0, crit = 0, dev = 0, top = null, topX = -1;
+              c.rows.forEach(function (r) {
+                  var name = cell(r, n); if (!name) return;
+                  if (st >= 0 && /complet|exception|resolved/i.test(cell(r, st))) return;
+                  tot++; var t = th >= 0 ? cell(r, th) : r.join(' '), isC = /exploit|critical|ransomware|active/i.test(t) && !/no (known )?exploit|^0$/i.test(t);
+                  if (isC) crit++; var e = num(cell(r, ex)) || 0; dev += e;
+                  if ((isC ? 1e6 : 0) + e > topX) { topX = (isC ? 1e6 : 0) + e; top = name; }
+              });
+              if (!tot) return null;
+              return { score: clamp(100 - 5 * crit - 0.5 * (tot - crit)), cnt: fmt(tot) + ' συστάσεις', urgent: crit > 0,
+                  find: fmt(tot) + ' ανοιχτές συστάσεις, ' + fmt(crit) + ' με γνωστό exploit ή ενεργή απειλή' + (ex >= 0 ? ', ' + fmt(dev) + ' εκθέσεις συσκευών συνολικά' : ''),
+                  fix: top ? 'Ξεκίνα από τη σύσταση «' + top + '».' : 'Κλείσε πρώτα τις συστάσεις με γνωστό exploit.',
+                  why: crit ? 'Μια ευπάθεια με δημόσιο exploit μπορεί να τη χρησιμοποιήσει οποιοσδήποτε, χωρίς ειδικές γνώσεις.' : 'Είναι η σύσταση με τις περισσότερες εκτεθειμένες συσκευές.' };
+          } },
+        { id: 'inc', core: true, dom: 'inc', t: 'Defender XDR · Περιστατικά', p: 'Incidents queue export (CSV)',
+          how: '<a href="https://security.microsoft.com/incidents" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Defender portal</a> › Investigation &amp; response › Incidents &amp; alerts › <strong>Incidents</strong> › διάλεξε «Last 3 months» στον επιλογέα χρόνου › <strong>Export</strong>. Ρόλος: Security Reader.',
+          tip: 'Η ουρά δείχνει από προεπιλογή μόνο την τελευταία εβδομάδα. Το export κρατά τα φίλτρα της οθόνης, έως 10.000 εγγραφές.',
+          sig: ['incident id', 'incident name', 'severity', 'assigned to', 'classification'],
+          map: { kya: ['24.α', '24.ε'], nis: ['21.2.β'], iso: ['A.5.24', 'A.5.25', 'A.5.26'], gdpr: ['33.1'] },
+          rule: 'Ξεκινά από 100. Κάθε ανοιχτό περιστατικό (όχι Resolved) αφαιρεί 15 μονάδες αν είναι High, 5 αν είναι Medium και 1 αν είναι Low ή Informational.',
+          analyse: function (c) {
+              var sv = col(c.head, ['severity']), st = col(c.head, ['status']); if (sv < 0) return null;
+              var tot = 0, h = 0, m = 0, l = 0;
+              c.rows.forEach(function (r) { var v = cell(r, sv); if (!v) return; tot++; if (st >= 0 && /resolved|closed/i.test(cell(r, st))) return; if (/high|critical/i.test(v)) h++; else if (/medium/i.test(v)) m++; else l++; });
+              if (!tot) return null;
+              var open = h + m + l;
+              return { score: clamp(100 - 15 * h - 5 * m - l), cnt: fmt(tot) + ' περιστατικά', urgent: h > 0,
+                  find: fmt(open) + ' ανοιχτά περιστατικά από ' + fmt(tot) + ' (' + fmt(h) + ' High, ' + fmt(m) + ' Medium)',
+                  fix: h ? 'Κλείσε τα ' + fmt(h) + ' ανοιχτά περιστατικά υψηλής σοβαρότητας και έλεγξε αν κάποιο πρέπει να αναφερθεί στην ΕΑΚ.' : 'Όρισε υπεύθυνο και χρόνο κλεισίματος για τα ' + fmt(open) + ' ανοιχτά περιστατικά.',
+                  why: 'Ένα ανοιχτό περιστατικό μπορεί να είναι ενεργή επίθεση, και ένα σημαντικό περιστατικό έχει προθεσμία αναφοράς 24 ωρών.' };
+          } },
+        // ---------- Προαιρετικές ----------
+        { id: 'bit', core: false, dom: 'enc', t: 'Intune · Encryption report', p: 'BitLocker και FileVault (CSV)',
+          how: '<a href="https://intune.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Intune admin center</a> › Devices › Monitor › <strong>Encryption report</strong> › <strong>Export</strong>. Ρόλος: Read Only Operator.',
+          tip: 'Η αναφορά καλύπτει Windows 1607 και νεότερα και macOS 10.13 και νεότερα.',
+          sig: ['encryption readiness', 'encryption status', 'tpm version'],
+          map: { kya: ['22.β'], nis: ['21.2.η'], iso: ['A.8.24'], gdpr: ['32.1.α'] },
+          rule: 'Το ποσοστό των συσκευών με κατάσταση Encrypted.',
+          analyse: function (c) {
+              var e = col(c.head, ['encryption status', 'encryptionstatus', 'encrypted']); if (e < 0) return null;
+              var tot = 0, ok = 0;
+              c.rows.forEach(function (r) { var v = cell(r, e); if (!v) return; tot++; if (/^(encrypted|yes|true)$/i.test(v)) ok++; });
+              if (!tot) return null;
+              return { score: pc(ok, tot), cnt: fmt(tot) + ' συσκευές', find: fmt(tot - ok) + ' από ' + fmt(tot) + ' συσκευές χωρίς κρυπτογράφηση δίσκου',
+                  fix: 'Ενεργοποίησε BitLocker ή FileVault στις ' + fmt(tot - ok) + ' συσκευές με πολιτική του Intune.',
+                  why: 'Ένα χαμένο laptop χωρίς κρυπτογράφηση είναι συνήθως παραβίαση προσωπικών δεδομένων.' };
+          } },
+        { id: 'mca', core: false, dom: 'shd', t: 'Defender for Cloud Apps · Cloud Discovery', p: 'Discovered apps (CSV)',
+          how: '<a href="https://security.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Defender portal</a> › Cloud apps › <strong>Cloud discovery</strong> › καρτέλα <strong>Discovered apps</strong> › <strong>Export</strong>. Ρόλος: Security Reader.',
+          tip: 'Χρειάζεται Cloud Discovery ενεργό, π.χ. μέσω Defender for Endpoint. Το risk score είναι από 0 έως 10, και χαμηλότερο σημαίνει πιο επικίνδυνο.',
+          sig: ['risk score', 'traffic', 'upload', 'users', 'transactions'],
+          map: { kya: ['11.α', '11.γ'], nis: ['21.2.δ'], iso: ['A.5.23'], gdpr: [] },
+          rule: 'Το ποσοστό των εφαρμογών που δεν είναι υψηλού κινδύνου. Υψηλού κινδύνου είναι όσες έχουν risk score 4 ή χαμηλότερο και δεν είναι Sanctioned.',
+          analyse: function (c) {
+              var rs = col(c.head, ['risk score', 'riskscore', 'score']), tg = col(c.head, ['tag', 'app tag', 'sanction']); if (rs < 0) return null;
+              var tot = 0, risky = 0;
+              c.rows.forEach(function (r) { var v = num(cell(r, rs)); if (v == null) return; tot++; if (v <= 4 && !/^sanctioned/i.test(cell(r, tg))) risky++; });
+              if (!tot) return null;
+              return { score: clamp(100 - risky / tot * 100 * 2), cnt: fmt(tot) + ' εφαρμογές', find: fmt(risky) + ' εφαρμογές υψηλού κινδύνου χωρίς έγκριση, από ' + fmt(tot),
+                  fix: 'Σήμανε ως Unsanctioned και μπλόκαρε τις ' + fmt(risky) + ' εφαρμογές υψηλού κινδύνου.',
+                  why: 'Τα δεδομένα της εταιρείας πηγαίνουν σε υπηρεσίες που δεν ελέγχεις και δεν έχεις αξιολογήσει.' };
+          } },
+        { id: 'pur', core: false, dom: 'dlp', t: 'Purview · Activity explorer', p: 'Labels και DLP (CSV)',
+          how: '<a href="https://purview.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Purview portal</a> › Information protection › Explorers › <strong>Activity explorer</strong> › <strong>Export</strong>. Ρόλος: Content Explorer List Viewer ή Compliance Administrator.',
+          tip: 'Διάλεξε διάστημα 30 ημερών πριν το export.',
+          sig: ['activity', 'sensitivity label', 'location', 'happened', 'dlp policy'],
+          map: { kya: ['11.β'], nis: ['21.2.θ'], iso: ['A.5.12', 'A.8.12'], gdpr: ['32.1.β'] },
+          rule: 'Ξεκινά από 100 και αφαιρεί το ποσοστό των δραστηριοτήτων που είναι DLP matches ή αφαίρεση και υποβάθμιση label.',
+          analyse: function (c) {
+              var a = col(c.head, ['activity', 'activity type']); if (a < 0) return null;
+              var tot = 0, dlp = 0, rem = 0;
+              c.rows.forEach(function (r) { var v = cell(r, a); if (!v) return; tot++; if (/dlp/i.test(v)) dlp++; else if (/removed|downgrad/i.test(v)) rem++; });
+              if (!tot) return null;
+              return { score: clamp(100 - (dlp + rem) / tot * 100), cnt: fmt(tot) + ' δραστηριότητες', find: fmt(dlp) + ' DLP matches και ' + fmt(rem) + ' αφαιρέσεις ή υποβαθμίσεις label, σε ' + fmt(tot) + ' δραστηριότητες',
+                  fix: rem ? 'Ζήτα αιτιολόγηση (justification) για κάθε αφαίρεση ή υποβάθμιση sensitivity label.' : 'Έλεγξε τα ' + fmt(dlp) + ' DLP matches και πέρασε τις πολιτικές από Audit σε Block όπου χρειάζεται.',
+                  why: 'Κάθε αφαίρεση label ή DLP match είναι ευαίσθητο δεδομένο που μπορεί να φύγει από τον οργανισμό.' };
+          } },
+        { id: 'mdc', core: false, dom: 'cld', t: 'Defender for Cloud · Recommendations', p: 'Download CSV report',
+          how: '<a href="https://portal.azure.com" target="_blank" rel="noopener" class="text-blue-400 underline">Azure portal</a> › Microsoft Defender for Cloud › <strong>Recommendations</strong> › <strong>Download CSV report</strong>. Ρόλος: Security Reader στις subscriptions.',
+          tip: 'Η αναφορά έχει όριο 25.000 γραμμές και καλύπτει μόνο τις subscriptions που έχεις επιλέξει στο φίλτρο.',
+          sig: ['recommendation', 'severity', 'resource', 'subscription', 'state'],
+          map: { kya: ['14.β', '17.στ'], nis: ['21.2.ε'], iso: ['A.8.9', 'A.8.8'], gdpr: [] },
+          rule: 'Το ποσοστό των υγιών πόρων, με βάρος 3 για High, 2 για Medium και 1 για Low.',
+          analyse: function (c) {
+              var sv = col(c.head, ['severity', 'recommendationseverity']), st = col(c.head, ['state', 'status', 'healthstatus']); if (sv < 0) return null;
+              var okW = 0, badW = 0, badH = 0;
+              c.rows.forEach(function (r) { var w = /high|critical/i.test(cell(r, sv)) ? 3 : /medium/i.test(cell(r, sv)) ? 2 : 1, s = cell(r, st);
+                  if (st >= 0 && /^healthy$/i.test(s)) okW += w; else if (st < 0 || /unhealthy/i.test(s)) { badW += w; if (w === 3) badH++; } });
+              if (!okW && !badW) return null;
+              return { score: pc(okW, okW + badW), cnt: fmt(c.rows.length) + ' γραμμές', find: fmt(badH) + ' πόροι με ανοιχτή σύσταση High',
+                  fix: 'Διόρθωσε πρώτα τις ' + fmt(badH) + ' συστάσεις High του Defender for Cloud.', why: 'Μια λάθος ρύθμιση στο cloud είναι συχνά εκτεθειμένη απευθείας στο internet.' };
+          } },
+        { id: 'gst', core: false, dom: 'gst', t: 'Entra ID · Guests', p: 'Download users (CSV)',
+          how: '<a href="https://entra.microsoft.com" target="_blank" rel="noopener" class="text-blue-400 underline">Microsoft Entra admin center</a> › Entra ID › Users › <strong>All users</strong> › φίλτρο User type = Guest › <strong>Download users</strong>. Στη νέα λήψη (Preview) πρόσθεσε πρώτα τη στήλη «Last interactive sign-in date».',
+          tip: 'Χωρίς τη στήλη τελευταίας σύνδεσης, το εργαλείο μετράει μόνο τις προσκλήσεις που δεν έγιναν ποτέ αποδεκτές.',
+          sig: ['usertype', 'userprincipalname', 'accountenabled', 'externaluserstate', 'displayname'],
+          map: { kya: ['13.ε', '12.1.α'], nis: ['21.2.δ'], iso: ['A.5.19', 'A.5.18'], gdpr: [] },
+          rule: 'Το ποσοστό των guests που είναι ενεργοί: δεν έχουν εκκρεμή πρόσκληση και, αν υπάρχει η στήλη, έχουν συνδεθεί τις τελευταίες 90 ημέρες.',
+          analyse: function (c) {
+              var ut = col(c.head, ['usertype', 'user type']), es = col(c.head, ['externaluserstate', 'external user state', 'invitation state']), ls = col(c.head, ['last interactive sign-in', 'lastsignindatetime', 'last sign-in', 'signinactivity']);
+              if (ut < 0 && es < 0) return null;
+              var g = 0, stale = 0;
+              c.rows.forEach(function (r) { if (ut >= 0 && !/guest/i.test(cell(r, ut))) return; g++;
+                  var pend = /pending/i.test(cell(r, es)), dd = ls >= 0 ? days((cell(r, ls).match(/\d{4}-\d{2}-\d{2}[T ][\d:.]+Z?|\d{1,2}\/\d{1,2}\/\d{4}/) || [''])[0]) : null;
+                  if (pend || (ls >= 0 && (dd == null || dd > 90))) stale++; });
+              if (!g) return null;
+              return { score: pc(g - stale, g), cnt: fmt(g) + ' guests', find: fmt(stale) + ' από ' + fmt(g) + ' εξωτερικούς χρήστες ανενεργοί ή με εκκρεμή πρόσκληση',
+                  fix: 'Αφαίρεσε τους ' + fmt(stale) + ' ανενεργούς guests και βάλε Access Reviews κάθε τρίμηνο.', why: 'Κάθε ξεχασμένος guest είναι πόρτα προς τα δεδομένα σου από την εφοδιαστική αλυσίδα.' };
+          } }
+    ];
+    var SRC = {}; SOURCES.forEach(function (s) { SRC[s.id] = s; });
+
+    // ---------- Παράδειγμα ----------
+    var SAMPLE = {
+        ss: { score: 81, cnt: '142 συστάσεις', find: 'Email: 81% των πόντων, Secure Score συνολικά 63%, 6 ανοιχτές συστάσεις στο email', fix: 'Υλοποίησε τη σύσταση «Set DMARC policy to reject» στο Secure Score.', why: 'Είναι η ανοιχτή σύσταση με τους περισσότερους πόντους που λείπουν.' },
+        mfa: { score: 67, urgent: true, cnt: '214 χρήστες', find: '28/214 χρήστες δεν είναι MFA-capable, ανάμεσά τους 2 διαχειριστές', fix: 'Οι 2 διαχειριστές που δεν είναι MFA-capable να καταχωρίσουν ισχυρή μέθοδο, και επίβαλε MFA σε όλους τους ρόλους διαχείρισης.', why: 'Σε έναν διαχειριστή χωρίς καταχωρισμένη ισχυρή μέθοδο δεν μπορεί να ζητηθεί MFA, και ο λογαριασμός του ελέγχει όλο τον tenant.' },
+        int: { score: 93, cnt: '187 συσκευές', find: '13 από 187 συσκευές εκτός συμμόρφωσης', fix: 'Δες γιατί οι 13 συσκευές είναι εκτός συμμόρφωσης και κλείσε τους την πρόσβαση με Conditional Access.', why: 'Μια συσκευή εκτός πολιτικής δεν έχει τις βασικές ρυθμίσεις ασφάλειας που όρισες.' },
+        mde: { score: 89, cnt: '181 συσκευές', find: '19 συσκευές χωρίς Defender for Endpoint', fix: 'Κάνε onboard στο Defender for Endpoint τις 19 συσκευές που μπορούν.', why: 'Μια συσκευή εκτός Defender είναι τυφλό σημείο: δεν βλέπεις τι γίνεται πάνω της.' },
+        rol: { score: 76, cnt: '11 admins', find: '6 Global Administrators, 11 λογαριασμοί με ενεργό ρόλο διαχείρισης', fix: 'Μείωσε τους Global Administrators από 6 σε 2 έως 4 και δώσε στους υπόλοιπους μικρότερους ρόλους, ιδανικά μέσω PIM.', why: 'Κάθε μόνιμος admin είναι ένας λογαριασμός που, αν κλαπεί, δίνει τον έλεγχο όλου του tenant.' },
+        rsk: { score: 52, urgent: true, cnt: '9 εγγραφές', find: '4 χρήστες σε ανοιχτό κίνδυνο (2 High, 1 Medium, 1 Low)', fix: 'Ακύρωσε τις συνεδρίες (Revoke sessions) και άλλαξε τον κωδικό στους 2 χρήστες υψηλού κινδύνου.', why: 'Η Microsoft θεωρεί ότι οι λογαριασμοί αυτοί μπορεί ήδη να έχουν παραβιαστεί.' },
+        sgn: { score: 61, cnt: '48.210 συνδέσεις', find: '1.240 αποτυχημένες συνδέσεις, 12 επιτυχημένες με legacy authentication, 31% των επιτυχημένων μόνο με κωδικό', fix: 'Μπλόκαρε το legacy authentication με Conditional Access.', why: 'Το legacy authentication δεν υποστηρίζει σύγχρονους μηχανισμούς MFA και αποτελεί ιδιαίτερα ελκυστικό στόχο για password-spray και credential-based attacks.' },
+        tvm: { score: 45, urgent: true, cnt: '63 συστάσεις', find: '63 ανοιχτές συστάσεις, 4 με γνωστό exploit ή ενεργή απειλή, 412 εκθέσεις συσκευών συνολικά', fix: 'Ξεκίνα από τη σύσταση «Update Microsoft Windows Server 2019».', why: 'Μια ευπάθεια με δημόσιο exploit μπορεί να τη χρησιμοποιήσει οποιοσδήποτε, χωρίς ειδικές γνώσεις.' },
+        inc: { score: 72, urgent: true, cnt: '37 περιστατικά', find: '5 ανοιχτά περιστατικά από 37 (1 High, 2 Medium)', fix: 'Κλείσε το 1 ανοιχτό περιστατικό υψηλής σοβαρότητας και έλεγξε αν πρέπει να αναφερθεί στην ΕΑΚ.', why: 'Ένα ανοιχτό περιστατικό μπορεί να είναι ενεργή επίθεση, και ένα σημαντικό περιστατικό έχει προθεσμία αναφοράς 24 ωρών.' },
+        bit: { score: 84, cnt: '187 συσκευές', find: '30 από 187 συσκευές χωρίς κρυπτογράφηση δίσκου', fix: 'Ενεργοποίησε BitLocker ή FileVault στις 30 συσκευές με πολιτική του Intune.', why: 'Ένα χαμένο laptop χωρίς κρυπτογράφηση είναι συνήθως παραβίαση προσωπικών δεδομένων.' },
+        gst: { score: 61, cnt: '74 guests', find: '29 από 74 εξωτερικούς χρήστες ανενεργοί ή με εκκρεμή πρόσκληση', fix: 'Αφαίρεσε τους 29 ανενεργούς guests και βάλε Access Reviews κάθε τρίμηνο.', why: 'Κάθε ξεχασμένος guest είναι πόρτα προς τα δεδομένα σου από την εφοδιαστική αλυσίδα.' }
+    };
+
+    // ---------- Κατάσταση ----------
+    var RES = {}, ERR = {}, NAMES = {}, isSample = false, last = null;
+    function T() { return +$('cpTarget').value; }
+    function hex(v, t) { return v >= t ? '#10b981' : v >= 60 ? '#fbbf24' : '#f43f5e'; }
+    function lbl(v, t) { return v >= t ? 'At/above target' : v >= 60 ? 'Below target' : 'Material gap'; }
+    // Τεκμήριο: πόσο κατάλληλο είναι το export για να αποδείξει την κατάσταση (ανεξάρτητο από το πόσο καλή είναι)
+    var EVID = { ss: 's', mca: 's', pur: 's' };
+    var EVWHY = { d: 'Το export καταγράφει κάθε χρήστη, συσκευή ή εύρημα ξεχωριστά.', s: 'Το export είναι σύνοψη, σύσταση ή δείγμα δραστηριότητας, όχι καταγραφή κάθε αντικειμένου.' };
+    function evid(id) { return EVID[id] || 'd'; }
+    function evLbl(id) { return evid(id) === 'd' ? 'Direct technical evidence' : 'Supporting evidence'; }
+    function evIco(id) { return evid(id) === 'd' ? '🟢' : '🟡'; }
+    function evCls(id) { return evid(id) === 'd' ? 'border border-emerald-500/40 text-emerald-300 bg-emerald-500/10' : 'border border-amber-400/40 text-amber-300 bg-amber-400/10'; }
+    function dTxt(x) { return x > 0 ? '+' + x : x < 0 ? '−' + Math.abs(x) : '0'; }
+    var SNAP = null, sampleHist = false, FDATE = {}, PREVACT = null;
+    // Φρεσκάδα: η ημερομηνία τελευταίας τροποποίησης του αρχείου, όπως τη δίνει ο browser (File.lastModified)
+    function mdy(ms) { var d = new Date(ms); return p2(d.getMonth() + 1) + '/' + p2(d.getDate()) + '/' + d.getFullYear(); }
+    function ageDays(ms) { return Math.floor((Date.now() - ms) / 864e5); }
+    function freshTxt(id) { if (isSample && !FDATE[id]) return 'παράδειγμα'; if (!FDATE[id]) return '–'; var a = ageDays(FDATE[id]); return mdy(FDATE[id]) + ' (' + (a <= 0 ? 'σήμερα' : a === 1 ? '1 ημέρα' : a + ' ημέρες') + ')'; }
+    function stale(id) { return !!FDATE[id] && ageDays(FDATE[id]) > 7; }
+    function buildPrev() {
+        $('cpPrev').innerHTML = DOMAINS.map(function (d) {
+            return '<label class="flex items-center justify-between gap-1 text-[11px] text-slate-300">' + esc(d.label) + '<input type="number" min="0" max="100" data-prev="' + d.id + '" class="cpPrevIn w-14 rounded border border-slate-700 bg-slate-950 px-1 py-0.5 text-xs text-slate-100 text-right"></label>';
+        }).join('');
+        Array.prototype.forEach.call(document.querySelectorAll('#cpTool .cpPrevIn'), function (el) { el.addEventListener('input', readPrev); });
+        $('cpPrevDate').addEventListener('input', readPrev);
+    }
+    function fillPrev() {
+        $('cpPrevDate').value = SNAP ? SNAP.d : '';
+        Array.prototype.forEach.call(document.querySelectorAll('#cpTool .cpPrevIn'), function (el) { var id = el.getAttribute('data-prev'); el.value = SNAP && SNAP.v[id] != null ? SNAP.v[id] : ''; });
+    }
+    function readPrev() {
+        var m = ($('cpPrevDate').value || '').match(/^\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s*$/), v = {}, any = false;
+        Array.prototype.forEach.call(document.querySelectorAll('#cpTool .cpPrevIn'), function (el) { var x = el.value.trim(); if (x !== '' && !isNaN(+x)) { v[el.getAttribute('data-prev')] = Math.max(0, Math.min(100, Math.round(+x))); any = true; } });
+        SNAP = (m && any) ? { k: m[3] + p2(+m[1]) + p2(+m[2]), d: p2(+m[1]) + '/' + p2(+m[2]) + '/' + m[3], v: v } : null;
+        sampleHist = false; render();
+    }
+    function ico(v, t) { return v >= t ? '🟢' : v >= 60 ? '🟡' : '🔴'; }
+    var OWNER_DEF = { ss: 'Messaging / Email', mfa: 'IAM', rol: 'IAM', rsk: 'IAM / SOC', sgn: 'IAM', int: 'Endpoint / IT', mde: 'Endpoint / IT', bit: 'Endpoint / IT', tvm: 'IT Operations', inc: 'SOC', mca: 'Security', pur: 'DPO / Data owner', mdc: 'Cloud team', gst: 'IAM' };
+    var OWN = {}, DUE = {};
+    function prio(id, t) { var r = RES[id]; return (r.urgent || r.score < 60) ? 1 : r.score < t ? 2 : 3; }
+    function dueDef(id, t) { var p = prio(id, t); return (p === 1 && RES[id].urgent && (id === 'rsk' || id === 'inc')) ? 'Σήμερα' : { 1: '7 ημέρες', 2: '30 ημέρες', 3: '90 ημέρες' }[p]; }
+    function owner(id) { return OWN[id] != null ? OWN[id] : OWNER_DEF[id]; }
+    function due(id, t) { return DUE[id] != null ? DUE[id] : dueDef(id, t); }
+    // Ιστορικό σε μορφή mm/dd/yyyy:τιμή. Το k (yyyymmdd) χρησιμεύει για ταξινόμηση και για το link.
+    function p2(n) { return ('0' + n).slice(-2); }
+    function parseHist() {
+        var m, re = /(\d{1,2})\/(\d{1,2})\/(\d{4})\s*[:=]\s*(\d{1,3})/g, o = {}, v = ($('cpHist').value || '');
+        while ((m = re.exec(v))) { var mm = +m[1], dd = +m[2]; if (mm < 1 || mm > 12 || dd < 1 || dd > 31) continue;
+            o[m[3] + p2(mm) + p2(dd)] = { d: p2(mm) + '/' + p2(dd) + '/' + m[3], v: Math.max(0, Math.min(100, +m[4])) }; }
+        return Object.keys(o).sort().map(function (k) { return { k: k, d: o[k].d, v: o[k].v }; });
+    }
+    function todayKey() { var d = new Date(); return d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()); }
+    function todayStr() { var d = new Date(); return p2(d.getMonth() + 1) + '/' + p2(d.getDate()) + '/' + d.getFullYear(); }
+    function pillCls(v, t) { return v >= t ? 'border border-emerald-500/40 text-emerald-300 bg-emerald-500/10' : v >= 60 ? 'border border-amber-400/40 text-amber-300 bg-amber-400/10' : 'border border-rose-500/40 text-rose-300 bg-rose-500/10'; }
+    function link(fw, c) {
+        var base = { kya: '/kya-1689-2025/#', nis: '/nis2/#', iso: '/iso-27001/#', gdpr: '/gdpr/#' }[fw];
+        return '<a class="cpCode cpMono" href="' + base + encodeURIComponent(String(c).replace(/\./g, '-')) + '" target="_blank" rel="noopener">' + esc(c) + '</a>';
+    }
+    function codes(fw, list) { return list && list.length ? list.map(function (c) { return link(fw, c); }).join(', ') : '<span class="text-slate-600">–</span>'; }
+
+    function cardHtml(s) {
+        var r = RES[s.id], e = ERR[s.id], d = DOMAINS.filter(function (x) { return x.id === s.dom; })[0];
+        var fr = r && FDATE[s.id] ? '<span class="block font-normal ' + (stale(s.id) ? 'text-amber-300' : 'text-slate-400') + '">Export: ' + esc(freshTxt(s.id)) + (stale(s.id) ? ' · παλαιότερο από 7 ημέρες, κατέβασέ το ξανά' : '') + '</span>' : '';
+        var st = r ? '<span class="text-emerald-400">✔ ' + esc(r.cnt) + (NAMES[s.id] ? ' · <span class="cpMono text-slate-500">' + esc(NAMES[s.id]) + '</span>' : '') + '</span>'
+            : e ? '<span class="text-rose-400">' + esc(e) + '</span>' : '<span class="text-slate-500">Δεν ανέβηκε ακόμα</span>';
+        return '<div class="cpCard flex flex-col rounded-lg border border-dashed border-slate-700 bg-slate-900/60 p-3 text-sm' + (r ? ' is-ok' : '') + '" data-id="' + s.id + '">' +
+            '<p class="font-semibold text-slate-100 m-0">' + esc(s.t) + '</p>' +
+            '<p class="text-xs text-slate-400 mt-0.5 mb-1">' + esc(s.p) + '</p>' +
+            '<p class="text-[11px] text-blue-300 mb-2">→ ' + esc(d.label) + '</p>' +
+            '<p class="text-xs font-semibold mb-2">' + st + fr + '</p>' +
+            '<div class="flex gap-2 items-center"><label class="cursor-pointer rounded border border-slate-600 hover:border-blue-400 px-2.5 py-1 text-xs text-slate-200">Ανέβασε<input type="file" accept=".csv,text/csv" class="hidden cpOne"' + (s.multi ? ' multiple' : '') + '></label>' +
+            (r || e ? '<button type="button" class="cpDel text-xs text-slate-500 hover:text-rose-300">Αφαίρεσε</button>' : '') + '</div>' +
+            '<details class="mt-2"><summary class="cursor-pointer text-xs text-blue-400">Πού το βρίσκω;</summary><p class="text-xs text-slate-400 leading-relaxed mt-1 mb-1">' + s.how + '</p><p class="text-xs text-slate-500 leading-relaxed m-0">💡 ' + s.tip + '</p></details>' +
+            (s.core ? '' : '<div class="mt-auto pt-2 flex justify-end"><span class="cpPill border border-slate-700 text-slate-400">Προαιρετική</span></div>') + '</div>';
+    }
+    function renderCards() {
+        $('cpCore').innerHTML = SOURCES.filter(function (s) { return s.core; }).map(cardHtml).join('');
+        $('cpOpt').innerHTML = SOURCES.filter(function (s) { return !s.core; }).map(cardHtml).join('');
+        var oc = SOURCES.filter(function (s) { return !s.core && RES[s.id]; }).length; $('cpOptCnt').textContent = oc ? '· ' + oc + ' ανέβηκαν' : '· κλειστές μέχρι να τις χρειαστείς';
+        Array.prototype.forEach.call(document.querySelectorAll('#cpTool .cpCard'), function (el) {
+            var id = el.getAttribute('data-id');
+            el.querySelector('.cpOne').addEventListener('change', function () { readFiles(this.files, id); this.value = ''; });
+            var del = el.querySelector('.cpDel'); if (del) del.addEventListener('click', function () { delete RES[id]; delete ERR[id]; delete NAMES[id]; delete FDATE[id]; isSample = false; render(); });
+            ['dragenter', 'dragover'].forEach(function (ev) { el.addEventListener(ev, function (e) { e.preventDefault(); e.stopPropagation(); el.classList.add('is-over'); }); });
+            ['dragleave', 'drop'].forEach(function (ev) { el.addEventListener(ev, function (e) { e.preventDefault(); e.stopPropagation(); el.classList.remove('is-over'); }); });
+            el.addEventListener('drop', function (e) { readFiles(e.dataTransfer && e.dataTransfer.files, id); });
+        });
+    }
+
+    // ---------- Ανάγνωση αρχείων ----------
+    function detect(head) {
+        var H = head.map(N), best = null, bs = 0;
+        SOURCES.forEach(function (s) { var sc = 0; s.sig.forEach(function (g) { var n = N(g); if (H.some(function (h) { return h === n || h.indexOf(n) >= 0; })) sc++; }); if (sc > bs) { bs = sc; best = s; } });
+        return bs >= 2 ? best : null;
+    }
+    function readText(f) {
+        return new Promise(function (ok, no) {
+            if (f.size > 60 * 1024 * 1024) return no('Το αρχείο ' + f.name + ' είναι μεγαλύτερο από 60 MB.');
+            if (!/\.csv$/i.test(f.name) && !/csv|text\/plain|excel/i.test(f.type)) return no('Το ' + f.name + ' δεν είναι .csv. Αν είναι .zip, αποσυμπίεσέ το πρώτα.');
+            var rd = new FileReader(); rd.onload = function () { ok({ name: f.name, text: String(rd.result), mod: f.lastModified || null }); }; rd.onerror = function () { no('Δεν διαβάστηκε το ' + f.name + '.'); }; rd.readAsText(f, 'utf-8');
+        });
+    }
+    function readFiles(list, forced) {
+        if (!list || !list.length) return;
+        if (isSample) { RES = {}; ERR = {}; NAMES = {}; FDATE = {}; isSample = false; }
+        var files = Array.prototype.slice.call(list), msgs = [], groups = {};
+        Promise.all(files.map(function (f) { return readText(f).then(function (x) { return x; }, function (e) { msgs.push(e); return null; }); })).then(function (arr) {
+            arr.forEach(function (x) {
+                if (!x) return;
+                var c = parseCsv(x.text), s = forced ? SRC[forced] : detect(c.head);
+                if (!s) { msgs.push('Δεν αναγνώρισα το ' + x.name + '. Ανέβασέ το από την κάρτα της πηγής του.'); return; }
+                (groups[s.id] = groups[s.id] || { head: c.head, rows: [], names: [], mod: null });
+                if (x.mod && (!groups[s.id].mod || x.mod < groups[s.id].mod)) groups[s.id].mod = x.mod;
+                if (groups[s.id].rows.length && s.multi) { var m = c.head.map(function (h) { return groups[s.id].head.indexOf(h); }); c.rows.forEach(function (r) { var o = []; m.forEach(function (j, i) { if (j >= 0) o[j] = r[i]; }); groups[s.id].rows.push(o); }); }
+                else if (!groups[s.id].rows.length) { groups[s.id].head = c.head; groups[s.id].rows = c.rows; }
+                else { groups[s.id].head = c.head; groups[s.id].rows = c.rows; }
+                groups[s.id].names.push(x.name);
+            });
+            Object.keys(groups).forEach(function (id) {
+                var r = null; try { r = SRC[id].analyse(groups[id]); } catch (e) { r = null; }
+                if (r) { RES[id] = r; delete ERR[id]; NAMES[id] = groups[id].names.join(', '); if (groups[id].mod) FDATE[id] = groups[id].mod; else delete FDATE[id]; }
+                else { delete RES[id]; ERR[id] = 'Δεν βρήκα τις στήλες που χρειάζομαι. Έλεγξε ότι είναι το σωστό export.'; }
+            });
+            var dm = $('cpDropMsg');
+            if (msgs.length) { dm.textContent = msgs.join(' '); dm.className = 'text-xs mt-3 text-amber-300'; } else dm.className = 'hidden';
+            render();
+        });
+    }
+
+    // ---------- Υπολογισμοί ----------
+    function domainScores() {
+        return DOMAINS.map(function (d) {
+            var ss = SOURCES.filter(function (s) { return s.dom === d.id && RES[s.id]; });
+            var v = ss.length ? Math.round(ss.reduce(function (a, s) { return a + RES[s.id].score; }, 0) / ss.length) : null;
+            return { id: d.id, label: d.label, core: d.core, value: v, srcs: ss };
+        }).filter(function (d) { return d.core || d.value !== null; });
+    }
+
+    // ---------- Διάγραμμα αράχνης ----------
+    function radarSvg(ds, t, light) {
+        var W = 520, H = 440, cx = 260, cy = 220, R = 150, n = ds.length;
+        var grid = light ? '#cbd5e1' : '#1e293b', txt = light ? '#0f172a' : '#e2e8f0', sub = light ? '#475569' : '#94a3b8', miss = light ? '#94a3b8' : '#475569';
+        function ang(i) { return (-90 + i * 360 / n) * Math.PI / 180; }
+        function pt(i, v) { return [cx + Math.cos(ang(i)) * R * v / 100, cy + Math.sin(ang(i)) * R * v / 100]; }
+        function P(i, v) { var p = pt(i, v); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }
+        var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 0 ' + (W + 100) + ' ' + H + '" width="' + (W + 100) + '" height="' + H + '">';
+        [20, 40, 60, 80, 100].forEach(function (l) {
+            s += '<polygon points="' + ds.map(function (_, i) { return P(i, l); }).join(' ') + '" fill="none" stroke="' + grid + '" stroke-width="1"/>';
+            s += '<text x="' + (cx + 4) + '" y="' + (cy - R * l / 100 + 4).toFixed(1) + '" font-size="9" fill="' + sub + '" font-family="Helvetica, Arial, sans-serif">' + l + '</text>';
+        });
+        ds.forEach(function (d, i) {
+            var e = pt(i, 100), L = pt(i, 116), m = d.value === null, a = Math.abs(L[0] - cx) < 12 ? 'middle' : (L[0] > cx ? 'start' : 'end');
+            s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0].toFixed(1) + '" y2="' + e[1].toFixed(1) + '" stroke="' + (m ? miss : grid) + '" stroke-width="' + (m ? 2 : 1) + '"' + (m ? ' stroke-dasharray="2 4"' : '') + '/>';
+            s += '<text x="' + L[0].toFixed(1) + '" y="' + L[1].toFixed(1) + '" font-size="13" font-weight="bold" text-anchor="' + a + '" fill="' + (m ? miss : txt) + '" font-family="Helvetica, Arial, sans-serif">' + esc(d.label) + '</text>';
+            s += '<text x="' + L[0].toFixed(1) + '" y="' + (L[1] + 15).toFixed(1) + '" font-size="12" text-anchor="' + a + '" fill="' + (m ? miss : sub) + '" font-family="Helvetica, Arial, sans-serif">' + (m ? 'χωρίς πηγή' : d.value + '/100') + '</text>';
+        });
+        s += '<polygon points="' + ds.map(function (_, i) { return P(i, t); }).join(' ') + '" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="6 4"/>';
+        var k = []; ds.forEach(function (d, i) { if (d.value !== null) k.push({ d: d, i: i }); });
+        if (k.length >= 2) s += '<polygon points="' + k.map(function (o) { return P(o.i, o.d.value); }).join(' ') + '" fill="#3b82f6" fill-opacity="0.3" stroke="#3b82f6" stroke-width="2.5"/>';
+        k.forEach(function (o) { var p = pt(o.i, o.d.value); s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="6" fill="' + hex(o.d.value, t) + '" stroke="' + (light ? '#ffffff' : '#0b1220') + '" stroke-width="2"/>'; });
+        return s + '</svg>';
+    }
+    function ringSvg(v, t) {
+        var c = v == null ? '#334155' : hex(v, t), len = v || 0;
+        return '<circle cx="21" cy="21" r="15.915" fill="none" stroke="#1e293b" stroke-width="4"/>' +
+            '<circle cx="21" cy="21" r="15.915" fill="none" stroke="' + c + '" stroke-width="4" stroke-linecap="round" stroke-dasharray="' + len + ' ' + (100 - len) + '" stroke-dashoffset="25"/>' +
+            '<text x="21" y="22.5" text-anchor="middle" font-size="10" font-weight="700" fill="#f8fafc">' + (v == null ? '–' : v) + '</text>' +
+            '<text x="21" y="28" text-anchor="middle" font-size="3.6" fill="#94a3b8">/100</text>';
+    }
+
+    // ---------- Βάρη ----------
+    var DEF_W = { id: 25, vul: 20, dev: 15, inc: 15, mail: 10, enc: 5, gst: 5, shd: 5, dlp: 5, cld: 5 };
+    var W = JSON.parse(JSON.stringify(DEF_W));
+    function mode() { var r = document.querySelector('input[name="cpMode"]:checked'); return r ? r.value : 'risk'; }
+    function custom() { return DOMAINS.some(function (d) { return W[d.id] !== DEF_W[d.id]; }); }
+    function modeText() {
+        return mode() === 'simple' ? 'Simple · αριθμητικός μέσος όρος των ενοτήτων'
+            : 'Risk-weighted · ' + (custom() ? 'βάρη που όρισε ο οργανισμός' : 'προεπιλεγμένα βάρη thecybersec.gr');
+    }
+    function effW(known) {
+        var e = {}, sum = 0;
+        if (mode() === 'simple') { known.forEach(function (d) { e[d.id] = known.length ? 1 / known.length : 0; }); return e; }
+        known.forEach(function (d) { sum += W[d.id] || 0; });
+        known.forEach(function (d) { e[d.id] = sum > 0 ? (W[d.id] || 0) / sum : 1 / known.length; });
+        return e;
+    }
+    function buildWeights() {
+        $('cpWeights').innerHTML = DOMAINS.map(function (d) {
+            return '<label class="flex flex-col gap-1 rounded border border-slate-800 bg-slate-950/40 px-2 py-1.5"><span class="text-xs text-slate-300">' + esc(d.label) + '</span>' +
+                '<span class="flex items-center gap-2"><span class="text-[11px] text-slate-400">Βάρος που ορίζεις:</span><input type="number" min="0" max="100" step="1" value="' + W[d.id] + '" data-w="' + d.id + '" class="cpW w-16 rounded border border-slate-700 bg-slate-950 px-1 py-0.5 text-xs text-slate-100 text-right"></span>' +
+                '<span class="text-[11px] text-slate-400 leading-snug" id="cpWe-' + d.id + '">Μερίδιο στον δείκτη: – (ανέβασε πηγή)</span></label>';
+        }).join('');
+        Array.prototype.forEach.call(document.querySelectorAll('#cpTool .cpW'), function (el) {
+            el.addEventListener('input', function () { var v = Math.max(0, Math.min(100, parseInt(el.value, 10) || 0)); W[el.getAttribute('data-w')] = v; render(); });
+        });
+    }
+    function readHash() {
+        var h = location.hash || '', m = h.match(/w=([^&]+)/), md = h.match(/m=(risk|simple)/);
+        if (m) m[1].split('.').forEach(function (p) { var kv = p.split('-'); if (kv[0] in DEF_W) { var v = parseInt(kv[1], 10); if (!isNaN(v)) W[kv[0]] = Math.max(0, Math.min(100, v)); } });
+        if (md) { var r = document.querySelector('input[name="cpMode"][value="' + md[1] + '"]'); if (r) r.checked = true; }
+        var hh = h.match(/h=([0-9_.\-]+)/);
+        var pp = h.match(/p=(\d{4})(\d{2})(\d{2})~([a-z0-9.\-]+)/);
+        if (pp) { var sv = {}; pp[4].split('.').forEach(function (x) { var kv = x.split('-'); if (kv[0] in DEF_W && !isNaN(+kv[1])) sv[kv[0]] = Math.max(0, Math.min(100, +kv[1])); }); SNAP = { k: pp[1] + pp[2] + pp[3], d: pp[2] + '/' + pp[3] + '/' + pp[1], v: sv }; }
+        if (hh) $('cpHist').value = hh[1].split('.').map(function (x) { var q = x.match(/^(\d{4})(\d{2})(\d{2})_(\d{1,3})$/); return q ? q[2] + '/' + q[3] + '/' + q[1] + ':' + q[4] : ''; }).filter(Boolean).join(', ');
+    }
+
+    // ---------- Απόδοση ----------
+    function render() {
+        renderCards();
+        var hn = parseHist().length; $('cpCfgSum').textContent = '· Στόχος ' + $('cpTarget').value + ' · ' + modeText() + ' · ' + (hn === 1 ? '1 τιμή ιστορικού' : hn ? hn + ' τιμές ιστορικού' : 'χωρίς ιστορικό');
+        var t = T(); $('cpTv').textContent = t;
+        var ids = Object.keys(RES);
+        $('cpEmpty').classList.toggle('hidden', ids.length > 0);
+        $('cpOut').classList.toggle('hidden', ids.length === 0);
+        if (!ids.length) {
+            // Χωρίς αρχεία: δείχνει το μερίδιο αν ανέβαιναν όλες οι πηγές, ώστε το κουτάκι να μη μένει κενό
+            var allW = DOMAINS.reduce(function (a, d) { return a + (W[d.id] || 0); }, 0), simple0 = mode() === 'simple';
+            DOMAINS.forEach(function (d) { var el = $('cpWe-' + d.id); if (!el) return;
+                var sh = simple0 ? 1 / DOMAINS.length : (allW > 0 ? (W[d.id] || 0) / allW : 0);
+                el.innerHTML = 'Μερίδιο στον δείκτη: <strong class="text-slate-200">' + Math.round(sh * 100) + '%</strong> ' + (simple0 ? '(ίσο μερίδιο σε Simple, αν ανεβάσεις όλες τις πηγές)' : '(' + (W[d.id] || 0) + ' από ' + allW + ', αν ανεβάσεις όλες τις πηγές)'); });
+            last = null; return; }
+        var ds = domainScores(), known = ds.filter(function (d) { return d.value !== null; });
+        var E = effW(known), risk = mode() === 'risk';
+        var sumW = known.reduce(function (a, d) { return a + (W[d.id] || 0); }, 0);
+        DOMAINS.forEach(function (d) { var el = $('cpWe-' + d.id); if (!el) return;
+            if (E[d.id] == null) { el.innerHTML = '<span class="text-slate-500">Χωρίς πηγή: δεν μετράει στον δείκτη.</span>'; return; }
+            var pcnt = '<strong class="text-slate-200">' + Math.round(E[d.id] * 100) + '%</strong>';
+            el.innerHTML = 'Μερίδιο στον δείκτη: ' + pcnt + (risk && sumW > 0 ? ' (' + (W[d.id] || 0) + ' από ' + sumW + ', το σύνολο των ενοτήτων με πηγή)' : ' (ίσο μερίδιο σε Simple)'); });
+        $('cpWBox').classList.toggle('opacity-40', !risk);
+        var g = known.length ? Math.round(known.reduce(function (a, d) { return a + d.value * E[d.id]; }, 0)) : null;
+        // Η ενότητα που χρειάζεται απόφαση: στο Risk-weighted, το μεγαλύτερο σταθμισμένο κενό, βάρος × (100 − βαθμός)
+        var worst = known.slice().sort(function (a, b) { return (100 - b.value) * (risk ? E[b.id] : 1) - (100 - a.value) * (risk ? E[a.id] : 1); })[0];
+        $('cpModeLine').textContent = modeText();
+        var org = ($('cpOrg').value || '').trim() || (isSample ? 'MyCompany (παράδειγμα)' : '');
+        var date = new Date().toLocaleDateString('el-GR');
+        $('cpMeta').textContent = (org ? 'Οργανισμός: ' + org + ' · ' : '') + 'Ημερομηνία: ' + date;
+        // ---------- Evidence coverage και Confidence ----------
+        var covN = ids.length, cov = pc(covN, SOURCES.length), coreAll = DOMAINS.filter(function (d) { return d.core; }).length,
+            coreN = ds.filter(function (d) { return d.core && d.value !== null; }).length;
+        var conf = (coreN === coreAll && cov >= 70) ? 'High' : (coreN >= 3 && cov >= 40) ? 'Medium' : 'Low';
+        var confHex = { High: '#10b981', Medium: '#fbbf24', Low: '#f43f5e' }[conf];
+        var confWhy = { High: 'όλες οι βασικές ενότητες έχουν πηγή και η κάλυψη είναι 70% ή περισσότερο.',
+            Medium: 'τουλάχιστον 3 από τις ' + coreAll + ' βασικές ενότητες έχουν πηγή και η κάλυψη είναι 40% ή περισσότερο.',
+            Low: 'λείπουν πολλές πηγές. Ο δείκτης μπορεί να φαίνεται καλύτερος από την πραγματικότητα.' }[conf];
+        function tile(k, v, sub, c) { return '<div class="rounded-md border border-slate-800 bg-slate-900/60 px-2 py-1.5"><p class="text-[10px] font-mono uppercase tracking-wider text-slate-500 m-0">' + k + '</p><p class="text-base font-bold m-0" style="color:' + c + '">' + v + '</p><p class="text-[10px] text-slate-500 m-0">' + sub + '</p></div>'; }
+        $('cpTriad').innerHTML = tile('Posture', g + '/100', 'κατάσταση', hex(g, t)) + tile('Evidence coverage', cov + '%', covN + '/' + SOURCES.length + ' πηγές · ' + coreN + '/' + coreAll + ' βασικές', confHex) + tile('Target', t + '/100', 'στόχος Διοίκησης', '#e2e8f0');
+        var confLine = conf + ' · ' + coreN + '/' + coreAll + ' core areas · ' + cov + '% evidence coverage';
+        var staleList = ids.filter(function (id) { return stale(id); }).map(function (id) { return SRC[id].t; });
+        var staleTxt = staleList.length ? staleList.length + (staleList.length === 1 ? ' πηγή είναι παλαιότερη' : ' πηγές είναι παλαιότερες') + ' από 7 ημέρες: ' + staleList.join(', ') + (staleList.length === 1 ? '. Κατέβασέ την ξανά' : '. Κατέβασέ τες ξανά') + ' πριν παρουσιάσεις την αναφορά.' : '';
+ $('cpConf').dataset.stale = staleTxt;
+        $('cpConf').innerHTML = '<span class="block text-[10px] font-mono uppercase tracking-wider text-slate-500">Assessment coverage confidence</span><span class="cpPill" style="border:1px solid ' + confHex + ';color:' + confHex + '">' + esc(confLine) + '</span> <span class="block text-slate-400 mt-1">' + esc(confWhy) + '</span>';
+        if (staleTxt) $('cpConf').innerHTML += '<span class="block mt-1 text-amber-300">⚠ ' + esc(staleTxt) + '</span>';
+        $('cpRing').innerHTML = ringSvg(g, t);
+        // ---------- Μεταβολή από την προηγούμενη αξιολόγηση ----------
+        var hist = parseHist().filter(function (h) { return h.k < todayKey(); }), trendTxt = '', dlt = null, prevD = '';
+        if (hist.length && g != null) { dlt = g - hist[hist.length - 1].v; prevD = hist[hist.length - 1].d; }
+        var prevSnap = SNAP && SNAP.k < todayKey() ? SNAP : null;
+        var status = g >= t ? 'At or above management target' : 'Below management target';
+        var gapTxt = g >= t ? 'Margin +' + (g - t) : 'Gap −' + (t - g);
+        var deltaTxt = dlt == null ? '' : (dlt > 0 ? '🟢 ' : dlt < 0 ? '🔴 ' : '⚪ ') + dTxt(dlt) + ' since previous assessment (' + prevD + ')';
+        var areaTxt = 'Highest-priority area: ' + worst.label + ' (' + worst.value + '/100)';
+        var domD = prevSnap ? ds.filter(function (d) { return d.value !== null && prevSnap.v[d.id] != null; }).map(function (d) { var x = d.value - prevSnap.v[d.id]; return { label: d.label, v: d.value, x: x }; }) : [];
+        var domDTxt = domD.map(function (o) { return o.label + ' ' + o.v + ' ' + (o.x > 0 ? '↑' : o.x < 0 ? '↓' : '→') + ' ' + dTxt(o.x); }).join(' · ');
+        var verdict = status + ' · Target ' + t + ' · ' + gapTxt + (deltaTxt ? ' · ' + dTxt(dlt) + ' since previous assessment (' + prevD + ')' : '') + ' · ' + areaTxt;
+        if (conf !== 'High') verdict += conf === 'Low' ? '. Η εικόνα βασίζεται σε λίγες πηγές: assessment coverage confidence Low.' : '. Λείπουν κάποιες πηγές: assessment coverage confidence Medium.';
+        $('cpVerdict').innerHTML = '<p class="m-0 font-bold" style="color:' + hex(g, t) + '">' + status + '</p>' +
+            '<p class="m-0 text-slate-200">' + g + ' / 100 · Target ' + t + ' · ' + gapTxt + '</p>' +
+            (deltaTxt ? '<p class="m-0 text-slate-200">' + esc(deltaTxt) + '</p>' : '') +
+            (domD.length ? '<ul class="m-0 mt-1 pl-0 list-none text-xs flex flex-col gap-0.5">' + domD.map(function (o) { var c = o.x > 0 ? '#10b981' : o.x < 0 ? '#f43f5e' : '#94a3b8';
+                return '<li class="flex justify-between gap-3"><span class="text-slate-300">' + esc(o.label) + '</span><span><span class="text-slate-200">' + o.v + '</span> <span style="color:' + c + '">' + (o.x > 0 ? '↑' : o.x < 0 ? '↓' : '→') + ' ' + dTxt(o.x) + '</span></span></li>'; }).join('') + '</ul>'
+              : (deltaTxt ? '<p class="m-0 mt-1 text-[11px] text-slate-500">Για μεταβολή ανά ενότητα, συμπλήρωσε τις τιμές της προηγούμενης αξιολόγησης στις Ρυθμίσεις της αναφοράς.</p>' : '')) +
+            '<p class="m-0 mt-1 text-xs text-slate-400">' + esc(areaTxt) + '</p>';
+
+        function domDelta(d) {
+            if (!prevSnap || prevSnap.v[d.id] == null || d.value == null) return '';
+            var x = d.value - prevSnap.v[d.id], c = x > 0 ? '#10b981' : x < 0 ? '#f43f5e' : '#94a3b8', a = x > 0 ? '↑' : x < 0 ? '↓' : '→';
+            return ' <span class="text-sm font-semibold" style="color:' + c + '">' + a + ' ' + dTxt(x) + '</span><span class="block text-[10px] font-normal text-slate-500">since previous assessment (' + esc(prevSnap.d) + ')</span>';
+        }
+        $('cpDomains').innerHTML = ds.map(function (d) {
+            if (d.value === null) return '<div class="rounded-lg border border-slate-800 bg-slate-900/30 p-3"><div class="flex justify-between"><p class="font-semibold text-slate-500 m-0">' + esc(d.label) + '</p><span class="w-3 h-3 rounded-full bg-slate-700 inline-block"></span></div><p class="text-2xl font-bold text-slate-600 my-1">–</p><p class="text-xs text-slate-500 m-0">Ανέβασε μια πηγή για να δεις αυτή την ενότητα.</p></div>';
+            return '<div class="rounded-lg border border-slate-800 bg-slate-900/60 p-3"><div class="flex justify-between"><p class="font-semibold text-slate-100 m-0">' + esc(d.label) + '</p><span class="w-3 h-3 rounded-full inline-block" style="background:' + hex(d.value, t) + '"></span></div>' +
+                '<p class="text-2xl font-bold my-1" style="color:' + hex(d.value, t) + '">' + d.value + '<span class="text-sm text-slate-500">/100</span>' + domDelta(d) + '</p>' +
+                '<ul class="text-xs text-slate-400 m-0 pl-4 list-disc flex flex-col gap-0.5">' + d.srcs.map(function (s) { return '<li>' + esc(RES[s.id].find) + '</li>'; }).join('') + '</ul>' +
+                '<p class="text-[11px] text-slate-500 mt-2 mb-0">Πηγές: ' + d.srcs.length + '</p></div>';
+        }).join('');
+
+        $('cpRadar').outerHTML = radarSvg(ds, t, false).replace('<svg ', '<svg id="cpRadar" class="w-full h-auto" role="img" aria-label="Διάγραμμα αράχνης ανά ενότητα" ');
+
+        var top = SOURCES.filter(function (s) { return RES[s.id] && RES[s.id].score < 100; }).sort(function (a, b) {
+            return prio(a.id, t) - prio(b.id, t) || (100 - RES[b.id].score) * (risk ? E[b.dom] : 1) - (100 - RES[a.id].score) * (risk ? E[a.dom] : 1); }).slice(0, 3);
+        var pc3 = { 1: 'border border-rose-500/40 text-rose-300 bg-rose-500/10', 2: 'border border-amber-400/40 text-amber-300 bg-amber-400/10', 3: 'border border-slate-600 text-slate-300' };
+        $('cpTop').innerHTML = top.length ? top.map(function (s) { var p = prio(s.id, t);
+            return '<tr><td><span class="cpPill ' + pc3[p] + '">P' + p + '</span></td><td class="text-slate-200">' + esc(RES[s.id].fix) + '</td><td class="text-slate-400 text-xs">' + esc(RES[s.id].why) + '</td>' +
+                '<td><input type="text" maxlength="60" data-own="' + s.id + '" value="' + esc(owner(s.id)) + '" class="cpOwn w-32 rounded border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-100"></td>' +
+                '<td><input type="text" maxlength="30" data-due="' + s.id + '" value="' + esc(due(s.id, t)) + '" class="cpDue w-24 rounded border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-100"></td></tr>'; }).join('')
+            : '<tr><td colspan="5" class="text-slate-300">Όλες οι πηγές είναι στο 100. Κράτα τις ρυθμίσεις σου και ξανατρέξε τον έλεγχο τον επόμενο μήνα.</td></tr>';
+        Array.prototype.forEach.call(document.querySelectorAll('#cpTop .cpOwn'), function (el) { el.addEventListener('input', function () { OWN[el.getAttribute('data-own')] = el.value; }); });
+        Array.prototype.forEach.call(document.querySelectorAll('#cpTop .cpDue'), function (el) { el.addEventListener('input', function () { DUE[el.getAttribute('data-due')] = el.value; }); });
+
+        // ---------- Follow-up των ενεργειών της προηγούμενης αξιολόγησης ----------
+        var follow = [];
+        if (PREVACT && PREVACT.actions && PREVACT.actions.length) {
+            follow = PREVACT.actions.map(function (a) {
+                var now = RES[a.id] ? RES[a.id].score : null, then = a.score, ind, c;
+                if (now == null) { ind = 'Δεν αξιολογήθηκε τώρα'; c = '#94a3b8'; }
+                else if (now >= 100 || (now >= t && then < t)) { ind = 'Πιθανώς ολοκληρώθηκε'; c = '#10b981'; }
+                else if (now > then) { ind = 'Βελτιώθηκε'; c = '#10b981'; }
+                else if (now < then) { ind = 'Χειροτέρεψε'; c = '#f43f5e'; }
+                else { ind = 'Χωρίς αλλαγή'; c = '#fbbf24'; }
+                return { a: a, now: now, ind: ind, c: c };
+            });
+            $('cpFollowDate').textContent = '(' + PREVACT.date + ')';
+            $('cpFollowBody').innerHTML = follow.map(function (f) {
+                return '<tr><td><span class="cpPill border border-slate-600 text-slate-300">P' + f.a.p + '</span></td><td class="text-slate-200">' + esc(f.a.fix) + '</td><td class="text-xs">' + esc(f.a.owner || '–') + '</td><td class="text-xs">' + esc(f.a.due || '–') + '</td><td class="text-xs">' + f.a.score + ' → ' + (f.now == null ? '–' : f.now) + '</td><td><span class="text-xs font-semibold" style="color:' + f.c + '">' + f.ind + '</span></td></tr>';
+            }).join('');
+            $('cpFollow').classList.remove('hidden');
+        } else $('cpFollow').classList.add('hidden');
+
+        // ---------- Τάση ----------
+        if (hist.length && g != null) {
+            var seq = hist.map(function (h) { return h.v; }).concat([g]);
+            trendTxt = hist.map(function (h) { return h.v; }).join(' → ') + ' → ' + g + ' σήμερα (' + (dlt > 0 ? '+' : dlt < 0 ? '−' : '±') + Math.abs(dlt) + ' από ' + hist[hist.length - 1].d + ')';
+            var mn = Math.min.apply(null, seq), mx = Math.max.apply(null, seq), rg = Math.max(mx - mn, 1), Wd = 120, Hd = 28;
+            var pts = seq.map(function (v, i) { return (i * Wd / Math.max(seq.length - 1, 1)).toFixed(1) + ',' + (Hd - 3 - (v - mn) / rg * (Hd - 6)).toFixed(1); }).join(' ');
+            $('cpTrend').innerHTML = '<span class="text-slate-500">Τάση του Posture:</span> <span class="text-slate-200 font-semibold">' + esc(trendTxt) + '</span> <svg width="' + Wd + '" height="' + Hd + '" class="inline-block align-middle ml-1"><polyline points="' + pts + '" fill="none" stroke="' + (dlt >= 0 ? '#10b981' : '#f43f5e') + '" stroke-width="2"/></svg>';
+            $('cpTrend').classList.remove('hidden');
+        } else $('cpTrend').classList.add('hidden');
+
+        $('cpMap').innerHTML = ds.map(function (d) {
+            if (d.value === null) return '<tr><td class="text-slate-400">' + esc(d.label) + '</td><td class="text-slate-500">Δεν υπάρχουν δεδομένα</td><td>–</td><td>–</td><td>–</td><td>–</td><td><span class="cpPill border border-slate-700 text-slate-400">⚪ Not assessed</span></td><td><span class="cpPill border border-slate-700 text-slate-400">⚪ No evidence</span></td></tr>';
+            return d.srcs.map(function (s) { var r = RES[s.id];
+                return '<tr><td class="text-slate-200">' + esc(d.label) + '</td><td class="text-slate-300">' + esc(r.find) + '<span class="block text-[11px] text-slate-500">' + esc(s.t) + ' · export ' + esc(freshTxt(s.id)) + '</span></td><td>' + codes('kya', s.map.kya) + '</td><td>' + codes('nis', s.map.nis) + '</td><td>' + codes('iso', s.map.iso) + '</td><td>' + codes('gdpr', s.map.gdpr) + '</td><td><span class="cpPill ' + pillCls(r.score, t) + '">' + ico(r.score, t) + ' ' + lbl(r.score, t) + '</span></td><td><span class="cpPill ' + evCls(s.id) + '" title="' + esc(EVWHY[evid(s.id)]) + '">' + evIco(s.id) + ' ' + evLbl(s.id) + '</span></td></tr>';
+            }).join('');
+        }).join('');
+
+        $('cpHow').innerHTML = '<li class="text-amber-200/80">Οι κανόνες και τα βάρη είναι ευρετικοί κανόνες (heuristics) του thecybersec.gr για την υποστήριξη αποφάσεων. Δεν είναι μεθοδολογία βαθμολόγησης της Microsoft, της ΕΑΚ, της ΚΥΑ 1689/2025, της Οδηγίας NIS2 ή του ISO/IEC 27001.</li><li><strong class="text-slate-300">Microsoft 365 Security Posture Indicator:</strong> ' + (risk ? 'σταθμισμένος μέσος όρος (Risk-weighted) των ενοτήτων που έχουν πηγή, με τα βάρη των Ρυθμίσεων της αναφοράς. Μέσα σε κάθε προτεραιότητα, οι Priority actions ταξινομούνται με το σταθμισμένο κενό, βάρος × (100 − βαθμός).' : 'απλός αριθμητικός μέσος όρος (Simple) των ενοτήτων που έχουν πηγή. Μέσα σε κάθε προτεραιότητα, οι Priority actions ταξινομούνται με τον χαμηλότερο βαθμό.') + ' Οι ενότητες χωρίς πηγή δεν μετράνε ως 0.</li><li><strong class="text-slate-300">Priority:</strong> P1 όταν η πηγή είναι κάτω από 60 ή έχει επείγον εύρημα (διαχειριστές που δεν είναι MFA-capable, χρήστες High risk, ευπάθειες με γνωστό exploit, ανοιχτά περιστατικά High). P2 όταν είναι κάτω από τον στόχο. P3 όταν είναι στον στόχο. Προτεινόμενη προθεσμία: Σήμερα για χρήστες High risk και περιστατικά High, 7 ημέρες για P1, 30 για P2, 90 για P3.</li><li><strong class="text-slate-300">Evidence coverage:</strong> πόσες από τις ' + SOURCES.length + ' πηγές ανέβηκαν, ως ποσοστό. Δείχνει πόσο πλήρης είναι η εικόνα, όχι πόσο καλή είναι.</li><li><strong class="text-slate-300">Assessment coverage confidence:</strong> High όταν όλες οι βασικές ενότητες έχουν πηγή και το Evidence coverage είναι 70% ή περισσότερο. Medium όταν τουλάχιστον 3 βασικές ενότητες έχουν πηγή και το coverage είναι 40% ή περισσότερο. Low σε κάθε άλλη περίπτωση. Αφορά την πληρότητα των στοιχείων, όχι το πόσο ακριβής είναι ο δείκτης.</li><li><strong class="text-slate-300">Κατάσταση ελέγχου και Τεκμήριο:</strong> η κατάσταση συγκρίνει τον βαθμό της πηγής με τον στόχο. Το τεκμήριο εξαρτάται μόνο από το είδος του export: Direct technical evidence για καταγραφές ανά χρήστη, συσκευή ή εύρημα, Supporting evidence για το Secure Score, το Cloud Discovery και το Activity explorer.</li><li><strong class="text-slate-300">Ενότητα:</strong> ο μέσος όρος των πηγών της.</li>' +
+            SOURCES.filter(function (s) { return RES[s.id]; }).map(function (s) { return '<li><strong class="text-slate-300">' + esc(s.t) + ':</strong> ' + esc(s.rule) + '</li>'; }).join('');
+
+        setTimeout(function () { if ($('cpMinText')) $('cpMinText').value = minutes(); }, 0);
+        last = { follow: follow, staleTxt: staleTxt, domDTxt: domDTxt, prevSnap: prevSnap, deltaTxt: dlt == null ? '' : dTxt(dlt) + ' since previous assessment (' + prevD + ')', status: status, gapTxt: gapTxt, areaTxt: areaTxt, confLine: confLine, trend: trendTxt, ds: ds, g: g, t: t, org: org, date: date, verdict: verdict, top: top, n: ids.length, E: E, mtext: modeText(), cov: cov, coreN: coreN, coreAll: coreAll, conf: conf, confHex: confHex, confWhy: confWhy };
+    }
+
+    // ---------- Κουμπιά ----------
+    $('cpFiles').addEventListener('change', function () { readFiles(this.files); this.value = ''; });
+    var drop = $('cpDrop');
+    ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
+    drop.addEventListener('drop', function (e) { readFiles(e.dataTransfer && e.dataTransfer.files); });
+    $('cpSample').addEventListener('click', function () { FDATE = {};
+        if (!($('cpHist').value || '').trim() && !SNAP) { $('cpHist').value = '07/15/2026:58, 08/15/2026:61, 09/15/2026:62, 10/15/2026:64'; SNAP = { k: '20261015', d: '10/15/2026', v: { id: 58, dev: 90, vul: 53, mail: 81, inc: 60, enc: 82, gst: 61 } }; sampleHist = true; }
+        else if (!SNAP) { SNAP = { k: '20261015', d: '10/15/2026', v: { id: 58, dev: 90, vul: 53, mail: 81, inc: 60, enc: 82, gst: 61 } }; sampleHist = true; }
+        fillPrev();
+        if (!PREVACT) PREVACT = { date: '10/15/2026', sample: true, actions: [
+            { id: 'inc', p: 1, fix: 'Κλείσε τα 4 ανοιχτά περιστατικά υψηλής σοβαρότητας.', owner: 'SOC', due: 'Σήμερα', score: 60 },
+            { id: 'tvm', p: 1, fix: 'Κλείσε τις 6 ευπάθειες με γνωστό exploit στους servers.', owner: 'IT Operations', due: '7 ημέρες', score: 53 },
+            { id: 'bit', p: 2, fix: 'Ενεργοποίησε BitLocker στις 34 συσκευές χωρίς κρυπτογράφηση.', owner: 'Endpoint / IT', due: '30 ημέρες', score: 82 } ] };
+        OWN = {}; DUE = {}; RES = JSON.parse(JSON.stringify(SAMPLE)); ERR = {}; NAMES = {}; isSample = true; $('cpDropMsg').className = 'hidden'; render(); });
+    $('cpClear').addEventListener('click', function () { FDATE = {}; PREVACT = null; if (sampleHist) { $('cpHist').value = ''; SNAP = null; sampleHist = false; fillPrev(); } OWN = {}; DUE = {}; RES = {}; ERR = {}; NAMES = {}; isSample = false; $('cpDropMsg').className = 'hidden'; render(); });
+    $('cpTarget').addEventListener('input', render);
+    $('cpOrg').addEventListener('input', function () { if (last) render(); });
+    Array.prototype.forEach.call(document.querySelectorAll('#cpTool input[name="cpMode"]'), function (el) { el.addEventListener('change', render); });
+    $('cpWReset').addEventListener('click', function () { W = JSON.parse(JSON.stringify(DEF_W)); buildWeights(); $('cpWMsg').textContent = ''; render(); });
+    $('cpHist').addEventListener('input', function () { if (last) render(); });
+    $('cpHAdd').addEventListener('click', function () {
+        if (!last || last.g == null) { $('cpWMsg').textContent = 'Ανέβασε πρώτα αρχεία, για να υπάρχει σημερινή τιμή.'; return; }
+        var o = {}; parseHist().forEach(function (h) { o[h.k] = h.d + ':' + h.v; }); o[todayKey()] = todayStr() + ':' + last.g;
+        $('cpHist').value = Object.keys(o).sort().map(function (k) { return o[k]; }).join(', ');
+        var sv = {}; last.ds.forEach(function (d) { if (d.value != null) sv[d.id] = d.value; }); SNAP = { k: todayKey(), d: todayStr(), v: sv }; sampleHist = false; fillPrev();
+        $('cpWMsg').textContent = 'Προστέθηκε ' + todayStr() + ':' + last.g + '. Πάτησε «Αντιγραφή link» για να το κρατήσεις.'; render();
+    });
+    $('cpWLink').addEventListener('click', function () {
+        var hs = parseHist();
+        var h = 'w=' + DOMAINS.map(function (d) { return d.id + '-' + W[d.id]; }).join('.') + '&m=' + mode() + (hs.length ? '&h=' + hs.map(function (x) { return x.k + '_' + x.v; }).join('.') : '') +
+            (SNAP ? '&p=' + SNAP.k + '~' + Object.keys(SNAP.v).map(function (k) { return k + '-' + SNAP.v[k]; }).join('.') : '');
+        history.replaceState(null, '', location.pathname + location.search + '#' + h);
+        var done = function () { $('cpWMsg').textContent = 'Το link αντιγράφηκε.'; };
+        if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, function () { $('cpWMsg').textContent = 'Αντέγραψε το link από τη γραμμή διευθύνσεων.'; });
+        else $('cpWMsg').textContent = 'Αντέγραψε το link από τη γραμμή διευθύνσεων.';
+    });
+    buildPrev(); readHash(); buildWeights(); fillPrev();
+    if (/[#&](w|h|p)=/.test(location.hash || '')) $('cpAdv').open = true;
+
+    // ---------- Εξαγωγές ----------
+    function loadScripts(list, cb, onerr) {
+        var i = 0;
+        (function next() {
+            if (i >= list.length) return cb();
+            var src = list[i++];
+            if (document.querySelector('script[data-cp="' + src + '"]')) return next();
+            var s = document.createElement('script'); s.src = src; s.setAttribute('data-cp', src); s.onload = next; s.onerror = onerr; document.head.appendChild(s);
+        })();
+    }
+    var EXCEL = '{{ "js/exceljs/exceljs.min.js" | relURL }}', JSZIP = '{{ "js/jszip/jszip.min.js" | relURL }}';
+    var PDFLIB = ['https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js'];
+    function fname(ext) { return 'ciso-se-mia-selida-' + new Date().toISOString().slice(0, 10) + '.' + ext; }
+    function save(blob, name) { var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500); }
+    function rows() { var out = []; last.ds.forEach(function (d) { if (d.value === null) { out.push({ d: d, s: null }); return; } d.srcs.forEach(function (s) { out.push({ d: d, s: s }); }); }); return out; }
+
+    // ---------- .pdf: ίδιο template με τις άλλες αναφορές του blog (π.χ. static/js/signin-report.js) ----------
+    var BASE = '{{ site.BaseURL }}';
+    function pdf() {
+        var L = last, PC = { navy: '#0f172a', blue: '#2563eb', text: '#1e293b', muted: '#64748b', line: '#e2e8f0',
+            red: '#be123c', redBg: '#ffe4e6', amber: '#b45309', amberBg: '#fef3c7', green: '#047857', greenBg: '#d1fae5' };
+        function pad(n) { return (n < 10 ? '0' : '') + n; }
+        var now = new Date(), dstr = pad(now.getDate()) + '/' + pad(now.getMonth() + 1) + '/' + now.getFullYear() + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+        var y = now.getFullYear(), PAGE = BASE + 'ciso-se-mia-selida/';
+        function col(v) { return v >= L.t ? PC.green : v >= 60 ? PC.amber : PC.red; }
+        var tone = L.g >= L.t ? [PC.green, PC.greenBg] : L.g >= 60 ? [PC.amber, PC.amberBg] : [PC.red, PC.redBg];
+        var GUIDE = { kya: 'kya-1689-2025/', nis: 'nis2/', iso: 'iso-27001/', gdpr: 'gdpr/' };
+        function codeCell(fw, list) {
+            if (!list || !list.length) return { text: '–', fontSize: 8, color: PC.muted };
+            var parts = []; list.forEach(function (c, i) { if (i) parts.push({ text: ', ' }); parts.push({ text: c, color: PC.blue, link: BASE + GUIDE[fw] + '#' + String(c).replace(/\./g, '-') }); });
+            return { text: parts, fontSize: 8 };
+        }
+        var content = [];
+
+        // Κεφαλίδα
+        content.push({ table: { widths: ['*'], body: [[{ stack: [
+            { text: 'MICROSOFT 365 SECURITY MANAGEMENT REPORTING', fontSize: 8, color: '#93c5fd', characterSpacing: 1.5 },
+            { text: 'Ο CISO σε μία σελίδα', fontSize: 20, bold: true, color: '#ffffff', margin: [0, 4, 0, 4] },
+            { text: 'Microsoft telemetry  ›  security posture  ›  management decision  ›  compliance evidence', fontSize: 9, color: '#cbd5e1' },
+            { text: [{ text: 'Οργανισμός  ', color: '#94a3b8' }, { text: L.org || '—', color: '#ffffff' }, { text: '    Δημιουργήθηκε  ', color: '#94a3b8' }, { text: dstr, color: '#ffffff' }], fontSize: 9, margin: [0, 10, 0, 0] }
+        ], fillColor: PC.navy, margin: [16, 16, 16, 16] }]] }, layout: 'noBorders', margin: [0, 0, 0, 12] });
+
+        // Συμπέρασμα
+        content.push({ table: { widths: ['*'], body: [[{ stack: [
+            { text: 'MICROSOFT 365 SECURITY POSTURE INDICATOR', fontSize: 7.5, color: tone[0], characterSpacing: 1 },
+            { text: L.g + ' / 100 · ' + L.status, fontSize: 13, bold: true, color: tone[0], margin: [0, 3, 0, 4] },
+            { text: 'Target ' + L.t + ' · ' + L.gapTxt + (L.deltaTxt ? ' · ' + L.deltaTxt : ''), fontSize: 9.5, color: PC.text },
+            L.domDTxt ? { text: 'Μεταβολή ανά ενότητα: ' + L.ds.filter(function (d) { return d.value !== null && L.prevSnap && L.prevSnap.v[d.id] != null; }).map(function (d) { return d.label + ' ' + d.value + ' (' + dTxt(d.value - L.prevSnap.v[d.id]) + ')'; }).join(' · '), fontSize: 8.5, color: PC.text, margin: [0, 2, 0, 0] } : { text: '' },
+            { text: L.areaTxt, fontSize: 9.5, bold: true, color: PC.text, margin: [0, 3, 0, 0] },
+            { text: 'Προσαρμοσμένος δείκτης υποστήριξης αποφάσεων, βασισμένος στα δεδομένα ασφάλειας (telemetry) του Microsoft 365 που ανέβηκαν. Δεν είναι το Microsoft Secure Score, ούτε βαθμός συμμόρφωσης, αξιολόγηση ωριμότητας ή αποτέλεσμα πιστοποίησης.', fontSize: 7.5, italics: true, color: PC.muted, margin: [0, 6, 0, 0], lineHeight: 1.2 }
+        ], fillColor: tone[1], margin: [12, 10, 12, 10] }]] }, layout: 'noBorders', margin: [0, 0, 0, 10] });
+
+        // Τέσσερα μεγέθη
+        var stats = [['Posture', L.g + '/100', col(L.g)], ['Evidence coverage', L.cov + '%', L.confHex], ['Target', L.t + '/100', PC.text], ['Coverage confidence', L.conf, L.confHex]];
+        content.push({ table: { widths: ['*', '*', '*', '*'], body: [
+            stats.map(function (s) { return { text: s[0].toUpperCase(), fontSize: 7, color: PC.muted, characterSpacing: 0.6 }; }),
+            stats.map(function (s) { return { text: s[1], fontSize: 15, bold: true, color: s[2] }; })
+        ] }, layout: 'cpTable', margin: [0, 0, 0, 6] });
+        if (L.staleTxt) content.push({ text: '⚠ ' + L.staleTxt, style: 'note', color: PC.amber });
+        content.push({ text: 'Assessment coverage confidence: ' + L.confLine + '. ' + L.confWhy.charAt(0).toUpperCase() + L.confWhy.slice(1), style: 'note' });
+        content.push({ text: 'Τρόπος υπολογισμού: ' + L.mtext + '. Μερίδιο κάθε ενότητας στον δείκτη: ' + L.ds.filter(function (d) { return d.value !== null; }).map(function (d) { return d.label + ' ' + Math.round(L.E[d.id] * 100) + '%'; }).join(', ') + '.', style: 'note' });
+        if (L.trend) content.push({ text: 'Τάση του Posture: ' + L.trend.replace(/→/g, '›'), style: 'note' });
+
+        // Ενότητες
+        content.push({ text: 'Ενότητες', style: 'h2', margin: [0, 12, 0, 6] });
+        content.push({ table: { headerRows: 1, widths: ['*', 50, 90, 60, 40], body: [[{ text: 'Ενότητα', style: 'th' }, { text: 'Βαθμός', style: 'th' }, { text: 'Μεταβολή', style: 'th' }, { text: 'Μερίδιο', style: 'th' }, { text: 'Πηγές', style: 'th' }]].concat(L.ds.map(function (d) {
+            if (d.value === null) return [{ text: d.label, fontSize: 8.5, color: PC.muted }, { text: '–', fontSize: 8.5, color: PC.muted }, { text: 'Not assessed', fontSize: 8.5, color: PC.muted }, { text: '–', fontSize: 8.5, color: PC.muted }, { text: '0', fontSize: 8.5, color: PC.muted }];
+            var dl = (L.prevSnap && L.prevSnap.v[d.id] != null) ? d.value - L.prevSnap.v[d.id] : null;
+            return [{ text: d.label, fontSize: 8.5, bold: true, color: PC.text }, { text: d.value + '/100', fontSize: 8.5, bold: true, color: col(d.value) },
+                { text: dl == null ? '–' : dTxt(dl), fontSize: 8.5, color: dl == null ? PC.muted : dl > 0 ? PC.green : dl < 0 ? PC.red : PC.muted },
+                { text: Math.round(L.E[d.id] * 100) + '%', fontSize: 8.5 }, { text: String(d.srcs.length), fontSize: 8.5 }];
+        })) }, layout: 'cpTable' });
+        if (L.prevSnap) content.push({ text: 'Η μεταβολή συγκρίνεται με την προηγούμενη αξιολόγηση της ' + L.prevSnap.d + '.', style: 'note', margin: [0, 4, 0, 0] });
+        content.push({ svg: radarSvg(L.ds, L.t, true), width: 360, alignment: 'center', margin: [0, 8, 0, 4] });
+
+        // Απόφαση
+        content.push({ text: 'Priority actions', style: 'h2', margin: [0, 10, 0, 6] });
+        if (!L.top.length) content.push({ text: 'Όλες οι πηγές είναι στο 100. Δεν προκύπτει ενέργεια.', style: 'body' });
+        else content.push({ unbreakable: true, table: { headerRows: 1, widths: [34, '*', '*', 64, 52], body: [[{ text: 'Priority', style: 'th' }, { text: 'Ενέργεια', style: 'th' }, { text: 'Γιατί τώρα', style: 'th' }, { text: 'Υπεύθυνος', style: 'th' }, { text: 'Προθεσμία', style: 'th' }]].concat(L.top.map(function (s) { var p = prio(s.id, L.t);
+            return [{ text: 'P' + p, bold: true, fontSize: 8.5, color: p === 1 ? PC.red : p === 2 ? PC.amber : PC.muted }, { text: RES[s.id].fix, fontSize: 8.5, color: PC.text }, { text: RES[s.id].why, fontSize: 8, color: PC.muted }, { text: owner(s.id) || '–', fontSize: 8.5 }, { text: due(s.id, L.t) || '–', fontSize: 8.5 }]; })) }, layout: 'cpTable' });
+
+        if (L.follow && L.follow.length) {
+            content.push({ text: 'Follow-up: οι ενέργειες της αξιολόγησης της ' + PREVACT.date, style: 'h2', margin: [0, 12, 0, 6] });
+            content.push({ unbreakable: true, table: { headerRows: 1, widths: [34, '*', 64, 52, 50, 70], body: [[{ text: 'Priority', style: 'th' }, { text: 'Ενέργεια', style: 'th' }, { text: 'Υπεύθυνος', style: 'th' }, { text: 'Προθεσμία', style: 'th' }, { text: 'Τότε › τώρα', style: 'th' }, { text: 'Ένδειξη', style: 'th' }]].concat(L.follow.map(function (f) {
+                return [{ text: 'P' + f.a.p, fontSize: 8.5, bold: true }, { text: f.a.fix, fontSize: 8.5 }, { text: f.a.owner || '–', fontSize: 8.5 }, { text: f.a.due || '–', fontSize: 8.5 }, { text: f.a.score + ' › ' + (f.now == null ? '–' : f.now), fontSize: 8.5 }, { text: f.ind, fontSize: 8.5, bold: true, color: f.c === '#10b981' ? PC.green : f.c === '#f43f5e' ? PC.red : f.c === '#fbbf24' ? PC.amber : PC.muted }];
+            })) }, layout: 'cpTable' });
+            content.push({ text: 'Η ένδειξη συγκρίνει τον βαθμό της πηγής τότε και τώρα. Το κλείσιμο κάθε ενέργειας το επιβεβαιώνει ο υπεύθυνος.', style: 'note', margin: [0, 4, 0, 0] });
+        }
+
+        // Ευρήματα και σχετικές αναφορές ελέγχων
+        content.push({ text: 'Ευρήματα και σχετικές αναφορές ελέγχων', style: 'h1', pageBreak: 'before' });
+        content.push({ text: 'Οι σχετικές αναφορές ελέγχων (relevant control references) δείχνουν σε ποια απαίτηση αφορά κάθε εύρημα. Δεν είναι βαθμός ή βεβαίωση συμμόρφωσης. Η κατάσταση ελέγχου και το τεκμήριο είναι ανεξάρτητα: μια κακή κατάσταση μπορεί να έχει ισχυρό τεκμήριο.', style: 'body', margin: [0, 0, 0, 8] });
+        var body = [[{ text: 'Ενότητα / εύρημα', style: 'th' }, { text: 'ΚΥΑ', style: 'th' }, { text: 'NIS2', style: 'th' }, { text: 'ISO', style: 'th' }, { text: 'GDPR', style: 'th' }, { text: 'Κατάσταση', style: 'th' }, { text: 'Τεκμήριο', style: 'th' }]];
+        rows().forEach(function (o) {
+            if (!o.s) { body.push([{ text: [{ text: o.d.label + '\n', bold: true }, { text: 'Δεν υπάρχουν δεδομένα', color: PC.muted }], fontSize: 8 }, '–', '–', '–', '–', { text: 'Not assessed', fontSize: 8, color: PC.muted }, { text: 'No evidence', fontSize: 8, color: PC.muted }]); return; }
+            var r = RES[o.s.id], m = o.s.map;
+            body.push([{ text: [{ text: o.d.label + '\n', bold: true, color: PC.text }, { text: r.find }, { text: '\n' + o.s.t + ' · export ' + freshTxt(o.s.id), color: stale(o.s.id) ? PC.amber : PC.muted, fontSize: 7 }], fontSize: 8 },
+                codeCell('kya', m.kya), codeCell('nis', m.nis), codeCell('iso', m.iso), codeCell('gdpr', m.gdpr),
+                { text: lbl(r.score, L.t), fontSize: 8, bold: true, color: col(r.score) }, { text: evLbl(o.s.id), fontSize: 8, color: evid(o.s.id) === 'd' ? PC.green : PC.amber }]);
+        });
+        content.push({ table: { headerRows: 1, widths: ['*', 40, 40, 46, 34, 52, 62], body: body }, layout: 'cpTable' });
+        content.push({ text: 'Κατάσταση ελέγχου: At/above target (στον στόχο ή πάνω), Below target (60 έως κάτω από τον στόχο), Material gap (κάτω από 60), Not assessed. Τεκμήριο: Direct technical evidence όταν το export καταγράφει κάθε χρήστη, συσκευή ή εύρημα, Supporting evidence όταν είναι σύνοψη, σύσταση ή δείγμα δραστηριότητας. Η telemetry τεκμηριώνει υλοποίηση, όχι νομική συμμόρφωση.', style: 'note', margin: [0, 6, 0, 0] });
+
+        // Μεθοδολογία, όρια και όροι χρήσης
+        content.push({ text: 'Μεθοδολογία, όρια και όροι χρήσης', style: 'h1', margin: [0, 16, 0, 10] });
+        content.push({ text: 'Πώς βγαίνει το αποτέλεσμα', style: 'h3' });
+        content.push({ text: 'Οι κανόνες και τα βάρη είναι ευρετικοί κανόνες (heuristics) του thecybersec.gr για την υποστήριξη αποφάσεων. Δεν είναι μεθοδολογία βαθμολόγησης της Microsoft, της ΕΑΚ, της ΚΥΑ 1689/2025, της Οδηγίας NIS2 ή του ISO/IEC 27001. Ο δείκτης είναι ' + (L.mtext.indexOf('Simple') === 0 ? 'ο απλός μέσος όρος' : 'ο σταθμισμένος μέσος όρος') + ' των ενοτήτων που έχουν πηγή. Οι ενότητες χωρίς πηγή δεν μετράνε ως 0. Κάθε ενότητα είναι ο μέσος όρος των πηγών της. Priority: P1 όταν η πηγή είναι κάτω από 60 ή έχει επείγον εύρημα, P2 όταν είναι κάτω από τον στόχο, P3 όταν είναι στον στόχο.', style: 'body' });
+        content.push({ table: { widths: [130, '*'], body: SOURCES.filter(function (s) { return RES[s.id]; }).map(function (s) { return [{ text: s.t, bold: true, fontSize: 8, color: PC.text }, { text: s.rule, fontSize: 8 }]; }) }, layout: 'cpTable', margin: [0, 4, 0, 0] });
+        content.push({ text: 'Τι δεν μπορεί να πει', style: 'h3' });
+        content.push({ text: 'Ο δείκτης είναι τόσο καλός όσο τα αρχεία που ανέβηκαν. Δεν δείχνει αν μια ρύθμιση είναι σωστή για τον οργανισμό, ούτε αν το MFA επιβάλλεται σε κάθε σύνδεση. Δεν καλύπτει μέτρα εκτός Microsoft 365. Οι σχετικές αναφορές ελέγχων δεν βεβαιώνουν συμμόρφωση. Η αναφορά αποδεικνύει μόνο ότι δημιουργήθηκε. Μπορεί να χρησιμοποιηθεί ως τεκμήριο ενημέρωσης της Διοίκησης όταν επισυνάπτεται σε πρακτικά, απόφαση ή άλλη καταγραφή της σχετικής ανασκόπησης.', style: 'body' });
+        content.push({ text: 'Απόρρητο', style: 'h3' });
+        content.push({ text: 'Τα αρχεία αναλύθηκαν και η αναφορά δημιουργήθηκε μόνο μέσα στον browser του χρήστη. Τίποτα δεν αποστάλθηκε στο thecybersec.gr ή σε τρίτους.', style: 'body' });
+        content.push({ unbreakable: true, stack: [{ text: 'Πνευματικά δικαιώματα και όροι χρήσης', style: 'h3' }, { table: { widths: [120, '*'], body: [
+            ['Δικαιούχος', '© ' + y + ' Δημοσθένης Αττέια, thecybersec.gr. Με επιφύλαξη παντός δικαιώματος.'],
+            ['Τι προστατεύεται', 'Οι ερμηνείες στα Ελληνικά, η λογική του δείκτη, τα βάρη, οι προτεραιότητες και η δομή της αναφοράς είναι πρωτότυπο έργο του συντάκτη και προστατεύονται από τον ν. 2121/1993. Τα δεδομένα προέρχονται από το tenant του χρήστη. Οι ονομασίες των υπηρεσιών και των ρυθμίσεων ανήκουν στη Microsoft.'],
+            ['Τι επιτρέπεται', 'Η χρήση της αναφοράς για τις εσωτερικές ανάγκες του οργανισμού σας, η παρουσίασή της στη Διοίκηση και η επίδειξή της σε ελεγκτές και αρμόδιες αρχές.'],
+            ['Τι απαγορεύεται χωρίς γραπτή άδεια του συντάκτη', 'Η αναδημοσίευση και η αναδιανομή της αναφοράς σε ιστότοπους ή μέσα κοινωνικής δικτύωσης, η εμπορική εκμετάλλευση και η αφαίρεση της αναφοράς στον συντάκτη και στην πηγή.'],
+            ['Πώς το μοιράζεστε', 'Με παραπομπή στη σελίδα ' + PAGE + '.']
+        ].map(function (t) { return [{ text: t[0], bold: true, fontSize: 8.5, color: PC.text }, { text: t[1], fontSize: 8.5 }]; }) }, layout: 'cpTable' }] });
+
+        var doc = {
+            pageSize: 'A4', pageMargins: [40, 54, 40, 48],
+            info: { title: 'Ο CISO σε μία σελίδα: η εικόνα του Microsoft 365 για τη Διοίκηση', author: 'thecybersec.gr', subject: 'Microsoft 365 Security Management Reporting', creator: 'thecybersec.gr' },
+            header: function (cur) {
+                if (cur === 1) return null;
+                return { columns: [{ text: 'Ο CISO σε μία σελίδα · ' + dstr, fontSize: 7.5, color: PC.muted }, { text: 'thecybersec.gr', fontSize: 7.5, color: PC.blue, alignment: 'right', link: PAGE }], margin: [40, 24, 40, 0] };
+            },
+            footer: function (cur, total) {
+                return { columns: [{ text: '© ' + y + ' Δημοσθένης Αττέια · thecybersec.gr · Ενδεικτικό αποτέλεσμα', fontSize: 7, color: PC.muted }, { text: 'Σελίδα ' + cur + ' από ' + total, fontSize: 7.5, color: PC.muted, alignment: 'right' }], margin: [40, 16, 40, 0] };
+            },
+            content: content,
+            defaultStyle: { font: 'Roboto', fontSize: 9.5, color: '#334155', lineHeight: 1.15 },
+            styles: {
+                h1: { fontSize: 16, bold: true, color: PC.navy, margin: [0, 0, 0, 10] },
+                h2: { fontSize: 11.5, bold: true, color: PC.navy, margin: [0, 6, 0, 6] },
+                h3: { fontSize: 10.5, bold: true, color: PC.navy, margin: [0, 10, 0, 5] },
+                th: { bold: true, fontSize: 8.5, color: '#ffffff', fillColor: PC.navy },
+                note: { fontSize: 8.5, color: PC.muted, lineHeight: 1.25, margin: [0, 0, 0, 2] },
+                body: { fontSize: 9.5, lineHeight: 1.3 }
+            }
+        };
+        var layouts = { cpTable: {
+            hLineWidth: function (i, node) { return i === 0 || i === node.table.body.length ? 0 : 0.5; }, vLineWidth: function () { return 0; },
+            hLineColor: function () { return PC.line; }, paddingTop: function () { return 4; }, paddingBottom: function () { return 4; },
+            paddingLeft: function () { return 6; }, paddingRight: function () { return 6; }
+        } };
+        return new Promise(function (res) { window.pdfMake.createPdf(doc, layouts).download(fname('pdf'), res); });
+    }
+    function xlsx() {
+        var L = last, wb = new window.ExcelJS.Workbook(); wb.creator = 'thecybersec.gr';
+        var head = { font: { bold: true, color: { argb: 'FFFFFFFF' } }, fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1E293B' } } };
+        var s1 = wb.addWorksheet('Σύνοψη');
+        s1.columns = [{ width: 26 }, { width: 14 }, { width: 70 }];
+        s1.addRow(['Κατάσταση κυβερνοασφάλειας Microsoft 365']).font = { bold: true, size: 14 };
+        s1.addRow(['Οργανισμός', L.org || '–']); s1.addRow(['Ημερομηνία', L.date]); s1.addRow(['Στόχος', L.t]); s1.addRow(['Microsoft 365 Security Posture Indicator', L.g + '/100']); s1.addRow(['Σημείωση', 'Προσαρμοσμένος δείκτης υποστήριξης αποφάσεων, βασισμένος στα δεδομένα ασφάλειας (telemetry) του Microsoft 365 που ανέβασες. Δεν είναι το Microsoft Secure Score, ούτε βαθμός συμμόρφωσης, αξιολόγηση ωριμότητας ή αποτέλεσμα πιστοποίησης.']); s1.addRow(['Μεθοδολογία', 'Οι κανόνες και τα βάρη είναι ευρετικοί κανόνες (heuristics) του thecybersec.gr για την υποστήριξη αποφάσεων. Δεν είναι μεθοδολογία βαθμολόγησης της Microsoft, της ΕΑΚ, της ΚΥΑ 1689/2025, της Οδηγίας NIS2 ή του ISO/IEC 27001.']); s1.addRow(['Ετυμηγορία', L.verdict]); s1.addRow([]);
+        s1.addRow(['Evidence coverage', L.cov + '% (' + L.n + '/' + SOURCES.length + ' πηγές, ' + L.coreN + '/' + L.coreAll + ' βασικές ενότητες)']); s1.addRow(['Assessment coverage confidence', L.confLine + '. ' + L.confWhy]); s1.addRow(['Κατάσταση έναντι στόχου', L.status + ' · Target ' + L.t + ' · ' + L.gapTxt]); if (L.staleTxt) s1.addRow(['Φρεσκάδα δεδομένων', L.staleTxt]); if (L.deltaTxt) s1.addRow(['Μεταβολή', L.deltaTxt]); if (L.domDTxt) s1.addRow(['Μεταβολή ανά ενότητα', L.domDTxt + ' (από ' + L.prevSnap.d + ')']); s1.addRow(['Highest-priority area', L.areaTxt.replace('Highest-priority area: ', '')]);
+        s1.addRow(['Τρόπος υπολογισμού', L.mtext]); if (L.trend) s1.addRow(['Τάση του Posture', L.trend]); s1.addRow([]);
+        s1.getColumn(4).width = 16; s1.getColumn(5).width = 16; s1.getColumn(6).width = 22;
+        var h1 = s1.addRow(['Ενότητα', 'Βαθμός', 'Πηγές', 'Βάρος (ορισμένο)', 'Βάρος που ισχύει', 'Μεταβολή']); h1.eachCell(function (c) { c.font = head.font; c.fill = head.fill; });
+        L.ds.forEach(function (d) { s1.addRow([d.label, d.value === null ? 'Χωρίς πηγή' : d.value, d.srcs.map(function (s) { return s.t; }).join(', '), L.mtext.indexOf('Simple') === 0 ? 'ίσο' : W[d.id], L.E[d.id] != null ? Math.round(L.E[d.id] * 100) + '%' : '–', (L.prevSnap && L.prevSnap.v[d.id] != null && d.value !== null) ? dTxt(d.value - L.prevSnap.v[d.id]) + ' since ' + L.prevSnap.d : '–']); });
+        s1.addRow([]); s1.addRow(['Priority actions']).font = { bold: true };
+        var hp = s1.addRow(['Priority', 'Υπεύθυνος', 'Ενέργεια', 'Προθεσμία', 'Γιατί τώρα']); hp.eachCell(function (c) { c.font = head.font; c.fill = head.fill; });
+        L.top.forEach(function (s) { s1.addRow(['P' + prio(s.id, L.t), owner(s.id) || '', RES[s.id].fix, due(s.id, L.t) || '', RES[s.id].why]); });
+        var s2 = wb.addWorksheet('Ευρήματα');
+        s2.columns = [{ header: 'Ενότητα', width: 20 }, { header: 'Πηγή', width: 34 }, { header: 'Εύρημα', width: 60 }, { header: 'Βαθμός πηγής (heuristic, 0–100)', width: 14 }, { header: 'Κατάσταση ελέγχου', width: 20 }, { header: 'Τεκμήριο', width: 26 }, { header: 'Ενέργεια', width: 60 }, { header: 'Γιατί', width: 50 }, { header: 'ΚΥΑ 1689/2025', width: 14 }, { header: 'NIS2', width: 14 }, { header: 'ISO/IEC 27001', width: 18 }, { header: 'GDPR', width: 10 }, { header: 'Κανόνας βαθμού (heuristic thecybersec.gr)', width: 70 }, { header: 'Αρχείο', width: 30 }, { header: 'Ημερομηνία export', width: 22 }, { header: 'Υπεύθυνος', width: 18 }, { header: 'Προθεσμία', width: 12 }, { header: 'Priority', width: 9 }];
+        s2.getRow(1).eachCell(function (c) { c.font = head.font; c.fill = head.fill; });
+        rows().forEach(function (o) { if (!o.s) { s2.addRow([o.d.label, '–', 'Δεν υπάρχουν δεδομένα', '', '⚪ Not assessed', '⚪ No evidence']); return; }
+            var r = RES[o.s.id], m = o.s.map; s2.addRow([o.d.label, o.s.t, r.find, r.score, ico(r.score, L.t) + ' ' + lbl(r.score, L.t), evIco(o.s.id) + ' ' + evLbl(o.s.id), r.fix, r.why, m.kya.join(', '), m.nis.join(', '), m.iso.join(', '), m.gdpr.join(', '), o.s.rule, NAMES[o.s.id] || (isSample ? 'παράδειγμα' : ''), freshTxt(o.s.id), owner(o.s.id) || '', due(o.s.id, L.t) || '', 'P' + prio(o.s.id, L.t)]); });
+        s2.views = [{ state: 'frozen', ySplit: 1 }]; s2.autoFilter = 'A1:R1';
+        s2.eachRow(function (row, i) { if (i > 1) row.alignment = { wrapText: true, vertical: 'top' }; });
+        if (L.follow && L.follow.length) {
+            var s3 = wb.addWorksheet('Follow-up');
+            s3.columns = [{ header: 'Priority', width: 9 }, { header: 'Ενέργεια', width: 60 }, { header: 'Υπεύθυνος', width: 18 }, { header: 'Προθεσμία', width: 12 }, { header: 'Βαθμός τότε (' + PREVACT.date + ')', width: 18 }, { header: 'Βαθμός τώρα', width: 12 }, { header: 'Ένδειξη', width: 22 }, { header: 'Επιβεβαίωση υπευθύνου', width: 24 }];
+            s3.getRow(1).eachCell(function (c) { c.font = head.font; c.fill = head.fill; });
+            L.follow.forEach(function (f) { s3.addRow(['P' + f.a.p, f.a.fix, f.a.owner || '', f.a.due || '', f.a.score, f.now == null ? '–' : f.now, f.ind, '']); });
+            s3.eachRow(function (row, i) { if (i > 1) row.alignment = { wrapText: true, vertical: 'top' }; });
+        }
+        return wb.xlsx.writeBuffer().then(function (buf) { save(new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), fname('xlsx')); });
+    }
+    function exp(btn, libs, fn) {
+        if (!last) return;
+        var e = $('cpExpErr'), txt = btn.textContent; e.classList.add('hidden'); btn.disabled = true; btn.textContent = 'Δημιουργία…';
+        loadScripts(libs, function () {
+            Promise.resolve().then(fn).catch(function () { e.textContent = 'Δεν δημιουργήθηκε το αρχείο. Δοκίμασε ξανά.'; e.classList.remove('hidden'); })
+                .then(function () { btn.disabled = false; btn.textContent = txt; });
+        }, function () { e.textContent = 'Δεν φορτώθηκε η βιβλιοθήκη. Έλεγξε τη σύνδεση και δοκίμασε ξανά.'; e.classList.remove('hidden'); btn.disabled = false; btn.textContent = txt; });
+    }
+    // ---------- Αποθήκευση και φόρτωση αξιολόγησης (.json) ----------
+    $('cpJson').addEventListener('click', function () {
+        if (!last) return;
+        var L = last, dv = {}, hs = parseHist().filter(function (h) { return h.k !== todayKey(); }).map(function (h) { return { date: h.d, posture: h.v }; });
+        L.ds.forEach(function (d) { if (d.value !== null) dv[d.id] = d.value; });
+        hs.push({ date: todayStr(), posture: L.g });
+        var data = { tool: 'thecybersec.gr/ciso-se-mia-selida', version: 1, date: todayStr(), organization: L.org || '', target: L.t, mode: mode(), weights: W,
+            posture: L.g, evidenceCoverage: L.cov, coverageConfidence: L.conf, domains: dv, history: hs,
+            sources: Object.keys(RES).reduce(function (o, id) { o[id] = { score: RES[id].score, finding: RES[id].find, exportDate: FDATE[id] ? mdy(FDATE[id]) : null }; return o; }, {}),
+            actions: L.top.map(function (s) { return { id: s.id, p: prio(s.id, L.t), fix: RES[s.id].fix, owner: owner(s.id) || '', due: due(s.id, L.t) || '', score: RES[s.id].score }; }),
+            note: 'Microsoft 365 Security Posture Indicator: προσαρμοσμένος δείκτης υποστήριξης αποφάσεων. Δεν είναι Microsoft Secure Score, βαθμός συμμόρφωσης ή αποτέλεσμα πιστοποίησης.' };
+        save(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }), 'ciso-se-mia-selida-' + todayKey() + '.json');
+    });
+    $('cpLoad').addEventListener('change', function () {
+        var f = this.files && this.files[0], msg = $('cpLoadMsg'); this.value = ''; if (!f) return;
+        var rd = new FileReader();
+        rd.onload = function () {
+            try {
+                var j = JSON.parse(String(rd.result));
+                if (!j || j.tool !== 'thecybersec.gr/ciso-se-mia-selida') throw 0;
+                if (j.weights) Object.keys(DEF_W).forEach(function (k) { if (typeof j.weights[k] === 'number') W[k] = Math.max(0, Math.min(100, j.weights[k])); });
+                if (j.mode) { var r = document.querySelector('input[name="cpMode"][value="' + j.mode + '"]'); if (r) r.checked = true; }
+                if (typeof j.target === 'number') $('cpTarget').value = Math.max(50, Math.min(100, j.target));
+                if (j.organization && !$('cpOrg').value) $('cpOrg').value = j.organization;
+                if (j.history && j.history.length) $('cpHist').value = j.history.map(function (h) { return h.date + ':' + h.posture; }).join(', ');
+                var m = String(j.date || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+                if (m && j.domains) SNAP = { k: m[3] + m[1] + m[2], d: j.date, v: j.domains };
+                PREVACT = { date: j.date, actions: j.actions || [] };
+                sampleHist = false; buildWeights(); fillPrev();
+                msg.className = 'text-xs ml-2 text-emerald-300'; msg.textContent = 'Φορτώθηκε η αξιολόγηση της ' + j.date + '.';
+                render();
+            } catch (e) { msg.className = 'text-xs ml-2 text-rose-400'; msg.textContent = 'Δεν είναι αρχείο αξιολόγησης αυτού του εργαλείου.'; }
+        };
+        rd.readAsText(f, 'utf-8');
+    });
+
+    // ---------- Σύνοψη για τα πρακτικά ----------
+    function minutes() {
+        var L = last; if (!L) return '';
+        var t = 'Στις ' + todayStr() + ' η Διοίκηση' + (L.org ? ' της ' + L.org : '') + ' ενημερώθηκε για την κατάσταση κυβερνοασφάλειας του Microsoft 365. ';
+        t += 'Ο Microsoft 365 Security Posture Indicator ήταν ' + L.g + '/100, ' + (L.g >= L.t ? (L.g - L.t) + ' μονάδες πάνω από' : (L.t - L.g) + ' μονάδες κάτω από') + ' τον στόχο των ' + L.t + ' που έχει ορίσει η Διοίκηση';
+        if (L.deltaTxt) { var dd = parseHist().filter(function (h) { return h.k < todayKey(); }); if (dd.length) { var x = L.g - dd[dd.length - 1].v; t += ', ' + (x > 0 ? '+' + x : x < 0 ? '−' + Math.abs(x) : 'χωρίς μεταβολή') + (x ? ' μονάδες' : '') + ' σε σχέση με την προηγούμενη αξιολόγηση της ' + dd[dd.length - 1].d; } }
+        t += '. Τα στοιχεία κάλυψαν ' + L.n + ' από ' + SOURCES.length + ' πηγές (evidence coverage ' + L.cov + '%, assessment coverage confidence ' + L.conf + '). ';
+        t += 'Η ενότητα με την υψηλότερη προτεραιότητα είναι: ' + L.areaTxt.replace('Highest-priority area: ', '') + '.';
+        if (L.top.length) t += '\n\nΠαρουσιάστηκαν οι παρακάτω ενέργειες προτεραιότητας:\n' + L.top.map(function (s, i) { return (i + 1) + '. [P' + prio(s.id, L.t) + '] ' + RES[s.id].fix + ' Υπεύθυνος: ' + (owner(s.id) || '–') + '. Προθεσμία: ' + (due(s.id, L.t) || '–') + '.'; }).join('\n');
+        if (L.follow && L.follow.length) t += '\n\nFollow-up των ενεργειών της ' + PREVACT.date + ': ' + L.follow.map(function (f) { return f.a.fix.replace(/\.$/, '') + ' (' + f.ind.toLowerCase() + ')'; }).join('· ') + '.';
+        t += '\n\nΟ δείκτης είναι προσαρμοσμένος δείκτης υποστήριξης αποφάσεων και όχι βαθμός συμμόρφωσης. Συνημμένη η αναφορά «Ο CISO σε μία σελίδα» (thecybersec.gr).';
+        return t;
+    }
+    $('cpMinutes').addEventListener('click', function () {
+        var txt = minutes(), m = $('cpMinMsg'); $('cpMinText').value = txt;
+        var ok = function () { m.textContent = 'Η σύνοψη αντιγράφηκε.'; }, no = function () { $('cpMinText').select(); m.textContent = 'Επίλεξε το κείμενο και αντέγραψέ το.'; };
+        if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, no); else no();
+    });
+
+    $('cpPdf').addEventListener('click', function () { exp(this, PDFLIB, pdf); });
+    $('cpXlsx').addEventListener('click', function () { exp(this, [EXCEL, JSZIP], xlsx); });
+
+    render();
+})();
+</script>

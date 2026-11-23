@@ -35,6 +35,8 @@ description: "Ένας πρακτικός, ανθρώπινος οδηγός γ�
 seoDescription: "Πρακτικός οδηγός για το Automated Investigation & Response του Microsoft Defender: verdicts, automation levels και τι αλλάζει από 1η Σεπτεμβρίου 2026."
 summary: "Το AIR είναι ο ψηφιακός αναλυτής που κάνει το βαρύ triage στη θέση σου. Σε αυτό το άρθρο εξηγώ πώς λειτουργεί το pipeline της αυτόματης έρευνας, τι σημαίνουν τα Malicious / Suspicious / No threats found, πώς δουλεύουν τα πέντε automation levels ανά device group, πώς διαβάζεις σωστά το Action Center και τι σημαίνει η αλλαγή της 1ης Σεπτεμβρίου 2026 για το πώς θα δουλεύεις με το AIR από εδώ και πέρα."
 categories: ["Security Operations & XDR"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1204.002", "M1040", "M1047"]
 series: ["Microsoft Defender Up Close"]
 seriesCompanion: true
 ShowToc: true
@@ -231,6 +233,8 @@ verification:
 > 🔗 **Συνέχισε με τη σειρά Microsoft Defender Demystified.** Αν θέλεις πρώτα να δεις πού ζει το AIR μέσα στην πλατφόρμα, το **[Microsoft Defender Μέρος 5: Περιήγηση στο Microsoft Defender portal](/posts/defender-demystified-series/defender-demystified-part-5-portal-tour/)** σε ξεναγεί στο `security.microsoft.com` και στο Investigation & response, εκεί ακριβώς όπου συναντάς τις έρευνες του AIR στην καθημερινότητά σου.
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [20.α](/kya-1689-2025/#20-α), [24.α](/kya-1689-2025/#24-α) και [24.ε](/kya-1689-2025/#24-ε), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.2.β](/nis2/#21-2-β), [23.1](/nis2/#23-1) και [23.4.α](/nis2/#23-4-α), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.24](/iso-27001/#A-5-24), [A.5.26](/iso-27001/#A-5-26), [A.8.7](/iso-27001/#A-8-7) και [A.8.16](/iso-27001/#A-8-16) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [33.1](/gdpr/#33-1). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

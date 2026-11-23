@@ -22,6 +22,8 @@ description: "Το Microsoft Defender αποκτά ενσωματωμένη ασ
 seoDescription: "Το Microsoft Defender προσφέρει πλέον Generally Available ασφάλεια για AI agents μέσω του Microsoft Agent 365: discovery, posture, protection και investigation."
 summary: "Οι AI agents στον οργανισμό σου γίνονται ένα ακόμα asset που χρειάζεται προστασία. Δες πώς το Microsoft Defender, μέσω του Microsoft Agent 365, τους ανακαλύπτει, τους αξιολογεί και τους προστατεύει σε πραγματικό χρόνο."
 categories: ["AI Security"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1047"]
 releases:
   - "generally-available"       # ← αυτό στο /releases/generally-available/
 ShowToc: true
@@ -104,6 +106,8 @@ verification:
 Αν έχεις ήδη Microsoft Agent 365 license, αξίζει να ρίξεις μια ματιά στο **Settings > Security for AI**, πιθανότατα η βασική προστασία τρέχει ήδη, χωρίς να το έχεις προσέξει.
 
 ---
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [11.α](/kya-1689-2025/#11-α), [13.β](/kya-1689-2025/#13-β) και [24.ε](/kya-1689-2025/#24-ε), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.θ](/nis2/#21-2-θ), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.9](/iso-27001/#A-5-9), [A.5.16](/iso-27001/#A-5-16) και [A.8.16](/iso-27001/#A-8-16) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

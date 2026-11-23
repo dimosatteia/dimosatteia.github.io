@@ -30,6 +30,8 @@ description: "Πώς συσχετίζει το Microsoft Defender XDR τα σή�
 seoDescription: "Πώς το Microsoft Defender XDR συσχετίζει σήματα από Endpoint, Office 365, Identity και Cloud Apps, με πραγματικό παράδειγμα επίθεσης σε πολλά στάδια."
 summary: "Τα τέσσερα workloads του Microsoft Defender XDR: EDR στο Endpoint, Safe Links στο Office 365, ανίχνευση lateral movement στο Identity και εντοπισμός shadow IT στο Cloud Apps. Με ένα σενάριο από phishing μέχρι διαρροή δεδομένων, όπου τέσσερα ξεχωριστά alerts γίνονται ένα incident."
 categories: ["Security Operations & XDR"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1566", "T1204.002", "T1078.004", "T1528", "M1040"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
@@ -235,6 +237,8 @@ verification:
 **«Μπορούμε να χρησιμοποιούμε τα workloads χωριστά, χωρίς XDR;»**
 
 Τεχνικά ναι, κάθε workload λειτουργεί μόνο του. Χάνεις όμως τη μηχανή συσχέτισης, την ενιαία ουρά incidents και την αυτοματοποιημένη απόκριση ανάμεσα στα προϊόντα. Η συσχέτιση του XDR είναι το ίδιο το προϊόν.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.2.β](/nis2/#21-2-β) και [21.2.ζ](/nis2/#21-2-ζ) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

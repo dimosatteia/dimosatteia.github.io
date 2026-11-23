@@ -24,6 +24,8 @@ description: "Το AD group enforcement κλειδώνει τα synced groups τ
 seoDescription: "Το AD group enforcement στο Entra Cloud Sync κλειδώνει τα synced groups στο provisioning service. Οδηγός Public Preview: Enforced vs Audit και περιορισμοί."
 summary: "Το Microsoft Entra Cloud Sync αποκτά τη δυνατότητα να κλειδώνει synced AD groups, ώστε καμία αλλαγή να μην γίνεται τοπικά στο Active Directory παρά μόνο μέσω του provisioning service. Τι σημαίνει αυτό στην πράξη και τι χρειάζεται για να το δοκιμάσεις."
 categories: ["Identity & Access"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1098.007", "M1018"]
 releases:
   - "preview"   # ← αυτό το στέλνει στο /releases/preview/
 ShowToc: true
@@ -154,6 +156,8 @@ verification:
 Είναι η σωστή κατεύθυνση. Απλώς δεν έχει φτάσει ακόμα.
 
 ---
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στο [13.γ](/kya-1689-2025/#13-γ), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.θ](/nis2/#21-2-θ), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.18](/iso-27001/#A-5-18) και [A.8.3](/iso-27001/#A-8-3) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

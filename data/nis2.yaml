@@ -62,6 +62,9 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου'
+      url: /posts/microsoft-365-price-increase-2026-security-leader-playbook/
+      page: /posts/microsoft-365-price-increase-2026-security-leader-playbook
 - number: 5
   title: Πλαίσιο διαχείρισης κινδύνων
   requirements:
@@ -137,6 +140,15 @@ articles:
     - title: 'Microsoft Defender Vulnerability Management: η μηχανή ιεράρχησης'
       url: /posts/microsoft-defender-vulnerability-management-series/03-mdvm-the-prioritization-engine/
       page: /posts/Microsoft-Defender-Vulnerability-Management-Series/03-mdvm-the-prioritization-engine
+    - title: 'Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις, πόσα SCU και πότε πληρώνεις'
+      url: /posts/security-copilot-sto-microsoft-365-e5-scu/
+      page: /posts/security-copilot-sto-microsoft-365-e5-scu
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
 - number: 6
   title: Πολιτικές και διαδικασίες ασφάλειας πληροφοριών
   requirements:
@@ -347,6 +359,9 @@ articles:
     - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
       url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
       page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
   - code: 11.β
     scope: Βασικές και σημαντικές
     requirement: Ταξινόμηση δεδομένων και αγαθών σε επίπεδα, με βάση εμπιστευτικότητα, ακεραιότητα και διαθεσιμότητα.
@@ -443,6 +458,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου'
+      url: /posts/microsoft-365-price-increase-2026-security-leader-playbook/
+      page: /posts/microsoft-365-price-increase-2026-security-leader-playbook
   - code: 12.1.δ
     scope: Βασικές και σημαντικές
     requirement: 'Ελάχιστο περιεχόμενο συμβάσεων: απαιτήσεις ασφάλειας, συστήματα και δεδομένα στα οποία αποκτά πρόσβαση ο προμηθευτής, δικαίωμα ελέγχου, ασφαλής λήξη.'
@@ -524,6 +542,9 @@ articles:
       url: /posts/azure-kai-entra-to-themelio/
     - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
       url: /posts/entra-connect-mandatory-upgrade-2026/
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
   - code: 13.γ
     scope: Βασικές και σημαντικές
     requirement: Χορήγηση και ανάκληση δικαιωμάτων με least privilege, need to know και separation of duties.
@@ -599,6 +620,9 @@ articles:
       url: /posts/passkeys-by-default-telos-sms-voice-mfa/
     - title: 'Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει'
       url: /posts/entra-token-protection-bulk-enrollment-limitation/
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
   - code: 13.ζ
     scope: Βασικές και σημαντικές
     requirement: Πολυπαραγοντική αυθεντικοποίηση (MFA) όπου απαιτείται με βάση την κρισιμότητα.
@@ -843,6 +867,9 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
   - code: 17.β
     scope: Βασικές και σημαντικές
     requirement: Τακτική λήψη και επεξεργασία πληροφοριών για ευπάθειες από κατάλληλες πηγές (αρχές, προμηθευτές, CSIRTs).
@@ -1097,6 +1124,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 4: Advanced Identity Security, από τα passkeys ως τα workload identities'
       url: /posts/conditional-access-series/conditional-access-meros-4-advanced-identity-security/
       page: /posts/Conditional-Access-Series/conditional-access-meros-4-advanced-identity-security
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
   - code: 19.η
     scope: Βασικές και σημαντικές
     requirement: Περιορισμός ανοικτών θυρών, πρωτοκόλλων και δικτυακών υπηρεσιών στο απολύτως απαραίτητο.
@@ -1282,6 +1312,9 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
   - code: 21.β
     scope: Βασικές και σημαντικές
     requirement: Εξειδικευμένη εκπαίδευση για το τεχνικό προσωπικό, ανάλογα με τον ρόλο του.
@@ -1439,6 +1472,9 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: 24.β
     scope: Βασικές και σημαντικές
     requirement: Ορισμός τουλάχιστον ενός υπαλλήλου που συντονίζει (ή επιβλέπει, αν υπάρχει εξωτερικός ανάδοχος) την απόκριση σε περιστατικά.
@@ -1452,6 +1488,9 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: 24.γ
     scope: Βασικές και σημαντικές
     requirement: Καταγραφή δραστηριοτήτων (event logging) σε διακομιστές, δικτυακές συσκευές, συσκευές χρηστών, συστήματα και εφαρμογές, ιδίως για ευαίσθητα δεδομένα και προνομιούχους λογαριασμούς.
@@ -1477,6 +1516,9 @@ articles:
     - title: 'Microsoft Entra Conditional Access Μέρος 5: Troubleshooting και monitoring, πώς αποδεικνύεις τι συνέβη σε ένα sign-in'
       url: /posts/conditional-access-series/conditional-access-meros-5-troubleshooting-monitoring/
       page: /posts/Conditional-Access-Series/conditional-access-meros-5-troubleshooting-monitoring
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+      page: /posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads
   - code: 24.δ
     scope: Βασικές και σημαντικές
     requirement: Συλλογή και τήρηση των καταγραφών για προκαθορισμένο χρόνο, με προστασία από μη εξουσιοδοτημένη πρόσβαση και παραποίηση.
@@ -1544,6 +1586,18 @@ articles:
     - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
       url: /poios-xtypaei-tin-porta-sou/
       page: /poios-xtypaei-tin-porta-sou
+    - title: 'Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις, πόσα SCU και πότε πληρώνεις'
+      url: /posts/security-copilot-sto-microsoft-365-e5-scu/
+      page: /posts/security-copilot-sto-microsoft-365-e5-scu
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+      page: /posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads
   - code: 24.στ
     scope: Βασικές και σημαντικές
     requirement: Περιοδική αξιολόγηση και επικαιροποίηση της πολιτικής και των διαδικασιών απόκρισης.

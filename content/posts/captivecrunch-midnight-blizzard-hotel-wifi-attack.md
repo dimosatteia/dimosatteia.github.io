@@ -2,7 +2,7 @@
 title: "CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς"
 seoTitle: "CaptiveCrunch: παγίδα στο Wi-Fi ξενοδοχείων και προστασία"
 date: 2026-08-03T19:00:00+03:00
-lastmod: 2026-08-24T13:00:00+03:00
+lastmod: 2026-11-22T19:00:00+02:00
 draft: false
 keywords:
   - captivecrunch επίθεση
@@ -33,7 +33,7 @@ tags:
   - Microsoft 365 Security
 author: "Dimosthenis Atteia"
 description: "Η Microsoft αποκάλυψε την επιχείρηση CaptiveCrunch: μια ρωσική ομάδα κατασκοπείας που χτυπά ταξιδιώτες μέσα από το Wi-Fi ξενοδοχείων και συνεδρίων, ρίχνοντας malware και κλέβοντας credentials και Microsoft 365 tokens. Εξηγώ με απλά λόγια τι συμβαίνει, πώς δουλεύει η επίθεση, ποια εργαλεία χρησιμοποιούν και τι να κάνεις για να προστατέψεις εσένα και την ομάδα σου."
-seoDescription: "Η ρωσική ομάδα κατασκοπείας πίσω από το CaptiveCrunch χτυπά ταξιδιώτες μέσω Wi-Fi ξενοδοχείων και κλέβει Microsoft 365 tokens. Πώς δουλεύει και πώς προστατεύεσαι."
+seoDescription: "Η ρωσική ομάδα κατασκοπείας πίσω από το CaptiveCrunch χτυπά ταξιδιώτες μέσω Wi-Fi ξενοδοχείων και κλέβει Microsoft 365 tokens. Πώς δουλεύει, πώς προστατεύεσαι."
 summary: "Μια ρωσική κρατική ομάδα (Midnight Blizzard / Storm-2945) παραβιάζει το Wi-Fi ξενοδοχείων και συνεδρίων για να χτυπήσει εταιρικούς ταξιδιώτες. Σου δείχνω βήμα-βήμα πώς στήνεται η παγίδα με ψεύτικα updates και ClickFix, τι κάνουν τα εργαλεία CornFlake / ChocoShell / FruitStone, γιατί η κλοπή token είναι το πραγματικό πρόβλημα, και έναν πρακτικό οδηγό προστασίας για όποιον ταξιδεύει για δουλειά."
 categories: ["Security Operations & XDR", "Security Awareness"]
 ShowToc: true
@@ -45,7 +45,30 @@ cover:
   caption: "CaptiveCrunch — Midnight Blizzard / Storm-2945"
 # MITRE ATT&CK®: ονόματα στο data/mitre.yaml
 mitre: ["T1557", "T1204.002", "T1555.003", "T1539", "T1528", "T1550.004", "T1071.001"]
+verification:
+  - feature: "CaptiveCrunch: Midnight Blizzard / Storm-2945 (Microsoft Threat Intelligence)"
+    status: "Threat intelligence"
+    license: "—"
+    source: "https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/"
+    verified: 2026-11-22
+  - feature: "Conditional Access: Authentication flows (block device code flow)"
+    status: "Public Preview"
+    license: "Microsoft Entra ID P1"
+    source: "https://learn.microsoft.com/entra/identity/conditional-access/policy-block-authentication-flows"
+    verified: 2026-11-22
+  - feature: "Sign-in risk policy (Microsoft Entra ID Protection)"
+    status: "Generally Available"
+    license: "Microsoft Entra ID P2"
+    source: "https://learn.microsoft.com/entra/id-protection/howto-identity-protection-configure-risk-policies"
+    verified: 2026-11-22
+  - feature: "Authentication strength: Phishing-resistant MFA (passkeys)"
+    status: "Generally Available"
+    license: "Microsoft Entra ID P1"
+    source: "https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strengths"
+    verified: 2026-11-22
 ---
+
+> 🔄 **Ενημέρωση 22 Νοε 2026:** Η Microsoft ενημέρωσε την ανάλυσή της στις 5/10/2026. Στις 29/9/2026 το Storm-2945 ξεκίνησε ξανά την καμπάνια CaptiveCrunch, πάλι μέσα από το Wi-Fi και τα captive portals ξενοδοχείων. Η Microsoft συνδέει τη γρήγορη επιστροφή με το ότι η ομάδα έχει ακόμη πρόσβαση σε managed service providers που εξυπηρετούν ξενοδοχεία. Πρόσθεσα στον [πίνακα IOCs](#indicators-of-compromise-iocs-για-την-ομάδα-σου) τα 5 νέα domains και IPs. Οι οδηγίες προστασίας δεν αλλάζουν.
 
 ## Το σενάριο σε μία εικόνα
 
@@ -89,7 +112,7 @@ mitre: ["T1557", "T1204.002", "T1555.003", "T1539", "T1528", "T1550.004", "T1071
 [![Τα τρία εργαλεία της επίθεσης: CornFlake RAT, ChocoShell infostealer και FruitStone C2 panel](/images/CaptiveCrunch/captivecrunch-tools.webp)](/images/CaptiveCrunch/captivecrunch-tools.webp)
 > 📷 **Εικόνα 4: Ένα για τον έλεγχο, ένα για την κλοπή, ένα για τη διαχείριση. Μια ολόκληρη «γραμμή παραγωγής».**
 
-Το **CornFlake** είναι το «αγκίστρι» που καρφώνεται στο μηχάνημα, ένα RAT (remote access trojan). Μόλις μπει, δείχνει ένα ψεύτικο παραθυράκι (π.χ. «Windows Update, μην κλείσετε τον υπολογιστή») για να σε απασχολήσει, ενώ στήνει τους μηχανισμούς επιμονής και μεταμφιέζεται σε νόμιμη υπηρεσία με το όνομα «Cloud Sync Service». Δίνει στον επιτιθέμενο keylogging, screenshots, πρόσβαση σε κάμερα και μικρόφωνο, κλοπή αρχείων και remote shell και ουσιαστικά, πλήρη έλεγχο.
+Το **CornFlake** είναι το «αγκίστρι» που καρφώνεται στο μηχάνημα, ένα RAT (remote access trojan). Μόλις μπει, δείχνει ένα ψεύτικο παραθυράκι (π.χ. «Windows Update, μην κλείσετε τον υπολογιστή») για να σε απασχολήσει, ενώ στήνει τους μηχανισμούς επιμονής και μεταμφιέζεται σε νόμιμη υπηρεσία με το όνομα «Cloud Sync Service». Δίνει στον επιτιθέμενο keylogging, screenshots, πρόσβαση σε κάμερα και μικρόφωνο, κλοπή αρχείων και remote shell και ουσιαστικά, πλήρη έλεγχο. Στην ενημέρωση της 5/10/2026 η Microsoft αναφέρει και μια παραλλαγή του CornFlake γραμμένη σε Rust, σε περιστατικά όπου παραδόθηκε infostealer. Σύμφωνα με τη Microsoft, τα χαρακτηριστικά της ταιριάζουν με ανάπτυξη που έγινε με τη βοήθεια AI.
 
 Το **ChocoShell** είναι ο εξειδικευμένος «κλέφτης». Τρέχει στη μνήμη και κυνηγά ό,τι έχει τη μεγαλύτερη αξία: session cookies, αποθηκευμένους κωδικούς από τον browser, **Microsoft 365 SSO tokens** και κωδικούς Wi-Fi. Για να τα καταφέρει, απενεργοποιεί μηχανισμούς άμυνας των Windows (όπως το AMSI) και κάνει UAC bypass για να αποκτήσει δικαιώματα διαχειριστή.
 
@@ -135,6 +158,11 @@ mitre: ["T1557", "T1204.002", "T1555.003", "T1539", "T1528", "T1550.004", "T1071
 
 | Δείκτης (IOC) | Τύπος | Τι είναι | Πρώτη εμφάνιση |
 | --- | --- | --- | --- |
+| `network-privacy[.]com` | Domain | Νέα υποδομή (ενημέρωση 5/10/2026) | 2026-10-01 |
+| `149.3.170[.]186` | IP | Νέα υποδομή (ενημέρωση 5/10/2026) | 2026-10-01 |
+| `cdn-gstat[.]com` | Domain | Νέα υποδομή (ενημέρωση 5/10/2026) | 2026-09-30 |
+| `Sslcdnhost[.]com` | Domain | Νέα υποδομή (ενημέρωση 5/10/2026) | 2026-09-30 |
+| `154.29.75[.]245` | IP | Νέα υποδομή (ενημέρωση 5/10/2026) | 2026-09-29 |
 | `ms365-device[.]com` | Domain | Ανακατεύθυνση device code flow | 2026-07-23 |
 | `ms365-live[.]com` | Domain | Ανακατεύθυνση device code flow | 2026-05-14 |
 | `m365-owa[.]com` | Domain | Υποδομή AiTM | 2026-07-20 |
@@ -156,7 +184,11 @@ mitre: ["T1557", "T1204.002", "T1555.003", "T1539", "T1528", "T1550.004", "T1071
 
 Η αντίσταση είναι εξίσου απλή: **δυσπιστία στα δημόσια δίκτυα, μηδενική ανοχή στα ClickFix, και ταυτότητα χτισμένη γύρω από passkeys και σωστό Conditional Access**. Αν περάσεις αυτά τα τρία στην κουλτούρα της ομάδας σου, την επόμενη φορά που κάποιος δει το ψεύτικο «update your browser» σε ένα λόμπι, θα κλείσει το παράθυρο αντί να το πατήσει. Κι αυτό, στην πράξη, είναι όλη η διαφορά.
 
-## Πηγές
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [5.2](/kya-1689-2025/#5-2), [13.στ](/kya-1689-2025/#13-στ), [19.ζ](/kya-1689-2025/#19-ζ) και [21.α](/kya-1689-2025/#21-α), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.2.ζ](/nis2/#21-2-ζ) και [21.2.ι](/nis2/#21-2-ι), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.7](/iso-27001/#A-5-7), [A.6.7](/iso-27001/#A-6-7) και [A.8.5](/iso-27001/#A-8-5) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
 
 - [CaptiveCrunch: Midnight Blizzard targets travelers worldwide for malware delivery and credential theft — Microsoft Security Blog](https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/)
 - [Storm-2372 conducts device code phishing campaign — Microsoft](https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/)

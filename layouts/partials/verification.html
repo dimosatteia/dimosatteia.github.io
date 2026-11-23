@@ -65,7 +65,8 @@
                     <td class="py-2 pr-3 font-semibold text-slate-100">{{ .feature }}</td>
                     <td class="py-2 pr-3">
                         {{- $s := .status | default "Generally Available" -}}
-                        {{- $cls := "text-emerald-300 bg-emerald-500/10 border-emerald-500/30" -}}
+                        {{- $cls := "text-slate-300 bg-slate-800 border-slate-700" -}}
+                        {{- if in (slice "Generally Available" "GA" "Ισχύει") $s }}{{ $cls = "text-emerald-300 bg-emerald-500/10 border-emerald-500/30" }}{{ end -}}
                         {{- if eq $s "Public Preview" }}{{ $cls = "text-amber-300 bg-amber-500/10 border-amber-500/30" }}{{ end -}}
                         {{- if eq $s "New Feature" }}{{ $cls = "text-blue-300 bg-blue-500/10 border-blue-500/30" }}{{ end -}}
                         {{- if eq $s "Retirement" }}{{ $cls = "text-rose-300 bg-rose-500/10 border-rose-500/30" }}{{ end -}}

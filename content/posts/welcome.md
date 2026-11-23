@@ -1,7 +1,7 @@
 ---
 title: "Microsoft 365 Security Blog: Πρακτικοί οδηγοί για IT Pros"
 date: 2026-04-22T10:00:00+03:00
-lastmod: 2026-10-02T09:55:00+03:00
+lastmod: 2026-11-22T19:00:00+02:00
 draft: false
 keywords:
   - "Microsoft Security blog"
@@ -59,8 +59,12 @@ Microsoft 365 και έχεις πέσει στον ίδιο τοίχο που �
 - **[Microsoft Defender Demystified](/series/microsoft-defender-demystified/)**: η οικογένεια του Microsoft Defender από την αρχή, με τα προϊόντα, τα workloads, το licensing και το portal.
 - **[Microsoft Defender Up Close](/series/microsoft-defender-up-close/)**: κάθε προϊόν του Defender από κοντά, με πρακτική παραμετροποίηση.
 - **[Global Secure Access](/series/global-secure-access/)**: το Security Service Edge της Microsoft, από τα traffic profiles μέχρι το Conditional Access.
+- **[Microsoft Entra Conditional Access](/series/microsoft-entra-conditional-access/)**: ο πλήρης οδηγός σε 6 μέρη, από τις βασικές έννοιες ως το governance και το Zero Trust.
+- **[Microsoft 365 Security Weekly](/series/microsoft-365-security-weekly/)**: κάθε Παρασκευή, τι άλλαξε την εβδομάδα στο Microsoft Defender και στο Microsoft Sentinel, με τη σύνδεσή του με την ΚΥΑ 1689/2025.
 
 Εκτός από τις σειρές, στο [Release Status](/releases/) βρίσκεις τα νέα features ανά φάση κυκλοφορίας: New Features, Public Preview και Generally Available.
+
+Για τη συμμόρφωση υπάρχουν τέσσερις οδηγοί, απαίτηση προς απαίτηση, με checklist σε Excel: [ΚΥΑ 1689/2025](/kya-1689-2025/), [Οδηγία NIS2](/nis2/), [ISO/IEC 27001](/iso-27001/) και [GDPR](/gdpr/). Στα [Εργαλεία](/ergaleia/) θα βρεις δωρεάν εργαλεία που τρέχουν στον browser σου, από τον έλεγχο υπαγωγής στον ν. 5160/2024 μέχρι την ανάλυση των sign-in logs του Microsoft Entra ID.
 
 ## Μια σημείωση για τη μορφή
 

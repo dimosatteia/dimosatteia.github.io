@@ -108,6 +108,12 @@ articles:
     - title: 'Εργαλείο: Μητρώο υποχρεωτικών πολιτικών της ΚΥΑ 1689/2025'
       url: /mitroo-politikon/
       page: /mitroo-politikon
+    - title: 'Τι κάνουν οι CISOs με το Microsoft Secure Score που δεν βλέπεις στα whitepapers'
+      url: /posts/microsoft-secure-score-grc-programma-ciso/
+      page: /posts/microsoft-secure-score-grc-programma-ciso
+    - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+      page: /posts/secure-score-grc-part-3-operations
 - number: 6
   title: Νομιμότητα της επεξεργασίας
   requirements:
@@ -324,6 +330,9 @@ articles:
     - title: 'Microsoft Defender for Cloud Apps: Μια πρακτική περιήγηση στο CASB'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-apps-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-apps-deep-dive
+    - title: 'Allowed Agent Types στο Microsoft 365: Γιατί το «Only Certified External Publishers» είναι η μόνη λογική επιλογή'
+      url: /posts/allowed-agent-types-only-certified-external-publishers/
+      page: /posts/allowed-agent-types-only-certified-external-publishers
   - code: '28.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Ο εκτελών δεν προσλαμβάνει άλλον εκτελούντα χωρίς προηγούμενη γραπτή άδεια του υπευθύνου. Με γενική άδεια, ενημερώνει τον υπεύθυνο για κάθε αλλαγή ώστε να μπορεί να αντιταχθεί.
@@ -475,6 +484,78 @@ articles:
     - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
       url: /poios-xtypaei-tin-porta-sou/
       page: /poios-xtypaei-tin-porta-sou
+    - title: 'Global Secure Access Μέρος 5: Conditional Access σε βάθος, τρία παραδείγματα πολιτικών που δουλεύουν'
+      url: /posts/global-secure-access/global-secure-access-meros-5-conditional-access/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-5-conditional-access
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-4-private-access-profile
+    - title: 'Secure Score AI-Readiness: Το TPM, το VBS, το HVCI και το LAPS σου δεν ήταν ποτέ απλά «τσεκαρίσματα», τι φέρνει το MC1466750'
+      url: /posts/new-features/secure-score-ai-readiness-tpm-vbs-hvci-laps/
+      page: /posts/New-Features/secure-score-ai-readiness-tpm-vbs-hvci-laps
+    - title: 'Prompt Injection μέσω email: Το Defender for Office 365 μπαίνει σε έναν πόλεμο που δεν ξέραμε ότι ξεκίνησε, τι φέρνει το MC1422060'
+      url: /posts/new-features/prompt-injection-protection-defender-office-365/
+      page: /posts/New-Features/entra-defender-prompt-injection-email
+    - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
+      url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-3-internet-access-profile
+    - title: 'Global Secure Access Μέρος 2: Το Microsoft traffic profile, η προεπιλεγμένη πύλη για Microsoft 365'
+      url: /posts/global-secure-access/global-secure-access-meros-2-microsoft-traffic-profile/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-2-microsoft-traffic-profile
+    - title: 'Microsoft Entra Connect: Η προθεσμία της 30ής Σεπτεμβρίου 2026 που δεν είναι ένα ακόμα advisory'
+      url: /posts/entra-connect-mandatory-upgrade-2026/
+      page: /posts/entra-connect-mandatory-upgrade-2026
+    - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
+      url: /posts/generally-available/cross-tenant-message-recall-exchange-online/
+      page: /posts/Generally-Available/cross-tenant-message-recall-exchange-online
+    - title: 'Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft'
+      url: /posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-1-ti-einai-sse
+    - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
+      url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
+      page: /posts/Global-Secure-Access/global-secure-access-client-windows-update-auto-upgrade
+    - title: 'Azure και Entra: Τι πραγματικά είναι, τι τα ενώνει και τι τα διαφοροποιεί (το θεμέλιο που παραλείπουμε)'
+      url: /posts/azure-kai-entra-to-themelio/
+      page: /posts/azure-kai-entra-to-themelio
+    - title: 'Microsoft Entra Tenant Governance: Το «GA» που δεν είναι πλήρως GA, και γιατί αυτό έχει σημασία για το compliance σου'
+      url: /posts/entra-tenant-governance-ga/
+      page: /posts/entra-tenant-governance-ga
+    - title: 'Global Secure Access MCP Firewall: Πώς βάζεις Zero Trust σε κάτι που δεν μπορούσες καν να δεις μέχρι χθες'
+      url: /posts/gsa-mcp-firewall/
+      page: /posts/gsa-mcp-firewall
+    - title: 'Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει'
+      url: /posts/entra-token-protection-bulk-enrollment-limitation/
+      page: /posts/entra-token-protection-bulk-enrollment-limitation
+    - title: 'Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)'
+      url: /posts/new-features/mdo-encrypted-attachment-protection-mc1440701/
+      page: /posts/New-Features/mdo-encrypted-attachment-protection-mc1440701
+    - title: 'Preview: AD Group Enforcement στο Entra Cloud Sync'
+      url: /posts/previews/ad-group-enforcement-cloud-sync/
+      page: /posts/Previews/ad-group-enforcement-cloud-sync
+    - title: 'Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)'
+      url: /posts/microsoft-entra-architecture-guide-defender/
+      page: /posts/microsoft-entra-architecture-guide-defender
+    - title: 'Preview: Ο Vulnerability Remediation Agent στο Microsoft Intune'
+      url: /posts/previews/vulnerability-remediation-agent-intune/
+      page: /posts/Previews/vulnerability-remediation-agent-intune
+    - title: 'Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ'
+      url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+      page: /posts/microsoft-defender-oikogeneia-praktikos-odigos
+    - title: 'Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις, πόσα SCU και πότε πληρώνεις'
+      url: /posts/security-copilot-sto-microsoft-365-e5-scu/
+      page: /posts/security-copilot-sto-microsoft-365-e5-scu
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+      page: /posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads
+    - title: 'Έλεγχος domain: SPF, DKIM, DMARC με Microsoft 365'
+      url: /elegxos-domain/
+      page: /elegxos-domain
   - code: 32.1.γ
     scope: Υπεύθυνος και εκτελών
     requirement: Δυνατότητα αποκατάστασης της διαθεσιμότητας και της πρόσβασης στα δεδομένα σε εύθετο χρόνο σε περίπτωση φυσικού ή τεχνικού συμβάντος.
@@ -496,6 +577,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Πόσο κοστίζει ένα περιστατικό; Υπολογιστής για διακοπή λειτουργίας και ransomware'
+      url: /kostos-peristatikou/
+      page: /kostos-peristatikou
   - code: 32.1.δ
     scope: Υπεύθυνος και εκτελών
     requirement: Διαδικασία για την τακτική δοκιμή, εκτίμηση και αξιολόγηση της αποτελεσματικότητας των τεχνικών και οργανωτικών μέτρων για τη διασφάλιση της ασφάλειας της επεξεργασίας.
@@ -534,6 +618,33 @@ articles:
     - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
       url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
       page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
+    - title: 'Defender for Identity: Το νέο health alert για απούσα δικτυακή κίνηση domain controller, και γιατί δεν πρέπει να το προσπεράσεις'
+      url: /posts/new-features/defender-identity-health-alert-network-traffic/
+      page: /posts/New-Features/defender-identity-health-alert-network-traffic
+    - title: 'Defender for Identity: Το νέο health issue που σου λέει πότε ''τυφλώνεσαι'' σε έναν Domain Controller'
+      url: /posts/new-features/defender-for-identity-health-issue-missing-windows-events/
+      page: /posts/New-Features/defender-for-identity-health-issue-missing-windows-events
+    - title: 'Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging'
+      url: /posts/teams-security-detection-report/
+      page: /posts/teams-security-detection-report
+    - title: 'Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity'
+      url: /posts/generally-available/investigate-ad-domain-defender-identity/
+      page: /posts/Generally-Available/investigate-ad-domain-defender-identity
+    - title: 'Microsoft Secure Score Μέρος 1: Πώς διαβάζεις ένα recommendation'
+      url: /posts/secure-score-grc-part-1-anatomy/
+      page: /posts/secure-score-grc-part-1-anatomy
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
+    - title: 'Microsoft Defender Μέρος 3: Microsoft Defender for Cloud (αυτό που είναι πραγματικά διαφορετικό)'
+      url: /posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/
+      page: /posts/Defender-Demystified-Series/defender-demystified-part-3-defender-for-cloud
+    - title: 'Microsoft Secure Score Μέρος 2: Μέσα στο οικοσύστημα του Defender'
+      url: /posts/secure-score-grc-part-2-ecosystem/
+      page: /posts/secure-score-grc-part-2-ecosystem
+    - title: 'Microsoft Secure Score Μέρος 3: Καθημερινή λειτουργία και ISO 27001'
+      url: /posts/secure-score-grc-part-3-operations/
+      page: /posts/secure-score-grc-part-3-operations
   - code: '32.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Το κατάλληλο επίπεδο ασφάλειας εκτιμάται με βάση τους κινδύνους της επεξεργασίας, ιδίως από τυχαία ή παράνομη καταστροφή, απώλεια, αλλοίωση, άνευ αδείας κοινολόγηση ή πρόσβαση.
@@ -570,6 +681,12 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'Localized Mark and Notify στο Microsoft Defender for Office 365: Γιατί ένα notification email στη σωστή γλώσσα είναι θέμα Security Awareness (MC1387578)'
+      url: /posts/generally-available/mdo-mark-and-notify-localization/
+      page: /posts/Generally-Available/mdo-mark-and-notify-localization
+    - title: 'Report a Call & Report a Meeting στο Microsoft Teams: Νέα δυνατότητα αναφοράς ασφαλείας για χρήστες και διαχειριστές'
+      url: /posts/new-features/report-a-call-report-a-meeting-teams-security-reporting/
+      page: /posts/New-Features/report-a-call-report-a-meeting-teams-security-reporting
 - number: 33
   title: Γνωστοποίηση παραβίασης δεδομένων προσωπικού χαρακτήρα στην εποπτική αρχή
   requirements:
@@ -614,6 +731,12 @@ articles:
     - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
       url: /poios-xtypaei-tin-porta-sou/
       page: /poios-xtypaei-tin-porta-sou
+    - title: 'Defender XDR: Μία ενέργεια, όλοι οι λογαριασμοί, το unified response actions για ταυτότητες έρχεται τον Οκτώβριο, τι φέρνει το MC1461704'
+      url: /posts/new-features/defender-xdr-unified-response-actions-identity-accounts/
+      page: /posts/New-Features/defender-xdr-unified-response-actions-identity-accounts
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: '33.2'
     scope: Υπεύθυνος και εκτελών
     requirement: Ο εκτελών ενημερώνει τον υπεύθυνο χωρίς αδικαιολόγητη καθυστέρηση μόλις αντιληφθεί παραβίαση δεδομένων προσωπικού χαρακτήρα.
@@ -645,6 +768,9 @@ articles:
     posts:
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: '33.5'
     scope: Υπεύθυνος επεξεργασίας
     requirement: Ο υπεύθυνος τεκμηριώνει κάθε παραβίαση, με τα γεγονότα, τις συνέπειες και τα διορθωτικά μέτρα, ώστε η εποπτική αρχή να μπορεί να ελέγξει τη συμμόρφωση.
@@ -662,6 +788,9 @@ articles:
     posts:
     - title: 'Live Webinar: Μάθε το Microsoft Defender XDR σε 60 λεπτά'
       url: /posts/microsoft-defender-xdr-full-tutorial-ciso/
+    - title: 'Defender XDR: Το Timeline tab της ταυτότητας γίνεται πραγματικά ενιαίο, τι φέρνει το MC1461705'
+      url: /posts/new-features/defender-xdr-unified-identity-timeline/
+      page: /posts/New-Features/defender-xdr-unified-identity-timeline
 - number: 34
   title: Ανακοίνωση παραβίασης δεδομένων προσωπικού χαρακτήρα στο υποκείμενο των δεδομένων
   requirements:

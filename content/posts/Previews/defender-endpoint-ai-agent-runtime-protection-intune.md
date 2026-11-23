@@ -26,6 +26,8 @@ description: "Το Defender for Endpoint ελέγχει πλέον τα prompts,
 seoDescription: "Το Defender for Endpoint μπλοκάρει prompt injection στους τοπικούς AI agents των Windows. Ρύθμιση από Intune, Defender portal ή PowerShell, σε Preview."
 summary: "Οι coding agents και τα AI εργαλεία που τρέχουν στους υπολογιστές των χρηστών διαβάζουν περιεχόμενο που δεν ελέγχεις. Το Defender for Endpoint αποκτά προστασία runtime για αυτούς, σε Preview. Δες ποιους agents καλύπτει, πώς το ρυθμίζεις και γιατί ξεκινάς με Audit."
 categories: ["Endpoint & Device"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1040", "M1054"]
 releases:
   - "preview"
 ShowToc: true

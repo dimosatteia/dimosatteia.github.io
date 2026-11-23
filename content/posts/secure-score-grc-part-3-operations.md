@@ -32,6 +32,8 @@ author: "Dimosthenis Atteia"
 description: "Πάνω από 250 recommendations, μία ομάδα. Πώς ιεραρχείς, εφαρμόζεις, αντιστοιχίζεις σε ISO 27001 και ΚΥΑ 1689/2025 και μαζεύεις τεκμήρια, χωρίς να καείς."
 summary: "Μέρος 3 της σειράς για το Microsoft Secure Score. Πώς το δουλεύεις στην καθημερινότητα: ιεράρχηση των recommendations, διαχείριση αλλαγών που δεν σπάει την παραγωγή, αντιστοίχιση σε ISO 27001, Οδηγία NIS2 και ΚΥΑ 1689/2025 με το Microsoft Purview Compliance Manager, τεκμήρια για τους ελεγκτές και αναφορά στη διοίκηση."
 categories: ["GRC & Compliance"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1047", "M1054"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
 TocOpen: false
@@ -534,6 +536,8 @@ verification:
 Μέχρι τότε, ο καλύτερος τρόπος να μάθεις είναι να **κάνεις**. Άνοιξε το Microsoft Secure Score. Διάλεξε ένα recommendation. Εφάρμοσέ το. Θα εκπλαγείς πόσα θα μάθεις την πρώτη εβδομάδα.
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[GDPR](/gdpr/)** αντιστοιχεί στα [5.2](/gdpr/#5-2) και [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

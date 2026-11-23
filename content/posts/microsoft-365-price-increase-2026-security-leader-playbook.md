@@ -34,6 +34,8 @@ description: "Τι σημαίνει στην πράξη η αύξηση τιμώ
 seoDescription: "Η αύξηση τιμών του Microsoft 365 από 1η Ιουλίου 2026 στην πράξη: τι άλλαξε ανά πλάνο, πού κρύβεται το πραγματικό κόστος και τι να κάνεις πριν την ανανέωση."
 summary: "Η Microsoft λέει ότι είναι 'αναβάθμιση αξίας'. Στην πράξη είναι αύξηση τιμών από 5% έως 43%, με άνιση κατανομή ανά πλάνο και ένα κρυφό στοίχημα σε όσους έχουν Enterprise Agreement. Εδώ είναι τι πραγματικά αλλάζει, τι κερδίζεις δωρεάν στο E3, τι κοστίζει το Security Copilot στην πράξη, και ένα πρακτικό πλάνο για να μην πληρώσεις παραπάνω απ' όσο χρειάζεται."
 categories: ["GRC & Compliance"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1032", "M1049", "M1051"]
 series:
 ShowToc: true
 TocOpen: false
@@ -44,6 +46,27 @@ cover:
   caption: "Microsoft 365 2026: Στρατηγική Αξιολόγηση και Οικονομικός Σχεδιασμός"
 ShowReadingTime: true
 ShowWordCount: true
+verification:
+  - feature: "Αύξηση τιμών Microsoft 365 και Office 365 από 1/7/2026 (E3, E5, Office 365 E3, F1, F3, Business Basic, Business Standard, Apps for business)"
+    status: "Ισχύει"
+    license: "Λιανικές τιμές USD, ανά χρήστη/μήνα"
+    source: "https://www.microsoft.com/en-us/licensing/news/2026-m365-packaging-pricing-updates"
+    verified: 2026-11-22
+  - feature: "Microsoft 365 E3: Defender for Office 365 Plan 1, Intune Plan 2, Remote Help, Advanced Analytics"
+    status: "Generally Available"
+    license: "Microsoft 365 E3"
+    source: "https://www.microsoft.com/en-us/licensing/news/2026-m365-packaging-pricing-updates"
+    verified: 2026-11-22
+  - feature: "Microsoft 365 E5: Security Copilot με 400 SCUs/μήνα ανά 1.000 άδειες (μέγιστο 10.000)"
+    status: "Generally Available"
+    license: "Microsoft 365 E5"
+    source: "https://www.microsoft.com/en-us/licensing/news/2026-m365-packaging-pricing-updates-faq"
+    verified: 2026-11-22
+  - feature: "Passkeys by default και απόσυρση των SMS και voice που παρέχει η Microsoft"
+    status: "Generally Available"
+    license: "Όλοι οι tenants του Microsoft Entra ID"
+    source: "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-sms-voice-retirement"
+    verified: 2026-11-22
 ---
 
 ## Ας το πούμε απλά
@@ -76,7 +99,9 @@ ShowWordCount: true
 
 - **Microsoft 365 F1 (χωρίς Teams): +43%** ($1.75 → $2.50)
 - **Microsoft 365 F1 (με Teams): +33%** ($2.25 → $3.00)
+- **Microsoft 365 F3: +25%** ($8.00 → $10.00)
 - **Microsoft 365 Apps for Business: +21%**
+- **Microsoft 365 Business Basic: +16%** ($6.00 → $7.00)
 - **Office 365 E3: +13%** ($23 → $26)
 - **Microsoft 365 Business Standard: +12%**
 - **Microsoft 365 E3: +8%** ($36 → $39)
@@ -126,7 +151,7 @@ ShowWordCount: true
 > 📷 **Εικόνα 6: SMS και synced passkeys μένουν εκτεθειμένα σε AiTM. Τα device-bound passkeys με attestation κλείνουν αυτή την τρύπα.**
 
 - **Το πρόβλημα:** SMS και synced passkeys εξακολουθούν να είναι ευάλωτα σε επιθέσεις τύπου Adversary-in-the-Middle (AiTM) και σε fragmenting attacks, που μπορούν να καταλήξουν κατευθείαν σε παραβίαση.
-- **Η λύση:** μέχρι το τέλος της χρονιάς, η αυθεντικοποίηση μέσω SMS και τηλεφωνικής κλήσης καταργείται. Τα device-bound passkeys έχουν attestation, δηλαδή μια κρυπτογραφική απόδειξη ταυτότητας που δεν μπορεί κάποιος να την "κλωνοποιήσει" ή να την ξαναχρησιμοποιήσει, σε αντίθεση με τα synced passkeys που περνάνε μέσα από οικοσυστήματα τρίτων όπως το Apple Keychain.
+- **Η λύση:** από την 1η Σεπτεμβρίου 2026 τα passkeys είναι η προεπιλογή στο Microsoft Entra ID. Από την 1η Φεβρουαρίου 2027 η Microsoft σταματά να παρέχει η ίδια SMS και τηλεφωνική κλήση για αυθεντικοποίηση (για τους Global Administrators και τους external users την 1η Ιουλίου 2027). Όποιος τα χρειάζεται ακόμη θα πρέπει να βάλει telephony provider μέσω του Microsoft Security Store. Όλο το χρονοδιάγραμμα είναι στο [Τέλος στα SMS/Voice MFA](/posts/passkeys-by-default-telos-sms-voice-mfa/). Τα device-bound passkeys έχουν attestation, δηλαδή μια κρυπτογραφική απόδειξη ταυτότητας που δεν μπορεί κάποιος να την "κλωνοποιήσει" ή να την ξαναχρησιμοποιήσει, σε αντίθεση με τα synced passkeys που περνάνε μέσα από οικοσυστήματα τρίτων όπως το Apple Keychain.
 
 Αν έχεις ακόμα SMS ή φωνητική κλήση σαν εναλλακτικό MFA κάπου στο tenant σου, θεώρησε αυτό το σημάδι να το κλείσεις επιτέλους. Δεν είναι απλά μια γραμμή στο licensing, είναι η αφορμή να τελειώσει μια δουλειά που μάλλον έπρεπε να έχεις κάνει ήδη.
 
@@ -150,7 +175,7 @@ ShowWordCount: true
 [![Σύγκριση δύο πλαισίων για τις αλλαγές Microsoft 365 Business και Frontline: αύξηση αποθηκευτικού χώρου mailbox στα 100GB και προστασία URL κατά τη στιγμή του κλικ στο Outlook για πλάνα Business, μαζί με την επαναξιολόγηση Frontline F1 έναντι F3 λόγω της αύξησης τιμής 43 τοις εκατό στο F1 χωρίς Teams](/images/M365Strategy2026/m365-2026-business-frontline-changes.webp)](/images/M365Strategy2026/m365-2026-business-frontline-changes.webp)
 > 📷 **Εικόνα 8: Τα Business παίρνουν μεγαλύτερο mailbox και προστασία από phishing, το Frontline F1 σε βάζει να ξανασκεφτείς αν συμφέρει το Teams.**
 
-- **Business Basic/Standard/Premium:** το mailbox πάει στα **100GB** (από 50GB) στο Premium, έρχεται **προστασία URL τη στιγμή του κλικ** στο Outlook (κάτι που έλειπε και ήταν πραγματικό ρίσκο για phishing), και το Copilot Chat παίρνει AI ενισχύσεις χωρίς να χρειάζεσαι το πλήρες, ακριβό πακέτο των $30.
+- **Business Basic/Standard/Premium:** το mailbox πάει στα **100GB** (από 50GB) και στα τρία, έρχεται **προστασία URL τη στιγμή του κλικ** στο Outlook (κάτι που έλειπε και ήταν πραγματικό ρίσκο για phishing), και το Copilot Chat παίρνει AI ενισχύσεις χωρίς να χρειάζεσαι το πλήρες, ακριβό πακέτο των $30.
 - **Frontline, ξανασκέψου το:** το +43% στο F1 χωρίς Teams είναι αρκετά μεγάλο για να το κοιτάξεις τώρα. Αν οι άνθρωποί σου στο Frontline χρησιμοποιούν Teams έστω και σπάνια, το F1 με Teams (+33%, στα $3.00) βγαίνει πλέον πιο λογικό, γιατί η διαφορά τιμής μίκρυνε και δεν αξίζει να "τσιγκουνεύεσαι" άδειες.
 
 ## Παλιά και νέα λογική αδειοδότησης, δίπλα-δίπλα
@@ -207,7 +232,11 @@ ShowWordCount: true
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις για νέα άρθρα, ή κάνε εγγραφή μέσω RSS στην κορυφή της σελίδας.
 
-## Επίσημοι πόροι Microsoft
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [4.β](/kya-1689-2025/#4-β) και [12.1.γ](/kya-1689-2025/#12-1-γ), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [20.1](/nis2/#20-1) και [21.2.δ](/nis2/#21-2-δ) και στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.4](/iso-27001/#A-5-4) και [A.5.19](/iso-27001/#A-5-19). Ο καθένας έχει checklist σε Excel.
+
+## Πηγές και επαλήθευση {#last-verified}
+
+{{< verification >}}
 
 - [Microsoft 365 Packaging and Pricing Updates](https://www.microsoft.com/en-us/licensing/news/2026-m365-packaging-pricing-updates)
 - [Microsoft 365 Packaging and Pricing Updates — Public FAQ](https://www.microsoft.com/en-us/licensing/news/2026-m365-packaging-pricing-updates-faq)

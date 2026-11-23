@@ -30,6 +30,8 @@ description: "Πρώτο μέρος σειράς άρθρων για το Micros
 seoDescription: "Μέρος 1 της σειράς για το Microsoft Global Secure Access: τι είναι το Security Service Edge, πώς το υλοποιεί η Microsoft στο Entra ID και τι σημαίνει για NIS2."
 summary: "Πριν μπούμε σε profiles, policies και demos, αξίζει να σταθούμε σε ένα πιο βασικό ερώτημα: τι ακριβώς είναι το SSE, ποιος το εφηύρε, και γιατί η Microsoft επέλεξε να το χτίσει πάνω στο Entra ID αντί να φτιάξει ένα ξεχωριστό, παράλληλο σύστημα. Αυτό το πρώτο μέρος είναι η βάση πάνω στην οποία θα στηθούν τα επόμενα τέσσερα."
 categories: ["Network & SSE"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1133", "T1189", "M1037"]
 series: ["Global Secure Access"]
 ShowToc: true
 TocOpen: false
@@ -122,6 +124,8 @@ verification:
 - [**Μέρος 5**](https://thecybersec.gr/posts/global-secure-access/global-secure-access-meros-5-conditional-access/): το Conditional Access σε βάθος, με συγκεκριμένα παραδείγματα πολιτικών πάνω στο Internet access profile, block χωρίς client, απαίτηση compliant device, και web content filtering μέσω security profile
 
 Κάθε μέρος θα έχει τα δικά του screenshots από το δικό μου tenant, τα δικά του πρακτικά βήματα, και τη δική του ενότητα NIS2/ISO 27001. Αν τρέχεις ήδη κάποιο κομμάτι του Global Secure Access στον οργανισμό σου, ή σκέφτεσαι να ξεκινήσεις, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [19.β](/kya-1689-2025/#19-β) και [19.ζ](/kya-1689-2025/#19-ζ), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.θ](/nis2/#21-2-θ), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στο [A.8.20](/iso-27001/#A-8-20) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

@@ -23,6 +23,7 @@ author: "Dimosthenis Atteia"
 description: "Εβδομάδα 41/2026: τέλος του MemberOf στο Entra στις 3 Νοεμβρίου, προστασία από QR codes στο Teams, αυτόματο Identity inventory στο Defender for Cloud Apps."
 summary: "Ο τελεστής MemberOf του Entra σταματά στις 3 Νοεμβρίου 2026, το Teams αποκτά δύο προστασίες για QR codes και το Defender for Cloud Apps ενεργοποιεί μόνο του τη σύνδεση με το Identity inventory."
 categories: ["Security Operations & XDR"]
+mitre: ["T1566.001", "T1566.002", "T1204.002", "M1021", "M1054"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
@@ -148,6 +149,8 @@ verification:
 - **[16.α](/kya-1689-2025/#16-α), διαχείριση αλλαγών:** η απόσυρση του Targeted Release αλλάζει τον τρόπο που δοκιμάζεις τις αλλαγές του Microsoft 365 πριν φτάσουν σε όλους.
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
+
+Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** οι αλλαγές της εβδομάδας αντιστοιχούν στα [21.2.ε](/nis2/#21-2-ε), [21.2.ζ](/nis2/#21-2-ζ) και [21.2.θ](/nis2/#21-2-θ). Στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχούν στα [A.5.9](/iso-27001/#A-5-9), [A.5.18](/iso-27001/#A-5-18), [A.8.7](/iso-27001/#A-8-7), [A.8.9](/iso-27001/#A-8-9), [A.8.23](/iso-27001/#A-8-23) και [A.8.32](/iso-27001/#A-8-32), και στον **[GDPR](/gdpr/)** στα [25.1](/gdpr/#25-1), [32.1.β](/gdpr/#32-1-β) και [32.4](/gdpr/#32-4). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

@@ -23,6 +23,7 @@ author: "Dimosthenis Atteia"
 description: "Εβδομάδα 44/2026: ο Security Operator χάνει τις πολιτικές του MDO, νέα ενέργεια Move to quarantine, πίνακας MessageContents για Teams, τέλος του AL2 ARM64."
 summary: "Από τις αρχές Νοεμβρίου ο ρόλος Security Operator δεν θα διαχειρίζεται πια τα threat policies και το Tenant Allow/Block List του Defender for Office 365 στο Unified RBAC, και έρχεται νέα ενέργεια για μεταφορά email σε quarantine."
 categories: ["Security Operations & XDR"]
+mitre: ["T1566", "T1534", "M1026", "M1049", "M1051"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
@@ -138,6 +139,8 @@ verification:
 - **[17.γ](/kya-1689-2025/#17-γ), ενημερώσεις και τεκμηριωμένες εξαιρέσεις:** servers με AL2 σε ARM64 που μένουν σε παγωμένη έκδοση του Defender for Endpoint είναι εξαίρεση που πρέπει να καταγραφεί με αντισταθμιστικά μέτρα.
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
+
+Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** οι αλλαγές της εβδομάδας αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.ε](/nis2/#21-2-ε), [21.2.ζ](/nis2/#21-2-ζ) και [21.2.θ](/nis2/#21-2-θ). Στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχούν στα [A.5.15](/iso-27001/#A-5-15), [A.5.18](/iso-27001/#A-5-18), [A.5.26](/iso-27001/#A-5-26), [A.8.2](/iso-27001/#A-8-2), [A.8.7](/iso-27001/#A-8-7), [A.8.8](/iso-27001/#A-8-8), [A.8.15](/iso-27001/#A-8-15) και [A.8.16](/iso-27001/#A-8-16), και στον **[GDPR](/gdpr/)** στα [32.1.β](/gdpr/#32-1-β) και [32.4](/gdpr/#32-4). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

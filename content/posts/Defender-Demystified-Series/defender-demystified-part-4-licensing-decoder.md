@@ -31,6 +31,8 @@ description: "Ποιο πλάνο Microsoft 365 περιλαμβάνει ποι�
 seoDescription: "Ποιο πλάνο Microsoft 365 περιλαμβάνει ποιο Defender; Business Premium, E3 και E5, τρία ρεαλιστικά σενάρια, τιμές 2026 και μια πρακτική ροή απόφασης."
 summary: "Μέρος 4 της σειράς Microsoft Defender Demystified. Οδηγός αδειοδότησης για τα πλάνα Microsoft 365 του 2026, μαζί με τα νέα add-ons Defender Suite, την ενημέρωση τιμών του Ιουλίου 2026 και τρία σενάρια (μικρή, μεσαία, μεγάλη επιχείρηση) για τη σωστή αγορά."
 categories: ["GRC & Compliance"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1049", "M1040", "M1047"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false

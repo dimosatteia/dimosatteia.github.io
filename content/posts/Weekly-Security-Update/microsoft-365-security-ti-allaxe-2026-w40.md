@@ -24,6 +24,7 @@ author: "Dimosthenis Atteia"
 description: "Εβδομάδα 40/2026: αυτόματη ενεργοποίηση sensor στο Defender for Identity, Purview DLP στο δίκτυο μέσω Global Secure Access, προστασία AI agents από το Intune."
 summary: "Το Defender for Identity ενεργοποιεί πλέον μόνο του τον sensor v3.x και το Windows auditing, το Purview DLP φτάνει στο επίπεδο του δικτύου και το Intune αποκτά ρυθμίσεις προστασίας για AI agents."
 categories: ["Security Operations & XDR"]
+mitre: ["T1199", "T1213.002", "M1047", "M1057"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
@@ -175,6 +176,8 @@ verification:
 - **[12.2.α](/kya-1689-2025/#12-2-α), πρόσβαση τρίτων:** η μετάβαση των εξωτερικών χρηστών του SharePoint στο Microsoft Entra B2B φέρνει την πρόσβασή τους κάτω από το Conditional Access για external users, και τις καταγραφές της στα audit logs του Entra.
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
+
+Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** οι αλλαγές της εβδομάδας αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.δ](/nis2/#21-2-δ) και [21.2.θ](/nis2/#21-2-θ). Στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχούν στα [A.5.10](/iso-27001/#A-5-10), [A.5.15](/iso-27001/#A-5-15), [A.5.19](/iso-27001/#A-5-19), [A.8.12](/iso-27001/#A-8-12), [A.8.15](/iso-27001/#A-8-15) και [A.8.16](/iso-27001/#A-8-16), και στον **[GDPR](/gdpr/)** στα [5.1.στ](/gdpr/#5-1-στ), [28.1](/gdpr/#28-1) και [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

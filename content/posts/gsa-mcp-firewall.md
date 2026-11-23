@@ -31,6 +31,8 @@ description: "Ανάλυση του νέου Global Secure Access MCP firewall �
 seoDescription: "Το νέο MCP firewall του Global Secure Access: ο πρώτος network-based έλεγχος για το Model Context Protocol και γιατί αφορά κάθε CISO με AI agents."
 summary: "Οι AI agents στον οργανισμό σου ήδη μιλάνε με MCP servers, ό,τι κι αν λέει το Shadow IT policy σου. Το Global Secure Access MCP firewall είναι το πρώτο εργαλείο που σου δίνει πραγματική ορατότητα και έλεγχο πάνω σε αυτή την κίνηση, σε επίπεδο tool, resource και prompt template, όχι απλώς σε επίπεδο URL."
 categories: ["Network & SSE", "AI Security"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1071.001", "M1037"]
 releases:
   - "preview"   # ← αυτό το στέλνει στο /releases/preview/
 ShowToc: true
@@ -135,6 +137,8 @@ verification:
 Αν τρέχεις ήδη Global Secure Access στον οργανισμό σου, η πιο χρήσιμη πρώτη κίνηση δεν είναι να φτιάξεις policy, είναι να ανοίξεις τα Generative AI Insights και να δεις τι MCP κίνηση υπάρχει ήδη εκεί, πιθανότατα περισσότερη από όση περιμένεις.
 
 Αν έχεις ήδη δοκιμάσει το MCP firewall ή αντιμετωπίζεις παρόμοιο ζήτημα ορατότητας πάνω σε AI agents στον οργανισμό σου, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στο [12.1.γ](/kya-1689-2025/#12-1-γ), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.2.δ](/nis2/#21-2-δ), [21.3](/nis2/#21-3) και [24.1](/nis2/#24-1), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.21](/iso-27001/#A-5-21) και [A.5.23](/iso-27001/#A-5-23) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

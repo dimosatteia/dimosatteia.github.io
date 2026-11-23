@@ -29,9 +29,11 @@ tags:
   - Cyber GRC
 author: "Dimosthenis Atteia"
 description: "Το τελευταίο άρθρο της σειράς Microsoft Defender Demystified. Μια πρακτική περιήγηση στο Microsoft Defender portal στο security.microsoft.com: κάθε βασική ενότητα, πού ζει πλέον το Microsoft Secure Score, το ενιαίο Microsoft Sentinel και ένα πρόγραμμα για την πρώτη ώρα."
-seoDescription: "Πρακτική περιήγηση στο Microsoft Defender portal: κάθε βασική ενότητα, πού ζει το Secure Score, το ενιαίο Microsoft Sentinel και ένα πρόγραμμα για την πρώτη ώρα."
+seoDescription: "Πρακτική περιήγηση στο Microsoft Defender portal: κάθε βασική ενότητα, πού ζει το Secure Score, το ενιαίο Microsoft Sentinel και πρόγραμμα για την πρώτη ώρα."
 summary: "Το Μέρος 5 κλείνει τη σειρά. Περιήγηση στο ενιαίο Microsoft Defender portal: κάθε ενότητα του μενού, πού βρίσκεται πλέον το Microsoft Secure Score μέσα στο Exposure management, πώς ρυθμίζεις τους σωστούς ρόλους, ένα απλό KQL query για δοκιμή και ένα πρόγραμμα 60 λεπτών για την πρώτη φορά."
 categories: ["Security Operations & XDR"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1047"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false

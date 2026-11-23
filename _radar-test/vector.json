@@ -1,0 +1,1 @@
+﻿{"success":true,"errors":[],"result":{"summary_0":{"SYN Flood":"99.165597","TCP Flood":"0.834403"},"meta":{"dateRange":[{"startTime":"2026-10-19T15:00:00Z","endTime":"2026-10-20T15:00:00Z"}],"confidenceInfo":{"level":null,"annotations":[]},"normalization":"PERCENTAGE","lastUpdated":"2026-10-20T13:15:00Z","units":[{"name":"*","value":"bytes"}]}}}

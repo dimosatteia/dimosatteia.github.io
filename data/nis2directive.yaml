@@ -45,6 +45,9 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου'
+      url: /posts/microsoft-365-price-increase-2026-security-leader-playbook/
+      page: /posts/microsoft-365-price-increase-2026-security-leader-playbook
   - code: '20.2'
     scope: Βασικές και σημαντικές
     requirement: Τα μέλη της ανώτατης διοίκησης υποχρεούνται να παρακολουθούν εκπαίδευση. Οι οντότητες ενθαρρύνονται να προσφέρουν παρόμοια κατάρτιση στους υπαλλήλους τους σε τακτική βάση, ώστε να εντοπίζουν τους κινδύνους και να αξιολογούν τις πρακτικές διαχείρισης κινδύνων.
@@ -93,6 +96,9 @@ articles:
     - &id002
       title: 'Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2'
       url: /posts/secure-score-defender-praktikos-odigos/
+    - title: 'Ποια άδεια Microsoft 365 χρειάζομαι για την ΚΥΑ 1689/2025 και την NIS2;'
+      url: /poia-adeia-microsoft-365/
+      page: /poia-adeia-microsoft-365
   - code: 21.2.α
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές για την ανάλυση κινδύνου και την ασφάλεια των πληροφοριακών συστημάτων.
@@ -163,6 +169,18 @@ articles:
     - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
       url: /poios-xtypaei-tin-porta-sou/
       page: /poios-xtypaei-tin-porta-sou
+    - title: 'Security Detection Report στο Teams Admin Center (Roadmap ID 560702): Τι αλλάζει πραγματικά για την ασφάλεια messaging'
+      url: /posts/teams-security-detection-report/
+      page: /posts/teams-security-detection-report
+    - title: 'Security Copilot μέσα στο Microsoft 365 E5: τι παίρνεις, πόσα SCU και πότε πληρώνεις'
+      url: /posts/security-copilot-sto-microsoft-365-e5-scu/
+      page: /posts/security-copilot-sto-microsoft-365-e5-scu
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+      page: /posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads
   - code: 21.2.γ
     scope: Βασικές και σημαντικές
     requirement: Επιχειρησιακή συνέχεια, όπως διαχείριση αντιγράφων ασφαλείας και αποκατάσταση έπειτα από καταστροφή, και διαχείριση των κρίσεων.
@@ -181,6 +199,9 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Πόσο κοστίζει ένα περιστατικό; Υπολογιστής για διακοπή λειτουργίας και ransomware'
+      url: /kostos-peristatikou/
+      page: /kostos-peristatikou
   - code: 21.2.δ
     scope: Βασικές και σημαντικές
     requirement: Ασφάλεια της αλυσίδας εφοδιασμού, συμπεριλαμβανομένων των σχετικών με την ασφάλεια πτυχών που αφορούν τις σχέσεις μεταξύ κάθε οντότητας και των άμεσων προμηθευτών ή παρόχων υπηρεσιών της.
@@ -213,6 +234,12 @@ articles:
     - title: 'Η αλυσίδα μιας επίθεσης σε 3D: πού τη σταματά το Microsoft Defender'
       url: /posts/alysida-epithesis-3d-microsoft-defender/
       page: /posts/alysida-epithesis-3d-microsoft-defender
+    - title: 'Cross-Tenant Message Recall: Όταν ένας «έμπιστος» tenant μπορεί να διαγράψει email από τα inbox των χρηστών σου (MC1423106)'
+      url: /posts/generally-available/cross-tenant-message-recall-exchange-online/
+      page: /posts/Generally-Available/cross-tenant-message-recall-exchange-online
+    - title: 'Αύξηση Τιμών Microsoft 365 2026: Οδηγός Στρατηγικής για Security Leaders ενόψει της 1ης Ιουλίου'
+      url: /posts/microsoft-365-price-increase-2026-security-leader-playbook/
+      page: /posts/microsoft-365-price-increase-2026-security-leader-playbook
   - code: 21.2.ε
     scope: Βασικές και σημαντικές
     requirement: Ασφάλεια στην απόκτηση, ανάπτυξη και συντήρηση συστημάτων δικτύου και πληροφοριών, συμπεριλαμβανομένου του χειρισμού και της γνωστοποίησης ευπαθειών.
@@ -259,6 +286,15 @@ articles:
     - title: 'Microsoft Defender for Cloud: Μια πρακτική περιήγηση στο CNAPP της Microsoft'
       url: /posts/microsoft-defender-up-close-series/microsoft-defender-for-cloud-deep-dive/
       page: /posts/Microsoft-Defender-Up-Close-Series/microsoft-defender-for-cloud-deep-dive
+    - title: 'Global Secure Access client: από τον Νοέμβριο το Windows Update αναλαμβάνει τα upgrades'
+      url: /posts/global-secure-access/global-secure-access-client-windows-update-auto-upgrade/
+      page: /posts/Global-Secure-Access/global-secure-access-client-windows-update-auto-upgrade
+    - title: 'Project Perception: Το Agentic Security System της Microsoft με Red, Blue & Green AI Agents. Τι είναι και τι σημαίνει για το SOC σου.'
+      url: /posts/previews/project-perception-agentic-security-explained/
+      page: /posts/Previews/project-perception-agentic-security-explained
+    - title: 'Microsoft Defender Μέρος 3: Microsoft Defender for Cloud (αυτό που είναι πραγματικά διαφορετικό)'
+      url: /posts/defender-demystified-series/defender-demystified-part-3-defender-for-cloud/
+      page: /posts/Defender-Demystified-Series/defender-demystified-part-3-defender-for-cloud
   - code: 21.2.στ
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες για την αξιολόγηση της αποτελεσματικότητας των μέτρων διαχείρισης κινδύνων στον τομέα της κυβερνοασφάλειας.
@@ -286,6 +322,12 @@ articles:
     - title: 'New Feature: Οι συνθήκες παραληπτών στις πολιτικές του Defender for Office 365 περνούν από AND σε OR, τι φέρνει το MC1546447'
       url: /posts/new-features/mdo-recipient-inclusion-logic-match-any/
       page: /posts/New-Features/mdo-recipient-inclusion-logic-match-any
+    - title: 'Generally Available: Η νέα σελίδα Investigate Domain στο Microsoft Defender for Identity'
+      url: /posts/generally-available/investigate-ad-domain-defender-identity/
+      page: /posts/Generally-Available/investigate-ad-domain-defender-identity
+    - title: 'Microsoft Secure Score Μέρος 2: Μέσα στο οικοσύστημα του Defender'
+      url: /posts/secure-score-grc-part-2-ecosystem/
+      page: /posts/secure-score-grc-part-2-ecosystem
   - code: 21.2.ζ
     scope: Βασικές και σημαντικές
     requirement: Βασικές πρακτικές κυβερνοϋγιεινής και κατάρτιση στην κυβερνοασφάλεια.
@@ -320,6 +362,27 @@ articles:
     - title: 'Εργαλείο: Γιατί πήγε στα Junk; Ανάλυση email headers του Microsoft 365'
       url: /giati-pige-sta-junk/
       page: /giati-pige-sta-junk
+    - title: 'Prompt Injection μέσω email: Το Defender for Office 365 μπαίνει σε έναν πόλεμο που δεν ξέραμε ότι ξεκίνησε, τι φέρνει το MC1422060'
+      url: /posts/new-features/prompt-injection-protection-defender-office-365/
+      page: /posts/New-Features/entra-defender-prompt-injection-email
+    - title: 'Global Secure Access Μέρος 3: Το Internet access profile ως Secure Web Gateway'
+      url: /posts/global-secure-access/global-secure-access-meros-3-internet-access-profile/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-3-internet-access-profile
+    - title: 'Microsoft Defender for Office 365: Νέα προστασία για κρυπτογραφημένα συνημμένα. Τι αλλάζει τον Αύγουστο 2026 (MC1440701)'
+      url: /posts/new-features/mdo-encrypted-attachment-protection-mc1440701/
+      page: /posts/New-Features/mdo-encrypted-attachment-protection-mc1440701
+    - title: 'Η Οικογένεια Προϊόντων του Microsoft Defender με πρακτικό Οδηγό για νέους επαγγελματίες ασφάλειας & ΥΑΣΠΕ'
+      url: /posts/microsoft-defender-oikogeneia-praktikos-odigos/
+      page: /posts/microsoft-defender-oikogeneia-praktikos-odigos
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
+    - title: 'Microsoft Defender Μέρος 2: Τα τέσσερα βασικά workloads του XDR από κοντά'
+      url: /posts/defender-demystified-series/defender-demystified-part-2-four-workloads/
+      page: /posts/Defender-Demystified-Series/defender-demystified-part-2-four-workloads
+    - title: 'Έλεγχος domain: SPF, DKIM, DMARC με Microsoft 365'
+      url: /elegxos-domain/
+      page: /elegxos-domain
   - code: 21.2.η
     scope: Βασικές και σημαντικές
     requirement: Πολιτικές και διαδικασίες σχετικά με τη χρήση κρυπτογραφίας και, κατά περίπτωση, κρυπτογράφησης.
@@ -397,6 +460,24 @@ articles:
     - title: 'Enterprise Mobility + Security: E3 και E5, και πότε αξίζει πραγματικά να το αγοράσεις'
       url: /posts/microsoft-defender-up-close-series/enterprise-mobility-security-explained/
       page: /posts/Microsoft-Defender-Up-Close-Series/enterprise-mobility-security-explained
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-4-private-access-profile
+    - title: 'Global Secure Access Μέρος 1: Τι είναι το Security Service Edge και πώς το βλέπει η Microsoft'
+      url: /posts/global-secure-access/global-secure-access-meros-1-ti-einai-sse/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-1-ti-einai-sse
+    - title: 'Azure και Entra: Τι πραγματικά είναι, τι τα ενώνει και τι τα διαφοροποιεί (το θεμέλιο που παραλείπουμε)'
+      url: /posts/azure-kai-entra-to-themelio/
+      page: /posts/azure-kai-entra-to-themelio
+    - title: 'Preview: AD Group Enforcement στο Entra Cloud Sync'
+      url: /posts/previews/ad-group-enforcement-cloud-sync/
+      page: /posts/Previews/ad-group-enforcement-cloud-sync
+    - title: 'Microsoft Entra Architecture: Πώς Στήνεται Πραγματικά η Ταυτότητά σου στο Cloud (και γιατί ο Defender σε νοιάζει)'
+      url: /posts/microsoft-entra-architecture-guide-defender/
+      page: /posts/microsoft-entra-architecture-guide-defender
+    - title: 'Generally Available: Security for Microsoft Agent 365 with Defender'
+      url: /posts/generally-available/security-for-microsoft-agent-365-defender/
+      page: /posts/Generally-Available/security-for-microsoft-agent-365-defender
   - code: 21.2.ι
     scope: Βασικές και σημαντικές
     requirement: Χρήση λύσεων πολυπαραγοντικής επαλήθευσης ταυτότητας ή συνεχούς επαλήθευσης ταυτότητας, ασφαλών φωνητικών επικοινωνιών, επικοινωνιών βίντεο και κειμένου και ασφαλών συστημάτων επικοινωνιών έκτακτης ανάγκης εντός της οντότητας, κατά περίπτωση.
@@ -444,6 +525,15 @@ articles:
     - title: 'Εργαλείο: Ποιος χτυπάει την πόρτα σου; Έλεγχος των sign-in logs του Microsoft Entra ID'
       url: /poios-xtypaei-tin-porta-sou/
       page: /poios-xtypaei-tin-porta-sou
+    - title: 'Global Secure Access Μέρος 4: Το Private access profile ως αντικαταστάτης του VPN'
+      url: /posts/global-secure-access/global-secure-access-meros-4-private-access-profile/
+      page: /posts/Global-Secure-Access/global-secure-access-meros-4-private-access-profile
+    - title: 'Entra Token Protection και Bulk Enrollment: Το κενό που κανένα compliance dashboard δεν θα σου δείξει'
+      url: /posts/entra-token-protection-bulk-enrollment-limitation/
+      page: /posts/entra-token-protection-bulk-enrollment-limitation
+    - title: 'CaptiveCrunch: Ρώσοι χάκερ στήνουν παγίδα στο Wi-Fi των ξενοδοχείων. Τι είναι και πώς να προστατευτείς'
+      url: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack/
+      page: /posts/captivecrunch-midnight-blizzard-hotel-wifi-attack
   - code: '21.3'
     scope: Βασικές και σημαντικές
     requirement: Για τα μέτρα της αλυσίδας εφοδιασμού λαμβάνονται υπόψη οι ευπάθειες που χαρακτηρίζουν κάθε άμεσο προμηθευτή και πάροχο υπηρεσιών, η συνολική ποιότητα των προϊόντων και των πρακτικών κυβερνοασφάλειάς τους, μαζί με τις ασφαλείς διαδικασίες ανάπτυξής τους, καθώς και τα αποτελέσματα των συντονισμένων εκτιμήσεων κινδύνου του άρθρου 22.
@@ -498,6 +588,9 @@ articles:
     - *id008
     - *id009
     - *id010
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: '23.2'
     scope: Βασικές και σημαντικές
     requirement: Κοινοποίηση αμελλητί, στους αποδέκτες των υπηρεσιών που ενδέχεται να επηρεαστούν από σημαντική κυβερνοαπειλή, των μέτρων ή διορθωτικών ενεργειών που μπορούν να λάβουν. Κατά περίπτωση, ενημέρωση και για την ίδια την κυβερνοαπειλή.
@@ -536,6 +629,9 @@ articles:
     - title: 'Εργαλείο: Ποιος διαβάζει το mailbox σου; Έλεγχος inbox rules και προώθησης στο Exchange Online'
       url: /poios-diavazei-to-mailbox-sou/
       page: /poios-diavazei-to-mailbox-sou
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: 23.4.β
     scope: Βασικές και σημαντικές
     requirement: Κοινοποίηση περιστατικού, χωρίς αδικαιολόγητη καθυστέρηση και σε κάθε περίπτωση εντός 72 ωρών από τη στιγμή που έγινε αντιληπτό. Επικαιροποιεί την έγκαιρη προειδοποίηση και αναφέρει αρχική αξιολόγηση, μεταξύ άλλων της σοβαρότητας και των επιπτώσεων, καθώς και, εφόσον υπάρχουν, τις ενδείξεις της παραβίασης.
@@ -559,6 +655,9 @@ articles:
     - title: 'Ν.5160/2024 και ΚΥΑ 1689/2025: τι πρέπει να ξέρει η Διοίκηση'
       url: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025/
       page: /posts/odigos-dioikisis-n5160-2024-kya-1689-2025
+    - title: 'Αναφορά περιστατικού στην ΕΑΚ: έγκαιρη προειδοποίηση 24 ωρών και γνωστοποίηση 72 ωρών'
+      url: /anafora-peristatikou/
+      page: /anafora-peristatikou
   - code: 23.4.γ
     scope: Βασικές και σημαντικές
     requirement: Ενδιάμεση έκθεση σχετικά με τις επικαιροποιήσεις της κατάστασης, κατόπιν αιτήματος της CSIRT ή, κατά περίπτωση, της αρμόδιας αρχής.

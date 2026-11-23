@@ -33,6 +33,8 @@ description: "Microsoft Defender for Cloud και Defender XDR: άλλη αδε�
 seoDescription: "Microsoft Defender for Cloud και Defender XDR: άλλη αδειοδότηση, άλλο κοινό. Τα επίπεδα CSPM, τα workload protection plans και το multicloud, απλά."
 summary: "Μέρος 3 της σειράς Microsoft Defender Demystified. Το Microsoft Defender for Cloud με απλά λόγια: το δωρεάν Foundational CSPM, το επί πληρωμή Defender CSPM, τα workload protection plans, το multicloud, και γιατί το ενιαίο Microsoft Defender portal τα κάνει σιγά σιγά μία εμπειρία."
 categories: ["Cloud Security"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1190", "T1530", "M1054"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false
@@ -274,6 +276,8 @@ verification:
 
 **Ποια η διαφορά ανάμεσα στο Defender for Cloud και στο Defender XDR;**
 Το Defender XDR προστατεύει ό,τι αγγίζουν οι χρήστες (συσκευές, email, ταυτότητες, εφαρμογές SaaS), ζει στο security.microsoft.com και αδειοδοτείται ανά χρήστη. Το Defender for Cloud προστατεύει υποδομή (VMs, containers, βάσεις δεδομένων, storage, υπηρεσίες AI), ρυθμίζεται από το Azure portal και χρεώνεται ανά πόρο, αλλά τα incidents του εμφανίζονται πλέον και στο ενιαίο Defender portal.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.ε](/nis2/#21-2-ε) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

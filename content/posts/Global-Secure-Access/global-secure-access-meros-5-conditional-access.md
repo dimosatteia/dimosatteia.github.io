@@ -28,7 +28,7 @@ tags:
   - SSE
 author: "Dimosthenis Atteia"
 description: "Πέμπτο μέρος σειράς άρθρων για το Microsoft Global Secure Access. Τρία πρακτικά παραδείγματα πολιτικών Conditional Access πάνω στο Internet access profile: block χωρίς client, απαίτηση compliant device, και web content filtering μέσω security profile, με έμφαση σε NIS2 και ISO 27001."
-seoDescription: "Μέρος 5 της σειράς Global Secure Access: τρεις πολιτικές Conditional Access, block χωρίς client, compliant device και web content filtering, για NIS2 και ISO 27001."
+seoDescription: "Global Secure Access Μέρος 5: τρεις πολιτικές Conditional Access, block χωρίς client, compliant device και web content filtering, για NIS2 και ISO 27001."
 summary: "Στα προηγούμενα τέσσερα μέρη είδαμε τι κάνει κάθε traffic profile ξεχωριστά. Σε αυτό το πέμπτο και συμπληρωματικό μέρος μένω αποκλειστικά στο κομμάτι που τα ενώνει όλα: το Conditional Access. Τρία παραδείγματα πολιτικών, βήμα-βήμα, όπως τα περιγράφει η ίδια η Microsoft, με το σκεπτικό πίσω από κάθε ρύθμιση."
 categories: ["Network & SSE", "Identity & Access"]
 series: ["Global Secure Access"]
@@ -156,6 +156,8 @@ mitre: ["T1078.004", "T1550.001", "M1021"]
 Με αυτό το πέμπτο μέρος κλείνει πραγματικά η εικόνα του Global Secure Access, όπως το βλέπω σήμερα: η φιλοσοφία SSE, τα τρία traffic profiles, και το Conditional Access που τα δένει όλα μαζί σε συγκεκριμένη, εφαρμόσιμη πολιτική. Αν κάτι άλλαξε στην τεκμηρίωση της Microsoft μέχρι να διαβάσεις αυτό το άρθρο, ιδιαίτερα σε ό,τι αφορά preview δυνατότητες όπως το Explicit Forward Proxy ή το TLS inspection, θα επανέλθω με ενημέρωση.
 
 Αν έχεις ήδη εφαρμόσει κάποιο από αυτά τα τρία σενάρια στον οργανισμό σου, ή αν έχεις χτίσει κάτι διαφορετικό πάνω στο ίδιο μοτίβο, χαίρομαι πάντα να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [13.α](/kya-1689-2025/#13-α), [13.ζ](/kya-1689-2025/#13-ζ), [19.γ](/kya-1689-2025/#19-γ) και [20.ε](/kya-1689-2025/#20-ε), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.ι](/nis2/#21-2-ι), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.15](/iso-27001/#A-5-15), [A.8.5](/iso-27001/#A-8-5), [A.8.21](/iso-27001/#A-8-21) και [A.8.23](/iso-27001/#A-8-23) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

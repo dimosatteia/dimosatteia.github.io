@@ -28,9 +28,11 @@ tags:
   - Junior Μηχανικός Ασφάλειας
   - Security Operations
 author: "Dimosthenis Atteia"
-description: "Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται όλα μεταξύ τους."
+description: "Πρακτικός οδηγός στην οικογένεια Microsoft Defender: MDE, MDO, MDI, MDA, MDC και Defender XDR. Τι προστατεύει το καθένα, πού ζει και πώς συνδέονται μεταξύ τους."
 summary: "Ένας πρακτικός χάρτης της οικογένειας Microsoft Defender για νέους επαγγελματίες ασφάλειας: Endpoint, Office 365, Identity, Cloud Apps, Cloud και το ενοποιημένο Defender XDR που τα συνδέει όλα σε ένα incident."
 categories: ["Security Operations & XDR"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1566", "T1204.002", "T1078.004", "M1049", "M1040", "M1047"]
 ShowToc: true
 TocOpen: false
 cover:
@@ -277,6 +279,8 @@ verification:
 Αν σε ενδιαφέρει πώς όλα αυτά τα σήματα τροφοδοτούν το **Microsoft Secure Score** και πώς μπορεί να γίνει η ραχοκοκαλιά ενός προγράμματος **GRC** ευθυγραμμισμένου με **ISO 27001** και **NIS2**, διάβασε επίσης **[Microsoft Secure Score: Πρακτικός Οδηγός για τον ΥΑΣΠΕ NIS2](/posts/secure-score-defender-praktikos-odigos/)**.
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων, ή γράψου στο RSS στην κορυφή της σελίδας.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [5.2](/kya-1689-2025/#5-2), [11.α](/kya-1689-2025/#11-α) και [20.α](/kya-1689-2025/#20-α), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.ζ](/nis2/#21-2-ζ), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.9](/iso-27001/#A-5-9), [A.8.1](/iso-27001/#A-8-1) και [A.8.7](/iso-27001/#A-8-7) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

@@ -39,6 +39,8 @@ description: "Η Microsoft έχει οκτώ βασικά προϊόντα Defen
 seoDescription: "Η Microsoft έχει οκτώ βασικά προϊόντα Defender. Ένας πρακτικός χάρτης όλης της οικογένειας: XDR, Endpoint, Office 365, Identity, Cloud Apps και τα υπόλοιπα."
 summary: "Σε μπερδεύουν τα ονόματα του Microsoft Defender; Δεν είσαι ο μόνος. Ο χάρτης όλης της οικογένειας: τα οκτώ βασικά προϊόντα, τα δύο συγγενικά, η εφαρμογή για καταναλωτές, και πότε χρειάζεσαι το καθένα. Για ΥΑΣΠΕ, IT managers και ομάδες ασφάλειας."
 categories: ["Security Operations & XDR"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1049", "M1040", "M1047"]
 series: ["Microsoft Defender Demystified"]
 ShowToc: true
 TocOpen: false

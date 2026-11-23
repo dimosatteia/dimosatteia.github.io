@@ -33,6 +33,8 @@ description: "Ένας πρακτικός οδηγός για νέους IT επ
 seoDescription: "Πρακτικός οδηγός για την αρχιτεκτονική του Microsoft Entra ID, replicas, scalability και availability, και πώς συνδέεται με το Microsoft Defender."
 summary: "Κατανόησε την αρχιτεκτονική του Microsoft Entra ID (partitions, replicas, availability, consistency) και δες γιατί η σωστή γνώση της είναι το θεμέλιο για να χρησιμοποιήσεις σωστά το Microsoft Defender στην καθημερινή σου δουλειά."
 categories: ["Identity & Access"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1078.004", "M1032", "M1026"]
 series:
 ShowToc: true
 TocOpen: false
@@ -154,6 +156,8 @@ verification:
 Αν θες να πάμε βαθύτερα σε κάποιο από αυτά τα κομμάτια, π.χ. resilience σε hybrid authentication ή πώς στήνεται σωστά το Defender for Identity, πες μου στα σχόλια, γιατί σκοπεύω να συνεχίσω αυτή τη σειρά.
 
 ---
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στο [13.β](/kya-1689-2025/#13-β), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.θ](/nis2/#21-2-θ), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.16](/iso-27001/#A-5-16) και [A.6.5](/iso-27001/#A-6-5) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

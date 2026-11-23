@@ -26,7 +26,7 @@ menu:
 author: "Dimosthenis Atteia"
 description: "Οι τρέχουσες εκδόσεις των connectors, agents, clients, Windows updates, PowerShell modules και security baselines του Microsoft 365 Security, με το τι αλλάζει στα Ελληνικά και αν η ενημέρωση γίνεται αυτόματα ή χειροκίνητα."
 seoTitle: "Εκδόσεις Microsoft 365 Security: connectors, agents, baselines"
-seoDescription: "Νέες εκδόσεις για Entra private network connector, Entra Connect, Defender for Identity sensor, Global Secure Access client, PowerShell modules και Intune baselines."
+seoDescription: "Εκδόσεις για Entra private network connector, Entra Connect, Defender for Identity sensor, Global Secure Access client, PowerShell modules και Intune baselines."
 keywords:
   - Microsoft Entra private network connector version
   - Microsoft Entra Connect Sync version

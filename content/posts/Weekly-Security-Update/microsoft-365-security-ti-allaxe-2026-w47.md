@@ -26,6 +26,7 @@ author: "Dimosthenis Atteia"
 description: "Εβδομάδα 47/2026: αποσύρονται δύο classic alerts του Defender for Identity στις 30/11, προστασία για το GitHub Copilot CLI και Similar cases στο Defender."
 summary: "Στο τέλος Νοεμβρίου φεύγουν τα alerts Remote code execution attempt και pass-the-hash του Defender for Identity. Μαζί, οι αλλαγές του Ignite για Defender: προστασία από device code phishing στο GitHub Copilot CLI, Similar cases στα incidents και preview features ένα ένα στο Defender for Endpoint."
 categories: ["Security Operations & XDR"]
+mitre: ["T1528", "T1550.002", "T1566.002", "M1018", "M1047"]
 series: ["Microsoft 365 Security Weekly"]
 ShowToc: true
 TocOpen: false
@@ -155,6 +156,8 @@ verification:
 - **[16.α](/kya-1689-2025/#16-α), διαχείριση αλλαγών:** η ενεργοποίηση ενός preview feature σε λίγες συσκευές πρώτα είναι δοκιμή πριν από την παραγωγή (αλλαγή 5).
 
 Όλες οι απαιτήσεις της ΚΥΑ 1689/2025 με την αντιστοίχισή τους βρίσκονται στον [οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/).
+
+Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** οι αλλαγές της εβδομάδας αντιστοιχούν στα [21.2.β](/nis2/#21-2-β), [21.2.ε](/nis2/#21-2-ε), [21.2.θ](/nis2/#21-2-θ) και [21.2.ι](/nis2/#21-2-ι). Στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχούν στα [A.5.15](/iso-27001/#A-5-15), [A.5.18](/iso-27001/#A-5-18), [A.5.26](/iso-27001/#A-5-26), [A.8.5](/iso-27001/#A-8-5), [A.8.15](/iso-27001/#A-8-15), [A.8.16](/iso-27001/#A-8-16) και [A.8.32](/iso-27001/#A-8-32), και στον **[GDPR](/gdpr/)** στα [25.2](/gdpr/#25-2) και [32.1.β](/gdpr/#32-1-β). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

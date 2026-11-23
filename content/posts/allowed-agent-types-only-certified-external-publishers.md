@@ -31,6 +31,8 @@ description: "Ρύθμισα το Allowed Agent Types στο δικό μου Mic
 seoDescription: "Γιατί ρύθμισα το Allowed Agent Types του Microsoft 365 σε «Only certified external publishers», τι σημαίνει για NIS2 και ISO 27001 και πώς το κάνεις κι εσύ."
 summary: "Ένα radio button μέσα στο Copilot Control System είναι η διαφορά ανάμεσα σε ελεγμένο agent ecosystem και σε Shadow AI χωρίς φρένο. Δες γιατί το «Only certified external publishers» είναι η ρύθμιση που θα διάλεγα ξανά, με screenshots από το δικό μου tenant."
 categories: ["AI Security", "GRC & Compliance"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["T1195", "T1199", "M1054"]
 series:
 ShowToc: true
 TocOpen: false
@@ -148,6 +150,8 @@ verification:
 Δεν είναι κάθε ρύθμιση στο admin center τόσο κρίσιμη όσο φαίνεται με την πρώτη ματιά...αλλά αυτή είναι. Είναι από τα σπάνια σημεία όπου ένα default checkbox στο Copilot Control System λειτουργεί σαν πραγματικό supply-chain control, με άμεση αντιστοίχιση σε NIS2 και ISO 27001. Αν δεν το έχεις ελέγξει ακόμα στο δικό σου tenant, είναι πέντε λεπτά δουλειάς με μετρήσιμο αντίκτυπο στο risk register σου.
 
 Αν το δοκιμάσεις στο δικό σου περιβάλλον ή αν βλέπεις τη διάκριση Verified/Attested/Certified διαφορετικά, θα χαρώ να το συζητήσουμε στα σχόλια ή στο LinkedIn.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στο [12.1.γ](/kya-1689-2025/#12-1-γ), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.2.δ](/nis2/#21-2-δ), [21.3](/nis2/#21-3) και [24.1](/nis2/#24-1), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στα [A.5.21](/iso-27001/#A-5-21) και [A.5.23](/iso-27001/#A-5-23) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [28.1](/gdpr/#28-1). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

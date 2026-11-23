@@ -30,6 +30,8 @@ author: "Dimosthenis Atteia"
 description: "Microsoft Secure Score για τον Υ.Α.Σ.Π.Ε.: τεχνικά controls NIS2, Νόμος 5160/2024, ιεράρχηση ενεργειών και μετρήσιμη συμμόρφωση Microsoft 365."
 summary: "Πρακτικός οδηγός Microsoft Secure Score για τον Έλληνα junior μηχανικό και Υ.Α.Σ.Π.Ε., από το score στην πραγματική μείωση κινδύνου, στο πλαίσιο NIS2 και του Νόμου 5160/2024."
 categories: ["GRC & Compliance"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1032", "M1054", "M1047"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 seriesCompanion: true
 ShowToc: true
@@ -188,6 +190,8 @@ Sensitivity labels για ταξινόμηση και κρυπτογράφηση
 Διάβασέ τα με τη σειρά όταν είσαι έτοιμος. Καλή ανάγνωση! 📚
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) for new-post notifications.
+
+> 🔗 **Χρειάζεσαι τεκμηρίωση συμμόρφωσης;** Στον **[οδηγό της ΚΥΑ 1689/2025](/kya-1689-2025/)** αντιστοιχεί στα [5.1.β](/kya-1689-2025/#5-1-β) και [7.α](/kya-1689-2025/#7-α), στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στα [21.1](/nis2/#21-1) και [21.2.α](/nis2/#21-2-α), στο **[ISO/IEC 27001](/iso-27001/)** αντιστοιχεί στο [A.5.2](/iso-27001/#A-5-2) και στον **[GDPR](/gdpr/)** αντιστοιχεί στα [24.1](/gdpr/#24-1) και [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
 ## Πηγές και επαλήθευση {#last-verified}
 

@@ -26,6 +26,8 @@ description: "Το Integrated Security Operations Center (ISOC) φέρνει δ�
 seoDescription: "Το ISOC φέρνει SIEM στο Defender portal για Microsoft 365 E5, E7 και Defender Suite χωρίς Sentinel workspace. Τι περιλαμβάνεται και τι χρεώνεται."
 summary: "Η Microsoft δίνει σε όσους έχουν Microsoft 365 E5 και δεν έχουν Sentinel ένα SIEM μέσα στο Defender portal, με 30 ημέρες διατήρηση για τα δεδομένα του Defender. Δες τι δουλεύει χωρίς workspace, τι θέλει workspace και Azure, και πού κρύβεται το κόστος."
 categories: ["Security Operations & XDR"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1047"]
 releases:
   - "preview"
 ShowToc: true

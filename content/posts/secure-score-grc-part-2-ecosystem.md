@@ -32,6 +32,8 @@ author: "Dimosthenis Atteia"
 description: "Από πού έρχεται το Microsoft Secure Score; Ποια προϊόντα το τροφοδοτούν και πώς; Μάθε να βρίσκεις από ποιο προϊόν προέρχεται κάθε πόντος της βαθμολογίας."
 summary: "Μέρος 2 της σειράς για το Microsoft Secure Score. Πού βρίσκεται μέσα στο Microsoft Defender portal, ποια προϊόντα το τροφοδοτούν, γιατί δεν βλέπεις όλα τα recommendations, πόσο συχνά ενημερώνεται, και μια πρακτική άσκηση για να εντοπίσεις από πού προέρχεται ένας πόντος."
 categories: ["GRC & Compliance"]
+# MITRE ATT&CK®: ονόματα στο data/mitre.yaml
+mitre: ["M1054", "M1047"]
 series: ["Microsoft Secure Score as a Cyber GRC Instrument"]
 ShowToc: true
 TocOpen: false
@@ -264,7 +266,7 @@ verification:
 
 Στο **[Μέρος 3](/posts/secure-score-grc-part-3-operations/)** περνάμε στην καθημερινή διαχείριση του Microsoft Secure Score ως μέρος ενός προγράμματος συμμόρφωσης: πώς ιεραρχείς όταν έχεις πάνω από 250 recommendations, πώς τεκμηριώνεις τις αποφάσεις κινδύνου για τους ελεγκτές, και πώς βλέπεις τη βαθμολογία ως τεκμήριο και όχι ως στόχο.
 
-> 🔗 **Θέλεις το Secure Score από την οπτική της συμμόρφωσης;** Ο **[Πρακτικός Οδηγός για τον ΥΑΣΠΕ](/posts/secure-score-defender-praktikos-odigos/)** δείχνει πώς ιεραρχείς τα recommendations για τον ν. 5160/2024. Δες και πώς αντιστοιχίζεται το Microsoft Secure Score στις απαιτήσεις του **[οδηγού της ΚΥΑ 1689/2025](/kya-1689-2025/)** και στα controls του **[ISO/IEC 27001](/iso-27001/)**.
+> 🔗 **Θέλεις το Secure Score από την οπτική της συμμόρφωσης;** Ο **[Πρακτικός Οδηγός για τον ΥΑΣΠΕ](/posts/secure-score-defender-praktikos-odigos/)** δείχνει πώς ιεραρχείς τα recommendations για τον ν. 5160/2024. Δες και πώς αντιστοιχίζεται το Microsoft Secure Score στις απαιτήσεις του **[οδηγού της ΚΥΑ 1689/2025](/kya-1689-2025/)** και στα controls του **[ISO/IEC 27001](/iso-27001/)**. Στον οδηγό για την **[Οδηγία NIS2](/nis2/)** αντιστοιχεί στο [21.2.στ](/nis2/#21-2-στ) και στον **[GDPR](/gdpr/)** αντιστοιχεί στο [32.1.δ](/gdpr/#32-1-δ). Ο καθένας έχει checklist σε Excel.
 
 Ακολούθησέ με στο [LinkedIn](https://www.linkedin.com/in/dimosthenisatteia/) για ειδοποιήσεις νέων άρθρων.
 

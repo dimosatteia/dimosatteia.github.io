@@ -1,10 +1,27 @@
 {{/*
   layouts/partials/coming-soon-ca.html
   -------------------------------------
-  Teaser banner «Το 2ο μέρος έρχεται τη Δευτέρα 23/11/2026» για τη σειρά Microsoft Entra Conditional Access.
+  Teaser banner «Το 3ο μέρος έρχεται τη Δευτέρα 30/11/2026» για τη σειρά Microsoft Entra Conditional Access.
   Εμφανίζεται μόνο στην αρχική σελίδα (καλείται από layouts/_default/list.html).
   Για να αφαιρεθεί: σβήνεις τη γραμμή {{ partial "coming-soon-ca.html" . }} στο list.html.
 */}}
+{{- /* Αυτόματο: μόλις ένα μέρος δημοσιευτεί (όχι draft, όχι μελλοντική ημερομηνία, και ελέγχεται ρητά ώστε να ισχύει και με hugo server -D), μένει σταθερό με link στο άρθρο.
+     Όσα δεν έχουν βγει ακόμη φουσκώνουν με τη σειρά, 0.8s το καθένα. Δεν χρειάζεται χειροκίνητη αλλαγή ως και το Μέρος 6. */ -}}
+{{- $base := "/posts/Conditional-Access-Series/" -}}
+{{- $parts := slice
+  (dict "n" 1 "title" "Θεμελιώδεις έννοιες" "file" "conditional-access-meros-1-themeliodeis-ennoies")
+  (dict "n" 2 "title" "Πολιτικές και μηχανισμοί" "file" "conditional-access-meros-2-politikes-kai-mixanismoi")
+  (dict "n" 3 "title" "Υλοποίηση στην πράξη" "file" "conditional-access-meros-3-ylopoiisi-stin-praxi")
+  (dict "n" 4 "title" "Advanced Identity Security" "file" "conditional-access-meros-4-advanced-identity-security")
+  (dict "n" 5 "title" "Troubleshooting και monitoring" "file" "conditional-access-meros-5-troubleshooting-monitoring")
+  (dict "n" 6 "title" "Governance και Zero Trust" "file" "conditional-access-meros-6-governance-zero-trust")
+-}}
+{{- $pending := 0 -}}
+{{- range $parts }}{{ $pg := site.GetPage (printf "%s%s" $base .file) }}{{ if not (and $pg (not $pg.Draft) (le $pg.Date now)) }}{{ $pending = add $pending 1 }}{{ end }}{{ end -}}
+{{- $n := math.Max $pending 1 -}}
+{{- $cycle := printf "%.1fs" (mul 0.8 $n) -}}
+{{- $end := printf "%.2f%%" (div 100.0 $n) -}}
+{{- $peak := printf "%.2f%%" (div 50.0 $n) -}}
 <section class="ca-soon" aria-labelledby="ca-soon-title">
   <div class="ca-soon-light" aria-hidden="true">
     <span class="ca-dot ca-green"></span>
@@ -13,20 +30,24 @@
   </div>
 
   <div class="ca-soon-body">
-    {{/* Badge με ενσωματωμένη αντίστροφη μέτρηση ως τη Δευτέρα 23/11/2026 07:00 ώρα Ελλάδας (EET, UTC+2) */}}
-    <span class="ca-soon-badge">Το 2ο μέρος έρχεται τη Δευτέρα 23/11/2026<span class="ca-countdown" id="ca-countdown" data-target="2026-11-23T07:00:00+02:00" role="timer" aria-live="off" aria-label="Αντίστροφη μέτρηση ως τη Δευτέρα 23/11/2026 07:00"><span class="ca-cd-unit"><b id="ca-cd-d">--</b><small>ημ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-h">--</b><small>ώρ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-m">--</b><small>λεπ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-s">--</b><small>δευτ.</small></span></span></span>
+    {{/* Badge με ενσωματωμένη αντίστροφη μέτρηση ως τη Δευτέρα 30/11/2026 10:00 ώρα Ελλάδας (EET, UTC+2) */}}
+    <span class="ca-soon-badge">Το 3ο μέρος έρχεται τη Δευτέρα 30/11/2026<span class="ca-countdown" id="ca-countdown" data-target="2026-11-30T10:00:00+02:00" role="timer" aria-live="off" aria-label="Αντίστροφη μέτρηση ως τη Δευτέρα 30/11/2026 10:00"><span class="ca-cd-unit"><b id="ca-cd-d">--</b><small>ημ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-h">--</b><small>ώρ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-m">--</b><small>λεπ.</small></span> <span class="ca-cd-unit"><b id="ca-cd-s">--</b><small>δευτ.</small></span></span></span>
     <h2 id="ca-soon-title" class="ca-soon-title">Microsoft Entra Conditional Access: Ο Πλήρης Οδηγός</h2>
     <p class="ca-soon-text">
       Από τις βασικές αρχές στο Enterprise Zero Trust. Μια νέα σειρά 6 άρθρων
       για το «φανάρι» που αποφασίζει σε κάθε sign-in: Allow, MFA ή Block.
     </p>
     <ul class="ca-soon-parts">
-      <li><span>1</span><a class="ca-part-link" href="/posts/conditional-access-series/conditional-access-meros-1-themeliodeis-ennoies/"><strong>Θεμελιώδεις έννοιες</strong></a></li>
-      <li><span>2</span>Πολιτικές και μηχανισμοί</li>
-      <li><span>3</span>Υλοποίηση στην πράξη</li>
-      <li><span>4</span>Advanced Identity Security</li>
-      <li><span>5</span>Troubleshooting και monitoring</li>
-      <li><span>6</span>Governance και Zero Trust</li>
+      {{- $i := 0 }}
+      {{- range $parts }}
+      {{- $pg := site.GetPage (printf "%s%s" $base .file) }}
+      {{- if and $pg (not $pg.Draft) (le $pg.Date now) }}
+      <li class="ca-published"><span>{{ .n }}</span><a class="ca-part-link" href="{{ $pg.RelPermalink }}"><strong>{{ .title }}</strong></a></li>
+      {{- else }}
+      <li class="ca-pending ca-d{{ $i }}"><span>{{ .n }}</span>{{ .title }}</li>
+      {{- $i = add $i 1 }}
+      {{- end }}
+      {{- end }}
     </ul>
   </div>
 </section>
@@ -136,22 +157,19 @@
     background: rgba(30, 41, 59, 0.6);
     transform-origin: center;
     will-change: transform;
-    animation: ca-puff 4.8s ease-in-out infinite;
   }
-  /* «Φούσκωμα» με τη σειρά: κάθε μέρος μεγαλώνει, επανέρχεται, και περνά στο επόμενο (1 έως 6, μετά από την αρχή) */
-  .ca-soon-parts li:nth-child(1) { animation-delay: 0s; }
-  .ca-soon-parts li:nth-child(2) { animation-delay: 0.8s; }
-  .ca-soon-parts li:nth-child(3) { animation-delay: 1.6s; }
-  .ca-soon-parts li:nth-child(4) { animation-delay: 2.4s; }
-  .ca-soon-parts li:nth-child(5) { animation-delay: 3.2s; }
-  .ca-soon-parts li:nth-child(6) { animation-delay: 4s; }
+  /* «Φούσκωμα» με τη σειρά μόνο στα μέρη που δεν έχουν βγει ακόμη. Τα δημοσιευμένα (ca-published) μένουν σταθερά. */
+  .ca-soon-parts li.ca-pending { animation: ca-puff {{ $cycle | safeCSS }} ease-in-out infinite; }
+  {{- range $k := seq 0 5 }}
+  .ca-soon-parts li.ca-d{{ $k }} { animation-delay: {{ printf "%.1fs" (mul 0.8 $k) | safeCSS }}; }
+  {{- end }}
   @keyframes ca-puff {
-    0%, 16.67%, 100% {
+    0%, {{ $end | safeCSS }}, 100% {
       transform: scale(1);
       border-color: rgba(148, 163, 184, 0.25);
       box-shadow: none;
     }
-    8% {
+    {{ $peak | safeCSS }} {
       transform: scale(1.15);
       border-color: rgba(59, 130, 246, 0.8);
       box-shadow: 0 0 14px rgba(37, 99, 235, 0.45);
@@ -184,7 +202,7 @@
   @media (prefers-reduced-motion: reduce) {
     .ca-dot { animation: none; opacity: 1; }
     .ca-soon-badge { animation: none; }
-    .ca-soon-parts li { animation: none; }
+    .ca-soon-parts li.ca-pending { animation: none; }
   }
 </style>
 
