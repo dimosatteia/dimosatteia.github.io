@@ -5,7 +5,9 @@ slug: conditional-access-meros-2-politikes-kai-mixanismoi
 date: 2026-11-23T10:00:00+02:00
 lastmod: 2026-11-23T10:00:00+02:00
 draft: false
+# Εμφανίζεται ως «Νέο άρθρο» στην αρχική και πρώτο στα «Πρόσφατα Άρθρα» (weight -11: πάνω από το τεύχος 47, που έχει -10)
 homeHighlight: true
+weight: -11
 keywords:
   - Conditional Access policy assignments
   - Conditional Access target resources
