@@ -1,7 +1,7 @@
 ---
 title: "Ποια άδεια Microsoft 365 χρειάζομαι για την ΚΥΑ 1689/2025 και την NIS2;"
 date: 2026-10-14T16:00:00+03:00
-lastmod: 2026-11-11T19:15:00+02:00
+lastmod: 2026-11-24T11:00:00+02:00
 draft: false
 url: "/poia-adeia-microsoft-365/"
 # Το link στο μενού ορίζεται εδώ, ώστε να εμφανίζεται μόνο όταν η σελίδα είναι δημοσιευμένη.
@@ -48,92 +48,102 @@ verification:
     status: "Generally Available"
     license: "Microsoft 365 Business Premium"
     source: "https://learn.microsoft.com/microsoft-365/business-premium/microsoft-365-business-faqs"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Business Basic και Business Standard: Exchange Online Protection και Basic Mobility and Security, Defender for Business ως standalone"
     status: "Generally Available"
     license: "Microsoft 365 Business Basic, Business Standard"
     source: "https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/m365b-security-overview"
-    verified: 2026-11-11
+    verified: 2026-11-24
+  - feature: "Αλλαγές πακέτων 2026: URL time-of-click protection σε Business Basic και Business Standard· Intune Plan 2, Remote Help και Advanced Analytics στο Microsoft 365 E3· επιπλέον Endpoint Privilege Management, Microsoft Cloud PKI και Enterprise Application Management στο E5"
+    status: "Generally Available"
+    license: "Microsoft 365 Business Basic, Business Standard, E3, E5, E7"
+    source: "https://www.microsoft.com/licensing/news/2026-m365-packaging-pricing-updates"
+    verified: 2026-11-24
+  - feature: "Microsoft Intune: Plan 2 και Intune Suite κατανέμονται στα Microsoft 365 E3, E5 και E7 από τον Ιούλιο 2026"
+    status: "Generally Available"
+    license: "Microsoft 365 E3, E5, E7"
+    source: "https://learn.microsoft.com/intune/fundamentals/planning-guide"
+    verified: 2026-11-24
   - feature: "Microsoft Defender Suite for Business Premium: Entra ID P2, Defender for Identity, Defender for Endpoint Plan 2, Defender for Office 365 Plan 2, Defender for Cloud Apps"
     status: "Generally Available"
     license: "Add-on σε Business Premium"
     source: "https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/add-defender-suite-business-premium"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Defender for Office 365 Plan 1 στο Microsoft 365 E3 από 1/7/2026· Attack simulation training μόνο στο Plan 2"
     status: "Generally Available"
     license: "Microsoft 365 E3, E5"
     source: "https://learn.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Defender for Endpoint Plan 1 (E3) χωρίς EDR· Plan 2 (E5, Defender Suite) με EDR, vulnerability management και advanced hunting"
     status: "Generally Available"
     license: "Microsoft 365 E3, E5"
     source: "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-defender-service-description"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Defender Vulnerability Management premium (security baselines, browser extensions): add-on ή standalone, όχι για Defender for Business"
     status: "Generally Available"
     license: "Add-on ή standalone"
     source: "https://learn.microsoft.com/defender-vulnerability-management/defender-vulnerability-management-capabilities"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Defender for Business servers: add-on για έως 60 servers"
     status: "Generally Available"
     license: "Add-on σε Business Premium ή Defender for Business"
     source: "https://learn.microsoft.com/defender-business/mdb-faq"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Microsoft Entra ID P1, P2, ID Governance και Entra Suite (Private Access, Internet Access), με προαπαιτούμενο Entra ID P1"
     status: "Generally Available"
     license: "Standalone, E5, E7"
     source: "https://learn.microsoft.com/entra/fundamentals/licensing"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Microsoft 365 E7: E5, Microsoft 365 Copilot, Microsoft Entra Suite και Agent 365, διαθέσιμο από 1/5/2026"
     status: "Generally Available"
     license: "Microsoft 365 E7"
     source: "https://learn.microsoft.com/copilot/plan/compare-copilot-e3-e5-e7"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Conditional Access για AI agents: Microsoft Agent 365 (περιλαμβάνεται στο E7, add-on σε E5, A5 και Business Premium) με προαπαιτούμενο Entra ID P1· agent risk με Entra ID P2"
     status: "Generally Available · targeting σε agent users: Preview"
     license: "Microsoft 365 E7, ή Microsoft Agent 365 add-on"
     source: "https://learn.microsoft.com/entra/fundamentals/licensing"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Microsoft 365 F1 και F3: Entra ID P1, Intune Plan 1, Azure Information Protection P1 (χειροκίνητα labels), χωρίς Defender for Endpoint και Defender for Office 365· το F1 χωρίς δικαίωμα mailbox"
     status: "Generally Available"
     license: "Microsoft 365 F1, F3"
     source: "https://learn.microsoft.com/entra/identity/users/licensing-service-plan-reference"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Microsoft Defender Suite FLW και Microsoft Purview Suite FLW: προαπαιτούμενο Microsoft 365 F1/F3 (Product Terms)· περιλαμβάνουν Entra ID P2"
     status: "Generally Available"
     license: "Add-on σε Microsoft 365 F1, F3"
     source: "https://www.microsoft.com/licensing/terms/productoffering/MicrosoftDefender/mca"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Microsoft Agent 365: προαπαιτούμενο Microsoft 365 E5/A5/G5, Business Premium, Defender Suite μαζί με Purview Suite, ή Defender + Purview Suite FLW (Product Terms)"
     status: "Generally Available"
     license: "Add-on"
     source: "https://www.microsoft.com/licensing/terms/productoffering/Agent365/EAEAS"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Audit (Premium) για ένα έτος· Purview Suite for Business Premium με βάση Business Premium και όριο 300 θέσεων· automatic labeling"
     status: "Generally Available"
     license: "Microsoft 365 E5, Purview Suite"
     source: "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Microsoft Purview Suite for Business Premium: όλες οι advanced δυνατότητες του Purview για χρήστες Business Premium· Purview Suite FLW: automatic labeling και Endpoint DLP"
     status: "Generally Available"
     license: "Add-on σε Business Premium, F1, F3"
     source: "https://www.microsoft.com/licensing/guidance/Microsoft-Purview"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Auditing δεν ενεργοποιείται αυτόματα σε Business Basic, Standard και Premium"
     status: "Generally Available"
     license: "Όλα τα πακέτα Business"
     source: "https://learn.microsoft.com/purview/audit-log-enable-disable"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Compliance Manager: έως τρία premium regulations χωρίς επιπλέον κόστος στο E5"
     status: "Generally Available"
     license: "Microsoft 365 E5"
     source: "https://learn.microsoft.com/purview/compliance-manager-regulations-list"
-    verified: 2026-11-11
+    verified: 2026-11-24
   - feature: "Microsoft 365 Backup: χρέωση βάσει χρήσης μέσω Azure subscription"
     status: "Generally Available"
     license: "Pay-as-you-go"
     source: "https://learn.microsoft.com/microsoft-365/backup/backup-setup"
-    verified: 2026-11-11
+    verified: 2026-11-24
 ---
 
 > 🏛️ Το εργαλείο παρουσιάστηκε από την [Εθνική Αρχή Κυβερνοασφάλειας](https://cyber.gov.gr/microsoft-365-kai-apaitiseis-kyvernoasfaleias-ena-dorean-diadiktyako-ergaleio-gia-na-epilexete-tin-katallili-adeia-gia-tin-kya-1689-2025-kai-tin-odigia-nis2/) στις 16 Οκτωβρίου 2026.

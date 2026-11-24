@@ -8,7 +8,7 @@
 # kya: απαιτήσεις της ΚΥΑ 1689/2025 (κωδικοί όπως στη σελίδα /kya-1689-2025/)
 # nis2: άρθρο 21 παρ. 2 της Οδηγίας (ΕΕ) 2022/2555 · iso: controls του Annex A του ISO/IEC 27001:2022 · gdpr: όπου έχει σχέση
 # verified: ημερομηνία ελέγχου στο Microsoft Learn
-updated: '2026-11-11'
+updated: '2026-11-24'
 plans:
   - key: basic
     name: Microsoft 365 Business Basic
@@ -44,7 +44,7 @@ measures:
     iso: A.8.5
     feature: Microsoft Entra Conditional Access (Microsoft Entra ID P1)
     source: https://learn.microsoft.com/entra/fundamentals/licensing
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: a, t: "Microsoft Entra ID P1 (standalone). Χωρίς αυτό υπάρχουν μόνο τα security defaults: MFA για όλους, χωρίς κανόνες και εξαιρέσεις."}
@@ -62,7 +62,7 @@ measures:
     iso: A.5.15, A.8.5
     feature: Conditional Access για agent identities (Microsoft Agent 365 με Microsoft Entra ID P1)
     source: https://learn.microsoft.com/entra/fundamentals/licensing
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: n, t: "Το Microsoft Agent 365 διατίθεται ως add-on σε Business Premium, E5 και A5 και προαπαιτεί Entra ID P1. Χρειάζεται Business Premium με Agent 365, ή E7."}
@@ -80,15 +80,15 @@ measures:
     iso: A.5.9, A.8.1, A.8.9
     feature: Microsoft Intune Plan 1
     source: https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/m365b-security-overview
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: a, t: "Microsoft Intune Plan 1 (standalone). Χωρίς αυτό υπάρχει μόνο το Basic Mobility and Security, ένα περιορισμένο υποσύνολο για κινητά."}
       standard: {s: a, t: "Microsoft Intune Plan 1 (standalone). Χωρίς αυτό υπάρχει μόνο το Basic Mobility and Security, ένα περιορισμένο υποσύνολο για κινητά."}
       premium: {s: y, t: "Microsoft Intune Plan 1."}
-      e3: {s: y, t: "Microsoft Intune Plan 1."}
-      e5: {s: y, t: "Microsoft Intune Plan 1."}
-      e7: {s: y, t: "Microsoft Intune Plan 1."}
+      e3: {s: y, t: "Microsoft Intune Plan 1. Από τον Ιούλιο 2026 περιλαμβάνει και Intune Plan 2, Remote Help και Advanced Analytics."}
+      e5: {s: y, t: "Microsoft Intune Plan 1. Από τον Ιούλιο 2026 περιλαμβάνει και Intune Plan 2, Remote Help, Advanced Analytics, Endpoint Privilege Management, Microsoft Cloud PKI και Enterprise Application Management."}
+      e7: {s: y, t: "Microsoft Intune Plan 1, Intune Plan 2, Remote Help, Advanced Analytics, Endpoint Privilege Management, Microsoft Cloud PKI και Enterprise Application Management."}
       f1: {s: y, t: "Microsoft Intune Plan 1."}
       f3: {s: y, t: "Microsoft Intune Plan 1."}
   - key: edr
@@ -98,7 +98,7 @@ measures:
     iso: A.8.7
     feature: Microsoft Defender for Business, Microsoft Defender for Endpoint Plan 1 και Plan 2
     source: https://learn.microsoft.com/defender-business/mdb-faq
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: a, t: "Microsoft Defender for Business (standalone, έως 300 χρήστες)."}
@@ -116,11 +116,11 @@ measures:
     iso: A.8.7, A.8.23
     feature: Microsoft Defender for Office 365 Plan 1
     source: https://learn.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
-      basic: {s: a, t: "Microsoft Defender for Office 365 Plan 1 (add-on). Χωρίς αυτό υπάρχει μόνο η βασική προστασία του Exchange Online Protection."}
-      standard: {s: a, t: "Microsoft Defender for Office 365 Plan 1 (add-on). Χωρίς αυτό υπάρχει μόνο η βασική προστασία του Exchange Online Protection."}
+      basic: {s: a, t: "Microsoft Defender for Office 365 Plan 1 (add-on). Από το καλοκαίρι του 2026 το πακέτο έχει URL time-of-click protection, αλλά όχι Safe Attachments και anti-phishing με impersonation protection."}
+      standard: {s: a, t: "Microsoft Defender for Office 365 Plan 1 (add-on). Από το καλοκαίρι του 2026 το πακέτο έχει URL time-of-click protection, αλλά όχι Safe Attachments και anti-phishing με impersonation protection."}
       premium: {s: y, t: "Microsoft Defender for Office 365 Plan 1."}
       e3: {s: y, t: "Microsoft Defender for Office 365 Plan 1, από την 1η Ιουλίου 2026."}
       e5: {s: y, t: "Microsoft Defender for Office 365 Plan 2."}
@@ -134,7 +134,7 @@ measures:
     iso: A.6.3
     feature: Attack simulation training (Microsoft Defender for Office 365 Plan 2)
     source: https://learn.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: a, t: "Microsoft Defender for Office 365 Plan 2 (add-on)."}
@@ -152,7 +152,7 @@ measures:
     iso: A.8.2
     feature: Microsoft Entra Privileged Identity Management (Microsoft Entra ID P2 ή Microsoft Entra ID Governance)
     source: https://learn.microsoft.com/entra/id-governance/licensing-fundamentals
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: a, t: "Microsoft Entra ID P2 (standalone)."}
@@ -170,7 +170,7 @@ measures:
     iso: A.5.18
     feature: Microsoft Entra access reviews (Microsoft Entra ID P2 ή Microsoft Entra ID Governance)
     source: https://learn.microsoft.com/entra/id-governance/licensing-fundamentals
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: a, t: "Microsoft Entra ID P2 (standalone)."}
@@ -188,7 +188,7 @@ measures:
     iso: A.5.18, A.6.5
     feature: Lifecycle workflows (Microsoft Entra ID Governance)
     source: https://learn.microsoft.com/entra/id-governance/licensing-fundamentals
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: a, t: "Microsoft Entra ID Governance, που προαπαιτεί Entra ID P1 ή P2."}
@@ -206,7 +206,7 @@ measures:
     iso: A.8.8
     feature: Core vulnerability management (Defender for Business, Defender for Endpoint Plan 2)
     source: https://learn.microsoft.com/defender-vulnerability-management/tvm-prerequisites
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: a, t: "Microsoft Defender for Business (standalone), που περιλαμβάνει threat and vulnerability management."}
@@ -224,7 +224,7 @@ measures:
     iso: A.8.9
     feature: Microsoft Defender Vulnerability Management premium (add-on ή standalone)
     source: https://learn.microsoft.com/defender-vulnerability-management/defender-vulnerability-management-capabilities
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: a, t: "Microsoft Defender Vulnerability Management standalone. Δεν διατίθεται για πελάτες του Defender for Business."}
@@ -243,7 +243,7 @@ measures:
     gdpr: Άρθρα 5 παρ. 1 στ΄ και 32
     feature: Microsoft Purview Information Protection και Data Loss Prevention
     source: https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: n, t: "Δεν υπάρχουν sensitivity labels, DLP ούτε retention για Exchange και SharePoint (μόνο για Teams). Χρειάζεται Business Premium."}
@@ -262,7 +262,7 @@ measures:
     gdpr: Άρθρο 32
     feature: Client and service-side automatic sensitivity labeling, Endpoint DLP
     source: https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: n, t: "Χρειάζεται Business Premium με Purview Suite for Business Premium, ή E5."}
@@ -281,7 +281,7 @@ measures:
     gdpr: Άρθρο 33 παρ. 5
     feature: Microsoft Purview Audit (Premium)
     source: https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: n, t: "Μόνο Audit (Standard), 180 ημέρες. Το Audit (Premium) διατίθεται με Business Premium και Purview Suite for Business Premium, ή με E5."}
@@ -299,7 +299,7 @@ measures:
     iso: A.5.26, A.8.16
     feature: Microsoft Defender XDR (Defender for Endpoint Plan 2, Defender for Office 365 Plan 2)
     source: https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/add-defender-suite-business-premium
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: n, t: "Χρειάζεται Business Premium με Defender Suite for Business Premium, ή E5."}
@@ -317,7 +317,7 @@ measures:
     iso: A.8.16
     feature: Microsoft Defender for Identity
     source: https://learn.microsoft.com/microsoft-365/admin/security-and-compliance/add-defender-suite-business-premium
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: n, t: "Χρειάζεται Business Premium με Defender Suite for Business Premium, ή E5."}
@@ -335,7 +335,7 @@ measures:
     iso: A.8.20, A.8.22
     feature: Microsoft Entra Private Access
     source: https://learn.microsoft.com/entra/fundamentals/licensing
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: a, t: "Microsoft Entra Private Access ή Microsoft Entra Suite, που προαπαιτούν Entra ID P1."}
@@ -353,7 +353,7 @@ measures:
     iso: A.8.23
     feature: Microsoft Entra Internet Access
     source: https://learn.microsoft.com/entra/fundamentals/licensing
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: a, t: "Microsoft Entra Internet Access ή Microsoft Entra Suite, που προαπαιτούν Entra ID P1."}
@@ -372,7 +372,7 @@ measures:
     gdpr: Άρθρο 32 παρ. 1 γ΄
     feature: Microsoft 365 Backup (pay-as-you-go)
     source: https://learn.microsoft.com/microsoft-365/backup/backup-setup
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: true
     plans:
       basic: {s: a, t: "Microsoft 365 Backup, με χρέωση βάσει χρήσης μέσω Azure subscription. Δεν περιλαμβάνεται σε κανένα πακέτο."}
@@ -390,7 +390,7 @@ measures:
     iso: A.5.36
     feature: Microsoft Purview Compliance Manager, premium regulations
     source: https://learn.microsoft.com/purview/compliance-manager-regulations-list
-    verified: 2026-11-11
+    verified: 2026-11-24
     default: false
     plans:
       basic: {s: a, t: "Το Compliance Manager υπάρχει, αλλά τα premium regulations (NIS 2, ISO/IEC 27001:2022) αγοράζονται ξεχωριστά."}
